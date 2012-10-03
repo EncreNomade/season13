@@ -43,6 +43,11 @@ function scrollUpdate(){
 
 function gotoSection(name) {
     if(!(typeof name == "string")) {
+        // Desactive page reload
+        if(current_section != "other") {
+            name.preventDefault();
+        }
+    
         var name = $(this).attr('section');
         if(!name) return;
     }
@@ -75,7 +80,7 @@ function init() {
     
     // Set anchor for menu
     $('#continue').click(gotoSection);
-    $('#menu li a').parent().click(gotoSection);
+    $('#menu li:lt(3) a').parent().click(gotoSection);
     
     
     $('#back').parallax("50%", -0.5);

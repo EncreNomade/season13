@@ -9,10 +9,11 @@
         array_push($day, $i);
     }
     
-    $sections = array("accueil", "episode", "concept");
+    $sections = array("accueil", "episode", "concept", "other");
     
     $section = $sections[0];
     if(isset($_GET['s'])) $section = $_GET['s'];
+    else $section = $sections[3];
     if( !in_array($section, $sections) )
         $section = "accueil";
  ?>
