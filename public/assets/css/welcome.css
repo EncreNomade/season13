@@ -1,0 +1,379 @@
+.main_container {
+    position: absolute;
+    top: 200px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+}
+
+.layer {
+    position: absolute;
+}
+
+
+#back {
+    left: -750px;
+    top: -300px;
+    background-image: url('../img/illus/petite_ceinture.jpg');
+    width: 1500px;
+    height: 600px;
+}
+
+#booktitle {
+    left: 32%;
+    top: 153px;
+    background: transparent;
+    width: 336px;
+    height: 107px;
+    z-index: 3;
+}
+
+#bookresume {
+    left: 32%;
+    top: 285px;
+    background: transparent;
+    width: 540px;
+    z-index: 2;
+}
+#bookresume p {
+    margin: 5px;
+    color: #fff;
+    font: normal 16px/20px Arial;
+}
+
+#btns {
+    right: 20px;
+    top: 380px;
+    background: transparent;
+    z-index: 4;
+}
+#btns ul {
+    margin: 0px;
+    padding: 0px;
+}
+#btns ul li {
+    background: #aa0000;
+    color: #fff;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 12px;
+    width: 250px;
+    height: 40px;
+    visibility: visible;
+}
+#btns ul li a {
+    position: absolute;
+    font: normal 25px/40px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    margin: 0px;
+    padding: 2px 0px 0px 0px;
+    height: 40px;
+}
+
+#simon {
+    left: 70px;
+    top: 80px;
+    background-image: url('../img/illus/simonHD.png');
+    width: 284px;
+    height: 655px;
+    z-index: 4;
+}
+
+#bande4 {
+    right: 20px;
+    top: 10px;
+    background-image: url('../img/illus/bande4.png');
+    width: 297px;
+    height: 336px;
+    z-index: 3;
+}
+
+
+#episodes_section {
+    left: 0px;
+    top: 572px;
+    width: 100%;
+    height: 500px;
+    background: #fff url('../img/deco/tex45x48.png') repeat left top;
+    border-top: 3px solid #000;
+    z-index: 3;
+}
+
+#episodes {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 684px;
+    height: 260px;
+    overflow: hidden;
+    color: #fff;
+}
+#episodes #expos {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10000px;
+    height: 220px;
+    margin: 0px;
+    padding: 0px;
+    -webkit-transition: left 0.4s ease-in-out;
+    -moz-transition: left 0.4s ease-in-out;
+    -o-transition: left 0.4s ease-in-out;
+    transition: left 0.4s ease-in-out;
+}
+#episodes #expos .expo {
+    position: relative;
+    float: left;
+    width: 684px;
+    height: 220px;
+}
+#episodes #expos .expo img {
+    width: 100%;
+    height: 100%;
+}
+#episodes .ep_title {
+    position: absolute;
+    top: 170px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    background: rgba(0, 0, 0, .5) url('../img/ui/ep_voir.jpg') no-repeat right top;
+}
+#episodes .ep_title h2 {
+    margin: 12px 0 10px 20px;
+    padding: 0px;
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 1.5px;
+}
+#episodes .ep_title .ep_play {
+    position: absolute;
+    top: 0px;
+    right: 53px;
+    width: 135px;
+    height: 28px;
+    background: #aa0000;
+    text-align: center;
+    padding: 12px 0 10px 0;
+    font: normal 16px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 1.5px;
+}
+
+
+#episodes .ep_list {
+    position: absolute;
+    top: 226px;
+    left: 0px;
+    width: 100%;
+    height: 35px;
+    padding: 0px;
+}
+#episodes .ep_list #ep_prev_btn {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    opacity: 0.6;
+    left: 0px;
+    top: 0px;
+}
+#episodes .ep_list #ep_next_btn {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    opacity: 0.6;
+    top: 0px;
+    right: 0px;
+}
+#episodes .ep_list ul {
+    margin: 0 40px 0 40px;
+    padding: 0px;
+    left: 0px;
+    width: 604px;
+    overflow: auto;
+}
+#episodes .ep_list ul li {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    margin: 0 5px 0 0;
+    line-height: 38px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    float: left;
+    -webkit-transition: background-color 0.3s linear;
+    -moz-transition: background-color 0.3s linear;
+    -o-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+#episodes .ep_list ul li.active, #episodes .ep_list ul li:hover {
+    background-color: #808080;
+}
+
+
+
+#concept {
+    left: 0px;
+    top: 1072px;
+    width: 100%;
+    height: 1470px;
+    background: #fff;
+    z-index: 4;
+}
+
+#concept #cpt_intro {
+    position: absolute;
+    left: 0px;
+    top: 12px;
+    width: 100%;
+    height: 140px;
+    background: #fff url('../img/deco/tex45x48.png') repeat left top;
+}
+#concept #cpt_intro h1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 295px;
+    height: 30px;
+    margin: 0px;
+    padding: 0 0 0 25px;
+    background: #000;
+    color: #fff;
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 32px;
+}
+#concept #cpt_intro cite {
+    position: absolute;
+    left: 200px;
+    right: 200px;
+    top: 50px;
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    background: transparent;
+    color: #000;
+    font: normal 26px/35px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 35px;
+}
+
+#concept #cpt_content {
+    position: absolute;
+    left: 0px;
+    top: 196px;
+    width: 785px;
+    height: 1036px;
+    overflow: visible;
+}
+#concept #cpt_content .cpt_section {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 219px;
+    overflow: visible;
+    margin: 0 0 40px 0;
+}
+#concept #cpt_content .cpt_section img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 316px;
+    height: 215px;
+    border: 2px solid #000;
+}
+#concept #cpt_content .cpt_section .list_deco {
+    position: absolute;
+    left: 328px;
+    top: -32px;
+    width: 80px;
+    height: 74px;
+    background: transparent url('../img/deco/tache.png') no-repeat left top;
+}
+#concept #cpt_content .cpt_section h1 {
+    position: absolute;
+    left: 348px;
+    top: 0px;
+    right: 0px;
+    width: auto;
+    height: 36px;
+    padding: 0 0 0 62px;
+    margin: 0;
+    font: normal 26px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+}
+#concept #cpt_content .cpt_section h5 {
+    position: absolute;
+    left: 410px;
+    top: 54px;
+    right: 0px;
+    bottom: 0px;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    font: normal 16px/20px Arial, Helvetica, Geneva, sans-serif;
+    line-height: 20px;
+}
+#concept #cpt_content .cpt_section h5 p {
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+#concept #cpt_banner {
+    position: absolute;
+    right: 0px;
+    top: 196px;
+    width: 211px;
+    height: 685px;
+}
+
+#concept #cpt_multi {
+    position: absolute;
+    top: 1250px;
+    left: 0px;
+    width: 100%;
+    height: 140px;
+    background: #fff url('../img/deco/tex45x48.png') repeat left top;
+    overflow: visible;
+    margin: 0 0 80px 0;
+}
+#concept #cpt_multi h1 {
+    position: absolute;
+    top: -18px;
+    left: 0px;
+    width: 245px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    font: normal 26px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+#concept #cpt_multi img {
+    position: absolute;
+    left: 240px;
+    top: 10px;
+    width: 240px;
+    height: 124px;
+}
+#concept #cpt_multi h5 {
+    position: absolute;
+    left: 530px;
+    right: 200px;
+    top: 30px;
+    bottom: 30px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    font: normal 16px/20px Arial, Helvetica, Geneva, sans-serif;
+}
