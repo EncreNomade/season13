@@ -8,7 +8,7 @@ var config = {
 
 var sections = {
     'accueil' : 0,
-    'episode' : 200,
+    'episode' : 250,
     'concept' : 670
 }
 
@@ -67,6 +67,12 @@ function activeEpisode(id) {
     elems.ep_expos.css( 'left', -config.expo_width * id );
     var expo = elems.ep_expos.children('.expo:eq('+id+')');
     elems.ep_title.children('h2').text( titleContent(expo.data('episode'), expo.data('title')) );
+    var dispo = expo.data('dispo').toUpperCase();
+    elems.ep_title.children('.ep_play').text(dispo);
+    if(dispo.match('VOIR'))
+        elems.ep_title.add(elems.ep_expos).removeClass('indispo');
+    else
+        elems.ep_title.add(elems.ep_expos).addClass('indispo');
 }
 
 function init() {
@@ -80,14 +86,14 @@ function init() {
     
     // Set anchor for menu
     $('#continue').click(gotoSection);
-    $('#menu li:lt(3) a').parent().click(gotoSection);
+    $('#menu li a:lt(3)').parent().click(gotoSection);
     
     
     $('#back').parallax("50%", -0.5);
-    $('#booktitle').parallax("50%", -0.5);
+    $('#booktitle').parallax("50%", -0.9);
     $('#bookresume').parallax("50%", 2);
     $('#episodes_section').parallax("50%", 0.6);
-    elems.btns.parallax("10%", -0.25);
+    elems.btns.parallax("10%", -0.17);
     elems.concept.parallax("50%", 0.6);
     elems.simon.parallax("50%", -0.7);
     elems.band4.parallax("50%", -0.7);

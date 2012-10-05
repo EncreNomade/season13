@@ -1,16 +1,32 @@
+<?php
+$dispo = array(
+        1 => 'Voir l\'épisode',
+        2 => 'Disponible le 24/10',
+        3 => 'Disponible le 31/10',
+        4 => 'Disponible le 07/11',
+        5 => 'Disponible le 07/11',
+        6 => 'Disponible le 14/11',
+        7 => 'Disponible le 21/11'
+    );
+?>
+
 <div class="main_container">
 
-    <div class="center">
+    <?php //<div class="center"> ?>
         <div id="back" class="layer">
 <?php echo Asset::img('illus/petite_ceinture.jpg'); ?>
         </div>
-    </div>
+    <?php //</div> ?>
     <div id="booktitle" class="layer">
 <?php echo Asset::img('illus/titre_2.png'); ?>
     </div>
     <div id="bookresume" class="layer">
-        <p style="font-style: italic;">Auteur : Ecrite par <strong>Chris Debien</strong>, l’auteur de <strong>Black Rain</strong>.</p>
-        <p>Simon est poursuivi par une bande, la nuit, dans Paris. Après une folle course poursuite, il réussit à semer ses poursuivants et  trouve refuge dans les catacombes. Un sorcier vaudou et un étrange commissaire  vont l’entraîner dans une aventure fantastique.</p>
+        <p>Simon est poursuivi par une bande, la nuit, dans Paris. 
+           Après une folle course poursuite, il réussit à semer ses 
+           poursuivants et  trouve refuge dans les catacombes. Un 
+           sorcier vaudou et un étrange commissaire  vont l’entraîner 
+           dans une aventure fantastique.
+       </p>
     </div>
     <div id="btns" class="layer">
         <ul>
@@ -23,8 +39,11 @@
         </ul>
     </div>
     
-    <div id="simon" class="layer"></div>
-    <div id="bande4" class="layer"></div>
+    <div id="simon" class="layer">    
+    </div>
+    <div id="bande4" class="layer">
+<?php echo Asset::img('illus/bande4.png'); ?>
+    </div>
     
     
     
@@ -36,6 +55,7 @@
                 <div class="expo" 
                      data-title="<?php echo stripslashes($admin_13episode->title); ?>"
                      data-episode="<?php echo $admin_13episode->episode; ?>"
+                     data-dispo="<?php echo $dispo[$admin_13episode->episode]; ?>"
                      data-bref="<?php echo stripslashes($admin_13episode->bref); ?>"
                      data-path="<?php echo $admin_13episode->path; ?>">
     <?php echo Asset::img($admin_13episode->image); ?>

@@ -1,6 +1,6 @@
 .main_container {
     position: absolute;
-    top: 200px;
+    top: 160px;
     left: 0px;
     width: 100%;
     height: auto;
@@ -21,16 +21,16 @@
 
 
 #back {
-    left: -750px;
-    top: -300px;
-    background-image: url('../img/illus/petite_ceinture.jpg');
-    width: 1500px;
+    width: 100%;
     height: 600px;
+}
+#back img {
+    width: 100%;
 }
 
 #booktitle {
     left: 32%;
-    top: 153px;
+    top: 50px;
     background: transparent;
     width: 336px;
     height: 107px;
@@ -39,7 +39,7 @@
 
 #bookresume {
     left: 32%;
-    top: 285px;
+    top: 195px;
     background: transparent;
     width: 540px;
     z-index: 2;
@@ -52,7 +52,7 @@
 
 #btns {
     right: 20px;
-    top: 380px;
+    top: 340px;
     background: transparent;
     z-index: 4;
 }
@@ -79,20 +79,21 @@
 
 #simon {
     left: 70px;
-    top: 80px;
+    top: 10px;
     background-image: url('../img/illus/simonHD.png');
     width: 284px;
     height: 655px;
-    z-index: 4;
+    z-index: 5;
 }
 
 #bande4 {
     right: 20px;
     top: 10px;
-    background-image: url('../img/illus/bande4.png');
-    width: 297px;
-    height: 336px;
+    width: 250px;
     z-index: 3;
+}
+#bande4 img {
+    width: 100%
 }
 
 
@@ -103,7 +104,7 @@
     height: 500px;
     background: #fff url('../img/deco/tex45x48.png') repeat left top;
     border-top: 3px solid #000;
-    z-index: 3;
+    z-index: 4;
 }
 
 #episodes {
@@ -128,6 +129,9 @@
     -o-transition: left 0.4s ease-in-out;
     transition: left 0.4s ease-in-out;
 }
+#episodes #expos.indispo {
+    opacity: 0.6;
+}
 #episodes #expos .expo {
     position: relative;
     float: left;
@@ -145,6 +149,9 @@
     width: 100%;
     height: 50px;
     background: rgba(0, 0, 0, .5) url('../img/ui/ep_voir.jpg') no-repeat right top;
+}
+#episodes .ep_title.indispo {
+    background-image: url('../img/ui/ep_sablier.jpg');
 }
 #episodes .ep_title h2 {
     margin: 12px 0 10px 20px;

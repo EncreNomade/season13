@@ -58,7 +58,7 @@ function init() {
         hideDialog();
     });
 
-    $('#signupBtn').click(function(e) {
+    $('#signup_dialog form').submit(function(e) {
         // Stop full page reload
         e.preventDefault();
         
@@ -73,6 +73,7 @@ function init() {
         var mail = $('#signupMail').val();
         var tel = $('#signupPortable').val();
         var notif = $('#signupNotif').val();
+        var cp = $('#signupCP').val();
 
         var valid = true;
         if(name == "") {$('#signupId').siblings('cite').addClass('alert');valid = false;}
@@ -95,7 +96,8 @@ function init() {
             'sex': sex,
             'birthday': bDay,
             'portable': tel,
-            'notif': notif
+            'notif': notif,
+            'ville': cp
         };
 
         // Send
@@ -127,8 +129,80 @@ function init() {
         });
     });
     
+    // Facebook signup
+    $('#signup_dialog .fb_btn').click(function(){
+        FB.login(function(response) {
+            if (response.status == 'connected') {
+                $.ajax({
+                    url: './base/link_fb',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {fbToken: response.authResponse.accessToken},
+                    success: function(data, textStatus, XMLHttpRequest)
+                    {
+                        // now, we get two important pieces of data back from our rest controller
+                        // data.valid = true/false
+                        // data.redirect = the page we redirect to on successful login
+                        if (data.valid)
+                        {
+                            document.location.href = data.redirect;
+                        }
+                        else
+                        {
+                            alert('Page request error');
+                            $('input[type=submit]').removeAttr('disabled');
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown)
+                    {
+                        // console.log(arguments);
+                    }
+                });                    
+            } 
+            else if (response.status === 'not_authorized'){
+            
+            }
+            else { // fail
+                
+            }
+        }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});       
+    });
     
-    $('#loginBtn').click(function(e) {
+    // Facebook login
+    $('#login_dialog .fb_btn').click(function(){
+        function doFBLogin(accessToken){
+            $.ajax({
+                url: './base/login_fb',
+                type: 'POST',
+                dataType: 'json',
+                data: {fbToken: accessToken},
+                success: function(data, textStatus, XMLHttpRequest)
+                {
+                    // now, we get two important pieces of data back from our rest controller
+                    // data.valid = true/false
+                    // data.redirect = the page we redirect to on successful login
+                    if (data.valid)
+                    {
+                        document.location.href = data.redirect;
+                    }
+                    else
+                    {
+                        alert('Page request error');
+                        $('input[type=submit]').removeAttr('disabled');
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown)
+                {
+                    console.log(arguments);
+                }
+            });   
+        }
+        var token = FB.getAccessToken();
+        if(token) doFBLogin(token); // The user is connected with FB && auth to the app
+        // Here we could write the other cases...
+    });
+    
+    $('#login_dialog form').submit(function(e) {
         // Stop full page load
         e.preventDefault();
 
@@ -212,3 +286,5 @@ function init() {
 $(document).ready(init);
 
 })();
+
+

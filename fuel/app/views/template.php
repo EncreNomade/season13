@@ -1,6 +1,6 @@
 <?php 
     $year = array();
-    for ($i = 1930; $i <= 2012; $i++) {
+    for ($i = 2012; $i >= 1930; $i--) {
         array_push($year, $i);
     }
     $month = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
@@ -13,7 +13,7 @@
     
     $section = $sections[0];
     if(isset($_GET['s'])) $section = $_GET['s'];
-    else $section = $sections[3];
+    // else $section = $sections[3];
     if( !in_array($section, $sections) )
         $section = "accueil";
  ?>
@@ -34,19 +34,43 @@
 	?>
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>
+    // Load the SDK Asynchronously
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/fr_FR/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+
+    // Init the SDK upon load
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '141570392646490', // App ID
+            channelUrl : 'http://testfb.encrenomade.com/channelfile', // Path to your Channel File
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
+    }
+
+    </script>
     <script type="text/javascript">
         window.current_section = "<?php echo $section; ?>";
     </script>
 
     <header>
-        <div id="logo"></div>
+        <a href="/"><div id="logo"></div></a>
         
         <ul id="menu">
-            <li section="accueil"><a href="/season13/public/">ACCUEIL</a></li>
+            <li section="accueil"><a href="/">ACCUEIL</a></li>
             <li class="text_sep_vertical"></li>
-            <li section="episode"><a href="/season13/public/?s=episode">LES ÉPISODES</a></li>
+            <li section="episode"><a href="/?s=episode">LES ÉPISODES</a></li>
             <li class="text_sep_vertical"></li>
-            <li section="concept"><a href="/season13/public/?s=concept">LE CONCEPT</a></li>
+            <li section="concept"><a href="/?s=concept">LE CONCEPT</a></li>
             <li class="text_sep_vertical"></li>
             <li><a href="/season13/public/actu">L'ACTU</a></li>
         </ul>
@@ -78,7 +102,9 @@
                 <div class="sep_line"></div>
                 <h1>AVEC TON COMPTE FACEBOOK</h1>
                 <div class="fb_btn"></div>
-                <h5>Clique sur le bouton Facebook et accepte la demande de connexion. Ton compte sera directement relié à Season13. Dès que tu seras lié ton compte, tu pourras te connecter ici en 1 clic !</h5>
+                <?php
+                //<h5 class="fb_help">Clique sur le bouton Facebook et accepte la demande de connexion. Ton compte sera directement relié à Season13. Dès que tu seras lié ton compte, tu pourras te connecter ici en 1 clic !</h5>
+                ?>
             </div>
             <div class="section">
                 <div class="sep_line"></div>
@@ -112,6 +138,9 @@
                     </select>
                 </p>
                 <p><label>Ton Mail</label><input type="email" size="18" id="signupMail"></p>
+                <p><label>Ton Code Postal</label><input type="text" size="18"  maxlength="20" id="signupCP"><cite>Optionnel</cite></p>
+                <?php
+                /*
                 <p><label>Ton Numéro Portable</label><input type="text" size="18"  maxlength="20" id="signupPortable"><cite>Obligatoire si vous voulez la notification en sms</cite></p>
                 <p>
                     <label>Choix Notification</label>
@@ -121,7 +150,10 @@
                     </select>
                     <cite>On te notifie quand il y a des nouveautés</cite>
                 </p>
-                <p><label id="signupBtn"></label></p>
+                */
+                ?>
+                <? //<p><label id="signupBtn"></label></p> ?>
+                <p><input type="submit" id="signupBtn" /></p>
             </div>
         </form>
     </div>
@@ -132,14 +164,14 @@
                 <div class="sep_line"></div>
                 <h1>AVEC TON COMPTE FACEBOOK</h1>
                 <div class="fb_btn"></div>
-                <h5>Ton compte est lié à ton compte Facebook. si tu es déjà connecté à Facebook dans une autre fenêtre, clique sur l’icone et tu es connecté !</h5>
+                <h5 class="fb_help">Ton compte est lié à ton compte Facebook. si tu es déjà connecté à Facebook dans une autre fenêtre, clique sur l’icone et tu es connecté !</h5>
             </div>
             <div class="section">
                 <div class="sep_line"></div>
                 <h1>AVEC TON COMPTE SEASON13</h1>
                 <p><label>TON PSEUDO OU TON MAIL</label><input type="text" size="18" maxlength="12" id="loginId"></p>
                 <p><label>TON MOT DE PASSE</label><input type="password" size="18" id="loginPass"></p>
-                <p><label id="loginBtn"></label></p>
+                <p><input type="submit" id="loginBtn"/></p>
             </div>
         </form>
     </div>
