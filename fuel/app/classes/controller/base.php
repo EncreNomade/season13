@@ -28,17 +28,30 @@ class Controller_Base extends Controller_Rest
         if ($val->run())
 		{
 			$auth = Auth::instance();
-
+            
+            $fbID = '0';
+            $avatar = Input::post('avatar');
+            
+            // check if user has signup with FB
+            if( Input::post('fbToken') && Input::post('fbToken') != 'empty' ){
+                $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('fbToken')));
+                if( is_object($fbUser) && isset($fbUser->id) ){
+                    $fbID = $fbUser->id;
+                    $avatar = 'https://graph.facebook.com/' . $fbUser->id . '/picture';
+                }
+            }
+            
 			// check the credentials. This assumes that you have the previous table created
 			if ( $auth->create_user(Input::post('pseudo'), 
 			                        Input::post('password'),
 			                        Input::post('email'),
 			                        Input::post('portable'),
 			                        Input::post('group'),
-			                        Input::post('avatar'),
+			                        $avatar,
 			                        Input::post('sex'),
 			                        Input::post('birthday'),
-			                        Input::post('notif')) )
+			                        'mail', // not dispo in html form !
+                                    $fbID) )
 			{
 			    // Log in the user
 			    $res = $auth->login(Input::post('email'), Input::post('password'));
@@ -47,7 +60,6 @@ class Controller_Base extends Controller_Rest
 				// Set a global variable so views can use it
 				View::set_global('current_user', $this->current_user);
 				$this->response(array('valid' => true, 'redirect' => '/'), 200);
-                // $this->response(array('valid' => true, 'redirect' => '/', '$auth->login result'=> $res, 'user'=>Auth::get_screen_name()), 200);
 
 			}
 			else
@@ -61,7 +73,15 @@ class Controller_Base extends Controller_Rest
 		}
 	}
 	
-	public function post_link_fb() 
+	 /**
+      * Facebook signup action
+      * 
+      * old version, now its unauthorized to call
+      *
+	  * @access  private
+	  * @return  void
+      */
+	private function post_link_fb()
 	{
         $val = Validation::forge();
     
@@ -139,7 +159,14 @@ class Controller_Base extends Controller_Rest
 			}
 		}
 	}
-	
+	 /**
+      * Facebook login action
+      * 
+      * need a valid facebook token to connect the user
+      *
+	  * @access  public
+	  * @return  void
+      */
 	public function post_login_fb()
 	{
 	    // Already logged in
@@ -148,7 +175,7 @@ class Controller_Base extends Controller_Rest
         
         $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('fbToken')));
         
-        if( !$fbUser->id )
+        if( !is_object($fbUser) && !isset($fbUser->id) )
             $this->response(array('valid' => false, 'error' => 'Problème de connexion à Facebook'), 200);
             
         $auth = Auth::instance('fbauth');

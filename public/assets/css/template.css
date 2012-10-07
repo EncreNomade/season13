@@ -66,6 +66,15 @@ header #logo {
     width: 576px;
     height: 131px;
 }
+header #logoLink {    
+    position: absolute;
+    display: block;
+    left: 0px;
+    top: 30px;
+    width: 170px;
+    height: 110px;
+}
+
 
 header ul#menu {
     text-align: center;

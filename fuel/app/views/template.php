@@ -63,7 +63,8 @@
     </script>
 
     <header>
-        <a href="/"><div id="logo"></div></a>
+        <div id="logo"></div>
+        <a href="/" id="logoLink"></a>
         
         <ul id="menu">
             <li section="accueil"><a href="/">ACCUEIL</a></li>
@@ -138,7 +139,7 @@
                     </select>
                 </p>
                 <p><label>Ton Mail</label><input type="email" size="18" id="signupMail"></p>
-                <p><label>Ton Code Postal</label><input type="text" size="18"  maxlength="20" id="signupCP"><cite>Optionnel</cite></p>
+                <p><label>Ton Code Postal</label><input type="text" size="18"  maxlength="5" id="signupCP"><cite>Optionnel</cite></p>
                 <?php
                 /*
                 <p><label>Ton Numéro Portable</label><input type="text" size="18"  maxlength="20" id="signupPortable"><cite>Obligatoire si vous voulez la notification en sms</cite></p>
@@ -153,6 +154,7 @@
                 */
                 ?>
                 <? //<p><label id="signupBtn"></label></p> ?>
+                <input type="hidden" id="signup_fbToken" value="empty" />
                 <p><input type="submit" id="signupBtn" /></p>
             </div>
         </form>
@@ -169,7 +171,7 @@
             <div class="section">
                 <div class="sep_line"></div>
                 <h1>AVEC TON COMPTE SEASON13</h1>
-                <p><label>TON PSEUDO OU TON MAIL</label><input type="text" size="18" maxlength="12" id="loginId"></p>
+                <p><label>TON PSEUDO OU TON MAIL</label><input type="text" size="18" maxlength="64" id="loginId"></p>
                 <p><label>TON MOT DE PASSE</label><input type="password" size="18" id="loginPass"></p>
                 <p><input type="submit" id="loginBtn"/></p>
             </div>

@@ -80,10 +80,10 @@ function init() {
         if(pass == "") {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
         if(conf == "" || conf != pass) {$('#signupConf').siblings('cite').addClass('alert');valid = false;}
         if(!regs.mail.test(mail)) {$('#signupMail').siblings('cite').addClass('alert');valid = false;}
-        if( (tel != "" && !regs.telephone.test(tel)) || (tel == "" && notif == "sms") ) {
-            $('#signupPortable').siblings('cite').addClass('alert');
-            valid = false;
-        }
+        // if( (tel != "" && !regs.telephone.test(tel)) || (tel == "" && notif == "sms") ) {
+            // $('#signupPortable').siblings('cite').addClass('alert');
+            // valid = false;
+        // }
         if(!valid) return;
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
@@ -97,7 +97,8 @@ function init() {
             'birthday': bDay,
             'portable': tel,
             'notif': notif,
-            'ville': cp
+            'ville': cp, 
+            'fbToken': $('#signup_fbToken').val()
         };
 
         // Send
@@ -130,34 +131,21 @@ function init() {
     });
     
     // Facebook signup
-    $('#signup_dialog .fb_btn').click(function(){
+    $('#signup_dialog .fb_btn').click(function(){    
         FB.login(function(response) {
-            if (response.status == 'connected') {
-                $.ajax({
-                    url: './base/link_fb',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {fbToken: response.authResponse.accessToken},
-                    success: function(data, textStatus, XMLHttpRequest)
-                    {
-                        // now, we get two important pieces of data back from our rest controller
-                        // data.valid = true/false
-                        // data.redirect = the page we redirect to on successful login
-                        if (data.valid)
-                        {
-                            document.location.href = data.redirect;
-                        }
-                        else
-                        {
-                            alert('Page request error');
-                            $('input[type=submit]').removeAttr('disabled');
-                        }
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown)
-                    {
-                        // console.log(arguments);
-                    }
-                });                    
+            if (response.status == 'connected') {                
+                var fbToken = response.authResponse.accessToken;
+                FB.api('me', function(u){
+                    $('#signupId').val(u.username);
+                    $('#signupSex').val(u.gender == 'male' ? 'm' : 'f');
+                    var bDay = u.birthday.split('/'); // month/day/year
+                    $('#signupbDay').val(bDay[1]);
+                    $('#signupbMonth').val(bDay[0]);
+                    $('#signupbYear').val(bDay[2]);
+                    $('#signupMail').attr('readonly', 'readonly').val(u.email);
+                    
+                    $('#signup_fbToken').val(fbToken); // signal to server, it's a FB user !
+                });
             } 
             else if (response.status === 'not_authorized'){
             
