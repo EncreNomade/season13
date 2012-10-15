@@ -139,7 +139,15 @@
                     </select>
                 </p>
                 <p><label>Ton Mail</label><input type="email" size="18" id="signupMail"></p>
-                <p><label>Ton Code Postal</label><input type="text" size="18"  maxlength="5" id="signupCP"><cite>Optionnel</cite></p>
+                <p>
+                    <label>Où Tu Habites</label>
+                    <select id="signupPays">
+                        <option value="  " selected>Selectionnes ton pays</option>
+                        <option value="FR">France</option>
+                    </select>
+                    <cite>Facultatif</cite>
+                </p>
+                <p><label>Code Postal</label><input type="text" size="10"  maxlength="10" id="signupCP"><cite>Facultatif</cite></p>
                 <?php
                 /*
                 <p><label>Ton Numéro Portable</label><input type="text" size="18"  maxlength="20" id="signupPortable"><cite>Obligatoire si vous voulez la notification en sms</cite></p>

@@ -12,6 +12,8 @@ class Model_13user extends \Orm\Model
 		'avatar',
 		'sex',
 		'birthday',
+		'pays',
+		'code_postal',
 		'notif',
 		'fbid',
 		'profile_fields',

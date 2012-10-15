@@ -296,6 +296,9 @@ footer p {
     font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
     height: 100%;
 }
+.dialog .section p label.alert {
+    color: #d50000;
+}
 .dialog .section p input, .dialog .section p select {
     position: relative;
     left: 160px;

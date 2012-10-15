@@ -50,6 +50,8 @@ class Controller_Base extends Controller_Rest
 			                        $avatar,
 			                        Input::post('sex'),
 			                        Input::post('birthday'),
+			                        Input::post('pays'),
+			                        Input::post('codpos'),
 			                        'mail', // not dispo in html form !
                                     $fbID) )
 			{

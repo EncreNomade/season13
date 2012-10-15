@@ -40,7 +40,8 @@ var regs = {
     'date': /^\d{2}\/\d{2}\/\d{4}$/,
     'mail': /^[\w\.\_\-]+@[\w\.\_\-]+$/,
     'telephone' : /^[\d]+$/,
-    'errcode': /\d{4}/g
+    'errcode': /\d{4}/g,
+    'codpos': /^[\d]+$/
 }
 
 function init() {
@@ -62,7 +63,7 @@ function init() {
         // Stop full page reload
         e.preventDefault();
         
-        $('#signup_dialog cite').removeClass('alert');
+        $('#signup_dialog').find('cite, label').removeClass('alert');
 
         // Check fields
         var name = $('#signupId').val();
@@ -71,6 +72,8 @@ function init() {
         var sex = $('#signupSex').val();
         var bDay = $('#signupbDay').val()+"/"+$('#signupbMonth').val()+"/"+$('#signupbYear').val();
         var mail = $('#signupMail').val();
+        var pays = $('#signupPays').val();
+        var codpos = $('#signupCP').val();
         var tel = $('#signupPortable').val();
         var notif = $('#signupNotif').val();
         var cp = $('#signupCP').val();
@@ -78,12 +81,18 @@ function init() {
         var valid = true;
         if(name == "") {$('#signupId').siblings('cite').addClass('alert');valid = false;}
         if(pass == "") {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
+        else if(pass.length < 6) {$('#signupPass').siblings('label').addClass('alert');valid = false;}
         if(conf == "" || conf != pass) {$('#signupConf').siblings('cite').addClass('alert');valid = false;}
-        if(!regs.mail.test(mail)) {$('#signupMail').siblings('cite').addClass('alert');valid = false;}
+        if(!regs.mail.test(mail)) {$('#signupMail').siblings('label').addClass('alert');valid = false;}
         // if( (tel != "" && !regs.telephone.test(tel)) || (tel == "" && notif == "sms") ) {
             // $('#signupPortable').siblings('cite').addClass('alert');
             // valid = false;
         // }
+        if( codpos != "" && !regs.codpos.test(codpos) ) {
+            $('#signupCP').siblings('label').addClass('alert');
+            valid = false;
+        }
+        
         if(!valid) return;
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
@@ -95,6 +104,8 @@ function init() {
             'email': mail,
             'sex': sex,
             'birthday': bDay,
+            'pays': pays,
+            'codpos': codpos,
             'portable': tel,
             'notif': notif,
             'ville': cp, 
