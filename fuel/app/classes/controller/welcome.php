@@ -26,6 +26,15 @@ class Controller_Welcome extends Controller_Template
         $this->template->css_supp = '';
         $this->template->js_supp = '';
     }
+    
+    public function action_concept() {
+        $this->template->title = 'Concept de SEASON13';
+        // Set supplementation css and js file
+        $this->template->css_supp = 'concept.css';
+        $this->template->js_supp = '';
+        
+        $this->template->content = View::forge('welcome/concept');
+    }
 
 	/**
 	 * The basic welcome message

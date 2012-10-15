@@ -78,8 +78,8 @@
 }
 
 #simon {
-    left: 70px;
-    top: 10px;
+    left: 85px;
+    top: 90px;
     background-image: url('../img/illus/simonHD.png');
     width: 284px;
     height: 655px;
@@ -88,9 +88,9 @@
 
 #bande4 {
     right: 20px;
-    top: 10px;
+    top: 50px;
     width: 250px;
-    z-index: 3;
+    z-index: 5;
 }
 #bande4 img {
     width: 100%
@@ -101,7 +101,7 @@
     left: 0px;
     top: 572px;
     width: 100%;
-    height: 500px;
+    height: 300px;
     background: #fff url('../img/deco/tex45x48.png') repeat left top;
     border-top: 3px solid #000;
     z-index: 4;
@@ -220,167 +220,4 @@
 }
 #episodes .ep_list ul li.active, #episodes .ep_list ul li:hover {
     background-color: #808080;
-}
-
-
-
-#concept {
-    left: 0px;
-    top: 1072px;
-    width: 100%;
-    height: 1470px;
-    background: #fff;
-    z-index: 4;
-}
-
-#concept #cpt_intro {
-    position: absolute;
-    left: 0px;
-    top: 12px;
-    width: 100%;
-    height: 140px;
-    background: #fff url('../img/deco/tex45x48.png') repeat left top;
-}
-#concept #cpt_intro h1 {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 295px;
-    height: 30px;
-    margin: 0px;
-    padding: 0 0 0 25px;
-    background: #000;
-    color: #fff;
-    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    line-height: 32px;
-}
-#concept #cpt_intro cite {
-    position: absolute;
-    left: 200px;
-    right: 200px;
-    top: 50px;
-    width: auto;
-    height: auto;
-    margin: 0px;
-    padding: 0px;
-    background: transparent;
-    color: #000;
-    font: normal 26px/35px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    line-height: 35px;
-}
-
-#concept #cpt_content {
-    position: absolute;
-    left: 0px;
-    top: 196px;
-    width: 785px;
-    height: 1036px;
-    overflow: visible;
-}
-#concept #cpt_content .cpt_section {
-    position: relative;
-    float: left;
-    width: 100%;
-    height: 219px;
-    overflow: visible;
-    margin: 0 0 40px 0;
-}
-#concept #cpt_content .cpt_section img {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 316px;
-    height: 215px;
-    border: 2px solid #000;
-}
-#concept #cpt_content .cpt_section .list_deco {
-    position: absolute;
-    left: 328px;
-    top: -32px;
-    width: 80px;
-    height: 74px;
-    background: transparent url('../img/deco/tache.png') no-repeat left top;
-}
-#concept #cpt_content .cpt_section h1 {
-    position: absolute;
-    left: 348px;
-    top: 0px;
-    right: 0px;
-    width: auto;
-    height: 36px;
-    padding: 0 0 0 62px;
-    margin: 0;
-    font: normal 26px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    line-height: 40px;
-    background: #000;
-    color: #fff;
-}
-#concept #cpt_content .cpt_section h5 {
-    position: absolute;
-    left: 410px;
-    top: 54px;
-    right: 0px;
-    bottom: 0px;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    height: auto;
-    font: normal 16px/20px Arial, Helvetica, Geneva, sans-serif;
-    line-height: 20px;
-}
-#concept #cpt_content .cpt_section h5 p {
-    margin: 0 0 20px 0;
-    padding: 0;
-}
-
-#concept #cpt_banner {
-    position: absolute;
-    right: 0px;
-    top: 196px;
-    width: 211px;
-    height: 685px;
-}
-
-#concept #cpt_multi {
-    position: absolute;
-    top: 1250px;
-    left: 0px;
-    width: 100%;
-    height: 140px;
-    background: #fff url('../img/deco/tex45x48.png') repeat left top;
-    overflow: visible;
-    margin: 0 0 80px 0;
-}
-#concept #cpt_multi h1 {
-    position: absolute;
-    top: -18px;
-    left: 0px;
-    width: 245px;
-    height: 36px;
-    margin: 0;
-    padding: 0;
-    font: normal 26px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    line-height: 40px;
-    background: #000;
-    color: #fff;
-    text-align: center;
-}
-#concept #cpt_multi img {
-    position: absolute;
-    left: 240px;
-    top: 10px;
-    width: 240px;
-    height: 124px;
-}
-#concept #cpt_multi h5 {
-    position: absolute;
-    left: 530px;
-    right: 200px;
-    top: 30px;
-    bottom: 30px;
-    width: auto;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    font: normal 16px/20px Arial, Helvetica, Geneva, sans-serif;
 }

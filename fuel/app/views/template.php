@@ -9,11 +9,10 @@
         array_push($day, $i);
     }
     
-    $sections = array("accueil", "episode", "concept", "other");
+    $sections = array("accueil", "episode", "other");
     
     $section = $sections[0];
     if(isset($_GET['s'])) $section = $_GET['s'];
-    // else $section = $sections[3];
     if( !in_array($section, $sections) )
         $section = "accueil";
  ?>
@@ -72,7 +71,7 @@
             <li class="text_sep_vertical"></li>
             <li section="episode"><a href="/?s=episode">LES ÉPISODES</a></li>
             <li class="text_sep_vertical"></li>
-            <li section="concept"><a href="/?s=concept">LE CONCEPT</a></li>
+            <li><a href="/season13/public/concept">LE CONCEPT</a></li>
             <li class="text_sep_vertical"></li>
             <li><a href="/season13/public/actu">L'ACTU</a></li>
         </ul>

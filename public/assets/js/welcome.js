@@ -23,7 +23,7 @@ function scrollUpdate(){
 	}
 	else if(elems.btns.css('visibility') != 'hidden')
 	    elems.btns.css('visibility', 'hidden');
-	*/
+	
     if(pos > 200 && pos < 600) {
         if(elems.simon.css('visibility') == 'hidden')
             elems.simon.css('visibility', 'visible');
@@ -38,7 +38,7 @@ function scrollUpdate(){
             elems.simon.css('visibility', 'hidden');
         if(elems.band4.css('visibility') != 'hidden')
             elems.band4.css('visibility', 'hidden');
-    }
+    }*/
 }
 
 function gotoSection(name) {
@@ -86,7 +86,7 @@ function init() {
     
     // Set anchor for menu
     $('#continue').click(gotoSection);
-    $('#menu li a:lt(3)').parent().click(gotoSection);
+    $('#menu li a:lt(2)').parent().click(gotoSection);
     
     
     $('#back').parallax("50%", -0.5);
@@ -95,8 +95,8 @@ function init() {
     $('#episodes_section').parallax("50%", 0.6);
     elems.btns.parallax("10%", -0.17);
     elems.concept.parallax("50%", 0.6);
-    elems.simon.parallax("50%", -0.7);
-    elems.band4.parallax("50%", -0.7);
+    //elems.simon.parallax("50%", -0.7);
+    //elems.band4.parallax("50%", -0.7);
     
 	elems.container.bind('scroll', scrollUpdate);
 	
