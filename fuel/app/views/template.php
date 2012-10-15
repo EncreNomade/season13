@@ -24,6 +24,7 @@
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
 	<?php
+	    echo Asset::css('BebasNeue.css');
 	    echo Asset::css('template.css');
 	    echo Asset::css($css_supp);
 	    echo Asset::js('lib/jquery-latest.js');

@@ -10,6 +10,7 @@
 
 <title><?php echo $title; ?></title>
 <?php
+    echo Asset::css('BebasNeue.css');
     echo Asset::css('story.css');
     echo Asset::js('lib/jquery-latest.js');
     echo Asset::js('lib/jquery.form.js');
@@ -35,6 +36,47 @@ addEventListener("load", function(){
 
 <body>
 
+    <header>
+        <div id="tache">
+            <?php echo Asset::img('story/story_tache.png'); ?>
+        </div>
+        <div id="sep_left"></div>
+        <h1>Voodoo Connection</h1>
+        
+        <div id="icon_menu">
+            <?php echo Asset::img('story/story_menu.png'); ?>
+        </div>
+        <div id="sep_right"></div>
+        <div id="switch_menu"></div>
+    </header>
+    
+    <ul id="menu">
+        <li>
+            <?php echo Asset::img('story/story_aide.png'); ?>
+            <a>Aide</a>
+        </li>
+        <li>
+            <?php echo Asset::img('story/story_author.png'); ?>
+            <a>Auteur</a>
+        </li>
+        <li>
+            <?php echo Asset::img('story/story_param.png'); ?>
+            <a>Paramètres</a>
+        </li>
+        <li>
+            <?php echo Asset::img('story/story_download.png'); ?>
+            <a>Téléchargement</a>
+        </li>
+        <li>
+            <?php echo Asset::img('story/story_credit.png'); ?>
+            <a>Crédits</a>
+        </li>
+        
+        <?php echo Html::img('assets/img/logo_white.png', array("id" => "menu_logo")); ?>
+        <?php echo Html::anchor('http://season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
+    </ul>
+
+<!--
 <div id="root">
     <div id="msgCenter"><ul></ul></div>
     <div id="loader"></div>
@@ -145,6 +187,7 @@ addEventListener("load", function(){
 
 ?>
 </script>
+-->
 
 </body>
 </html>
