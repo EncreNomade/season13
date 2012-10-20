@@ -170,6 +170,8 @@
     padding: 12px 0 10px 0;
     font: normal 16px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
     letter-spacing: 1.5px;
+    text-decoration: none;
+    color: #fff;
 }
 
 
@@ -198,7 +200,7 @@
     right: 0px;
 }
 #episodes .ep_list ul {
-    margin: 0 40px 0 40px;
+    margin: 0;
     padding: 0px;
     left: 0px;
     width: 604px;

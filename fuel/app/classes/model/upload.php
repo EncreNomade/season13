@@ -4,7 +4,7 @@ class Model_Upload extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id',
-		'name',
+		'created_by',
 		'type',
 		'path',
 		'access',

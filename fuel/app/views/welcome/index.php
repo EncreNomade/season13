@@ -1,15 +1,3 @@
-<?php
-$dispo = array(
-        1 => 'Voir l\'épisode',
-        2 => 'Disponible le 24/10',
-        3 => 'Disponible le 31/10',
-        4 => 'Disponible le 07/11',
-        5 => 'Disponible le 07/11',
-        6 => 'Disponible le 14/11',
-        7 => 'Disponible le 21/11'
-    );
-?>
-
 <div class="main_container">
 
     <?php //<div class="center"> ?>
@@ -43,23 +31,26 @@ $dispo = array(
 <?php foreach ($admin_13episodes as $admin_13episode): ?>
     <?php if(!isset($current_ep)) $current_ep = $admin_13episode; ?>
                 <div class="expo" 
+                     data-id="<?php echo stripslashes($admin_13episode->id); ?>"
                      data-title="<?php echo stripslashes($admin_13episode->title); ?>"
                      data-episode="<?php echo $admin_13episode->episode; ?>"
-                     data-dispo="<?php echo $dispo[$admin_13episode->episode]; ?>"
                      data-bref="<?php echo stripslashes($admin_13episode->bref); ?>"
-                     data-path="<?php echo $admin_13episode->path; ?>">
+                     data-path="<?php echo $admin_13episode->path; ?>"
+                     data-dday="<?php echo $admin_13episode->dday; ?>">
     <?php echo Asset::img($admin_13episode->image); ?>
                 </div>
 <?php endforeach; ?>
             </div>
             <div class="ep_title">
                 <h2><?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?></h2>
-                <div class="ep_play">VOIR L'EPISODE</div>
+                <a class="ep_play"></a>
             </div>
             <div class="ep_list">
+            <!--
                 <div id="ep_prev_btn">
-<?php echo Asset::img("ui/btn_left.jpg"); ?>
+                    <?php echo Asset::img("ui/btn_left.jpg"); ?>
                 </div>
+            -->
                 <ul>
 <?php foreach ($admin_13episodes as $admin_13episode): ?>
     <?php if($current_ep == $admin_13episode): ?>
@@ -69,9 +60,11 @@ $dispo = array(
     <?php endif; ?>
 <?php endforeach; ?>
                 </ul>
+            <!--
                 <div id="ep_next_btn">
-<?php echo Asset::img("ui/btn_right.jpg"); ?>
+                    <?php echo Asset::img("ui/btn_right.jpg"); ?>
                 </div>
+            -->
             </div>
         </div>
     </div>

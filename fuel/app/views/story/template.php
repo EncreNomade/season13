@@ -1,6 +1,12 @@
 <!DOCTYPE html> 
 <html lang="en">
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# encrenomade: http://ogp.me/ns/fb/encrenomade#">
+
+<meta property="fb:app_id" content="141570392646490" /> 
+<meta property="og:type"   content="encrenomade:episode" /> 
+<meta property="og:url"    content="<?php echo Uri::current(); ?>" /> 
+<meta property="og:title"  content="<?php echo stripcslashes( $episode->story." ".$episode->title ); ?>" /> 
+<meta property="og:image"  content="http://season13.com/voodoo/cover.jpg" />
 
 <meta charset="UTF-8" />
 <meta name="robots" content="noindex"/>
@@ -9,14 +15,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
 <title><?php echo $title; ?></title>
+
+<!-- Script for integrate the font: Helvetica Ultra Compressed
+    <script type="text/javascript" src="http://fast.fonts.com/jsapi/11bfc142-9579-4cac-b6a6-2a561db23028.js"></script>
+-->
+
 <?php
     echo Asset::css('BebasNeue.css');
+    echo Asset::css('DroidSans.css');
     echo Asset::css('story.css');
     echo Asset::js('lib/jquery-latest.js');
     echo Asset::js('lib/jquery.form.js');
     echo Asset::js('lib/BrowserDetect.js');
     echo Asset::js('lib/Tools.js');
     echo Asset::js('lib/Interaction.js');
+    echo Asset::js('config.js');
+    echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
     echo Asset::js('story/scriber.js');
     echo Asset::js('story/events.js');
@@ -32,49 +46,175 @@ addEventListener("load", function(){
 }, false);
 </script>
 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35640835-1']);
+  _gaq.push(['_setDomainName', 'season13.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
 </head>
 
 <body>
 
-    <header>
-        <div id="tache">
-            <?php echo Asset::img('story/story_tache.png'); ?>
-        </div>
-        <div id="sep_left"></div>
-        <h1>Voodoo Connection</h1>
+    <div id="fb-root"></div>
+    <script>
+        // Load the SDK Asynchronously
+        (function(d){
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/fr_FR/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
         
-        <div id="icon_menu">
-            <?php echo Asset::img('story/story_menu.png'); ?>
+        
+        // Init the SDK upon load
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '141570392646490', // App ID
+                channelUrl : 'http://testfb.encrenomade.com/channelfile', // Path to your Channel File
+                status     : true, // check login status
+                cookie     : true, // enable cookies to allow the server to access the session
+                xfbml      : true  // parse XFBML
+            });
+            
+            gui.fb.checkConnect();
+        }
+    </script>
+
+    <div id="msgCenter"><ul></ul></div>
+
+    <header>
+        <div class="left">
+            <div id="tache">
+                <?php echo Asset::img('story/story_tache.png'); ?>
+            </div>
+            <div id="sep_left"></div>
+            <h1>Voodoo Connection</h1>
         </div>
-        <div id="sep_right"></div>
-        <div id="switch_menu"></div>
+        
+        <div class="right">
+            <div id="icon_menu">
+                <?php echo Asset::img('story/story_menu.png'); ?>
+            </div>
+            <div id="sep_right"></div>
+            <div id="switch_menu"></div>
+            <h2>PLAY</h2>
+        </div>
     </header>
     
     <ul id="menu">
-        <li>
+        <li id="btn_aide">
             <?php echo Asset::img('story/story_aide.png'); ?>
             <a>Aide</a>
         </li>
-        <li>
+        <li id="btn_author">
             <?php echo Asset::img('story/story_author.png'); ?>
             <a>Auteur</a>
         </li>
-        <li>
+        <li id="btn_param">
             <?php echo Asset::img('story/story_param.png'); ?>
             <a>Paramètres</a>
         </li>
-        <li>
+        <li id="btn_download">
             <?php echo Asset::img('story/story_download.png'); ?>
             <a>Téléchargement</a>
         </li>
-        <li>
+        <li id="btn_credit">
             <?php echo Asset::img('story/story_credit.png'); ?>
             <a>Crédits</a>
         </li>
         
-        <?php echo Html::img('assets/img/logo_white.png', array("id" => "menu_logo")); ?>
-        <?php echo Html::anchor('http://season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
+        <div>
+            <?php echo Html::img('assets/img/logo_white.png', array("id" => "menu_logo")); ?>
+            <?php echo Html::anchor('http://season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
+        </div>
     </ul>
+    
+    <div id="center">
+        <div id="preference" class="dialog">
+            <div class="close"></div>
+            <h1>Paramètres</h1>
+            <div class="sep_line"></div>
+            <p>Audio: </p>
+            <p>Vitesse: </p>
+            <p>Partager les commentaires sur facebook: <input type="checkbox" checked="true"></p>
+        </div>
+        
+        <div id="comment" class="dialog">
+            <div class="close"></div>
+            <h1>Commentaires</h1>
+            <div class="sep_line"></div>
+            
+            <textarea id="comment_content" rows="5" cols="30" placeholder="Exprime toi !"></textarea>
+            <div class="arrow"></div>
+            <ul id="comment_menu">
+                <li id="btn_share" title="Partager votre commentaire"><?php echo Asset::img('story/comment_fb.png'); ?><h5>Partager</h5></li>
+                <li id="btn_upload_img" title="Télécharger vos propres dessins"><?php echo Asset::img('story/comment_image.png'); ?></li>
+                <li id="btn_capture_img" title="Capturer une image dans le livre"><?php echo Asset::img('story/comment_camera.png'); ?></li>
+            </ul>
+            
+            <div id="upload_container">
+                <div class="arrow"></div>
+                <form id="imageuploadform" method="POST" enctype="multipart/form-data" action='/seasion13/public/upload'>
+                    <input type="file" name="upload_pic" id="upload_pic" />
+                    <input type="button" value="Télécharge ton dessin" id="upload_btn" />
+                </form>
+            </div>
+            
+            <ul id="comment_list">
+            
+                <h5 id='renew_comments' style="cursor: pointer;">Cliquer pour voir les anciens commentaires</h5>
+            </ul>
+            
+            <div class="loading"></div>
+        </div>
+    </div>
+    
+    
+    <div id="root">
+        <div id="controler">
+            <div class="back"></div>
+            <div id="circle"></div>
+            
+            <ul>
+                <li id="ctrl_speedup"><?php echo Asset::img('ui/wheel_turtle.png'); ?></li>
+                <li id="ctrl_slowdown"><?php echo Asset::img('ui/wheel_rabbit.png'); ?></li>
+                <li id="ctrl_comment"><?php echo Asset::img('ui/wheel_comment.png'); ?></li>
+                <li id="ctrl_like"><?php echo Asset::img('ui/wheel_like.png'); ?></li>
+            </ul>
+        </div>
+    
+        <canvas class="bookroot">Votre navigateur ne supporte pas HTML5</canvas>
+        <div class="video"></div>
+        <div id="imgShower"><div>
+                <img id="theImage" src=""/>
+                <?php echo Html::img('assets/img/story/button/close.png', array("id" => "closeBn")); ?>
+        </div></div>
+        <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
+    </div>
+    
+    
+    <script type="text/javascript">
+    <?php 
+        
+        echo "mse.configs.epid = ".$episode->id.";\n\t";
+        echo "mse.configs.srcPath = 'voodoo/ep1/';\n\t";
+        $content = file_get_contents("voodoo/ep1/content.js");
+        echo $content;
+    
+    ?>
+    </script>
 
 <!--
 <div id="root">

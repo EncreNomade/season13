@@ -13,12 +13,27 @@ class Controller_Story extends Controller_Template
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
+    	
+    	$epid = Input::get('ep');
+    	
+    	if(self::requestAccess($epid)) {
+    	    $this->episode = Model_Admin_13episode::find($epid);
+    	    $this->comments = Model_Admin_13comment::find_by_epid($epid);
+    	    
+    	    View::set_global('episode', $this->episode);
+    	}
+    	else {
+    	    Response::redirect('404');
+    	}
+    }
+    
+    private function requestAccess($epid) {
+        return true;
     }
 
 	public function action_index()
 	{
-		$this->template->title = 'Story &raquo; Index';
-		$this->template->content = View::forge('story/index');
+	    $this->template->title = stripslashes($this->episode->title);
 	}
 
 }

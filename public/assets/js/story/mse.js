@@ -1,1 +1,3838 @@
-eval(function(B,D,A,G,E,F){function C(A){return A<62?String.fromCharCode(A+=A<26?65:A<52?71:-4):A<63?'_':A<64?'$':C(A>>6)+C(A&63)}while(A>0)E[C(G--)]=D[--A];return B.replace(/[\w\$]+/g,function(A){return E[A]==F[A]?A:E[A]})}('T Jv;(2(B,C){T H=B.DN;H.Dq={f:"GX",GU:"18px Arial",I1:"",HD:{B8:EO,Cq:Bi},EF:2(Q){R(Q[L]=="."){t Q;}b{t H.Dq.I1+Q;}}};T I=H.Dq;H.d=e;H.Cg=e;H.4=4;H.W=2(){t{Bs:{},D1:[],FM:U Bh(),Ig:"Chargement ressources: ",F5:{},H_:/(.JN|.Kh)/,Fz:L.O,BS:2(){T Q,A;V(T B=L;B<EO;B++){a.D1[B]=GL.Fq("Fb");a.D1[B].o=Gs;a.D1[B].u=Gs;Q=a.D1[B].Eh("E_");Q.B4(JM,JM);A=N*h.Cf/EO;Q.8="#Ic";V(T P=L;P<EO;P++){R(P==B){Q.8="#EEEEEE";Q.D8(ER,-Gp,ER,Hr);Q.8="#Ic";}b{Q.D8(ER,-Gp,ER,Hr);}Q.E1(A);}}},BZ:2(A,P,B,Q){Cu(B){j"X":j"Ev":a.Bs[A]=U BJ();a.Bs[A].W=I.EF(P);a.Bs[A].Fu=L;q;j"H8":j"Di":a.Bs[A]=GL.Fq("Di");R(P.search(a.H_)==-M){Cu(7.browser){j"Chrome":j"Firefox":j"Opera":a.Bs[A].W=I.EF(P)+".JN";q;j"Safari":j"Explorer":a.Bs[A].W=I.EF(P)+".Kh";q;}}b{a.Bs[A].W=I.EF(P);}q;j"EG":a.Bs[A]={};a.Bs[A].CX=p;C.ajax({Fn:I.EF(P),dataType:"EG",async:p,Du:2(Q){H.W.Bs[A].CX=c;}});Kd:t;}a.Bs[A].BX=B;R(Q&&B!="H8"&&B!="Di"){a.FM.Bl(a.Bs[A]);}},B2:2(P){T Q=a.Bs[P];R(!Q){t e;}Cu(Q.BX){j"X":j"Ev":R(!Q||Q.CX){t Q;}b{R(Q.Fu==EO){Q.Fu=L;}t a.D1[(Q.Fu++)];}j"H8":j"Di":Q.Fz=a.Fz;t Q;}},HY:2(Q,P){R(!a.Bs[Q]){t;}R(a.Bs[Q].CX){P.Dt();t;}R(!a.F5[Q]){a.F5[Q]=U Bh();}T A=a.F5[Q];A.Bl(P);a.Bs[Q].onload=2(){V(T Q S A){A[Q].Dt();}};},Iw:2(){T Q=L;V(T P=L;P<a.FM.v;P++){R(a.FM[P].CX){Q++;}}t[Q,a.FM.v];},J3:2(P,A,Q){P.HE(L,L,H.d.o,H.d.u);P.Br();P.Cx="#333333";P.Cc=N;P.Ir((H.d.o-H1)/N,H.d.u-DF,281,11,O);P.8="#555555";P.FX((H.d.o-H1)/N,H.d.u-DF,(A/Q)*H1,BE,O);T B=a.Ig+A+"/"+Q;P.f="JX "+I.f;P.8="#000000";P.B_="ES";P.Er(B,H.d.o/N,H.d.u-ER);P.By();},setVolume:2(Q){a.Fz=Q/DF;}};}();T Q=2(){H.Cj={};H.Da=M;H.joinCoor=2(A){R(BI(A)){t"";}T B=L;V(T D S H.Cj){R(A==H.Cj[D]){t D;}T P=D.match(/JF(\\Kn+)/);R(P[M]){T Q=parseInt(P[M]);}R(!BI(Q)&&Q>=B){B=Q+M;}}T C="JF"+B;H.Cj[C]=H.Da==M?A:Gv(U G1(H.Da*A).Ht(N));t C;};H.coor=2(Q){R(BI(H.Cj[Q])){t L;}b{t H.Cj[Q];}};H.realCoor=2(Q){R(BI(Q)){t L;}b{t H.Da==M?Q:Gv(U G1(H.Da*Q).Ht(N));}};}();2 E(){H.Da=7.Dn/H.Cj.Io;V(T Q S H.Cj){H.Cj[Q]=Gv(U G1(H.Da*H.Cj[Q]).Ht(N));}R(B.GC){B.GC();}B.GC=e;}H.IQ=2(Q){R(Q){B.GC=Q;}R(H.Cj.Io){R(7.Dn>FV){E();}b{EP(H.IQ,1000);}}};H.BS=2(Q){C.x(I,Q);H.W.BS();H.W.BZ("Gx","./BY/turn_comp.Bf","X");H.W.BZ("KT","./BY/Hh/Fy.Bf","X");H.W.BZ("FU","./BY/Hh/Cq.Bf","X");H.W.BZ("Jp","./BY/Hh/aide.Bf","X");H.W.BZ("wikiBn","./BY/CT/Cq.Bf","X");H.W.BZ("bookBn","./BY/CT/book.Bf","X");H.W.BZ("illuBn","./BY/CT/In.Bf","X");H.W.BZ("audBn","./BY/CT/audIcon.Bf","X");H.W.BZ("It","./BY/CT/GW.Bf","X",c);H.W.BZ("KX","./BY/CT/monter.Bf","X",c);H.W.BZ("IO","./BY/CT/GO.Bf","X",c);H.W.BZ("Ka","./BY/CT/descend.Bf","X",c);H.W.BZ("IA","./BY/CT/CE.Bf","X",c);H.W.BZ("JP","./BY/CT/B0.Bf","X",c);H.W.BZ("C9","./BY/CT/zoom.Bf","X",c);H.W.BZ("Jc","./BY/CT/F1.Bf","X",c);(2(P){T Q=L,A=["ms","moz","webkit","D4"];R(P.F3){V(T C=L;C<A.v&&!B.DO;++C){B.DO=B[A[C]+"RequestAnimationFrame"];B.Fv=B[A[C]+"CancelAnimationFrame"]||B[A[C]+"CancelRequestAnimationFrame"];}}R(!B.DO){B.DO=2(D,A){T E=U Date().getTime(),C=h.JS(L,J2-(E-Q)),P=B.EP(2(){D(E+C);},C);Q=E+C;t P;};}R(!B.Fv){B.Fv=2(Q){clearTimeout(Q);};}}(B.7));T P=U H.CP();};T G=Bi,F=L,A={Fy:"EW(74,108,164)",Cq:"EW(230,KC,KC)",Di:"#FFB11B"},D={};H.Hv=2(B,P,D,C,A){R(!B){t;}T Q=U H.DU(B,{Bj:[L,P],DM:[D,C]},M);R(A){Q.3.$("BT",A);}Q.Bb();};H.Fd=2(A,Q,P){H.Hv(A,Q,L,M,P);};H.Fg=2(A,Q,P){H.Hv(A,Q,M,L,P);};H.slidein=2(B,Q,P,A,D){R(!B 9 H.5){t;}R(BI(D)){D=M;}T C=U H.DU(B,{Bj:[L,Q],BR:P,DM:[L,D]},M);R(A){C.3.$("BT",A);}C.Bb();};H.I7=2(B,Q,P,A){R(!B 9 H.5){t;}T C=U H.DU(B,{Bj:[L,Q],BR:P,DM:[B.Bc,L]},M);R(A){C.3.$("BT",A,p);}C.Bb();};H.GD=2(P,A,Q,C){T B=P.w;R(B 9 H.CG){B.Jq(A,P);}H.Fd(A,Q,C);H.Fg(P,Q,U H.4(B.FB,B,P));};H.Ii=2(Q){R(Q.Dj(".")!=-M){H.d.BH.B3("KN",\'Fn("\'+Q+\'"), auto\');}b{H.d.BH.Ex(L).Dh.KN=Q;}};H.changePage=2(P,Q){R(Q){P.3.$("BP",U H.4(H.d.GD,H.d,H.d.BV),c);}H.d.GD(P);};H.createBackLayer=2(Q){R(D[Q]){t D[Q];}T P=U H.CG(e,L,{BA:[H.d.o,H.d.u]});P.Bg(U H.BJ(P,{BA:[H.d.o,H.d.u]},Q));D[Q]=P;t P;};H.Link=2(C,Q,D,B,A,P){a.W=C;a.DC=Q;a.BX=D;a.Ct=B;Cu(a.BX){j"Fy":a.Ev="KT";q;j"Cq":a.Ev="FU";q;j"In":a.o=(A?A:Gs);a.u=(P?P:400);q;}};2 P(P,Q){t(P.DC>Q.DC?-M:(P.DC==Q.DC?L:M));}H.5=2(P,Q){R(P){a.w=P;a.EJ=p;}b{a.w=e;}a.3=U H.Ft(a);R(Q){R(Q.BR){a.BN(Q.BR[L],Q.BR[M]);}R(Q.BA){a.B$(Q.BA[L],Q.BA[M]);}R(Q.f){a.f=Q.f;}R(Q.8){a.8=Q.8;}R(Q.Cx){a.Cx=Q.Cx;}R(!BI(Q.Bc)){a.Bc=Q.Bc;}b{a.Bc=M;}R(Q.Cc){a.Cc=Q.Cc;}R(Q.DJ){a.DJ=Q.DJ;}R(Q.B_){a.B_=Q.B_;}R(Q.CN){a.CN=Q.CN;}R(Q.C7){a.C7=Q.C7;}}a.C7=e;a.C1=e;a.DK=e;};H.5.6={m:L,i:L,o:L,u:L,EJ:c,BN:2(A,P,Q){R(Q){a.m=A+(a.EJ?Q.l():Q.m);a.i=P+(a.EJ?Q.k():Q.i);}b{a.m=A;a.i=P;}},GF:2(P,Q){R(Q){a.m=P+(a.EJ?Q.l():Q.m);}b{a.m=P;}},E9:2(P,Q){R(Q){a.i=P+(a.EJ?Q.k():Q.i);}b{a.i=P;}},l:2(){R(a.w){t(a.w.l()+a.m);}b{t a.m;}},k:2(){R(a.w){t(a.w.k()+a.i);}b{t a.i;}},KL:2(){R(a.w){t(a.w.KL()+a.m);}b{T Q=L;R(H.d.BU){Q=-H.d.BU.BO;}t Q+a.m;}},KM:2(){R(a.w){t(a.w.KM()+a.i);}b{T Q=L;R(H.d.BU){Q=-H.d.BU.Bv;}t Q+a.i;}},B$:2(P,Q){a.o=P;a.u=Q;},Cn:2(){t a.o;},CF:2(){t a.u;},B5:2(F,D){R(a.Fs()<M){t p;}R(a.C7){T B=a.l()+a.C7[L],E=a.k()+a.C7[M],P=a.C7[N],C=a.C7[CC];}b{B=a.l(),E=a.k(),P=a.o,C=a.u;}T Q=L;R(P<F0){Q=P*L.O*(M-(P-BE)/DF);}T A=L;R(C<F0){A=C*L.O*(M-(C-BE)/DF);}B-=Q;P+=N*Q;E-=A;C+=N*A;R(F>B&&F<B+P&&D>E&&D<E+C){t c;}b{t p;}},KU:2(){t a.CO?a.CO:(a.w?a.w.KU():L);},Eb:2(){R(a 9 H.Dm){t a;}b{R(a.w){t a.w.Eb();}b{t H.d.BV;}}},setAlpha:2(Q){a.Bc=Q;},Fs:2(){R(a.w){T Q=a.w.Fs();t((BI(Q)?M:Q)*a.Bc);}b{t a.Bc;}},Fm:2(){R(BI(a.Bq)){R(a.w){t a.w.Fm();}b{t M;}}b{R(a.w){t(a.w.Fm()*a.Bq);}b{t a.Bq;}}},E3:2(Q,P){a.m+=Q;a.i+=P;},eventCheck:2(P,Q){R(a.B5(Q.Bx,Q.Bw)){t a.3._(P,Q);}b{t{prevent:p,Du:p};}},$:2(){a.3.$.Ef(a.3,Bh.6.FG.n(Db));},Ck:2(){a.3.Ck.Ef(a.3,Bh.6.FG.n(Db));},supportMultiTouch:2(){R(!a.C1){a.C1=U GestureAnalyser(a.3);a.$("multiGestAdd",U 4(a.C1.addBlob,a.C1));a.$("multiGestUpdate",U 4(a.C1.updateBlob,a.C1));a.$("multiGestRemove",U 4(a.C1.removeBlob,a.C1));}},Cw:2(Q){R(a.f){Q.f=a.f;}R(a.8){Q.8=a.8;}R(a.Cx){Q.Cx=a.Cx;}R(a.Cc){Q.Cc=a.Cc;}R(a.DJ){Q.HM=a.DJ.HM;Q.HN=a.DJ.HN;Q.Do=a.DJ.Do;Q.F7=a.DJ.F7;}b{Q.HM=Q.HN=Q.Do=L;}R(a.B_){Q.B_=a.B_;}R(a.CN){Q.CN=a.CN;}Q.Bc=a.Fs();},EE:2(P){P.By();P.Br();a.Cw(P);T Q=a.Fm();R(Q!=M){P.Bq(Q,Q);}},GY:2(Q){R(!a.DK){a.DK=U H.ET(a);}t a.DK.GY(Q);},g:2(Q){},s:2(Q){},DV:2(){t"[Gd MseUIObject]";}};H.Hn=2(Q,B,A,P){H.d=a;a.BH=C(".bookroot").Bk();T E=(7.C$-B)/N;a.BN(E,L);a.Bq=M;a.B$(B,A);a.E5=40;a.Y=a.BH.Ex(L).Eh("E_");a.Dl=U H.Hg(a,a.BH);R(7.F3){a.Ij();a.Dl.$("translate2",U H.4(a.B4,a));}a.BV=e;a.BT=p;a.BS=p;a.CQ=U Bh();a.Bd=[];T D=C("Dz.Gn");a.C3=U H.GP();a.J9=U H.4(a.IY,a);H.Cg=U H.GA(a,a.E5);};H.Hn.6={EK:H.Hn,BN:2(P,Q){a.BH.B3({BB:"FT",BC:"FT"});C("#d").B3({BB:P+"Be",BC:Q+"Be"});},B$:2(P,Q){a.o=P;a.u=Q;a.BH.Jl({o:P,u:Q});C("#d").B3({o:P,u:Q});},Ij:2(){a.BU={};a.BU.BO=(a.o-7.C$)/N;a.BU.Bv=(a.u-7.Dn)/N;a.BN(L,L);a.BH.Jl({o:7.C$,u:7.Dn});C("#d").B3({o:7.C$,u:7.Dn});a.Y.B4(-a.BU.BO,-a.BU.Bv);},B4:2(Q){R(BI(Q.Ia)){t;}a.Y.B4(a.BU.BO,a.BU.Bv);a.BU.BO-=Q.Ia;R(a.BU.BO>a.o-7.C$){a.BU.BO=a.o-7.C$;}b{R(a.BU.BO<L){a.BU.BO=L;}}a.Y.B4(-a.BU.BO,L);a.Y.Br();},GK:2(Q){R(a.BV){a.BV.BF=p;}Q.d=a;a.BV=Q;a.Dl.setDispatcher(Q.EN);a.FD=e;a.BV.Bq=a.Bq;},GD:2(Q){R(a.FD){t;}R(a.BV){H.Fg(a.BV,B7,U H.4(a.GK,a,Q));a.FD=Q;}b{a.GK(Q);}H.Fd(Q,B7);},B5:2(P,Q){t c;},s:2(Q){V(T A S a.CQ){R(a.CQ[A].s(Q)){a.CQ.C2(A,M);}}T P=p;V(A S a.Bd){R(a.Bd[A].JA){P=c;}R(a.Bd[A].s(Q)){a.Bd.C2(A,M);}}R(P){t;}R(a.C3.s(Q)){t;}R(a.BV){a.BV.s(Q);}},g:2(){a.Y.HE(L,L,a.o,a.u);R(!a.C3.Kk()){R(a.BV){a.BV.g(a.Y);}R(a.FD){a.FD.g(a.Y);}}R(a.C3.BG){a.C3.g(a.Y);}V(T Q S a.Bd){a.Bd[Q].g(a.Y);}a.Dl.Dg._("Df",a.Y);},H3:2(Q){},Ea:2(Q){R(!a.BS){T P=H.W.Iw();R(P[L]<P[M]){H.W.J3(a.Y,P[L],P[M]);}b{a.BS=c;}}b{R(!a.BT){a.s(Q);a.g();}b{H.Cg.BT=c;}}},startCapture:2(Q){H.Cg.B0();a.C4=C(\'<Dz Kc="capbody"></Dz>\');a.CU=C(\'<Dz Kc="capbox"></Dz>\');a.BH.KB(a.CU).KB(a.C4);a.C4.D$();a.C4.D$("$","I_",a.J9);R(Q 9 H.4){a.HU=Q;}},J6:2(P){T Q=a.Y.getImageData(P.BO,P.Bv,P.Bu,P.Bn);H.Ii("Kd");a.C4.HH();a.CU.HH();a.C4=a.CU=e;H.Cg.CE();a.HU.Dt(Q,P.Bu,P.Bn);a.HU=e;},IY:2(Q){R(Q.BX=="Eu"){a.Jn(Q);}b{R(Q.BX=="Es"){a.JV(Q);}b{R(Q.BX=="EI"){a.KG(Q);}}}},Jn:2(Q){R(a.C4){a.FC=h.CW(Q.Bx);a.FE=h.CW(Q.Bw);a.CU.B3({BB:a.FC,BC:a.FE});}},JV:2(Q){R(a.C4){a.FO=h.CW(Q.Bx);a.FP=h.CW(Q.Bw);R(a.FO<a.FC){a.CU.B3("BB",a.FO);}R(a.FP<a.FE){a.CU.B3("BC",a.FP);}a.CU.B3({o:h.Jj(a.FO-a.FC),u:h.Jj(a.FP-a.FE)});}},KG:2(P){R(a.C4){a.FC=e;a.FE=e;a.FO=e;a.FP=e;T C=a.CU.C0().BB,B=a.CU.C0().BC,Q=a.CU.o(),A=a.CU.u();R(Q<B7||A<B7){t;}a.J6({BO:C,Bv:B,Bu:Q,Bn:A});}},EC:2(){T Q=a.BV;t Q.EC();}};H.Dm=2(A,B,P,Q){H.5.n(a,e,P);a.DH=B;a.1=U Bh();a.Fo=U Bh();a.E6=e;a.EN=U H.Gc(a);a.Fx=e;a.Bq=M;a.Jw=L;a.BF=p;R(7.Ca||7.Cm){a.Bp=7.Bp;a.DL=c;a.Gl(Q?Q:"JZ");}b{a.DL=c;}R(A){A.GK(a);}};x(H.Dm,H.5);C.x(H.Dm.6,{Gl:2(Q){R(!(7.Ca||7.Cm)||(Q!="Gw"&&Q!="JZ")){t;}a.Bp=Q;},GN:2(Q){Jv=H.d;R(Q==a.Bp){a.DL=c;}b{a.DL=p;}},DI:2(Q,P){R(Q!=e&&P 9 H.5){P.DH=Q;a.1.Bl(P);a.IH();}},G7:2(Q){R(Q==e){t;}V(T P=a.1.v-M;P>=L;--P){R(a.1[P].DH==Q){a.1.C2(P,M);}}},IB:2(Q){R(Q==e){t;}V(T P S a.1){R(a.1[P].DH==Q){t a.1[P];}}},IH:2(){a.1.sort(2(P,Q){R(P.CO<Q.CO){t-M;}b{R(P.CO>Q.CO){t M;}b{t L;}}});},IE:2(Q,P){R(Q!=e&&a.1[Q]!=e){a.1[Q].GB(P);}},HC:2(Q){V(T P S a.1){R(a.1[P].Ce&&a.1[P].DH!=Q){a.1[P].GB(p);a.Fo.Bl(P);}}},Gt:2(){T Q=a.Fo.v;V(T P=L;P<Q;P++){a.1[a.Fo.pop()].GB(c);}},EC:2(){R(a.Fx){T Q=a.Fx.EC();R(Q){t Q;}}t{BX:"page",DH:a.DH};},KP:2(Q){R(Q.EC){a.Fx=Q;}},s:2(Q){R(!a.BF){a.BF=c;a.3._("Bk");V(T P S a.1){a.1[P].3._("Bk");}}R(7.Ca||7.Cm){R(a.DL&&7.Bp!=a.Bp){a.GN(7.Bp);}b{R(!a.DL&&7.Bp==a.Bp){a.GN(7.Bp);}}}R(a.DL){R(a.E6){a.E6.s(Q);}b{V(P S a.1){a.1[P].s(Q);}}}a.Jw++;},g:2(Q){R(a.DL){R(a.E6){a.E6.g(Q);}b{a.EE(Q);V(T P S a.1){a.1[P].g(Q);}}a.3._("Df",{Y:Q});}b{Q.CJ(H.W.B2("Gx"),(H.d.o-CY)/N,(H.d.u-FH)/N,CY,FH);}},DV:2(){t"[Gd MseBaseContainer]";}});H.CG=2(P,A,Q){H.5.n(a,P,Q);a.CO=A;a.Ce=c;a.0=U Bh();};x(H.CG,H.5);C.x(H.CG.6,{HI:2(P){R(a.0.Dj){T Q=a.0.Dj(P);}b{V(T A S a.0){R(a.0[A]===P){Q=A;q;}}}R(Q!=e&&Q!=-M){t Q;}b{t-M;}},Bg:2(Q){R(Q 9 H.5){a.0.Bl(Q);t c;}b{t p;}},DY:2(P,Q){R(P 9 H.5&&Q>=L&&Q<a.0.v){a.0.C2(Q,L,P);t c;}b{t p;}},Jq:2(A,P){T Q=a.HI(P);R(Q!=-M){a.DY(A,Q);}},insertAfter:2(A,P){T Q=a.HI(P);R(Q!=-M){R(Q+M==a.0.v){a.Bg(A);}b{a.DY(A,Q+M);}}},FB:2(P){R(!BI(P)){a.0.C2(P,M);t P;}b{R(P 9 H.5){R(a.0.Dj){T Q=a.0.Dj(P);}b{V(T A S a.0){R(a.0[A]===P){Q=A;q;}}}R(Q!=e&&Q!=-M){a.0.C2(Q,M);t Q;}b{t p;}}}},delAll:2(){V(T Q S a.0){Dd a.0[Q];}a.0.v=L;},getObject:2(Q){R(Q>=L&&Q<a.0.v){t a.0[Q];}t e;},delSelf:2(){R(a.w 9 H.Dm){a.w.G7(a.DH);}},GB:2(Q){a.Ce=Q;},s:2(Q){R(a.Ce){V(T P=L;P<a.0.v;P++){a.0[P].s(Q);}}},g:2(Q){a.EE(Q);V(T P=L;P<a.0.v;P++){a.0[P].g(Q);}}});H.G6=2(C,A,D,B,Q,P){H.5.n(a,C,A);a.w=C;a.who=D;a.CK=Q;a.Et=c;a.Cl={BC:-O,BB:-BE,Gm:Bi,G9:BE};a.Jg=P;a.Gh=DG;R(B){a.E$=U H.BJ(a,e,B);a.E$.o=a.CK-a.Cl.BB-a.Cl.Gm;a.E$.u=a.CK-a.Cl.BC-a.Cl.G9;}a.D3=BE;a.Gk=L;a.HF=L;a.Cy={};a.GT;a.E0=[];a.BS=p;a.F6=L;a.u=a.D3;a.Ep=L;};x(H.G6,H.5);C.x(H.G6.6,{s:2(Q){},g:2(P){R(a.F6<M){t;}T D=a.Et?a.l()+a.Cl.BB:a.l()+a.o-a.CK-a.Cl.BB,C=a.k()+a.D3;R(a.E$){a.E$.g(P,D,C);}b{P.Br();P.Eq();P.rect(D,C,a.CK-a.Cl.BB-a.Cl.Gm,a.CK-a.Cl.BC-a.Cl.G9);P.8="#278391";P.Ge();P.By();}P.Br();T D=a.l()-O,C=a.k()-M+a.D3,Q=a.o+BE,B=a.F6+DG;R(a.Gk<a.HF){A(D,C,Q,B,a.CK,a.CK,a.Gh,a.Et);}b{A(D+(a.Et?a.CK:L),C,Q-a.CK,B,L,L,a.Gh,a.Et);}P.8=a.Jg;P.Ge();P.Cc=M;P.Cx="HO";P.By();2 A(K,J,C,B,G,A,H,I){R(!G||C<G||!A||B<A){G=L;A=L;}R(G==L){A=B;}R(H*N>B||H*N>A||H*N>C){H=h.FR(B/N,A/N,C/N);}T Q=h.FR(B7,h.JS(O,A/N)),D=h.FR(H,(A-Q)/N),F=D2;P.Eq();R(I){P.Fk(K+G,J+D);P.CA(K+G,J,K+G+H,J);P.y(K+C-H,J);P.CA(K+C,J,K+C,J+H);P.y(K+C,J+B-H);P.CA(K+C,J+B,K+C-H,J+B);P.y(K+H,J+B);R(G!=L){T E=h.FR(H,(B-A)/N);P.CA(K,J+B,K,J+B-E);P.y(K,J+A+E);P.CA(K,J+A,K+H,J+A);P.y(K+G-H,J+A);P.CA(K+G,J+A,K+G,J+A-D);}b{P.CA(K+G,J+B,K,J+B-D);}P.y(K+G,J+(A-Q)/N+Q);P.y(K+G-F,J+(A)/N);P.y(K+G,J+(A-Q)/N);P.y(K+G,J+D);P.y(K+G,J+D);}b{P.Fk(K+C-G,J+D);P.CA(K+C-G,J,K+C-G-H,J);P.y(K+H,J);P.CA(K,J,K,J+H);P.y(K,J+B-H);P.CA(K,J+B,K+H,J+B);P.y(K+C-H,J+B);R(G!=L){E=h.FR(H,(B-A)/N);P.CA(K+C,J+B,K+C,J+B-E);P.y(K+C,J+A+E);P.CA(K+C,J+A,K+C-H,J+A);P.y(K+C-G+H,J+A);P.CA(K+C-G,J+A,K+C-G,J+A-D);}b{P.CA(K+C-G,J+B,K+C,J+B-D);}P.y(K+C-G,J+(A-Q)/N+Q);P.y(K+C-G+F,J+(A)/N);P.y(K+C-G,J+(A-Q)/N);P.y(K+C-G,J+D);P.y(K+C-G,J+D);}}},Bg:2(Q){a.E0.Bl(U H.4(a.Kb,a,Q));Q.3.$("Bk",U H.4(a.IK,a,Q));Q.3.$("Em",U H.4(a.Ib,a,Q));Q.3.$("Bk",a.E0[a.E0.v-M]);R(!a.GT){a.GT=Q.o;}R(a.GT==Q.o){Q.GF(a.CK);a.Gk++;}R(a.Cy.D4){a.Cy.D4.u=a.Cy.Bn;}a.Cy.D4=Q;a.Cy.Bn=Q.u;Q.u+=(a.u+Q.u<a.CK?a.CK+-Q.u-a.u:L)+a.D3;a.w.Bg(Q);R(!a.BS){a.BS=c;a.w.FB(a);a.u=a.D3*N;}a.u+=Q.u;},IK:2(){R(a.Ep==L){a.w.G5(a);a.3._("Bk");}a.Ep++;},Ib:2(){a.Ep--;R(a.Ep==L){a.w.IP(a);a.3._("Em");}},Kb:2(Q){R(a.Cy.D4){a.Cy.D4.u=a.Cy.Bn;a.Cy={};}a.F6+=Q.u;a.HF++;Q.3.Ck("Bk",a.E0.shift());}});H.DX=2(B,P,Q,C){H.5.n(a,B,P);a.DZ=C?c:p;a.BW=[];a.CO=I.HD.B8;a.B8=Q;T A=H.d.Y;A.Br();R(a.DZ){A.f=a.f;}b{R(a.w&&a.w.f){A.f=a.w.f;}b{A.f=H.Dq.GU;}}R(P.BD){a.BD=P.BD;}b{a.BD=En(A.f)*M.N;}R(A.D7(a.B8).o>a.o){a.Cb=Kf(a.B8,A,a.o);a.u=a.BD*a.Cb.v;}b{a.Cb=[a.B8];}A.By();R(a.B_=="ES"&&a.o>L){a.m+=h.CW(a.o/N);}a.BL=e;a.BF=p;a.Cd=p;};x(H.DX,H.5);C.x(H.DX.6,{DV:2(){t"[Gd DN.DX]";},Eg:2(Q){a.B8=Q;a.BW.C2(L,a.BW.v);T P=H.d.Y;P.Br();R(a.DZ){P.f=a.f;}b{R(a.w&&a.w.f){P.f=a.w.f;}b{P.f=H.Dq.GU;}}R(P.D7(a.B8).o>a.o){a.Cb=Ik(a.B8,P,a.o);a.u=a.BD*a.Cb.v;}b{a.Cb=[a.B8];}P.By();},Ec:2(P){T E=p,A=H.d.Y,B=A.f;A.f=H.Dq.GU;R(a.DZ){R(a.f){A.f=a.f;}b{R(a.w&&a.w.f){A.f=a.w.f;}}}V(T D S a.Cb){T Q=a.Cb[D].Dj(P.W);R(Q>=L){T C=a.Cb[D].substring(L,Q);P.m=A.D7(C).o;P.i=D*a.BD;P.o=A.D7(P.W).o;E=c;}}A.f=B;R(!E){t;}R(a.BW.v==L){a.$("EI",U H.4(a.KA,a),p);}R(P.BX=="Di"){a.$("BF",U H.4(a.JH,a,P.Ct));}P.owner=a;a.BW.Bl(P);},HV:2(Q){a.DZ=c;R(H.Iu){a.BL=H.Iu(Q,a);}},HR:2(){a.BL=e;},B5:2(D,B){R(!a.Cd){t p;}T P=a.l(),C=a.k(),Q=a.Cn(),A=a.CF();R(D>P-L.M*Q&&D<P+M.M*Q&&B>C-L.M*A&&B<C+M.M*A){t c;}b{t p;}},JH:2(Q){Q.CE();},KA:2(Q){T D=Q.Bx-a.l(),A=Q.Bw-a.k();V(T C S a.BW){T P=a.BW[C];R(D>=P.m-Bi&&D<=P.m+P.o+Bi&&A>=P.i&&A<=P.i+a.BD+Hp){Cu(P.BX){j"Di":P.Ct.CE();q;j"Cq":P.Ct.BS(a.Eb());q;j"Fy":B.KO(linkObj.Ct);q;}q;}}},s:2(Q){R(a.BL!=e){a.BL.s(Q);}},g:2(Q,D,B){R(!a.BF){a.BF=c;a.Cd=c;a.3._("BF");}R(D!=e&&B!=e){a.BN(D,B);}T P=[a.l(),a.k()];R(a.DZ){Q.Br();a.Cw(Q);}R(a.BL!=e){a.BL.g(Q);}b{V(T C S a.Cb){Q.Er(a.Cb[C],P[L],P[M]+a.BD*C);}V(C S a.BW){Q.Br();Q.8=A[a.BW[C].BX];Q.Er(a.BW[C].W,P[L]+a.BW[C].m,P[M]+a.BW[C].i);Q.By();}}R(a.DZ){Q.By();}a.3._("Df",{Y:Q});}});H.CR=2(B,J,A,Q){H.CG.n(a,B,J,A);a.v=L;a.Dk=a.i;a.GV=a.Dk;a.BD=A.BD?A.BD:h.CW(M.DG*(a.f?En(a.f):Hs));a.D0=U Bh();R(Q){T E=H.d.Y;a.EE(E);T D=h.CV(a.o/E.D7("A").o),P=Q.split("\\Ko"),F=L;V(T K=L;K<P.v;K++){R(P[K].v==L){a.Bg(U H.5(a,{BA:[a.o,G]}));F++;Gf;}a.D0[K-F]=a.0.v;V(T I=L;I<P[K].v;){T C=IC(E,P[K].FY(I),D,a.o);a.Bg(U H.DX(a,{BA:[a.o,a.BD],BD:a.BD},P[K].FY(I,C)));I+=C;}}}a.Cp=L;a.CB=a.0.v-M;a.CX=c;a.B0=p;a.De={};a.De.Ci=L;a.Je=U H.5();a.EY=e;a.C6=[];R(B){B.KP(a);}};x(H.CR,H.CG);C.x(H.CR.6,{I4:JL,He:3600,CS:Go,Ek:2(Q){T P=H.CR.6;Q=h.CV(Q);R(Q<L||P.I4+Q*JO>P.He){t;}P.CS=Q;R(DS P.Kj=="2"){P.Kj("CS",P.CS);}},KH:2(Q){t H.CR.6.He-H.CR.6.CS*JO;},setDefile:2(P){a.GM=L;a.Bm=L;a.CX=p;a.CB=L;a.Jb();a.r=U H.CG(a.w,a.CO+M,{BR:[a.m+(a.o-FV)/N,a.i+a.u-CY],BA:[FV,CY]});a.w.DI("CTRLUI",a.r);a.r.GW=U H.BJ(a.r,{BR:[220,BE],BA:[BQ,BQ]},"It");a.r.GO=U H.BJ(a.r,{BR:[L,BE],BA:[BQ,BQ]},"IO");a.r.Hw=U H.BJ(a.r,{BR:[170,BE],BA:[BQ,BQ]},"KX");a.r.HB=U H.BJ(a.r,{BR:[CY,BE],BA:[BQ,BQ]},"Ka");a.r.CE=U H.BJ(a.r,{BR:[F0,BE],BA:[BQ,BQ]},"IA");a.r.B0=U H.BJ(a.r,{BR:[F0,BE],BA:[BQ,BQ]},"JP");a.r.DR=U H.DX(e,{CN:"Hi",B_:"ES",f:"Jx JX "+I.f,8:"#C_"},"",c);a.r.CM=a;a.r.g=2(Q){a.GW.g(Q);a.GO.g(Q);a.Hw.g(Q);a.HB.g(Q);R(a.CM.B0){a.CE.g(Q);}b{a.B0.g(Q);}a.DR.g(Q);};a.r.Ke=2(Q){R(a.GO.B5(Q.Bx,Q.Bw)){H.CR.6.Ek(a.CM.CS-M);a.DR.Eg("moins IU, IG:"+a.CM.CS.DV(Hs).IS());}b{R(a.GW.B5(Q.Bx,Q.Bw)){H.CR.6.Ek(a.CM.CS+M);a.DR.Eg("KQ IU, IG:"+a.CM.CS.DV(Hs).IS());}b{R(a.CE.B5(Q.Bx,Q.Bw)){a.CM.B0=!a.CM.B0;R(a.CM.B0){a.DR.Eg("B0");}b{a.DR.Eg("reprendre");}}b{t;}}}a.DR.Bc=M;H.I7(a.DR,BE,[[Q.Bx,Q.Bw],[Q.Bx,Q.Bw-CY]]);};a.r.JQ=2(Q){R(a.HB.B5(Q.Bx,Q.Bw)){a.CM.De.Ci=-BE;}b{R(a.Hw.B5(Q.Bx,Q.Bw)){a.CM.De.Ci=BE;}}};a.r.JE=2(Q){a.CM.De.Ci=L;};T Q=U H.4(a.r.Ke,a.r);a.r.$("BP",Q,c);a.r.$("Eu",U H.4(a.r.JQ,a.r),c);a.r.$("EI",U H.4(a.r.JE,a.r),c);a.Is=2(Q){Cu(Q.keyCode){j __KEY_LEFT:H.CR.6.Ek(a.CS-M);q;j __KEY_RIGHT:H.CR.6.Ek(a.CS+M);q;}};Q=U H.4(a.Is,a);},Jb:2(){a.DQ=U H.E7(a,{},"EB");a.Ha();a.DQ.$("If",U H.4(2(){a.B0=c;},a));a.DQ.$("D_",U H.4(2(){T Q=a.CX?a.0.v:a.Bm;R(Q==L||a.0[Q-M].k()<H.d.u*L.55){a.B0=p;}},a));},Ho:2(Q,P){V(T A S a.D0){R(a.D0[A]>=Q){a.D0[A]+=P;}}},setLinklist:2(P){V(T Q S P){T C=P[Q].DC;V(T B=a.D0[C];B<a.D0[C+M];B++){R(!a.0[B].B8){Gf;}T A=a.0[B].B8.Dj(P[Q].W);R(A>=L){P[Q].DC=B;a.0[B].Ec(P[Q]);q;}}}a.BW=P;},setLinkDelegate:2(Q,A){R(!a.BW){t;}V(T P S a.BW){R(a.BW[P].BX==A){a.0[a.BW[P].DC].$("Bk",U H.4(Q.linkShowHandler,Q,a.BW[P]));a.0[a.BW[P].DC].$("Em",U H.4(Q.linkDisapearHandler,Q,a.BW[P]));}}},Bg:2(P){T Q=a.0.v-M;R(Q>=L){P.E9(a.0[Q].u,a.0[Q]);}b{P.E9(L);}a.v+=P.u;a.CB=a.0.v-M;t H.CG.6.Bg.n(a,P);},addGame:2(P){R(!P.DP){T Q=U H.EV(a,{BA:[a.o*L.D2,a.o*L.KJ]},P);Q.GF(a.o*L.M);a.Bg(Q);}b{P.w=a;P.$("BF",U H.4(P.Bb,P));a.Bg(P);}},DY:2(A,P){T Q=a.EK.6.DY.n(a,A,P);R(!Q){t Q;}a.Ho(P,M);R(P==L){A.E9(L);P=M;}V(T B=P;B<a.0.v;B++){a.0[B].E9(a.0[B-M].u,a.0[B-M]);}a.v+=A.u;t Q;},insertGame:2(A,Q){R(!A.DP){T P=U H.EV(a,{BA:[a.o*L.D2,a.o*L.KJ]},A);P.GF(a.o*L.M);a.DY(P,Q);}b{A.w=a;A.$("BF",U H.4(A.Bb,A));a.DY(A,Q);}},FB:2(P){T Q=H.CG.6.FB.n(a,P);R(!BI(Q)){a.v-=P.u;a.Ho(Q,-M);a.CB=a.0.v-M;}t Q;},CF:2(){T Q=a.CX?a.0.v:a.Bm;R(Q==L){t L;}t a.0[Q-M].i+a.0[Q-M].u;},G5:2(Q){a.C6.Bl(Q);},IP:2(Q){V(T P=L;P<a.C6.v;P++){R(a.C6[P]==Q){a.C6.C2(P,M);t;}}t-M;},Ha:2(){T B=a.Dk-a.i;B=(B<L?L:B);T Q=B+a.u*L.D2,P=a.CX?a.0.v-M:a.Bm-M;P=P<L?L:P;T A=-M,C=-M;R(a.GV<=B){V(T D=a.Cp;D<=P;D++){R(A==-M&&a.0[D].i+a.0[D].u>B){A=D;}R(C==-M&&a.0[D].i>Q){C=D;q;}}A=A==-M?P:A;C=C==-M?P:C;}b{V(D=a.CB;D>=L;D--){R(C==-M&&a.0[D].i<=Q){C=D;}R(A==-M&&a.0[D].i+a.0[D].u<=B){A=D;q;}}A=A==-M?L:A;C=C==-M?L:C;}R(A>a.Cp){V(D=a.Cp;D<A;D++){a.0[D].3._("Em");R(a.0[D].Cd===c){a.0[D].Cd=p;}}}b{R(A<a.Cp){V(D=A;D<a.Cp;D++){a.0[D].3._("Bk");R(a.0[D].Cd===p){a.0[D].Cd=c;}}}}R(C>a.CB){V(D=a.CB+M;D<=C;D++){a.0[D].3._("Bk");R(a.0[D].Cd===p){a.0[D].Cd=c;}}}b{R(C<a.CB){V(D=C+M;D<=a.CB;D++){a.0[D].3._("Em");R(a.0[D].Cd===c){a.0[D].Cd=p;}}}}a.Cp=A;a.CB=C;},EC:2(P){T Q=a.0[a.CB];R(a.B0){T A=a.w.k()+a.w.u/N;V(T C=a.Cp;C<=a.CB;C++){R(a.0[C].k()>=A){Q=a.0[C];q;}}}V(T B S C5){R(Q==C5[B]){t{BX:"Jt",id:B};}}t p;},s:2(B){R(a.Ce&&a.EY 9 H.5){a.EY.s(B);t;}R(a.De.Ci){a.DQ.Ej(a.De);}R(a.DQ){a.Ha();}V(T D=a.Cp;D<=a.CB;D++){a.0[D].s(B);}V(D=L;D<a.C6.v;D++){a.C6[D].s(B);}R(a.CX||!a.Ce){a.GV=(a.Dk-a.i<L?L:a.Dk-a.i);t;}R(!a.B0){a.GM+=B;T Q=(a.Bm!=L&&a.0[a.Bm-M]9 H.BJ)?4000:a.KH();R(a.GM>=Q){a.GM=L;R(a.Bm<a.0.v){T A=a.0[a.Bm].i+a.0[a.Bm].u/N,P=a.0[a.Bm].u/CC;R(P<Bi){P=Bi;}b{R(P>KE){P=KE;}}R(A>H.d.u/N){T C=U H.DU(a,{Bj:[L,P],BR:[[a.m,a.i],[a.m,a.u/N-A]]},M);C.Bb();}a.Bm++;}b{a.CX=c;}}}a.GV=(a.Dk-a.i<L?L:a.Dk-a.i);},g:2(Q){a.EE(Q);V(T P=L;P<a.C6.v;P++){a.C6[P].g(Q);}V(P=a.Cp;P<=a.CB;P++){a.0[P].g(Q);}R(a.r){a.r.g(Q);}},B5:2(P,Q){t a.w.B5(P,Q);},Fp:2(){a.EY=a.Je;},CE:2(){a.EY=e;}});mmvc.makeModel(H.CR.6,["CS"]);H.BJ=2(P,Q,A){H.5.n(a,P,Q);R(DS A=="FF"){a.X=A;H.W.HY(a.X,U H.4(a.BS,a));}b{a.BK=A;}a.Fe=p;a.BL=e;a.BF=p;};x(H.BJ,H.5);C.x(H.BJ.6,{BS:2(){T P=H.W.B2(a.X);R(!a.o){a.o=P.o;a.u=P.u;}a.BK=GL.Fq("Fb");T Q=a.BK.Eh("E_");a.BK.o=a.o;a.BK.Dh.o=a.o;a.BK.u=a.u;a.BK.Dh.u=a.u;Q.CJ(P,L,L,a.o,a.u);R(a.Fe){a.Im();}},Im:2(){a.Fe=c;R(!a.o){t;}a.C9=U H.BJ(a,{BR:[a.o-B7,L]},"C9");T Q=U H.4(2(){R(!(a.Cr 9 H.CP)){a.Cr=H.CP.Dw();}a.Cr.Bk(a);},a);a.C9.$("BP",Q,c);},HV:2(Q){R(!a.BL&&Q 9 H.EffectImage&&Q.subject==a){a.BL=Q;a.BL.BS();}},HR:2(){a.BL=e;},s:2(Q){R(!a.BF){a.BF=c;a.3._("BF");}R(a.BL!=e){a.BL.s(Q);}},g:2(P,B,A){T Q=(a.BK?a.BK:H.W.B2(a.X));a.Cw(P);R(BI(B)||BI(A)){B=a.l();A=a.k();}R(a.BL!=e&&a.BL.g){a.BL.g(P,Q,B,A,a.o,a.u);}b{P.CJ(Q,B,A,a.o,a.u);}R(a.Fe){a.C9.g(P);}a.3._("Df",{Y:P,BO:B,Bv:A});},DV:2(){t"[Gd DN.BJ]";}});H.GJ=2(P,Q,A){H.5.n(a,P,Q);R(A!=e){a.CO=A;}R(Q.J7){a.HW=Q.J7;}a.g=2(Q){a.Cw(Q);R(!a.HW){Q.D8(a.l(),a.k(),a.o,a.u);}b{Q.FX(a.l(),a.k(),a.o,a.u,a.HW);}};};H.GJ.6=U H.5();H.GJ.6.EK=H.GJ;H.F2=2(B,Q,C,A,P,G,E,F,D){R(Db.v==DG){a.BM=A;}b{a.CH=A;a.CI=P;R(Db.v==Gp){a.FJ=G;a.FI=E;a.DB=F;a.DD=D;}b{a.FJ=L;a.FI=L;a.DB=a.o;a.DD=a.u;}R(A<a.DB){a.Cs=h.CV(a.DB/A);}b{a.CH=a.DB;a.Cs=M;}R(P<a.DD){a.D9=h.CV(a.DD/P);}b{a.CI=a.DD;a.D9=M;}a.Jr=a.Cs*a.D9;R(!a.o){a.o=a.CH;}R(!a.u){a.u=a.CI;}}a.E2=L;H.BJ.n(a,B,Q,C);};x(H.F2,H.BJ);C.x(H.F2.6,{BS:2(){a.BK=GL.Fq("Fb");a.EA(a.E2);},configSprite:2(P,B,F,D,E,C,A,Q){R(!P||!B||BI(F)||BI(D)||!E||!C){t;}a.CH=P;a.CI=B;a.FJ=F;a.FI=D;a.DB=E;a.DD=C;R(P<a.DB){a.Cs=h.CV(a.DB/P);}b{a.CH=a.DB;a.Cs=M;}R(B<a.DD){a.D9=h.CV(a.DD/B);}b{a.CI=a.DD;a.D9=M;}a.Jr=a.Cs*a.D9;R(!A){a.o=a.CH;}R(!Q){a.u=a.CI;}a.HR();a.E2=L;a.EA(a.E2);},EA:2(A){R(!a.BK){t;}a.E2=A;T P=H.W.B2(a.X),Q=a.BK.Eh("E_");R(a.BM){a.BK.o=a.BM[A][N];a.BK.Dh.o=a.BM[A][N];a.BK.u=a.BM[A][CC];a.BK.Dh.u=a.BM[A][CC];Q.CJ(P,a.BM[A][L],a.BM[A][M],a.BM[A][N],a.BM[A][CC],L,L,a.BM[A][N],a.BM[A][CC]);}b{a.BK.o=a.CH;a.BK.Dh.o=a.CH;a.BK.u=a.CI;a.BK.Dh.u=a.CI;T C=a.FJ+(A%a.Cs)*a.CH,B=a.FI+(h.CV(A/a.Cs))*a.CI;Q.CJ(P,C,B,a.CH,a.CI,L,L,a.CH,a.CI);}R(a.BL&&a.BL.IT){a.BL.IT();}},appendFrames:2(Q){R(a.BM){a.BM=a.BM.concat(Q);}},appendFrame:2(Q){R(a.BM){a.BM.Bl(Q);}},drawFrame:2(Q,C,D,G){a.Cw(C);R(BI(D)){D=a.l();}R(BI(G)){G=a.k();}T B=H.W.B2(a.X);R(!a.BM){T F=a.FJ+(Q%a.Cs)*a.CH,E=a.FI+(h.CV(Q/a.Cs))*a.CI;C.CJ(B,F,E,a.CH,a.CI,D,G,a.o,a.u);}b{T F=a.BM[Q][L],E=a.BM[Q][M],P=a.BM[Q][N],A=a.BM[Q][CC];C.CJ(B,F,E,P,A,D,G,a.o,a.u);}},g:2(Q,P,A){a.Cw(Q);R(BI(P)){P=a.l();}R(BI(A)){A=a.k();}R(a.BK){R(a.BL!=e&&a.BL.g){a.BL.g(Q,a.BK,P,A,a.o,a.u);}b{Q.CJ(a.BK,P,A,a.o,a.u);}}a.3._("Df",{Y:Q,BO:P,Bv:A});}});H.F$=2(Q){R(7.Ca){a.BN(L,L);a.B$(FN,EU);}b{R(7.Cm){a.BN(L,L);a.B$(FN,EU);}b{a.m=L;a.i=L;a.o=h.CW(L.ID*H.d.o);a.u=h.CW(L.ID*H.d.u);}}H.5.n(a,e,Q);R(Q){a.Gz=Q.Gz?c:p;}a.BX="DEP";a.DP=p;a.Hd(H.d.Dl);};x(H.F$,H.5);C.x(H.F$.6,{Ba:"Iq",Cz:{Iq:"C\'est un jeu, sans message......"},Hc:2(){t a.Cz[a.Ba];},Hd:2(Q){R(Q 9 H.Hg||Q 9 H.Gc||Q 9 H.Ft){a.Iz=Q;}},getEvtProxy:2(){t a.Iz;},JB:2(Q){a.H7=Q;a.BX="Gb";},setDirectShow:2(Q){a.DP=Q;},addTo:2(Q){a.w=Q;a.BN(L,L);a.B$(Q.Cn(),Q.CF());Q.Bg(a);},Bb:2(){H.d.Dl.Ki(a);R(!a.DP){H.d.C3.JG(a);}b{a.BS();}a.3._("Bb");},Eb:2(){R(!a.DP){t H.d.C3;}b{t a.w.Eb();}},g:2(Q){},BT:2(){a.3._("BT");H.d.Dl.Ki(e);R(!a.DP){H.d.C3.BT();}R(a.H7){a.H7.HL();}},Hm:2(){R(!a.DP){H.d.C3.Hm();}},BS:2(){},IX:2(){}});H.GP=2(){a.BH=C("Fb.EH");a.Y=a.BH.Ex(L).Eh("E_");a.EN=U H.Gc(a);a.Ch=U H.Hg(a,a.BH,a.EN);a.BG=e;a.Ba="Hj";H.W.BZ("HA","./BY/HA.jpg","X",c);a.Gu=U H.BJ(e,{BR:[L,L]},"HA");a.C8=U H.DX(e,{f:"Bold 36px "+H.Dq.f,8:"#C_",CN:"Hi",B_:"ES"},"Perdu ...",c);a.C8.$("Bk",U H.4(a.C8.HV,a.C8,{typewriter:{speed:N}}));a.Cv=U H.Ds(e,{BA:[H4,GG],f:"EX "+I.f,8:"#C_"},"G3 Js JI KQ","FU");a.Ey=U H.Ds(e,{BA:[H4,GG],f:"EX "+I.f,8:"#C_"},"G3 rejoue","Jp");a.BF=p;a.Gy=U H.4(a.Ih,a);};H.GP.6={contructor:H.GP,$:2(){a.Ch.Dg.$.Ef(a.Ch.Dg,Bh.6.FG.n(Db));},Ck:2(){a.Ch.Dg.Ck.Ef(a.Ch.Dg,Bh.6.FG.n(Db));},_:2(){a.Ch.Dg._.Ef(a.Ch.Dg,Bh.6.FG.n(Db));},Kk:2(){R((7.Ca||7.Cm)&&a.Ba=="FL"&&a.BG&&a.BG.BX=="Gb"){t c;}b{t p;}},Jo:2(){R(a.Ba=="Hj"){t;}R(BI(a.BG.I2)){a.BB=(7.Ca||7.Cm)?-M.O:h.CW(H.d.BH.o()-a.o)/N;}b{a.BB=a.BG.I2-(H.d.BU?H.d.BU.BO:L);}R(BI(a.BG.I0)){a.BC=(7.Ca||7.Cm)?-M.O:h.CW(H.d.BH.u()-a.u)/N;}b{a.BC=a.BG.I0-(H.d.BU?H.d.BU.Bv:L);}a.BH.B3({BB:a.BB,BC:a.BC,o:a.o,u:a.u});},Hq:2(Q){R(!Q||!(Q 9 H.F$)){t;}a.BG=Q;a.BG.Hd(a.Ch);a.BF=p;a.Ba="Iy";a.BH.Ex(L).o=a.BG.o;a.BH.Ex(L).u=a.BG.u;a.o=a.BG.o;a.u=a.BG.u;a.Jo();R(7.Ca||7.Cm){a.Gu.B$(FN,EU);a.C8.BN(FN/N,EU/N);a.Ey.BN(FN-JW,EU-CY);a.Cv.BN(BE,EU-CY);}b{a.Gu.B$(a.o-O,a.u-O);a.C8.BN(a.o/N,a.u/N);a.Ey.BN(a.o-JW,a.u-CY);a.Cv.BN(BE,a.u-CY);}a.BH.KV("KD");},Bb:2(){R(!a.BG){t;}a.BG.BS();a.Ba="FL";},JG:2(Q){a.Hq(Q);a.Bb();},Ih:2(Q){R(a.Cv.B5(Q.Bx,Q.Bw)){a.BG.BT();}b{R(a.Ey.B5(Q.Bx,Q.Bw)){a.Ba="FL";a.BG.BS();}b{t;}}a.Ch.Ck("BP",a.Gy);},Hm:2(){a.Ba="G0";a.Ch.removeListeners("BP");a.C8.3._("Bk");a.Ch.$("BP",a.Gy);},BT:2(){a.BH.removeClass("KD");a.Ba="Hj";},s:2(Q){R(a.Ba=="G0"){a.C8.s();}R(a.Ba!="FL"&&a.Ba!="Iy"){t p;}b{R((7.Ca||7.Cm)&&7.Bp!="Gw"){t c;}b{a.BG.s(Q);}}t c;},g:2(){a.Y.HE(L,L,a.o,a.u);R(a.BG.Gz){a.Y.8="#D6";a.Y.D8(L,L,a.o,a.u);}R(a.BG.BX=="Gb"&&(7.Cm||7.Ca)&&7.Bp!="Gw"){a.Y.CJ(H.W.B2("Gx"),(a.o-CY)/N,(a.u-FH)/N,CY,FH);}b{R(a.Ba=="FL"){R(!a.BF){a.BF=c;R(a.BG.BX=="Gb"){a._("BF");R(7.Ca||7.Cm){a.BG.IX();}}}a.BG.g(a.Y);}b{R(a.Ba=="G0"){a.Y.8="#D6";a.Y.D8(L,L,a.o,a.u);a.C8.g(a.Y);a.Cv.g(a.Y);a.Ey.g(a.Y);}}}}};H.EV=2(P,Q,A){H.5.n(a,P,Q);a.BF=p;a.EH=A;a.EH.JB(a);a.Cz="";a.Dc=U Bh();R(!a.f){a.f="EX GX";}a.BD=h.CW(M.N*En(a.f));a.$("BF",U H.4(P.Fp,P));a.Cv=U H.Ds(a,{BR:[BE,a.u-ER],BA:[H4,GG],f:"EX "+I.f,8:"#C_"},"G3 Js JI pas","FU");a.HJ=U H.4(a.KI,a);};x(H.EV,H.5);C.x(H.EV.6,{KI:2(Q){R(a.Cv.B5(Q.Bx,Q.Bw)){a.HL();}b{a.Ck("BP",a.HJ);a.EH.Bb();}a.Cv=e;},HL:2(){R(a.w.CE){a.w.CE();}},s:2(){R(!a.BF){a.BF=c;a.3._("BF");a.$("BP",a.HJ,c);}R(a.Cz!=a.EH.Hc()){a.Cz=a.EH.Hc();a.Dc.C2(L,a.Dc.v);a.G8=a.o;a.JR=L;R(!a.Cz||a.Cz==""){a.JR=L;t;}T A=H.d.Y;A.Br();A.f=a.f;T P=h.CV((a.G8-B7)/A.D7("A").o);V(T B=L;B<a.Cz.v;){T Q=IC(A,a.Cz.FY(B),P,a.G8-B7);a.Dc.Bl(a.Cz.FY(B,Q));B+=Q;}A.By();}},g:2(Q){Q.Br();Q.B4(a.l(),a.k()+Bi);Q.8="#D6";Q.D8(L,L,a.o,a.u-BQ);Q.Cx="EW(HS,HS,HS)";Q.Cc=O;Q.strokeRect(L,-N.O,a.o,a.u-BQ);Q.Cc=M;Q.f=a.f;Q.CN="BC";Q.8="#C_";T A=(a.u-BQ-a.Dc.v*a.BD)/N;V(T P=L;P<a.Dc.v;P++){Q.Er(a.Dc[P],BE,A+P*a.BD);}Q.By();Q.Br();R(a.Cv){a.Cv.g(Q);}Q.By();a.3._("Df",{Y:Q});}});H.E7=2(A,P,Q,C,B){R(!B){B=A.w?A.w:H.d.BV;}H.5.n(a,B,P);R(B.DI){B.DI("DQ",a);}b{R(B.Bg){B.Bg(a);}}a.8="rgba(145,152,159, L.Go)";a.Z=A;R(!C){C=L;}a.Fi=p;a.GR=L;a.Bc=L;R(Q=="Id"){a.Bp="Id";a.BN(a.Z.l(),a.Z.k()+a.Z.CF()+C);a.B$(a.Z.Cn(),BE);a.Bz=L;a.v=a.o;}b{a.Bp="EB";a.BN(a.Z.l()+a.Z.Cn()+C,a.Z.k());a.B$(BE,a.Z.CF());a.Bz=L;a.v=a.u;}a.Jh=U H.4(a.Ej,a);a.J5=U H.4(a.II,a);a.Z.$("Es",a.J5,p);R(!7.F3){a.Z.$("mousewheel",a.Jh,p);}};x(H.E7,H.5);C.x(H.E7.6,{Bk:2(){H.Fd(a,DG);a.Fi=c;a.3._("Bk");},D_:2(){R(a.Bc==M){H.Fg(a,DG);}a.Fi=p;a.3._("D_");},Ej:2(Q){R(a.Bc==L){a.Bk();}a.GR=L;R(a.Bp=="EB"){a.Z.i+=Q.Ci;R(a.Z.i>DF||a.Z.i+a.Z.CF()<a.Z.w.CF()/N){a.Z.i-=Q.Ci;}}b{a.Z.m+=Q.Ci;R(a.Z.m>DF||a.Z.m+a.Z.Cn()<a.Z.w.Cn()/N){a.Z.m-=Q.Ci;}}a.3._("If",Q.Ci);},II:2(Q){R(Q.FQ.v>DG){Q.Ci=Q.DT[Q.DT.v-M]-Q.DT[Q.DT.v-N];a.Ej(Q);}},s:2(P){R(a.Fi){a.GR+=P;R(a.GR>JL){a.D_();t;}R(a.Bp=="EB"){T B=a.Z.w.CF(),Q=a.Z.CF(),A=-a.Z.i;}b{B=a.Z.w.Cn(),Q=a.Z.Cn(),A=-a.Z.m;}a.v=B*B/Q;a.Bz=B*A/Q;R(a.Bz+a.v>B-BQ){a.v=B-a.Bz-BQ;}b{R(a.Bz<L){a.v=a.v+a.Bz;a.Bz=L;}}}},g:2(P){R(a.Bc==L){t;}P.Br();a.Cw(P);P.B4(a.l(),a.k());P.Eq();R(a.Bp=="EB"){T Q=a.o/N;P.GQ(Q,a.Bz+Q,Q,L,h.Cf,c);P.y(L,a.Bz+a.v-Q);P.GQ(Q,a.Bz+a.v-Q,Q,h.Cf,N*h.Cf,c);P.y(a.o,a.Bz+Q);}b{Q=a.u/N;P.GQ(a.Bz+Q,Q,Q,M.O*h.Cf,L.O*h.Cf,p);P.y(a.Bz+IM-Q,L);P.GQ(a.Bz+IM-Q,Q,Q,L.O*h.Cf,M.O*h.Cf,p);P.y(a.Bz+Q,a.u);}P.Ge();P.By();}});H.Ds=2(B,Q,D,A,P,C){H.5.n(a,B,Q);a.Hk=D;a.X=A;a.IJ(P,C);};x(H.Ds,H.5);C.x(H.Ds.6,{Iv:2(){B.KO(a.Ct);},IJ:2(Q,P){R(Q){a.Ct=Q;}R(P=="Fn"){a.$("BP",U H.4(a.Iv,a),c);}},g:2(P,D,B){a.Cw(P);P.8="EW(H9,H9,H9)";P.B_="ES";P.CN="Hi";R(D==e){T A=a.l(),C=a.k();}b{A=D,C=B;}T Q=H.W.B2(a.X);R(Q){P.CJ(Q,A,C,a.o,a.u);}R(a.Hk){P.Er(a.Hk,A+a.o/N,C+a.u/N);}}});H.CL=2(A,P,Q){H.5.n(a,A,P);a.1=U Bh();a.EN=U H.Gc(a);a.FA=Q;R(Q){a.DI("FA",Q);}a.CZ=[Bi,Bi,Bi,Bi];a.Dr=randomInt(B7)-BE;a.F_=a.o-a.CZ[M]-a.CZ[CC];a.Jz=a.u-a.CZ[L]-a.CZ[N];};x(H.CL,H.Dm);Dd H.CL.6.Gl;Dd H.CL.6.GN;Dd H.CL.6.s;Dd H.CL.6.IE;Dd H.CL.6.HC;Dd H.CL.6.Gt;C.x(H.CL.6,{g:2(Q){R(!a.FA){a.Gg(Q,a.l(),a.k());}},Gg:2(Q,A,P){Q.8="EW(252,FV,242)";Q.F7="HO";Q.Do=BE;Q.FX(A,P,a.o,a.u,B7);Q.Do=L;},IF:2(I,G){T E=a.l()+a.o/N,H=a.k()+a.u/N,P=I-E,A=G-H,B=a.Dr*h.Cf/HT,Q=h.sin(B),F=h.cos(B),D=P*F+A*Q,C=-P*Q+A*F;t[E+D,H+C];}});H.D5=2(C,P,Q,B,A){H.CL.n(a,C,P,Q);R(B&&H.W.B2(B)){a.X=B;a.Gq=A;}H.W.HY(a.X,U H.4(a.BS,a));};x(H.D5,H.CL);C.x(H.D5.6,{JJ:GG,setImage:2(P,Q){R(P&&H.W.B2(P)){a.X=P;a.Gq=Q;}},BS:2(){T B=a.F_,P=a.u-a.CZ[L]-a.CZ[N]-a.JJ,C=H.W.B2(a.X),D=B/C.o,E=P/C.u,A=(D<E)?D:E;a.Dp=C.o*A;a.E8=C.u*A;a.EL=a.CZ[CC]+(B-a.Dp)/N;a.EM=a.CZ[L]+(P-a.E8)/N;a.C9=U H.BJ(a,{BR:[a.EL+a.Dp-Hp-O,a.EM+O],BA:[B7,B7]},"C9");T Q=U H.4(2(){R(!(a.Cr 9 H.CP)){a.Cr=H.CP.Dw();}a.Cr.Bk(a);},a);a.C9.$("BP",Q,c);},g:2(Q){Q.Br();Q.B4(a.l()+a.o/N,a.k()+a.u/N);Q.E1(a.Dr*h.Cf/HT);Q.B4(-a.o/N,-a.u/N);V(T P S a.1){a.1[P].g(Q);}R(!a.FA){a.Gg(Q,L,L);}R(!a.X){t;}Q.F7="HO";Q.Do=Go;Q.CJ(H.W.B2(a.X),a.EL,a.EM,a.Dp,a.E8);a.C9.g(Q,a.EL+a.Dp-Hp-O,a.EM+O);Q.Do=L;Q.f="Jx EX GX";Q.CN="BC";Q.B_="ES";Q.8="#D6";Q.Hf(a.Gq,a.EL+a.Dp/N,a.EM+a.E8+O,a.F_,Bi);Q.By();}});H.F9=2(P,Q){H.5.n(a,P,Q);R(!a.f){a.f="14px GX";}R(!a.B_){a.B_="BB";}R(!a.8){a.8="#D6";}a.CN="BC";a.Dv=U Bh();a.v=L;};x(H.F9,H.5);C.x(H.F9.6,{H0:-CC.O,Fc:O,Fa:EO,BD:Hr,Ew:2(C,A,P){R(DS A!="FF"||DS P!="FF"){t;}Cu(C){j"B8":T Q=P;q;j"Ct":Q=U H.Ds(a,{BR:[Bi,a.v+a.Fc+a.BD],BA:[FH,a.BD],f:a.f,8:"#C_"},"Lien","FU",P,"Fn");q;}a.Dv.Bl([C,A,Q]);a.EE(H.d.Y);T B=Ik(A,H.d.Y,a.o).v;B+=Kf(P,H.d.Y,a.o-Bi).v;B=B*a.BD+a.Fc+a.Fa;a.v+=B;},CF:2(){t a.v;},g:2(Q){Q.Br();Q.B4(a.m,a.i);a.Cw(Q);Q.lineCap="CW";T P=L;V(T A=L;A<a.Dv.v;A++){Q.f="bold "+a.f;P+=Q.Hf(a.Dv[A][M],L,P,a.o,a.BD)+a.Fc;Q.Eq();Q.Fk(L,P+a.H0);Q.y(a.o,P+a.H0);Q.stroke();Q.f=a.f;Cu(a.Dv[A][L]){j"B8":P+=Q.Hf(a.Dv[A][N],Bi,P,a.o-Bi,a.BD)+a.Fa;q;j"Ct":a.Dv[A][N].g(Q,Bi,P);P+=a.BD+a.Fa;q;}}Q.By();}});H.GS=2(A,P,Q){H.CL.n(a,A,P,Q);a.B6=U H.F9(a,{BR:[a.CZ[CC],a.CZ[L]],BA:[a.F_,a.Jz]});a.DI("B6",a.B6);a.DQ=U H.E7(a.B6,{},"EB");a.DQ.BN(a.o-a.CZ[M],L);};x(H.GS,H.CL);C.x(H.GS.6,{Ew:2(P,Q){a.B6.Ew("B8",P,Q);},Ec:2(Q,P){a.B6.Ew("Ct",Q,P);},g:2(Q){Q.Br();Q.B4(a.l()+a.o/N,a.k()+a.u/N);Q.E1(a.Dr*h.Cf/HT);Q.B4(-a.o/N,-a.u/N);R(!a.FA){a.Gg(Q,L,L);}V(T P S a.1){a.1[P].g(Q);}Q.By();}});H.G2=2(){H.CG.n(a,e,I.HD.Cq,{});a.FS=e;a.G$=U H.4(a.Il,a);a.G_=U H.4(a.H$,a);a.Gi=U H.4(a.I5,a);};x(H.G2,H.CG);C.x(H.G2.6,{GZ:FV,Ga:320,D_:2(){T Q=a.w;R(Q){a.Ck("Eu",a.G$);a.Ck("Es",a.G_);a.Ck("EI",a.Gi);}a.w.Gt();a.Bc=L;a.w.G7("Cq");},BS:2(Q){R(!Q 9 H.5){t;}a.w=Q;a.B$(Q.Cn(),Q.CF());a.BN(L,L);a.KZ=(a.o-a.GZ)/N;a.KY=(a.u-a.Ga)/N;V(T P S a.0){a.0[P].BN(a.KZ,a.KY);}a.$("Eu",a.G$,c);a.$("Es",a.G_,c);a.$("EI",a.Gi,c);Q.DI("Cq",a);a.Bc=M;Q.HC("Cq");},addImage:2(A,P){T Q={BA:[a.GZ,a.Ga]};a.Bg(U H.D5(a,Q,e,A,P));},HZ:2(){T Q={BA:[a.GZ,a.Ga]};a.Ed=U H.GS(a,Q,e);a.Bg(a.Ed);},addExplication:2(P,Q){a.HZ();a.Ed.Ew(P,Q);},Ec:2(Q,P){R(!a.Ed){a.HZ();}a.Ed.Ec(Q,P);},Il:2(Q){V(T B=a.0.v-M;B>=L;B--){T A=a.0[B],P=A.IF(Q.Bx,Q.Bw);R(A.B5(P[L],P[M])){Q.Bx=P[L];Q.Bw=P[M];R(!A.EN.dispatch("BP",Q)){a.FS=A;}t;}}a.D_();},H$:2(Q){R(!a.FS){t;}T P=Q.FQ[Q.FQ.v-M]-Q.FQ[Q.FQ.v-N],A=Q.DT[Q.DT.v-M]-Q.DT[Q.DT.v-N];a.FS.E3(P,A);},I5:2(Q){a.FS=e;}});H.Hy=2(P,Q,A){H.5.n(a,P,Q);a.IN=A;a.$("BP",U H.4(a.KW,a),c);};x(H.Hy,H.5);C.x(H.Hy.6,{KW:2(){H.d.Gn.Hq(IN);H.d.Gn.KV("video_active");},g:2(Q){Q.Br();Q.8="#D6";Q.Cx="#C_";Q.Cc=DG;Q.B4(a.l(),a.k());Q.Ir(L,L,a.o,a.u,O);Q.FX(L,L,a.o,a.u,O);Q.Eq();Q.Fk(a.o/N-GI,a.u/N-B7);Q.y(a.o/N+GI,a.u/N);Q.y(a.o/N-GI,a.u/N+B7);Q.y(a.o/N-GI,a.u/N-B7);Q.8="#C_";Q.Ge();Q.By();a.3._("Df",{Y:Q});}});H.ET=2(Q,P){R(!(Q 9 H.5)){Fj.FW("ET creation FW: z Hl Fr IL 5");t;}H.5.n(a);a.z=e;a.DK=U Bh();a.m=L;a.i=L;a.o=L;a.u=L;a.HX=U H.4(a.BP,a);R(P){a.GY(P);}a.I8(Q);R(!a.Gj){a.Jf();}};x(H.ET,H.5);C.x(H.ET.6,{Gj:p,Jf:2(){H.W.BZ("G4","./BY/G4.Bf","X",c);H.W.BZ("HK","./BY/HK.Bf","X",c);H.ET.6.Gj=c;},GY:2(Q){R(Q.B6!=e&&Q.Ev!=e&&Q.date!=e){a.DK.Bl(Q);}t{BO:a.z.l()+a.m,Bv:a.z.k()+a.i};},KF:2(B){T A,P,Q,C;R(B 9 H.DX){A=B.o;P=L;C=B.u;Q=C*BQ/GH;}b{R(B 9 H.BJ){A=B.o-KK;P=B.u-BQ;C=GH;Q=BQ;}b{R(B 9 H.EV){A=B.o;P=L;C=GH;Q=BQ;}b{A=B.o-KK;P=BE;C=GH;Q=BQ;}}}t[A,P,Q,C];},I8:2(C){R(!(C 9 H.5)){t;}a.z=C;R(C 9 H.Dm){T B,P,E,A;B=C.IB("I6");R(B){B.Bg(a);}b{P=L;V(E=L;E<C.1.v;E++){A=C.1[E];R(A.CO>P){P=A.CO;}}B=U H.CG(C,P+M,{BA:[H.d.o,H.d.u]});B.Bg(a);C.DI("I6",B);}a.w=B;}b{R(C.w 9 H.CR){T Q=C.w;Q.G5(a);a.w=Q;}}R(a.z){a.3.Ck("BP",a.HX);}a.3.$("BP",a.HX,c);a.z=C;T D=a.KF(C);a.HP=D[L];a.HQ=D[M];a.o=D[N];a.u=D[CC];a.m=C.m+a.HP;a.i=C.i+a.HQ;},g:2(Q){R(a.DK.v==M){Q.CJ(H.W.B2("G4"),a.l(),a.k(),a.Bu,a.Bn);}b{R(a.DK.v>M){Q.CJ(H.W.B2("HK"),a.l(),a.k(),a.Bu,a.Bn);}}},BP:2(Q){},showComments:2(){},closeComments:2(){}});H.CP=2(){R(H.CP.Dw()){t H.CP.Dw();}a.z=p;a.BV=C("#Cr");a.X=C("#Cr #theImage");a.Bt=C("#Cr Dz");a.Fw=C("#Cr #Jc");a.X.BP(2(Q){Q.Ju();Q.stopPropagation();});R(7.F3){a.Fw.HH();a.Bt.B3("overflow","hidden");a.Bt.D$();a.Bt.D$("$","Bq",U 4(a.Bq,a));a.X.D$();a.X.D$("$","B4",U 4(a.E3,a));}T Q=a;H.CP.Dw=2(){t Q;};};H.CP.Dw=2(){t p;};H.CP.6={I9:CC,J$:M,IR:2(Q){R(!(Q 9 H.BJ)&&!(Q 9 H.D5)){Fj.FW("The z Jt Hl Fr an instance of DN.BJ Jk DN.D5");t;}a.z=Q;a.JT=H.W.B2(a.z.X).getAttribute("W");a.X.prop("W",a.JT);t a;},H5:2(){R(!a.z){t;}T Q={};R(a.z 9 H.BJ){Q.BO=H.d.BH.C0().BB+a.z.l();Q.Bv=H.d.BH.C0().BC+a.z.k();Q.Bu=a.z.Cn();Q.Bn=a.z.CF();Q.Dr="E1(0deg)";}b{Q.BO=H.d.BH.C0().BB+a.z.l()+a.z.EL;Q.Bv=H.d.BH.C0().BC+a.z.k()+a.z.EM;Q.Bu=a.z.Dp;Q.Bn=a.z.E8;Q.Dr="E1("+a.z.Dr+"deg)";}t Q;},Bk:2(P){a.IR(P);R(!a.z){t;}a.BV.Jy("BP");a.Fw.Jy("BP");a.BV.BP({JU:a},a.F1);a.Fw.BP({JU:a},a.F1);T E=a.H5();a.X.B3({BB:"FT",BC:"FT",u:"DF%",o:"DF%"});a.Bt.B3({o:E.Bu+"Be",u:E.Bn+"Be",BC:E.Bv+"Be",BB:E.BO+"Be"});R(7.Dn<7.C$){T Q=E.Bu/E.Bn,D=L.D2*7.Dn,C=D*Q,B=H.d.o/N-C/N;}b{Q=E.Bn/E.Bu,C=L.D2*7.C$,D=C*Q,B=7.C$/N-C/N;}a.Bt.J4("J8",{Bn:D,Bu:C,BO:a.Bt.C0().BB,Bv:a.Bt.C0().BC,Bq:M});a.Bt.J1({u:D+"Be",o:C+"Be",BC:"FT",BB:B+"Be"});a.BV.fadeIn(Ip);T A=a.z.w;R(A.Fp){A.Fp();}},F1:2(Q){Q.Ju();T P=H.CP.Dw(),A=P.H5();P.BV.children("Dz").J1({u:A.Bn+"Be",o:A.Bu+"Be",BC:A.Bv+"Be",BB:A.BO+"Be"});P.BV.fadeOut(Ip,2(){T Q=P.z.w;R(Q.CE){Q.CE();}});},Bq:2(P){T A=a.Bt.o()*a.I9,Q=a.Bt.o()*a.J$,D=a.Bt.J4("J8"),F=P.Bq;R(F*D.Bu>=A||F*D.Bu<=Q){t;}R(P.BX=="scaleEnd"){D.Bu=a.X.o();D.Bn=a.X.u();t;}T E=a.X.C0(),C=a.Bt.o(),H=a.Bt.u(),B=D.Bu*F,G=D.Bn*F,J=E.BB-(B-a.X.o())/N,I=E.BC-(G-a.X.u())/N;R(J>L){J=L;}b{R(J<C-B){J=C-B;}}R(I>L){I=L;}b{R(I<H-G){I=H-G;}}a.X.B3({o:B+"Be",u:G+"Be",BC:I+"Be",BB:J+"Be"});},E3:2(Q){T A=a.X.o(),P=a.X.u(),D=a.Bt.o(),C=a.Bt.u(),B=a.X.C0(),F=B.BB+Q.HP,E=B.BC+Q.HQ;R(F>L){F=L;}R(F<D-A){F=D-A;}R(E>L){E=L;}R(E<C-P){E=C-P;}a.X.B3({BC:E+"Be",BB:F+"Be"});}};H.GA=2(B,P,Q,A){R(!B.H3||!B.Ea){t e;}a.W=B;R(P>L){a.DW=c;a.E5=J2;a.v=A!=e?A:L;}b{R(!Q 9 Bh){t e;}a.DW=p;a.Ei=Q;a.v=Q.v;}a.W.H3(a);a.switching=p;};H.GA.6={EK:H.GA,DA:2(){H.Cg.Ix();},Bb:2(){a.KR=L;a.Bm=L;a.BT=p;a.Dy=p;a.W.Ea();H.Cg=a;R(a.DW){a.Co=DO(a.DA);}b{a.Co=EP(a.DA,a.Ei[a.Bm]);}},Ix:2(){R(a.BT){R(a.DW){clearInterval(a.Co);}b{Fv(a.Co);}t;}R(a.Dy){t;}a.KR+=a.DW?a.E5:a.Ei[a.Bm];a.Bm++;R(a.v==L||a.Bm<v){R(!a.DW){a.Co=EP(a.DA,a.Ei[a.Bm]);a.W.Ea(a.Ei[a.Bm-M]);}b{a.Co=DO(a.DA);a.W.Ea(a.E5);}}b{a.BT=c;}},playpause:2(){R(a.BT){t;}a.Dy=!a.Dy;R(!a.Dy){R(H.Cg!=a){H.Cg=a;}R(a.DW){a.Co=DO(a.DA);}b{a.Co=EP(a.DA,IZ);}}},CE:2(){R(a.BT){t;}a.Dy=p;R(H.Cg!=a){H.Cg=a;}R(a.DW){a.Co=DO(a.DA);}b{a.Co=EP(a.DA,IZ);}},B0:2(){R(a.BT){t;}a.Dy=c;}};H.Hz=2(P,Q,B,A){R(!Q 9 Bh||!P 9 H.F2){t e;}a.Hx=P;a.Ez=Q;a.Gr=BI(B)?M:B;a.E4=BI(A)?L:A;a.Ce=p;a.3=U H.Ft();};H.Hz.6={EK:H.Hz,Bb:2(){a.B1=L;a.Ff=M;a.F8=a.E4;a.Ce=c;a.3._("Bb");V(T Q S H.d.CQ){R(H.d.CQ[Q]==a){t;}}H.d.CQ.Bl(a);a.Hx.EA(a.Ez[a.B1]);},stop:2(){a.B1=L;a.Ff=L;a.Ce=p;a.3._("BT");},s:2(Q){R(!a.Ce){t p;}R(a.B1<a.Ez.v){R(a.E4!=L){R(a.F8==L){a.B1++;a.F8=a.E4;}a.F8--;}b{a.B1++;}}R(a.B1>=a.Ez.v){R(a.Ff<a.Gr||a.Gr==L){a.Ff++;a.B1=L;}b{a.Ce=p;a.3._("BT");t c;}}a.Hx.EA(a.Ez[a.B1]);t p;}};H.DU=2(Q,A,P){R(!Q 9 H.5){Ee("Type EZ","JD isn\'Kp IL Mse BY JD");t e;}R(!A||!A.Bj){Ee("IV EZ","No Bj Jd defined");t e;}V(T B S A){R(A[B].v!=A.Bj.v){Ee("IV EZ","JK v Fr compatible with the Bj Jd");t e;}}a.v=A.Bj.v;R(a.v<N){Ee("JC EZ","JK JC must be larger than N");t e;}R(A.Bj[L]!=L){Ee("EZ","Frame Bb point Hl Fr L");t e;}a.GE=A.Bj[a.v-M];a.Bo=Q;a.EQ=(P==e)?M:P;a.B9=A;a.FZ();a.3=U H.Ft();R(a.B9.DM){a.Bo.Bc=a.B9.DM[L]==L?L.01:a.B9.DM[L];}};H.DU.6={construction:H.DU,KS:2(){a.Ji=c;},FZ:2(){a.DE=-M;a.B1=L;a.Eo=a.B9.Bj[L];a.Fh=M;},Bb:2(){V(T Q S H.d.CQ){R(H.d.CQ[Q]==a){t;}}H.d.CQ.Bl(a);},Kg:2(){R(a.B1>a.GE&&a.Fh==a.EQ){t c;}b{t p;}},s:2(Q){R(a.B1<=a.GE){R(a.B1==a.Eo){a.DE++;a.Eo=a.B9.Bj[a.DE+M];V(T H S a.B9){T G=a.B9[H][a.DE];Cu(H){j"Bj":Gf;j"BR":a.Bo.BN(G[L],G[M]);q;j"BA":a.Bo.B$(G[L],G[M]);q;j"DM":a.Bo.Bc=G;q;j"Jm":T B=G,E=En(a.Bo.f);a.Bo.f=a.Bo.f.J_(E,B.DV());q;j"Bq":a.Bo.Bq=G;q;j"IW":a.Bo.EA(G);q;}}}b{R(!a.Ji){T F=(a.B1-a.B9.Bj[a.DE])/(a.Eo-a.B9.Bj[a.DE]);V(H S a.B9){T G=a.B9[H][a.DE],P=a.B9[H][a.DE+M];Cu(H){j"Bj":j"IW":Gf;j"BR":T D=G[N]?(a.CD[G[N]]?G[N]:N):N,J=h.CV(a.CD[D](F,G[L],P[L])*N)/N,I=h.CV(a.CD[D](F,G[M],P[M])*N)/N;a.Bo.BN(J,I);q;j"BA":T D=G[N]?(a.CD[G[N]]?G[N]:N):N,C=a.CD[D](F,G[L],P[L]),A=a.CD[D](F,G[M],P[M]);a.Bo.B$(C,A);q;j"DM":D=G[M]?(a.CD[G[M]]?G[M]:N):N;a.Bo.Bc=a.CD[D](F,(G[L]?G[L]:G),(P[L]?P[L]:P));q;j"Jm":D=G[M]?(a.CD[G[M]]?G[M]:N):N,B=h.CV(a.CD[D](F,(G[L]?G[L]:G),(P[L]?P[L]:P))),E=En(a.Bo.f);a.Bo.f=a.Bo.f.J_(E,B.DV());q;j"Bq":D=G[M]?(a.CD[G[M]]?G[M]:N):N;a.Bo.Bq=a.CD[D](F,(G[L]?G[L]:G),(P[L]?P[L]:P));q;}}}}a.B1++;}b{R(a.EQ===L||a.Fh<a.EQ){a.Fh++;a.DE=L;a.B1=L;a.Eo=a.B9.Bj[M];}b{a.3._("BT");t c;}}t p;},CD:{M:2(P,A,Q){t A;},N:2(P,A,Q){t A+P*(Q-A);}}};H.Hb=2(P,C,Q,B,A){a.El=Q?c:p;R(a.El){H.5.n(a,e,{});}b{H.5.n(a,B,A?A:{});}a.C5={};a.Bd=[];a.GE=P;a.EQ=C;a.Ba=L;a.startCb=U H.4(a.Bb,a);a.JA=p;};x(H.Hb,H.5);C.x(H.Hb.6,{addObj:2(Q,P){R(P 9 H.5){a.C5[Q]=P;R(a.El){P.w=a;}}},getObj:2(Q){t a.C5[Q];},addAnimation:2(B,A,Q){R(!a.C5[B]){t;}T P=U H.DU(a.C5[B],A,a.EQ);R(P){R(Q){P.KS();}a.Bd.Bl(P);}},Bb:2(){a.Ba=M;R(a.El&&C.J0(a,H.d.Bd)==-M){V(T Q S a.Bd){a.Bd[Q].FZ();}H.d.Bd.Bl(a);}b{R(!a.El&&C.J0(a,H.d.CQ)==-M){V(Q S a.Bd){a.Bd[Q].FZ();}H.d.CQ.Bl(a);}}a.3._("Bb");},B0:2(){a.Ba=L;},s:2(Q){R(a.Ba){V(T P S a.Bd){a.Bd[P].s(Q);}V(P S a.Bd){R(!a.Bd[P].Kg()){t p;}}a.Ba=L;t p;}b{a.3._("BT");t c;}},g:2(Q){V(T P S a.C5){a.C5[P].g(Q);}}});})(H6,Q);(2(A,P){T Q=["BP","doubleClick","longPress","E3","swipe","Eu","Es","EI","I_","keydown","keypress","keyup","Ej","swipeleft","swiperight"];A.Hu=2(P){R(!P){t;}a.ED=[];a.Fl={};a.F4={};a.Du={};V(T C S P){T Q="Km"+C;a.Fl[Q]=P[C].initial?P[C].H2:"";a.F4[Q]=P[C].H2?P[C].H2:"I$";a.Du[Q]=p;T B=P[C].W;B.$(P[C].BX,U A.4(a.Kl,a,[Q]),p);}};A.Hu.6={EK:A.Hu,Dt:2(){V(T Q S a.ED){R(DS(a.ED[Q].EG)=="2"){a.ED[Q].EG.n(a);}b{a.ED[Q].EG.Dt();}}},JY:2(){V(T Q S a.Du){R(!a.Du[Q]){t;}}a.Dt();},Kl:2(Q,P){R(a.F4[Q]=="I$"||(a.F4[Q]=="once"&&a.Fl[Q]!="I3")){a.Du[Q]=c;a.JY();}a.Fl[Q]=(DS(P)=="FF"?P:"I3");},register:2(P,Q){R((P.Dt 9 A.4)||DS(P)=="2"){a.ED.Bl({EG:P,E4:Q?Q:L});}}};})(DN,Q);(2(Q,P){P.Ja=2(P,Q){a.BO=P;a.Bv=Q;};Q.crePoint2=2(A,Q){t U P.Ja(A,Q);};})(H6,DN);(2(Q,P){P.Ie=2(Q){R(!Q){Q="anglais";}a.Dx=Q;a.FK=Q;a.B6={};};P.Ie.6={addElem:2(Q,P){a.B6[Q]=P;R(!P[a.Dx]){V(T A S P){q;}a.B6[Q][a.Dx]=P[A];Fj.FW(\'HG missing S "\'+a.Dx+\'" V "\'+Q+\'" replaced by HG S "\'+A+\'"\');}},getElem:2(Q){R(a.B6[Q][a.FK]){t a.B6[Q][a.FK];}b{R(a.B6[Q][a.Dx]){t a.B6[Q][a.Dx];}b{Fj.FW(\'no HG V "\'+Q+\'" S languages : \'+a.FK+" Jk "+a.Dx);}}},setCurrentLang:2(Q){R(DS Q=="FF"){a.FK=Q;}},getAllLangFor:2(Q){t a.B6[Q]||e;}};})(H6,DN);','0|1|2|5|_|$|if|in|var|new|for|src|img|ctx|tar|this|else|true|root|null|font|draw|Math|offy|case|getY|getX|offx|call|width|false|break|ctrUI|logic|return|height|length|parent|extend|lineTo|target|objList|_layers|function|evtDeleg|Callback|UIObject|prototype|MseConfig|fillStyle|instanceof|eventNotif|addListener|size|left|top|lineHeight|10|firstShow|currGame|jqObj|isNaN|Image|cache|currentEffect|frames|setPos|x|click|30|pos|init|end|viewport|container|links|type|UI|addSource|state|start|globalAlpha|animes|px|png|addObject|Array|15|frame|show|push|currIndex|h|element|orientation|scale|save|list|imgContainer|w|y|offsetY|offsetX|restore|loc|pause|currFr|getSrc|css|translate|inObj|content|20|text|map|textAlign|setSize|quadraticCurveTo|endId|3|calTrans|play|getHeight|Layer|fw|fh|drawImage|dim|Card|layer|textBaseline|zid|ImageShower|animations|ArticleLayer|speedLevel|button|capBox|floor|round|complete|50|margin|iPhone|lines|lineWidth|visible|active|PI|currTimeline|distributor|rolled|coords|removeListener|bordureImg|android|getWidth|timer|startId|wiki|imgShower|col|link|switch|passBn|configCtxFlex|strokeStyle|lastObj|msg|position|analyser|splice|gamewindow|capBody|objs|unhiddableObjectList|insideRec|losetext|zoomIcon|FFF|pageWidth|frameFn|sw|index|sh|currId|100|4|name|addLayer|shadow|comments|normal|opacity|mse|requestAnimationFrame|directShow|slider|tip|typeof|listY|KeyFrameAnimation|toString|tsFixed|Text|insertObject|styled|coorRatio|arguments|msginlines|delete|scrollEvt|drawover|rootEvt|style|audio|indexOf|oy|evtDistributor|BaseContainer|pageHeight|shadowBlur|iw|configs|angle|Button|invoke|success|sections|getInstance|defaultLang|inPause|div|phraseIndexs|loading|8|marge|o|ImageCard|000|measureText|fillRect|row|hide|mseInteraction|setFrame|vertical|getProgress|scripts|configCtx|getSrcPath|script|game|gestureEnd|fixed|constructor|ix|iy|dispatcher|12|setTimeout|repeat|60|center|Comment|270|GameExpose|rgb|12px|dominate|Error|runTimeline|getContainer|addLink|textCard|mseLog|apply|setText|getContext|timeprog|scroll|setspeedLevel|statiq|disapear|checkFontSize|nextKf|displayedLines|beginPath|fillText|gestureUpdate|sens|gestureStart|image|addSection|get|restartBn|seq|callbackList|rotate|curr|move|delay|interval|deleg|Slider|ih|setY|2d|face|ui|delObject|capOx|dest|capOy|string|slice|80|sy|sx|currentLang|START|preload|480|capDx|capDy|listX|min|currCard|0px|wikiBar|250|error|fillRoundRect|substr|resetAnimation|sectionsep|canvas|titletextoff|fadein|zoomable|currRep|fadeout|currRp|enScroll|console|moveTo|states|getScale|url|_changed|interrupt|createElement|not|getAlpha|EventDelegateSystem|lid|cancelAnimationFrame|closeButton|progressDeleg|fb|volume|110|close|Sprite|mobile|expects|waitinglist|bubbleheight|shadowColor|delayCount|TextContent|lw|Game|Timeline|setActivate|autoFitCallback|transition|duration|setX|35|43|25|Mask|setContainer|document|currTime|orientChange|ralenti|GameShower|arc|scrollT|TextCard|primalWidth|defaultFont|prevOffy|accelere|Verdana|addComment|cardw|cardh|INDEP|EventDispatcher|object|fill|continue|drawDefaultUI|borderRadius|cbDragEnd|inited|lineD|setOrientation|right|video|7|9|legend|rep|300|reactiveOthers|loseimg|parseFloat|landscape|imgNotif|cbrestart|fillback|LOSE|Number|WikiLayer|Je|tag_single|addUnhiddableObject|Speaker|delLayer|bullWidth|bottom|cbDragMove|cbDragStart|gameover|down|desactiveOthers|zids|clearRect|currline|translation|remove|getObjectIndex|launchcb|tag_multi|endGame|shadowOffsetX|shadowOffsetY|black|dx|dy|endEffect|188|180|captureCallback|startEffect|cr|clickCB|waitSrc|addTextCard|updateListScreen|Animation|getMsg|setEvtProxy|maxInv|fillTextWrapped|EventDistributor|barre|middle|DESACTIVE|txt|is|lose|Root|updateIndexs|24|load|18|16|toFixed|Script|fade|up|sprite|Video|FrameAnimation|seplineoff|280|expect|initTimeline|105|getOriginalPos|window|expo|aud|255|audExtCheck|dragMove|playBn|getLayer|checkNextLine|6|setLayerActivate|ptRotate|vitesse|sortLayer|gestUpdate|setLink|oneLineMore|a|l|srcs|ralentiBn|delUnhiddableObject|autoFitToWindow|setTarget|toUpperCase|update|rapide|Parameter|spriteSeq|mobileLazyInit|captureHandler|1200|deltaDx|oneLineLess|AAAAAA|horizontal|LanguageRessource|rolling|loadInfo|restart|setCursor|setCenteredViewport|wrapText|dragStart|activateZoom|illu|cid1|500|DEFAULT|strokeRoundRect|speedCtr|accelerBn|initTextEffect|urlClicked|preloadProc|run|LOAD|proxy|canvasoy|srcPath|canvasox|triggered|minInv|dragEnd|inner_comment|slideout|attachTo|maxScale|gestureSingle|everytime|block|setExpose|Length|Element|upDownEnd|cid|loadandstart|autoplay|joue|legendheight|KeyFrame|600|150|ogg|200|pauseBn|upDownStart|bullHeight|max|imgUrl|showerObj|updateCapZone|115|20px|checkConditions|portrait|Point2|setSlider|closeBn|stamp|vide|singletonInit|color|cbScroll|notransition|abs|or|attr|fontSize|initCapZone|relocate|aideBar|insertBefore|nb|ne|obj|preventDefault|_$0|count|italic|unbind|lh|inArray|animate|33|preloadPage|data|cbGest|finishCapture|cornerRatio|originPos|capturecb|replace|minScale|clicked|after|82|game_active|70|getTagBox|fixCapZone|getInterval|launchGame|65|45|getCanvasX|getCanvasY|cursor|open|delegProgress|plus|currTimestamp|setNoTransition|fbBar|getZindex|addClass|launch|upBn|cardy|cardx|downBn|lineShowed|class|default|ctrEffect|wrapTextWithWrapIndice|isEnd|mp3|setDominate|notify|isFullScreen|conditionChanged|c|d|n|t'.split('|'),671,681,{},{}))
+/*!
+ * Canvas JavaScript Library v1.0.0
+ * Encre Nomade
+ *
+ * Author: LING Huabin - lphuabin@gmail.com
+           Florent Baldino
+           Arthur Brongniart
+ * Copyright, Encre Nomade
+ *
+ * Date de creation: 21/03/2011
+ */
+
+var __currContextOwner__;
+
+(function( window, $ ) {
+
+var mse = window.mse;
+
+mse.configs = {
+	font 	: 'Verdana',
+	defaultFont : '18px Arial',
+	srcPath	: '',
+	headerH : 43,
+	zids: {
+	    text: 12,
+	    wiki: 15
+	},
+	getSrcPath : function(path) {
+	    // Path complete
+	    if(path[0] == '.') return path;
+	    else return mse.configs.srcPath + path;
+	}
+};
+// Shortcut
+var cfs = mse.configs;
+
+mse.root = null;
+mse.currTimeline = null;
+mse.Callback = Callback;
+
+
+// Gestion de ressources
+mse.src = function() {
+    return {
+	    list 		: {},
+	    loading		: [],
+	    preload		: new Array(),
+	    loadInfo	: 'Chargement ressources: ',
+	    waitinglist : {},
+	    audExtCheck : /(.ogg|.mp3)/,
+	    volume      : 0.5,
+	    init		: function() {
+	    	var ctx, angle;
+	    	for(var i = 0; i < 12; i++) {
+	    		this.loading[i] = document.createElement('canvas');
+	    		this.loading[i].width = 300; this.loading[i].height = 300;
+	    		ctx = this.loading[i].getContext('2d');
+	    		ctx.translate(150,150);
+	    		//ctx.fillStyle = 'rgba(0,0,0,0.4)';
+	    		//ctx.fillRoundRect(-50,-50, 100,100, 10);
+	    		angle = 2*Math.PI / 12;
+	    		ctx.fillStyle = '#AAAAAA';
+	    		for(var j = 0; j < 12; j++) {
+	    			if(j == i) {
+	    				ctx.fillStyle = '#EEEEEE';
+	    				ctx.fillRect(60, -9, 60, 18);
+	    				ctx.fillStyle = '#AAAAAA';
+	    			}
+	    			else ctx.fillRect(60, -9, 60, 18);
+	    			ctx.rotate(angle);
+	    		}
+	    	}
+	    },
+	    addSource	: function(name, file, type, pre) {
+	    	switch(type) {
+	    	case 'img' : case 'image':
+	    		this.list[name] = new Image();
+	    		this.list[name].src = cfs.getSrcPath(file);
+	    		this.list[name].lid = 0; // Loading current index
+	    		break;
+	    	case 'aud' : case 'audio':
+	    		this.list[name] = document.createElement('audio');
+	    		if(file.search(this.audExtCheck) == -1) {
+	    		    switch(MseConfig.browser) {
+	    		    case 'Chrome': case 'Firefox': case 'Opera':
+	    			    this.list[name].src = cfs.getSrcPath(file)+'.ogg';break;
+	    		    case 'Safari': case 'Explorer':
+	    			    this.list[name].src = cfs.getSrcPath(file)+'.mp3';break;
+	    		    }
+	    		}
+	    		else this.list[name].src = cfs.getSrcPath(file);
+	    		//this.list[name].load();
+	    		break;
+	    	case 'script':
+	    	    this.list[name] = {};
+	    	    this.list[name].complete = false;
+	    	    $.ajax({
+	    	        url: cfs.getSrcPath(file),
+	    	        dataType: "script",
+	    	        async: false,
+                    success: function(script){
+                        mse.src.list[name].complete = true;
+                    }
+	    	    });
+	    	default: return;
+	    	}
+	    	this.list[name].type = type;
+	    	if(pre && type != 'aud' && type != 'audio') this.preload.push(this.list[name]);
+	    },
+	    getSrc		: function(name) {
+	    	var res = this.list[name];
+	    	if(!res) return null;
+	    	switch(res.type) {
+	    	case 'img': case 'image':
+	    		if(!res || res.complete) return res;
+	    		else {
+	    			if(res.lid == 12) res.lid = 0;
+	    			return this.loading[(res.lid++)];
+	    		}
+	    	case 'aud': case 'audio':
+	    	    res.volume = this.volume;
+	    		return res;
+	    	}
+	    },
+	    waitSrc     : function(name, callback) {
+	        if(!this.list[name]) return;
+	        if(this.list[name].complete) {
+	            callback.invoke();
+	            return;
+	        }
+	        if(!this.waitinglist[name]) this.waitinglist[name] = new Array();
+	        var wlist = this.waitinglist[name];
+	        wlist.push(callback);
+	        this.list[name].onload = function() {
+	            for(var cb in wlist) wlist[cb].invoke();
+	        };
+	    },
+	    preloadProc	: function() {
+	    	var count = 0;
+	    	for(var i = 0; i < this.preload.length; i++)
+	    		if(this.preload[i].complete) count++;
+	    	return [count, this.preload.length];
+	    },
+	    preloadPage	: function(ctx, fini, total) {
+	    	ctx.clearRect(0, 0, mse.root.width, mse.root.height);
+	    	ctx.save();
+	    	ctx.strokeStyle = '#333333';
+	    	ctx.lineWidth = 2;
+	    	ctx.strokeRoundRect((mse.root.width-280)/2, mse.root.height-100, 281, 11, 5);
+	    	ctx.fillStyle = '#555555';
+	    	ctx.fillRoundRect((mse.root.width-280)/2, mse.root.height-100, (fini/total)*280, 10, 5);
+	    	var txt = this.loadInfo + fini + '/' + total;
+	    	ctx.font = '20px '+cfs.font;
+	    	ctx.fillStyle = '#000000';
+	    	ctx.textAlign = 'center';
+	    	ctx.fillText(txt, mse.root.width/2, mse.root.height-60);
+	    	ctx.restore();
+	    },
+	    
+	    setVolume   : function(value) {
+	        this.volume = value/100;
+	    }
+	};
+}();
+
+var initCoordinateSys = function(){
+    mse.coords = {};
+    mse.coorRatio = 1;
+    mse.joinCoor = function(coor) {
+        if(isNaN(coor)) return "";
+        var cid = 0;
+        for (var i in mse.coords) {
+            if (coor == mse.coords[i]) return i;
+            
+            var reg = i.match(/cid(\d+)/);
+            if(reg[1]) var id = parseInt(reg[1]);
+            if(!isNaN(id) && id >= cid) cid = id + 1;
+        }
+        var key = "cid"+cid;
+        mse.coords[key] = mse.coorRatio == 1 ? coor : parseFloat(new Number(mse.coorRatio * coor).toFixed(2));
+        return key;
+    };
+    mse.coor = function(key) {
+        if(isNaN(mse.coords[key])) return 0;
+        else return mse.coords[key];
+    };
+    mse.realCoor = function(coor) {
+        if(isNaN(coor)) return 0;
+        else return mse.coorRatio == 1 ? coor : parseFloat(new Number(mse.coorRatio * coor).toFixed(2));
+    };
+}();
+
+function changeCoords() {
+    mse.coorRatio = (MseConfig.pageHeight-cfs.headerH) / mse.coords['cid1'];
+    for(var i in mse.coords) {
+        mse.coords[i] = parseFloat(new Number(mse.coorRatio * mse.coords[i]).toFixed(2));
+    }
+    if(window.autoFitCallback) window.autoFitCallback();
+    window.autoFitCallback = null;
+}
+
+mse.autoFitToWindow = function(f) {
+    if(f) window.autoFitCallback = f;
+    if(mse.coords['cid1']) {
+        if(MseConfig.pageHeight > 250) changeCoords();
+        else setTimeout(mse.autoFitToWindow, 1000);
+    }
+}
+
+mse.init = function(configs) {
+	$.extend(cfs, configs);
+	
+	var path = "./UI/";
+	if(config.publishMode == "release") path = "./assets/img/story/";
+
+    mse.src.init();
+	mse.src.addSource('imgNotif', path+'turn_comp.png', 'img');
+	mse.src.addSource('fbBar', path+'barre/fb.png', 'img');
+	mse.src.addSource('wikiBar', path+'barre/wiki.png', 'img');
+	mse.src.addSource('aideBar', path+'barre/aide.png', 'img');
+	mse.src.addSource('accelerBn', path+'button/accelere.png', 'img', true);
+	mse.src.addSource('upBn', path+'button/monter.png', 'img', true);
+	mse.src.addSource('ralentiBn', path+'button/ralenti.png', 'img', true);
+	mse.src.addSource('downBn', path+'button/descend.png', 'img', true);
+	mse.src.addSource('playBn', path+'button/play.png', 'img', true);
+	mse.src.addSource('pauseBn', path+'button/pause.png', 'img', true);
+	mse.src.addSource('zoomIcon', path+'button/zoom.png', 'img', true);
+	mse.src.addSource('closeBn', path+'button/close.png', 'img', true);
+	
+	(function(config) {
+	    var lastTime = 0;
+	    var vendors = ['ms', 'moz', 'webkit', 'o'];
+	    if(config.mobile) {
+	        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+	            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+	            window.cancelAnimationFrame = 
+	              window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+	        }
+	    }
+	    if (!window.requestAnimationFrame)
+	        window.requestAnimationFrame = function(callback, element) {
+	            var currTime = new Date().getTime();
+	            // 33 means 33ms, which will do the loop in 30fps
+	            var timeToCall = Math.max(0, 33 - (currTime - lastTime));
+	            var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+	              timeToCall);
+	            lastTime = currTime + timeToCall;
+	            return id;
+	        };
+	    if (!window.cancelAnimationFrame)
+	        window.cancelAnimationFrame = function(id) {
+	            clearTimeout(id);
+	        };
+	}(window.MseConfig));
+    
+    var imgShower = new mse.ImageShower();
+};
+
+
+var DIST_PARAG = 15;
+var __count__ = 0;
+
+var linkColor = {fb		: 'rgb(74,108,164)',
+				 wiki	: 'rgb(230,82,82)',
+				 audio	: '#FFB11B'};
+				 
+var __bgLayers = {};
+
+// Animations
+mse.fade = function(obj, t, begin, end, callback) {
+	if(!obj) return;
+	var fade = new mse.KeyFrameAnimation(obj, {
+			frame	: [0, t],
+			opacity	: [begin, end]
+		}, 1);
+	if(callback) fade.evtDeleg.addListener('end', callback);
+	fade.start();
+};
+mse.fadein = function(obj, t, callback) {
+	mse.fade(obj, t, 0, 1, callback);
+};
+mse.fadeout = function(obj, t, callback) {
+	mse.fade(obj, t, 1, 0, callback);
+};
+mse.slidein = function(obj, t, movement, callback, destalpha) {
+	if(!obj instanceof mse.UIObject) return;
+	if(isNaN(destalpha)) destalpha = 1;
+	var slide = new mse.KeyFrameAnimation(obj, {
+			frame	: [0, t],
+			pos		: movement,
+			opacity	: [0, destalpha]
+		}, 1);
+	if(callback) slide.evtDeleg.addListener('end', callback);
+	slide.start();
+};
+mse.slideout = function(obj, t, movement, callback) {
+	if(!obj instanceof mse.UIObject) return;
+	var slide = new mse.KeyFrameAnimation(obj, {
+			frame	: [0, t],
+			pos		: movement,
+			opacity	: [obj.globalAlpha, 0]
+		}, 1);
+	if(callback) slide.evtDeleg.addListener('end', callback, false);
+	slide.start();
+};
+mse.transition = function(obj1, obj2, t, callback) {
+    var layer = obj1.parent;
+    if(layer instanceof mse.Layer) {
+        layer.insertBefore(obj2, obj1);
+    }
+	mse.fadein(obj2, t, callback);
+	mse.fadeout(obj1, t, new mse.Callback(layer.delObject, layer, obj1));
+};
+mse.setCursor = function(cursor) {
+    if(cursor.indexOf(".") != -1) 
+        mse.root.jqObj.css('cursor', 'url("'+cursor+'"), auto');
+	else mse.root.jqObj.get(0).style.cursor = cursor;
+};
+
+mse.changePage = function(tar, quitonclick) {
+	if(quitonclick)
+	    tar.evtDeleg.addListener(
+			'click', 
+			new mse.Callback(mse.root.transition, mse.root, mse.root.container), 
+			true);
+	mse.root.transition(tar);
+};
+
+mse.createBackLayer = function(img) {
+	if(__bgLayers[img]) return __bgLayers[img];
+	var bg = new mse.Layer(null, 0, {size:[mse.root.width,mse.root.height]});
+	bg.addObject(new mse.Image(bg, {size:[mse.root.width,mse.root.height]}, img));
+	__bgLayers[img] = bg;
+	return bg;
+};
+
+
+// Link system
+mse.Link = function(src, index, type, link, width, height) {
+	this.src = src;
+	this.index = index;
+	this.type = type;
+	this.link = link;
+	switch(this.type) {
+	case 'fb':
+		this.image='fbBar'; break;
+	case 'wiki':
+		this.image='wikiBar'; break;
+	case 'illu':
+		this.width = (width ? width : 300);
+		this.height = (height ? height : 400);
+		break;
+	}
+};
+function sortLink(a, b) {
+	return (a.index > b.index ? -1 : (a.index == b.index ? 0 : 1));
+};
+
+
+
+// Librarie canvas goes here
+// Root object for all the UI object
+mse.UIObject = function(parent, param) {
+    if(parent) {
+    	this.parent = parent;
+    	this.fixed = false;
+    }
+    else this.parent = null;
+    
+    // Event handling
+    this.evtDeleg = new mse.EventDelegateSystem(this);
+    // Parameters
+    if(param) {
+    	if(param.pos)
+    		this.setPos(param.pos[0], param.pos[1]);
+    	if(param.size)
+    		this.setSize(param.size[0], param.size[1]);
+    	if(param.font)
+    		this.font = param.font;
+    	if(param.fillStyle)
+    		this.fillStyle = param.fillStyle;
+    	if(param.strokeStyle)
+    		this.strokeStyle = param.strokeStyle;
+    	if(!isNaN(param.globalAlpha))
+    		this.globalAlpha = param.globalAlpha;
+    	else this.globalAlpha = 1;
+    	if(param.lineWidth)
+    		this.lineWidth = param.lineWidth;
+    	if(param.shadow)
+    		this.shadow = param.shadow;
+    	if(param.textAlign)
+    		this.textAlign = param.textAlign;
+    	if(param.textBaseline)
+    		this.textBaseline = param.textBaseline;
+    	if(param.insideRec)
+    		this.insideRec = param.insideRec;
+    }
+    
+    // Other attributes
+    this.insideRec = null;
+    this.analyser = null;
+    this.comments = null;
+};
+mse.UIObject.prototype = {
+    offx: 0,
+    offy: 0,
+    width: 0,
+    height:0,
+    // Position fixed or not to the parent
+    fixed: true,
+	// Setter of position, the position can be fixed or related to another object
+	setPos: function(x, y, relat) {
+		if(relat) {
+			this.offx = x + (this.fixed ? relat.getX() : relat.offx);
+			this.offy = y + (this.fixed ? relat.getY() : relat.offy);
+		}
+		else {
+			this.offx = x;
+			this.offy = y;
+		}
+	},
+	setX: function(x, relat) {
+		if(relat) this.offx = x + (this.fixed ? relat.getX() : relat.offx);
+		else this.offx = x;
+	},
+	setY: function(y, relat) {
+		if(relat) this.offy = y + (this.fixed ? relat.getY() : relat.offy);
+		else this.offy = y;
+	},
+	// Getter of position in Root Canvas object, chaining to the parent if not fixed
+	getX: function() {
+		if(this.parent) return (this.parent.getX() + this.offx);
+		else return this.offx;
+	},
+	getY: function() {
+		if(this.parent) return (this.parent.getY() + this.offy);
+		else return this.offy;
+	},
+	//
+	getCanvasX: function(){
+	    if(this.parent) return (this.parent.getCanvasX() + this.offx);
+	    else {
+	        var vx = 0;
+	        if(mse.root.viewport) vx = -mse.root.viewport.x;
+	        return vx+this.offx;
+	    }
+	},
+	getCanvasY: function(){
+	    if(this.parent) return (this.parent.getCanvasY() + this.offy);
+	    else {
+	        var vy = 0;
+	        if(mse.root.viewport) vy = -mse.root.viewport.y;
+	        return vy+this.offy;
+	    }
+	},
+	
+	// Setter for size
+	setSize: function(width, height) {
+		this.width = width;
+		this.height = height;
+	},
+	// Getter for size
+	getWidth: function() {
+		return this.width;
+	},
+	getHeight: function() {
+		return this.height;
+	},
+	
+	// Check if a point located in the bounding box
+	inObj: function(x,y) {
+		if(this.getAlpha() < 1) return false;
+		if(this.insideRec) {
+			var ox = this.getX()+this.insideRec[0], oy = this.getY()+this.insideRec[1], w = this.insideRec[2], h = this.insideRec[3];
+		}
+		else var ox = this.getX(), oy = this.getY(), w = this.width, h = this.height;
+		
+		// Margin of reaction zone for simplize the mouse or touch event
+		var marginx = 0;
+		if(w < 110) marginx = w * 0.5 * (1 - (w-10) / 100);
+		var marginy = 0;
+		if(h < 110) marginy = h * 0.5 * (1 - (h-10) / 100);
+		ox -= marginx;
+		w += 2*marginx;
+		oy -= marginy;
+		h += 2*marginy;
+		
+		if(x>ox && x<ox+w && y>oy && y<oy+h) return true;
+		else return false;
+	},
+	
+	// Z-index
+	getZindex: function() {
+		return this.zid ? this.zid : (this.parent ? this.parent.getZindex() : 0);
+	},
+	
+	// Container
+	getContainer: function() {
+		if(this instanceof mse.BaseContainer) return this;
+		else if(this.parent) return this.parent.getContainer();
+		else return mse.root.container;
+	},
+	
+	setAlpha: function(a) {this.globalAlpha = a;},
+	// Alpha composition
+	getAlpha: function() {
+		if(this.parent) {
+		    var pa = this.parent.getAlpha();
+		    return ((isNaN(pa)?1:pa) * this.globalAlpha);
+		}
+		else return this.globalAlpha;
+	},
+	// Scale composition
+	getScale: function() {
+		if(isNaN(this.scale)) {
+			if(this.parent) return this.parent.getScale();
+			else return 1;
+		}
+		else {
+			if(this.parent) return (this.parent.getScale() * this.scale);
+			else return this.scale;
+		}
+	},
+	
+	// Mouvement
+	move: function(dx, dy) {
+		this.offx += dx;
+		this.offy += dy;
+	},
+	// Event management
+	eventCheck: function(type, e) {
+	    // In object, notify the event and get the return value that give the prevent bubbling value
+	    if(this.inObj(e.offsetX, e.offsetY))
+	        return this.evtDeleg.eventNotif(type, e);
+	    // Not in object, don't prevent bubbling
+	    else return {prevent:false,success:false};
+	},
+	addListener: function() {
+		this.evtDeleg.addListener.apply(this.evtDeleg, Array.prototype.slice.call(arguments));
+	},
+	removeListener: function() {
+		this.evtDeleg.removeListener.apply(this.evtDeleg, Array.prototype.slice.call(arguments));
+	},
+	supportMultiTouch: function() {
+	    if(!this.analyser) {
+	        this.analyser = new GestureAnalyser(this.evtDeleg);
+	        this.addListener('multiGestAdd', new Callback(this.analyser.addBlob, this.analyser));
+	        this.addListener('multiGestUpdate', new Callback(this.analyser.updateBlob, this.analyser));
+	        this.addListener('multiGestRemove', new Callback(this.analyser.removeBlob, this.analyser));
+	    }
+	},
+	// Config drawing context
+	configCtxFlex: function(ctx) {
+		if(this.font)
+			ctx.font = this.font;
+		if(this.fillStyle)
+			ctx.fillStyle = this.fillStyle;
+		if(this.strokeStyle)
+			ctx.strokeStyle = this.strokeStyle;
+		if(this.lineWidth)
+			ctx.lineWidth = this.lineWidth;
+		if(this.shadow) {
+			ctx.shadowOffsetX = this.shadow.shadowOffsetX;
+			ctx.shadowOffsetY = this.shadow.shadowOffsetY;
+			ctx.shadowBlur = this.shadow.shadowBlur;
+			ctx.shadowColor = this.shadow.shadowColor;
+		}
+		else ctx.shadowOffsetX = ctx.shadowOffsetY = ctx.shadowBlur = 0;
+		if(this.textAlign)
+			ctx.textAlign = this.textAlign;
+		if(this.textBaseline)
+			ctx.textBaseline = this.textBaseline;
+		ctx.globalAlpha = this.getAlpha();
+	},
+	configCtx: function(ctx) {
+	    ctx.restore();
+	    ctx.save();
+		this.configCtxFlex(ctx);
+		var s = this.getScale();
+		if(s != 1) ctx.scale(s, s);
+	},
+	// Add Comment to UIObject
+	addComment: function(comment) {
+	    if(!this.comments) this.comments = new mse.Comment(this);
+	    return this.comments.addComment(comment);
+	},
+	
+	// Abstract methods
+	draw: function(ctx) {},
+    logic: function(delta) {},
+    toString: function() {
+    	return "[object MseUIObject]";
+    }
+};
+
+
+
+// Root object, a canvas Dom element
+mse.Root = function(id, width, height, orientation) {
+	mse.root = this;
+	// Canvas obj parameters
+	this.jqObj = $('.bookroot').show();
+	var x = (MseConfig.pageWidth - width)/2;
+	this.setPos(x);
+	//this.jqObj.attr({'id':id});
+	this.scale = 1;
+	this.setSize(width, height);
+	this.interval = 40;
+	this.ctx = this.jqObj.get(0).getContext("2d");
+	
+	this.evtDistributor = new mse.EventDistributor(this, this.jqObj);
+	
+	if(MseConfig.mobile) {
+	    this.setCenteredViewport();
+	    this.evtDistributor.addListener('translate2', new mse.Callback(this.translate, this));
+	}
+	this.container = null;
+	this.end = false;
+	this.init = false;
+	this.animations = new Array();
+	// Animation complete
+	this.animes = [];
+	// Video element
+	var video = $('div.video');
+	//this.video = video.flareVideo($('#root')).hide();
+	// Game element
+	this.gamewindow = new mse.GameShower();
+	
+	// Add controler panel activation event
+	this.evtDistributor.addListener('longPress', new mse.Callback(this.openControler, this), true);
+	this.hideControlerCb = new mse.Callback(this.hideControler, this);
+	
+	// Capture screen callbacks
+	this.capturecb = new mse.Callback(this.captureHandler, this);
+	
+	// Launch Timeline
+	mse.currTimeline = new mse.Timeline(this, this.interval);
+};
+mse.Root.prototype = {
+    constructor: mse.Root,
+    setPos: function(x, y) {
+        this.jqObj.css({'left':'0px', 'top':'0px'});
+    	$('#root').css({'left':x});
+    },
+    setSize: function(width, height) {
+    	this.width = width;
+    	this.height = height;
+    	this.jqObj.attr({'width':width, 'height':height});
+    	$('#root').css({'width':width, 'height':height});
+    },
+    setCenteredViewport: function(){
+        var pw = MseConfig.pageWidth;
+        var ph = MseConfig.pageHeight - cfs.headerH;
+        this.viewport = {};
+        this.viewport.x = (this.width - pw)/2;
+        this.viewport.y = (this.height - ph)/2;
+        this.setPos(0, 0);
+        this.jqObj.attr({'width':pw, 'height':ph});
+        $('#root').css({'width':pw, 'height':ph});
+        this.ctx.translate(-this.viewport.x, -this.viewport.y);
+    },
+    translate: function(e) {
+        if(isNaN(e.deltaDx)) return;
+        this.ctx.translate(this.viewport.x, this.viewport.y);
+        this.viewport.x -= e.deltaDx;
+        // Correction
+        if(this.viewport.x > this.width - MseConfig.pageWidth) 
+            this.viewport.x = this.width - MseConfig.pageWidth;
+        else if(this.viewport.x < 0) this.viewport.x = 0;
+        this.ctx.translate(-this.viewport.x, 0);
+        this.ctx.save();
+    },
+    setContainer: function(container) {
+    	// Reset first show state to prepare for calling the show event
+    	if(this.container) this.container.firstShow = false;
+    	container.root = this;
+    	this.container = container;
+    	this.evtDistributor.setDispatcher(container.dispatcher);
+    	this.dest = null;
+    	this.container.scale = this.scale;
+    },
+    transition: function(container) {
+    	if(this.dest) return;
+    	if(this.container) {
+    		mse.fadeout( this.container, 20, new mse.Callback(this.setContainer, this, container) );
+    		this.dest = container;
+    	}
+    	else this.setContainer(container);
+    	mse.fadein(container, 20);
+    },
+    openControler: function(e) {
+        mse.currTimeline.pause();
+        if(MseConfig.mobile) {
+            e.offsetX -= mse.root.viewport.x;
+            e.offsetY -= mse.root.viewport.y;
+        }
+        gui.openControler(e);
+        this.evtDistributor.addListener('click', this.hideControlerCb, true);
+    },
+    hideControler: function() {
+        gui.hideControler();
+        this.evtDistributor.removeListener('click', this.hideControlerCb);
+        mse.currTimeline.play();
+    },
+    inObj: function(x,y) {return true;},
+    	
+    logic: function(delta) {
+    	for(var i in this.animations)
+    		if(this.animations[i].logic(delta))
+    			// Delete finish animation
+    			this.animations.splice(i,1);
+    	
+    	var block = false;
+    	for(var i in this.animes) {
+    	    if(this.animes[i].block) block = true;
+    		if(this.animes[i].logic(delta))
+    		    // Delete finish animation
+    		    this.animes.splice(i,1);
+    	}
+    	if(block) return;
+    	
+    	if(this.gamewindow.logic(delta)) return;
+    	
+    	if(this.container) this.container.logic(delta);
+    },
+    
+    draw: function() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+    	
+        if(!this.gamewindow.isFullScreen()){
+    	    if(this.container) this.container.draw(this.ctx);
+    	    if(this.dest) this.dest.draw(this.ctx);
+    	}
+    	if(this.gamewindow.currGame) this.gamewindow.draw(this.ctx);
+    	
+    	for(var i in this.animes) this.animes[i].draw(this.ctx);
+    	
+    	this.evtDistributor.rootEvt.eventNotif("drawover",this.ctx);
+    },
+    
+    // Timeline delegate
+    initTimeline: function(timeline) {},
+    
+    runTimeline: function(delta) {
+    	if(!this.init) {
+    		var proc = mse.src.preloadProc();
+    		if(proc[0] < proc[1]) {
+    			mse.src.preloadPage(this.ctx, proc[0], proc[1]);
+    		}
+    		else this.init = true;
+    	}
+    	else if(!this.end) {
+    		this.logic(delta);
+    		this.draw();
+    	}
+    	else mse.currTimeline.end = true;
+    },
+    
+    // Screen caption
+    startCapture: function(callback) {
+        // Stop main timeline
+        mse.currTimeline.pause();
+        
+        // Append capture body after jqObj for capture events
+        this.capBody = $('<div class="capbody"></div>');
+        this.capBox = $('<div class="capbox"></div>');
+        this.jqObj.after(this.capBox).after(this.capBody);
+        
+        // Init gesture events for capturing
+        this.capBody.mseInteraction();
+        this.capBody.mseInteraction('addListener', 'gestureSingle', this.capturecb);
+        
+        // Register callback
+        if(callback instanceof mse.Callback) this.captureCallback = callback;
+    },
+    finishCapture: function(zone) {
+        var capImageData = this.ctx.getImageData(zone.x, zone.y, zone.w, zone.h);
+        
+        // Change mouse cursor to default
+        mse.setCursor('default');
+        
+        // Remove capture body and capture box
+        this.capBody.remove();
+        this.capBox.remove();
+        this.capBody = this.capBox = null;
+        
+        // Restart main timeline
+        mse.currTimeline.play();
+        
+        // Invoke callback with the capture of screen
+        this.captureCallback.invoke(capImageData, zone.w, zone.h);
+        // Remove callback
+        this.captureCallback = null;
+    },
+    // Event handlers
+    captureHandler: function(e) {
+        if(e.type == "gestureStart") this.initCapZone(e);
+        else if(e.type == "gestureUpdate") this.updateCapZone(e);
+        else if(e.type == "gestureEnd") this.fixCapZone(e);
+    },
+    initCapZone: function(e) {
+        if(this.capBody) {
+            this.capOx = Math.round(e.offsetX);
+            this.capOy = Math.round(e.offsetY);
+            
+            this.capBox.css({'left':this.capOx, 'top':this.capOy});
+        }
+    },
+    updateCapZone: function(e) {
+        if(this.capBody) {
+            this.capDx = Math.round(e.offsetX);
+            this.capDy = Math.round(e.offsetY);
+            
+            // Update capture box
+            if(this.capDx < this.capOx) this.capBox.css('left', this.capDx);
+            if(this.capDy < this.capOy) this.capBox.css('top', this.capDy);
+            this.capBox.css({'width': Math.abs(this.capDx-this.capOx), 
+                             'height': Math.abs(this.capDy-this.capOy)});
+        }
+    },
+    fixCapZone: function(e) {
+        if(this.capBody) {
+            this.capOx = null;
+            this.capOy = null;
+            this.capDx = null;
+            this.capDy = null;
+            
+            var x = this.capBox.position().left;
+            var y = this.capBox.position().top;
+            var w = this.capBox.width();
+            var h = this.capBox.height();
+            
+            // Cancel because it's too small
+            if(w < 20 || h < 20) return;
+            
+            this.finishCapture({'x': x, 'y': y, 'w': w, 'h': h});
+        }
+    },
+    getProgress: function() {
+        var target = this.container;
+        return target.getProgress();
+    }
+};
+
+
+// Container object
+mse.BaseContainer = function(root, name, param, orientation) {
+	// Super constructor
+	mse.UIObject.call(this, null, param);
+	
+    this.name = name;
+	this._layers = new Array();
+	this._changed = new Array();
+	this.deleg = null;
+	this.dispatcher = new mse.EventDispatcher(this);
+	this.progressDeleg = null;
+	
+	// Parametres
+	this.scale = 1.0;
+	this.count = 0;
+	this.firstShow = false;
+	
+	if(MseConfig.iPhone||MseConfig.android) {
+		// Initialization for orientation
+		this.orientation = MseConfig.orientation;
+		this.normal = true;
+		
+		this.setOrientation(orientation ? orientation : 'portrait');
+	}
+	else this.normal = true;
+	
+	if(root)
+		root.setContainer(this);
+};
+extend(mse.BaseContainer, mse.UIObject);
+$.extend(mse.BaseContainer.prototype, {
+    // Orientation management
+    setOrientation: function(orien) {
+    	if(!(MseConfig.iPhone||MseConfig.android) || (orien != 'landscape' && orien != 'portrait')) return;
+    	
+    	this.orientation = orien;
+    },
+    orientChange: function(orien) {
+    	__currContextOwner__ = mse.root;
+    	// Normal state
+    	if(orien == this.orientation) this.normal = true;
+    	else this.normal = false;
+    },
+    // Layer managerment
+    addLayer: function(name, layer){
+    	if(name != null && layer instanceof mse.UIObject) {
+    		layer.name = name;
+    		this._layers.push(layer);
+    		this.sortLayer();
+    	}
+    },
+    delLayer: function(name) {
+    	if(name == null) return;
+    	for(var i = this._layers.length-1; i >= 0; --i) {
+    		if(this._layers[i].name == name) this._layers.splice(i,1);
+    	}
+    },
+    getLayer: function(name) {
+    	if(name == null) return;
+    	for(var i in this._layers) {
+    		if(this._layers[i].name == name) return this._layers[i];
+    	}
+    },
+    sortLayer: function() {
+    	this._layers.sort(function(a, b) {
+    		if(a.zid < b.zid)
+    			return -1;
+    		else if(a.zid > b.zid)
+    			return 1;
+    		else return 0;
+    	});
+    },
+    setLayerActivate: function(name, active) {
+    	if(name != null && this._layers[name] != null) {
+    		this._layers[name].setActivate(active);
+    	}
+    },
+    desactiveOthers: function(name) {
+    	for(var i in this._layers) {
+    		if(this._layers[i].active && this._layers[i].name != name) {
+    			this._layers[i].setActivate(false);
+    			this._changed.push(i);
+    		}
+    	}
+    },
+    reactiveOthers: function() {
+    	var l = this._changed.length;
+    	for(var i = 0; i < l; i++)
+    		this._layers[this._changed.pop()].setActivate(true);
+    },
+    // Comment attachment in runtime, 'addComment' is the function for attaching comment in initialization
+    getProgress: function() {
+        if(this.progressDeleg) {
+            var progress = this.progressDeleg.getProgress();
+            if(progress) return progress;
+        }
+        
+        return {type: 'page', name: this.name};
+    },
+    delegProgress: function(target) {
+        if(target.getProgress) this.progressDeleg = target;
+    },
+    logic: function(delta) {
+    	if(!this.firstShow) {
+    		this.firstShow = true;
+    		this.evtDeleg.eventNotif('show');
+    		for(var i in this._layers) 
+    			this._layers[i].evtDeleg.eventNotif('show');
+    	}
+    	
+    	if(MseConfig.iPhone||MseConfig.android) {
+    		if(this.normal && MseConfig.orientation!=this.orientation)
+    			this.orientChange(MseConfig.orientation);
+    		else if(!this.normal && MseConfig.orientation==this.orientation)
+    			this.orientChange(MseConfig.orientation);
+    	}
+    	if(this.normal) {
+    		if(this.deleg) this.deleg.logic(delta);
+    		else {
+    			for(var i in this._layers) {
+    				this._layers[i].logic(delta);
+    			}
+    		}
+    	}
+    	this.count++;
+    },
+    // Draw
+    draw: function(ctx) {
+    	if(this.normal){
+    		if(this.deleg) this.deleg.draw(ctx);
+    		else {
+    			this.configCtx(ctx);
+    			for(var i in this._layers) {
+    				this._layers[i].draw(ctx);
+    			}
+    		}
+    		
+    		this.evtDeleg.eventNotif("drawover", {'ctx': ctx});
+    	}
+    	else{
+    		// Draw orientation change notification page
+    		ctx.drawImage(mse.src.getSrc('imgNotif'), (mse.root.width-50)/2, (mse.root.height-80)/2, 50, 80);
+    	}
+    },
+    toString: function() {
+	    return "[object MseBaseContainer]";
+    }
+});
+
+
+
+// Layer object
+mse.Layer = function(container, z, param) {
+	// Super constructor
+	mse.UIObject.call(this, container, param);
+	// Parametres
+	this.zid = z;
+	
+	this.active = true;
+	this.objList = new Array();
+}
+extend(mse.Layer, mse.UIObject);
+$.extend(mse.Layer.prototype, {
+	// Objects managerment
+	getObjectIndex: function(o){
+	    // Sauf IE
+	    if(this.objList.indexOf)
+	    	var id = this.objList.indexOf(o);
+	    // IE
+	    else {
+	    	for(var i in this.objList)
+	    		if(this.objList[i] === o) {
+	    			var id = i;
+	    			break;
+	    		}
+	    }
+	    // Found
+	    if(id != null && id != -1) return id;
+	    // Not found
+	    else return -1;
+	},
+	addObject: function(obj) {
+		if(obj instanceof mse.UIObject) {
+			this.objList.push(obj);
+			return true;
+		}
+		else return false;
+	},
+	insertObject: function(obj, index) {
+		if(obj instanceof mse.UIObject && index>=0 && index<this.objList.length) {
+			this.objList.splice(index, 0, obj);
+			return true;
+		}
+		else return false;
+	},
+	insertBefore: function(obj, tar) {
+	    var index = this.getObjectIndex(tar);
+	    if(index != -1) this.insertObject(obj, index);
+	},
+	insertAfter: function(obj, tar) {
+	    var index = this.getObjectIndex(tar);
+	    if(index != -1) {
+	        if(index+1 == this.objList.length) this.addObject(obj);
+	        else this.insertObject(obj, index+1);
+	    }
+	},
+	delObject: function(o) {
+		// Index of object
+		if( !isNaN(o) ) {
+			this.objList.splice(o, 1);
+			return o;
+		}
+		// Object itself
+		else if(o instanceof mse.UIObject) {
+			// Sauf IE
+			if(this.objList.indexOf) {
+				var id = this.objList.indexOf(o);
+			}
+			// IE
+			else {
+				for(var i in this.objList)
+					if(this.objList[i] === o) {
+						var id = i;
+						break;
+					}
+			}
+			// Found
+			if(id != null && id != -1) {
+				this.objList.splice(id, 1);
+				return id;
+			}
+			// Not found
+			else return false;
+		}
+	},
+	delAll: function() {
+		for(var i in this.objList)
+			delete this.objList[i];
+		this.objList.length = 0;
+	},
+	getObject: function(i) {
+		if(i >= 0 && i < this.objList.length)
+			return this.objList[i];
+		return null;
+	},
+	delSelf: function() {
+		if(this.parent instanceof mse.BaseContainer) this.parent.delLayer(this.name);
+	},
+	
+	// Activate or desactivate the layer
+	setActivate: function(active) {
+		this.active = active;
+	},
+	
+	// Logic
+	logic: function(delta) {
+		if(this.active) {
+			for(var i = 0; i < this.objList.length; i++) {
+				this.objList[i].logic(delta);
+			}
+		}
+	},
+	// Draw
+	draw: function(ctx) {
+		this.configCtx(ctx);
+		for(var i = 0; i < this.objList.length; i++) {
+			this.objList[i].draw(ctx);
+		}
+	}
+});
+
+
+// Text dialog
+mse.Speaker = function( parent, param, who, imgSrc , dim , color ) {
+	// speaker draw some additional content under the text element
+	// it draws one squared bubble dans a picture of the speaker
+	// as the superposition of object in the same articleLayer is restricted,  some cheats have been deployed
+	// - first, the element deleguate the add of a element to the articleLayer ( addObject is called on this item, it runs additionnals actions and then call addobject on ArticleLayer ) we dont have to manipulate the apparition or disparition of the object contains by the speak
+	// - second, the element is added to articleLayer with a height worth marge, so the next object add will be display after the marge, ( that s not very smart , the speak is after delete from the list of object ) the same tricks is set for the bottom marge, the last added object has a height larger 
+	// - due to the superposition, the element cannot be displayed like a regular UIObject ( the reposition swap to the middle of the first line position from the middle of the speaker element , and the hide and show cause trouble too ). it is displayed as a unhiddableObject, that decide by his own when be drawn or notification
+	//     - in order to doing that, the element listen the hidding and showing of his composants, when no element is displayed, the container is not neither ( he remove or add itself to the list of object on which the articleLayer call draw without asking question )
+	// Super constructor
+	mse.UIObject.call( this , parent , param );
+    
+	this.parent = parent; // its an ArticleLayer
+    this.who = who;
+	this.dim = dim;
+	this.sens = true; // true left align , false right align
+	
+	// graphic related
+	this.bordureImg = { top : -5 , left : -10 , right : 15 , bottom : 10 }; // inner bordure
+	this.color = color;
+	this.borderRadius = 4;
+	
+	
+	if( imgSrc ){
+		this.face = new mse.Image( this , null , imgSrc );
+		this.face.width = this.dim - this.bordureImg.left - this.bordureImg.right;
+		this.face.height = this.dim - this.bordureImg.top - this.bordureImg.bottom;
+	}
+	
+	// marge top and bottom,   top is set because the object is x pixel height when the next obj is added ( and 0 after ) the bottom because the last line is x pixel longer
+	this.marge = 10;
+	
+	
+	// knows when the bubble enlarge just by counting the number of lines displayed
+	this.lineD = 0;
+	this.currline = 0;
+	
+	this.lastObj = {};
+	this.primalWidth;
+	this.callbackList = [];
+	this.init = false;
+	
+	this.bubbleheight = 0;
+	this.height = this.marge;
+	this.displayedLines = 0;    // the number of line visible, ( a line which is not in the screen window is not visible , is not counted in displayedLines )
+};
+extend(mse.Speaker, mse.UIObject);
+$.extend(mse.Speaker.prototype, {
+    logic: function(delta){
+    
+    },
+    draw: function(ctx ) {
+		if( this.bubbleheight < 1 )
+			return;
+		// draw the face ( its an mseImage )
+		var x = this.sens ? this.getX() + this.bordureImg.left : this.getX() + this.width - this.dim - this.bordureImg.left;
+		var y = this.getY() + this.marge;
+		if( this.face )
+			this.face.draw( ctx , x , y );
+		else {
+			// if there is no image associate, draw a blue rect
+			ctx.save();
+			ctx.beginPath();
+			ctx.rect( x , y , this.dim - this.bordureImg.left - this.bordureImg.right , this.dim - this.bordureImg.top - this.bordureImg.bottom );
+			ctx.fillStyle = "#278391";
+			ctx.fill();
+			ctx.restore();
+		}
+		
+		// draw the buble
+		ctx.save();
+		var x = this.getX() - 5;
+		var y = this.getY() - 1 + this.marge;
+		var w = this.width+10;
+		var h = this.bubbleheight+4;
+		if( this.lineD < this.currline   )
+			drawBittenRect( x ,
+							y,
+							w,
+							h,
+							this.dim ,
+							this.dim ,
+							this.borderRadius ,
+							this.sens
+			 );
+		else
+			drawBittenRect( x + ( this.sens ? this.dim : 0 ) ,
+							y,
+							w - this.dim ,
+							h,
+							0 ,
+							0 ,
+							this.borderRadius ,
+							this.sens
+			 );
+		ctx.fillStyle = this.color;
+		ctx.fill();
+		
+		ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        //ctx.stroke();
+    	ctx.restore();
+    	
+		function drawBittenRect( x , y , w , h , wb , hb , border , sens ){
+			
+			if(!wb||w<wb || !hb||h<hb){
+				wb=0;
+				hb=0;
+			}
+			
+			if( wb == 0  )
+				hb = h ;
+			
+			
+			if( border * 2 > h || border * 2 > hb || border * 2 > w )
+				border = Math.min( h/2 , hb/2 , w/2 );
+			
+				
+			var pich = Math.min( 20 , Math.max( 5 , hb /2 ) );
+			var criticBorder = Math.min( border , ( hb - pich ) / 2 );
+			
+			
+			var picl = 8;
+			
+	    	ctx.beginPath();
+			if( sens ){
+				ctx.moveTo( x + wb 	, y  + criticBorder );
+				ctx.quadraticCurveTo( x + wb , y ,  x + wb + border , y  );
+				ctx.lineTo( x + w - border , y  );
+				ctx.quadraticCurveTo( x+w , y ,  x+w , y + border );
+				ctx.lineTo( x+w  , y + h - border );
+				ctx.quadraticCurveTo( x+w , y + h ,  x+w - border, y + h  );
+				ctx.lineTo( x + border  , y + h  );
+				if( wb != 0  ){
+					var sborder = Math.min( border , ( h - hb ) /2 );
+					ctx.quadraticCurveTo( x , y+h ,  x , y + h - sborder );
+					ctx.lineTo( x  , y + hb + sborder );
+					ctx.quadraticCurveTo(  x  , y + hb , x +  border , y + hb );
+					ctx.lineTo( x + wb - border, y + hb  );
+					ctx.quadraticCurveTo(  x + wb  , y + hb , x +wb , y + hb -  criticBorder );
+				} else
+					ctx.quadraticCurveTo( x + wb , y+h ,  x , y + h - criticBorder );
+				//  the pic
+				
+				ctx.lineTo( x + wb , y + ( hb - pich )/2 + pich  );
+				ctx.lineTo( x + wb - picl , y + ( hb )/2  );
+				ctx.lineTo( x + wb , y + ( hb - pich )/2  );
+				ctx.lineTo( x + wb 	, y  + criticBorder  );
+				ctx.lineTo( x + wb 	, y  + criticBorder  );
+				
+			} else{
+				ctx.moveTo( x + w - wb 	, y  + criticBorder );
+				ctx.quadraticCurveTo( x + w - wb , y ,  x + w - wb - border , y  );
+				ctx.lineTo( x + border , y  );
+				ctx.quadraticCurveTo( x  , y ,  x , y + border );
+				ctx.lineTo( x  , y + h - border );
+				ctx.quadraticCurveTo( x , y + h ,  x + border, y + h  );
+				ctx.lineTo( x + w - border  , y + h  );
+				if( wb != 0  ){
+					var sborder = Math.min( border , ( h - hb ) /2 );
+					ctx.quadraticCurveTo( x+w , y+h ,  x+w , y + h - sborder );
+					ctx.lineTo( x+w  , y + hb + sborder );
+					ctx.quadraticCurveTo(  x+w  , y + hb , x +w -  border , y + hb );
+					ctx.lineTo( x +w- wb + border, y + hb  );
+					ctx.quadraticCurveTo(   x +w- wb  , y + hb ,  x +w- wb , y + hb -  criticBorder );
+				} else
+					ctx.quadraticCurveTo( x + w- wb , y+h ,  x + w , y + h - criticBorder );
+				//  the pic
+				
+				ctx.lineTo( x + w- wb , y + ( hb - pich )/2 + pich  );
+				ctx.lineTo( x + w- wb + picl , y + ( hb )/2  );
+				ctx.lineTo( x + w- wb , y + ( hb - pich )/2  );
+				ctx.lineTo( x + w- wb 	, y  + criticBorder  );
+				ctx.lineTo( x + w- wb 	, y  + criticBorder  );
+			}
+		}
+    },
+	addObject : function( obj ){
+		
+		this.callbackList.push( new mse.Callback( this.lineShowed , this , obj ) );
+		
+		obj.evtDeleg.addListener('show', new mse.Callback( this.oneLineMore , this , obj ) );
+		obj.evtDeleg.addListener('disapear', new mse.Callback( this.oneLineLess , this , obj ) );
+		
+		obj.evtDeleg.addListener('show', this.callbackList[ this.callbackList.length-1 ] );
+		
+		//if( this.sens && this.alt_height < this.img.height+1  );
+		
+		// set the widthdrawal of the line object
+		if( !this.primalWidth )
+			this.primalWidth = obj.width;
+		if( this.primalWidth == obj.width ){
+			obj.setX( this.dim );
+			this.lineD ++;
+		}
+			
+		// a bottom marge is needed,  so the last obj have to be x pixel longer than it should be
+		if( this.lastObj.o )
+			this.lastObj.o.height = this.lastObj.h;
+		this.lastObj.o = obj;
+		this.lastObj.h = obj.height;
+		obj.height += ( this.height + obj.height < this.dim ? this.dim + - obj.height - this.height : 0 ) + this.marge;
+		
+		// delegate the addObject to the article layer
+		this.parent.addObject( obj );
+		
+		
+		// if its the first object to be added
+		// we set the height 
+		// we remove the element from the articleLayer  objList ( because the speak element can not let the article layer trigger his draw and logic function ),
+		if( !this.init ){
+			this.init = true;
+			this.parent.delObject( this );
+			this.height = this.marge * 2 ;
+		}
+		this.height += obj.height;
+		
+		
+	},
+	oneLineMore : function(){
+		if( this.displayedLines == 0 ){
+			this.parent.addUnhiddableObject( this );
+			this.evtDeleg.eventNotif('show');
+		}
+		this.displayedLines ++;
+	},
+	oneLineLess : function(){
+		this.displayedLines --;
+		if( this.displayedLines == 0 ){
+			this.parent.delUnhiddableObject( this );
+			this.evtDeleg.eventNotif('disapear');
+		}
+	},
+	lineShowed : function( obj ){
+		
+		if( this.lastObj.o ){
+			// the last textLine object is reset to is primal value, because it is needed here down
+			this.lastObj.o.height = this.lastObj.h;
+			this.lastObj = {};
+		}
+		this.bubbleheight += obj.height;
+		
+		this.currline ++;
+		
+		obj.evtDeleg.removeListener( 'show' , this.callbackList.shift() );
+	}
+});
+
+// Text obj
+mse.Text = function(parent, param, text, styled) {
+	// Super constructor
+	mse.UIObject.call(this, parent, param);
+	this.styled = styled ? true : false;
+	this.links = [];
+	this.zid = cfs.zids.text;
+	
+	this.text = text;
+	// Check if text real width is longer than object width, if true, wrap the text
+	var ctx = mse.root.ctx;
+	ctx.save();
+	if(this.styled) ctx.font = this.font;
+	else if(this.parent && this.parent.font) ctx.font = this.parent.font;
+	else ctx.font = mse.configs.defaultFont;
+	// Define lineHeight
+	if(param.lineHeight) this.lineHeight = param.lineHeight;
+	else this.lineHeight = checkFontSize(ctx.font)*1.2;
+	// Wrap text
+	if(ctx.measureText(this.text).width > this.width) {
+	    this.lines = wrapTextWithWrapIndice(this.text, ctx, this.width);
+	    // Redefine height of text object
+	    this.height = this.lineHeight * this.lines.length;
+	}
+	else this.lines = [this.text];
+	ctx.restore();
+	
+	// Centralize the text
+	if(this.textAlign == "center" && this.width > 0)
+	    this.offx += Math.round(this.width/2);
+	
+	//Integraion d'effets
+	this.currentEffect = null;
+	this.firstShow = false;
+	
+	this.visible = false;
+};
+extend(mse.Text, mse.UIObject);
+$.extend(mse.Text.prototype, {
+    toString: function() {
+	    return "[object mse.Text]";
+    },
+    setText: function(text) {
+        this.text = text;
+        this.links.splice(0, this.links.length);
+        // Check if text real width is longer than object width, if true, wrap the text
+        var ctx = mse.root.ctx;
+        ctx.save();
+        if(this.styled) ctx.font = this.font;
+        else if(this.parent && this.parent.font) ctx.font = this.parent.font;
+        else ctx.font = mse.configs.defaultFont;
+        // Wrap text
+        if(ctx.measureText(this.text).width > this.width) {
+            this.lines = wrapText(this.text, ctx, this.width);
+            // Redefine height of text object
+            this.height = this.lineHeight * this.lines.length;
+        }
+        else this.lines = [this.text];
+        ctx.restore();
+    },
+    addLink: function(linkObj){
+        var linkInit = false;
+        var ctx = mse.root.ctx;
+        var prevfont = ctx.font;
+        ctx.font = mse.configs.defaultFont; 
+        if(this.styled) {
+            if(this.font) ctx.font = this.font;
+            else if(this.parent && this.parent.font) ctx.font = this.parent.font;
+        }   
+        // Init link relative position
+        for(var i in this.lines) {
+            var index = this.lines[i].indexOf(linkObj.src);
+            // Link found
+            if(index >= 0) {
+                var begin = this.lines[i].substring(0, index);
+                linkObj.offx = ctx.measureText(begin).width;
+                linkObj.offy = i * this.lineHeight;
+                linkObj.width = ctx.measureText(linkObj.src).width;
+                linkInit = true;
+            }
+        }
+        ctx.font = prevfont;
+        if(!linkInit) return;
+        
+        if(this.links.length == 0) {
+            this.addListener('gestureEnd', new mse.Callback(this.clicked, this), false);
+        }
+        
+        // Audio auto play
+        if(linkObj.type == 'audio')
+        	this.addListener('firstShow', new mse.Callback(this.autoplay, this, linkObj.link));
+        
+        linkObj.owner = this;
+        this.links.push(linkObj); 
+    },
+    startEffect: function (dictEffectAndConfig) {
+    	this.styled = true;
+    	if(mse.initTextEffect) this.currentEffect = mse.initTextEffect(dictEffectAndConfig,this);
+    },
+    endEffect: function (){
+    	this.currentEffect = null;
+    },
+    inObj: function(x, y) {
+        if(!this.visible) return false;
+        var ox = this.getX(), oy = this.getY(), w = this.getWidth(), h = this.getHeight();
+        if(x>ox-0.1*w && x<ox+1.1*w && y>oy-0.1*h && y<oy+1.1*h) return true;
+        else return false;
+    },
+    autoplay: function(audio) {
+        /*
+        if(MseConfig.iOS) {
+            var div = $("<div id='audiodiv'/>");
+            div.attr('src', audio.src);
+            div.attr('width', '1px');
+            div.attr('height', '1px');
+            div.attr('scrolling', 'no');
+            div.css({'border': "0px", 'left': '-1px', 'top': '0px'});
+            if($('#audiodiv').length > 0)
+                $('#audiodiv').replaceWith(div);
+            else $('body').append(div);
+            div.click(function(){
+                audio.play();
+            }).click();
+        }
+        else */
+        audio.play();
+    },
+    clicked: function(e) {
+        var x = e.offsetX - this.getX();
+        var y = e.offsetY - this.getY();
+    	for(var i in this.links) {
+    	    var link = this.links[i];
+    		if(x >= link.offx-15 && x <= link.offx+link.width+15 && y >= link.offy && y <= link.offy+this.lineHeight+24) {
+    		    switch(link.type) {
+    		    case 'audio': link.link.play();break;
+    		    case 'wiki': link.link.init(this.getContainer());break;
+    		    case 'fb': window.open(linkObj.link);break;
+    		    }
+    		    break;
+    		}
+    	}
+    },
+    logic: function(delta){
+    	if(this.currentEffect != null) this.currentEffect.logic(delta);
+    },
+    draw: function(ctx, x, y) {
+        if(!this.firstShow) {
+        	this.firstShow = true;
+        	this.visible = true;
+        	this.evtDeleg.eventNotif('firstShow');
+        }
+        
+    	if(x!=null && y!=null) this.setPos(x, y);
+    	var loc = [ this.getX(), this.getY() ];
+    	
+    	if(this.styled) {ctx.save();this.configCtxFlex(ctx);}
+    	    
+    	if(this.currentEffect != null) this.currentEffect.draw(ctx);
+    	else {
+    	    for(var i in this.lines) {
+    	        ctx.fillText(this.lines[i], loc[0], loc[1]+this.lineHeight*i);
+    	    }
+    	    // Link inside
+    	    for(var i in this.links) {
+    	    	ctx.save();
+    	    	ctx.fillStyle = linkColor[this.links[i].type];
+    	    	ctx.fillText(this.links[i].src, loc[0]+this.links[i].offx, loc[1]+this.links[i].offy);
+    	    	ctx.restore();
+    	    }
+    	}
+    	
+    	if(this.styled) ctx.restore();
+    	
+    	this.evtDeleg.eventNotif("drawover", {'ctx': ctx});
+    }
+});
+
+
+
+// Article Layer for showing the article content
+mse.ArticleLayer = function(container, z, param, article) {
+	mse.Layer.call(this, container, z, param);
+	
+//!!! Strange fontSize access
+	// Init the size and lines information
+	this.length = 0;
+	this.oy = this.offy;
+	this.prevOffy = this.oy;
+	this.lineHeight = param.lineHeight ? param.lineHeight : Math.round( 1.4*(this.font ? checkFontSize(this.font) : 16) );
+	this.phraseIndexs = new Array();
+
+	if(article) {
+		var ctx = mse.root.ctx;
+		this.configCtx(ctx);
+		var maxM = Math.floor( this.width/ctx.measureText('A').width );	
+		
+		var arr = article.split('\n');
+		var sep = 0;
+		for(var i = 0; i < arr.length; i++) {
+			if(arr[i].length == 0) { // Separator paragraph
+				this.addObject( new mse.UIObject(this, {size:[this.width, DIST_PARAG]}) );
+				sep++;
+				continue;
+			}
+			
+			this.phraseIndexs[i-sep] = this.objList.length;
+			for(var j = 0; j < arr[i].length;) {
+				// Find the index of next line
+				var next = checkNextLine(ctx, arr[i].substr(j), maxM, this.width);
+				this.addObject( new mse.Text( this, {size:[this.width, this.lineHeight], 'lineHeight':this.lineHeight}, arr[i].substr(j, next) ) );
+				j += next;
+			}
+			// Separator phrase
+			//this.addObject( new mse.UIObject(this, {size:[this.width, DIST_PARAG]}) );
+		}
+	}
+	this.startId = 0;
+	this.endId = this.objList.length-1;
+	this.complete = true;
+	this.pause = false;
+	this.scrollEvt = {}; this.scrollEvt.rolled = 0;
+	this.vide = new mse.UIObject();
+	// Dominate obj, if exist, logic and draw dominated by this obj
+	this.dominate = null;
+	this.unhiddableObjectList = [];
+	// Delegate container comment attachment
+	if(container) container.delegProgress(this);
+};
+extend(mse.ArticleLayer, mse.Layer);
+$.extend( mse.ArticleLayer.prototype , {
+    minInv : 600,
+    maxInv : 3600,
+    speedLevel : 7,
+    setspeedLevel : function(level) {
+        var proto = mse.ArticleLayer.prototype;
+        level = Math.floor(level);
+        if(level < 0 || proto.minInv + level*200 > proto.maxInv) return;
+        
+        proto.speedLevel = level;
+        
+        if(typeof proto.notify == 'function')
+            proto.notify('speedLevel', proto.speedLevel);
+    },
+    getInterval : function(level) {
+        return mse.ArticleLayer.prototype.maxInv - mse.ArticleLayer.prototype.speedLevel * 200;
+    },
+	setDefile : function(interval) {
+		this.currTime = 0;
+		this.currIndex = 0;
+		this.complete = false;
+		this.endId = 0;
+		this.setSlider();
+		
+		this.ctrUI = new mse.Layer(this.parent, this.zid+1, {pos:[this.offx+(this.width-250)/2,this.offy+this.height-50], size:[250,50]});
+		this.parent.addLayer('CTRLUI', this.ctrUI);
+		this.ctrUI.accelere = new mse.Image(this.ctrUI, {pos:[220,10],size:[30,30]}, 'accelerBn');
+		this.ctrUI.ralenti = new mse.Image(this.ctrUI, {pos:[0,10],size:[30,30]}, 'ralentiBn');
+		this.ctrUI.up = new mse.Image(this.ctrUI, {pos:[170,10],size:[30,30]}, 'upBn');
+		this.ctrUI.down = new mse.Image(this.ctrUI, {pos:[50,10],size:[30,30]}, 'downBn');
+		this.ctrUI.play = new mse.Image(this.ctrUI, {pos:[110,10],size:[30,30]}, 'playBn');
+		this.ctrUI.pause = new mse.Image(this.ctrUI, {pos:[110,10],size:[30,30]}, 'pauseBn');
+		this.ctrUI.tip = new mse.Text(null, {textBaseline:'middle',textAlign:'center',font:'italic 20px '+cfs.font,fillStyle:'#FFF'}, '', true);
+		this.ctrUI.layer = this;
+		this.ctrUI.draw = function(ctx) {
+		    this.accelere.draw(ctx);
+		    this.ralenti.draw(ctx);
+		    this.up.draw(ctx);
+		    this.down.draw(ctx);
+		    if(this.layer.pause) this.play.draw(ctx);
+		    else this.pause.draw(ctx);
+			this.tip.draw(ctx);
+		};
+		
+		this.ctrUI.ctrEffect = function(e) {
+			if(this.ralenti.inObj(e.offsetX, e.offsetY)) {
+				// Left button clicked, Reduce the speed
+				mse.ArticleLayer.prototype.setspeedLevel(this.layer.speedLevel-1);
+				this.tip.setText('moins rapide, vitesse:' + this.layer.speedLevel.toString(16).toUpperCase());
+			}
+			else if(this.accelere.inObj(e.offsetX, e.offsetY)) {
+				// Right button clicked, augmente the speed
+				mse.ArticleLayer.prototype.setspeedLevel(this.layer.speedLevel+1);
+				this.tip.setText('plus rapide, vitesse:' + this.layer.speedLevel.toString(16).toUpperCase());
+			}
+			else if(this.play.inObj(e.offsetX, e.offsetY)) {
+			    this.layer.pause = !this.layer.pause;
+			    if(this.layer.pause) this.tip.setText('pause');
+			    else this.tip.setText('reprendre'); 
+			}
+			else return;
+			this.tip.globalAlpha = 1;
+			mse.slideout(this.tip, 10, [[e.offsetX, e.offsetY], [e.offsetX, e.offsetY-50]]);
+		};
+		
+		this.ctrUI.upDownStart = function(e) {
+		    if(this.down.inObj(e.offsetX, e.offsetY)) {
+		        // Down button clicked, scroll up the layer
+		        this.layer.scrollEvt.rolled = -10;
+		    }
+		    else if(this.up.inObj(e.offsetX, e.offsetY)) {
+		        // Up button clicked, scroll down the layer
+		        this.layer.scrollEvt.rolled = 10;
+		    }
+		};
+		this.ctrUI.upDownEnd = function(e) {
+		    this.layer.scrollEvt.rolled = 0;
+		};
+		
+		var cb = new mse.Callback(this.ctrUI.ctrEffect, this.ctrUI);
+		this.ctrUI.addListener('click', cb, true);
+		// Listener to scroll the layer with up down buttons
+		this.ctrUI.addListener('gestureStart', new mse.Callback(this.ctrUI.upDownStart, this.ctrUI), true);
+		this.ctrUI.addListener('gestureEnd', new mse.Callback(this.ctrUI.upDownEnd, this.ctrUI), true);
+		
+		// Key event for control of speed
+		this.speedCtr = function(e) {
+			switch(e.keyCode) {
+			case __KEY_LEFT:
+                mse.ArticleLayer.prototype.setspeedLevel(this.speedLevel-1);
+				break;
+			case __KEY_RIGHT:
+				mse.ArticleLayer.prototype.setspeedLevel(this.speedLevel+1);
+				break;
+			}
+		};
+		cb = new mse.Callback(this.speedCtr, this);
+		//this.addListener('keydown', cb);
+	},
+	setSlider : function() {
+		// Slider
+		this.slider = new mse.Slider(this, {}, 'vertical');
+		this.updateListScreen();
+		
+		// Scroll event
+		this.slider.addListener('rolling', new mse.Callback(function(){
+		    //if(this.active && this.dominate instanceof mse.UIObject) return;
+		    this.pause = true;
+		}, this) );
+		this.slider.addListener('hide', new mse.Callback(function(){
+		    var nb = this.complete ? this.objList.length : this.currIndex;
+		    if( nb==0 || this.objList[nb-1].getY() < mse.root.height*0.55 ) {
+		    	this.pause = false;
+		    }
+		}, this) );
+	},
+	updateIndexs : function(start, offset) {
+		for(var i in this.phraseIndexs) {
+			if(this.phraseIndexs[i] >= start) this.phraseIndexs[i] += offset;
+		}
+	},
+	setLinklist : function(list) {
+		for(var l in list) {
+			// Change the initial paragraph index to line index for identifing the link more precisely
+			var parag = list[l].index;
+			for(var i = this.phraseIndexs[parag]; i < this.phraseIndexs[parag+1]; i++) {
+				if( !this.objList[i].text ) continue;
+				var offset = this.objList[i].text.indexOf(list[l].src);
+				if( offset >= 0 ) {
+					list[l].index = i;
+					this.objList[i].addLink(list[l]);
+					break;
+				}
+			}
+		}
+		this.links = list;
+	},
+	setLinkDelegate : function(deleg, type) {
+		if(!this.links) return;
+		
+		for(var l in this.links) {
+			if(this.links[l].type == type) {
+				this.objList[this.links[l].index].addListener('show', new mse.Callback(deleg.linkShowHandler, deleg, this.links[l]));
+				this.objList[this.links[l].index].addListener('disapear', new mse.Callback(deleg.linkDisapearHandler, deleg, this.links[l]));
+			}
+		}
+	},
+	addObject : function(obj) {
+		var last = this.objList.length-1;
+		if(last >= 0)
+			obj.setY(this.objList[last].height, this.objList[last]);
+		else obj.setY(0);
+		this.length += obj.height;
+		this.endId = this.objList.length-1;
+        
+		return mse.Layer.prototype.addObject.call(this, obj);
+	},
+	addGame : function(game) {
+	    if(!game.directShow) {
+	        var expose = new mse.GameExpose(this, {size:[this.width*0.8, this.width*0.65]}, game);
+	        expose.setX(this.width*0.1);
+	        this.addObject(expose);
+	    }
+	    else {
+	        game.parent = this;
+	        game.addListener('firstShow', new mse.Callback(game.start, game));
+	        this.addObject(game);
+	    }
+	},
+	insertObject : function(obj, index) {
+		var res = this.constructor.prototype.insertObject.call(this, obj, index);
+		if(!res) return res;
+		
+		this.updateIndexs(index, 1);
+		
+		if(index == 0) {
+			obj.setY(0);
+			index = 1;
+		}
+		for(var i = index; i < this.objList.length; i++)
+			this.objList[i].setY(this.objList[i-1].height, this.objList[i-1]);
+		this.length += obj.height;
+		return res;
+	},
+	insertGame : function(game, index) {
+	    if(!game.directShow) {
+	        var expose = new mse.GameExpose(this, {size:[this.width*0.8, this.width*0.65]}, game);
+	        expose.setX(this.width*0.1);
+	        this.insertObject(expose, index);
+	    }
+	    else {
+	        game.parent = this;
+	        game.addListener('firstShow', new mse.Callback(game.start, game));
+	        this.insertObject(game, index);
+	    }
+	},
+	delObject : function(obj) {
+		var res = mse.Layer.prototype.delObject.call(this, obj);
+		if(!isNaN(res)) {
+			this.length -= obj.height;
+			this.updateIndexs(res, -1);
+			this.endId = this.objList.length-1;
+		}
+		return res;
+	},
+	getHeight : function() {
+		var nb = this.complete ? this.objList.length : this.currIndex;
+		if(nb == 0) return 0;
+		return this.objList[nb-1].offy+this.objList[nb-1].height;
+	},
+	addUnhiddableObject : function(obj){
+		this.unhiddableObjectList.push ( obj );
+	},
+	delUnhiddableObject : function(obj){
+		for( var i = 0 ; i < this.unhiddableObjectList.length ; i ++ )
+			if( this.unhiddableObjectList[ i ] == obj ){
+				this.unhiddableObjectList.splice( i , 1 );
+				return;
+			}
+		return -1;
+	},
+	// Get obj list on screen
+	updateListScreen : function() {
+		// Screen offset
+		var topOffy = this.oy-this.offy;
+		topOffy = (topOffy < 0 ? 0 : topOffy);
+		var botOffy = topOffy + this.height*0.8;
+		var last = this.complete ? this.objList.length-1 : this.currIndex-1;
+		last = last < 0 ? 0 : last;
+		var start = -1, end = -1;
+		// Layer up : position of start obj in previous objs on screen less than current screen position
+		if(this.prevOffy <= topOffy) {
+			for(var i = this.startId; i <= last; i++) {
+				if(start==-1 && this.objList[i].offy+this.objList[i].height > topOffy) start = i;
+				if(end==-1 && this.objList[i].offy > botOffy) {end = i;break;}
+			}
+			start = start==-1 ? last : start;
+			end = end==-1 ? last : end;
+		}
+		// Layer down
+		else {
+			for(var i = this.endId; i >= 0; i--) {
+				if(end==-1 && this.objList[i].offy <= botOffy) end = i;
+				if(start==-1 && this.objList[i].offy+this.objList[i].height <= topOffy) {start = i;break;}
+			}
+			start = start==-1 ? 0 : start;
+			end = end==-1 ? 0 : end;
+		}
+		
+		// Link show or disapear event notification
+		if(start > this.startId) {
+			for(var i = this.startId; i < start; i++) {
+				this.objList[i].evtDeleg.eventNotif('disapear');
+				if(this.objList[i].visible === true) this.objList[i].visible = false;
+			}
+		}
+		else if(start < this.startId) {
+			for(var i = start; i < this.startId; i++) {
+				this.objList[i].evtDeleg.eventNotif('show');
+				if(this.objList[i].visible === false) this.objList[i].visible = true;
+			}
+		}
+		if(end > this.endId) {
+			for(var i = this.endId+1; i <= end; i++) {
+				this.objList[i].evtDeleg.eventNotif('show');
+				if(this.objList[i].visible === false) this.objList[i].visible = true;
+			}
+		}
+		else if(end < this.endId) {
+			for(var i = end+1; i <= this.endId; i++) {
+				this.objList[i].evtDeleg.eventNotif('disapear');
+				if(this.objList[i].visible === true) this.objList[i].visible = false;
+			}
+		}
+		
+		this.startId = start;
+		this.endId = end;
+	},
+    // get progress delegate, choose the object in the middle of screen
+	getProgress: function(comment) {
+	    var target = this.objList[this.endId];
+    	// Article layer in pause, find the middle object by check visible objects positions
+    	if(this.pause) {
+    	    var middle = this.parent.getY() + this.parent.height/2;
+    	    for(var i = this.startId; i <= this.endId; i++) {
+    	        if(this.objList[i].getY() >= middle) {
+    	            target = this.objList[i];
+    	            break;
+    	        }
+    	    }
+    	}
+	    
+	    // Return progress in article layer
+	    for(var key in objs) {
+	        if(target == objs[key]) return {type: "obj", id: key};
+	    }
+	    
+	    return false;
+	},
+	logic : function(delta) {
+		if(this.active && this.dominate instanceof mse.UIObject) {
+			this.dominate.logic(delta);
+			return;
+		}
+		
+		if(this.scrollEvt.rolled) this.slider.scroll(this.scrollEvt);
+		
+		if(this.slider) this.updateListScreen();
+		for(var i = this.startId; i <= this.endId; i++)
+			this.objList[i].logic(delta);
+		for( var i = 0 ; i < this.unhiddableObjectList.length ; i ++ )
+			this.unhiddableObjectList[ i ].logic(delta);
+		if(this.complete || !this.active) {
+			this.prevOffy = (this.oy-this.offy<0 ? 0 : this.oy-this.offy);
+			return;
+		}
+	
+		if(!this.pause) {
+			this.currTime += delta;
+			var dt = (this.currIndex!=0 && this.objList[this.currIndex-1] instanceof mse.Image) ? 4000 : this.getInterval();
+			if(this.currTime >= dt) {
+				this.currTime = 0;
+				// Move layer to right place
+				if(this.currIndex < this.objList.length) {
+					var focusy = this.objList[this.currIndex].offy + this.objList[this.currIndex].height/2;
+					var nbfr = this.objList[this.currIndex].height/3;
+					if(nbfr < 15) nbfr = 15;
+					else if(nbfr > 70) nbfr = 70;
+					if(focusy > mse.root.height/2) {
+						var move = new mse.KeyFrameAnimation(this, {
+								frame	: [0, nbfr],
+								pos		: [[this.offx,this.offy], [this.offx, this.height/2-focusy]]
+							}, 1);
+						move.start();
+					}
+					this.currIndex++;
+				}
+				else this.complete = true;
+			}
+		}
+		
+		this.prevOffy = (this.oy-this.offy<0 ? 0 : this.oy-this.offy);
+	},
+	draw : function(ctx) {
+	    this.configCtx(ctx);
+		for( var i = 0 ; i < this.unhiddableObjectList.length ; i ++ )
+			this.unhiddableObjectList[ i ].draw(ctx);
+		for(var i = this.startId; i <= this.endId; i++) {
+			this.objList[i].draw(ctx);
+		}
+		if(this.ctrUI) this.ctrUI.draw(ctx);
+	},
+	inObj : function(x, y) {
+		return this.parent.inObj(x,y);
+	},	
+	interrupt : function() {
+		this.dominate = this.vide;
+	},
+	play : function() {
+		this.dominate = null;
+	}
+} );
+
+mmvc.makeModel(mse.ArticleLayer.prototype, ['speedLevel']);
+
+
+
+
+
+
+// Image object
+// Src accept image src name(in srcMgr) or a canvas object
+mse.Image = function(parent, param, src) {
+	// Super constructor
+	mse.UIObject.call(this, parent, param);
+	if(typeof src == 'string') {
+	    this.img = src;
+	    mse.src.waitSrc(this.img, new mse.Callback(this.init, this));
+	}
+	else this.cache = src;
+    
+    this.zoomable = false;
+	
+    //Integraion d'effets
+	this.currentEffect = null;
+	this.firstShow = false;
+};
+extend(mse.Image, mse.UIObject);
+$.extend(mse.Image.prototype, {
+    init: function() {
+        var img = mse.src.getSrc(this.img);
+        if(!this.width){
+        	this.width = img.width;
+        	this.height = img.height;
+        }
+        this.cache = document.createElement("canvas");
+        var ctx = this.cache.getContext("2d");
+        this.cache.width = this.width;
+        this.cache.style.width = this.width;
+        this.cache.height = this.height;
+        this.cache.style.height = this.height;
+        ctx.drawImage(img, 0, 0, this.width, this.height);
+        
+        if(this.zoomable) 
+            this.activateZoom();
+    },
+    activateZoom: function() {
+        this.zoomable = true;
+        if(!this.width) return;
+        this.zoomIcon = new mse.Image(this, {pos:[this.width-20, 0]}, 'zoomIcon');
+        var cb = new mse.Callback(function(){
+            if(!(this.imgShower instanceof mse.ImageShower))
+                this.imgShower = mse.ImageShower.getInstance();
+            this.imgShower.show(this);
+        }, this);
+        this.zoomIcon.addListener('click', cb, true);
+    },
+    startEffect: function (effet) {
+    	if(!this.currentEffect && effet instanceof mse.EffectImage && effet.subject == this) { 
+    	    this.currentEffect = effet;
+    	    this.currentEffect.init();
+    	}
+    },
+    endEffect: function (){
+    	this.currentEffect = null;
+    },
+    logic: function(delta){
+		if(!this.firstShow) {
+			this.firstShow = true;
+			this.evtDeleg.eventNotif('firstShow');
+		}
+
+		if(this.currentEffect != null) this.currentEffect.logic(delta);		
+	},
+    draw: function(ctx, x, y) {
+    	var img = (this.cache ? this.cache : mse.src.getSrc(this.img));
+    	this.configCtxFlex(ctx);
+    	if(isNaN(x) || isNaN(y)) {x = this.getX(); y = this.getY();}
+    	if(this.currentEffect != null && this.currentEffect.draw) 
+    	    this.currentEffect.draw(ctx, img, x, y, this.width, this.height);
+    	else 
+            ctx.drawImage(img, x, y, this.width, this.height);
+        
+        if (this.zoomable) 
+            this.zoomIcon.draw(ctx);
+            
+        this.evtDeleg.eventNotif("drawover", {'ctx': ctx, 'x':x, 'y':y});
+    },
+    toString: function() {
+    	return "[object mse.Image]";
+    }
+});
+
+
+// Mask object
+mse.Mask = function(parent, param, z) {
+	// Super constructor
+	mse.UIObject.call(this, parent, param);
+	if(z != null) this.zid = z;
+	if(param.cornerRatio) this.cr = param.cornerRatio;
+	
+	this.draw = function(ctx) {
+		this.configCtxFlex(ctx);
+		if(!this.cr) ctx.fillRect(this.getX(), this.getY(), this.width, this.height);
+		else ctx.fillRoundRect(this.getX(),this.getY(),this.width,this.height,this.cr);
+	};
+};
+mse.Mask.prototype = new mse.UIObject();
+mse.Mask.prototype.constructor = mse.Mask;
+
+
+
+// Sprite
+mse.Sprite = function(parent, param, src, fw0frames, fh, sx, sy, sw, sh) {
+	if(arguments.length == 4) this.frames = fw0frames;
+	else {
+		// Frame width and height
+		this.fw = fw0frames; this.fh = fh;
+		// Source region
+		if(arguments.length == 9) {
+			this.sx = sx; this.sy = sy; this.sw = sw; this.sh = sh;
+		}
+		else {
+			this.sx = 0; this.sy = 0; 
+			this.sw = this.width; this.sh = this.height;
+		}
+		// Number of column and row in the sprite
+		if(fw0frames < this.sw) this.col = Math.floor(this.sw/fw0frames);
+		else {
+			this.fw = this.sw; this.col = 1;
+		}
+		if(fh < this.sh) this.row = Math.floor(this.sh/fh);
+		else {
+			this.fh = this.sh; this.row = 1;
+		}
+		// Number of frame
+		this.nb = this.col * this.row;
+		// Destination region
+		if(!this.width) this.width = this.fw;
+		if(!this.height) this.height = this.fh;
+	}
+	this.curr = 0;
+	
+	mse.Image.call(this, parent, param, src);
+};
+extend(mse.Sprite, mse.Image);
+$.extend(mse.Sprite.prototype, {
+    init: function() {
+        this.cache = document.createElement("canvas");
+        this.setFrame(this.curr);
+    },
+    configSprite: function(fw, fh, sx, sy, sw, sh, width, height) {
+        if(!fw || !fh || isNaN(sx) || isNaN(sy) || !sw || !sh) return;
+        // Frame width and height
+        this.fw = fw; this.fh = fh;
+        // Source region
+        this.sx = sx; this.sy = sy; this.sw = sw; this.sh = sh;
+        // Number of column and row in the sprite
+        if(fw < this.sw) this.col = Math.floor(this.sw/fw);
+        else {
+        	this.fw = this.sw; this.col = 1;
+        }
+        if(fh < this.sh) this.row = Math.floor(this.sh/fh);
+        else {
+        	this.fh = this.sh; this.row = 1;
+        }
+        // Number of frame
+        this.nb = this.col * this.row;
+        // Destination region
+        if(!width) this.width = this.fw;
+        if(!height) this.height = this.fh;
+        // Reset properties
+        this.endEffect();
+        // Reset frame
+        this.curr = 0;
+        this.setFrame(this.curr);
+    },
+    setFrame: function(fr) {
+        if(!this.cache) return;
+        this.curr = fr;
+        var img = mse.src.getSrc(this.img);
+        var ctx = this.cache.getContext("2d");
+        if(this.frames){
+            this.cache.width = this.frames[fr][2];
+            this.cache.style.width = this.frames[fr][2];
+            this.cache.height = this.frames[fr][3];
+            this.cache.style.height = this.frames[fr][3];
+            
+            ctx.drawImage(img, this.frames[fr][0], this.frames[fr][1], this.frames[fr][2], this.frames[fr][3], 0, 0, this.frames[fr][2], this.frames[fr][3]);
+        }
+        else {
+            this.cache.width = this.fw;
+            this.cache.style.width = this.fw;
+            this.cache.height = this.fh;
+            this.cache.style.height = this.fh;
+            var x = this.sx + (fr % this.col) * this.fw;
+            var y = this.sy + (Math.floor(fr / this.col)) * this.fh;
+            
+            ctx.drawImage(img, x, y, this.fw, this.fh, 0, 0, this.fw, this.fh);
+        }
+        
+        if(this.currentEffect && this.currentEffect.update) this.currentEffect.update();
+    },
+    appendFrames: function(frames){
+        if(this.frames) this.frames = this.frames.concat(frames);
+    },
+    appendFrame: function(frame){
+        if(this.frames) this.frames.push(frame);
+    },
+    drawFrame: function(frame, ctx, ox, oy){
+        this.configCtxFlex(ctx);
+        if(isNaN(ox)) var ox = this.getX();
+        if(isNaN(oy)) var oy = this.getY();
+        
+        var img = mse.src.getSrc(this.img);
+        if(!this.frames) {
+        	var x = this.sx + (frame % this.col) * this.fw;
+        	var y = this.sy + (Math.floor(frame / this.col)) * this.fh;
+        	ctx.drawImage(img, x, y, this.fw,this.fh, ox,oy, this.width, this.height);
+        }
+        else {
+        	var x = this.frames[frame][0]; var y = this.frames[frame][1];
+        	var fw = this.frames[frame][2]; var fh = this.frames[frame][3];
+        	ctx.drawImage(img, x, y, fw,fh, ox,oy, this.width, this.height);
+        }
+    },
+    draw: function(ctx, ox, oy) {
+    	this.configCtxFlex(ctx);
+    	if(isNaN(ox)) var ox = this.getX();
+    	if(isNaN(oy)) var oy = this.getY();
+    	if(this.cache) {
+    	    if(this.currentEffect != null && this.currentEffect.draw)
+    	        this.currentEffect.draw(ctx, this.cache, ox,oy, this.width,this.height);
+    	    else ctx.drawImage(this.cache, ox,oy, this.width, this.height);
+    	}
+    	
+    	this.evtDeleg.eventNotif("drawover", {'ctx': ctx, 'x':ox, 'y':oy});
+    }
+});
+
+
+
+// Game object
+mse.Game = function(params) {
+    if(MseConfig.iPhone){
+        this.setPos(0, 0);
+        this.setSize(480, 270);
+    }
+    else if(MseConfig.android) {
+        this.setPos(0, 0);
+        this.setSize(480, 270);
+    }
+    else {
+        this.offx = 0;
+        this.offy = 0;
+        this.width = Math.round(0.6*mse.root.width);
+        this.height = Math.round(0.6*mse.root.height);
+    }
+    
+    mse.UIObject.call(this, null, params);
+    
+    if(params) {
+        this.fillback = params.fillback ? true : false;
+    }
+    this.type = "DEP";
+    this.directShow = false;
+    this.setEvtProxy(mse.root.evtDistributor);
+};
+extend(mse.Game, mse.UIObject);
+$.extend(mse.Game.prototype, {
+    state: "DEFAULT",
+    msg: {
+        "DEFAULT": "C'est un jeu, sans message......"
+    },
+    getMsg: function() {
+        return this.msg[this.state];
+    },
+    setEvtProxy: function(proxy) {
+        if(proxy instanceof mse.EventDistributor || 
+           proxy instanceof mse.EventDispatcher || 
+           proxy instanceof mse.EventDelegateSystem) {
+            this.proxy = proxy;
+        }
+    },
+    getEvtProxy: function() {
+        return this.proxy;
+    },
+    setExpose: function(expo) {
+        this.expo = expo;
+        this.type = "INDEP";
+    },
+    setDirectShow: function(direct) {
+        this.directShow = direct;
+    },
+    addTo: function(layer) {
+        this.parent = layer;
+        this.setPos(0,0);
+        this.setSize(layer.getWidth(), layer.getHeight());
+        layer.addObject(this);
+    },
+    start: function() {
+    	mse.root.evtDistributor.setDominate(this);
+        if(!this.directShow) mse.root.gamewindow.loadandstart(this);
+        else this.init();
+        this.evtDeleg.eventNotif("start");
+    },
+    getContainer: function() {
+        if(!this.directShow) return mse.root.gamewindow;
+        else return this.parent.getContainer();
+    },
+    draw: function(ctx) {},
+    end: function() {
+        this.evtDeleg.eventNotif("end");
+        mse.root.evtDistributor.setDominate(null);
+        if(!this.directShow) mse.root.gamewindow.end();
+        if(this.expo) this.expo.endGame();
+    },
+    lose: function() {
+        if(!this.directShow) mse.root.gamewindow.lose();
+    },
+    init: function(){},
+    mobileLazyInit: function() {}
+});
+
+
+// GameShower object, window of the games, one object for all the games
+mse.GameShower = function() {
+	this.jqObj = $("canvas.game");
+	this.ctx = this.jqObj.get(0).getContext('2d');
+	
+	this.dispatcher = new mse.EventDispatcher(this);
+	this.distributor = new mse.EventDistributor(this, this.jqObj, this.dispatcher);
+	
+	this.currGame = null;
+	this.state = "DESACTIVE";
+	this.losetext = new mse.Text(null, {font:'Bold 36px '+mse.configs.font,fillStyle:'#FFF',textBaseline:'middle',textAlign:'center'}, 'Perdu ...', true);
+	this.losetext.addListener('show', new mse.Callback(this.losetext.startEffect, this.losetext, {"typewriter":{speed:2}}));
+	this.passBn = new mse.Button(null, {size:[105,35],font:'12px '+cfs.font,fillStyle:'#FFF'}, 'Je ne joue plus', 'wikiBar');
+	this.restartBn = new mse.Button(null, {size:[105,35],font:'12px '+cfs.font,fillStyle:'#FFF'}, 'Je rejoue', 'aideBar');
+	this.firstShow = false;
+	
+	// used by lose()
+	this.cbrestart = new mse.Callback(this.restart, this);
+	
+};
+mse.GameShower.prototype = {
+	contructor : mse.GameShower,
+	addListener: function() {
+	    this.distributor.rootEvt.addListener.apply(this.distributor.rootEvt, Array.prototype.slice.call(arguments));
+	},
+	removeListener: function() {
+	    this.distributor.rootEvt.removeListener.apply(this.distributor.rootEvt, Array.prototype.slice.call(arguments));
+	},
+	eventNotif: function() {
+	    this.distributor.rootEvt.eventNotif.apply(this.distributor.rootEvt, Array.prototype.slice.call(arguments));
+	},
+	isFullScreen : function() {
+	     if((MseConfig.iPhone||MseConfig.android) && this.state == "START" && this.currGame && this.currGame.type == "INDEP")
+	         return true;
+	     else return false;
+	},
+	relocate : function() {
+	    if(this.state == "DESACTIVE") return;
+	    
+	    if(isNaN(this.currGame.canvasox))
+	        this.left = (MseConfig.iPhone||MseConfig.android) ? -1.5 : Math.round(mse.root.jqObj.width()-this.width)/2;
+	    else this.left = this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0);
+	    if(isNaN(this.currGame.canvasoy))
+	        this.top = (MseConfig.iPhone||MseConfig.android) ? -1.5 : Math.round(mse.root.jqObj.height()-this.height)/2;
+	    else this.top = this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0);
+	    this.jqObj.css({
+	        'left': this.left,
+	        'top': this.top,
+	        'width': this.width,
+	        'height': this.height
+	    });
+	},
+	load : function(game) {
+	    if(!game || !(game instanceof mse.Game)) return;
+	    this.currGame = game;
+	    this.currGame.setEvtProxy(this.distributor);
+	    this.firstShow = false;
+	    this.state = "LOAD";
+	    
+	    // Init game shower size and pos
+	    this.jqObj.get(0).width = this.currGame.width;
+	    this.jqObj.get(0).height = this.currGame.height;
+	    this.width = this.currGame.width;
+	    this.height = this.currGame.height;
+	    this.relocate();
+	    if(MseConfig.iPhone || MseConfig.android) {
+	        this.losetext.setPos(480/2, 270/2);
+	        this.restartBn.setPos(480-115, 270-50);
+	        this.passBn.setPos(10, 270-50);
+	    }
+	    else {
+            this.losetext.setPos(this.width/2, this.height/2);
+            this.restartBn.setPos(this.width-115, this.height-50);
+            this.passBn.setPos(10, this.height-50);
+	    }
+	    this.jqObj.addClass('game_active');
+	},
+	start : function() {
+	    if(!this.currGame) return;
+	    // Init game
+	    this.currGame.init();
+	    this.state = "START";
+	},
+	loadandstart : function(game) {
+	    this.load(game);
+	    this.start();
+	},
+	restart : function(e){
+	    if(this.passBn.inObj(e.offsetX, e.offsetY)) {
+	        this.currGame.end();
+	    }
+	    else if(this.restartBn.inObj(e.offsetX, e.offsetY)) {
+	        this.state = "START";
+	        this.currGame.init();
+	    }
+	    else return;
+	    this.distributor.removeListener('click', this.cbrestart);
+	},
+	lose : function() {
+	    this.state = "LOSE";
+	    this.distributor.removeListeners('click');
+	    this.losetext.evtDeleg.eventNotif('show');
+	    this.distributor.addListener('click', this.cbrestart);
+	},
+	end : function() {
+	    this.jqObj.removeClass('game_active');
+	    this.state = "DESACTIVE";
+	},
+	logic : function(delta) {
+	    if(this.state == "LOSE") this.losetext.logic();
+	    if(this.state != "START" && this.state != "LOAD") return false;
+	    // Mobile orientation fault
+	    else if((MseConfig.iPhone||MseConfig.android) && MseConfig.orientation != "landscape") return true;
+	    else this.currGame.logic(delta);
+	    return true;
+	},
+	draw : function() {
+	    this.ctx.clearRect(0,0,this.width,this.height);
+	    if(this.currGame.fillback) {
+	        this.ctx.fillStyle = "#000";
+	        this.ctx.fillRect(0, 0, this.width, this.height);
+	    }
+	    
+	    if(this.currGame.type == "INDEP" && (MseConfig.android||MseConfig.iPhone) && MseConfig.orientation != "landscape") {
+	        // Draw orientation change notification page
+	        this.ctx.drawImage(mse.src.getSrc('imgNotif'), (this.width-50)/2, (this.height-80)/2, 50, 80);
+	    }
+	    else if(this.state == "START") {
+	        if(!this.firstShow){
+	            this.firstShow = true;
+	            if(this.currGame.type == "INDEP") {
+	                this.eventNotif("firstShow");
+	                if(MseConfig.iPhone || MseConfig.android){
+	                    this.currGame.mobileLazyInit();
+	                }
+	            }
+	        }
+    	    this.currGame.draw(this.ctx);
+    	}
+    	else if(this.state == "LOSE") {
+    	    this.ctx.fillStyle = "#000";
+    	    this.ctx.fillRect(0, 0, this.width, this.height);
+    	    this.losetext.draw(this.ctx);
+    	    this.passBn.draw(this.ctx);
+    	    this.restartBn.draw(this.ctx);
+    	}
+	}
+};
+
+// GameExpose is the small object integrate in the articles, it can be clicked for load the game in GameShower and start it
+mse.GameExpose = function(parent, param, game) {
+    // Super constructor
+    mse.UIObject.call(this, parent, param);
+    
+    this.firstShow = false;
+    this.game = game;
+    this.game.setExpose(this);
+    this.msg = "";
+    this.msginlines = new Array();
+    if(!this.font) this.font = "12px Verdana";
+    this.lineHeight = Math.round( 1.2*checkFontSize(this.font) );
+    this.addListener('firstShow', new mse.Callback(parent.interrupt, parent));
+    this.passBn = new mse.Button(this, {pos:[10,this.height-60],size:[105,35],font:'12px '+cfs.font,fillStyle:'#FFF'}, 'Je ne joue pas', 'wikiBar');
+
+    this.launchcb = new mse.Callback(this.launchGame, this);
+};
+extend( mse.GameExpose , mse.UIObject );
+$.extend( mse.GameExpose.prototype , {
+	launchGame : function(e) {
+        if(this.passBn.inObj(e.offsetX, e.offsetY)) this.endGame();
+        else {
+            this.removeListener('click', this.launchcb);
+            this.game.start();
+        }
+        this.passBn = null;
+    },
+    endGame : function() {
+        if(this.parent.play) this.parent.play();
+    },
+	logic : function() {
+        if(!this.firstShow) {
+            this.firstShow = true;
+            this.evtDeleg.eventNotif('firstShow');
+            this.addListener('click', this.launchcb, true);
+        }
+        // Message changed
+        if(this.msg != this.game.getMsg()) {
+            this.msg = this.game.getMsg();
+            this.msginlines.splice(0,this.msginlines.length);
+            this.bullWidth = this.width; this.bullHeight = 0;
+            
+            if(!this.msg || this.msg == '') {this.bullHeight = 0; return;}
+            var ctx = mse.root.ctx;
+            ctx.save();
+            ctx.font = this.font;
+            var maxM = Math.floor( (this.bullWidth-20)/ctx.measureText('A').width );
+            
+            for(var j = 0; j < this.msg.length;) {
+            	// Find the index of next line
+            	var next = checkNextLine(ctx, this.msg.substr(j), maxM, this.bullWidth-20);
+            	this.msginlines.push( this.msg.substr(j, next) );
+            	j += next;
+            }
+            ctx.restore();
+        }
+    },
+    draw : function(ctx) {
+        ctx.save();
+        ctx.translate(this.getX(), this.getY()+15);
+        
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, this.width, this.height-30);
+        // Border
+        ctx.strokeStyle = 'rgb(188,188,188)';
+        ctx.lineWidth = 5;
+        ctx.strokeRect(0, -2.5, this.width, this.height-30);
+        ctx.lineWidth = 1;
+        
+        // Msg
+        ctx.font = this.font;
+        ctx.textBaseline = "top";
+        ctx.fillStyle = "#FFF";
+        var top = (this.height-30 - this.msginlines.length * this.lineHeight)/2;
+        for(var i = 0; i < this.msginlines.length; i++) {
+            ctx.fillText(this.msginlines[i], 10, top+i*this.lineHeight);
+        }
+        
+        ctx.restore();
+        ctx.save();
+        if(this.passBn) this.passBn.draw(ctx);
+        ctx.restore();
+        
+        this.evtDeleg.eventNotif("drawover", {'ctx': ctx});
+    }
+} );
+
+
+
+// Slider
+mse.Slider = function(target, param, orientation, offset, parent) {
+    if(!parent) parent = target.parent ? target.parent : mse.root.container;
+	// Super constructor
+	mse.UIObject.call(this, parent, param);
+	if(parent.addLayer) parent.addLayer('slider', this);
+	else if(parent.addObject) parent.addObject(this);
+	
+	this.fillStyle = 'rgba(145,152,159, 0.7)';
+	this.tar = target;
+	if(!offset) offset = 0;
+	this.enScroll = false;
+	this.scrollT = 0;
+	this.globalAlpha = 0;
+	
+	if(orientation=='horizontal') {
+		this.orientation = 'horizontal';
+		this.setPos(this.tar.getX(), this.tar.getY()+this.tar.getHeight()+offset);
+		this.setSize(this.tar.getWidth(), 10);
+		// Location of cursor
+		this.loc = 0;
+		this.length = this.width;
+	}
+	else {
+		this.orientation = 'vertical';
+		this.setPos(this.tar.getX()+this.tar.getWidth()+offset, this.tar.getY());
+		this.setSize(10, this.tar.getHeight());
+		this.loc = 0;
+		this.length = this.height;
+	}
+	
+	this.cbScroll = new mse.Callback(this.scroll, this);
+	this.cbGest = new mse.Callback(this.gestUpdate, this);
+	this.tar.addListener('gestureUpdate', this.cbGest, false);
+	if(!MseConfig.mobile)
+		this.tar.addListener('mousewheel', this.cbScroll, false);
+};
+extend(mse.Slider, mse.UIObject);
+$.extend(mse.Slider.prototype, {
+    show: function() {
+        mse.fadein(this, 4);
+        this.enScroll = true;
+        this.evtDeleg.eventNotif("show");
+    },
+    hide: function() {
+        if(this.globalAlpha == 1) mse.fadeout(this, 4);
+        this.enScroll = false;
+        this.evtDeleg.eventNotif("hide");
+    },
+    scroll: function(e) {
+        if(this.globalAlpha == 0) this.show();
+        this.scrollT = 0;
+        if(this.orientation == 'vertical') {
+            this.tar.offy += e.rolled;
+            // Adjustement
+            if(this.tar.offy > 100 || this.tar.offy+this.tar.getHeight() < this.tar.parent.getHeight()/2)
+                this.tar.offy -= e.rolled;
+        }
+        else {
+            this.tar.offx += e.rolled;
+            // Adjustement
+            if(this.tar.offx > 100 || this.tar.offx+this.tar.getWidth() < this.tar.parent.getWidth()/2)
+                this.tar.offx -= e.rolled;
+        }
+        this.evtDeleg.eventNotif("rolling", e.rolled);
+    },
+    gestUpdate: function(e) {
+    	if(e.listX.length > 4) {
+    		e.rolled = e.listY[e.listY.length-1] - e.listY[e.listY.length-2];
+    		this.scroll(e);
+    	}
+    },
+    logic: function(delta) {
+        // Scroll timeout
+        if(this.enScroll) {
+        	this.scrollT += delta;
+        	if(this.scrollT > 600) {
+        	    this.hide();
+        	    return;
+        	}
+        	
+        	if(this.orientation == 'vertical') {
+        	    var ph = this.tar.parent.getHeight();
+        	    var height = this.tar.getHeight();
+        	    var offset = -this.tar.offy;
+        	}
+        	else {
+        	    var ph = this.tar.parent.getWidth();
+        	    var height = this.tar.getWidth();
+        	    var offset = -this.tar.offx;
+        	}
+        	this.length = ph*ph/height;
+        	this.loc = ph*offset/height;
+        	if(this.loc + this.length > ph-30) this.length = ph-this.loc-30;
+        	else if(this.loc < 0) {
+        	    this.length = this.length+this.loc;
+        	    this.loc = 0;
+        	}
+        }
+    },
+    draw: function(ctx) {
+        if(this.globalAlpha == 0) return;
+        ctx.save();
+        this.configCtxFlex(ctx);
+        ctx.translate(this.getX(), this.getY());
+        ctx.beginPath();
+        if(this.orientation == 'vertical') {
+        	var r = this.width/2;
+        	// Top semi elipse
+        	ctx.arc(r,this.loc+r,r,0,Math.PI,true);
+        	// Body left
+        	ctx.lineTo(0, this.loc+this.length-r);
+        	// Bottom semi elipse
+        	ctx.arc(r,this.loc+this.length-r,r,Math.PI,2*Math.PI,true);
+        	// Body right
+        	ctx.lineTo(this.width, this.loc+r);
+        }
+        else {
+        	var r = this.height/2;
+        	// Left semi elipse
+        	ctx.arc(this.loc+r,r,r,1.5*Math.PI,0.5*Math.PI,false);
+        	// Body top
+        	ctx.lineTo(this.loc+l-r, 0);
+        	// Right semi elipse
+        	ctx.arc(this.loc+l-r,r,r,0.5*Math.PI,1.5*Math.PI,false);
+        	// Body bottom
+        	ctx.lineTo(this.loc+r, this.height);
+        }
+        ctx.fill();
+        ctx.restore();
+    }
+});
+
+
+
+// Button
+mse.Button = function(parent, param, txt, image, link, type) {
+	// Super constructor
+	mse.UIObject.call(this, parent, param);
+	
+	this.txt = txt;
+	this.img = image;
+	this.setLink(link, type);
+};
+extend(mse.Button, mse.UIObject);
+$.extend(mse.Button.prototype, {
+    urlClicked: function() {
+        window.open(this.link);
+    },
+    setLink: function(link, type) {
+        if(link) this.link = link;
+        if(type == 'url') {
+            this.addListener('click', new mse.Callback(this.urlClicked, this), true);
+        }
+    },
+    draw: function(ctx, x, y) {
+    	this.configCtxFlex(ctx);
+    	ctx.fillStyle = "rgb(255,255,255)";
+    	ctx.textAlign = "center";
+    	ctx.textBaseline = "middle";
+    	
+    	if(x == null) var ox = this.getX(), oy = this.getY();
+    	else var ox = x, oy = y;
+    	var img = mse.src.getSrc(this.img);
+    	if(img) ctx.drawImage(img, ox, oy, this.width, this.height);
+    	
+    	if(this.txt)
+    		ctx.fillText(this.txt, ox+this.width/2, oy+this.height/2);
+    }
+});
+
+
+
+mse.Card = function(parent, param, ui) {
+    mse.UIObject.call(this, parent, param);
+    this._layers = new Array();
+    this.dispatcher = new mse.EventDispatcher(this);
+    
+    this.ui = ui;
+    if(ui) this.addLayer('ui', ui);
+    this.margin = [15, 15, 15, 15];
+    // Angle between -10 and 10
+    this.angle = randomInt(20) - 10;
+    this.lw = this.width - this.margin[1] - this.margin[3];
+    this.lh = this.height - this.margin[0] - this.margin[2];
+};
+extend(mse.Card, mse.BaseContainer);
+delete mse.Card.prototype.setOrientation;
+delete mse.Card.prototype.orientChange;
+delete mse.Card.prototype.logic;
+delete mse.Card.prototype.setLayerActivate;
+delete mse.Card.prototype.desactiveOthers;
+delete mse.Card.prototype.reactiveOthers;
+$.extend(mse.Card.prototype, {
+    draw: function(ctx){
+        if(!this.ui)
+            this.drawDefaultUI(ctx, this.getX(), this.getY());
+    },
+    drawDefaultUI: function(ctx, x, y) {
+        ctx.fillStyle = "rgb(252,250,242)";
+        ctx.shadowColor ="black";
+        ctx.shadowBlur = 10;
+        //ctx.strokeStyle = "#4d4d4d";
+        //ctx.lineWidth = 1;
+        ctx.fillRoundRect(x, y, this.width, this.height, 20);
+        //ctx.strokeRoundRect(x, y, this.width, this.height, 16);
+        ctx.shadowBlur = 0;
+    },
+    ptRotate: function(x, y) {
+        var ox = this.getX()+this.width/2, oy = this.getY()+this.height/2;
+        var dx = x-ox, dy = y-oy;
+        var a = this.angle*Math.PI/180;
+        var sina = Math.sin(a), cosa = Math.cos(a);
+        var xp = dx*cosa + dy*sina;
+        var yp = -dx*sina + dy*cosa;
+        return [ox+xp, oy+yp];
+    }
+});
+
+mse.ImageCard = function(parent, param, ui, img, legend) {
+    mse.Card.call(this, parent, param, ui);
+    
+    if(img && mse.src.getSrc(img)) {
+        this.img = img;
+        this.legend = legend;
+    }
+    mse.src.waitSrc(this.img, new mse.Callback(this.init, this));
+    
+};
+extend(mse.ImageCard, mse.Card);
+$.extend(mse.ImageCard.prototype, {
+    legendheight: 35,
+    setImage: function(img, legend) {
+        if(img && mse.src.getSrc(img)) {
+            this.img = img;
+            this.legend = legend;
+        }
+    },
+    init: function() {
+        var iw = this.lw;
+        var ih = this.height - this.margin[0] - this.margin[2] - this.legendheight;
+        var src = mse.src.getSrc(this.img);
+        var rx = iw/src.width, ry = ih/src.height;
+        var r = (rx < ry) ? rx : ry;
+        this.iw = src.width * r;
+        this.ih = src.height * r;
+        this.ix = this.margin[3] + (iw-this.iw)/2;
+        this.iy = this.margin[0] + (ih-this.ih)/2;
+        
+        this.zoomIcon = new mse.Image(this,{pos:[this.ix+this.iw-24-5, this.iy+5],size:[20,20]}, 'zoomIcon');
+        var cb = new mse.Callback(function(){
+            if(!(this.imgShower instanceof mse.ImageShower))
+                this.imgShower = mse.ImageShower.getInstance();
+            this.imgShower.show(this);
+        }, this);
+        this.zoomIcon.addListener('click', cb, true);
+    },
+    draw: function(ctx){
+        ctx.save();
+        // Rotation
+        ctx.translate(this.getX()+this.width/2, this.getY()+this.height/2);
+        ctx.rotate(this.angle * Math.PI / 180);
+        ctx.translate(-this.width/2, -this.height/2);
+        
+        for(var i in this._layers) {
+        	this._layers[i].draw(ctx);
+        }
+        // Default UI
+        if(!this.ui) this.drawDefaultUI(ctx, 0, 0);
+        if(!this.img) return;
+        
+        ctx.shadowColor ="black";
+        ctx.shadowBlur = 7;
+        ctx.drawImage(mse.src.getSrc(this.img), this.ix, this.iy, this.iw, this.ih);
+		this.zoomIcon.draw(ctx,this.ix+this.iw-24-5, this.iy+5);
+        ctx.shadowBlur = 0;
+        ctx.font = "italic 12px Verdana";
+        ctx.textBaseline = "top";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#000";
+        ctx.fillTextWrapped(this.legend, this.ix+this.iw/2, this.iy+this.ih+5, this.lw, 15);
+        ctx.restore();
+    }
+});
+
+mse.TextContent = function(parent, param) {
+    mse.UIObject.call(this, parent, param);
+    if(!this.font) this.font = "14px Verdana";
+    if(!this.textAlign) this.textAlign = "left";
+    if(!this.fillStyle) this.fillStyle = "#000";
+    this.textBaseline = "top";
+    
+    this.sections = new Array();
+    this.length = 0;
+};
+extend(mse.TextContent, mse.UIObject);
+$.extend(mse.TextContent.prototype, {
+    seplineoff: -3.5,
+    titletextoff: 5,
+    sectionsep: 12,
+    lineHeight: 18,
+    addSection: function(type, title, text){
+        if(typeof title != 'string' || typeof text != 'string') return;
+        switch(type) {
+        case "text": var content = text;break;
+        case "link": 
+            var content = new mse.Button(this, {pos:[15,this.length+this.titletextoff+this.lineHeight],size:[80,this.lineHeight],font:this.font,fillStyle:'#FFF'}, 'Lien', 'wikiBar', text, 'url');
+        break;
+        }
+        this.sections.push([type, title, content]);
+        this.configCtx(mse.root.ctx);
+        var l = wrapText(title, mse.root.ctx, this.width).length;
+        l += wrapTextWithWrapIndice(text, mse.root.ctx, this.width-15).length;
+        l = l*this.lineHeight + this.titletextoff + this.sectionsep;
+        this.length += l;
+    },
+    getHeight: function() {
+        return this.length;
+    },
+    draw: function(ctx) {
+        ctx.save();
+        ctx.translate(this.offx, this.offy);
+        this.configCtxFlex(ctx);
+        ctx.lineCap = "round";
+        var y = 0;
+        for(var i = 0; i < this.sections.length; i++) {
+            ctx.font = "bold "+this.font;
+            y += ctx.fillTextWrapped(this.sections[i][1], 0, y, this.width, this.lineHeight) + this.titletextoff;
+            ctx.beginPath();
+            ctx.moveTo(0, y+this.seplineoff);
+            ctx.lineTo(this.width, y+this.seplineoff);
+            ctx.stroke();
+            ctx.font = this.font;
+            switch(this.sections[i][0]) {
+            case "text":
+                y += ctx.fillTextWrapped(this.sections[i][2], 15, y, this.width-15, this.lineHeight) + this.sectionsep;break;
+            case "link":
+                this.sections[i][2].draw(ctx, 15, y);
+                y += this.lineHeight + this.sectionsep;break;
+            }
+        }
+        ctx.restore();
+    }
+});
+mse.TextCard = function(parent, param, ui) {
+    mse.Card.call(this, parent, param, ui);
+    this.content = new mse.TextContent(this, {pos:[this.margin[3], this.margin[0]], size:[this.lw, this.lh]});
+    this.addLayer('content', this.content);
+    
+    this.slider = new mse.Slider(this.content, {}, 'vertical');
+    this.slider.setPos(this.width-this.margin[1], 0);
+};
+extend(mse.TextCard, mse.Card);
+$.extend(mse.TextCard.prototype, {
+    addSection: function(title, text) {
+        this.content.addSection('text', title, text);
+    },
+    addLink: function(title, url) {
+        this.content.addSection('link', title, url);
+    },
+    draw: function(ctx) {
+        ctx.save();
+        // Rotation
+        ctx.translate(this.getX()+this.width/2, this.getY()+this.height/2);
+        ctx.rotate(this.angle * Math.PI / 180);
+        ctx.translate(-this.width/2, -this.height/2);
+        
+        // Default UI
+        if(!this.ui) this.drawDefaultUI(ctx, 0, 0);
+        for(var i in this._layers) {
+        	this._layers[i].draw(ctx);
+        }
+        
+        ctx.restore();
+    }
+});
+
+mse.WikiLayer = function() {
+    mse.Layer.call(this, null, cfs.zids.wiki, {});
+    
+    this.currCard = null;
+    this.cbDragStart = new mse.Callback(this.dragStart, this);
+    this.cbDragMove = new mse.Callback(this.dragMove, this);
+    this.cbDragEnd = new mse.Callback(this.dragEnd, this);
+};
+extend(mse.WikiLayer, mse.Layer);
+$.extend(mse.WikiLayer.prototype, {
+    cardw: 250,
+    cardh: 320,
+    hide: function() {
+        var container = this.parent;
+        if(container) {
+            this.removeListener('gestureStart', this.cbDragStart);
+            this.removeListener('gestureUpdate', this.cbDragMove);
+            this.removeListener('gestureEnd', this.cbDragEnd);
+        }
+        
+        this.parent.reactiveOthers();
+        this.globalAlpha = 0;
+        this.parent.delLayer('wiki');
+    },
+    init: function(container) {
+        if(!container instanceof mse.UIObject) return;
+        this.parent = container;
+        this.setSize(container.getWidth(), container.getHeight());
+        this.setPos(0,0);
+        this.cardx = (this.width - this.cardw)/2;
+        this.cardy = (this.height - this.cardh)/2;
+        for(var card in this.objList)
+            this.objList[card].setPos(this.cardx, this.cardy);
+        
+        this.addListener('gestureStart', this.cbDragStart, true);
+        this.addListener('gestureUpdate', this.cbDragMove, true);
+        this.addListener('gestureEnd', this.cbDragEnd, true);
+        
+        container.addLayer('wiki', this);
+        this.globalAlpha = 1;
+        container.desactiveOthers('wiki');
+    },
+    addImage: function(img, legend) {
+        var param = {size: [this.cardw, this.cardh]};
+        this.addObject(new mse.ImageCard(this, param, null, img, legend));
+    },
+    addTextCard: function() {
+        var param = {size: [this.cardw, this.cardh]};
+        this.textCard = new mse.TextCard(this, param, null);
+        this.addObject(this.textCard);
+    },
+    addExplication: function(title, text) {
+        this.addTextCard();
+        this.textCard.addSection(title, text);
+    },
+    addLink: function(title, link) {
+        if(!this.textCard) this.addTextCard();
+        this.textCard.addLink(title, link);
+    },
+    dragStart: function(e){
+        for(var i = this.objList.length-1; i >= 0; i--) {
+            var card = this.objList[i];
+            var pt = card.ptRotate(e.offsetX, e.offsetY);
+            if(card.inObj(pt[0], pt[1])) {
+                e.offsetX = pt[0];
+                e.offsetY = pt[1];
+                if( !card.dispatcher.dispatch('click', e) )
+                    this.currCard = card;
+                return;
+            }
+        }
+        this.hide();
+    },
+    dragMove: function(e){
+        if(!this.currCard) return;
+        var dx = e.listX[e.listX.length-1] - e.listX[e.listX.length-2];
+        var dy = e.listY[e.listY.length-1] - e.listY[e.listY.length-2];
+        this.currCard.move(dx, dy);
+    },
+    dragEnd: function(e){
+        this.currCard = null;
+    }
+});
+
+
+
+
+// Video element
+mse.Video = function(parent, param, srcs) {
+	// Super constructor
+	mse.UIObject.call(this, parent, param);
+	this.srcs = srcs;
+	
+	this.addListener('click', new mse.Callback(this.launch, this), true);
+};
+extend( mse.Video , mse.UIObject );
+$.extend( mse.Video.prototype , { 
+	launch : function() {
+	    mse.root.video.load(srcs);
+	    mse.root.video.addClass('video_active');
+	},
+	
+	draw : function(ctx) {
+	    ctx.save();
+	    ctx.fillStyle = "#000";
+	    ctx.strokeStyle = "#FFF";
+	    ctx.lineWidth = 4;
+	    ctx.translate(this.getX(), this.getY());
+	    ctx.strokeRoundRect(0, 0, this.width, this.height, 5);
+	    ctx.fillRoundRect(0, 0, this.width, this.height, 5);
+	    ctx.beginPath();
+	    ctx.moveTo(this.width/2-25, this.height/2-20);
+	    ctx.lineTo(this.width/2+25, this.height/2);
+	    ctx.lineTo(this.width/2-25, this.height/2+20);
+	    ctx.lineTo(this.width/2-25, this.height/2-20);
+	    ctx.fillStyle = "#FFF";
+	    ctx.fill();
+	    ctx.restore();
+	    
+	    this.evtDeleg.eventNotif("drawover", {'ctx': ctx});
+	}
+});
+
+
+
+// Comment object
+mse.Comment = function(target, comment) {
+    if(!(target instanceof mse.UIObject)) {
+        console.error('Comment creation error: target is not a UIObject');
+        return;
+    }
+    
+    mse.UIObject.call(this);
+    
+    this.target = null;
+    this.comments = new Array();
+    this.offx = 0;
+    this.offy = 0;
+    this.width = 0;
+    this.height = 0;
+    //this.drawCB = new mse.Callback(this.draw, this);
+    this.clickCB = new mse.Callback(this.click, this);
+    
+    if(comment) this.addComment(comment);
+    
+    this.attachTo(target);
+    
+    if(!this.inited) {
+        this.singletonInit();
+    }
+};
+extend(mse.Comment, mse.UIObject);
+$.extend(mse.Comment.prototype, {
+    inited: false,
+    singletonInit: function() {
+        var path = "./UI/";
+        if(config.publishMode == "release") path = "assets/img/story/";
+        // Add tag image source
+        mse.src.addSource('tag_single', path+'tag_single.png', 'img', true);
+        mse.src.addSource('tag_multi', path+'tag_multi.png', 'img', true);
+    
+        mse.Comment.prototype.inited = true;
+    },
+    addComment: function(comment) {
+        if(comment.content != null && comment.image != null && comment.date != null) this.comments.push(comment);
+        return {x: this.target.getX()+this.offx, y:this.target.getY()+this.offy};
+    },
+    getTagBox: function(target) {
+        var offx, offy, w, h;
+        if(target instanceof mse.Text) {
+            offx = target.width;
+            offy = 0;
+            h = target.height;
+            w = h * 30/43;
+        }
+        else if(target instanceof mse.Image) {
+            offx = target.width - 45;
+            offy = target.height - 30;
+            h = 43;
+            w = 30;
+        }
+        else if(target instanceof mse.GameExpose) {
+            offx = target.width;
+            offy = 0;
+            h = 43;
+            w = 30;
+        }
+        else {
+            offx = target.width - 45;
+            offy = 10;
+            h = 43;
+            w = 30;
+        }
+        return [offx, offy, w, h];
+    },
+    attachTo: function(target) {
+        if(!(target instanceof mse.UIObject)) return;
+        
+        // Set target
+        this.target = target;
+        if(target instanceof mse.BaseContainer){
+            var layer, maxZid, i, layerI;
+            layer = target.getLayer('inner_comment');
+            if(layer){
+                layer.addObject(this);
+            }
+            else {
+                maxZid = 0;
+                for(i = 0; i < target._layers.length; i++){
+                    layerI = target._layers[i];
+                    if (layerI.zid > maxZid) maxZid = layerI.zid;
+                }
+                layer = new mse.Layer(target, maxZid+1, {size:[mse.root.width,mse.root.height]});
+                layer.addObject(this);
+                target.addLayer('inner_comment', layer);
+            }
+            this.parent = layer;
+        }
+        else if(target.parent instanceof mse.ArticleLayer){
+            var articleLayer = target.parent;
+            articleLayer.addUnhiddableObject(this);
+            this.parent = articleLayer;
+        }
+        
+        // Remove old draw listener
+        if(this.target) {
+            //this.target.evtDeleg.removeListener('drawover', this.drawCB);
+            this.evtDeleg.removeListener('click', this.clickCB);
+        }
+        // Add new draw listener to new target
+        //target.evtDeleg.addListener('drawover', this.drawCB);
+        this.evtDeleg.addListener('click', this.clickCB, true);
+        // Set target
+        this.target = target;
+        
+        // Additional setup for different target
+        var box = this.getTagBox(target);
+        this.dx = box[0];
+        this.dy = box[1];
+        this.width = box[2];
+        this.height = box[3];
+        this.offx = target.offx + this.dx;
+        this.offy = target.offy + this.dy;
+    },
+    draw: function(ctx) {
+        if(this.comments.length == 1) 
+            ctx.drawImage(mse.src.getSrc('tag_single'), this.getX(), this.getY(), this.w, this.h);
+        else if(this.comments.length > 1) 
+            ctx.drawImage(mse.src.getSrc('tag_multi'), this.getX(), this.getY(), this.w, this.h);
+    },
+    click: function(e) {/* show or close comment  on click*/ },
+    showComments: function(){   },
+    closeComments: function(){   }    
+});
+
+
+
+/*           ImageShower
+*  display the target img in fullscreen
+*  Usage : call the show method to an event
+*  See mse.Image.prototype.init() 
+*  & mse.ImageCard.init() (association with an icon)
+*/ 
+mse.ImageShower = function(){
+    if(mse.ImageShower.getInstance()) return mse.ImageShower.getInstance(); // its a singleton classe
+    this.target = false;
+    this.container = $('#imgShower');
+    this.img = $('#imgShower #theImage');
+    this.imgContainer = $('#imgShower div');
+    this.closeButton = $('#imgShower #closeBn');
+    
+    this.img.click(function(e){e.preventDefault();e.stopPropagation();});
+    
+    
+    
+    if(MseConfig.mobile){
+        // remove close button
+        this.closeButton.remove();
+        this.imgContainer.css('overflow','hidden');
+        // add touch event listener
+        this.imgContainer.mseInteraction();
+        this.imgContainer.mseInteraction('addListener', 'scale', new Callback(this.scale, this));
+        this.img.mseInteraction();
+        this.img.mseInteraction('addListener', 'translate', new Callback(this.move, this));
+    }
+    
+    var instance = this;
+    mse.ImageShower.getInstance = function(){return instance;};
+};
+mse.ImageShower.getInstance = function(){return false;};
+mse.ImageShower.prototype = {
+    maxScale: 3,
+    minScale: 1,
+    setTarget: function(target){
+        if(!(target instanceof mse.Image) && !(target instanceof mse.ImageCard)) {
+            console.error('The target obj is not an instance of mse.Image or mse.ImageCard');
+            return;
+        }
+        this.target = target;
+        this.imgUrl = mse.src.getSrc(this.target.img).getAttribute('src');
+        this.img.prop('src', this.imgUrl);
+        return this;
+    }, 
+    getOriginalPos: function(){
+        if(!this.target) return;
+        var pos = {};
+        if(this.target instanceof mse.Image){ // Illu
+            pos.x = mse.root.jqObj.position().left + this.target.getX();
+            pos.y = mse.root.jqObj.position().top + this.target.getY();
+            pos.w = this.target.getWidth();
+            pos.h = this.target.getHeight();
+            pos.angle = 'rotate(0deg)';
+        }
+        else { // Wiki
+            pos.x = mse.root.jqObj.position().left + this.target.getX() + this.target.ix;
+            pos.y = mse.root.jqObj.position().top + this.target.getY() + this.target.iy;
+            pos.w = this.target.iw;
+            pos.h = this.target.ih;
+            pos.angle = 'rotate('+this.target.angle+'deg)';            
+        }
+        return pos;
+    },
+    show: function(target){
+        this.setTarget(target);
+        if(!this.target) return;
+        this.container.unbind('click');
+        this.closeButton.unbind('click');
+        this.container.click({showerObj: this}, this.close);
+        this.closeButton.click({showerObj: this}, this.close);
+        var pos = this.getOriginalPos();
+        this.img.css({
+            'left': '0px',
+            'top': '0px',
+            'height' : '100%',
+            'width'  : '100%'
+        });
+        this.imgContainer.css({
+            'width'  : pos.w+'px',
+            'height' : pos.h+'px',
+            'top'    : pos.y+'px',
+            'left'   : pos.x+'px'
+        });
+        
+        if (MseConfig.pageHeight < MseConfig.pageWidth) { // normal screen
+            var ratio =  pos.w/pos.h;
+            var finalH = 0.8 * MseConfig.pageHeight;
+            var finalW = finalH * ratio;
+            var imgX = mse.root.width/2 - finalW/2;
+        }
+        else { // smartphone screen
+            var ratio =  pos.h/pos.w;
+            var finalW = 0.8 *  MseConfig.pageWidth;
+            var finalH = finalW * ratio;
+            var imgX = MseConfig.pageWidth/2 - finalW/2;
+        }
+        
+        this.imgContainer.data('originPos',{h: finalH, 
+                                            w: finalW,
+                                            x:this.imgContainer.position().left,
+                                            y:this.imgContainer.position().top,
+                                            scale:1});
+             
+        this.imgContainer.animate({ // animate image size to 80% of window size
+            'height'    : finalH+'px',
+            'width'     : finalW+'px',
+            'top'       : '0px',
+            'left'      : imgX + 'px'
+        });
+        this.container.fadeIn(500);
+        
+        var parent = this.target.parent;
+        if (parent.interrupt)
+            parent.interrupt();
+    },
+    close: function(e){
+        // close the image on click in div
+        // no close on click in image
+        e.preventDefault();
+        var obj = mse.ImageShower.getInstance();
+        var pos = obj.getOriginalPos();
+        obj.container.children('div').animate({
+            'height' : pos.h+'px',
+            'width'  : pos.w+'px',
+            'top'    : pos.y+'px',
+            'left'   : pos.x+'px'
+        });
+        obj.container.fadeOut(500, function(){
+            var parent = obj.target.parent;
+            if(parent.play)
+                parent.play();
+        });
+    },
+    scale: function(e){
+        var max = this.imgContainer.width() * this.maxScale,
+            min = this.imgContainer.width() * this.minScale,
+            pos = this.imgContainer.data('originPos'),
+            s = e.scale;
+        
+        if (s * pos.w >= max ||
+            s * pos.w <= min)
+                return;
+        
+        if(e.type == 'scaleEnd'){
+            pos.w = this.img.width();
+            pos.h = this.img.height();
+            return;
+        }        
+        
+        var currPos = this.img.position(),    
+            cw = this.imgContainer.width(),
+            ch = this.imgContainer.height(),
+            iw = pos.w * s,
+            ih = pos.h * s,
+            x = currPos.left - (iw-this.img.width())/2,
+            y = currPos.top - (ih-this.img.height())/2;
+        
+        if (x > 0) x = 0;
+        else if (x < cw - iw) x = cw - iw;
+        if (y > 0) y = 0;
+        else if (y < ch - ih) y = ch - ih;
+        
+        this.img.css({ width: iw+'px',
+                       height: ih+'px',
+                       top: y+'px',
+                       left: x+'px' });
+                       
+        
+    },
+    move: function(e){
+        var iw = this.img.width(),
+            ih = this.img.height(),
+            cw = this.imgContainer.width(),
+            ch = this.imgContainer.height(),
+            posImg = this.img.position(),
+            x = posImg.left + e.dx,
+            y = posImg.top + e.dy;
+            
+        if(x > 0) x = 0;
+        if(x < cw - iw) x = cw - iw;
+        if(y > 0) y = 0;
+        if(y < ch - ih) y = ch - ih;
+        this.img.css({top: y+'px', left: x+'px'});
+    }
+};
+
+
+// Time line
+// It can be either interval fixed "interval" or interval no fixed define by a list of timestamp progressive "timeprog"
+mse.Timeline = function(src, interval, timeprog, length) {
+	if(!src.initTimeline || !src.runTimeline)
+		return null;
+	// Parameters
+	this.src = src;
+	if(interval > 0) {
+		this.tsFixed = true;
+		this.interval = 33;
+		this.length = length != null ? length : 0;
+	}
+	else {
+		if(!timeprog instanceof Array) return null;
+		this.tsFixed = false;
+		this.timeprog = timeprog;
+		this.length = timeprog.length;
+	}
+	this.src.initTimeline(this);
+	// For reduce the fps to 30
+	this.switching = false;
+};
+mse.Timeline.prototype = {
+	constructor : mse.Timeline ,
+	frameFn : function() {
+	    mse.currTimeline.run();
+	},
+	start : function() {
+		// Parameters
+		this.currTimestamp = 0;
+		this.currIndex = 0;
+		this.end = false;
+		this.inPause = false;
+	
+		// First run
+		this.src.runTimeline();
+	
+		// Start timer
+		mse.currTimeline = this;
+		if(this.tsFixed)
+			this.timer = requestAnimationFrame(this.frameFn);
+		else this.timer = setTimeout(this.frameFn, this.timeprog[this.currIndex]);
+	},
+	run : function() {
+		if(this.end) {
+			if(this.tsFixed)
+				clearInterval(this.timer);
+			else cancelAnimationFrame(this.timer);
+			return;
+		}
+		if(this.inPause)
+			return;
+			
+		this.currTimestamp += this.tsFixed ? this.interval : this.timeprog[this.currIndex];
+		this.currIndex++;
+		// Not End
+		if(this.length == 0 || this.currIndex < length) {	
+			// Interval no fixed
+			if(!this.tsFixed) {
+				this.timer = setTimeout(this.frameFn, this.timeprog[this.currIndex]);
+				this.src.runTimeline(this.timeprog[this.currIndex-1]);
+			}
+			else {
+			    this.timer = requestAnimationFrame(this.frameFn);
+			    //if(this.switching) 
+			    this.src.runTimeline(this.interval);
+			    //this.switching = !this.switching;
+			}
+		}
+		// END
+		else {
+			this.end = true;
+		}
+	},
+	playpause : function() {
+		if(this.end) return;
+		this.inPause = !this.inPause;
+		if(!this.inPause) {
+			if(mse.currTimeline != this) mse.currTimeline = this;
+			if(this.tsFixed) this.timer = requestAnimationFrame(this.frameFn);
+			else this.timer = setTimeout(this.frameFn, 1200);
+		}
+	},
+	play : function() {
+		if(this.end) return;
+		this.inPause = false;
+		if(mse.currTimeline != this) mse.currTimeline = this;
+		if(this.tsFixed) this.timer = requestAnimationFrame(this.frameFn);
+		else this.timer = setTimeout(this.frameFn, 1200);
+	},
+	pause : function() {
+		if(this.end) return;
+		this.inPause = true;
+	}
+};
+
+
+// Frame Animation
+mse.FrameAnimation = function(sprite, seq, rep, delay){
+	if(!seq instanceof Array || !sprite instanceof mse.Sprite) return null;
+	
+	this.sprite = sprite;
+	this.seq = seq;
+	this.rep = isNaN(rep) ? 1 : rep;
+	this.delay = isNaN(delay) ? 0 : delay;
+	this.active = false;
+	this.evtDeleg = new mse.EventDelegateSystem();
+};
+mse.FrameAnimation.prototype = {
+    constructor: mse.FrameAnimation,
+    start: function() {
+    	this.currFr = 0;
+    	this.currRep = 1;
+    	this.delayCount = this.delay;
+    	this.active = true;
+    	this.evtDeleg.eventNotif('start');
+    	for(var i in mse.root.animations)
+    		if(mse.root.animations[i] == this) return;
+        mse.root.animations.push(this);
+        this.sprite.setFrame(this.seq[this.currFr]);
+    },
+    stop: function() {
+    	this.currFr = 0;
+    	this.currRep = 0;
+    	this.active = false;
+    	this.evtDeleg.eventNotif('end');
+    },
+    logic: function(delta) {
+    	if (!this.active) return false;
+    	
+    	if (this.currFr < this.seq.length) {
+    		if (this.delay != 0) {
+    			if (this.delayCount == 0) {
+    				this.currFr++;
+    				this.delayCount = this.delay;
+    			}
+    			this.delayCount--;
+    		}
+    		else this.currFr++;
+    	}
+    	if(this.currFr >= this.seq.length) {
+    		if (this.currRep < this.rep || this.rep == 0) {
+    			this.currRep++;
+    			this.currFr = 0;
+    		}
+    		else {
+    			this.active = false;
+    			this.evtDeleg.eventNotif('end');
+    			return true;
+    		}
+    	}
+    	this.sprite.setFrame(this.seq[this.currFr]);
+    	return false;
+    }
+};
+
+
+
+
+// Key Frame Animation
+mse.KeyFrameAnimation = function(elem, keyFrameMap, repeat) {
+	if(!elem instanceof mse.UIObject) {mseLog('Type Error', 'Element isn\'t a Mse UI Element');return null;}
+	// No time stamp defined
+	if( !keyFrameMap || !keyFrameMap['frame'] ) {mseLog('Parameter Error','No frame stamp defined');return null;}
+	// Length error
+	for(var key in keyFrameMap) {
+		if(keyFrameMap[key].length != keyFrameMap['frame'].length)
+		{mseLog('Parameter Error','KeyFrame length not compatible with the frame stamp');return null;}
+	}
+	this.length = keyFrameMap['frame'].length;
+	if(this.length < 2) {mseLog('Length Error','KeyFrame Length must be larger than 2');return null;}
+	// First frame stamp isn't 0
+	if(keyFrameMap['frame'][0] != 0) {mseLog('Error','Frame start point is not 0');return null;}
+	
+	this.duration = keyFrameMap['frame'][this.length-1];
+	
+	this.element = elem;
+	this.repeat = (repeat == null) ? 1 : repeat;
+	this.map = keyFrameMap;
+	
+	this.resetAnimation();
+	this.evtDeleg = new mse.EventDelegateSystem();
+	
+	if(this.map['opacity']) // Avoid the bug of opacity in javacript
+		this.element.globalAlpha = this.map['opacity'][0]==0 ? 0.01 : this.map['opacity'][0];
+};
+mse.KeyFrameAnimation.prototype = {
+    construction: mse.KeyFrameAnimation,
+    setNoTransition: function() {
+    	this.notransition = true;
+    },
+    resetAnimation: function() {
+    	this.currId = -1;
+    	this.currFr = 0;
+    	this.nextKf = this.map['frame'][0];
+    	this.currRp = 1;
+    },
+    start: function() {
+    	for(var i in mse.root.animations)
+    		if(mse.root.animations[i] == this) return;
+    	mse.root.animations.push(this);
+    },
+    isEnd: function() {
+        if(this.currFr > this.duration && this.currRp == this.repeat) return true;
+        else return false;
+    },
+    
+    logic: function(delta) {
+    	if(this.currFr <= this.duration) {
+    		// Passed a timestamp, move to next
+    		if(this.currFr == this.nextKf) {
+    			// Update states
+    			this.currId++;
+    			this.nextKf = this.map['frame'][this.currId+1];
+    			
+    			for( var key in this.map ) {
+    			    var curr = this.map[key][this.currId];
+    				switch(key) {
+    				case 'frame': continue; // Ignore timestamps
+    				case 'pos':
+    					this.element.setPos(curr[0], curr[1]);break;
+    				case 'size':
+    					this.element.setSize(curr[0], curr[1]);break;
+    				case 'opacity':
+    					this.element.globalAlpha = curr;break;
+    				case 'fontSize':
+    					var size = curr;
+    					var s = checkFontSize(this.element.font);
+    					this.element.font=this.element.font.replace(s,size.toString());
+    					break;
+    				case 'scale':
+    					this.element.scale = curr;break;
+    				case 'spriteSeq':
+    				    this.element.setFrame(curr);break;
+    				}
+    			}
+    		}
+    		// No transition calculated between the frames
+    		else if(!this.notransition){
+    			// Play the transition between currFr and nextKf
+    			var ratio = (this.currFr - this.map['frame'][this.currId]) / (this.nextKf - this.map['frame'][this.currId]);
+    			// Iterate in attributes for animation
+    			for( var key in this.map ) {
+    			    var curr = this.map[key][this.currId];
+    			    var next = this.map[key][this.currId+1];
+    				switch(key) {
+    				case 'frame': case 'spriteSeq': continue; // Ignore timestamps and sprite sequences
+    				case 'pos':
+    				    var trans = curr[2] ? (this.calTrans[curr[2]] ? curr[2] : 2) : 2;
+    					var x = Math.floor(this.calTrans[trans](ratio, curr[0], next[0])*2)/2;
+    					var y = Math.floor(this.calTrans[trans](ratio, curr[1], next[1])*2)/2;
+    					this.element.setPos(x, y);break;
+    				case 'size':
+    				    var trans = curr[2] ? (this.calTrans[curr[2]] ? curr[2] : 2) : 2;
+    					var w = this.calTrans[trans](ratio, curr[0], next[0]);
+    					var h = this.calTrans[trans](ratio, curr[1], next[1]);
+    					this.element.setSize(w, h);break;
+    				case 'opacity':
+    				    var trans = curr[1] ? (this.calTrans[curr[1]] ? curr[1] : 2) : 2;
+    					this.element.globalAlpha = this.calTrans[trans](ratio, (curr[0]?curr[0]:curr), (next[0]?next[0]:next));
+    					break;
+    				case 'fontSize': 
+    				    var trans = curr[1] ? (this.calTrans[curr[1]] ? curr[1] : 2) : 2;
+    					var size = Math.floor(this.calTrans[trans](ratio, (curr[0]?curr[0]:curr), (next[0]?next[0]:next)));
+    					var s = checkFontSize(this.element.font);
+    					this.element.font=this.element.font.replace(s,size.toString());
+    					break;
+    				case 'scale':
+    				    var trans = curr[1] ? (this.calTrans[curr[1]] ? curr[1] : 2) : 2;
+    					this.element.scale = this.calTrans[trans](ratio, (curr[0]?curr[0]:curr), (next[0]?next[0]:next));
+    					break;
+    				}
+    			}
+    		}
+    		// Time increase
+    		this.currFr++;
+    	}
+    	// Repeat or not
+    	else if( this.repeat === 0 || this.currRp < this.repeat ) {
+    		this.currRp++;
+    		// Reset all states
+    		this.currId = 0;
+    		this.currFr = 0;
+    		this.nextKf = this.map['frame'][1];
+    	}
+    	// Stop
+    	else {
+    		this.evtDeleg.eventNotif('end');
+    		return true;
+    	}
+    	return false;
+    },
+    
+    calTrans: {
+        // No transition
+        1:function(ratio, prevState, nextState) {
+            return prevState;
+        },
+        // Float interpolation
+    	2:function(ratio, prevState, nextState) {
+    		return prevState + ratio * (nextState-prevState);
+    	}
+    }
+};
+
+
+mse.Animation = function(duration, repeat, statiq, container, param){
+    this.statiq = statiq ? true : false;
+    // Super constructor
+    if(this.statiq) mse.UIObject.call(this, null, {});
+	else mse.UIObject.call(this, container, param?param:{});
+	this.objs = {};
+	this.animes = [];
+	this.duration = duration;
+	this.repeat = repeat;
+	this.state = 0;
+	this.startCb = new mse.Callback(this.start, this);
+	this.block = false;
+};
+extend(mse.Animation, mse.UIObject);
+$.extend(mse.Animation.prototype, {
+    addObj: function(name, obj){
+        if(obj instanceof mse.UIObject){
+            this.objs[name] = obj;
+            if(this.statiq) obj.parent = this;
+        }
+    },
+    getObj: function(name){
+        return this.objs[name];
+    },
+    addAnimation: function(objname, keyFrameMap, notransition){
+        if(!this.objs[objname]) return;
+        var anime = new mse.KeyFrameAnimation(this.objs[objname], keyFrameMap, this.repeat);
+        if(anime) {
+            if(notransition) anime.setNoTransition();
+            this.animes.push(anime);
+        }
+    },
+    start: function(){
+        this.state = 1;
+        if(this.statiq && $.inArray(this, mse.root.animes) == -1) {
+            for(var i in this.animes)
+                this.animes[i].resetAnimation();
+            mse.root.animes.push(this);
+        }
+        else if(!this.statiq && $.inArray(this, mse.root.animations) == -1) {
+            for(var i in this.animes)
+                this.animes[i].resetAnimation();
+            mse.root.animations.push(this);
+        }
+        this.evtDeleg.eventNotif('start');
+    },
+    pause: function(){
+        this.state = 0;
+    },
+    logic: function(delta){
+        if(this.state){
+            for(var i in this.animes)
+        	    this.animes[i].logic(delta);
+        	    
+        	for(var i in this.animes){
+        	    if(!this.animes[i].isEnd())
+        	        return false;
+        	}
+        	this.state = 0;
+        	return false;
+        }
+        else {
+            this.evtDeleg.eventNotif('end');
+            return true;
+        }
+    },
+    draw: function(ctx){
+        for(var key in this.objs)
+            this.objs[key].draw(ctx);
+    }
+});
+
+
+
+})(window, $);
+
+// System of script
+(function (mse, $) {
+
+	var defaultEvents = ['click', 'doubleClick', 'longPress', 'move', 'swipe', 'gestureStart', 'gestureUpdate', 'gestureEnd', 'gestureSingle', 'keydown', 'keypress', 'keyup', 'scroll', 'swipeleft', 'swiperight'];
+	
+	mse.Script = function(cds) {
+		if(!cds) return;
+		this.scripts = [];
+		this.states = {};
+		this.expects = {};
+		this.success = {};
+		
+		// Initialize script
+		for(var i in cds) {
+			var id = "c"+i;
+			this.states[id] = cds[i].initial ? cds[i].expect : "";
+			this.expects[id] = cds[i].expect ? cds[i].expect : "everytime";
+			this.success[id] = false;
+			var src = cds[i].src;
+			src.addListener(cds[i].type, new mse.Callback(this.conditionChanged, this, [id]), false);
+		}
+	};
+	mse.Script.prototype = {
+	    constructor: mse.Script,
+	    invoke: function() {
+	        for(var i in this.scripts) {
+//			    if(this.scripts[i].delay) setTimeout(this.scripts[i].delay, );
+				if(typeof(this.scripts[i].script) == 'function') this.scripts[i].script.call(this);
+				else this.scripts[i].script.invoke();
+	        }
+		},
+		checkConditions: function() {
+			for(var i in this.success)
+				if(!this.success[i]) return;
+				
+			this.invoke();
+		},
+		conditionChanged: function(id, state) {
+			if(this.expects[id] == "everytime" || (this.expects[id]== "once" && this.states[id] != "triggered")) {
+				this.success[id] = true;
+				this.checkConditions();
+			}
+			this.states[id] = (typeof(state)=="string" ? state : "triggered");
+		},
+		register: function(script, delay) {
+		    if((script.invoke instanceof mse.Callback) || typeof(script) == 'function') {
+		        this.scripts.push({'script':script, 'delay':delay?delay:0});
+		    }
+		}
+	};
+
+
+})(mse, $);
+
+
+
+
+// System of 2D coordinates
+(function (window, mse) {
+
+
+    mse.Point2 = function(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    window.crePoint2 = function(x,y) {
+        return new mse.Point2(x,y);
+    }
+
+
+})(window, mse);
+
+
+// Language System for game
+(function (window, mse) {
+
+    mse.LanguageRessource = function( defaultLang ){
+        if(!defaultLang) defaultLang = 'anglais';
+        this.defaultLang = defaultLang;
+        this.currentLang = defaultLang;
+        
+        this.content = {};
+    };
+    mse.LanguageRessource.prototype = {
+        addElem: function(id, ressources){
+            // ressources = {langue1: contentLn1, langue2:contentLn2}
+            // type of content are choosed by the user
+            this.content[id] = ressources;
+            if(!ressources[this.defaultLang]) {
+                for(var i in ressources) break; // just get an existing langue in ressources
+                this.content[id][this.defaultLang] = ressources[i];
+                
+                console.error('translation missing in "'+this.defaultLang+ '" for "'+id+'" replaced by translation in "'+i+'"');
+            }
+        },
+        getElem: function(id){
+            if(this.content[id][this.currentLang])
+                return this.content[id][this.currentLang];
+                
+            else if(this.content[id][this.defaultLang])
+                return this.content[id][this.defaultLang];
+                
+            else // just a protection, normally never call
+                console.error( 'no translation for "'+id+'" in languages : '+this.currentLang+' or '+this.defaultLang );
+        },
+        setCurrentLang: function(lang){
+            if(typeof lang == 'string')
+                this.currentLang = lang;
+        },
+        getAllLangFor: function(id){
+            return this.content[id] || null;
+        }
+    };
+
+})(window, mse);

@@ -29,6 +29,7 @@
 	    echo Asset::js('lib/jquery-latest.js');
 	    echo Asset::js('lib/jquery.scrollTo-1.4.2-min.js');
 	    echo Asset::js('lib/jquery.parallax-1.1.3.js');
+	    echo Asset::js('config.js');
 	    echo Asset::js('template.js');
 	    echo Asset::js($js_supp);
 	?>
@@ -190,7 +191,7 @@
 <?php echo $content; ?>
 
 	<footer>
-	    <ul><li class="fb_btn"></li><li class="twitter_btn"></li></ul>
+	    <ul><li class="fb_btn"></li><!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
 		<p><label>Contacts</label> - <label>Mentions légales</label> - <label>Conditions générales de vente</label></p>
 	</footer>

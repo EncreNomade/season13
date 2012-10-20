@@ -8,9 +8,10 @@ var config = {
 
 var sections = {
     'accueil' : 0,
-    'episode' : 250,
-    'concept' : 670
+    'episode' : 250
 }
+
+var dateReg = /^\d{4}-\d{2}-\d{2}$/;
 
 function scrollUpdate(){
 	var pos = elems.container.scrollTop();
@@ -67,12 +68,28 @@ function activeEpisode(id) {
     elems.ep_expos.css( 'left', -config.expo_width * id );
     var expo = elems.ep_expos.children('.expo:eq('+id+')');
     elems.ep_title.children('h2').text( titleContent(expo.data('episode'), expo.data('title')) );
-    var dispo = expo.data('dispo').toUpperCase();
-    elems.ep_title.children('.ep_play').text(dispo);
-    if(dispo.match('VOIR'))
-        elems.ep_title.add(elems.ep_expos).removeClass('indispo');
-    else
+    
+    // Availability
+    var ddaystr = expo.data('dday');
+    var today = new Date();
+    if(dateReg.test(ddaystr)) {
+        var arr = ddaystr.split("-", 3);
+        var dday = new Date();
+        dday.setFullYear(arr[0], arr[1]-1, arr[2]);
+        // Available
+        if(dday <= today) {
+            elems.ep_title.children('.ep_play').text("VOIR L'EPISODE").prop('href', window.config.publicRoot+"story?ep="+expo.data('id'));
+            elems.ep_title.add(elems.ep_expos).removeClass('indispo');
+        }
+        else {
+            elems.ep_title.children('.ep_play').text("Disponible le "+arr[2]+"/"+arr[1]).prop('href', "");
+            elems.ep_title.add(elems.ep_expos).addClass('indispo');
+        }
+    }
+    else {
+        elems.ep_title.children('.ep_play').text("Indisponible").prop('href', "");
         elems.ep_title.add(elems.ep_expos).addClass('indispo');
+    }
 }
 
 function init() {
@@ -114,6 +131,8 @@ function init() {
 	if(current_section) {
 	    gotoSection(current_section);
 	}
+	
+	activeEpisode(0);
 }
 
 $(window).ready(init);

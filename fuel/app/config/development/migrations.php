@@ -12,6 +12,8 @@ return array(
 				3 => '002_create_posts',
 				4 => '003_create_admin_13posts',
 				5 => '004_create_uploads',
+				6 => '005_create_13comments',
+				7 => '006_create_admin_13comments',
 			),
 		),
 		'module' => 
