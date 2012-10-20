@@ -190,6 +190,7 @@ addEventListener("load", function(){
             <ul>
                 <li id="ctrl_speedup"><?php echo Asset::img('ui/wheel_turtle.png'); ?></li>
                 <li id="ctrl_slowdown"><?php echo Asset::img('ui/wheel_rabbit.png'); ?></li>
+                <li id="ctrl_playpause"><?php echo Asset::img('ui/wheel_pause.png'); ?></li>
                 <li id="ctrl_comment"><?php echo Asset::img('ui/wheel_comment.png'); ?></li>
                 <li id="ctrl_like"><?php echo Asset::img('ui/wheel_like.png'); ?></li>
             </ul>
