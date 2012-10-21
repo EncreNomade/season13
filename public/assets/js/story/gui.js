@@ -165,14 +165,6 @@ gui.openPref = function() {
     }
 }
 
-gui.openControler = function(e) {
-    gui.controler.css({'left':e.offsetX, 'top':e.offsetY});
-    gui.controler.addClass('show');
-}
-gui.hideControler = function() {
-    gui.controler.removeClass('show');
-}
-
 gui.openhideUploader = function(e) {
     if(e) e.stopPropagation();
     if(!gui.uploader.hasClass('show')) {
@@ -224,6 +216,33 @@ gui.fb.init = function() {
                 console.log('Error: '+result.error.message+'');
             }
         });
+    });
+}
+gui.fb.like = function(){
+    FB.getLoginStatus(function(response){
+        if (response.status === 'connected') { // do only if connected
+            FB.api('/me/og.likes', 'post', { object:location.href }, function(res) {
+                if (!res || res.error) {
+                    if(res.error.code == 3501) { // already like it !
+                        msgCenter.send('Tu aimes déjà cette page');
+                        return;
+                    }
+                    // console.error(res);
+                    if(confirm("Une erreur s'est produite lors de l'envoie. Réessayes ?"))
+                        gui.fb.connect(gui.fb.like);
+                } 
+                else {
+                    var msg = $('<p>Tu as aimé cette page sur Facebook. </p>');
+                    if(gui.fb.user)
+                        msg.append('<a href="'+gui.fb.user.link+'">Voir.</a>');
+                    msgCenter.send(msg);
+                }
+            });
+        }
+        else if(confirm("Il faut être connecté à Facebook pour poster un like. Tu veux te connecter?")){
+            // not connected and
+            gui.fb.connect(gui.fb.like);
+        }
     });
 }
 gui.fb.post = function(imgUrl, msg, position, successCB, failCB){
@@ -461,6 +480,15 @@ $(window).load(function() {
     gui.speedctrl = new gui.Slider(200, 16, gui.pref.children('p:eq(1)'), 8);
     gui.audioctrl.jqObj.css('left', 70);
     gui.speedctrl.jqObj.css('left', 70);
+    // Observer to audio
+    gui.audioctrl.observe('value', new Callback(mse.src.setVolume, mse.src));
+// Speed observation a little bit strange, because there are two models
+    mse.ArticleLayer.prototype.observe('speedLevel', new Callback(function(level) {
+            gui.speedctrl.setvalue(level);
+        }, null));
+    gui.speedctrl.observe('value', new Callback(function(level) {
+            mse.ArticleLayer.prototype.speedLevel = level;
+        }, null));
     
     // Controler activation
     gui.controler.children('#circle').click(function() {
@@ -472,6 +500,24 @@ $(window).load(function() {
 /*    gui.controler.mouseout(function() {
         gui.controler.find('li').removeClass('active');
     });*/
+    
+    // Controler interaction
+    $('#ctrl_playpause').click(function() {
+        mse.currTimeline.playpause();
+        if(mse.currTimeline.inPause) {
+            $(this).html('<img src="'+config.publicRoot+'assets/img/ui/wheel_play.png"/>');
+        }
+        else $(this).html('<img src="'+config.publicRoot+'assets/img/ui/wheel_pause.png"/>');
+    });
+    $('#ctrl_speedup').click(function() {
+        mse.ArticleLayer.prototype.setspeedLevel(mse.ArticleLayer.prototype.speedLevel - 1);
+    });
+    $('#ctrl_slowdown').click(function() {
+        mse.ArticleLayer.prototype.setspeedLevel(mse.ArticleLayer.prototype.speedLevel + 1);
+    });
+    $('#ctrl_like').click(function() {
+        gui.fb.like();
+    });
     
     
     // Open Comment

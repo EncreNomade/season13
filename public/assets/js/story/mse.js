@@ -626,10 +626,6 @@ mse.Root = function(id, width, height, orientation) {
 	// Game element
 	this.gamewindow = new mse.GameShower();
 	
-	// Add controler panel activation event
-	this.evtDistributor.addListener('longPress', new mse.Callback(this.openControler, this), true);
-	this.hideControlerCb = new mse.Callback(this.hideControler, this);
-	
 	// Capture screen callbacks
 	this.capturecb = new mse.Callback(this.captureHandler, this);
 	
@@ -687,20 +683,6 @@ mse.Root.prototype = {
     	}
     	else this.setContainer(container);
     	mse.fadein(container, 20);
-    },
-    openControler: function(e) {
-        mse.currTimeline.pause();
-        if(MseConfig.mobile) {
-            e.offsetX -= mse.root.viewport.x;
-            e.offsetY -= mse.root.viewport.y;
-        }
-        gui.openControler(e);
-        this.evtDistributor.addListener('click', this.hideControlerCb, true);
-    },
-    hideControler: function() {
-        gui.hideControler();
-        this.evtDistributor.removeListener('click', this.hideControlerCb);
-        mse.currTimeline.play();
     },
     inObj: function(x,y) {return true;},
     	
@@ -1615,7 +1597,7 @@ $.extend( mse.ArticleLayer.prototype , {
 		this.complete = false;
 		this.endId = 0;
 		this.setSlider();
-		
+		/*
 		this.ctrUI = new mse.Layer(this.parent, this.zid+1, {pos:[this.offx+(this.width-250)/2,this.offy+this.height-50], size:[250,50]});
 		this.parent.addLayer('CTRLUI', this.ctrUI);
 		this.ctrUI.accelere = new mse.Image(this.ctrUI, {pos:[220,10],size:[30,30]}, 'accelerBn');
@@ -1676,7 +1658,7 @@ $.extend( mse.ArticleLayer.prototype , {
 		// Listener to scroll the layer with up down buttons
 		this.ctrUI.addListener('gestureStart', new mse.Callback(this.ctrUI.upDownStart, this.ctrUI), true);
 		this.ctrUI.addListener('gestureEnd', new mse.Callback(this.ctrUI.upDownEnd, this.ctrUI), true);
-		
+		/*
 		// Key event for control of speed
 		this.speedCtr = function(e) {
 			switch(e.keyCode) {
@@ -1689,7 +1671,7 @@ $.extend( mse.ArticleLayer.prototype , {
 			}
 		};
 		cb = new mse.Callback(this.speedCtr, this);
-		//this.addListener('keydown', cb);
+		this.addListener('keydown', cb);*/
 	},
 	setSlider : function() {
 		// Slider

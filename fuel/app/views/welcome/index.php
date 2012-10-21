@@ -18,10 +18,8 @@
     </div>
     <div id="btns" class="layer">
         <ul>
-<?php if(is_null($current_user)): ?>
             <!--<li id="open_login2"><a>SE CONNECTER</a></li>-->
-            <li id="ep1"><a>DÉCOUVRIR GRATUITEMENT</a></li>
-<?php endif; ?>
+            <li id="ep1"><a href="/story?ep=1&source=discoverbtn">DÉCOUVRIR GRATUITEMENT</a></li>
         </ul>
     </div>
     

@@ -58,6 +58,10 @@ function init() {
     $('.dialog .close').click(function() {
         hideDialog();
     });
+    
+    $('#cpt_banner, #actu_banner').click(function() {
+        window.location = "/story?ep=1&source=banner";
+    });
 
     $('#signup_dialog form').submit(function(e) {
         // Stop full page reload

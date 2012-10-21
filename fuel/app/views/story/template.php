@@ -109,7 +109,6 @@ addEventListener("load", function(){
             </div>
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
-            <h2>PLAY</h2>
         </div>
     </header>
     
