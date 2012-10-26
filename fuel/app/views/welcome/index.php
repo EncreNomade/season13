@@ -19,15 +19,15 @@
     <div id="btns" class="layer">
         <ul>
             <!--<li id="open_login2"><a>SE CONNECTER</a></li>-->
-            <li id="ep1"><a href="/story?ep=1&source=discoverbtn">DÉCOUVRIR GRATUITEMENT</a></li>
+            <li id="ep1"><a href="<?php echo $remote_path; ?>story?ep=1&source=discoverbtn">DÉCOUVRIR GRATUITEMENT</a></li>
         </ul>
     </div>
     
     <div id="episodes_section" class="layer">
         <div id="episodes">
             <div id="expos">
-<?php foreach ($admin_13episodes as $admin_13episode): ?>
-    <?php if(!isset($current_ep)) $current_ep = $admin_13episode; ?>
+            <?php foreach ($admin_13episodes as $admin_13episode): ?>
+                <?php if(!isset($current_ep)) $current_ep = $admin_13episode; ?>
                 <div class="expo" 
                      data-id="<?php echo stripslashes($admin_13episode->id); ?>"
                      data-title="<?php echo stripslashes($admin_13episode->title); ?>"
@@ -35,9 +35,11 @@
                      data-bref="<?php echo stripslashes($admin_13episode->bref); ?>"
                      data-path="<?php echo $admin_13episode->path; ?>"
                      data-dday="<?php echo $admin_13episode->dday; ?>">
-    <?php echo Asset::img($admin_13episode->image); ?>
+                     
+                    <?php echo Html::img($admin_13episode->image); ?>
+                    
                 </div>
-<?php endforeach; ?>
+            <?php endforeach; ?>
             </div>
             <div class="ep_title">
                 <h2><?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?></h2>
@@ -50,13 +52,13 @@
                 </div>
             -->
                 <ul>
-<?php foreach ($admin_13episodes as $admin_13episode): ?>
-    <?php if($current_ep == $admin_13episode): ?>
+                <?php foreach ($admin_13episodes as $admin_13episode): ?>
+                    <?php if($current_ep == $admin_13episode): ?>
                     <li class="active"><?php echo '#'.$admin_13episode->episode; ?></li>
-    <?php else: ?>
+                    <?php else: ?>
                     <li><?php echo '#'.$admin_13episode->episode; ?></li>
-    <?php endif; ?>
-<?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
                 </ul>
             <!--
                 <div id="ep_next_btn">

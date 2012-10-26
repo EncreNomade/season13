@@ -1,13 +1,3 @@
-.main_container {
-    position: absolute;
-    top: 160px;
-    left: 0px;
-    width: 100%;
-    height: auto;
-    z-index: 1;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
 .center {
     position: absolute;
     left: 50%;
@@ -23,25 +13,26 @@
 #back {
     width: 100%;
     height: 600px;
+    overflow: hidden;
 }
 #back img {
     width: 100%;
 }
 
 #booktitle {
-    left: 32%;
+    left: 36%;
     top: 50px;
     background: transparent;
-    width: 336px;
-    height: 107px;
+    width: 370px;
+    height: 116px;
     z-index: 3;
 }
 
 #bookresume {
-    left: 32%;
+    left: 36%;
     top: 195px;
     background: transparent;
-    width: 540px;
+    width: 450px;
     z-index: 2;
 }
 #bookresume p {
@@ -54,7 +45,7 @@
     right: 20px;
     top: 340px;
     background: transparent;
-    z-index: 4;
+    z-index: 5;
 }
 #btns ul {
     margin: 0px;
@@ -80,9 +71,10 @@
 #simon {
     left: 85px;
     top: 90px;
-    background-image: url('../img/illus/simonHD.png');
+    bottom: 0px;
+    background: transparent url('../img/illus/simonHD.png') no-repeat left top;
     width: 284px;
-    height: 655px;
+    height: auto/*655px*/;
     z-index: 5;
 }
 

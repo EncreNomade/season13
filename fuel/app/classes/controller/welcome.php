@@ -13,7 +13,7 @@ class Controller_Welcome extends Controller_Template
 {
 
     public function before()
-    {
+    {        
     	parent::before();
     	
     	// Assign current_user to the instance so controllers can use it
@@ -21,6 +21,7 @@ class Controller_Welcome extends Controller_Template
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
+    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
     	
     	// Set supplementation css and js file
         $this->template->css_supp = '';
@@ -47,7 +48,7 @@ class Controller_Welcome extends Controller_Template
 	    // Data
 	    $data['admin_13episodes'] = Model_Admin_13episode::find('all');
 	
-	    $this->template->title = 'Welcome';
+	    $this->template->title = 'SEASON13';
 	    // Set supplementation css and js file
 	    $this->template->css_supp = 'welcome.css';
 	    $this->template->js_supp = 'welcome.js';
@@ -63,6 +64,8 @@ class Controller_Welcome extends Controller_Template
 	 */
 	public function action_404()
 	{
-		return Response::forge(ViewModel::forge('welcome/404'), 404);
+		$this->template->title = 'SEASON13';
+		
+		$this->template->content = View::forge('welcome/404');
 	}
 }

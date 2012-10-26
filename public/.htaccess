@@ -9,3 +9,6 @@ SetEnv REGISTER_GLOBALS 0
 
     RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
+
+# disable directory browsing 
+Options All -Indexes

@@ -1,1 +1,570 @@
-eval(function(B,D,A,G,E,F){function C(A){return A<62?String.fromCharCode(A+=A<26?65:A<52?71:-4):A<63?'_':A<64?'$':C(A>>6)+C(A&63)}while(A>0)E[C(G--)]=D[--A];return B.replace(/[\w\$]+/g,function(A){return E[A]==F[A]?A:E[A]})}('C8.z=(2(N,I){h S=q,U=document.createElement("canvas"),M,d,Bk,L,BC,R,C,J,BW,c,Q,H=U.Bh("BQ"),CF,CH,Bm,F,Cg,G,C$,CL,Bl,CE,BX,O=["#201b21","#ef1c22","#f77100","#ffdf1a","#21d708","#0182e7","#914ce4"],a=[CZ,Y,BG,DV,DW],e,f,B$,Ch,BB,BA,P,T,K={s:"p"},CG,D,CB,Cn=2(Z){b(isNaN(Z)){v;}b(K.s!="By"){J.BI=a[Z];}o{J.BI=a[Z]+BG;}c.BI=a[Z];c.Bv(V,V,BS,BS);c.Bc();c.Bi(B8,Y);c.B1(-BG,B9,CN,B_,Y,B4);c.Bd();CE.j("k",B2*(Z+W)-X);},DT=2(A){BX.4().Bt("y");BX.4().Cu(A).CP("y");G.j("Ct",O[A]);J.Ba=O[A];c.Ba=O[A];Q.Ba=O[A];c.Bv(V,V,BS,BS);Q.Bv(V,V,BS,300);c.Bc();c.Bi(B8,Y);c.B1(-BG,B9,CN,B_,Y,B4);c.Bd();for(h B=V;B<a.length;++B){h Z=X+B*B2;Q.BI=a[B];Q.Bc();Q.Bi(B8,Y+Z);Q.B1(-BG,B9+Z,CN,B_+Z,Y,B4+Z);Q.Bd();}},Cj=2(a){h Z=M.4("Cp").4();Z.Bt("y");Z.Cu(a).CP("y");},E=2(Z,A){S.7.t=Z;S.7.w=A;J.Bw="u";J.Bz="u";J.BI=a[S.Bs];J.Ba=O[S.Bx];J.BF(U,V,V);},Cm=2(a){b(a.m=="Bg"){C2(a);}o{b(a.m=="8"){Bn(a);}}};CG=i 3(Cm,q);h Cd=2(a){b(K.s!="p"){v;}e=a.BK;f=a.BL;P=d.t();T=d.w();N("BY").$().$("9","_",CG);U.t=P;U.w=T;H.BF(S.7,V,V);K.s="B7";},C2=2(Z){b(K.s!="B7"){v;}h A=Z.BK-e,B=Z.BL-f,a=P+A,C=T+B;b(a<Bu||C<Bu){v;}d.j({t:a,w:C});E(a,C);},Bn=2(a){b(K.s!="B7"){v;}K.s="p";N("BY").$("destroy");},Cr=2(a){b(K.s!="p"){v;}e=a.C5;f=a.C6;BB=M.5().n;BA=M.5().k;N("BY").Cy(Bj).Ci(CC);K.s="CI";},CC=2(a){b(K.s!="CI"){v;}h Z=a.C5-e,A=a.C6-f,C=BB+Z,B=BA+A;M.j({n:C,k:B});},Bj=2(a){b(K.s!="CI"){v;}K.s="p";N("BY").CU("Cy",Bj);N("BY").CU("Ci",CC);},BT=2(a){b(K.s!="p"){v;}e=a.BZ;f=a.BJ;J.Bc();J.Bi(e,f);K.s="B3";},Cs=2(a){b(K.s!="B3"){v;}h A=a.BZ,Z=a.BJ;J.C0(A,Z);J.Bd();},B=2(a){b(K.s!="B3"){v;}K.s="p";},CY=2(a){b(K.s!="p"){v;}e=a.BZ;f=a.BJ;N(l).j("cursor","default");J.DI();J.globalCompositeOperation="copy";J.Ba="rgba(V,V,V,V)";J.BI+=BG;J.Bc();J.Bi(e,f);K.s="By";},Cq=2(a){b(K.s!="By"){v;}h A=a.BZ,Z=a.BJ;J.C0(A,Z);J.Bd();},CA=2(a){b(K.s!="By"){v;}J.DQ();K.s="p";},Cc=2(a){b(a.m=="Bg"){Z(a);}o{b(a.m=="8"){BH(a);}}};D=i 3(Cc,q);h A=2(a){b(K.s!="p"){v;}e=a.BK;f=a.BL;BB=S.x[V];BA=S.x[W];d.$("9","_",D);K.s="CW";},Z=2(a){b(K.s!="CW"){v;}h Z=a.BK-e,A=a.BL-f,C=BB+Z,B=BA+A;S.B5([C,B]);L.j({n:C+S.0[V]/X,k:B+S.0[W]/X});},BH=2(a){b(K.s!="CW"){v;}K.s="p";d.$("9","_",S.g.BN);},DX=2(a){BW.Bv(V,V,S.0[V],S.0[W]);},Ck=2(a){b(a.m=="Bg"){BU(a);}o{b(a.m=="8"){CV(a);}}};CB=i 3(Ck,q);h Ce=2(a){b(K.s!="p"){v;}e=a.BK;f=a.BL;h E=R.5();BB=E.n;BA=E.k;h A=BC.5().n,D=BC.5().k,B=R.5().n,C=R.5().k;B$=Co(A,D,B,C);Ch=mseAngleForLine(A,D,B,C);h Z=N(S.6);P=Z.t();T=Z.w();U.t=P;U.w=T;H.BF(S.6,V,V);d.$("9","_",CB);K.s="CQ";},BU=2(Z){b(K.s!="CQ"){v;}h A=Z.BK-e,B=Z.BL-f;b(A==V&&B==V){v;}h BT=-BR,BU=-BR,I=BB+A,BH=BA+B,H=Co(BT,BU,I,BH),C=angleForLine(BT,BU,I,BH);R.j({n:H*r.cos(C)-BR,k:H*r.sin(C)-BR});Bk.j({n:-H,k:-H,t:H*X,w:H*X,"C_-DD":H});h a=H/B$,G=P*a,F=T*a,E=L.5().n,D=L.5().k;S.B5([E-G/X,D-F/X]);S.DL([G,F]);S.C9(r.u(CD*C/(r.CS)));BW.BF(U,V,V,P,T,V,V,G,F);},CV=2(a){b(K.s!="CQ"){v;}K.s="p";d.$("9","_",S.g.BN);},Bp=2(){l.CJ();};Bp.prototype={BD:q,6:q,7:q,Bs:V,Bx:V,Br:V,x:[V,V],0:[V,V],Bb:V,DE:2(a){N(l.6).j({n:a[V],k:a[W]});},DU:2(a){l.6.t=a[V];l.6.w=a[W];l.6.Cz.t=a[V];l.6.Cz.w=a[W];N(l.6).j({t:a[V],w:a[W]});},DF:2(a){N(l.6).j({"-webkit-BV":"BM("+a+"Bf)","-moz-BV":"BM("+a+"Bf)","-ms-BV":"BM("+a+"Bf)","-Bj-BV":"BM("+a+"Bf)",BV:"BM("+a+"Bf)"});},DN:2(Z){h a=ptRotated(Z.BZ,Z.BJ,l.x[V]+l.0[V]/X,l.x[W]+l.0[W]/X,r.CS*l.Bb/CD),A=a.Bn-l.x[V],B=a.Bm-l.x[W];b(A>=V&&A<=l.0[V]&&B>=V&&B<=l.0[W]){v true;}o{v false;}},Cf:2(a){b(a.m=="BO"){BT(a);}o{b(a.m=="Bg"){Cs(a);}o{b(a.m=="8"){B(a);}}}},DA:2(a){b(a.m=="BO"){CY(a);}o{b(a.m=="Bg"){Cq(a);}o{b(a.m=="8"){CA(a);}}}},DR:2(a){b(a.m=="BO"){Cd(a);}o{b(a.m=="8"){Bn(a);}}},DK:2(a){b(a.m=="BO"){A(a);}o{b(a.m=="8"){BH(a);}}},Cv:2(a){b(a.m=="BO"){Ce(a);}o{b(a.m=="8"){CV(a);}}},BN:2(a){b(a.m=="BO"){b(!L.hasClass("y")&&l.DN(a)){h A=l.x[V]+l.0[V]/X,Z=l.x[W]+l.0[W]/X;L.j({n:A,k:Z}).CP("y");}o{L.Bt("y");}}},BP:2(){N(l.7).CU("CR").$("B0","_");d.$("B0","_");L.Bt("y");},DP:2(a){switch(a){CK V:l.BP();h Z=N(l.6);d.$("9","_",l.g.BN);CO;CK W:l.BP();N(l.7).$("9","_",l.g.C7).CR(B);CO;CK X:l.BP();N(l.7).$("9","_",l.g.DS).CR(CA);CO;}},showWithImg:2(A,Z,a){I.center.append(I.z.BD);l.BD.show();l.BD.j({n:-(Z>Cb?Z:Cb)/X,k:-(Bu+a)/X});d.j({t:Z,w:a});l.7.t=Z;l.7.w=a;l.B5([V,V]);l.DL([Z,a]);l.C9(V);l.DB(V);l.DJ(V);l.Cw(W);Bk.j({n:-CM,k:-CM,t:CX,w:CX,"C_-DD":CM});R.j({n:Bu,k:-BR});BC.$("9","_",l.g.C4);R.$("9","_",l.g.Cl);J.Bw="u";J.Bz="u";BW.putImageData(A,V,V);},Bo:2(){l.BP();BC.$("B0","_");R.$("B0","_");l.BD.DM();},CJ:2(){CF=N("#z .Bo");CH=N("#z #sb_confirm");Bm=N("#z .CT");M=N("#z .1");F=N("#z .anchor");Cg=N("#z .1 #sb_img");G=N("#z .1 #sb_pencil").j("Ct",O[V]);BX=N("#z .1 #sb_colorset");C$=N("#z .1 #sb_eraser");CL=N("#z .1 #sb_size");Bl=N("#z .1 #sb_sizeset");CE=N("#z .1 #sb_sizebloc");d=N("#z .canvas_container");Bk=N("#z .circle");L=N("#z #circle_center");BC=L.4(".moveicon");R=L.4(".dragicon");C=L.4(".deleteicon");c=CL.Bq(V).Bh("BQ");Q=Bl.Bq(V).Bh("BQ");c.Cx=O[V];Q.Cx=O[V];c.Bw="u";c.Bz="u";Q.Bw="u";Q.Bz="u";h a=l;l.BD=N("#z");l.6=N("#z #sb_imgcanvas").Bq(V);l.7=N("#z #sb_drawcanvas").Bq(V);J=l.7.Bh("BQ");BW=l.6.Bh("BQ");mmvc.makeModel(l,["Bs","Bx","Br","0","x","Bb"]);l.BE("Bs",i 3(Cn,q));l.BE("Bx",i 3(DT,q));l.BE("Br",i 3(Cj,q));l.BE("Br",i 3(l.DP,l));l.BE("0",i 3(l.DU,l));l.BE("x",i 3(l.DE,l));l.BE("Bb",i 3(l.DF,l));N(l.7).$();BC.$();R.$();d.$();l.g={C7:i 3(l.Cf,l),DS:i 3(l.DA,l),CT:i 3(l.DR,l),C4:i 3(l.DK,l),Cl:i 3(l.Cv,l),BN:i 3(l.BN,l)};CF.C3("Be",{z:l},2(a){h A=a.B6.z.6,Z=A.DO();a.B6.z.Bo();I.DC();I.DG(Z,"C1");});CH.C3("Be",{z:l},2(a){h A=a.B6.z;U.t=A.7.t;U.w=A.7.w;H.DI();H.DH(A.x[V]+A.0[V]/X,A.x[W]+A.0[W]/X);H.BM(r.CS*A.Bb/CD);H.DH(-A.0[V]/X,-A.0[W]/X);H.BF(A.6,V,V);H.DQ();H.BF(A.7,V,V);h Z=U.DO();A.Bo();I.DC();I.DG(Z,"C1");});BX.4().Ca(2(Z){N(l).Be(2(){a.DJ(Z);});});Bl.Be(2(Z){h A=r.floor(Z.BJ/B2);a.DB(A);});Bm.$().$("9","_",l.g.CT);F.mousedown(Cr);M.4("Cp").4("li:lt(CZ)").Ca(2(Z){N(l).Be(2(){a.Cw(Z);});});l.BD.DM();}};v{CJ:2(){b(!(S instanceof Bp)){S=i Bp();}I.z=S;}};}(jQuery,C8));','G|I|J|K|R|S|T|W|Y|Z|d|f|h|i|j|q|0|1|2|4|_|$|if|$0|F0|I0|J0|cb|var|new|css|top|this|type|left|else|none|null|Math|manip|width|round|return|height|imgPos|active|scriber|imgSize|toolbox|function|Callback|children|position|imgCanvas|drawCanvas|gestureEnd|addListener|gestureSingle|mseInteraction|b|a|r|jq|observe|drawImage|5|L|lineWidth|offsetY|windowX|windowY|rotate|showImgTools|gestureStart|desactiveTools|2d|25|32|F|H|transform|l|v|body|offsetX|strokeStyle|imgRot|beginPath|stroke|click|deg|gestureUpdate|getContext|moveTo|o|t|H0|y|x|close|A0|get|toolid|sizeid|removeClass|50|clearRect|lineCap|colorid|Erase|lineJoin|removeListener|bezierCurveTo|40|Draw|30|setimgPos|data|CanvasResize|15|16|12|G0|e|c|m|180|u|s|p|z|ToolboxMove|init|case|B0|75|56|break|addClass|ImgResize|mouseout|PI|resize|unbind|K0|ImgMove|150|E0|3|each|210|M|N|O|drawHandler|U|V|mousemove|Q|P|resizeimg|X|g|distance2Pts|ul|n|k|w|background|eq|resizeImgHandler|settoolid|strokeColor|mouseup|style|lineTo|base64|D0|bind|moveimg|pageX|pageY|draw|gui|setimgRot|border|_0|eraseHandler|setsizeid|openComment|radius|updateImagePos|updateImageRot|setCommentImage|translate|save|setcolorid|moveImgHandler|setimgSize|detach|inImgCanvas|toDataURL|activeTool|restore|resizeHandler|erase|L0|updateImageSize|6|7|C0'.split('|'),211,215,{},{}))
+// Scriber singleton
+gui.scriber = (function($, gui) {
+
+    var scriber = null;
+    
+    // =======================================Private variables
+    var backupCanvas = document.createElement('canvas');
+    var toolbox, toolbox_list, canvasContainer, circle, toolsCenter, imgMover, imgResizer, imgDeleter;
+    var ctx, imgctx, sizesetctx, backupCtx = backupCanvas.getContext('2d');
+    var closeBn, confirmBn, resizeBn, imgBn, drawBn, eraseBn, sizeset, sizebloc, colorset;
+    var colors = ['#201b21', '#ef1c22', '#f77100', '#ffdf1a', '#21d708', '#0182e7', '#914ce4'];
+    var sizes = [2, 3.5, 5, 6.5];
+    var startx, starty, startr, starta, originx, originy, originw, originh;
+    var curr = {
+        manip: "none"
+    };
+    var resizeCb, moveImgCb, resizeImgCb;
+    
+    // =======================================Private functions
+    
+    // Property updates
+    var updateSize = function(sid) {
+        if(isNaN(sid)) return;
+        
+        if(curr.manip != 'Erase') ctx.lineWidth = sizes[sid];
+        else ctx.lineWidth = sizes[sid] + 5;
+        
+        sizebloc.css('left', 37 * sid - 1);
+    };
+    
+    var updateColor = function(cid) {
+        colorset.children('li').removeClass('active').eq(cid).addClass('active');
+        
+        ctx.strokeStyle = colors[cid];
+        sizesetctx.strokeStyle = colors[cid];
+        
+        sizesetctx.clearRect(0, 0, 32, 300);
+        // Size set canvas update
+        for(var i = 0; i < sizes.length; ++i) {
+            var offset = i*37;
+            sizesetctx.fillStyle = '#fff';
+            sizesetctx.fillRoundRect(offset+1, 5, 25, 25, 4);
+            sizesetctx.lineWidth = sizes[i];
+            sizesetctx.beginPath();
+            sizesetctx.moveTo(15+offset, 10);
+            sizesetctx.bezierCurveTo(-5+offset, 16, 46+offset, 12, 6+offset, 25);
+            sizesetctx.stroke();
+        }
+    };
+    
+    // Update current tool
+    var updateToolbox = function(id) {
+        var tools = toolbox_list.children();
+        tools.removeClass('active');
+        tools.eq(id).addClass('active');
+    };
+    
+    // Update draw Canvas
+    var updateCanvas = function(w, h) {
+        scriber.drawCanvas.width = w;
+        scriber.drawCanvas.height = h;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = sizes[scriber.sizeid];
+        ctx.strokeStyle = colors[scriber.colorid];
+        ctx.drawImage(backupCanvas, 0, 0);
+    };
+    
+    
+    // Canvas resize
+    var bodyResizeHandler = function(e) {
+        if(e.type == "gestureUpdate") canvasResizing(e);
+        else if(e.type == "gestureEnd") finiCanvasResize(e);
+    };
+    resizeCb = new Callback(bodyResizeHandler, null);
+    var startCanvasResize = function(e) {
+        if(curr.manip != "none") return;
+        startx = e.windowX;
+        starty = e.windowY;
+        originw = canvasContainer.width();
+        originh = canvasContainer.height();
+        $('body').mseInteraction().mseInteraction('addListener', 'gestureSingle', resizeCb);
+        
+        backupCanvas.width = originw;
+        backupCanvas.height = originh;
+        backupCtx.drawImage(scriber.drawCanvas, 0, 0);
+        
+        curr.manip = "CanvasResize";
+    };
+    var canvasResizing = function(e) {
+        if(curr.manip != "CanvasResize") return;
+        var dx = e.windowX - startx;
+        var dy = e.windowY - starty;
+        var w = originw + dx, h = originh + dy;
+        if(w < 50 || h < 50) return;
+        canvasContainer.css({'width': w, 'height': h});
+        updateCanvas(w, h);
+    };
+    var finiCanvasResize = function(e) {
+        if(curr.manip != "CanvasResize") return;
+        curr.manip = "none";
+        $('body').mseInteraction('destroy');
+    };
+
+    
+    
+    // Draw functions
+    var startDraw = function(e) {
+        if(curr.manip != "none") return;
+        startx = e.offsetX;
+        starty = e.offsetY;
+        
+        ctx.beginPath();
+        ctx.moveTo(startx, starty);
+        
+        curr.manip = "Draw";
+    };
+    var drawing = function(e) {
+        if(curr.manip != "Draw") return;
+        var x = e.offsetX, y = e.offsetY;
+        
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    };
+    var finiDraw = function(e) {
+        if(curr.manip != "Draw") return;
+        curr.manip = "none";
+    };
+    
+    
+    // Eraser functions
+    var startErase = function(e) {
+        if(curr.manip != "none") return;
+        startx = e.offsetX;
+        starty = e.offsetY;
+        
+        $(this).css('cursor', 'default');
+        ctx.save();
+        ctx.globalCompositeOperation = "copy";
+        ctx.strokeStyle = "rgba(0,0,0,0)";
+        ctx.lineWidth += 5;
+        ctx.beginPath();
+        ctx.moveTo(startx, starty);
+        
+        curr.manip = "Erase";
+    };
+    var erasing = function(e) {
+        if(curr.manip != "Erase") return;
+        var x = e.offsetX, y = e.offsetY;
+        
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    };
+    var finiErase = function(e) {
+        if(curr.manip != "Erase") return;
+        ctx.restore();
+        curr.manip = "none";
+    };
+    
+    
+    // Image move function
+    var moveImgHandler = function(e) {
+        if(e.type == "gestureUpdate") imgMoving(e);
+        else if(e.type == "gestureEnd") finiImgMove(e);
+    };
+    moveImgCb = new Callback(moveImgHandler, null);
+    var startMoveImg = function(e) {
+        if(curr.manip != "none") return;
+        startx = e.windowX;
+        starty = e.windowY;
+        originx = scriber.imgPos[0];
+        originy = scriber.imgPos[1];
+        canvasContainer.mseInteraction('addListener', 'gestureSingle', moveImgCb);
+        
+        curr.manip = "ImgMove";
+    };
+    var imgMoving = function(e) {
+        if(curr.manip != "ImgMove") return;
+        var dx = e.windowX - startx;
+        var dy = e.windowY - starty;
+        var x = originx + dx, y = originy + dy;
+        scriber.setimgPos([x, y]);
+        toolsCenter.css({left:x+scriber.imgSize[0]/2, top:y+scriber.imgSize[1]/2});
+    };
+    var finiImgMove = function(e) {
+        if(curr.manip != "ImgMove") return;
+        curr.manip = "none";
+        canvasContainer.mseInteraction('addListener', 'gestureSingle', scriber.cb.showImgTools); 
+    };
+    // Remove image function
+    var deleteImg = function(e) {
+        imgctx.clearRect(0, 0, scriber.imgSize[0], scriber.imgSize[1]);
+    };
+    // Image resize function
+    var resizeImgHandler = function(e) {
+        if(e.type == "gestureUpdate") imgResizing(e);
+        else if(e.type == "gestureEnd") finiImgResize(e);
+    };
+    resizeImgCb = new Callback(resizeImgHandler, null);
+    var startResizeImg = function(e) {
+        if(curr.manip != "none") return;
+        
+        startx = e.windowX;
+        starty = e.windowY;
+        var pos = imgResizer.position();
+        originx = pos.left;
+        originy = pos.top;
+        
+        var ox = imgMover.position().left,
+            oy = imgMover.position().top,
+            rx = imgResizer.position().left,
+            ry = imgResizer.position().top;
+        startr = distance2Pts(ox, oy, rx, ry);
+        starta = mseAngleForLine(ox, oy, rx, ry);
+        
+        var img = $(scriber.imgCanvas);
+        originw = img.width();
+        originh = img.height();
+        
+        backupCanvas.width = originw;
+        backupCanvas.height = originh;
+        backupCtx.drawImage(scriber.imgCanvas, 0, 0);
+        
+        canvasContainer.mseInteraction('addListener', 'gestureSingle', resizeImgCb);
+        curr.manip = "ImgResize";
+    };
+    var imgResizing = function(e) {
+        if(curr.manip != "ImgResize") return;
+        
+        var dx = e.windowX - startx;
+        var dy = e.windowY - starty;
+        if(dx == 0 && dy == 0) return;
+        
+        var ox = -25,
+            oy = -25,
+            rx = originx+dx,
+            ry = originy+dy;
+        var r = distance2Pts(ox, oy, rx, ry);
+        var a = angleForLine(ox, oy, rx, ry);
+        
+        imgResizer.css({left: r*Math.cos(a)-25, top: r*Math.sin(a)-25});
+        
+        circle.css({
+            left: -r,
+            top: -r,
+            width: r*2,
+            height: r*2,
+            'border-radius': r
+        });
+        
+        var scale = r / startr;
+        var w = originw * scale, h = originh * scale;
+        var cx = toolsCenter.position().left, cy = toolsCenter.position().top;
+        scriber.setimgPos([cx-w/2, cy-h/2]);
+        scriber.setimgSize([w, h]);
+        scriber.setimgRot(Math.round(180 * a/(Math.PI)));
+        imgctx.drawImage(backupCanvas, 0, 0, originw, originh, 0, 0, w, h);
+    };
+    var finiImgResize = function(e) {
+        if(curr.manip != "ImgResize") return;
+        curr.manip = "none";
+        canvasContainer.mseInteraction('addListener', 'gestureSingle', scriber.cb.showImgTools);
+    };
+    
+    
+    // =======================================Scriber Class
+    var Scriber = function(){
+        this.init();
+    };
+    Scriber.prototype = {
+        jq: null,
+        imgCanvas: null,
+        drawCanvas: null,
+        sizeid: 0,
+        colorid: 0,
+        toolid: 0,
+        imgPos: [0, 0],
+        imgSize: [0, 0],
+        imgRot: 0,
+        
+        updateImagePos: function(pos) {
+            $(this.imgCanvas).css({left: pos[0], top: pos[1]});
+        },
+        updateImageSize: function(size) {
+            this.imgCanvas.width = size[0];
+            this.imgCanvas.height = size[1];
+            this.imgCanvas.style.width = size[0];
+            this.imgCanvas.style.height = size[1];
+            $(this.imgCanvas).css({width: size[0], height: size[1]});
+        },
+        updateImageRot: function(rotation) {
+            $(this.imgCanvas).css({'-webkit-transform' : 'rotate('+rotation+'deg)',
+                                   '-moz-transform' : 'rotate('+rotation+'deg)',
+                                   '-ms-transform' : 'rotate('+rotation+'deg)',
+                                   '-o-transform' : 'rotate('+rotation+'deg)',
+                                   'transform' : 'rotate('+rotation+'deg)'});
+        },
+        inImgCanvas: function(e) {
+            var res = ptRotated(e.offsetX, e.offsetY, 
+                                this.imgPos[0]+this.imgSize[0]/2, this.imgPos[1]+this.imgSize[1]/2, 
+                                Math.PI * this.imgRot / 180);
+            var ox = res.x - this.imgPos[0], oy = res.y - this.imgPos[1];
+            if(ox >= 0 && ox <= this.imgSize[0] && oy >= 0 && oy <= this.imgSize[1])
+                return true;
+            else return false;
+        },
+        
+        drawHandler: function(e) {
+            if(e.type == "gestureStart") startDraw(e);
+            else if(e.type == "gestureUpdate") drawing(e);
+            else if(e.type == "gestureEnd") finiDraw(e);
+        },
+        eraseHandler: function(e) {
+            if(e.type == "gestureStart") startErase(e);
+            else if(e.type == "gestureUpdate") erasing(e);
+            else if(e.type == "gestureEnd") finiErase(e);
+        },
+        resizeHandler: function(e) {
+            if(e.type == "gestureStart") startCanvasResize(e);
+            else if(e.type == "gestureEnd") finiCanvasResize(e);
+        },
+        moveImgHandler: function(e) {
+            if(e.type == "gestureStart") startMoveImg(e);
+            else if(e.type == "gestureEnd") finiImgMove(e);
+        },
+        resizeImgHandler: function(e) {
+            if(e.type == "gestureStart") startResizeImg(e);
+            else if(e.type == "gestureEnd") finiImgResize(e);
+        },
+        showImgTools: function(e) {
+            if(e.type == "gestureStart") {
+                if(!toolsCenter.hasClass('active') && this.inImgCanvas(e)) {
+                    var x = this.imgPos[0] + this.imgSize[0]/2;
+                    var y = this.imgPos[1] + this.imgSize[1]/2;
+                    toolsCenter.css({left:x, top:y}).addClass('active');
+                }
+                else toolsCenter.removeClass('active');
+            }
+        },
+        
+        activeToolbox: function() {
+            toolbox.addClass('active');
+            editBn.addClass('active');
+        },
+        desactiveToolbox: function() {
+            toolbox.removeClass('active');
+            editBn.removeClass('active');
+        },
+        desactiveTools: function() {
+            $(this.drawCanvas).unbind('mouseout').mseInteraction('removeListener', 'gestureSingle');
+            canvasContainer.mseInteraction('removeListener', 'gestureSingle');
+            toolsCenter.removeClass('active');
+        },
+        activeTool: function(id) {
+            switch(id) {
+            case 0: // Image resizer
+                this.desactiveTools();
+                var img = $(this.imgCanvas);
+                // Active Image resizer
+                canvasContainer.mseInteraction('addListener', 'gestureSingle', this.cb.showImgTools); 
+            break;
+            case 1: // Pencil
+                this.desactiveTools();
+                $(this.drawCanvas).mseInteraction('addListener', 'gestureSingle', this.cb.draw).mouseout(finiDraw);
+            break;
+            case 2: // Eraser
+                this.desactiveTools();
+                $(this.drawCanvas).mseInteraction('addListener', 'gestureSingle', this.cb.erase).mouseout(finiErase);
+            break;
+            }
+        },
+        
+        showWithImg: function(imgData, width, height) {
+            if(this.jq.parent().length == 0) 
+                gui.center.append(this.jq);
+            this.jq.css({
+                'left': -(width+20)/2,
+                'top': -(height+20)/2,
+                'width': width,
+                'height': height
+            });
+            this.jq.addClass('show');
+            
+            canvasContainer.css({'width':width, 'height':height});
+            // Resize draw canvas
+            this.drawCanvas.width = width;
+            this.drawCanvas.height = height;
+            
+            // Set initial image configs
+            this.setimgPos([0, 0]);
+            this.setimgSize([width, height]);
+            this.setimgRot(0);
+            
+            // Set initial color and size
+            this.setsizeid(0);
+            this.setcolorid(0);
+            // Set initial tool to pencil
+            this.settoolid(1);
+            
+            // Init circle tools
+            circle.css({
+                left: -75, top: -75,
+                width: 150, height: 150,
+                'border-radius': 75
+            });
+            imgResizer.css({left: 50, top: -25});
+            imgMover.mseInteraction('addListener', 'gestureSingle', this.cb.moveimg);
+            imgResizer.mseInteraction('addListener', 'gestureSingle', this.cb.resizeimg);
+            //imgDeleter.click(deleteImg);
+            
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            imgctx.putImageData(imgData, 0, 0);
+        },
+        close: function() {
+            this.desactiveTools();
+            imgMover.mseInteraction('removeListener', 'gestureSingle');
+            imgResizer.mseInteraction('removeListener', 'gestureSingle');
+            //imgDeleter.unbind('click', deleteImg);
+        
+            this.jq.removeClass('show').detach();
+        },
+        init: function() {
+            
+            // Private variable
+            closeBn = $('#scriber #sb_cancel');
+            confirmBn = $('#scriber #sb_confirm');
+            recapBn = $('#scriber #sb_recap');
+            editBn = $('#scriber #sb_edit');
+            resizeBn = $('#scriber #sb_resize');
+            toolbox = $('#scriber #toolbox');
+            toolbox_list = toolbox.children('#sb_tools');
+            imgBn = $('#scriber #toolbox #sb_img');
+            drawBn = $('#scriber #toolbox #sb_pencil');
+            colorset = $('#scriber #toolbox #sb_colorset');
+            eraseBn = $('#scriber #toolbox #sb_eraser');
+            sizeset = $('#scriber #toolbox #sb_sizes_canvas');
+            sizebloc = $('#scriber #toolbox #sb_sizebloc');
+            canvasContainer = $('#scriber .canvas_container');
+            circle = $('#scriber .circle');
+            toolsCenter = $('#scriber #circle_center');
+            imgMover = toolsCenter.children('.moveicon');
+            imgResizer = toolsCenter.children('.dragicon');
+            imgDeleter = toolsCenter.children('.deleteicon');
+            
+            sizesetctx = sizeset.get(0).getContext('2d');
+            sizesetctx.strokeColor = colors[0];
+            sizesetctx.lineCap = 'round';
+            sizesetctx.lineJoin = 'round';
+            var scriber = this;
+            
+            // Public variable
+            this.jq = $('#scriber');
+            this.imgCanvas = $('#scriber #sb_imgcanvas').get(0);
+            this.drawCanvas = $('#scriber #sb_drawcanvas').get(0);
+            
+            ctx = this.drawCanvas.getContext('2d');
+            imgctx = this.imgCanvas.getContext('2d');
+            
+            // Mvc model init
+            mmvc.makeModel(this, ['sizeid', 'colorid', 'toolid', 'imgSize', 'imgPos', 'imgRot']);
+            this.observe('sizeid', new Callback(updateSize, null));
+            this.observe('colorid', new Callback(updateColor, null));
+            this.observe('toolid', new Callback(updateToolbox, null));
+            // Tools functions
+            this.observe('toolid', new Callback(this.activeTool, this));
+            // Image canvas update functions
+            this.observe('imgSize', new Callback(this.updateImageSize, this));
+            this.observe('imgPos', new Callback(this.updateImagePos, this));
+            this.observe('imgRot', new Callback(this.updateImageRot, this));
+            
+            
+            // =======================================Scriber interaction
+            
+            // Colorset choose
+            colorset.children('li').each(function(id) {
+                $(this).click(function() {
+                    // For mmvc call
+                    scriber.setcolorid(id);
+                    
+                });
+            });
+            // Sizeset choose
+            sizeset.click(function(e) {
+                var i = Math.floor(e.offsetX /37);
+                // For mmvc call
+                scriber.setsizeid(i);
+            });
+            // Tool choose
+            toolbox_list.children('li').each(function(id) {
+                $(this).click(function() {
+                    scriber.settoolid(id);
+                });
+            });
+            
+            // Set initial color and size
+            this.setsizeid(0);
+            this.setcolorid(0);
+            
+            // MseInteraction
+            $(this.drawCanvas).mseInteraction();
+            imgMover.mseInteraction();
+            imgResizer.mseInteraction();
+            canvasContainer.mseInteraction();
+            this.cb = {
+                'draw': new Callback(this.drawHandler, this),
+                'erase': new Callback(this.eraseHandler, this),
+                'resize': new Callback(this.resizeHandler, this),
+                'moveimg': new Callback(this.moveImgHandler, this),
+                'resizeimg': new Callback(this.resizeImgHandler, this),
+                'showImgTools': new Callback(this.showImgTools, this)
+            };
+            
+            // Edit
+            editBn.click(function() {
+                scriber.activeToolbox();
+            });
+            $('#sb_tools').mouseleave(function() {
+                scriber.desactiveToolbox();
+            });
+            // Recapture
+            recapBn.click(function(){
+                scriber.close();
+                mse.root.startCapture(new Callback(scriber.showWithImg, scriber));
+            });
+            // Close
+            closeBn.click(function(e){
+                scriber.close();
+                
+                gui.openComment();
+            });
+            // Confirm
+            confirmBn.click(function() {
+                var sc = scriber;
+                // Retrieve the cavnvas image data
+                backupCanvas.width = sc.drawCanvas.width;
+                backupCanvas.height = sc.drawCanvas.height;
+                backupCtx.save();
+                backupCtx.translate(sc.imgPos[0]+sc.imgSize[0]/2, sc.imgPos[1]+sc.imgSize[1]/2);
+                backupCtx.rotate(Math.PI * sc.imgRot / 180);
+                backupCtx.translate(-sc.imgSize[0]/2, -sc.imgSize[1]/2);
+                backupCtx.drawImage(sc.imgCanvas, 0, 0);
+                backupCtx.restore();
+                backupCtx.drawImage(sc.drawCanvas, 0, 0);
+                
+                var img = backupCanvas.toDataURL();
+                
+                sc.close();
+                
+                gui.openComment();
+                gui.setCommentImage(img, 'base64');
+            });
+            // Resize
+            resizeBn.mseInteraction().mseInteraction("addListener", "gestureSingle", this.cb.resize);
+            
+            
+            // Remove scriber temporarly
+            this.jq.detach();
+        }
+    };
+    
+    return {
+        init: function() {
+            if(!(scriber instanceof Scriber)) 
+                scriber = new Scriber();
+            gui.scriber = scriber;
+        }
+    };
+}(jQuery, gui));

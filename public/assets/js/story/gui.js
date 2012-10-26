@@ -22,7 +22,7 @@ var mmvc = (function(){
             var variable = vars[i];
             // Setter function existe already, ignore this variable, in all case, notify function can be called manully after a modification of variable
             if(this['set'+variable]) {
-                console.log("Fail to define the setter function of "+variable);
+                //console.log("Fail to define the setter function of "+variable);
                 // Initialization of listeners array
                 if(!this._mmvclisteners[variable]) this._mmvclisteners[variable] = [];
                 continue;
@@ -145,7 +145,8 @@ gui.Slider.prototype = {
 
 
 
-gui.openhideMenu = function() {
+gui.openhideMenu = function(e) {
+    e.stopPropagation();
     // Hide
     if(gui.menu.hasClass('active')) {
         gui.menu.removeClass('active');
@@ -162,6 +163,9 @@ gui.openhideMenu = function() {
 gui.openPref = function() {
     if(!gui.pref.hasClass('show')) {
         gui.pref.addClass('show');
+        
+        mse.currTimeline.pause();
+        gui.updatePlayPauseIcon();
     }
 }
 
@@ -177,147 +181,34 @@ gui.openhideUploader = function(e) {
     }
 }
 
-
-
-
-
-gui.fb = {};
-gui.fb.user = null; // initiated in gui.fb.connect or init
-gui.fb.checkConnect = function(){
-    FB.getLoginStatus(function(response){ // test login
-      if (response.status === 'connected') {
-        var uid = response.authResponse.userID;
-        FB.api('/me',function(u){
-            gui.fb.user = u;
-        });
-      } 
-      else if (response.status === 'not_authorized') {//the user is logged in to Facebook, but has not authenticated your app
-          gui.fb.user = false;
-      } 
-      else { // the user isn't logged in to Facebook.
-          gui.fb.user = false;
-      }
-    });
-};
-gui.fb.init = function() {
-    if(!gui.fb.user) return;
-    $('.comment_fblike').each(function() {
-        var btn = $(this);
-        var postid = btn.data('postid');
-        // Query: SELECT user_id FROM like WHERE object_id=postid AND user_id=gui.fb.user.id
-        var query = 'SELECT%20user_id%20FROM%20like%20WHERE%20object_id%3D'+postid+'%20AND%20user_id%3D'+gui.fb.user.id;
-        var url = '/fql?q='+query;
-        FB.api(url, 'get', function(result) {
-            if (!result || !result.data) {
-                return;
-            } else if (result.data.length > 0) {
-                btn.text('J\'aime plus');
-            } else if (result.error) {
-                console.log('Error: '+result.error.message+'');
-            }
-        });
-    });
-}
-gui.fb.like = function(){
-    FB.getLoginStatus(function(response){
-        if (response.status === 'connected') { // do only if connected
-            FB.api('/me/og.likes', 'post', { object:location.href }, function(res) {
-                if (!res || res.error) {
-                    if(res.error.code == 3501) { // already like it !
-                        msgCenter.send('Tu aimes déjà cette page');
-                        return;
-                    }
-                    // console.error(res);
-                    if(confirm("Une erreur s'est produite lors de l'envoie. Réessayes ?"))
-                        gui.fb.connect(gui.fb.like);
-                } 
-                else {
-                    var msg = $('<p>Tu as aimé cette page sur Facebook. </p>');
-                    if(gui.fb.user)
-                        msg.append('<a href="'+gui.fb.user.link+'">Voir.</a>');
-                    msgCenter.send(msg);
-                }
-            });
-        }
-        else if(confirm("Il faut être connecté à Facebook pour poster un like. Tu veux te connecter?")){
-            // not connected and
-            gui.fb.connect(gui.fb.like);
-        }
-    });
-}
-gui.fb.post = function(imgUrl, msg, position, successCB, failCB){
-    if(imgUrl){
-        if(!msg) msg = "";
-        var postData = {'url': imgUrl, 'message': msg};
-        
-        FB.api('me/photos', 'POST', postData, function(res){ // post the img to fb
-            if(!res.id) return failCB(res);
-            FB.api(res.id, function(fbImgObj){ // get the img url
-                if(!fbImgObj.source) return failCB(fbImgObj);
-                var postData = {
-                    'imgUrl': fbImgObj.source, 
-                    'message': msg, 
-                    'fbID': fbImgObj.id, 
-                    'position': position, 
-                    'ep': mse.configs.epid,
-                    'fbUserID': fbImgObj.from.id
-                };
-                $.post('./13comments/comment', postData, successCB, 'json');
-            });
-        });
+gui.updatePlayPauseIcon = function() {
+    if(mse.currTimeline.inPause) {
+        $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/ui/wheel_play.png"/>');
     }
-    else if(msg){
-        FB.api('/me/feed', 'POST', {'message': msg}, function(obj){
-            if(!obj.id) return failCB(obj);
-            var postData = {
-                'imgUrl': '', 
-                'message': msg, 
-                'fbID':obj.id, 
-                'position': position, 
-                'ep': mse.configs.epid,
-                'fbUserID': obj.id.split('_')[0]  // obj.id = "<fbuserID>_<postID>"
-            }; 
-            $.post('./13comments/comment', postData, successCB, 'json');
-        });
-    }
-};
-
-gui.fb.commentLike = function() {
-    if( !gui.fb.user ) return;
-    var btn = $(this);
-    var postid = btn.data('postid');
-    //var like = (btn.text() != "J\'aime plus");
-    // Like post
-    //if(like) {
-        FB.api('/'+postid+'/likes', 'post', function(result) {
-            if (result === true) {
-                msgCenter.send('You like the post: '+postid);//btn.text('J\'aime plus');
-            } else if (result.error) {
-                console.log('Error: '+result.error.message+'');
-            }
-        });
-    /*}
-    else {
-        FB.api('/'+postid+'/likes', 'DELETE', function(result) {
-            if (result === true) {
-                btn.text('J\'aime');
-            } else if (result.error) {
-                console.log('Error: '+result.error.message+'');
-            }
-        });
-    }*/
+    else $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/ui/wheel_pause.png"/>');
 }
+
 
 
 
 
 
 gui.openComment = function(){
-    gui.comment.addClass('show');
-    
-    if(gui.userComments.children('li').length == 0) {
-        gui.updateUsersComments(0);
+    if(!gui.comment.hasClass('show')) {
+        gui.comment.addClass('show');
+        
+        mse.currTimeline.pause();
+        gui.updatePlayPauseIcon();
+        
+        if(gui.userComments.children('li').length == 0) {
+            gui.updateUsersComments(0);
+        }
     }
+}
+gui.closeComment = function() {
+    gui.comment_loading.removeClass('show');
+    gui.comment_menu.children('#commentImg').remove();
+    gui.comment_content.val('');
 }
 function constructDomComment(comment) {
     // create a new javascript Date object based on the timestamp
@@ -409,11 +300,11 @@ gui.postComment = function(imgUrl, msg){
             gui.userComments.prepend(constructDomComment(posted));
             gui.userComments.scrollTop(-gui.userComments.position().top);
             // Hide loading
-            gui.comment.children('.loading').removeClass('show');
+            gui.comment_loading.removeClass('show');
             
             var msg = null;
-            if(gui.fb.user && posted.fbpostid != "0") // the post is on facebook
-                msg = $('<p>Votre message a bien été posté ici et sur Facebook. <a href="'+gui.fb.user.link+'" target="_blank">Voir.</a></p>');
+            if(fbapi.user && posted.fbpostid != "0") // the post is on facebook
+                msg = $('<p>Votre message a bien été posté ici et sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
             else 
                 msg = $('<p>Votre message a bien été posté.</p>')
             msgCenter.send(msg);
@@ -426,12 +317,12 @@ gui.postComment = function(imgUrl, msg){
             console.log('ERROR WHILE POSTING COMMENT : ');
             console.log(arguments);
         }
-        gui.comment.children('.loading').removeClass('show');
+        gui.comment_loading.removeClass('show');
         msgCenter.send('Une erreur est survenue. Lors de l\'envoie ou la recupération du commentaire.');
     }
     
-    if(gui.fb.user)
-        return gui.fb.post(imgUrl, msg, position, postSuccess, errorPost);
+    if(fbapi.user)
+        return fbapi.post(imgUrl, msg, position, postSuccess, errorPost);
         
     if(imgUrl){
         if(msg == null) msg = "";
@@ -458,10 +349,13 @@ $(window).load(function() {
     
     // Save variables
     gui.menu = $('#menu');
+    gui.center = $('#center')
     gui.pref = $('#preference');
     gui.controler = $('#controler');
     gui.comment = $('#comment');
     gui.comment_menu = $('#comment_menu');
+    gui.comment_content = $('#comment_content');
+    gui.comment_loading = gui.comment.children('.loading');
     gui.userComments = $('#comment_list');
     gui.uploader = $('#upload_container');
     gui.uploadForm = $('#imageuploadform');
@@ -469,15 +363,25 @@ $(window).load(function() {
     gui.slowdown = $('#controler #ctrl_slowdown');
     gui.commentbtn = $('#controler #ctrl_comment');
     gui.fblike = $('#controler #ctrl_like');
+    gui.currPlayState = true;
+    
+    // Init scriber
+    gui.scriber.init();
     
     // General Interaction
-    $('.close').click(function() {$(this).parent().removeClass('show');});
+    // Close the preference panel or the comment panel
+    $('.close').click(function() {
+        $(this).parent().removeClass('show');
+        mse.currTimeline.play();
+        gui.updatePlayPauseIcon();
+    });
+    gui.comment.children('.close').click(gui.closeComment);
 
-    $('#icon_menu, #switch_menu').click(gui.openhideMenu);
+    $('header .right').click(gui.openhideMenu);
 
     $('#btn_param').click(gui.openPref);
     gui.audioctrl = new gui.Slider(200, 100, gui.pref.children('p:first'), 50);
-    gui.speedctrl = new gui.Slider(200, 16, gui.pref.children('p:eq(1)'), 8);
+    gui.speedctrl = new gui.Slider(200, 10, gui.pref.children('p:eq(1)'), 5);
     gui.audioctrl.jqObj.css('left', 70);
     gui.speedctrl.jqObj.css('left', 70);
     // Observer to audio
@@ -492,31 +396,53 @@ $(window).load(function() {
     
     // Controler activation
     gui.controler.children('#circle').click(function() {
+        // Show or hide the controler btns
         var lis = gui.controler.find('li');
-        if(lis.eq(1).hasClass('active'))
+        if(lis.eq(1).hasClass('active')) {
             lis.removeClass('active');
-        else lis.addClass('active');
+            // Show the config image on circle
+            $(this).removeClass('active');
+        }
+        else {
+            lis.addClass('active');
+            // Hide the config image on circle for showing other informations
+            $(this).addClass('active');
+        }
     });
 /*    gui.controler.mouseout(function() {
         gui.controler.find('li').removeClass('active');
     });*/
     
     // Controler interaction
+    var flash_info = gui.controler.children('#circle').children('span');
+    var timer;
     $('#ctrl_playpause').click(function() {
         mse.currTimeline.playpause();
-        if(mse.currTimeline.inPause) {
-            $(this).html('<img src="'+config.publicRoot+'assets/img/ui/wheel_play.png"/>');
-        }
-        else $(this).html('<img src="'+config.publicRoot+'assets/img/ui/wheel_pause.png"/>');
+        gui.currPlayState = !mse.currTimeline.inPause;
+        gui.updatePlayPauseIcon();
     });
-    $('#ctrl_speedup').click(function() {
-        mse.ArticleLayer.prototype.setspeedLevel(mse.ArticleLayer.prototype.speedLevel - 1);
+    gui.speedup.click(function() {
+        var v = mse.ArticleLayer.prototype.speedLevel + 1;
+        mse.ArticleLayer.prototype.setspeedLevel(v);
+        flash_info.text(v);
+        if(timer) clearTimeout(timer);
+        flash_info.animate({opacity: 1}, 300);
+        timer = setTimeout(function() {
+            flash_info.animate({opacity: 0}, 300);
+        }, 800);
     });
-    $('#ctrl_slowdown').click(function() {
-        mse.ArticleLayer.prototype.setspeedLevel(mse.ArticleLayer.prototype.speedLevel + 1);
+    gui.slowdown.click(function() {
+        var v = mse.ArticleLayer.prototype.speedLevel - 1;
+        mse.ArticleLayer.prototype.setspeedLevel(v);
+        flash_info.text(v);
+        if(timer) clearTimeout(timer);
+        flash_info.animate({opacity: 1}, 300);
+        timer = setTimeout(function() {
+            flash_info.animate({opacity: 0}, 300);
+        }, 800);
     });
     $('#ctrl_like').click(function() {
-        gui.fb.like();
+        fbapi.like();
     });
     
     
@@ -524,7 +450,13 @@ $(window).load(function() {
     gui.commentbtn.click(gui.openComment);
     
     // Comment like action
-    gui.userComments.on('click', '.comment_fblike', gui.fb.commentLike);
+    gui.userComments.on('click', '.comment_fblike', fbapi.commentLike);
+    
+    // Comment capture screen
+    gui.comment_menu.children('#btn_capture_img').click(function() {
+        gui.comment.removeClass('show');
+        mse.root.startCapture(new Callback(gui.scriber.showWithImg, gui.scriber));
+    });
     
     // Comment Image Uploader
     gui.comment_menu.children('#btn_upload_img').click(gui.openhideUploader);
@@ -536,7 +468,7 @@ $(window).load(function() {
         url :       config.restUploadPath+'create_img', 
         dataType :  'json',
         success :   function(res) {
-            gui.comment.children('.loading').removeClass('show');
+            gui.comment_loading.removeClass('show');
             gui.uploadForm.get(0).reset();
             gui.openhideUploader();
             if(res.success) {
@@ -547,7 +479,7 @@ $(window).load(function() {
             }
         },
         error :     function(res) {
-            gui.comment.children('.loading').removeClass('show');
+            gui.comment_loading.removeClass('show');
             gui.uploadForm.get(0).reset();
             gui.openhideUploader();
             msgCenter.send("Erreur de téléchargement");
@@ -563,7 +495,7 @@ $(window).load(function() {
         }
 
         gui.uploadForm.submit();
-        gui.comment.children('.loading').addClass('show');
+        gui.comment_loading.addClass('show');
     });
     
     // Share process
@@ -574,7 +506,7 @@ $(window).load(function() {
         var imgSrc = img.prop('src');
         var srcType = img.attr('type');
         imgSrc = (!imgSrc || imgSrc.trim() == "") ? false : imgSrc;
-        var msg = $('#comment_content').val();
+        var msg = gui.comment_content.val();
         if(!imgSrc && msg == ''){
             msgCenter.send('Tu dois envoyer au moins du texte ou une image.')
             return;
@@ -582,31 +514,31 @@ $(window).load(function() {
         
         //re init the comment form
         img.parent().remove();
-        $('#comment_content').val('');
+        gui.comment_content.val('');
         
-        gui.comment.children('.loading').addClass('show');
+        gui.comment_loading.addClass('show');
         
         // Upload image if needed
         if(imgSrc && srcType == "base64") {
             var postdata = {'imgData64': imgSrc};
-            if(gui.fb.user) postdata.fbComment = true;
+            if(fbapi.user) postdata.fbComment = true;
             $.ajax({
                 'type' : 'POST',
                 'url' : config.restUploadPath+'create_drawing', 
                 'dataType' : 'json',
                 'data' : postdata, 
                 success : function(data){
-                    if(res.success) {
-                        imgSrc = res.path;
+                    if(data.success) {
+                        imgSrc = data.path;
                         gui.postComment(imgSrc, msg);
                     }
                     else {
-                        gui.comment.children('.loading').removeClass('show');
-                        if(res.errorMessage) msgCenter.send(res.errorMessage);
+                        gui.comment_loading.removeClass('show');
+                        if(data.errorMessage) msgCenter.send(data.errorMessage);
                     }
                 },
                 error : function(res) {
-                    gui.comment.children('.loading').removeClass('show');
+                    gui.comment_loading.removeClass('show');
                     msgCenter.send("Erreur de téléchargement");
                 }
             });

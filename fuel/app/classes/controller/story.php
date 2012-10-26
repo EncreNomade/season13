@@ -35,5 +35,9 @@ class Controller_Story extends Controller_Template
 	{
 	    $this->template->title = stripslashes($this->episode->title);
 	}
+	
+	public function action_upgradenav() {
+	    return View::forge('story/upgradenav');
+	}
 
 }

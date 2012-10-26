@@ -29,6 +29,7 @@
 	    echo Asset::js('lib/jquery-latest.js');
 	    echo Asset::js('lib/jquery.scrollTo-1.4.2-min.js');
 	    echo Asset::js('lib/jquery.parallax-1.1.3.js');
+	    echo Asset::js('lib/fbapi.js');
 	    echo Asset::js('config.js');
 	    echo Asset::js('template.js');
 	    echo Asset::js($js_supp);
@@ -72,9 +73,9 @@
             <li class="text_sep_vertical"></li>
             <li section="episode"><a href="/?s=episode">LES ÉPISODES</a></li>
             <li class="text_sep_vertical"></li>
-            <li><a href="/season13/public/concept">LE CONCEPT</a></li>
+            <li><a href="<?php echo $remote_path; ?>concept">LE CONCEPT</a></li>
             <li class="text_sep_vertical"></li>
-            <li><a href="/season13/public/actu">L'ACTU</a></li>
+            <li><a href="<?php echo $remote_path; ?>actu">L'ACTU</a></li>
         </ul>
     </header>
     
@@ -141,7 +142,7 @@
                 </p>
                 <p><label>Ton Mail</label><input type="email" size="18" id="signupMail"></p>
                 <p>
-                    <label>Où Tu Habites</label>
+                    <label>Ton Pays</label>
                     <select id="signupPays">
                         <option value="  " selected>Selectionnes ton pays</option>
                         <option value="FR">France</option>
@@ -191,7 +192,7 @@
 <?php echo $content; ?>
 
 	<footer>
-	    <ul><li class="fb_btn"></li><!--<li class="twitter_btn"></li>--></ul>
+	    <ul><li class="fb_btn"><?php echo Asset::img('btn_fblike.png'); ?></li><!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
 		<p><label>Contacts</label> - <label>Mentions légales</label> - <label>Conditions générales de vente</label></p>
 	</footer>

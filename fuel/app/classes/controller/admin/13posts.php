@@ -10,6 +10,7 @@ class Controller_Admin_13posts extends Controller_Template
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
+    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
     	
     	// Set supplementation css and js file
         $this->template->css_supp = '';

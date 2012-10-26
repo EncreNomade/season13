@@ -3,12 +3,17 @@
 body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #center {
@@ -17,7 +22,7 @@ ul {
     top: 50%;
     width: 0px;
     height: 0px;
-    z-index: 13;
+    z-index: 19;
 }
 
 .dialog {
@@ -28,11 +33,12 @@ ul {
     border-bottom: 30px solid #000;
     border-left: 10px solid #000;
     border-right: 10px solid #000;
+    z-index: 19;
 }
 .dialog h1 {
     position: absolute;
     left: 0px;
-    top: -30px;
+    top: -33px;
     margin: 0;
     padding: 0;
     color: #fff;
@@ -42,7 +48,7 @@ ul {
 .dialog .sep_line {
     position: absolute;
     left: 0px;
-    top: 0px;
+    top: -3px;
     width: 100%;
     height: 3px;
     background: rgb(246, 168, 0);
@@ -119,9 +125,11 @@ header div.right {
     position: absolute;
     right: 0px;
     width: auto;
-    height: 100%;
+    height: 24px;
     z-index: 2;
     background: #000;
+    padding: 8px 0;
+    cursor: pointer;
 }
 
 header #tache {
@@ -158,9 +166,8 @@ header h2 {
 header #icon_menu {
     width: 24px;
     height: 24px;
-    margin: 8px;
+    margin: 0 8px;
     float: right;
-    cursor: pointer;
     
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;
@@ -168,12 +175,13 @@ header #icon_menu {
     transition: all 0.3s linear;
 }
 header #icon_menu.active {
-    margin: 8px 120px 8px 8px;
+    margin: 0px 120px 0px 8px;
 }
 
 header #sep_right {
     float: right;
-    margin: 4px 0px 4px 2px;
+    margin: 0px 0px 0px 2px;
+    top: -4px;
     width: 3px;
     height: 32px;
     background: #fff;
@@ -183,6 +191,7 @@ header #switch_menu {
     float: right;
     width: 16px;
     height: 40px;
+    top: -8px;
     background: transparent url('../img/story/story_open_menu.png') no-repeat center center;
     cursor: pointer;
 }
@@ -294,7 +303,6 @@ ul#menu div #menu_link {
     transition: visibility 0.5s linear;
     
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -361,7 +369,7 @@ ul#menu div #menu_link {
 #comment textarea {
     position: absolute;
     left: 0px;
-    top: 3px;
+    top: 0px;
     margin: 0;
     padding: 4px;
     border: none;
@@ -379,7 +387,7 @@ ul#menu div #menu_link {
 #comment .arrow {
     position: absolute;
     left: 10px;
-    top: 83px;
+    top: 80px;
     width: 20px;
     height: 10px;
     background: transparent url('../img/story/arrow.png') no-repeat left top;
@@ -389,7 +397,7 @@ ul#menu div #menu_link {
 #comment ul#comment_menu {
     position: absolute;
     left: 0px;
-    top: 84px;
+    top: 81px;
     width: 100%;
     height: 25px;
     background: rgb(246, 168, 0);
@@ -429,7 +437,7 @@ ul#menu div #menu_link {
 
 #comment ul#comment_list {
     position: absolute;
-    top: 110px;
+    top: 107px;
     left: 0px;
     bottom: 0px;
     width: 100%;
@@ -534,7 +542,7 @@ ul#menu div #menu_link {
 
 #comment #upload_container {
     position: absolute;
-    top: 30px;
+    top: 27px;
     left: 178px;
     width: 139px;
     height: 50px;
@@ -557,15 +565,298 @@ ul#menu div #menu_link {
 
 
 
+
+/******************** Controler ********************/
+
+#scriber {
+    border-bottom: 40px solid #000;
+    width: 320px;
+    height: 400px;
+    left: -160px;
+    top: -200px;
+    opacity: 0;
+}
+#scriber.show {
+    opacity: 1;
+}
+
+#scriber ul#scriber_menu {
+    position: absolute;
+    bottom: -40px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+}
+#scriber_menu li {
+    position: relative;
+    float: left;
+    width: 24px;
+    height: 24px;
+    padding: 8px;
+    margin: 0;
+    opacity: 0.7;
+}
+#scriber_menu li img {
+    width: 24px;
+    height: 24px;
+}
+#scriber_menu .sep_line {
+    position: relative;
+    float: left;
+    width: 1px;
+    height: 28px;
+    margin: 6px 0px;
+    background: #fff;
+}
+#scriber_menu #sb_edit.active {
+    width: 184px;
+}
+
+#scriber .canvas_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: transparent url('../img/deco/paper.jpg') repeat left top;
+    z-index: 2;
+}
+#scriber .canvas_container .resize {
+    z-index: 2;
+}
+#scriber .canvas_container .inner_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+#scriber .canvas_container #sb_imgcanvas {
+    position: absolute;
+    z-index: 1;
+}
+#scriber .canvas_container #sb_drawcanvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+#scriber #toolbox {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    min-width: 200px;
+    background: transparent;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 1;
+    visibility: hidden;
+}
+#scriber #toolbox.active {
+    z-index: 3;
+    visibility: visible;
+}
+#toolbox ul#sb_tools {
+    position: absolute;
+    left: -200px;
+    top: 0px;
+    width: 180px;
+    height: 100%;
+    min-height: 280px;
+    margin: 0px;
+    background: #000;
+    padding: 0 10px;
+    
+}
+#toolbox.active ul#sb_tools {
+    left: 0px;
+}
+#sb_tools li {
+    position: relative;
+    float: left;
+    width: 180px;
+    height: auto;
+    border-bottom: 2px solid #fff;
+    margin: 0 0 5px 0;
+    padding: 0 0 5px 0;
+    color: #fff;
+}
+#sb_tools li:first-child {
+    margin: 10px 0 5px 0;
+}
+#sb_tools li:last-child {
+    margin: 0 0 15px 0;
+}
+#sb_tools li.active {
+    color: rgb(246, 168, 0);
+}
+#sb_tools li img {
+    float: left;
+    width: 24px;
+    height: 24px;
+    margin: 0 5px 0 0;
+}
+#sb_tools li h5 {
+    float: left;
+    font: normal 16px/24px 'DroidSansBold', Arial, Helvetica;
+    margin: 0px;
+    padding: 0px;
+}
+
+#sb_tools #sb_colorset, #sb_tools #sb_sizeset {
+    position: relative;
+    float: left;
+    left: 30px;
+    width: 149px;
+    height: auto;
+    padding: 3px 0px;
+    border-top: 1px solid #bbb;
+}
+#sb_tools #sb_colorset span, #sb_tools #sb_sizeset span {
+    float: left;
+    font: normal 12px/18px 'DroidSansRegular', Arial, Helvetica;
+    width: 100%;
+}
+#sb_colorset li {
+    position: relative;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin: 3px 10px 3px 0;
+    padding: 0;
+    border-radius: 4px;
+    border: 1px dashed #fff;
+}
+#sb_colorset li.active {
+    border: 1px solid #fff;
+}
+#sb_sizeset #sb_sizes_canvas {
+    width: 149px;
+    height: 31px;
+    z-index: 1;
+}
+#sb_sizeset #sb_sizebloc {
+    position: absolute;
+    top: 24px;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #555;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+
+
+
+
+
+/************* scriber circle center ****************/
+
+#circle_center {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    z-index: 0;
+}
+#circle_center.active {
+    z-index: 2;
+}
+#circle_center .circle {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    overflow: visible;
+    border: 1px solid #05a;
+    
+    -webkit-transition: all 0.35s linear;
+    -moz-transition: all 0.35s linear;
+    -ms-transition: all 0.35s linear;
+    -o-transition: all 0.35s linear;
+    transition: all 0.35s linear;
+}
+#circle_center.active .circle {
+    left: -75px;
+    top: -75px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    opacity: 1;
+}
+#circle_center .editicon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    
+    -webkit-transition: all 0.35s linear;
+    -moz-transition: all 0.35s linear;
+    -ms-transition: all 0.35s linear;
+    -o-transition: all 0.35s linear;
+    transition: all 0.35s linear;
+}
+#circle_center .moveicon {
+    background: transparent url('../img/ui/btn_circle_green.png') no-repeat center center;
+    left: -25px;
+    top: -25px;
+    opacity: 0;
+}
+#circle_center.active .moveicon {
+    opacity: 0.6;
+}
+#circle_center .dragicon {
+    background: transparent url('../img/ui/btn_arrow_move.png') no-repeat center center;
+    right: -25px;
+    top: -25px;
+    opacity: 0;
+}
+#circle_center.active .dragicon {
+    left: 50px;
+    top: -25px;
+    opacity: 0.6;
+}
+#circle_center .deleteicon {
+    background: transparent url('../img/ui/btn_delete_red.png') no-repeat center center;
+    left: -25px;
+    top: -25px;
+    opacity: 0;
+    display: none;
+}
+#circle_center.active .deleteicon {
+    left: 40px;
+    top: -90px;
+    opacity: 0.6;
+}
+#circle_center.active .deleteicon:hover, #circle_center.active .dragicon:hover, #circle_center.active .moveicon:hover {
+    opacity: 1;
+}
+
+
+
+
+
+
 /******************** Controler ********************/
 
 #controler {
     position: absolute;
     left: 0px;
     bottom: 0px;
-    z-index: 19;
+    z-index: 13;
     visibility: visible;
     opacity: 0.5;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #controler:hover {
     opacity: 1;
@@ -591,6 +882,27 @@ ul#menu div #menu_link {
     border-top: 3px solid #fff;
     z-index: 2;
 }
+#controler #circle img {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    bottom: 5px;
+    left: 5px;
+    opacity: 1;
+}
+#controler #circle.active img {
+    opacity: 0;
+}
+#controler #circle span {
+    color: #fff;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 10px 0;
+    font: bold 20px/30px 'DroidSansRegular', Arial, Helvetica;
+}
 
 #controler ul {
     z-index: 1;
@@ -611,6 +923,10 @@ ul#menu div #menu_link {
 }
 #controler ul li:nth-child(-n+5):hover, #controler ul li:nth-child(-n+5).hover {
     background: #000;
+}
+#controler ul li:nth-child(1):hover, #controler ul li:nth-child(1).hover {
+    background: #3B5998;
+    border: 2px solid #3B59FF;
 }
 #controler ul li:nth-child(1) {
     -webkit-transition: all 0.3s ease-in-out;
@@ -716,6 +1032,7 @@ ul#menu div #menu_link {
 #msgCenter{
     position: absolute;
     width: 100%;
+    height: 0px;
     z-index: 20;
 }
 #msgCenter ul{

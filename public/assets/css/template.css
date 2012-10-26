@@ -28,7 +28,7 @@ body {
     width: 100%;
     height: 100%;
     min-width: 1024px;
-    min-height: 400px;
+    min-height: 600px;
     margin: 0 auto;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -37,7 +37,7 @@ body {
 
 header {
     width: 100%;
-    height: 150px;
+    height: 170px;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -66,9 +66,9 @@ header #logoLink {
 
 
 header ul#menu {
-    text-align: center;
+    text-align: left;
     padding-left: 0;
-    margin-top: 110px;
+    margin: 130px 0 0 370px;
 }
 
 ul#conn {
@@ -95,8 +95,8 @@ ul#conn li.inactive {
 
 .main_container {
     position: absolute;
-    top: 160px;
     left: 0px;
+    bottom: 30px;
     width: 100%;
     height: auto;
     z-index: 1;
@@ -166,6 +166,13 @@ footer p {
     text-align: center;
     z-index: 3;
     letter-spacing: 1.5px;
+}
+footer ul li.fb_btn {
+    background: transparent;
+}
+footer ul li.fb_btn img {
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -274,7 +281,6 @@ footer p {
     margin: 0 20px 0 6px;
     width: 40px;
     height: 40px;
-    background: transparent url('../img/fb_btn.jpg') no-repeat left top;
     cursor: pointer;
 
 }

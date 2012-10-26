@@ -45,7 +45,10 @@ var regs = {
 }
 
 function init() {
-    $('.main_container').css('height', $('body').height() - $('header').outerHeight() - $('footer').outerHeight());
+    $('.main_container').css({
+        'top'    : $('header').outerHeight(),
+        'height' : $('body').height() - $('header').outerHeight() - $('footer').outerHeight()
+    });
     
     $('#open_signup').click(showSignup);
     $('#toSignup').click(showSignup);
@@ -61,6 +64,11 @@ function init() {
     
     $('#cpt_banner, #actu_banner').click(function() {
         window.location = "/story?ep=1&source=banner";
+    });
+    
+    // Facebook like
+    $('footer .fb_btn').click(function() {
+        fbapi.like();
     });
 
     $('#signup_dialog form').submit(function(e) {
