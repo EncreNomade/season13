@@ -68,4 +68,64 @@ class Controller_Welcome extends Controller_Template
 		
 		$this->template->content = View::forge('welcome/404');
 	}
+	
+	/**
+	 * The upgrade navigator action for the application.
+	 * 
+	 * @access  public
+	 * @return  Response
+	 */
+	public function action_upgradenav() {
+	    // Init data
+	    $data['change']  = false;
+	    $data['maj'] = false;
+	    $data['browser'] = '';
+	    
+	    $capable = true;
+	    
+	    // Check user browser capacity
+	    // Process based on the browser name
+	    switch (Agent::browser())
+	    {
+	        case 'Firefox':
+	            if(Agent::version() < 3.7) {
+	                $capable = false;
+	                $data['maj'] = true;
+	                $data['browser'] = 'Firefox';
+	            }
+	            else 
+	                $capable = true;
+	            break;
+	        case 'IE':
+	            if(Agent::version() < 9) {
+	                $capable = false;
+	                if(Agent::platform() == 'Win7') {
+	                    $data['maj'] = true;
+	                    $data['browser'] = 'IE';
+	                }
+	                else {
+	                    $data['change'] = true;
+	                }
+	            }
+	            else 
+	                $capable = true;
+	            break;
+	        case 'Chrome':
+	            $capable = true;
+	            break;
+	        case 'Safari':
+	            $capable = true;
+	            break;
+	        case 'Unknown':
+	            $data['change'] = true;
+	            $capable = false;
+	            break;
+	        default:
+	            $capable = true;
+	            break;
+	    }
+	
+	    $this->template->title = 'SEASON13';
+	    $this->template->content = View::forge('welcome/upgradenav', $data);
+	}
 }

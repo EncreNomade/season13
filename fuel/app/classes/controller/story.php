@@ -33,11 +33,42 @@ class Controller_Story extends Controller_Template
 
 	public function action_index()
 	{
-	    $this->template->title = stripslashes($this->episode->title);
-	}
+	    $capable = false;
+	    // Check user browser capacity
+	    // Process based on the browser name
+	    switch (Agent::browser())
+	    {
+	        case 'Firefox':
+	            if(Agent::version() < 3.7)
+	                $capable = false;
+	            else 
+	                $capable = true;
+	            break;
+	        case 'IE':
+	            if(Agent::version() < 9)
+	                $capable = false;
+	            else 
+	                $capable = true;
+	            break;
+	        case 'Chrome':
+	            $capable = true;
+	            break;
+	        case 'Safari':
+	            $capable = true;
+	            break;
+	        case 'Unknown':
+	            $capable = false;
+	            break;
+	        default:
+	            $capable = true;
+	            break;
+	    }
 	
-	public function action_upgradenav() {
-	    return View::forge('story/upgradenav');
+	    if($capable) {
+    	    $this->template->title = stripslashes($this->episode->title);
+    	}
+    	else {
+    	    Response::redirect('http://season13.com/upgradenav');
+    	}
 	}
-
 }

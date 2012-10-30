@@ -1,12 +1,10 @@
 <div class="main_container">
 
-    <?php //<div class="center"> ?>
-        <div id="back" class="layer">
-<?php echo Asset::img('illus/petite_ceinture.jpg'); ?>
-        </div>
-    <?php //</div> ?>
+    <div id="back" class="layer">
+        <?php echo Asset::img('illus/petite_ceinture.jpg'); ?>
+    </div>
     <div id="booktitle" class="layer">
-<?php echo Asset::img('illus/titre_2.png'); ?>
+        <?php echo Asset::img('illus/titre_2.png'); ?>
     </div>
     <div id="bookresume" class="layer">
         <p>Simon est poursuivi par une bande, la nuit, dans Paris. 
@@ -19,7 +17,7 @@
     <div id="btns" class="layer">
         <ul>
             <!--<li id="open_login2"><a>SE CONNECTER</a></li>-->
-            <li id="ep1"><a href="<?php echo $remote_path; ?>story?ep=1&source=discoverbtn">DÉCOUVRIR GRATUITEMENT</a></li>
+            <li id="ep1"><a href="<?php echo $remote_path; ?>story?ep=1&source=discoverbtn" target="_blank">DÉCOUVRIR GRATUITEMENT</a></li>
         </ul>
     </div>
     
@@ -43,7 +41,7 @@
             </div>
             <div class="ep_title">
                 <h2><?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?></h2>
-                <a class="ep_play"></a>
+                <a class="ep_play" target="_blank"></a>
             </div>
             <div class="ep_list">
             <!--

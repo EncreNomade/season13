@@ -118,22 +118,22 @@ addEventListener("load", function(){
     </header>
     
     <ul id="menu">
-        <li id="btn_aide">
+        <!--<li id="btn_aide">
             <?php echo Asset::img('story/story_aide.png'); ?>
             <a>Aide</a>
+        </li>-->
+        <li id="btn_param">
+            <?php echo Asset::img('story/story_param.png'); ?>
+            <a>Paramètres</a>
         </li>
         <li id="btn_author">
             <?php echo Asset::img('story/story_author.png'); ?>
             <a>Auteur</a>
         </li>
-        <li id="btn_param">
-            <?php echo Asset::img('story/story_param.png'); ?>
-            <a>Paramètres</a>
-        </li>
-        <li id="btn_download">
+        <!--<li id="btn_download">
             <?php echo Asset::img('story/story_download.png'); ?>
             <a>Téléchargement</a>
-        </li>
+        </li>-->
         <li id="btn_credit">
             <?php echo Asset::img('story/story_credit.png'); ?>
             <a>Crédits</a>
@@ -163,12 +163,21 @@ addEventListener("load", function(){
             <h1>Commentaires</h1>
             <div class="sep_line"></div>
             
-            <textarea id="comment_content" rows="5" cols="30" placeholder="Exprime toi !"></textarea>
+            <textarea id="comment_content" rows="5" cols="30" placeholder="Exprime-toi !"></textarea>
             <div class="arrow"></div>
             <ul id="comment_menu">
-                <li id="btn_share" title="Partager votre commentaire"><?php echo Asset::img('story/comment_fb.png'); ?><h5>Partager</h5></li>
-                <li id="btn_upload_img" title="Télécharger vos propres dessins"><?php echo Asset::img('story/comment_image.png'); ?></li>
-                <li id="btn_capture_img" title="Capturer une image dans le livre"><?php echo Asset::img('story/comment_camera.png'); ?></li>
+                <li id="btn_share" title="Partage ton commentaire">
+                    <?php if(!is_null($current_user) && ($current_user->fbid != "" && $current_user->fbid != 0)) : ?>
+                        <?php echo Asset::img('story/comment_fb.png'); ?>
+                    <?php endif; ?>
+                    <h5>Partager</h5>
+                </li>
+                <li id="btn_upload_img" title="Télécharge ton propre dessin">
+                    <?php echo Asset::img('story/comment_image.png'); ?>
+                </li>
+                <li id="btn_capture_img" title="Capture une image dans l'épisode">
+                    <?php echo Asset::img('story/comment_camera.png'); ?>
+                </li>
             </ul>
             
             <div id="upload_container">
@@ -181,7 +190,7 @@ addEventListener("load", function(){
             
             <ul id="comment_list">
             
-                <h5 id='renew_comments' style="cursor: pointer;">Cliquer pour voir les anciens commentaires</h5>
+                <h5 id='renew_comments' style="cursor: pointer;">Clique pour voir les anciens commentaires</h5>
             </ul>
             
             <div class="loading"></div>
@@ -190,16 +199,12 @@ addEventListener("load", function(){
         
     <!-- Scriber dialog -->
         <div id="scriber" class="dialog">
-            <!--<div class="close"></div>-->
-            <h1>Ajoute ton dessin</h1>
+            <div class="close" id="sb_cancel"></div>
+            <h1>Customise ton dessin</h1>
             <div class="sep_line"></div>
             
             <div id="toolbox">
                 <ul id="sb_tools">
-                    <li id="sb_resize">
-                        <?php echo Asset::img('ui/scriber_resize.png'); ?>
-                        <h5>Redimensionner</h5>
-                    </li>
                     <li id="sb_pencil">
                         <?php echo Asset::img('ui/scriber_edit.png'); ?>
                         <h5>Dessiner</h5>
@@ -225,6 +230,10 @@ addEventListener("load", function(){
                         <?php echo Asset::img('ui/scriber_erase.png'); ?>
                         <h5>Effacer</h5>
                     </li>
+                    <!--<li id="sb_resize">
+                        <?php echo Asset::img('ui/scriber_resize.png'); ?>
+                        <h5>Redimensionner</h5>
+                    </li>-->
                 </ul>
             </div>
             
@@ -243,13 +252,11 @@ addEventListener("load", function(){
             </div>
             
             <ul id="scriber_menu">
-                <li id="sb_edit"><?php echo Asset::img('ui/scriber_edit.png'); ?></li>
+                <li id="sb_edit" title="Modifie l'image"><?php echo Asset::img('ui/scriber_edit.png'); ?></li>
                 <div class="sep_line"></div>
-                <li id="sb_recap"><?php echo Asset::img('ui/scriber_recap.png'); ?></li>
+                <li id="sb_recap" title="Recommence"><?php echo Asset::img('ui/scriber_recap2.png'); ?></li>
                 <div class="sep_line"></div>
-                <li id="sb_cancel"><?php echo Asset::img('ui/scriber_cancel.png'); ?></li>
-                <div class="sep_line"></div>
-                <li id="sb_confirm"><?php echo Asset::img('ui/scriber_confirm.png'); ?></li>
+                <li id="sb_confirm" title="Valide ton dessin"><?php echo Asset::img('ui/scriber_confirm.png'); ?></li>
             </ul>
         </div>
     </div>
@@ -264,7 +271,7 @@ addEventListener("load", function(){
             </div>
             
             <ul>
-                <li id="ctrl_like"><?php echo Asset::img('ui/wheel_like.png'); ?></li>
+                <li id="ctrl_like"><?php echo Asset::img('ui/wheel_like2.png'); ?></li>
                 <li id="ctrl_speedup"><?php echo Asset::img('ui/wheel_rabbit.png'); ?></li>
                 <li id="ctrl_playpause"><?php echo Asset::img('ui/wheel_pause.png'); ?></li>
                 <li id="ctrl_slowdown"><?php echo Asset::img('ui/wheel_turtle.png'); ?></li>
@@ -278,7 +285,25 @@ addEventListener("load", function(){
                 <img id="theImage" src=""/>
                 <?php echo Html::img('assets/img/story/button/close.png', array("id" => "closeBn")); ?>
         </div></div>
-        <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
+        
+        <div id="game_container" class="dialog">
+            <h1></h1>
+            <div class="sep_line"></div>
+            
+            <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
+            
+            <div id="game_center">
+                <div id="game_result">
+                    <?php echo Asset::img('fb_btn.jpg'); ?>
+                    <h2>GAGNE !</h2>
+                    <h5>Ton score : <span>240</span> pts</h5>
+                    <ul>
+                        <li id="game_restart">REJOUER</li>
+                        <li id="game_quit">QUITTER</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     
     

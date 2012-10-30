@@ -353,35 +353,41 @@ gui.scriber = (function($, gui) {
         },
         activeTool: function(id) {
             switch(id) {
-            case 0: // Image resizer
+            case 0: // Pencil
+                this.desactiveTools();
+                $(this.drawCanvas).mseInteraction('addListener', 'gestureSingle', this.cb.draw).mouseout(finiDraw);
+            break;
+            case 1: // Eraser
+                this.desactiveTools();
+                $(this.drawCanvas).mseInteraction('addListener', 'gestureSingle', this.cb.erase).mouseout(finiErase);
+            break;
+            case 2: // Image resizer
                 this.desactiveTools();
                 var img = $(this.imgCanvas);
                 // Active Image resizer
                 canvasContainer.mseInteraction('addListener', 'gestureSingle', this.cb.showImgTools); 
             break;
-            case 1: // Pencil
-                this.desactiveTools();
-                $(this.drawCanvas).mseInteraction('addListener', 'gestureSingle', this.cb.draw).mouseout(finiDraw);
-            break;
-            case 2: // Eraser
-                this.desactiveTools();
-                $(this.drawCanvas).mseInteraction('addListener', 'gestureSingle', this.cb.erase).mouseout(finiErase);
-            break;
             }
         },
         
         showWithImg: function(imgData, width, height) {
+            mse.currTimeline.pause();
+            gui.updatePlayPauseIcon();
+        
             if(this.jq.parent().length == 0) 
                 gui.center.append(this.jq);
+            
+            var outerw = width < 250 ? 250 : width;
+            var outerh = height < 290 ? 290 : height;
             this.jq.css({
-                'left': -(width+20)/2,
-                'top': -(height+20)/2,
-                'width': width,
-                'height': height
+                'left': -(width < 250 ? 135 : (width+20)/2),
+                'top': -(height < 290 ? 145 : (height+20)/2),
+                'width': outerw,
+                'height': outerh
             });
             this.jq.addClass('show');
             
-            canvasContainer.css({'width':width, 'height':height});
+            canvasContainer.css({'left':(outerw-width)/2, 'top':(outerh-height)/2, 'width':width, 'height':height});
             // Resize draw canvas
             this.drawCanvas.width = width;
             this.drawCanvas.height = height;
@@ -395,7 +401,7 @@ gui.scriber = (function($, gui) {
             this.setsizeid(0);
             this.setcolorid(0);
             // Set initial tool to pencil
-            this.settoolid(1);
+            this.settoolid(0);
             
             // Init circle tools
             circle.css({
@@ -428,7 +434,7 @@ gui.scriber = (function($, gui) {
             confirmBn = $('#scriber #sb_confirm');
             recapBn = $('#scriber #sb_recap');
             editBn = $('#scriber #sb_edit');
-            resizeBn = $('#scriber #sb_resize');
+            //resizeBn = $('#scriber #sb_resize');
             toolbox = $('#scriber #toolbox');
             toolbox_list = toolbox.children('#sb_tools');
             imgBn = $('#scriber #toolbox #sb_img');
@@ -514,7 +520,9 @@ gui.scriber = (function($, gui) {
             
             // Edit
             editBn.click(function() {
-                scriber.activeToolbox();
+                if($(this).hasClass('active'))
+                    scriber.desactiveToolbox();
+                else scriber.activeToolbox();
             });
             $('#sb_tools').mouseleave(function() {
                 scriber.desactiveToolbox();
@@ -552,7 +560,7 @@ gui.scriber = (function($, gui) {
                 gui.setCommentImage(img, 'base64');
             });
             // Resize
-            resizeBn.mseInteraction().mseInteraction("addListener", "gestureSingle", this.cb.resize);
+            //resizeBn.mseInteraction().mseInteraction("addListener", "gestureSingle", this.cb.resize);
             
             
             // Remove scriber temporarly

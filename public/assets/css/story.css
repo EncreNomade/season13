@@ -4,25 +4,16 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-}
-
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-#center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 0px;
-    height: 0px;
-    z-index: 19;
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .dialog {
@@ -34,6 +25,11 @@ ul {
     border-left: 10px solid #000;
     border-right: 10px solid #000;
     z-index: 19;
+    -webkit-box-shadow: 0px 0px 6px 2px #444;
+    -moz-box-shadow: 0px 0px 6px 2px #444;
+    -ms-box-shadow: 0px 0px 6px 2px #444;
+    -o-box-shadow: 0px 0px 6px 2px #444;
+    box-shadow: 0px 0px 6px 2px #444;
 }
 .dialog h1 {
     position: absolute;
@@ -285,11 +281,31 @@ ul#menu div #menu_link {
 
 
 
+
+
+/******************** Center Panels ********************/
+
+#center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    z-index: 1;
+}
+#center.show {
+    z-index: 19;
+}
+
+
+
+
+
 /******************** Dialog Preference ********************/
 
 #preference {
-    left: -160px;
-    top: -75px;
+    left: -170px;
+    top: -95px;
     width: 320px;
     height: 150px;
     background: #fff;
@@ -302,10 +318,6 @@ ul#menu div #menu_link {
     -o-transition: visibility 0.5s linear;
     transition: visibility 0.5s linear;
     
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     z-index: 19;
 }
 #preference.show {
@@ -358,9 +370,19 @@ ul#menu div #menu_link {
 #comment {
     width: 320px;
     height: 400px;
-    left: -160px;
-    top: -210px;
+    left: -170px;
+    top: -230px;
     visibility: hidden;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    
+    -webkit-transition: visibility 0.5s linear;
+    -moz-transition: visibility 0.5s linear;
+    -ms-transition: visibility 0.5s linear;
+    -o-transition: visibility 0.5s linear;
+    transition: visibility 0.5s linear;
 }
 #comment.show {
     visibility: visible;
@@ -420,8 +442,8 @@ ul#menu div #menu_link {
     float: left;
 }
 #comment ul#comment_menu li img.preview {
-    width: 23px;
-    height: 23px;
+    max-height: 25px;
+    width: auto;
     margin: 1px;
     float: left;
 }
@@ -477,6 +499,10 @@ ul#menu div #menu_link {
     background: #fff;
     border: 1px solid #000;
     color: #000;
+}
+#comment_list li .comment_body img {
+    max-width: 248px;
+    height: auto;
 }
 #comment_list li .comment_body .arrow {
     position: absolute;
@@ -572,9 +598,17 @@ ul#menu div #menu_link {
     border-bottom: 40px solid #000;
     width: 320px;
     height: 400px;
-    left: -160px;
-    top: -200px;
+    min-width: 250px;
+    min-height: 250px;
+    left: -170px;
+    top: -220px;
     opacity: 0;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    background: #fff url('../img/deco/tex45x48.png') repeat left top;
 }
 #scriber.show {
     opacity: 1;
@@ -610,6 +644,13 @@ ul#menu div #menu_link {
     margin: 6px 0px;
     background: #fff;
 }
+#scriber_menu #sb_edit {
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
 #scriber_menu #sb_edit.active {
     width: 184px;
 }
@@ -620,6 +661,12 @@ ul#menu div #menu_link {
     top: 0px;
     background: transparent url('../img/deco/paper.jpg') repeat left top;
     z-index: 2;
+    border: none;
+    -webkit-box-shadow: 0px 0px 6px #444;
+    -moz-box-shadow: 0px 0px 6px #444;
+    -ms-box-shadow: 0px 0px 6px #444;
+    -o-box-shadow: 0px 0px 6px #444;
+    box-shadow: 0px 0px 6px #444;
 }
 #scriber .canvas_container .resize {
     z-index: 2;
@@ -671,7 +718,11 @@ ul#menu div #menu_link {
     margin: 0px;
     background: #000;
     padding: 0 10px;
-    
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 #toolbox.active ul#sb_tools {
     left: 0px;
@@ -688,9 +739,6 @@ ul#menu div #menu_link {
 }
 #sb_tools li:first-child {
     margin: 10px 0 5px 0;
-}
-#sb_tools li:last-child {
-    margin: 0 0 15px 0;
 }
 #sb_tools li.active {
     color: rgb(246, 168, 0);
@@ -853,10 +901,6 @@ ul#menu div #menu_link {
     z-index: 13;
     visibility: visible;
     opacity: 0.5;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 #controler:hover {
     opacity: 1;
@@ -924,10 +968,10 @@ ul#menu div #menu_link {
 #controler ul li:nth-child(-n+5):hover, #controler ul li:nth-child(-n+5).hover {
     background: #000;
 }
-#controler ul li:nth-child(1):hover, #controler ul li:nth-child(1).hover {
+/*#controler ul li:nth-child(1):hover, #controler ul li:nth-child(1).hover {
     background: #3B5998;
     border: 2px solid #3B59FF;
-}
+}*/
 #controler ul li:nth-child(1) {
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -1039,6 +1083,7 @@ ul#menu div #menu_link {
     margin: 0 auto;
     padding: 10px;
     width: 50%;
+    font: normal 15px/22px 'DroidSansRegular', Arial, Helvetica;
 }
 #msgCenter ul li{
     text-align: center;
@@ -1047,9 +1092,8 @@ ul#menu div #menu_link {
     -webkit-transition: opacity 1s ease; 
     -moz-transition: opacity 1s ease; 
     transition: opacity 1s ease;
-    background-color: #FFFFB5;
+    background-color: #fff;
     padding: 1px 5px 1px 5px;
-    border-radius: 5px;
     margin-bottom: 5px;
 }
 #msgCenter ul li.fadeIn{
@@ -1112,30 +1156,122 @@ ul#menu div #menu_link {
 
 /******************** Game / Video ********************/
 
-.game {
+#gameCanvas {
     position: absolute;
-    display: none;
-    opacity: 0;
-    z-index: 0;
-    border: 3px solid #4c4c4c;
-    margin: 0px auto;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
     padding: 0;
     overflow: hidden;
-    top: 100%;
+    z-index: 1;
+}
+#game_container {
+    z-index: 0;
+    visibility: hidden;
+    overflow: visible;
+    background: transparent;
+    
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+#game_container.nowindow {
+    border: 3px solid #4c4c4c;
     
     -moz-box-shadow: 0 0 10px #000000;
     -webkit-box-shadow: 0 0 10px #000000;
     box-shadow: 0 0 10px #000000;
-    
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
 }
-.game_active {
+#game_container.nowindow h1, #game_container.nowindow .sep_line {
+    visibility: hidden;
+}
+#game_container.active {
     display: block;
-    opacity: 1;
     z-index: 15;
+    visibility: visible;
+}
+#game_center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+}
+#game_result {
+    position: absolute;
+    left: -90px;
+    top: -75px;
+    width: 180px;
+    height: 130px;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    visibility: hidden;
+}
+#game_result.active {
+    visibility: visible;
+}
+#game_result h2 {
+    position: relative;
+    float: left;
+    font: normal 38px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    border-bottom: 1px solid #000;
+}
+#game_result img {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+}
+#game_result h5 {
+    position: relative;
+    float: left;
+    font: normal 15px/50px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: bottom;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+#game_result h5 span {
+    font: normal 30px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    margin: 0;
+}
+#game_result ul {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 30px;
+    background: #666;
+    color: #000;
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    text-align: center;
+}
+#game_result ul li {
+    float: left;
+    width: 90px;
+    height: 100%;
+    border-top: 1px solid #000;
+}
+#game_result ul li:hover {
+    background: rgb(246, 168, 0);
+    color: #fff;
+}
+#game_result ul li:first-child {
+    width: 89px;
+    border-right: 1px solid #000;
 }
 
 .video {

@@ -15,7 +15,7 @@ class Controller_13comments extends Controller_Rest
         if(is_null($this->current_user)) {
             $this->response(array(
                 'success' => false,
-                'errorMessage' => 'You have to login'
+                'errorMessage' => 'Tu dois te connecter sur SEASON13.com'
             ));
         }
         else {
@@ -63,7 +63,7 @@ class Controller_13comments extends Controller_Rest
         if(is_null($this->current_user)) {
             $this->response(array(
                 'success' => false,
-                'errorMessage' => 'You have to login'
+                'errorMessage' => 'Tu dois te connecter sur SEASON13.com'
             ));
         }
         else {
@@ -105,7 +105,7 @@ class Controller_13comments extends Controller_Rest
     			{
     				$this->response(array(
     				    'success' => false,
-    				    'errorMessage' => 'Fail to save the comment'
+    				    'errorMessage' => "Echec de publier ton message, réessayer ultérieurement"
     				));
     			}
     		}

@@ -161,6 +161,7 @@ gui.openhideMenu = function(e) {
 }
 
 gui.openPref = function() {
+    if(!gui.center.hasClass('show')) gui.center.addClass('show');
     if(!gui.pref.hasClass('show')) {
         gui.pref.addClass('show');
         
@@ -194,6 +195,7 @@ gui.updatePlayPauseIcon = function() {
 
 
 gui.openComment = function(){
+    if(!gui.center.hasClass('show')) gui.center.addClass('show');
     if(!gui.comment.hasClass('show')) {
         gui.comment.addClass('show');
         
@@ -304,9 +306,9 @@ gui.postComment = function(imgUrl, msg){
             
             var msg = null;
             if(fbapi.user && posted.fbpostid != "0") // the post is on facebook
-                msg = $('<p>Votre message a bien été posté ici et sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
+                msg = $('<p>Ton message a bien été posté sur SEASON13 et sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
             else 
-                msg = $('<p>Votre message a bien été posté.</p>')
+                msg = $('<p>Ton message a bien été posté.</p>')
             msgCenter.send(msg);
         } else {
             errorPost(data, e);
@@ -370,10 +372,18 @@ $(window).load(function() {
     
     // General Interaction
     // Close the preference panel or the comment panel
-    $('.close').click(function() {
+    gui.center.children().children('.close').click(function() {
         $(this).parent().removeClass('show');
         mse.currTimeline.play();
         gui.updatePlayPauseIcon();
+        
+        var hasShownChild = false;
+        gui.center.children().each(function() {
+            if($(this).hasClass('show'))
+                hasShownChild = true;
+        });
+        if(!hasShownChild)
+            gui.center.removeClass('show');
     });
     gui.comment.children('.close').click(gui.closeComment);
 
@@ -489,7 +499,7 @@ $(window).load(function() {
     gui.uploadForm.ajaxForm(options);
     // Upload interaction
     $('#imageuploadform #upload_btn').click(function() {
-        if(gui.comment_menu.children('.preview').length > 0) {
+        if(gui.comment_menu.children('#commentImg').length > 0) {
             var ok = confirm("Tu vas remplacer l'image précédemment téléchargée, sûr?");
             if(!ok) return;
         }
@@ -508,7 +518,7 @@ $(window).load(function() {
         imgSrc = (!imgSrc || imgSrc.trim() == "") ? false : imgSrc;
         var msg = gui.comment_content.val();
         if(!imgSrc && msg == ''){
-            msgCenter.send('Tu dois envoyer au moins du texte ou une image.')
+            msgCenter.send('Ton message est vide.')
             return;
         }
         

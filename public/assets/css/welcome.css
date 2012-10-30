@@ -26,6 +26,7 @@
     width: 370px;
     height: 116px;
     z-index: 3;
+    cursor: pointer;
 }
 
 #bookresume {

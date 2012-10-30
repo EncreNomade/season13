@@ -194,7 +194,7 @@
 	<footer>
 	    <ul><li class="fb_btn"><?php echo Asset::img('btn_fblike.png'); ?></li><!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
-		<p><label>Contacts</label> - <label>Mentions légales</label> - <label>Conditions générales de vente</label></p>
+		<p><label>Contacts</label> - <label>Mentions légales</label><!-- - <label>Conditions générales de vente</label>--></p>
 	</footer>
 </body>
 </html>

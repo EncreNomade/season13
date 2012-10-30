@@ -1,1 +1,1328 @@
-eval(function(B,D,A,G,E,F){function C(A){return A<62?String.fromCharCode(A+=A<26?65:A<52?71:-4):A<63?'_':A<64?'$':C(A>>6)+C(A&63)}while(A>0)E[C(G--)]=D[--A];return B.replace(/[\w\$]+/g,function(A){return E[A]==F[A]?A:E[A]})}('c Ig=7(){U.Gf.KQ(l);c G2=U.BN(NK),FG=U.BN(I),C=U.BN(IH),B=U.BN(596);l.canvasox=U.i(G2);l.canvasoy=U.i(FG);l.Bz=U.i(C);l.BQ=U.i(B);U.X._("M3","BJ/FP","BP");U.X._("GV","Eq/FP.Bb","d");c FI=W U.CF(l,{Y:[CY,l.BQ-DM]},"GV",DM,Dn,I,I,Fk,Hg),M=W U.CF(l,{Y:[Cq,l.BQ-96]},"GV",HT,Fv,Fk,I,HT,Fv),B1=W U.CF(l,{Y:[BZ,l.BQ-DM]},"GV",T,HP,I,Eg,Fk,HP);U.X._("Hf","Eq/Fc.Bb","d");c D=W U.CD(l,{Y:[l.Bz-160,Cq],insideRec:[S,T,S,S]},"Hf"),G3=W U.CF(l,{Y:[l.Bz-Hg,175]},"Hf",S,T,S,155,S,T),G0=[I,J,K,BS,BG,B0,CS,Gy,DZ,Gz],FH=W U.EE(FI,G0,I,K),Cj=W U.EE(B1,G0,I,K);l.L7=7(M){O(FI.Mw(M.CU,M.CT)){l.EY=x;B1.GJ=M.CU-Cq;B1.Dw=M.CT-Dm;FH.Cc();Cj.0();U.X.3("M3").Bi();}};l.JC=7(M){B1.GJ=M.CU-Cq;B1.Dw=M.CT-Dm;};l.Mv=7(M){c FG=M.CU,C=M.CT;O(l.EY){BB;}O(D.Mw(M.CU,M.CT)){c B=W U.KeyFrameAnimation(B1,{Bo:[I,CN,35],Y:[[FG-Cq,C-Dm],[D.GJ+Kx,D.Dw+Kb],[D.GJ+Kx,D.Dw+Kb]]},J);B.N4.CV("Df",W U.Cl(l.Df,l));B.0();l.GI=m;l.BA().B7("EU",A);l.BA().B7("Er",C3);l.BA().B7("Eb",L);}q{l.EY=m;Cj.Cc();FH.0();}};c A=W U.Cl(l.L7,l),C3=W U.Cl(l.JC,l),L=W U.Cl(l.Mv,l);l.HI=7(){l.BA().CV("EU",A,m);l.BA().CV("Er",C3,m);l.BA().CV("Eb",L,m);l.EY=m;l.GI=x;FH.0();};l.Gn=7(L){O(l.GI){c M=G3.Dw-B1.Dw-Fm;B1.NC=M<I?Fm+M:Fm;B1.BQ=B1.NC;}};l.BY=7(L){D.BY(L);O(l.EY){FI.BY(L);M.BY(L);L.Ee();L.Ba="#FFF";L.DQ(M.getX()+M.K_()*J.K,M.getY()-HU);L.GG();L.moveTo(-B4,CY);L.E9(I,CY-Cp);L.E9(B4,CY);L.E9(-B4,CY);L.F_();L.fillRoundRect(I,I,240,CY,B4);L.Ba="#000";L.Cg="20px DG";L.B_="CH";L.fillText("Aide BW, vite!",B4,BG);L.EN();}q{B1.BY(L);}O(l.GI){G3.BY(L);}};};Op(Ig,U.Gf);7 E2(B,A){c C=I,M=A.G-B.G,L=A.H-B.H;C=BI.atan2(L,M);BB BI.O5(BH*C/(BI.C_));}7 Il(B,M,A,L){BB BI.sqrt(BI.Mg(A-B,K)+BI.Mg(L-M,K));}7 OD(A,L,M){O(A>=M[I]&&A<=M[I]+M[K]&&L>=M[J]&&L<=M[J]+M[BS]){BB m;}q{BB x;}}7 Ij(L,M){O(L<M[I]){BB-J;}q{O(L>=M[I]&&L<=M[I]+M[K]){BB I;}q{BB J;}}}7 Ih(L,M){O(L<M[J]){BB-J;}q{O(L>=M[J]&&L<=M[J]+M[BS]){BB I;}q{BB J;}}}c OG=7(A,M,L){O(M.Cb<K){L1("DK LZ","DK \'Be\' demande minimum K elements");}O(M.Cb!=L.Cb){L1("DK LZ","DK \'Be\' have to be the same n of array \'DX\'");}l.O4=A;l.CM=W DK();l.CM.EP=W U.EE(A,[I,J,K,BS,BG,B0],I,B0);l.CM.EZ=W U.EE(A,[CS],I,I6);l.B9=CS;l.Fd=BH;l.HL=T;l.EO=l.HL*BI.C_/BH;l.MJ=-l.EO;l.IP=B6(BI.cos(l.EO)*l.Fd,BI.sin(l.EO)*l.Fd);l.Be=M;l.DX=L;l.Y=W U.Dg(M[I].G,M[I].H);l.CA=I;l.BT=J;l.Ch=E2(l.Be[I],l.Be[J]);O(L[l.CA].Cb!=I){l.Ci=I;l.C5=l.DX[l.CA][l.Ci];l.DH=J;l.CM.EP.Cc();l.CM.EZ.0();}q{l.C5=l.Ch;l.DH=I;l.CM.EP.0();l.CM.EZ.Cc();}l.Gn=7(B){Mz(l.DH){C6 I:c M=l.Be[l.BT].G-l.Y.G,L=l.Be[l.BT].H-l.Y.H;O(M==I){O(L<-l.B9){l.Y.H-=l.B9;BB;}q{O(L>l.B9){l.Y.H+=l.B9;BB;}}}q{O(M<-l.B9){l.Y.G-=l.B9;BB;}q{O(M>l.B9){l.Y.G+=l.B9;BB;}}}l.Y=W U.Dg(l.Be[l.BT].G,l.Be[l.BT].H);O(l.CA<l.BT){l.CA=l.BT;l.BT=(l.BT==l.Be.Cb-J)?l.BT-J:l.BT+J;}q{l.CA=l.BT;l.BT=(l.BT==I)?J:l.BT-J;}l.DH=J;l.CM.EP.Cc();l.CM.EZ.0();O(l.DX[l.CA].Cb!=I){l.C5=l.DX[l.CA][l.Ci];}q{l.Ci=-J;l.C5=E2(l.Be[l.CA],l.Be[l.BT]);}Co;C6 J:c A=l.C5-l.Ch;O(A<-K){l.Ch-=K;}q{O(A>K){l.Ch+=K;}q{l.Ch=l.C5;O(l.Ci==-J){l.DH=I;l.Ci=I;l.CM.EP.0();l.CM.EZ.Cc();BB;}O(l.Ci<l.DX[l.CA].Cb-J){l.Ci++;l.C5=l.DX[l.CA][l.Ci];}q{l.C5=E2(l.Be[l.CA],l.Be[l.BT]);l.Ci=-J;}}}Co;C6 K:Co;C6 BS:Co;}};l.BY=7(M,A,L){M.Ee();M.DQ(A+l.Y.G,L+l.Y.H);M.Fq(l.Ch*BI.C_/BH);M.Ba="I1(Et,I,I,I.B0)";M.GG();M.E9(l.IP.G,l.IP.H);M.I5(I,I,l.Fd,l.EO,l.MJ,m);M.E9(I,I);M.F_();M.DQ(-Cq,-HW);l.O4.BY(M);M.EN();};},Gc=7(){U.Gf.KQ(l,{fillback:m});l.msg={O2:"Clique DR aider BW \\b \\Ie \\b P F3.",MP:"Bravo!!! Mh as gagn\\e."};l.DH="O2";U.X._("Em","BJ/findsimon","BP");U.X.3("Em").loop=m;U.X._("E5","Eq/NG.jpg","d",m);U.X._("Dc","Eq/personnages.Bb","d",m);U.X._("notice_parc","Eq/points-persos.Bb","d",m);c A=W DK();A[I]=W U.CF(BM,{},"Dc",T,CC,I,CC,E$,CC);A[J]=W U.CF(BM,{},"Dc",T,CC,I,74,E$,CC);A[K]=W U.CF(BM,{},"Dc",T,CC,I,111,E$,CC);A[BS]=W U.CF(BM,{},"Dc",T,CC,I,148,E$,CC);c L={FX:[[Dk,EF,S,Oq],[H$,EF,S,Oq],[580,EF,S,Ej],[Im,G8,S,Dk],[830,JI,S,H$],[1030,Ej,S,380],[1350,Ej,S,770],[1660,Dk,S,G8]],GD:[[Dk,Dk,Kf,S],[Ix,Ej,Pa,S],[Im,510,H$,S],[1410,JI,EF,S],[890,LX,460,S],[Dk,900,Im,S],[LX,Ix,G8,S]]},M=[[B6(KX,G1),B6(KX,IW)],[B6(810,G1),B6(Nr,G1),B6(Nr,1115)],[B6(Hd,LC),B6(Hd,605),B6(Hd,840)],[B6(I0,LC),B6(I0,540),B6(I0,LE),B6(1370,LE)]],B=[[[BH,I],[I,BH]],[[C8],[],[I]],[[BH],[BH],[BH]],[[I],[BH],[],[C8,-C8]]];l.DB=W U.CF(BM,{},"Dc",T,CC,I,I,E$,CC);l.FD=W U.EE(l.DB,[I,J,K,BS,BG,B0],I,Gy);l.EW=W U.EE(l.DB,[CS],I,I6);l.Fa=I;O(EM.E6){U.X._("JV","./Mi/Nk/padbase.Bb","d",m);U.X._("NW","./Mi/Nk/padhandler.Bb","d",m);l.Km=W U.CD(BM,{Y:[K2,l.BQ-K6],n:[K0,K0],$:I.CS},"JV");l.DY=W U.CD(BM,{Y:[CY,l.BQ-HQ],n:[DM,DM],$:I.CS},"NW");l.Dt=[CY,l.BQ-HQ,DM,DM];}l.HI=7(){U.X.3("Em").Bi();l.ES=W DK();Do(c L=I;L<BG;L++){l.ES[L]=W OG(A[L],M[L],B[L]);}l.ES[BS].B9=BS;l.Ce=I;l.FD.Cc();l.EW.0();l.Cv=x;l.H5=x;l.DN=I;l.I2=Dn;l.Gm=l.Gl=l.EC=l.ED=l.GQ=l.GR=l.IT=l.IV=I;l.Bn=W U.Dg(IW,LL);l.Y=W U.Dg(l.Bz/K-l.Bn.G,l.BQ/K-l.Bn.H);l.Bs=l.Br=I;l.BA().CV("Hs",l.F$,m,l);l.BA().CV("Hq",l.Dv,m,l);O(EM.E6){l.BA().CV("EU",l.Fp,m,l);l.BA().CV("Er",l.Gt,m,l);l.BA().CV("Eb",l.Dv,m,l);}};l.mobileLazyInit=7(){l.Bn=W U.Dg(IW,LL);l.Y=W U.Dg(l.Bz/K-l.Bn.G,l.BQ/K-l.Bn.H);l.Bs=l.Br=I;};l.BY=7(L){L.Ee();c A=U.X.3("E5"),M=A.Bz/I8;L.Kp(A,l.Gm*M,l.Gl*M,l.EC*M,l.ED*M,l.GQ,l.GR,l.IT,l.IV);L.Ee();L.DQ(l.Bz/K,l.BQ/K);L.Fq(l.Ce*BI.C_/BH);O(l.Cv){L.$=(l.I2-l.DN)/Dn;L.Ba="I1(f,f,f,I.CS)";L.strokeStyle="#fff";L.GG();L.I5(I,I,l.DN,I,BI.C_*K,m);L.closePath();L.F_();L.stroke();}L.DQ(-Cq,-HW);l.DB.BY(L);L.EN();Do(c B=I;B<BG;B++){l.ES[B].BY(L,l.Y.G,l.Y.H);}L.$=I.Gy;L.Kp(U.X.3("E5"),B0,B0,192,128);L.$=J;L.Ba="CK(I,Et,I)";L.fillRect(BG+l.Bn.G/B4,BG+l.Bn.H/B4,K,K);L.Ba="I1(EF,PX,Et,I.DZ)";O(l.Fa==B4){l.Fa=I;L.GG();L.I5(174,Fv,BS,I,BI.C_*K,m);L.F_();}q{l.Fa++;}L.EN();O(EM.E6){l.Km.BY(L);l.DY.BY(L);L.$=J;}};l.Gn=7(L){O(l.H5){l.IO--;O(l.IO==I){U.X.3("Em").Ka();l.lose();}BB;}O(l.Y.G>I){l.Gm=I;l.EC=l.Bz-l.Y.G;l.GQ=l.Y.G;}q{l.Gm=-l.Y.G;O(l.Y.G+I8<l.Bz){l.EC=I8+l.Y.G;}q{l.EC=l.Bz;}l.GQ=I;}O(l.Y.H>I){l.Gl=I;l.ED=l.BQ-l.Y.H;l.GR=l.Y.H;}q{l.Gl=-l.Y.H;O(l.Y.H+K4<l.BQ){l.ED=K4+l.Y.H;}q{l.ED=l.BQ;}l.GR=I;}l.IT=l.EC;l.IV=l.ED;l.Y.G+=l.Bs;l.Y.H+=l.Br;O(l.Ky()){l.Y.G-=l.Bs;l.Y.H-=l.Br;}O(l.Cv){O(l.DN<l.I2){l.DN+=K;}q{l.DN=I;}}l.Bn.G=l.Bz/K-l.Y.G;l.Bn.H=l.BQ/K-l.Y.H;O(BI.Ic(l.Bn.G-1690)<=S&&BI.Ic(l.Bn.H-290)<=B4){l.BA().B7("Hs",l.F$);l.BA().B7("Hq",l.moveoverc);O(EM.E6){l.BA().B7("EU",l.Fp);l.BA().B7("Er",l.Gt);l.BA().B7("Eb",l.Dv);}l.DH="MP";U.X.3("Em").Ka();l.Df();}Do(c D=I;D<BG;D++){c A=l.ES[D];A.Gn(L);c M=BI.O5(Il(l.Bn.G,l.Bn.H,A.Y.G,A.Y.H)),B=E2(A.Y,l.Bn),C=BI.Ic(B-A.Ch);O(C>BH){C=IH-C;}O(M<Dn||(M<=170&&C<=A.HL)){A.Ch=B;l.BA().B7("Hs",l.F$);l.BA().B7("Hq",l.Dv);O(EM.E6){l.BA().B7("EU",l.Fp);l.BA().B7("Er",l.Gt);l.BA().B7("Eb",l.Dv);}l.H5=m;l.Hn();l.IO=T;}}};l.Ky=7(){c D=l.Bz/K-l.Y.G,B=l.BQ/K-l.Y.H;Do(c C=I;C<L.FX.Cb;C++){c M=Ij(D,L.FX[C]);O(M==-J){Co;}q{O(M==I&&Ih(B,L.FX[C])==I){BB x;}}}Do(C=I;C<L.GD.Cb;C++){c A=Ih(B,L.GD[C]);O(A==-J){BB m;}q{O(A==I&&Ij(D,L.GD[C])==I){BB x;}}}BB m;};l.Nn=7(L){c M=x;Mz(L.keyCode){C6 __KEY_LEFT:l.Bs=BG;l.Br=I;l.Ce=BH;M=m;Co;C6 __KEY_RIGHT:l.Bs=-BG;l.Br=I;l.Ce=I;M=m;Co;C6 __KEY_UP:l.Br=BG;l.Bs=I;l.Ce=-C8;M=m;Co;C6 __KEY_DOWN:l.Br=-BG;l.Bs=I;l.Ce=C8;M=m;Co;}O(M&&!l.Cv){l.Cv=m;l.DN=I;l.FD.0();l.EW.Cc();}};l.MA=7(M){O(OD(M.CU,M.CT,l.Dt)){l.If=m;}l.Bs=I;l.Br=I;l.Cv=x;};l.Ja=7(L){O(l.If){c C=l.Dt[I]+T,D=l.Dt[J]+T,B=mseAngleForLine(C,D,L.CU,L.CT),A=Il(C,D,L.CU,L.CT);O(A<T){l.DY.Hl(L.CU-T,L.CT-T);}q{l.DY.Hl(C+T/A*(L.CU-C)-T,D+T/A*(L.CT-D)-T);}c M=m;O((B>=I&&B<=Cp)||(B<=I&&B>=-Cp)){l.Bs=-BG;l.Br=I;l.Ce=I;}q{O(B>=Ca&&B<=K5){l.Br=-BG;l.Bs=I;l.Ce=C8;}q{O(B>=KU||B<=-KU){l.Bs=BG;l.Br=I;l.Ce=BH;}q{O(B<=-Ca&&B>=-K5){l.Br=BG;l.Bs=I;l.Ce=-C8;}q{M=x;}}}}O(M&&!l.Cv){l.Cv=m;l.FD.0();l.EW.Cc();}}};l.Hn=7(M){l.Bs=I;l.Br=I;l.Cv=x;l.FD.Cc();l.EW.0();l.If=x;O(l.DY){l.DY.Hl(l.Dt[I],l.Dt[J]);}};l.F$=W U.Cl(l.Nn,l);l.Dv=W U.Cl(l.Hn,l);l.Fp=W U.Cl(l.MA,l);l.Gt=W U.Cl(l.Ja,l);};Op(Gc,U.Gf);U.coords=s.1(\'{"u":800,"t":600,"p":I,"HA":Fk,"B$":Et,"EL":Cq,"Jm":342.B0,"Jl":Kq.CN,"Jp":228.Ca,"Jo":108.Ca,"IS":Ks.B0,"ND":177.B0,"NE":Ko.Ca,"M$":311.CN,"M_":246.CN,"BE":IH,"M9":590,"NB":NK,"NA":B4,"Es":DL.B0,"v":Fu.CN,"w":Kf,"y":315,"IQ":324,"NX":Ke.72,"IY":HW,"NY":Ke.Ca,"NZ":PZ.Ca,"NU":492.B0,"NV":517.B0,"D8":EF,"DW":Hg,"DV":300,"D7":409,"IZ":-Et,"IX":Ix,"cid36":33,"cid37":235,"cid38":109,"cid39":343,"cid40":Kq,"cid41":Ej,"cid42":248,"cid43":178,"cid44":61,"BL":344,"D4":120,"BK":f,"Ey":263,"GU":296,"Ez":301,"NT":298,"D5":396,"D6":201,"GW":PX,"GZ":-42,"GX":135,"NN":I6,"NO":164,"NM":106,"NP":189,"Ex":Fm,"Ew":221,"Ev":PZ,"B5":23,"cid65":143,"cid66":Fu,"NQ":83,"cid68":116,"cid69":340,"cid70":CY,"HJ":C8,"cid72":266}\');initMseConfig();U.HI();Hk.z={};c V={};Hk.j={};c Z={},Ge={},a={};7 N2(){O(config.publishMode=="debug"){U.configs.srcPath="./KZ/";}Hk.FJ=W U.Root("KZ",U.i("u"),U.i("t"),"portrait");c A={};U.X._("Eo","5/Eo.Bb","d",m);U.X._("En","5/En.Bb","d",m);U.X._("MF","5/MF.Bb","d",m);U.X._("H1","5/H1.Bb","d",m);U.X._("H0","5/H0.Bm","d",m);Ge.M2=W Ig();U.X._("M5","5/M5.Bm","d",m);U.X._("M4","5/M4.Bm","d",m);Ge.FindSimon=W Gc();U.X._("IC","5/IC.Bm","d",m);U.X._("Eh","5/src16.Bb","d",m);U.X._("IB","5/IB.Bm","d",m);U.X._("IJ","5/IJ.Bm","d",m);U.X._("IL","5/IL.Bm","d",m);U.X._("IK","5/IK.Bm","d",m);U.X._("IN","5/IN.Bm","d",m);U.X._("IM","5/IM.Bb","d",m);U.X._("DE","5/DE.Bb","d",m);U.X._("M8","5/M8.Bb","d",m);U.X._("Dy","5/Dy.Bb","d",m);U.X._("Dx","5/Dx.Bm","d",m);U.X._("IG","5/IG.Bm","d",m);U.X._("GN","5/GN.Bm","d",m);U.X._("GM","5/GM.Bm","d",m);U.X._("IF","5/IF.Bm","d",m);U.X._("IE","5/IE.Bm","d",m);U.X._("GT","BJ/GT","BP",x);U.X._("Hr","BJ/Hr","BP",x);U.X._("He","BJ/He","BP",x);U.X._("H4","BJ/H4","BP",x);U.X._("F8","BJ/F8","BP",x);U.X._("Hp","BJ/Hp","BP",x);U.X._("HR","BJ/HR","BP",x);U.X._("Fb","BJ/Fb","BP",x);U.X._("I7","BJ/I7","BP",x);U.X._("FB","BJ/FB","BP",x);U.X._("Fg","BJ/Fg","BP",x);U.X._("HE","BJ/HE","BP",x);U.X._("G7","BJ/G7","BP",x);U.X._("FL","BJ/FL","BP",x);U.X._("GK","BJ/GK","BP",x);U.X._("HS","BJ/HS","BP",x);a.C7=W U.Ds();a.C7.CP();a.C7.BD.Bt("Nyctalope","A Cx Cs confondre My nyctalope : BR adjectif h E\\xe9signe celui h EI P facult\\e N voir CI P Db\\Gb, FO g chats");a.C7.BD.Bt("A KE E\\u2019inventer"," - Nyctambule\\B3: h recherche g EG\\xe9tards \\PB\\Cu P EB\\B2 - Noctalope\\B3: h travaille P EB HO avoir besoin N Hj\\DS");a.C7.CP();a.C7.BD.Bt("C7","Fi Gj Gd EG\\JD\\B3: \\B2 - I$ Gd animal h EI F\\u2019habitude N Bd KN P EB.\\B2 - I$ h aime FZ P EG\\JB P EB.\\B2 - Lz OE\\B3: I$ h De Bc activit\\e P EB");a.D3=W U.Ds();a.D3.C$("IB","LA C4\\xe9alis\\EA Cr Panoramas");a.D3.CP();a.D3.BD.Bt("Frondaison","Fi, EG\\JD\\B3: \\B2 - Ct Hc Bl g Kh E\\Cw arbre\\B2 - Epoque G6\\EJ g Hc commencent \\b pousser");a.D3.BD.Bt("Synonymes","Feuillage, \\nRamure, \\nBranchage");a.BU=W U.Ds();a.BU.C$("IL","Iu H7\\HK Cr Jeff Attaway");a.BU.CP();a.BU.BD.Bt("Ct BU EH\\Eu\\Ef","Q existe Bq BU EH\\Eu\\Ef parmi lesquels Iu H7\\HK, chanteur Bl musicien malien. Q EI obtenu DD Victoire N P musique Bc 2010 DR Di album \\J$\\xa0La Diff\\xe9rence\\B3\\Jy");a.BU.BD.6("Site officiel\\B3 Iu H7\\HK","Dq://salif-keita.artiste.universalmusic.Dz/");a.BU.C$("IJ","Rat BU. NH N Tambako");a.BU.CP();a.BU.BD.Bt("Albinos","Adjectif invariable\\B3:\\nQui De affect\\e E\'albinisme.");a.BU.BD.Bt("O1","nom Gj\\B3: \\nmaladie G5\\D1\\xe9tique h Bd caract\\xe9rise Cr DD absence Bw pigment destin\\e \\b colorer P peau, g poils, g cheveux K8 CR Cr Bq FM rouges. JJ affecte g humains Gd g animaux.");a.BU.BD.6("Gq\\Gw BU","Dq://Dz.Fs.F6/Cd/O1 ");a.CZ=W U.Ds();a.CZ.C$("IK","Vue HH P place Wagram. NH N marsupilami92 ");a.CZ.CP();a.CZ.BD.Bt("Biodiversit\\e","JJ De consid\\xe9r\\EA FO DD C4\\xe9serve N biodiversit\\e. L2 JA H observer N nombreuses vari\\NJ\\Cu E\\KO, N plantes Bl P C0 grande colonie N chauve-souris N F\\u2019esp\\xe8ce pipistrelle E\\u2019Ile N France. \\nLa ville N GY H am\\xe9nage Bq parcours Db\\xe9dagogiques, proposant K8 BR nouveau r N promenade nature \\b GY.");a.CZ.BD.6("Mx Mairie N GY","Dq://www.M0.Dz/loisirs/Bd-KN-EI-M0/balades-CQ-vert/decouvrir-g-richesses-N-P-Na-ceinture/rub_9660_stand_53584_port_23803");a.CZ.C$("IN","DP Gk Gi traverse R NG Nl. LA N Thomas Claveirole ");a.CZ.CP();a.CZ.BD.Bt("DP Gk Gi","C\\N3 DD ancienne HN N KG N JE longue N Ks km h faisait R tour N GY.");a.CZ.BD.6("Mx Gq\\Gw","Dq://Dz.Fs.F6/Cd/Ligne_de_Petite_Ceinture");a.Bh=W U.Ds();a.Bh.C$("H0","Bh, Jx-JH\\Kv Bq G4-Id");a.Bh.CP();a.Bh.BD.Bt("DA Bh chez g G4-Id :","Bh De aussi BR Jx-JH\\Kv NS\\e\\e Cr G2. Kirby Bl JF. Lee Bc 1963. C\\N3  BR mutant h G5\\D1\\DS Bq rayons extr\\xeamement puissants My CW FM JK BF \\xe9vite CQ maximum E\\u2019utiliser P NL.");a.Bh.BD.6("Gq\\Gw G4-Id","Dq://Dz.Fs.F6/Cd/Cyclope_%28comics%29 ");a.Bh.C$("H1","Polyph\\xe8me, fils N Pos\\e\\xefdon");a.Bh.CP();a.Bh.BD.Bt("Ct GH","Fi, Gj :\\nLes GH KH Bq NS\\xe9atures fantastiques N P mythologie grecque. Pe KH Bq G5\\xe9ants h Cx poss\\xe8dent Cf\\Cw Kk \\Mt CQ milieu Bw front. IU \\FF soit forgerons, JG\\xe2tisseurs Gd pasteurs.");a.Bh.BD.6("Gq\\Gw Bh","Dq://Dz.Fs.F6/Cd/Bh ");a.C2=W U.Ds();a.C2.C$("IC","Cj\\\\\'C2 Bw cerf, peint Cr Courbet Bc 1867");a.C2.CP();a.C2.BD.Bt("Fi Gj"," - Sonnerie N LB \\b KL h annonce P prise imminente N F\\Og, E\\u2019o\\EJ F\\u2019expression\\B3:\\xa0Sonner F\\Fj\\B3: annoncer P E\\M6 N KY\\Cw.\\B2 - Moment G6\\EJ F\\Og De pris\\B2 - Lz OE\\B3: E\\xe9b\\xe2cle, E\\M6");a.C2.CP();a.C2.BD.Bt("Cj\\Fj","Interjection\\B3: \\nCri Bw chasseur h attrape Bw gibier lors E\\Ik LB \\b KL.");z.Du=W U.Iq(FJ,"Du",{n:[U.i("u"),U.i("t")]});V.Ep=W U.DI(z.Du,J,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.L0=W U.CD(V.Ep,{n:[U.i("u"),U.i("t")],Y:[U.i("p"),U.i("p")]},"IG");V.Ep.9(j.L0);z.Du.DC("Ep",V.Ep);z.CL=W U.Iq(BM,"CL",{n:[U.i("u"),U.i("t")]});V.E7=W U.DI(z.CL,J,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.Ly=W U.CD(V.E7,{n:[U.i("u"),U.i("t")],Y:[U.i("p"),U.i("p")]},"GN");V.E7.9(j.Ly);z.CL.DC("E7",V.E7);V.ET=W U.DI(z.CL,K,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.Ek=W U.HV(V.ET,{n:[U.i("HA"),U.i("t")],Y:[U.i("B$"),U.i("p")],Ba:"CK(I, I, I)",$:I.DZ,Cg:"DT "+U.i("EL")+"Cz OC",Cm:"D2"});V.ET.9(j.Ek);z.CL.DC("ET",V.ET);V.o=W U.DI(z.CL,BS,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.ER=W U.o(V.o,{n:[U.i("Jm"),U.i("Jl")],Y:[U.i("Jp"),U.i("Jo")],Ba:"CK(f, f, f)",$:J,Cg:"K9 "+U.i("IS")+"Cz DG",Cm:"I4",B_:"CH"},"CHASSE A Cj\'HOMME",m);V.o.9(j.ER);j.EQ=W U.o(V.o,{n:[U.i("ND"),U.i("NE")],Y:[U.i("M$"),U.i("M_")],Ba:"CK(f, f, f)",$:J,Cg:"K9 "+U.i("IS")+"Cz DG",Cm:"I4",B_:"CH"},"Episode B1",m);V.o.9(j.EQ);z.CL.DC("o",V.o);z.B8=W U.Iq(BM,"B8",{n:[U.i("u"),U.i("t")]});V.E8=W U.DI(z.B8,J,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.Dr=W U.CD(V.E8,{n:[U.i("u"),U.i("t")],Y:[U.i("p"),U.i("p")]},"GN");V.E8.9(j.Dr);z.B8.DC("E8",V.E8);V.C1=W U.DI(z.B8,K,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.EK=W U.CD(V.C1,{n:[U.i("u"),U.i("t")],Y:[U.i("p"),U.i("p")]},"Eh");V.C1.9(j.EK);z.B8.DC("C1",V.C1);V.FC=W U.DI(z.B8,BS,{$:J,B_:"CH",n:[U.i("u"),U.i("t")]});j.Li=W U.HV(V.FC,{n:[U.i("HA"),U.i("t")],Y:[U.i("B$"),U.i("p")],Ba:"CK(I, I, I)",$:I.DZ,Cg:"DT "+U.i("EL")+"Cz OC",Cm:"D2"});V.FC.9(j.Li);z.B8.DC("FC",V.FC);V.k=W U.ArticleLayer(z.B8,BG,{n:[U.i("BE"),U.i("M9")],Y:[U.i("NB"),U.i("NA")],Ba:"CK(f, f, f)",$:J,Cg:"DT "+U.i("Es")+"Cz DG",Cm:"D2",B_:"CH",lineHeight:U.i("v")},BM);j.Ht=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"IU \\FF F\\b.",m);j.Ht.6(W U.Bk("F\\b",I,"Cn",U.X.3("Hr")));V.k.9(j.Ht);j.Lg=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\HD KE N cent Ck\\Fh G9\\DS ",m);V.k.9(j.Lg);j.Lh=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW. Bien E\\xe9cid\\Cu \\b CG FZ payer ",m);V.k.9(j.Lh);j.Le=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"F\\u2019affront Cf\\u2019ils Jz subi.",m);V.k.9(j.Le);j.Lf=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DP F3.",m);V.k.9(j.Lf);j.Lc=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"M1 adolescents h faisaient ",m);V.k.9(j.Lc);j.Ld=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C4\\xe9gner E3 loi CQ sein Bw KW.",m);V.k.9(j.Ld);j.Lb=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Recroquevill\\e CI P Db\\Gb E\\Cw ",m);V.k.9(j.Lb);j.Lk=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"porche, BW contemplait R ballet ",m);V.k.9(j.Lk);j.Lj=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bq lampes torches h E\\xe9chiraient P ",m);V.k.9(j.Lj);j.Lp=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"EB. Lv FM, scrutant R moindre ",m);V.k.9(j.Lp);j.Lq=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"recoin, repoussant g Da\\D1\\Ef N ",m);V.k.9(j.Lq);j.Hu=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Hh lueurs GH.",m);j.Hu.6(W U.Bk("GH",Kt,"Cd",a.Bh));V.k.9(j.Hu);j.Lr=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Oy\\FK, E4 seraient CO CG.",m);V.k.9(j.Lr);j.Ll=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW frissonna Bc songeant \\b Ga h ",m);V.k.9(j.Ll);j.Lm=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"allait CG arriver. Q savait CR Io, ",m);V.k.9(j.Lm);j.Ln=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"E3 chef, HG HO piti\\e\\Gr",m);V.k.9(j.Ln);j.Lo=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q fallait Cf\\DF E3 \\xe9chappe.",m);V.k.9(j.Lo);j.Ls=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Absolument. Pf tant pis BC\\DF Cx PR ",m);V.k.9(j.Ls);j.Lt=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"jamais retourner CQ KW.",m);V.k.9(j.Lt);j.Hv=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Ct Cs Bd rapprochaient, N C0 Bc ",m);j.Hv.6(W U.Bk("Ct Cs",Cq,"Cn",U.X.3("H4")));V.k.9(j.Hv);j.MO=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C0. Q PR entendre Hh Lw \\b ",m);V.k.9(j.MO);j.MN=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"E_\\xe9sent.",m);V.k.9(j.MN);j.2=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"D0","DE",U.i(U.BN(BZ)),"#Bg");V.k.9(j.2);j.Gp=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Trouvez-Oz Ga sale petit FP ! ",m);j.2.9(j.Gp);j.PJ=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Q Iz comprendre Cf\\Ox Cx JA ",m);j.2.9(j.PJ);j.PE=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Cs Bd moquer N nous FO \\Gh !",m);j.2.9(j.PE);j.II=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"Cy","IM",U.i(U.BN(BZ)),"#Bg");V.k.9(j.II);j.PD=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Ouaip, on Iz CG FZ Bp EG\\JB !",m);j.II.9(j.PD);j.H3=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\xc7a, EH\\BX\\CJ \\J$ DP Ki \\Jy.",m);V.k.9(j.H3);j.MT=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Dix sept NR, BR Ck\\xe8tre quatre-vingt, ",m);V.k.9(j.MT);j.MU=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"soixante-quinze kilos N NL ",m);V.k.9(j.MU);j.MR=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"pure. H8 B9\\xe9ritable bombe ambulante ",m);V.k.9(j.MR);j.MS=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"h Cx demandait Cf\\BX\\b exploser.",m);V.k.9(j.MS);j.MW=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW Bd pencha BR IR hors N ",m);V.k.9(j.MW);j.MV=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Di abri DR \\xe9valuer CW chances N ",m);V.k.9(j.MV);j.MZ=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"E3 \\Ie.",m);V.k.9(j.MZ);j.MY=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Proches Bw Pd\\xe9ro absolu BC\\DF Cx ",m);V.k.9(j.MY);j.Mb=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"bougeait Cs N Bp cachette. DA Hw ",m);V.k.9(j.Mb);j.Ma=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C0 BC\\DF PW DD sortie. \\HD condition ",m);V.k.9(j.Ma);j.Md=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"N tomber CO KY\\Cw, BR adulte ",m);V.k.9(j.Md);j.Me=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"h saurait \\xe9loigner CW Kj.",m);V.k.9(j.Me);j.BV=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"DB","Dy",U.i(U.BN(BZ)),"#Bg");V.k.9(j.BV);j.PC=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Mh es E_\\JM ? chuchota-Da-BF \\b ",m);j.BV.9(j.PC);j.J2=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"F5.",m);j.BV.9(j.J2);j.H6=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"F5. Vador. HM FP BU. HM ",m);j.H6.6(W U.Bk("BU",HT,"Cd",a.BU));V.k.9(j.H6);j.Mf=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C0 fid\\xe8le compagnon HH BR an.",m);V.k.9(j.Mf);j.L6=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"GB Kk Bc B9\\xe9rit\\e.",m);V.k.9(j.L6);j.L5=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW repoussa F\\BX\\Ia N Ck\\xe9lancolie ",m);V.k.9(j.L5);j.L4=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"h JL\\KJ N R submerger Bl ",m);V.k.9(j.L4);j.L3=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"enfouit F5 CQ fond N Di Fc.",m);V.k.9(j.L3);j.JP=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.JP);j.Hx=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q passa g lani\\xe8res KV N CW ",m);V.k.9(j.Hx);j.L_=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\KT Bl BC\\BX\\Ia\\Gh.",m);V.k.9(j.L_);j.L$=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"GE N C4\\xe9action.",m);V.k.9(j.L$);j.Hz=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q BC\\BX\\CJ mis \\b KF FO si Bp vie ",m);j.Hz.6(W U.Bk("KF",Kz,"Cn",U.X.3("HR")));V.k.9(j.Hz);j.L9=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bc E\\xe9pendait.",m);V.k.9(j.L9);j.Hy=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Si P F3 CG tombait dessus, BF \\CJ ",m);V.k.9(j.Hy);j.L8=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"La DR BR passage \\b tabac CI g ",m);V.k.9(j.L8);j.MC=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C4\\xe8gles N F\\u2019art. Voil\\b Ga h Bd passe ",m);V.k.9(j.MC);j.MB=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"lorsque F\\Ox refuse N soumettre aux ",m);V.k.9(j.MB);j.ME=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C0 PK.",m);V.k.9(j.ME);j.MD=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW \\xe9vitait N regarder CI E3 ",m);V.k.9(j.MD);j.ML=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Ch, g FM riv\\Cu CO g ",m);V.k.9(j.ML);j.H2=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"K3 Bw E5 Nl. Lv ",m);j.H2.6(W U.Bk("K3",Hb,"Cd",a.D3));V.k.9(j.H2);j.MM=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"KK, N P Db\\Gb Bl Bq milliards ",m);V.k.9(j.MM);j.MG=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"N recoins G6\\EJ BF J0 Bd dissimuler ",m);V.k.9(j.MG);j.MH=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bc attendant F\\u2019aube.",m);V.k.9(j.MH);j.MI=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"JF\\DF atteignait R jardin, BF HG sauv\\e.",m);V.k.9(j.MI);j.MK=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Dh, CI Bp E_\\xe9cipitation, BF buta ",m);V.k.9(j.MK);j.LM=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"I9 R trottoir. GB JG\\xe9ton CG arracha ",m);V.k.9(j.LM);j.LN=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DD plainte. DA cri O0.",m);V.k.9(j.LN);j.J3=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.J3);j.Bv=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"FS","Dx",U.i(U.BN(BZ)),"#Bg");V.k.9(j.Bv);j.FW=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Q De F\\b !",m);j.Bv.9(j.FW);j.J1=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.J1);j.LG=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"GE assez O0, visiblement.",m);V.k.9(j.LG);j.LF=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW E\\xe9tala tandis CR g faisceaux ",m);V.k.9(j.LF);j.LH=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"accrochaient Bp silhouette.",m);V.k.9(j.LH);j.J6=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.J6);j.HC=W U.CD(V.k,{n:[U.i("IQ"),U.i("NX")],Y:[U.i("IY"),U.i("EL")]},"IF");j.HC.Jd();V.k.9(j.HC);j.J7=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.J7);j.2=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"D0","DE",U.i(U.BN(BZ)),"#Bg");V.k.9(j.2);j.J4=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Chopez-R ! Faut Cf\\DF ",m);j.2.9(j.J4);j.J5=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"MX !",m);j.2.9(j.J5);j.LJ=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Que je MX Mc ? Qu\\DF faut Bd ",m);V.k.9(j.LJ);j.LI=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"laisser FZ ? GE question !",m);V.k.9(j.LI);j.Hm=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Iv\\Eu\\HZ.",m);j.Hm.6(W U.Bk("Iv\\Eu\\HZ",78,"Cn",U.X.3("I7")));V.k.9(j.Hm);j.LK=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q essayait E\\u2019oublier CR CW poumons ",m);V.k.9(j.LK);j.LV=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"R br\\xfblaient, Cf\\DF \\CJ \\xe9puis\\e Cr cette ",m);V.k.9(j.LV);j.LW=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"poursuite h durait HH Bq ",m);V.k.9(j.LW);j.LU=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"MQ, Bl surtout CR P peur JL\\KJ ",m);V.k.9(j.LU);j.LQ=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"N R paralyser \\b KM IR.",m);V.k.9(j.LQ);j.LP=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q traversa R boulevard, E\\xe9clenchant R ",m);V.k.9(j.LP);j.GA=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"FB furieux E\\Cw Lx ",m);j.GA.6(W U.Bk("FB",Kw,"Cn",U.X.3("FB")));j.GA.6(W U.Bk("Lx",Kw,"Cd",a.C7));V.k.9(j.GA);j.LO=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\PB\\e. Puis BF BC\\u2019engouffra \\b F\\PQ Bq ",m);V.k.9(j.LO);j.Ho=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"KK. HM Fc ballotait CO CW ",m);V.k.9(j.Ho);j.LT=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\KT Bl BF pensa CQ pauvre F5. ",m);V.k.9(j.LT);j.LS=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Sans C4\\Kg\\xe9chir, BF Db\\D1\\xe9tra CI DD ",m);V.k.9(j.LS);j.LR=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Na all\\EA. Q E\\xe9passa g angles Bw ",m);V.k.9(j.LR);j.LD=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"pavillon Ck\\NJ\\xe9o h BC\\BX\\xe9levait CI P ",m);V.k.9(j.LD);j.Ml=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Db\\Gb, puis BF ralentit Bp Be.",m);V.k.9(j.Ml);j.H9=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"GE BR Ha.",m);j.H9.6(W U.Bk("Ha",93,"Cn",U.X.3("Fg")));V.k.9(j.H9);j.Mk=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"PS E\\K$ CR R Fg CI g ",m);V.k.9(j.Mk);j.Mp=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Hc.",m);V.k.9(j.Mp);j.Mo=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Pb\\EJ \\FF-E4 pass\\Cu ?",m);V.k.9(j.Mo);j.Mn=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW BC\\u2019arr\\xeata, BC\\u2019accroupit G9\\DS BR ",m);V.k.9(j.Mn);j.Mm=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"banc scarifi\\e N graffitis.",m);V.k.9(j.Mm);j.Mr=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Cj\\b ! Sur Bp gauche.",m);V.k.9(j.Mr);j.Jw=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.Jw);j.HF=W U.CD(V.k,{n:[U.i("IQ"),U.i("NY")],Y:[U.i("IY"),U.i("EL")]},"IE");j.HF.Jd();V.k.9(j.HF);j.KA=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.KA);j.H_=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Ed reconnu P E\\PU ",m);j.H_.6(W U.Bk("E\\PU",K6,"Cn",U.X.3("HE")));V.k.9(j.H_);j.Mq=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"chaloup\\EA N P Ki, g Cs lourds ",m);V.k.9(j.Mq);j.Nd=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"N F\\u2019Ours \\u2013 seize NR, BR QI ",m);V.k.9(j.Nd);j.Ne=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"inversement proportionnel \\b Bp force - ",m);V.k.9(j.Ne);j.Nb=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\b CW EH\\FK\\Cu. Ct Iy Mj suivaient ",m);V.k.9(j.Nb);j.Nc=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"P HN N tramway h longeait R ",m);V.k.9(j.Nc);j.Nh=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"E5, CO Bp droite.",m);V.k.9(j.Nh);j.Ni=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"GB groupe BC\\BX\\CJ BC\\xe9par\\e Bc Iy Bl ",m);V.k.9(j.Ni);j.Nf=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"PW N F\\u2019encercler.",m);V.k.9(j.Nf);j.Ng=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW C4\\Kg\\xe9chit \\b toute allure.",m);V.k.9(j.Ng);j.Ib=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"GB Om !",m);j.Ib.6(W U.Bk("Om",HP,"Cn",U.X.3("G7")));V.k.9(j.Ib);j.Nj=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DP station Cx devait \\xeatre Cf\\BX\\b quelques ",m);V.k.9(j.Nj);j.Nm=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"dizaines N Ck\\Fh devant CG Bl, Ck\\xeame ",m);V.k.9(j.Nm);j.No=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bc ces MQ tardives, BF H aurait HO ",m);V.k.9(j.No);j.Np=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"doute BR Hw N monde.",m);V.k.9(j.Np);j.Nq=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q reprit Bp progression, lentement, ",m);V.k.9(j.Nq);j.Ns=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"veillant \\b rester invisible.",m);V.k.9(j.Ns);j.Nt=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Plus CR cinquante Ck\\Fh.",m);V.k.9(j.Nt);j.Nu=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Mu E\\xe9j\\b R crissement Bq ",m);V.k.9(j.Nu);j.Nv=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"rames CO g rails.",m);V.k.9(j.Nv);j.KB=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.KB);j.D9=W U.o(V.k,{n:[U.i("BE"),U.i("v")],Y:[U.i("p"),U.i("NZ")],Ba:"CK(f, f, f)",$:J,Cg:"DT "+U.i("Es")+"Cz DG",Cm:"D2"},"Quarante.",m);V.k.9(j.D9);j.KC=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.KC);j.Bv=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"FS","Dx",U.i(U.BN(BZ)),"#Bg");V.k.9(j.Bv);j.J_=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Cj\\b CO R pont ! Q essaye N ",m);j.Bv.9(j.J_);j.J9=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"PT P gare !",m);j.Bv.9(j.J9);j.BV=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"DB","Dy",U.i(U.BN(BZ)),"#Bg");V.k.9(j.BV);j.Jg=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Merde ! F\\xe2cha BW Bc ",m);j.BV.9(j.Jg);j.FU=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"reprenant Bp Be.",m);j.BV.9(j.FU);j.KD=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.KD);j.D_=W U.o(V.k,{n:[U.i("BE"),U.i("v")],Y:[U.i("p"),U.i("NU")],Ba:"CK(f, f, f)",$:J,Cg:"DT "+U.i("Es")+"Cz DG",Cm:"D2"},"Trente.",m);V.k.9(j.D_);j.J8=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.J8);j.N0=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Dh P F3, galvanis\\EA Cr P ",m);V.k.9(j.N0);j.N1=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"proximit\\e N Bp proie, Bd rapprochait ",m);V.k.9(j.N1);j.Ny=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"rapidement.",m);V.k.9(j.Ny);j.Nz=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"IU Jz N P Hj\\DS, E4 \\xe9vitaient ",m);V.k.9(j.Nz);j.Nw=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"g obstacles. Surtout E4 \\FF C0 ",m);V.k.9(j.Nw);j.Nx=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\xe2g\\Cu, C0 PK,  alors CR CG \\CJ ",m);V.k.9(j.Nx);j.N7=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"\\xe9reint\\e, g jambes \\xe9corch\\xe9es Cr g ",m);V.k.9(j.N7);j.N6=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"ronces, CQ bord N F\\u2019asphyxie.",m);V.k.9(j.N6);j.N5=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Ct Iy groupes gagnaient ",m);V.k.9(j.N5);j.N$=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"insensiblement Bw terrain. Oy\\FK E4 ",m);V.k.9(j.N$);j.Ii=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bd rejoindraient Bl Ga HG F\\Fj.",m);j.Ii.6(W U.Bk("F\\Fj",141,"Cd",a.C2));V.k.9(j.Ii);j.OA=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW obliqua Kd KI R ",m);V.k.9(j.OA);j.OB=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"nord DR essayer N PT BR ",m);V.k.9(j.OB);j.N8=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"bouquet E\\KO denses. Avec BR Hw ",m);V.k.9(j.N8);j.N9=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"N chance, BF J0 g semer. Au ",m);V.k.9(j.N9);j.N_=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"pire, BF grimperait CO F\\Cw Bq troncs ",m);V.k.9(j.N_);j.OH=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"centenaires.",m);V.k.9(j.OH);j.OF=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Bd E_\\xe9cipita CI R bosquet. Ct ",m);V.k.9(j.OF);j.OJ=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Kh basses fouett\\KR Di ",m);V.k.9(j.OJ);j.OI=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"visage, CG arrachant Bq larmes.",m);V.k.9(j.OI);j.ON=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Dh BF \\CJ presque \\b F\\PQ : ",m);V.k.9(j.ON);j.OM=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"F\\Kl\\e \\CJ totale.",m);V.k.9(j.OM);j.OL=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q ignorait KI Mc BF courait JK BF ",m);V.k.9(j.OL);j.OK=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BC\\u2019en fichait.",m);V.k.9(j.OK);j.OP=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Iv\\Eu\\HZ encore Bl\\Gr BC\\u2019effondra ",m);V.k.9(j.OP);j.OO=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Kd, R souffle Kc\\e, DD ",m);V.k.9(j.OO);j.OQ=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"violente douleur barrant Bp poitrine. Q ",m);V.k.9(j.OQ);j.OT=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"venait N heurter In ID N ",m);V.k.9(j.OT);j.OU=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"plein fouet.",m);V.k.9(j.OU);j.OR=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Abasourdi, BW fouilla F\\Kl\\e. ",m);V.k.9(j.OR);j.OS=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Mu CW Kj IA g ",m);V.k.9(j.OS);j.OW=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"talus Bl g fourr\\Cu.",m);V.k.9(j.OW);j.OV=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Da\\xe2tonna BR IR CI Di Fc.",m);V.k.9(j.OV);j.OY=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Sa torche.",m);V.k.9(j.OY);j.OX=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DA faible halo N Hj\\DS.",m);V.k.9(j.OX);j.OZ=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DA C1.",m);V.k.9(j.OZ);j.Je=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.Je);j.Ip=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Ms\\Oc\\e !",m);V.k.9(j.Ip);j.Jf=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.Jf);j.Oa=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Bd KP Bc grima\\xe7ant, ",m);V.k.9(j.Oa);j.Ob=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BC\\LY.",m);V.k.9(j.Ob);j.Od=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"H8 dizaine N Ck\\Fh Bc contrebas, R ",m);V.k.9(j.Od);j.Oe=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"faisceau N Bp lampe illumina g ",m);V.k.9(j.Oe);j.Of=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"reliefs mang\\Cu N rouille E\\Ik HN ",m);V.k.9(j.Of);j.Oj=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"N KG N JE abandonn\\EA.",m);V.k.9(j.Oj);j.Ir=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DP Gk Gi.",m);j.Ir.6(W U.Bk("DP Gk Gi",176,"Cd",a.CZ));V.k.9(j.Ir);j.Oi=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"DA \\xe9clat N Lw G9\\DS CG R fit ",m);V.k.9(j.Oi);j.Oh=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"sursauter.",m);V.k.9(j.Oh);j.Bv=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"FS","Dx",U.i(U.BN(BZ)),"#Bg");V.k.9(j.Bv);j.FT=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"L2 R tient !",m);j.Bv.9(j.FT);j.On=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW fixa R puits N Da\\D1\\Ef h ",m);V.k.9(j.On);j.Oo=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BC\\BX\\xe9tendait CQ-del\\b Bw C1.",m);V.k.9(j.Oo);j.2=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"D0","DE",U.i(U.BN(BZ)),"#Bg");V.k.9(j.2);j.JX=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Alors, Da\\u2019es enfin E_\\JM \\b recevoir ",m);j.2.9(j.JX);j.Jt=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"ta R\\xe7on ?",m);j.2.9(j.Jt);j.Ok=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Io BC\\LY CI P clart\\e N P ",m);V.k.9(j.Ok);j.Ol=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"lune. Q tendit R bras. DA Ha N ",m);V.k.9(j.Ol);j.Or=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"ressort. H8 lame apparut CQ bout N ",m);V.k.9(j.Or);j.It=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bp main.",m);V.k.9(j.It);j.Iw=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Cj\\u2019adolescent sentait R sang IA ",m);j.Iw.6(W U.Bk("IA",187,"Cn",U.X.3("HS")));V.k.9(j.Iw);j.Ot=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"I9 CW tempes, F\\u2019adr\\xe9naline ",m);V.k.9(j.Ot);j.Ou=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"inonder Di corps. Q voulait gagner ",m);V.k.9(j.Ou);j.Ov=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Bw temps DR C4\\xe9cup\\xe9rer. Pour tenter ",m);V.k.9(j.Ov);j.Ow=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"In ID.",m);V.k.9(j.Ow);j.Os=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q Bd retourna face \\b CW adversaires.",m);V.k.9(j.Os);j.BV=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"DB","Dy",U.i(U.BN(BZ)),"#Bg");V.k.9(j.BV);j.Ju=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Pg B2\\u2019ai fait CR E\\xe9fendre Rachel. ",m);j.BV.9(j.Ju);j.Jv=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Vous B2\\u2019aviez Cs R droit N ",m);j.BV.9(j.Jv);j.Jr=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"M7 Bc prendre \\b elle.",m);j.BV.9(j.Jr);j.2=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"D0","DE",U.i(U.BN(BZ)),"#Bg");V.k.9(j.2);j.Js=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Pc\\u2019avais Cf\\BX\\b Cs te Ck\\xealer N ",m);j.2.9(j.Js);j.Jn=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"nos affaires.",m);j.2.9(j.Jn);j.BV=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"DB","Dy",U.i(U.BN(BZ)),"#Bg");V.k.9(j.BV);j.Ji=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"M1 I9 BR, M7 B2\\BX\\xeates ",m);j.BV.9(j.Ji);j.Jh=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"CR Bq F\\xe2ches !",m);j.BV.9(j.Jh);j.PA=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW Ed lanc\\e \\Gh KM Bc jetant BR ",m);V.k.9(j.PA);j.O$=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"bref Kc E\\BX\\Mt KV N CG. Q Ed ",m);V.k.9(j.O$);j.O_=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"aper\\xe7u P grosse JZ CQ pied Bw ",m);V.k.9(j.O_);j.O9=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C1. DA La tremplin\\Gr",m);V.k.9(j.O9);j.O8=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Io fulminait.",m);V.k.9(j.O8);j.2=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"D0","DE",U.i(U.BN(BZ)),"#Bg");V.k.9(j.2);j.Jk=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Amenez-R-Oz !",m);j.2.9(j.Jk);j.O7=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Ct trois Mj BC\\BX\\xe9lanc\\KR. Dh, ",m);V.k.9(j.O7);j.O6=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"juste avant CR Hh mains Cx Bd ",m);V.k.9(j.O6);j.PL=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"referment CO CG, BF BC\\BX\\CJ jet\\e CO R ",m);V.k.9(j.PL);j.PN=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"EH\\FK\\e. D\\Ik roulade BF Ed atteint P ",m);V.k.9(j.PN);j.PM=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"JZ. Q Bd KP E\\Cw bond, prit ",m);V.k.9(j.PM);j.PP=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"appui CO R rocher Bl entreprit ",m);V.k.9(j.PP);j.PO=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"F\\u2019escalade Bw C1.",m);V.k.9(j.PO);j.2=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"D0","DE",U.i(U.BN(BZ)),"#Bg");V.k.9(j.2);j.Jj=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Q Iz BC\\BX\\Ie ! Faites ",m);j.2.9(j.Jj);j.JT=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"In ID !",m);j.2.9(j.JT);j.Bv=W U.Bj(V.k,{n:[U.i("BE"),U.i("p")]},"FS","Dx",U.i(U.BN(BZ)),"#Bg");V.k.9(j.Bv);j.JS=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"Dh\\Gr Q Cx JA Cs aller loin, ",m);j.Bv.9(j.JS);j.JR=W U.o(V.k,{n:[U.i("y"),U.i("v")]},"BF B2\\O3 EI Kn apr\\xe8s.",m);j.Bv.9(j.JR);j.JQ=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.JQ);j.JO=W Gc();V.k.addGame(j.JO);j.JN=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.JN);j.JU=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"C\\BX\\CJ vrai.",m);V.k.9(j.JU);j.PI=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Q B2\\O3 Ed C0 Kn. PS E\\K$ ",m);V.k.9(j.PI);j.PH=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Cf\\Cw \\xe9norme trou N Da\\D1\\Ef.",m);V.k.9(j.PH);j.PG=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"Dh BF \\CJ trop tard DR reculer.",m);V.k.9(j.PG);j.PF=W U.o(V.k,{n:[U.i("w"),U.i("v")]},"BW BC\\BX\\Ia\\Gh CI R vide.",m);V.k.9(j.PF);j.Jc=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.Jc);j.Jb=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.Jb);j.G$=W U.o(V.k,{n:[U.i("BE"),U.i("v")],Y:[U.i("p"),U.i("NV")],Ba:"CK(f, f, f)",$:J,Cg:"DT "+U.i("Es")+"Cz DG",Cm:"I4"},"\\HD SUIVRE...",m);V.k.9(j.G$);j.JY=W U.BO(V.k,{n:[U.i("w"),U.i("v")]});V.k.9(j.JY);V.k.setDefile(1300);A.layerDefile=V.k;z.B8.DC("k",V.k);Z.Cy=W U.CB(DL,J,m);Z.Cy.CE=m;A.Bf=W U.HV(BM,{Y:[U.i("p"),U.i("p")],n:[U.i("u"),U.i("t")],Ba:"CK(f, f, f)"});Z.Cy.By("Jq",A.Bf);A.Bf=W U.CD(BM,{Y:[U.i("D8"),U.i("DW")],n:[U.i("DV"),U.i("D7")]},"Eo");Z.Cy.By("Eo",A.Bf);Z.Cy.Bu("Jq",{Bo:s.1("[I,J,Gz,Cp,Ku,DL]"),CX:s.1("[J,I,J,J,I,I]")});Z.Cy.Bu("Eo",{Bo:s.1("[I,J,Gz,Cp,Ku,DL]"),CX:s.1("[J,I,J,J,I,I]"),Y:[[U.i("D8"),U.i("DW")],[U.i("D8"),U.i("DW")],[U.i("D8"),U.i("DW")],[U.i("D8"),U.i("DW")],[U.i("p"),U.i("IZ")],[U.i("p"),U.i("IZ")]],n:[[U.i("DV"),U.i("D7")],[U.i("DV"),U.i("D7")],[U.i("DV"),U.i("D7")],[U.i("DV"),U.i("D7")],[U.i("u"),U.i("IX")],[U.i("u"),U.i("IX")]]});Z.Dl=W U.CB(Eg,J,x);Z.Dl.CE=m;Z.Dl.By("ER",j.ER);Z.Dl.Bu("ER",{Bo:s.1("[I,Ca,Hi,Eg]"),CX:s.1("[I,I,J,J]")});Z.Dp=W U.CB(Eg,J,x);Z.Dp.CE=m;Z.Dp.By("EQ",j.EQ);Z.Dp.Bu("EQ",{Bo:s.1("[I,Ca,Hi,Eg]"),CX:s.1("[I,I,J,J]")});Z.EV=W U.CB(Hb,J,m);Z.EV.CE=m;A.Bf=W U.CF(BM,{Y:[U.i("B$"),U.i("BL")],n:[U.i("D4"),U.i("BK")]},"En",[[186,I,HQ,Gx]]);Z.EV.By("En",A.Bf);A.Bf.I3([362,I,Pa,Gx]);A.Bf.I3([I,I,299,Gx]);A.Bf.I3([302,I,199,Gx]);Z.EV.Bu("En",{Bo:s.1("[I,HY,HX,19,DL,CN,28,31,Fv,CC,T,Ko,K2,Kz,52,55,Hb]"),CX:s.1("[I,J,J,I,I,J,J,I,I,J,J,I,I,J,J,I,I]"),spriteSeq:s.1("[I,I,I,I,J,J,J,J,K,K,K,K,BS,BS,BS,BS,BS]"),n:[[U.i("D4"),U.i("BK")],[U.i("D4"),U.i("BK")],[U.i("D4"),U.i("BK")],[U.i("D4"),U.i("BK")],[U.i("Ey"),U.i("BK")],[U.i("Ey"),U.i("BK")],[U.i("Ey"),U.i("BK")],[U.i("Ey"),U.i("BK")],[U.i("Ez"),U.i("BK")],[U.i("Ez"),U.i("BK")],[U.i("Ez"),U.i("BK")],[U.i("Ez"),U.i("BK")],[U.i("D6"),U.i("BK")],[U.i("D6"),U.i("BK")],[U.i("D6"),U.i("BK")],[U.i("D6"),U.i("BK")],[U.i("D6"),U.i("BK")]],Y:[[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("B$"),U.i("BL")],[U.i("GU"),U.i("BL"),J],[U.i("GU"),U.i("BL"),J],[U.i("GU"),U.i("BL"),J],[U.i("NT"),U.i("BL")],[U.i("D5"),U.i("BL")],[U.i("D5"),U.i("BL")],[U.i("D5"),U.i("BL")],[U.i("D5"),U.i("BL")],[U.i("D5"),U.i("BL")]]});Z.C9=W U.CB(DO,J,m);Z.C9.CE=m;A.Bf=W U.CD(BM,{Y:[U.i("p"),U.i("p")],n:[U.i("u"),U.i("t")]},"Eh");Z.C9.By("Eh",A.Bf);A.Bf=W U.o(BM,{Y:[U.i("GZ"),U.i("GX")],n:[U.i("NN"),U.i("DV")],Ba:"CK(f, f, f)",B_:"CH",Cg:"DT "+U.i("GW")+"Cz Verdana",Cm:"D2"},"Ms\\Oc\\e!!!",m);Z.C9.By("JW",A.Bf);Z.C9.Bu("Eh",{Bo:s.1("[I,CS,DL,CN,K1,Dn,DO]"),CX:s.1("[I,J,J,J,J,I,I]")});Z.C9.Bu("JW",{Bo:s.1("[I,CS,DL,CN,K1,Dn,DO]"),Ec:[U.i("GW"),U.i("GW"),U.i("NO"),U.i("Ex"),U.i("Ex"),U.i("Ex"),U.i("Ex")],Y:[[U.i("GZ"),U.i("GX")],[U.i("GZ"),U.i("GX")],[U.i("NM"),U.i("NP")],[U.i("Ew"),U.i("Ev")],[U.i("Ew"),U.i("Ev")],[U.i("Ew"),U.i("Ev")],[U.i("Ew"),U.i("Ev")]],CX:s.1("[I,I,I.699999988079,J,J,I,I]")});Z.EX=W U.CB(K7,J,x);Z.EX.CE=m;Z.EX.By("Ek",j.Ek);Z.EX.Bu("Ek",{Bo:s.1("[I,Ca,Hi,K7]"),CX:s.1("[I,I,I.PV,I.PV]")});Z.E0=W U.CB(Fw,J,x);Z.E0.CE=m;Z.E0.By("D9",j.D9);Z.E0.Bu("D9",{Bo:s.1("[I,HY,Kr,Fw]"),Ec:[U.i("B5"),U.i("NQ"),U.i("B5"),U.i("B5")]});Z.El=W U.CB(Fw,J,x);Z.El.CE=m;Z.El.By("D_",j.D_);Z.El.Bu("D_",{Bo:s.1("[I,HY,Kr,Fw]"),Ec:[U.i("B5"),U.i("DW"),U.i("B5"),U.i("B5")]});Z.Ea=W U.CB(K,J,x);Z.Ea.CE=m;Z.Ea.By("EK",j.EK);Z.Ea.Bu("EK",{Bo:s.1("[I,J,K]"),CX:s.1("[I,J,J]")});Z.F2=W U.CB(Cp,J,x);Z.F2.CE=m;Z.F2.By("HB",j.HB);Z.F2.Bu("HB",{Bo:s.1("[I,DZ,Dm,Cp]"),Ec:[U.i("B5"),U.i("HJ"),U.i("B5"),U.i("B5")]});Z.FN=W U.CB(Cp,J,x);Z.FN.CE=m;Z.FN.By("G_",j.G_);Z.FN.Bu("G_",{Bo:s.1("[I,DZ,Dm,Cp]"),Ec:[U.i("B5"),U.i("HJ"),U.i("B5"),U.i("B5")]});c L={},M={};L.DU=W U.4([{X:z.CL,r:"I_"}]);M.DU=7(){Z.Dl.0();};L.DU.8(M.DU);L.F9=L.DU;M.F9=7(){Z.Dp.0();};L.F9.8(M.F9);L.Fn=W U.4([{X:z.CL,r:"D$"}]);M.Fn=7(){FJ.Is(z.B8);};L.Dd=W U.4([{X:z.Du,r:"I_"}]);M.Dd=7(){U.FR("Lu");};L.Dd.8(M.Dd);L.F4=W U.4([{X:Z.Dp,r:"Df"}]);M.F4=7(){U.FR("Lu");};L.F4.8(M.F4);L.Ei=W U.4([{X:z.B8,r:"I_"}]);M.Ei=7(){U.FR("PY");};L.Ei.8(M.Ei);L.Gg=L.DU;M.Gg=7(){U.FR("PY");};L.Gg.8(M.Gg);L.Ff=L.Dd;M.Ff=7(){7 L(L,M){M.startEffect(L);}Do(c A=I;A<V.k.objList.Cb;A++){c M=V.k.getObject(A);O(M instanceof U.o){M.N4.CV("Bx",W U.Cl(L,BM,{typewriter:{}},M));}}};L.Ff.8(M.Ff);L.Fe=W U.4([{X:z.Du,r:"D$"}]);M.Fe=7(){FJ.Is(z.CL);};L.Fe.8(M.Fe);L.Gu=L.DU;M.Gu=7(){Z.EX.0();};L.Gu.8(M.Gu);L.Fy=W U.4([{X:Z.Dl,r:"Df"}]);M.Fy=7(){L.Fn.8(M.Fn);};L.Fy.8(M.Fy);L.Fx=W U.4([{X:j.H3,r:"Bx"}]);M.Fx=7(){Z.Cy.0();};L.Fx.8(M.Fx);L.GL=W U.4([{X:j.Ho,r:"Bx"}]);M.GL=7(){A.Bz=j.Dr.K_();A.BQ=j.Dr.getHeight();A.KS=imgBoundingInBox("GM",A.Bz,A.BQ);A.Bf=W U.CD(j.Dr.parent,A.KS,"GM");U.Is(j.Dr,A.Bf,CN);};L.GL.8(M.GL);L.F7=W U.4([{X:j.D9,r:"Bx"}]);M.F7=7(){Z.E0.0();};L.F7.8(M.F7);L.FE=W U.4([{X:j.D_,r:"Bx"}]);M.FE=7(){Z.El.0();};L.FE.8(M.FE);L.FA=W U.4([{X:j.Ip,r:"Bx"}]);M.FA=7(){Z.C9.0();};L.FA.8(M.FA);L.GP=L.FA;M.GP=7(){U.X.3("He").Bi();};L.GP.8(M.GP);L.Gs=W U.4([{X:Z.C9,r:"Df"}]);M.Gs=7(){Z.Ea.0();};L.Gs.8(M.Gs);L.GF=L.Ei;M.GF=7(){U.X._("E1","5/E1.Bb","d",x);U.X._("NI","BJ/E1","BP",x);c A=(U.i("u")-DO)/K,D=(U.i("t")-350)/K+140,C=W U.CF(BM,{},"E1",DO,NF,I,I,DO,NF),B=W U.CF(BM,{Y:[-Kt,-127]},"E1",CN,196,DO,I,CN,139),C3=W U.BO(BM,{});C3.Dj=I;C3.Fz=-BH;C3.BY=7(M){O(l.Dj==B4){U.X.3("NI").Bi();}O(l.Dj>=B4&&l.Dj<=Dm){l.Fz=-BH+(l.Dj-B4)*BH/BG;}l.Dj++;M.Ee();M.$=l.$;M.DQ(A+HU,D+HX);M.Fq(l.Fz*BI.C_/BH);B.BY(M);M.Fq(-l.Fz*BI.C_/BH);M.DQ(-HU,-HX);C.BY(M);M.EN();};Z.DJ=W U.CB(Fu,J,m);Z.DJ.CE=m;Z.DJ.By("DJ",C3);Z.DJ.Bu("DJ",{Bo:[I,CS,CY,Fu],CX:[I,J,J,I]});L.FY=W U.4([{X:j.It,r:"Bx"}]);M.FY=7(){Z.DJ.0();};L.FY.8(M.FY);};L.GF.8(M.GF);L.Go=W U.4([{X:j.Hx,r:"Bx"}]);M.Go=7(){Ge.M2.0();};L.Go.8(M.Go);L.Fr=W U.4([{X:j.Hy,r:"Bx"}]);M.Fr=7(){Z.EV.0();};L.Fr.8(M.Fr);L.F1=L.Dd;M.F1=7(){U.X.3("GT").Bi();};L.F1.8(M.F1);L.GS=W U.4([{X:j.Gp,r:"D$"}]);M.GS=7(){U.X.3("F8").Bi();};L.GS.8(M.GS);L.Fo=W U.4([{X:j.Gp,r:"Bx"}]);M.Fo=7(){U.X.3("F8").Bi();};L.Fo.8(M.Fo);L.Ft=W U.4([{X:Z.Cy,r:"0"}]);M.Ft=7(){U.X.3("Hp").Bi();};L.Ft.8(M.Ft);L.GO=W U.4([{X:j.FW,r:"D$"}]);M.GO=7(){U.X.3("Fb").Bi();};L.GO.8(M.GO);L.F0=W U.4([{X:j.FW,r:"Bx"}]);M.F0=7(){U.X.3("Fb").Bi();};L.F0.8(M.F0);L.FV=W U.4([{X:j.FU,r:"D$"}]);M.FV=7(){U.X.3("FL").Bi();};L.FV.8(M.FV);L.Fl=W U.4([{X:j.FU,r:"Bx"}]);M.Fl=7(){U.X.3("FL").Bi();};L.Fl.8(M.Fl);L.GC=W U.4([{X:j.FT,r:"D$"}]);M.GC=7(){U.X.3("GK").Bi();};L.GC.8(M.GC);L.Gv=W U.4([{X:j.FT,r:"Bx"}]);M.Gv=7(){U.X.3("GK").Bi();};L.Gv.8(M.Gv);L.FQ=W U.4([{X:j.G$,r:"Bx"}]);M.FQ=7(){U.X.3("GT").Bi();};L.FQ.8(M.FQ);U.currTimeline.0();}U.autoFitToWindow(N2);','d|l|x|y|0|1|2|_|$|de|if|la|Il|le|60|40|mse|_$5|new|src|pos|_$4|_$2|xe0|var|img|xe9|255|les|qui|coor|objs|text|this|true|size|Text|cid2|else|type|JSON|cid1|cid0|cid20|cid21|false|cid22|pages|start|parse|src40|getSrc|Script|images|addLink|function|register|addObject|addSource|globalAlpha|getEvtProxy|return|s|textCard|cid15|il|4|180|Math|audios|cid47|cid45|null|joinCoor|UIObject|aud|height|un|3|nextStep|albinos|src38|Simon|u2019|draw|45|fillStyle|png|en|se|course|obj|f99200|Cyclope|play|Speaker|Link|et|jpeg|sp|frame|sa|des|disy|disx|addSection|addAnimation|src42|du|firstShow|addObj|width|5|I|n|xa0|10|cid64|crePoint2|removeListener|Content|v|textBaseline|cid4|currStep|Animation|37|Image|block|Sprite|lui|top|dans|xe9tait|rgb|Chapitre|animes|25|sur|addTextCard|au|que|6|offsetY|offsetX|addListener|ses|opacity|30|pCeinture|75|length|stop|wiki|simondir|qu|font|direction|currDir|L|m|Callback|textAlign|audio|break|15|20|par|pas|Les|xe9s|onmove|u2019un|ne|fouine|px|plus|grillage|hallali|E|r|tarDir|case|Noctambule|90|piege|PI|addImage|Un|simon|addLayer|une|src35|u2019il|Gudea|state|Layer|couteau|Array|22|80|circleR|51|La|translate|pour|xe8re|normal|titleshowsc|cid32|cid31|dir|padHandler|8|t|p|perso_parc|couvcursor|est|end|Point2|Mais|son|count|190|titleshow|14|50|for|chashow|http|obj708|WikiLayer|touchZone|Couverture|moveovercb|offy|src41|src37|fr|kevin|xe9n|left|frondaison|cid46|cid52|cid53|cid33|cid30|obj828|obj833|click|xe9e|nuit|sw|sh|FrameAnimation|250|f|c|a|xf9|obj957|cid5|MseConfig|restore|startAngle|run|obj14|obj13|npc|mask|gestureStart|simcour|simonstand|maskAnime|sit|stand|addGrilleBack|gestureEnd|fontSize|avait|save|xe8bres|101|grillageimg|contcursor|320|obj710|trentAnime|aud_findsimon|src6|src0|back|games|gestureUpdate|cid19|200|xe9l|cid63|cid62|cid61|cid48|cid50|quarantAnime|cran|_$9|leur|ils|parc|iOS|Chapitredefault|Contentdefault|lineTo|pr|280|startPiege|klaxon|contmask|simonrun|start30Anime|xe9taient|F|G|H|root|xf4t|restartrun|yeux|trenteAnime|comme|rat|playIntroEnd|setCursor|unknown|obj962|obj954|playRestartRun_clic|obj934|vertical|showCouteau|faire|spark|ilestla|sac|visiond|transCha|addTextEffet|vent|xe8tres|Nom|u2019hallali|400|playRestartRun_show|114|transCont|playKevinSpeak_show|touchStartcb|rotate|startSimCour|wikipedia|playWoosh|36|34|27|showFouine|addTransContSc|angle|playIlestla_show|playIntroMusic|textAnime|Meute|chacursor|Dark|org|start40Anime|kevinSpeak|chashowsc|fill|movecb|obj793|Le|playOnletien_clic|horizontal|Pas|addCouteauAnimeSc|beginPath|cyclopes|droped|offx|onletien|changeBack|src46|src45|playIlestla_clic|startPiegeSon|dx|dy|playKevinSpeak_click|intro|cid49|ratImg|cid54|cid56|Paris|cid55|ce|xe9nombre|_$_|ou|_$0|Game|chahidecursor|xe7a|Ceinture|masculin|Petite|sy|sx|logic|startRatGame|obj924|Wikip|u2026|addGrilleBackSc|touchMovecb|maskShow|playOnletien_show|xe9dia|254|7|9|M|925|J|K|X|g|o|rer|960|derri|obj183|obj960|cid3|obj178|obj940|xc0|paslourd|obj946|serait|depuis|init|cid71|xefta|visiona|Son|ligne|sans|113|119|runsound|heart|39|24|Mask|18|16|13|xe9ra|bruit|58|feuilles|1695|piegeson|sacImg|100|leurs|88|lumi|window|setPos|obj786|moveover|obj795|woosh|keyup|villenuit|keydown|obj712|obj724|obj732|peu|obj759|obj764|obj762|src9|src8|obj771|obj739|pasAppro|lazylose|obj753|Ke|Une|obj801|obj808|390|battre|src29|src22|chose|src48|src47|src44|360|src39|src30|src32|src31|src34|src33|losecount|startP|cid23|instant|cid10|dw|Ils|dh|225|cid35|cid25|cid34|xe9lan|obj818|abs|Men|xe9chapper|touchValid|_$7|_$8|obj844|_$6|u2019une|_$1|640|quelque|Kevin|obj870|BaseContainer|obj877|transition|obj888|Salif|acc|obj889|1090|deux|va|1060|rgba|detectR|appendFrame|center|arc|1000|accelera|1920|contre|show|personne|peut|xeate|dragMove|xe9minin|fer|S|b|h|570|Elle|mais|mena|xeat|obj980|obj982|obj983|obj978|obj977|obj976|obj975|obj979|vPadBase|obj587|obj963|obj961|pierre|touchMove|obj959|obj958|activateZoom|obj955|obj956|obj953|obj972|obj971|obj974|obj973|cid7|cid6|obj970|cid9|cid8|obj567|obj968|obj969|obj964|obj965|obj966|obj941|super|xbb|avaient|pourrait|obj933|obj931|obj932|obj937|obj938|obj935|obj936|obj950|obj952|obj951|xab|obj942|obj947|obj948|obj949|moins|courir|chemin|sont|vers|xe7ait|arbres|courre|tout|promener|u2019arbres|redressa|call|xe8rent|boundingbox|xe9paules|165|autour|foyer|415|quelqu|Voodoo_Ch1|pause|125|coup|brutalement|441|450|xe9fl|branches|Fouine|poursuivants|seul|u2019obscurit|padBase|rien|43|drawImage|41|26|32|12|21|xe9ros|85|70|colliDetect|49|48|44|46|frondaisons|1280|105|103|89|ainsi|bold|getWidth|u2019autre|Photo|chasse|335|obj799|735|obj781|obj780|obj782|obj785|obj784|obj787|725|obj777|obj778|obj794|obj792|obj791|obj798|obj797|obj796|obj790|obj788|obj789|700|u2019approcha|Error|bon|obj719|obj717|obj718|obj715|obj716|obj713|obj714|obj711|obj721|obj720|obj726|obj727|obj728|obj729|obj722|obj723|obj725|obj730|obj731|pointer|Des|voix|noctambule|obj709|Par|obj707|mseLog|On|obj758|obj757|obj756|obj755|dragStart|obj765|obj763|obj760|obj761|touchStart|obj767|obj766|obj769|obj768|src7|obj773|obj774|obj775|endAngle|obj776|obj770|obj772|obj734|obj733|WIN|heures|obj742|obj743|obj740|obj741|obj745|obj744|comprenne|obj747|obj746|obj749|obj748|quoi|obj750|obj751|obj754|pow|Tu|UI|autres|obj802|obj800|obj806|obj805|obj804|obj803|obj809|obj807|Pi|u0153il|entendait|dragEnd|inObj|Lien|avec|switch|paris|Quatre|RatGame|ratAud|src13|src10|xe9faite|vous|src36|cid16|cid14|cid13|cid18|cid17|fh|cid11|cid12|210|Parc|Photographie|audCran|xe9t|220|violence|cid59|cid57|cid58|cid60|cid67|ans|cr|cid51|cid28|cid29|vPadHandler|cid24|cid26|cid27|petite|obj812|obj813|obj810|obj811|obj816|obj817|obj814|obj815|obj819|button|Montsouris|obj820|move|obj821|obj822|obj823|675|obj824|obj825|obj826|obj827|obj838|obj839|obj836|obj837|obj834|obj835|_$$|u2019est|evtDeleg|obj842|obj841|obj840|obj847|obj848|obj849|obj843|obj845|obj846|Times|_$A|extension|obj851|_$3|obj850|obj853|obj852|obj857|obj856|obj855|obj854|obj859|obj858|obj860|obj863|obj864|obj861|obj862|obj866|obj865|obj868|obj867|obj869|obj871|obj872|xe9g|obj873|obj874|obj875|u2019animal|obj879|obj878|obj876|obj885|obj886|RER|obj881|obj882|extend|650|obj887|obj894|obj890|obj891|obj892|obj893|u2019on|Bient|moi|minuscule|Albinisme|INIT|u2019y|sprite|round|obj909|obj908|obj906|obj905|obj904|obj903|obj902|xe9gar|obj930|obj929|obj928|obj923|obj922|obj921|obj920|obj925|forts|obj910|obj912|obj911|obj914|obj913|u2019abri|pouvait|Rien|rejoindre|xe9marche|80000001192093|tentait|230|default|238|260|O|T|z|Ce|Et|Je'.split('|'),989,992,{},{}))
+var RatGame = function() {
+	mse.Game.call(this);
+	
+	var oxid = mse.joinCoor(220);
+	var oyid = mse.joinCoor(0);
+	var wid = mse.joinCoor(360);
+	var hid = mse.joinCoor(596);
+	
+	this.canvasox = mse.coor(oxid); this.canvasoy = mse.coor(oyid);
+	this.width = mse.coor(wid); this.height = mse.coor(hid);
+	
+	mse.src.addSource('ratAud', 'audios/rat', 'aud');
+	
+	mse.src.addSource('ratImg', 'games/rat.png', 'img');
+	var ratSit = new mse.Sprite(this,{pos:[30,this.height-80]}, 'ratImg', 80,50, 0,0,400,100);
+	var ratHead = new mse.Sprite(this,{pos:[20,this.height-96]}, 'ratImg', 39,34, 400,0,39,34);
+	var ratHang = new mse.Sprite(this, {pos:[45,this.height-80]}, 'ratImg', 40,113, 0,101,400,113);
+	mse.src.addSource('sacImg', 'games/sac.png', 'img');
+	var sac = new mse.Image(this, {pos:[this.width-160,20], insideRec:[60,40,60,60]}, 'sacImg');
+	var pochet = new mse.Sprite(this, {pos:[this.width-100,175]}, 'sacImg', 60,40, 60,155,60,40);
+	
+	var seq = [0,1,2,3,4,5,6,7,8,9];
+	var sitAnim = new mse.FrameAnimation(ratSit, seq, 0, 2);
+	var hangAnim = new mse.FrameAnimation(ratHang, seq, 0, 2);
+	
+	this.dragStart = function(e) {
+		if(ratSit.inObj(e.offsetX, e.offsetY)){
+			this.sit = false;
+			ratHang.offx = e.offsetX-20;
+			ratHang.offy = e.offsetY-14;
+			
+			sitAnim.stop();
+			hangAnim.start();
+			mse.src.getSrc('ratAud').play();
+		}
+	};
+	this.dragMove = function(e) {
+		ratHang.offx = e.offsetX - 20;
+		ratHang.offy = e.offsetY - 14;
+	};
+	this.dragEnd = function(e) {
+		var x = e.offsetX;
+		var y = e.offsetY;
+		if(this.sit) return;
+		if(sac.inObj(e.offsetX, e.offsetY)) {
+			var drop = new mse.KeyFrameAnimation(ratHang, {
+					frame	: [0, 25, 35],
+					pos		: [[x-20, y-14], [sac.offx+70,sac.offy+125], [sac.offx+70,sac.offy+125]]
+				}, 1);
+			drop.evtDeleg.addListener('end', new mse.Callback(this.end, this));
+			drop.start();
+			this.droped = true;
+			this.getEvtProxy().removeListener('gestureStart', cbStart);
+			this.getEvtProxy().removeListener('gestureUpdate', cbMove);
+			this.getEvtProxy().removeListener('gestureEnd', cbEnd);
+		}
+		else {
+			this.sit = true;
+			hangAnim.stop();
+			sitAnim.start();
+		}
+	};
+	
+	var cbStart = new mse.Callback(this.dragStart, this);
+	var cbMove = new mse.Callback(this.dragMove, this);
+	var cbEnd = new mse.Callback(this.dragEnd, this);
+	
+	this.init = function() {
+		this.getEvtProxy().addListener('gestureStart', cbStart, true);
+		this.getEvtProxy().addListener('gestureUpdate', cbMove, true);
+		this.getEvtProxy().addListener('gestureEnd', cbEnd, true);
+		
+		this.sit = true;
+		this.droped = false;
+		sitAnim.start();
+	};
+	
+	this.logic = function(delta) {
+		if(this.droped) {
+			var d = pochet.offy - ratHang.offy - 114;
+			ratHang.fh = d < 0 ? 114+d : 114;
+			ratHang.height = ratHang.fh;
+		}
+	};
+    
+	this.draw = function(ctx) {
+		sac.draw(ctx);
+		if(this.sit) {
+			ratSit.draw(ctx);
+			ratHead.draw(ctx);
+			// Draw text
+			ctx.save();
+			// Draw bull
+			ctx.fillStyle = "#FFF";
+			ctx.translate(ratHead.getX()+ratHead.getWidth()*1.2, ratHead.getY()-24);
+			ctx.beginPath();
+			ctx.moveTo(-10,30);
+			ctx.lineTo(0,30-15);
+			ctx.lineTo(10,30);
+			ctx.lineTo(-10,30);
+			ctx.fill();
+			ctx.fillRoundRect(0, 0, 240, 30, 10);
+			ctx.fillStyle = "#000";
+			ctx.font = "20px Gudea";
+			ctx.textBaseline = 'top';
+			ctx.fillText("Aide Simon, vite!", 10, 4);
+			ctx.restore();
+		}
+		else ratHang.draw(ctx);
+		if(this.droped) pochet.draw(ctx);
+	};
+};
+extend(RatGame, mse.Game);function angleFor2Point(p1, p2) {
+	var angle = 0;
+	var dx = p2.x - p1.x;
+	var dy = p2.y - p1.y;
+	angle = Math.atan2(dy, dx);
+	return Math.round(180 * angle/(Math.PI));
+};
+
+function distance2Pts(x1,y1,x2,y2) {
+    return Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
+};
+
+function inrect(x, y, rect) {
+    if(x >= rect[0] && x <= rect[0]+rect[2] && y >= rect[1] && y <= rect[1]+rect[3]) return true;
+    else return false;
+};
+function xRelatRect(x, rect) {
+    if(x < rect[0]) return -1;
+    else if(x >= rect[0] && x <= rect[0]+rect[2]) return 0;
+    else return 1;
+};
+function yRelatRect(y, rect) {
+    if(y < rect[1]) return -1;
+    else if(y >= rect[1] && y <= rect[1]+rect[3]) return 0;
+    else return 1;
+};
+
+var NPC = function(sprite, course, dir) {
+    if(course.length < 2) {mseLog('Array Error', 'Array \'course\' demande minimum 2 elements');}
+    if(course.length != dir.length) {mseLog('Array Error', 'Array \'course\' have to be the same size of array \'dir\'');}
+    this.sprite = sprite;
+    this.animes = new Array();
+    // Animations
+    this.animes['run'] = new mse.FrameAnimation(sprite, [0,1,2,3,4,5], 0, 5);
+    this.animes['stand'] = new mse.FrameAnimation(sprite, [6], 0, 1000);
+    // Velocity
+    this.v = 6;
+    // Vision
+    this.visiond = 180;
+    this.visiona = 40;
+    // Start and end angle of view
+    this.startAngle = this.visiona*Math.PI/180;
+    this.endAngle = -this.startAngle;
+    this.startP = crePoint2(Math.cos(this.startAngle)*this.visiond, Math.sin(this.startAngle)*this.visiond);
+    // Course predefined
+    this.course = course;
+    // Direction of view
+    this.dir = dir;
+    // Position
+    this.pos = new mse.Point2(course[0].x, course[0].y);
+    this.currStep = 0;
+    this.nextStep = 1;
+    // Orientation
+    this.direction = angleFor2Point(this.course[0], this.course[1]);
+    if(dir[this.currStep].length != 0) {
+        this.currDir = 0;
+        this.tarDir = this.dir[this.currStep][this.currDir];
+        this.state = 1;
+        this.animes['run'].stop();
+        this.animes['stand'].start();
+    }
+    else {
+        this.tarDir = this.direction;
+        this.state = 0;
+        this.animes['run'].start();
+        this.animes['stand'].stop();
+    }
+    
+    this.logic = function(delta) {
+        switch(this.state) {
+        case 0:// Run
+            // Direction not right
+            //if(this.direction != this.tarDir) {
+              //  this.state = 1;
+              //  return;
+            //}
+            
+            var dx = this.course[this.nextStep].x - this.pos.x;
+            var dy = this.course[this.nextStep].y - this.pos.y;
+            if(dx == 0) {
+                // Movement vertical
+                if(dy < -this.v) {this.pos.y -= this.v;return;}
+                else if(dy > this.v) {this.pos.y += this.v;return;}
+            }
+            else {
+                // Movement horizontal
+                if(dx < -this.v) {this.pos.x -= this.v;return;}
+                else if(dx > this.v) {this.pos.x += this.v;return;}
+            }
+            // Movement over
+            this.pos = new mse.Point2(this.course[this.nextStep].x, this.course[this.nextStep].y);
+            if(this.currStep < this.nextStep) {
+                this.currStep = this.nextStep;
+                this.nextStep = (this.nextStep == this.course.length-1) ? this.nextStep-1 : this.nextStep+1;
+            }
+            else {
+                this.currStep = this.nextStep;
+                this.nextStep = (this.nextStep == 0) ? 1 : this.nextStep-1;
+            }
+            // Change to turn state
+            this.state = 1;
+            this.animes['run'].stop();
+            this.animes['stand'].start();
+            if(this.dir[this.currStep].length != 0) this.tarDir = this.dir[this.currStep][this.currDir];
+            else {
+                this.currDir = -1;
+                this.tarDir = angleFor2Point(this.course[this.currStep], this.course[this.nextStep]);
+            }
+        break;
+        case 1:// Turn
+            var dis = this.tarDir - this.direction;
+            // Turning
+            if(dis < -2) this.direction -= 2;
+            else if(dis > 2) this.direction += 2;
+            else {
+            // Turn over
+                this.direction = this.tarDir;
+                // CurrDir is marked, start to run
+                if(this.currDir == -1) {
+                    this.state = 0;
+                    this.currDir = 0;
+                    this.animes['run'].start();
+                    this.animes['stand'].stop();
+                    return;
+                }
+                // Found next turn target
+                if(this.currDir < this.dir[this.currStep].length-1) {
+                    this.currDir++;
+                    this.tarDir = this.dir[this.currStep][this.currDir];
+                }
+                // No more turn target, turn to the run direction
+                else {
+                    this.tarDir = angleFor2Point(this.course[this.currStep], this.course[this.nextStep]);
+                    // Mark the currDir to ignore the verification
+                    this.currDir = -1;
+                }
+            }
+        break;
+        case 2:// Notice
+        break;
+        case 3:// Stand
+        break;
+        }
+    };
+    this.draw = function(ctx, x, y) {
+        ctx.save();
+        // To center point
+        ctx.translate(x + this.pos.x,  y + this.pos.y);
+        ctx.rotate(this.direction*Math.PI/180);
+        // Draw view
+        ctx.fillStyle = 'rgba(200,0,0,0.5)';
+        ctx.beginPath();
+        ctx.lineTo(this.startP.x, this.startP.y);
+        ctx.arc(0,0, this.visiond, this.startAngle,this.endAngle, true);
+        ctx.lineTo(0, 0);
+        ctx.fill();
+        // Draw sprite
+        ctx.translate(-20,-18);
+        this.sprite.draw(ctx);
+        ctx.restore();
+    };
+};
+
+
+var FindSimon = function() {
+    mse.Game.call(this, {fillback:true});
+    this.msg = {
+        "INIT": "Clique pour aider Simon à échapper à la Meute.",//Utilise les flèches de direction pour diriger Simon dans le parc.
+        "WIN": "Bravo!!! Tu as gagné."
+    };
+    this.config.title = "Parc Montsouris";
+    this.state = "INIT";
+    
+    mse.src.addSource('aud_findsimon', 'audios/findsimon', 'aud');
+    mse.src.getSrc('aud_findsimon').loop = true;
+    mse.src.addSource('parc', 'games/Parc.jpg', 'img', true);
+    mse.src.addSource('perso_parc', 'games/personnages.png', 'img', true);
+    mse.src.addSource('notice_parc', 'games/points-persos.png', 'img', true);
+    //var parc = new mse.Image(null, {pos:[0, 0]}, 'parc');
+    var mechants = new Array();
+    mechants[0] = new mse.Sprite(null, {}, 'perso_parc', 40,37, 0,37,280,37);
+    mechants[1] = new mse.Sprite(null, {}, 'perso_parc', 40,37, 0,74,280,37);
+    mechants[2] = new mse.Sprite(null, {}, 'perso_parc', 40,37, 0,111,280,37);
+    mechants[3] = new mse.Sprite(null, {}, 'perso_parc', 40,37, 0,148,280,37);
+    
+    // Possible movement area
+    var freerect = {
+        vertical:  [[190,250,60,650],
+                    [390,250,60,650],
+                    [580,250,60,320],
+                    [640,960,60,190],
+                    [830,570,60,390],
+                    [1030,320,60,380],
+                    [1350,320,60,770],
+                    [1660,190,60,960]],
+        horizontal:[[190,190,450,60],
+                    [1090,320,260,60],
+                    [640,510,390,60],
+                    [1410,570,250,60],
+                    [890,700,460,60],
+                    [190,900,640,60],
+                    [700,1090,960,60]]
+    };
+    
+    // Course of NPC
+    var courses = [
+        [crePoint2(415,925), crePoint2(415,225)],
+        [crePoint2(810,925), crePoint2(675,925), crePoint2(675,1115)],
+        [crePoint2(1695,335), crePoint2(1695,605), crePoint2(1695,840)],
+        [crePoint2(1060,335), crePoint2(1060,540), crePoint2(1060,735), crePoint2(1370,735)]
+    ];
+
+    // Direction of vision
+    var dirs = [
+        [[180,0],[0,180]],
+        [[90],[],[0]],
+        [[180],[180],[180]],
+        [[0],[180],[],[90,-90]]
+    ];
+    
+    // Init Simon
+    this.simon = new mse.Sprite(null, {}, 'perso_parc', 40,37, 0,0,280,37);
+    this.simonrun = new mse.FrameAnimation(this.simon, [0,1,2,3,4,5], 0, 7);
+    this.simonstand = new mse.FrameAnimation(this.simon, [6], 0, 1000);
+    // Spark frequence
+    this.spark = 0;
+    
+    // Vitural pad
+    if(MseConfig.iOS) {
+        mse.src.addSource('vPadBase', './UI/button/padbase.png', 'img', true);
+        mse.src.addSource('vPadHandler', './UI/button/padhandler.png', 'img', true);
+        this.padBase = new mse.Image(null, {pos:[46, this.height-103],size:[48,48],globalAlpha:0.6}, 'vPadBase');
+        this.padHandler = new mse.Image(null, {pos:[30, this.height-119],size:[80,80],globalAlpha:0.6}, 'vPadHandler');
+        this.touchZone = [30, this.height-119, 80, 80];
+    }
+    
+    this.begintime = (new Date()).getTime();
+    
+    this.init = function() {
+        mse.src.getSrc('aud_findsimon').play();
+    
+		// Init NPCs
+	    this.npc = new Array();
+	    for(var i = 0; i < 4; i++) {
+	        this.npc[i] = new NPC(mechants[i], courses[i], dirs[i]);
+	    }
+        this.npc[3].v = 3;
+        
+        this.simondir = 0;
+        this.simonrun.stop();
+        this.simonstand.start();
+        this.onmove = false;
+        this.circleR = 0;
+        this.detectR = 50;
+        // Init Parc draw parameters
+        this.sx = this.sy = this.sw = this.sh = this.dx = this.dy = this.dw = this.dh = 0;
+        
+        // Position of parc
+        this.sp = new mse.Point2(225,725);
+        this.pos = new mse.Point2(this.width/2-this.sp.x,this.height/2-this.sp.y);
+        this.disx = this.disy = 0;
+    	
+    	// Key event listener
+    	this.getEvtProxy().addListener('keydown', this.movecb, true, this);
+    	this.getEvtProxy().addListener('keyup', this.moveovercb, true, this);
+    	if(MseConfig.iOS){
+    	    this.getEvtProxy().addListener('gestureStart', this.touchStartcb, true, this);
+    	    this.getEvtProxy().addListener('gestureUpdate', this.touchMovecb, true, this);
+    	    this.getEvtProxy().addListener('gestureEnd', this.moveovercb, true, this);
+    	}
+    	
+    	this.begintime = (new Date()).getTime();
+    };
+    this.mobileLazyInit = function() {
+        // Position of parc
+        this.sp = new mse.Point2(225,725);
+        this.pos = new mse.Point2(this.width/2-this.sp.x,this.height/2-this.sp.y);
+        this.disx = this.disy = 0;
+    };
+    
+    this.draw = function(ctx) {
+        ctx.save();
+		var parc = mse.src.getSrc('parc');
+		var scale = parc.width/1920;
+		// Background
+		ctx.drawImage(parc, this.sx*scale, this.sy*scale, this.sw*scale, this.sh*scale, this.dx, this.dy, this.dw, this.dh);
+		// Simon
+		ctx.save();
+		ctx.translate(this.width/2, this.height/2);
+		ctx.rotate(this.simondir*Math.PI/180);
+		if(this.onmove) {
+		    // Draw circle of detection around simon
+		    ctx.globalAlpha = (this.detectR - this.circleR) / 50;
+		    ctx.fillStyle = "rgba(255,255,255,0.6)";
+		    ctx.strokeStyle = "#fff";
+		    ctx.beginPath();
+		    ctx.arc(0, 0, this.circleR, 0, Math.PI*2, true); 
+		    ctx.closePath();
+		    ctx.fill();
+		    ctx.stroke();
+		}
+		ctx.translate(-20,-18);
+		this.simon.draw(ctx);
+		ctx.restore();
+		// NPCs
+		for(var i = 0; i < 4; i++) {
+		    this.npc[i].draw(ctx, this.pos.x, this.pos.y);
+		}
+		// Plan
+		ctx.globalAlpha = 0.7;
+		ctx.drawImage(mse.src.getSrc('parc'), 5,5,192,128);
+		// Simon on plan
+		ctx.globalAlpha = 1;
+		ctx.fillStyle = 'rgb(0,200,0)';
+		ctx.fillRect(4+this.sp.x/10, 4+this.sp.y/10, 2,2);
+		// Destination
+		ctx.fillStyle = 'rgba(250,230,200,0.8)';
+		if(this.spark == 10) {
+		    this.spark = 0;
+		    ctx.beginPath();
+		    ctx.arc(174,34, 3, 0,Math.PI*2, true);
+		    ctx.fill();
+		}
+		else this.spark++;
+		ctx.restore();
+		if(MseConfig.iOS) {
+		    this.padBase.draw(ctx);
+		    this.padHandler.draw(ctx);
+		    ctx.globalAlpha = 1;
+		}
+	};
+	
+	this.logic = function(delta) {
+	    // Parc visible part
+		if(this.pos.x > 0) {
+		    this.sx = 0;
+		    this.sw = this.width - this.pos.x;
+		    this.dx = this.pos.x;
+		}
+		else {
+		    this.sx = -this.pos.x;
+		    if(this.pos.x + 1920 < this.width) this.sw = 1920 + this.pos.x;
+		    else this.sw = this.width;
+		    this.dx = 0;
+		}
+		if(this.pos.y > 0) {
+		    this.sy = 0;
+		    this.sh = this.height - this.pos.y;
+		    this.dy = this.pos.y;
+		}
+		else {
+		    this.sy = -this.pos.y;
+		    if(this.pos.y + 1280 < this.height) this.sh = 1280 + this.pos.y;
+		    else this.sh = this.height;
+		    this.dy = 0;
+		}
+		this.dw = this.sw;
+		this.dh = this.sh;
+		
+		// Simon
+		this.pos.x += this.disx;
+		this.pos.y += this.disy;
+		// Ignore the movement if collision
+		if(this.colliDetect()) {this.pos.x -= this.disx; this.pos.y -= this.disy;}
+		if(this.onmove) {
+		    if(this.circleR < this.detectR) this.circleR += 2;
+		    else this.circleR = 0;
+		}
+		
+		this.sp.x = this.width/2 - this.pos.x;
+		this.sp.y = this.height/2 - this.pos.y;
+		
+		// Win check
+		if(Math.abs(this.sp.x - 1690) <= 60 && Math.abs(this.sp.y - 290) <= 10) {
+		    this.getEvtProxy().removeListener('keydown', this.movecb);
+		    this.getEvtProxy().removeListener('keyup', this.moveoverc);
+		    if(MseConfig.iOS){
+		        this.getEvtProxy().removeListener('gestureStart', this.touchStartcb);
+		        this.getEvtProxy().removeListener('gestureUpdate', this.touchMovecb);
+		        this.getEvtProxy().removeListener('gestureEnd', this.moveovercb);
+		    }
+		    mse.src.getSrc('aud_findsimon').pause();
+		    
+		    this.state = "WIN";
+		    this.setScore( 4000 * 1000 / ( (new Date()).getTime() - this.begintime ) );
+		    this.win();
+		}
+		// NPCs
+		for(var i = 0; i < 4; i++) {
+		    var n = this.npc[i];
+		    n.logic(delta);
+		    
+		    // Detect if simon is found
+		    var dis = Math.round(distance2Pts(this.sp.x,this.sp.y,n.pos.x,n.pos.y));
+		    var angle = angleFor2Point(n.pos,this.sp);
+		    var adis = Math.abs(angle-n.direction);
+		    if(adis > 180) adis = 360-adis;
+		    if(dis < 50 || (dis <= 170 && adis <= n.visiona)) {
+		    // Simon is found!!!
+		        n.direction = angle;
+		        // Remove Key event listener
+		        this.getEvtProxy().removeListener('keydown', this.movecb);
+		        this.getEvtProxy().removeListener('keyup', this.moveovercb);
+		        if(MseConfig.iOS){
+		            this.getEvtProxy().removeListener('gestureStart', this.touchStartcb);
+		            this.getEvtProxy().removeListener('gestureUpdate', this.touchMovecb);
+		            this.getEvtProxy().removeListener('gestureEnd', this.moveovercb);
+		        }
+		        this.moveover();
+		        mse.src.getSrc('aud_findsimon').pause();
+		        this.lose();
+		    }
+		}
+	};
+	
+	this.colliDetect = function() {
+	    var x = this.width/2 - this.pos.x;
+	    var y = this.height/2 - this.pos.y;
+	    for(var i = 0; i < freerect.vertical.length; i++) {
+	        var xRelat = xRelatRect(x, freerect.vertical[i]);
+	        if(xRelat == -1) break;
+	        // In free rect, no collision
+	        else if(xRelat == 0 && yRelatRect(y, freerect.vertical[i]) == 0) return false;
+        }
+        for(var i = 0; i < freerect.horizontal.length; i++) {
+            var yRelat = yRelatRect(y, freerect.horizontal[i]);
+            // In none of the free rect, collision
+            if(yRelat == -1) return true;
+            // In free rect, no collision
+            else if(yRelat == 0 && xRelatRect(x, freerect.horizontal[i]) == 0) return false;
+        }
+        return true;
+	};
+	
+	this.move = function(e) {
+	    var valid = false;
+	    switch(e.keyCode) {
+	    case __KEY_LEFT:
+	        this.disx = 4; this.disy = 0;
+	        this.simondir = 180;
+	        valid = true;
+	    	break;
+	    case __KEY_RIGHT:
+	        this.disx = -4; this.disy = 0;
+	        this.simondir = 0;
+	        valid = true;
+	    	break;
+	    case __KEY_UP:
+	        this.disy = 4; this.disx = 0;
+	        this.simondir = -90;
+	        valid = true;
+	    	break;
+	    case __KEY_DOWN:
+	        this.disy = -4; this.disx = 0;
+	        this.simondir = 90;
+	        valid = true;
+	    	break;
+	    }
+	    if(valid && !this.onmove) {
+	        this.onmove = true;
+	        this.circleR = 0;
+	        this.simonrun.start();
+	        this.simonstand.stop();
+	    }
+	};
+	this.touchStart = function(e) {
+	    if(inrect(e.offsetX, e.offsetY, this.touchZone))
+	        this.touchValid = true;
+	    this.disx = 0; this.disy = 0;
+	    this.onmove = false;
+	};
+	this.touchMove = function(e) {
+	    if(this.touchValid) {
+	        var ox = this.touchZone[0]+40, oy = this.touchZone[1]+40;
+	        var a = mseAngleForLine(ox, oy, e.offsetX, e.offsetY);
+	        var dis = distance2Pts(ox, oy, e.offsetX, e.offsetY);
+	        if(dis < 40) this.padHandler.setPos(e.offsetX-40, e.offsetY-40);
+	        else this.padHandler.setPos(ox+40/dis*(e.offsetX-ox)-40, oy+40/dis*(e.offsetY-oy)-40);
+	        
+	        var valid = true;
+	        if((a >= 0 && a <= 15) || (a <= 0 && a >= -15)){
+	            //Left
+	            this.disx = -4; this.disy = 0;
+	            this.simondir = 0;
+	        }
+	        else if(a >= 75 && a <= 105) {
+	            // Down
+	            this.disy = -4; this.disx = 0;
+	            this.simondir = 90;
+	        }
+	        else if(a >= 165 || a <= -165) {
+	            // RIGHT
+	            this.disx = 4; this.disy = 0;
+	            this.simondir = 180;
+	        }
+	        else if(a <= -75 && a >= -105) {
+	            // Up
+	            this.disy = 4; this.disx = 0;
+	            this.simondir = -90;
+	        }
+	        else valid = false;
+	        if(valid && !this.onmove) {
+	            this.onmove = true;
+	            this.simonrun.start();
+	            this.simonstand.stop();
+	        }
+	    }
+	};
+	this.moveover = function(e) {
+	    this.disx = 0; this.disy = 0;
+	    this.onmove = false;
+	    this.simonrun.stop();
+	    this.simonstand.start();
+	    
+	    this.touchValid = false;
+	    if(this.padHandler) this.padHandler.setPos(this.touchZone[0], this.touchZone[1]);
+	};
+	// Init key listeners
+	this.movecb = new mse.Callback(this.move, this);
+	this.moveovercb = new mse.Callback(this.moveover, this);
+	this.touchStartcb = new mse.Callback(this.touchStart, this);
+	this.touchMovecb = new mse.Callback(this.touchMove, this);
+};
+extend(FindSimon, mse.Game);
+mse.coords = JSON.parse('{"cid0":800,"cid1":600,"cid2":0,"cid3":400,"cid4":201.25,"cid5":20,"cid6":407.5,"cid7":45,"cid8":197.5,"cid9":108.75,"cid10":32.5,"cid11":218.75,"cid12":293.75,"cid13":246.25,"cid14":200,"cid15":360,"cid16":590,"cid17":220,"cid18":10,"cid19":22.5,"cid20":36.25,"cid21":450,"cid22":315,"cid23":324,"cid24":441.72,"cid25":18,"cid26":441.75,"cid27":238.75,"cid28":492.5,"cid29":517.5,"cid30":250,"cid31":100,"cid32":300,"cid33":409,"cid34":-200,"cid35":1090,"cid36":33,"cid37":235,"cid38":109,"cid39":343,"cid40":41,"cid41":320,"cid42":248,"cid43":178,"cid44":61,"cid45":344,"cid46":120,"cid47":255,"cid48":263,"cid49":296,"cid50":301,"cid51":298,"cid52":396,"cid53":201,"cid54":230,"cid55":-42,"cid56":135,"cid57":1000,"cid58":164,"cid59":106,"cid60":189,"cid61":114,"cid62":221,"cid63":238,"cid64":23,"cid65":143,"cid66":36,"cid67":83,"cid68":116,"cid69":340,"cid70":30,"cid71":90,"cid72":266}');
+initMseConfig();
+mse.init();
+window.pages={};
+var layers={};
+window.objs={};
+var animes={};
+var games={};
+var wikis={};
+function createbook(){
+	if(config.publishMode == 'debug') mse.configs.srcPath='./Voodoo_Ch1/';
+	window.root = new mse.Root('Voodoo_Ch1',mse.coor('cid0'),mse.coor('cid1'),'portrait');
+	var temp = {};
+	mse.src.addSource('src0','images/src0.png','img',true);
+	mse.src.addSource('src6','images/src6.png','img',true);
+	mse.src.addSource('src7','images/src7.png','img',true);
+	mse.src.addSource('src8','images/src8.png','img',true);
+	mse.src.addSource('src9','images/src9.jpeg','img',true);
+	games.RatGame = new RatGame();
+	mse.src.addSource('src10','images/src10.jpeg','img',true);
+	mse.src.addSource('src13','images/src13.jpeg','img',true);
+	games.FindSimon = new FindSimon();
+	mse.src.addSource('src22','images/src22.jpeg','img',true);
+	mse.src.addSource('grillageimg','images/src16.png','img',true);
+	mse.src.addSource('src29','images/src29.jpeg','img',true);
+	mse.src.addSource('src30','images/src30.jpeg','img',true);
+	mse.src.addSource('src31','images/src31.jpeg','img',true);
+	mse.src.addSource('src32','images/src32.jpeg','img',true);
+	mse.src.addSource('src33','images/src33.jpeg','img',true);
+	mse.src.addSource('src34','images/src34.png','img',true);
+	mse.src.addSource('src35','images/src35.png','img',true);
+	mse.src.addSource('src36','images/src36.png','img',true);
+	mse.src.addSource('src37','images/src37.png','img',true);
+	mse.src.addSource('src41','images/src41.jpeg','img',true);
+	mse.src.addSource('src44','images/src44.jpeg','img',true);
+	mse.src.addSource('src45','images/src45.jpeg','img',true);
+	mse.src.addSource('src46','images/src46.jpeg','img',true);
+	mse.src.addSource('src47','images/src47.jpeg','img',true);
+	mse.src.addSource('src48','images/src48.jpeg','img',true);
+	mse.src.addSource('intro','audios/intro','aud',false);
+	mse.src.addSource('villenuit','audios/villenuit','aud',false);
+	mse.src.addSource('piegeson','audios/piegeson','aud',false);
+	mse.src.addSource('pasAppro','audios/pasAppro','aud',false);
+	mse.src.addSource('kevinSpeak','audios/kevinSpeak','aud',false);
+	mse.src.addSource('woosh','audios/woosh','aud',false);
+	mse.src.addSource('runsound','audios/runsound','aud',false);
+	mse.src.addSource('ilestla','audios/ilestla','aud',false);
+	mse.src.addSource('accelera','audios/accelera','aud',false);
+	mse.src.addSource('klaxon','audios/klaxon','aud',false);
+	mse.src.addSource('vent','audios/vent','aud',false);
+	mse.src.addSource('paslourd','audios/paslourd','aud',false);
+	mse.src.addSource('rer','audios/rer','aud',false);
+	mse.src.addSource('restartrun','audios/restartrun','aud',false);
+	mse.src.addSource('onletien','audios/onletien','aud',false);
+	mse.src.addSource('heart','audios/heart','aud',false);
+	wikis.Noctambule=new mse.WikiLayer();
+	wikis.Noctambule.addTextCard();
+	wikis.Noctambule.textCard.addSection('Nyctalope', 'A ne pas confondre avec nyctalope : un adjectif qui désigne celui qui a la faculté de voir dans la pénombre, comme les chats');
+	wikis.Noctambule.textCard.addSection('A moins d’inventer', ' - Nyctambule : qui recherche les fétards égarés la nuit\n - Noctalope : qui travaille la nuit sans avoir besoin de lumière');
+	wikis.Noctambule.addTextCard();
+	wikis.Noctambule.textCard.addSection('Noctambule', 'Nom masculin ou féminin : \n - personne ou animal qui a l’habitude de se promener la nuit.\n - personne qui aime faire la fête la nuit.\n - Par extension : personne qui est en activité la nuit');
+	wikis.frondaison=new mse.WikiLayer();
+	wikis.frondaison.addImage('src29', 'Photo réalisée par Panoramas');
+	wikis.frondaison.addTextCard();
+	wikis.frondaison.textCard.addSection('Frondaison', 'Nom, féminin : \n - Les feuilles et les branches d’un arbre\n - Epoque où les feuilles commencent à pousser');
+	wikis.frondaison.textCard.addSection('Synonymes', 'Feuillage, \nRamure, \nBranchage');
+	wikis.albinos=new mse.WikiLayer();
+	wikis.albinos.addImage('src31', 'Salif Keïta par Jeff Attaway');
+	wikis.albinos.addTextCard();
+	wikis.albinos.textCard.addSection('Les albinos célèbres', 'Il existe des albinos célèbres parmi lesquels Salif Keïta, chanteur et musicien malien. Il a obtenu une Victoire de la musique en 2010 pour son album « La Différence »');
+	wikis.albinos.textCard.addLink('Site officiel  Salif Keïta', 'http:\/\/salif-keita.artiste.universalmusic.fr\/');
+	wikis.albinos.addImage('src30', 'Rat albinos. Photographie de Tambako');
+	wikis.albinos.addTextCard();
+	wikis.albinos.textCard.addSection('Albinos', 'Adjectif invariable :\nQui est affecté d\'albinisme.');
+	wikis.albinos.textCard.addSection('Albinisme', 'nom masculin : \nmaladie génétique qui se caractérise par une absence du pigment destiné à colorer la peau, les poils, les cheveux ainsi que par des yeux rouges. Elle affecte les humains ou les animaux.');
+	wikis.albinos.textCard.addLink('Wikipédia albinos', 'http:\/\/fr.wikipedia.org\/wiki\/Albinisme ');
+	wikis.pCeinture=new mse.WikiLayer();
+	wikis.pCeinture.addImage('src32', 'Vue depuis la place Wagram. Photographie de marsupilami92 ');
+	wikis.pCeinture.addTextCard();
+	wikis.pCeinture.textCard.addSection('Biodiversité', 'Elle est considérée comme une réserve de biodiversité. On peut y observer de nombreuses variétés d’arbres, de plantes et la plus grande colonie de chauve-souris de l’espèce pipistrelle d’Ile de France. \nLa ville de Paris y aménage des parcours pédagogiques, proposant ainsi un nouveau type de promenade nature à Paris.');
+	wikis.pCeinture.textCard.addLink('Lien Mairie de Paris', 'http:\/\/www.paris.fr\/loisirs\/se-promener-a-paris\/balades-au-vert\/decouvrir-les-richesses-de-la-petite-ceinture\/rub_9660_stand_53584_port_23803');
+	wikis.pCeinture.addImage('src33', 'La Petite Ceinture traverse le Parc Montsouris. Photo de Thomas Claveirole ');
+	wikis.pCeinture.addTextCard();
+	wikis.pCeinture.textCard.addSection('La Petite Ceinture', 'C’est une ancienne ligne de chemin de fer longue de 32 km qui faisait le tour de Paris.');
+	wikis.pCeinture.textCard.addLink('Lien Wikipédia', 'http:\/\/fr.wikipedia.org\/wiki\/Ligne_de_Petite_Ceinture');
+	wikis.Cyclope=new mse.WikiLayer();
+	wikis.Cyclope.addImage('src9', 'Cyclope, super-héros des X-Men');
+	wikis.Cyclope.addTextCard();
+	wikis.Cyclope.textCard.addSection('Un Cyclope chez les X-Men :', 'Cyclope est aussi un super-héros créé par J. Kirby et S. Lee en 1963. C’est  un mutant qui génère des rayons extrêmement puissants avec ses yeux mais il évite au maximum d’utiliser la violence.');
+	wikis.Cyclope.textCard.addLink('Wikipédia X-Men', 'http:\/\/fr.wikipedia.org\/wiki\/Cyclope_%28comics%29 ');
+	wikis.Cyclope.addImage('src8', 'Polyphème, fils de Poséïdon');
+	wikis.Cyclope.addTextCard();
+	wikis.Cyclope.textCard.addSection('Les cyclopes', 'Nom, masculin :\nLes cyclopes sont des créatures fantastiques de la mythologie grecque. Ce sont des géants qui ne possèdent qu’un seul œil au milieu du front. Ils étaient soit forgerons, bâtisseurs ou pasteurs.');
+	wikis.Cyclope.textCard.addLink('Wikipédia Cyclope', 'http:\/\/fr.wikipedia.org\/wiki\/Cyclope ');
+	wikis.hallali=new mse.WikiLayer();
+	wikis.hallali.addImage('src22', 'L\\\'hallali du cerf, peint par Courbet en 1867');
+	wikis.hallali.addTextCard();
+	wikis.hallali.textCard.addSection('Nom masculin', ' - Sonnerie de chasse à courre qui annonce la prise imminente de l’animal, d’où l’expression : Sonner l’hallali : annoncer la défaite de quelqu’un.\n - Moment où l’animal est pris\n - Par extension : débâcle, défaite');
+	wikis.hallali.addTextCard();
+	wikis.hallali.textCard.addSection('L’hallali', 'Interjection : \nCri du chasseur qui attrape du gibier lors d’une chasse à courre.');
+	pages.Couverture=new mse.BaseContainer(root,'Couverture',{size:[mse.coor('cid0'),mse.coor('cid1')]});
+	layers.back=new mse.Layer(pages.Couverture,1,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj707=new mse.Image(layers.back,{"size":[mse.coor('cid0'),mse.coor('cid1')],"pos":[mse.coor('cid2'),mse.coor('cid2')]},'src44'); layers.back.addObject(objs.obj707);
+	pages.Couverture.addLayer('back',layers.back);
+	pages.Chapitre=new mse.BaseContainer(null,'Chapitre',{size:[mse.coor('cid0'),mse.coor('cid1')]});
+	layers.Chapitredefault=new mse.Layer(pages.Chapitre,1,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj709=new mse.Image(layers.Chapitredefault,{"size":[mse.coor('cid0'),mse.coor('cid1')],"pos":[mse.coor('cid2'),mse.coor('cid2')]},'src45'); layers.Chapitredefault.addObject(objs.obj709);
+	pages.Chapitre.addLayer('Chapitredefault',layers.Chapitredefault);
+	layers.mask=new mse.Layer(pages.Chapitre,2,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj710=new mse.Mask(layers.mask,{"size":[mse.coor('cid3'),mse.coor('cid1')],"pos":[mse.coor('cid4'),mse.coor('cid2')],"fillStyle":"rgb(0, 0, 0)","globalAlpha":0.8,"font":"normal "+mse.coor('cid5')+"px Times","textAlign":"left"}); layers.mask.addObject(objs.obj710);
+	pages.Chapitre.addLayer('mask',layers.mask);
+	layers.Text=new mse.Layer(pages.Chapitre,3,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj13=new mse.Text(layers.Text,{"size":[mse.coor('cid6'),mse.coor('cid7')],"pos":[mse.coor('cid8'),mse.coor('cid9')],"fillStyle":"rgb(255, 255, 255)","globalAlpha":1,"font":"bold "+mse.coor('cid10')+"px Gudea","textAlign":"center","textBaseline":"top"},'CHASSE A L\'HOMME',true); layers.Text.addObject(objs.obj13);
+	objs.obj14=new mse.Text(layers.Text,{"size":[mse.coor('cid11'),mse.coor('cid7')],"pos":[mse.coor('cid12'),mse.coor('cid13')],"fillStyle":"rgb(255, 255, 255)","globalAlpha":1,"font":"bold "+mse.coor('cid10')+"px Gudea","textAlign":"center","textBaseline":"top"},'Episode I',true); layers.Text.addObject(objs.obj14);
+	pages.Chapitre.addLayer('Text',layers.Text);
+	pages.Content=new mse.BaseContainer(null,'Content',{size:[mse.coor('cid0'),mse.coor('cid1')]});
+	layers.Contentdefault=new mse.Layer(pages.Content,1,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj708=new mse.Image(layers.Contentdefault,{"size":[mse.coor('cid0'),mse.coor('cid1')],"pos":[mse.coor('cid2'),mse.coor('cid2')]},'src45'); layers.Contentdefault.addObject(objs.obj708);
+	pages.Content.addLayer('Contentdefault',layers.Contentdefault);
+	layers.grillage=new mse.Layer(pages.Content,2,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj957=new mse.Image(layers.grillage,{"size":[mse.coor('cid0'),mse.coor('cid1')],"pos":[mse.coor('cid2'),mse.coor('cid2')]},'grillageimg'); layers.grillage.addObject(objs.obj957);
+	pages.Content.addLayer('grillage',layers.grillage);
+	layers.contmask=new mse.Layer(pages.Content,3,{"globalAlpha":1,"textBaseline":"top","size":[mse.coor('cid0'),mse.coor('cid1')]});
+	objs.obj711=new mse.Mask(layers.contmask,{"size":[mse.coor('cid3'),mse.coor('cid1')],"pos":[mse.coor('cid14'),mse.coor('cid2')],"fillStyle":"rgb(0, 0, 0)","globalAlpha":0.8,"font":"normal "+mse.coor('cid5')+"px Times","textAlign":"left"}); layers.contmask.addObject(objs.obj711);
+	pages.Content.addLayer('contmask',layers.contmask);
+	layers.text=new mse.ArticleLayer(pages.Content,4,{"size":[mse.coor('cid15'),mse.coor('cid16')],"pos":[mse.coor('cid17'),mse.coor('cid18')],"fillStyle":"rgb(255, 255, 255)","globalAlpha":1,"font":"normal "+mse.coor('cid19')+"px Gudea","textAlign":"left","textBaseline":"top","lineHeight":mse.coor('cid20')},null);
+	objs.obj712=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Ils étaient là.',true);
+	objs.obj712.addLink(new mse.Link('là',0,'audio',mse.src.getSrc('villenuit'))); layers.text.addObject(objs.obj712);
+	objs.obj713=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'À moins de cent mètres derrière ',true); layers.text.addObject(objs.obj713);
+	objs.obj986=new FindSimon(); layers.text.addGame(objs.obj986);
+	objs.obj714=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon. Bien décidés à lui faire payer ',true); layers.text.addObject(objs.obj714);
+	objs.obj715=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'l’affront qu’ils avaient subi.',true); layers.text.addObject(objs.obj715);
+	objs.obj716=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'La Meute.',true); layers.text.addObject(objs.obj716);
+	objs.obj717=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Quatre adolescents qui faisaient ',true); layers.text.addObject(objs.obj717);
+	objs.obj718=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'régner leur loi au sein du foyer.',true); layers.text.addObject(objs.obj718);
+	objs.obj719=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Recroquevillé dans la pénombre d’un ',true); layers.text.addObject(objs.obj719);
+	objs.obj720=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'porche, Simon contemplait le ballet ',true); layers.text.addObject(objs.obj720);
+	objs.obj721=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'des lampes torches qui déchiraient la ',true); layers.text.addObject(objs.obj721);
+	objs.obj722=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'nuit. Des yeux, scrutant le moindre ',true); layers.text.addObject(objs.obj722);
+	objs.obj723=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'recoin, repoussant les ténèbres de ',true); layers.text.addObject(objs.obj723);
+	objs.obj724=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'leurs lueurs cyclopes.',true);
+	objs.obj724.addLink(new mse.Link('cyclopes',13,'wiki',wikis.Cyclope)); layers.text.addObject(objs.obj724);
+	objs.obj725=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Bientôt, ils seraient sur lui.',true); layers.text.addObject(objs.obj725);
+	objs.obj726=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon frissonna en songeant à ce qui ',true); layers.text.addObject(objs.obj726);
+	objs.obj727=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'allait lui arriver. Il savait que Kevin, ',true); layers.text.addObject(objs.obj727);
+	objs.obj728=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'leur chef, serait sans pitié…',true); layers.text.addObject(objs.obj728);
+	objs.obj729=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il fallait qu’il leur échappe.',true); layers.text.addObject(objs.obj729);
+	objs.obj730=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Absolument. Et tant pis s’il ne pouvait ',true); layers.text.addObject(objs.obj730);
+	objs.obj731=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'jamais retourner au foyer.',true); layers.text.addObject(objs.obj731);
+	objs.obj732=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Les pas se rapprochaient, de plus en ',true);
+	objs.obj732.addLink(new mse.Link('Les pas',21,'audio',mse.src.getSrc('pasAppro'))); layers.text.addObject(objs.obj732);
+	objs.obj733=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'plus. Il pouvait entendre leurs voix à ',true); layers.text.addObject(objs.obj733);
+	objs.obj734=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'présent.',true); layers.text.addObject(objs.obj734);
+	objs.src40=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'kevin', 'src35' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src40);
+	objs.obj924=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Trouvez-moi ce sale petit rat ! ',true);
+	objs.src40.addObject(objs.obj924);
+	objs.obj925=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Il va comprendre qu’on ne peut ',true);
+	objs.src40.addObject(objs.obj925);
+	objs.obj928=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'pas se moquer de nous comme ça !',true);
+	objs.src40.addObject(objs.obj928);
+	objs.src39=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'fouine', 'src34' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src39);
+	objs.obj929=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Ouaip, on va lui faire sa fête !',true);
+	objs.src39.addObject(objs.obj929);
+	objs.obj739=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Ça, c’était « La Fouine ».',true); layers.text.addObject(objs.obj739);
+	objs.obj740=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Dix sept ans, un mètre quatre-vingt, ',true); layers.text.addObject(objs.obj740);
+	objs.obj741=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'soixante-quinze kilos de violence ',true); layers.text.addObject(objs.obj741);
+	objs.obj742=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'pure. Une véritable bombe ambulante ',true); layers.text.addObject(objs.obj742);
+	objs.obj743=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'qui ne demandait qu’à exploser.',true); layers.text.addObject(objs.obj743);
+	objs.obj744=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon se pencha un instant hors de ',true); layers.text.addObject(objs.obj744);
+	objs.obj745=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'son abri pour évaluer ses chances de ',true); layers.text.addObject(objs.obj745);
+	objs.obj746=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'leur échapper.',true); layers.text.addObject(objs.obj746);
+	objs.obj747=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Proches du zéro absolu s’il ne ',true); layers.text.addObject(objs.obj747);
+	objs.obj748=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'bougeait pas de sa cachette. Un peu ',true); layers.text.addObject(objs.obj748);
+	objs.obj749=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'plus s’il tentait une sortie. À condition ',true); layers.text.addObject(objs.obj749);
+	objs.obj750=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'de tomber sur quelqu’un, un adulte ',true); layers.text.addObject(objs.obj750);
+	objs.obj751=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'qui saurait éloigner ses poursuivants.',true); layers.text.addObject(objs.obj751);
+	objs.src38=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'simon', 'src37' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src38);
+	objs.obj930=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Tu es prêt ? chuchota-t-il à ',true);
+	objs.src38.addObject(objs.obj930);
+	objs.obj931=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Dark.',true);
+	objs.src38.addObject(objs.obj931);
+	objs.obj753=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Dark. Vador. Son rat albinos. Son ',true);
+	objs.obj753.addLink(new mse.Link('albinos',40,'wiki',wikis.albinos)); layers.text.addObject(objs.obj753);
+	objs.obj754=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'plus fidèle compagnon depuis un an.',true); layers.text.addObject(objs.obj754);
+	objs.obj755=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Le seul en vérité.',true); layers.text.addObject(objs.obj755);
+	objs.obj756=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon repoussa l’élan de mélancolie ',true); layers.text.addObject(objs.obj756);
+	objs.obj757=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'qui menaçait de le submerger et ',true); layers.text.addObject(objs.obj757);
+	objs.obj758=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'enfouit Dark au fond de son sac.',true); layers.text.addObject(objs.obj758);
+	objs.obj983=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj983);
+	objs.obj759=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il passa les lanières autour de ses ',true); layers.text.addObject(objs.obj759);
+	objs.obj760=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'épaules et s’élança.',true); layers.text.addObject(objs.obj760);
+	objs.obj761=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Pas de réaction.',true); layers.text.addObject(objs.obj761);
+	objs.obj762=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il s’était mis à courir comme si sa vie ',true);
+	objs.obj762.addLink(new mse.Link('courir',50,'audio',mse.src.getSrc('runsound'))); layers.text.addObject(objs.obj762);
+	objs.obj763=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'en dépendait.',true); layers.text.addObject(objs.obj763);
+	objs.obj764=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Si la Meute lui tombait dessus, il était ',true); layers.text.addObject(objs.obj764);
+	objs.obj765=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'bon pour un passage à tabac dans les ',true); layers.text.addObject(objs.obj765);
+	objs.obj766=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'règles de l’art. Voilà ce qui se passe ',true); layers.text.addObject(objs.obj766);
+	objs.obj767=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'lorsque l’on refuse de soumettre aux ',true); layers.text.addObject(objs.obj767);
+	objs.obj768=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'plus forts.',true); layers.text.addObject(objs.obj768);
+	objs.obj769=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon évitait de regarder dans leur ',true); layers.text.addObject(objs.obj769);
+	objs.obj770=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'direction, les yeux rivés sur les ',true); layers.text.addObject(objs.obj770);
+	objs.obj771=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'frondaisons du parc Montsouris. Des ',true);
+	objs.obj771.addLink(new mse.Link('frondaisons',59,'wiki',wikis.frondaison)); layers.text.addObject(objs.obj771);
+	objs.obj772=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'arbres, de la pénombre et des milliards ',true); layers.text.addObject(objs.obj772);
+	objs.obj773=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'de recoins où il pourrait se dissimuler ',true); layers.text.addObject(objs.obj773);
+	objs.obj774=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'en attendant l’aube.',true); layers.text.addObject(objs.obj774);
+	objs.obj775=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'S’il atteignait le jardin, il serait sauvé.',true); layers.text.addObject(objs.obj775);
+	objs.obj776=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Mais, dans sa précipitation, il buta ',true); layers.text.addObject(objs.obj776);
+	objs.obj777=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'contre le trottoir. Le béton lui arracha ',true); layers.text.addObject(objs.obj777);
+	objs.obj778=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'une plainte. Un cri minuscule.',true); layers.text.addObject(objs.obj778);
+	objs.obj932=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj932);
+	objs.src42=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'unknown', 'src41' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src42);
+	objs.obj934=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Il est là !',true);
+	objs.src42.addObject(objs.obj934);
+	objs.obj933=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj933);
+	objs.obj780=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Pas assez minuscule, visiblement.',true); layers.text.addObject(objs.obj780);
+	objs.obj781=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon détala tandis que les faisceaux ',true); layers.text.addObject(objs.obj781);
+	objs.obj782=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'accrochaient sa silhouette.',true); layers.text.addObject(objs.obj782);
+	objs.obj935=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj935);
+	objs.obj940=new mse.Image(layers.text,{"size":[mse.coor('cid23'),mse.coor('cid24')],"pos":[mse.coor('cid25'),mse.coor('cid5')]},'src47');
+	objs.obj940.activateZoom(); layers.text.addObject(objs.obj940);
+	objs.obj936=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj936);
+	objs.src40=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'kevin', 'src35' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src40);
+	objs.obj937=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Chopez-le ! Faut qu’il ',true);
+	objs.src40.addObject(objs.obj937);
+	objs.obj938=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'comprenne !',true);
+	objs.src40.addObject(objs.obj938);
+	objs.obj784=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Que je comprenne quoi ? Qu’il faut se ',true); layers.text.addObject(objs.obj784);
+	objs.obj785=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'laisser faire ? Pas question !',true); layers.text.addObject(objs.obj785);
+	objs.obj786=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il accéléra.',true);
+	objs.obj786.addLink(new mse.Link('accéléra',79,'audio',mse.src.getSrc('accelera'))); layers.text.addObject(objs.obj786);
+	objs.obj787=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il essayait d’oublier que ses poumons ',true); layers.text.addObject(objs.obj787);
+	objs.obj788=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'le brûlaient, qu’il était épuisé par cette ',true); layers.text.addObject(objs.obj788);
+	objs.obj789=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'poursuite qui durait depuis des ',true); layers.text.addObject(objs.obj789);
+	objs.obj790=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'heures, et surtout que la peur menaçait ',true); layers.text.addObject(objs.obj790);
+	objs.obj791=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'de le paralyser à tout instant.',true); layers.text.addObject(objs.obj791);
+	objs.obj792=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il traversa le boulevard, déclenchant le ',true); layers.text.addObject(objs.obj792);
+	objs.obj793=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'klaxon furieux d’un noctambule ',true);
+	objs.obj793.addLink(new mse.Link('klaxon',86,'audio',mse.src.getSrc('klaxon')));
+	objs.obj793.addLink(new mse.Link('noctambule',86,'wiki',wikis.Noctambule)); layers.text.addObject(objs.obj793);
+	objs.obj794=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'égaré. Puis il s’engouffra à l’abri des ',true); layers.text.addObject(objs.obj794);
+	objs.obj795=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'arbres. Son sac ballotait sur ses ',true); layers.text.addObject(objs.obj795);
+	objs.obj796=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'épaules et il pensa au pauvre Dark. ',true); layers.text.addObject(objs.obj796);
+	objs.obj797=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Sans réfléchir, il pénétra dans une ',true); layers.text.addObject(objs.obj797);
+	objs.obj798=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'petite allée. Il dépassa les angles du ',true); layers.text.addObject(objs.obj798);
+	objs.obj799=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'pavillon météo qui s’élevait dans la ',true); layers.text.addObject(objs.obj799);
+	objs.obj800=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'pénombre, puis il ralentit sa course.',true); layers.text.addObject(objs.obj800);
+	objs.obj801=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Pas un bruit.',true);
+	objs.obj801.addLink(new mse.Link('bruit',94,'audio',mse.src.getSrc('vent'))); layers.text.addObject(objs.obj801);
+	objs.obj802=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Rien d’autre que le vent dans les ',true); layers.text.addObject(objs.obj802);
+	objs.obj803=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'feuilles.',true); layers.text.addObject(objs.obj803);
+	objs.obj804=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Où étaient-ils passés ?',true); layers.text.addObject(objs.obj804);
+	objs.obj805=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon s’arrêta, s’accroupit derrière un ',true); layers.text.addObject(objs.obj805);
+	objs.obj806=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'banc scarifié de graffitis.',true); layers.text.addObject(objs.obj806);
+	objs.obj807=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Là ! Sur sa gauche.',true); layers.text.addObject(objs.obj807);
+	objs.obj941=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj941);
+	objs.obj946=new mse.Image(layers.text,{"size":[mse.coor('cid23'),mse.coor('cid26')],"pos":[mse.coor('cid25'),mse.coor('cid5')]},'src48');
+	objs.obj946.activateZoom(); layers.text.addObject(objs.obj946);
+	objs.obj942=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj942);
+	objs.obj808=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il avait reconnu la démarche ',true);
+	objs.obj808.addLink(new mse.Link('démarche',104,'audio',mse.src.getSrc('paslourd'))); layers.text.addObject(objs.obj808);
+	objs.obj809=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'chaloupée de la Fouine, les pas lourds ',true); layers.text.addObject(objs.obj809);
+	objs.obj810=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'de l’Ours – seize ans, un QI ',true); layers.text.addObject(objs.obj810);
+	objs.obj811=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'inversement proportionnel à sa force - ',true); layers.text.addObject(objs.obj811);
+	objs.obj812=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'à ses côtés. Les deux autres suivaient ',true); layers.text.addObject(objs.obj812);
+	objs.obj813=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'la ligne de tramway qui longeait le ',true); layers.text.addObject(objs.obj813);
+	objs.obj814=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'parc, sur sa droite.',true); layers.text.addObject(objs.obj814);
+	objs.obj815=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Le groupe s’était séparé en deux et ',true); layers.text.addObject(objs.obj815);
+	objs.obj816=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'tentait de l’encercler.',true); layers.text.addObject(objs.obj816);
+	objs.obj817=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon réfléchit à toute allure.',true); layers.text.addObject(objs.obj817);
+	objs.obj818=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Le RER !',true);
+	objs.obj818.addLink(new mse.Link('RER',114,'audio',mse.src.getSrc('rer'))); layers.text.addObject(objs.obj818);
+	objs.obj819=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'La station ne devait être qu’à quelques ',true); layers.text.addObject(objs.obj819);
+	objs.obj820=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'dizaines de mètres devant lui et, même ',true); layers.text.addObject(objs.obj820);
+	objs.obj821=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'en ces heures tardives, il y aurait sans ',true); layers.text.addObject(objs.obj821);
+	objs.obj822=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'doute un peu de monde.',true); layers.text.addObject(objs.obj822);
+	objs.obj823=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il reprit sa progression, lentement, ',true); layers.text.addObject(objs.obj823);
+	objs.obj824=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'veillant à rester invisible.',true); layers.text.addObject(objs.obj824);
+	objs.obj825=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Plus que cinquante mètres.',true); layers.text.addObject(objs.obj825);
+	objs.obj826=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il entendait déjà le crissement des ',true); layers.text.addObject(objs.obj826);
+	objs.obj827=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'rames sur les rails.',true); layers.text.addObject(objs.obj827);
+	objs.obj947=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj947);
+	objs.obj828=new mse.Text(layers.text,{"size":[mse.coor('cid15'),mse.coor('cid20')],"pos":[mse.coor('cid2'),mse.coor('cid27')],"fillStyle":"rgb(255, 255, 255)","globalAlpha":1,"font":"normal "+mse.coor('cid19')+"px Gudea","textAlign":"left"},'Quarante.',true); layers.text.addObject(objs.obj828);
+	objs.obj948=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj948);
+	objs.src42=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'unknown', 'src41' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src42);
+	objs.obj951=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Là sur le pont ! Il essaye de ',true);
+	objs.src42.addObject(objs.obj951);
+	objs.obj952=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'rejoindre la gare !',true);
+	objs.src42.addObject(objs.obj952);
+	objs.src38=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'simon', 'src37' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src38);
+	objs.obj953=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Merde ! lâcha Simon en ',true);
+	objs.src38.addObject(objs.obj953);
+	objs.obj954=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'reprenant sa course.',true);
+	objs.src38.addObject(objs.obj954);
+	objs.obj949=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj949);
+	objs.obj833=new mse.Text(layers.text,{"size":[mse.coor('cid15'),mse.coor('cid20')],"pos":[mse.coor('cid2'),mse.coor('cid28')],"fillStyle":"rgb(255, 255, 255)","globalAlpha":1,"font":"normal "+mse.coor('cid19')+"px Gudea","textAlign":"left"},'Trente.',true); layers.text.addObject(objs.obj833);
+	objs.obj950=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj950);
+	objs.obj834=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Mais la Meute, galvanisée par la ',true); layers.text.addObject(objs.obj834);
+	objs.obj835=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'proximité de sa proie, se rapprochait ',true); layers.text.addObject(objs.obj835);
+	objs.obj836=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'rapidement.',true); layers.text.addObject(objs.obj836);
+	objs.obj837=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Ils avaient de la lumière, ils évitaient ',true); layers.text.addObject(objs.obj837);
+	objs.obj838=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'les obstacles. Surtout ils étaient plus ',true); layers.text.addObject(objs.obj838);
+	objs.obj839=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'âgés, plus forts,  alors que lui était ',true); layers.text.addObject(objs.obj839);
+	objs.obj840=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'éreinté, les jambes écorchées par les ',true); layers.text.addObject(objs.obj840);
+	objs.obj841=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'ronces, au bord de l’asphyxie.',true); layers.text.addObject(objs.obj841);
+	objs.obj842=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Les deux groupes gagnaient ',true); layers.text.addObject(objs.obj842);
+	objs.obj843=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'insensiblement du terrain. Bientôt ils ',true); layers.text.addObject(objs.obj843);
+	objs.obj844=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'se rejoindraient et ce serait l’hallali.',true);
+	objs.obj844.addLink(new mse.Link('l’hallali',142,'wiki',wikis.hallali)); layers.text.addObject(objs.obj844);
+	objs.obj845=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon obliqua brutalement vers le ',true); layers.text.addObject(objs.obj845);
+	objs.obj846=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'nord pour essayer de rejoindre un ',true); layers.text.addObject(objs.obj846);
+	objs.obj847=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'bouquet d’arbres denses. Avec un peu ',true); layers.text.addObject(objs.obj847);
+	objs.obj848=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'de chance, il pourrait les semer. Au ',true); layers.text.addObject(objs.obj848);
+	objs.obj849=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'pire, il grimperait sur l’un des troncs ',true); layers.text.addObject(objs.obj849);
+	objs.obj850=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'centenaires.',true); layers.text.addObject(objs.obj850);
+	objs.obj851=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il se précipita dans le bosquet. Les ',true); layers.text.addObject(objs.obj851);
+	objs.obj852=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'branches basses fouettèrent son ',true); layers.text.addObject(objs.obj852);
+	objs.obj853=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'visage, lui arrachant des larmes.',true); layers.text.addObject(objs.obj853);
+	objs.obj854=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Mais il était presque à l’abri : ',true); layers.text.addObject(objs.obj854);
+	objs.obj855=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'l’obscurité était totale.',true); layers.text.addObject(objs.obj855);
+	objs.obj856=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il ignorait vers quoi il courait mais il ',true); layers.text.addObject(objs.obj856);
+	objs.obj857=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'s’en fichait.',true); layers.text.addObject(objs.obj857);
+	objs.obj858=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il accéléra encore et… s’effondra ',true); layers.text.addObject(objs.obj858);
+	objs.obj859=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'brutalement, le souffle coupé, une ',true); layers.text.addObject(objs.obj859);
+	objs.obj860=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'violente douleur barrant sa poitrine. Il ',true); layers.text.addObject(objs.obj860);
+	objs.obj861=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'venait de heurter quelque chose de ',true); layers.text.addObject(objs.obj861);
+	objs.obj862=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'plein fouet.',true); layers.text.addObject(objs.obj862);
+	objs.obj863=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Abasourdi, Simon fouilla l’obscurité. ',true); layers.text.addObject(objs.obj863);
+	objs.obj864=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il entendait ses poursuivants battre les ',true); layers.text.addObject(objs.obj864);
+	objs.obj865=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'talus et les fourrés.',true); layers.text.addObject(objs.obj865);
+	objs.obj866=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il tâtonna un instant dans son sac.',true); layers.text.addObject(objs.obj866);
+	objs.obj867=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Sa torche.',true); layers.text.addObject(objs.obj867);
+	objs.obj868=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Un faible halo de lumière.',true); layers.text.addObject(objs.obj868);
+	objs.obj869=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Un grillage.',true); layers.text.addObject(objs.obj869);
+	objs.obj955=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj955);
+	objs.obj870=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Piégé !',true); layers.text.addObject(objs.obj870);
+	objs.obj956=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj956);
+	objs.obj871=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il se redressa en grimaçant, ',true); layers.text.addObject(objs.obj871);
+	objs.obj872=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'s’approcha.',true); layers.text.addObject(objs.obj872);
+	objs.obj873=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Une dizaine de mètres en contrebas, le ',true); layers.text.addObject(objs.obj873);
+	objs.obj874=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'faisceau de sa lampe illumina les ',true); layers.text.addObject(objs.obj874);
+	objs.obj875=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'reliefs mangés de rouille d’une ligne ',true); layers.text.addObject(objs.obj875);
+	objs.obj876=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'de chemin de fer abandonnée.',true); layers.text.addObject(objs.obj876);
+	objs.obj877=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'La Petite Ceinture.',true);
+	objs.obj877.addLink(new mse.Link('La Petite Ceinture',177,'wiki',wikis.pCeinture)); layers.text.addObject(objs.obj877);
+	objs.obj878=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Un éclat de voix derrière lui le fit ',true); layers.text.addObject(objs.obj878);
+	objs.obj879=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'sursauter.',true); layers.text.addObject(objs.obj879);
+	objs.src42=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'unknown', 'src41' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src42);
+	objs.obj962=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'On le tient !',true);
+	objs.src42.addObject(objs.obj962);
+	objs.obj881=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon fixa le puits de ténèbres qui ',true); layers.text.addObject(objs.obj881);
+	objs.obj882=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'s’étendait au-delà du grillage.',true); layers.text.addObject(objs.obj882);
+	objs.src40=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'kevin', 'src35' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src40);
+	objs.obj963=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Alors, t’es enfin prêt à recevoir ',true);
+	objs.src40.addObject(objs.obj963);
+	objs.obj964=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'ta leçon ?',true);
+	objs.src40.addObject(objs.obj964);
+	objs.obj885=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Kevin s’approcha dans la clarté de la ',true); layers.text.addObject(objs.obj885);
+	objs.obj886=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'lune. Il tendit le bras. Un bruit de ',true); layers.text.addObject(objs.obj886);
+	objs.obj887=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'ressort. Une lame apparut au bout de ',true); layers.text.addObject(objs.obj887);
+	objs.obj888=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'sa main.',true); layers.text.addObject(objs.obj888);
+	objs.obj889=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'L’adolescent sentait le sang battre ',true);
+	objs.obj889.addLink(new mse.Link('battre',188,'audio',mse.src.getSrc('heart'))); layers.text.addObject(objs.obj889);
+	objs.obj890=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'contre ses tempes, l’adrénaline ',true); layers.text.addObject(objs.obj890);
+	objs.obj891=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'inonder son corps. Il voulait gagner ',true); layers.text.addObject(objs.obj891);
+	objs.obj892=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'du temps pour récupérer. Pour tenter ',true); layers.text.addObject(objs.obj892);
+	objs.obj893=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'quelque chose.',true); layers.text.addObject(objs.obj893);
+	objs.obj894=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il se retourna face à ses adversaires.',true); layers.text.addObject(objs.obj894);
+	objs.src38=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'simon', 'src37' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src38);
+	objs.obj965=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Je n’ai fait que défendre Rachel. ',true);
+	objs.src38.addObject(objs.obj965);
+	objs.obj966=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Vous n’aviez pas le droit de ',true);
+	objs.src38.addObject(objs.obj966);
+	objs.obj968=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'vous en prendre à elle.',true);
+	objs.src38.addObject(objs.obj968);
+	objs.src40=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'kevin', 'src35' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src40);
+	objs.obj969=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'T’avais qu’à pas te mêler de ',true);
+	objs.src40.addObject(objs.obj969);
+	objs.obj970=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'nos affaires.',true);
+	objs.src40.addObject(objs.obj970);
+	objs.src38=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'simon', 'src37' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src38);
+	objs.obj971=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Quatre contre un, vous n’êtes ',true);
+	objs.src38.addObject(objs.obj971);
+	objs.obj972=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'que des lâches !',true);
+	objs.src38.addObject(objs.obj972);
+	objs.obj902=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon avait lancé ça tout en jetant un ',true); layers.text.addObject(objs.obj902);
+	objs.obj903=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'bref coup d’œil autour de lui. Il avait ',true); layers.text.addObject(objs.obj903);
+	objs.obj904=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'aperçu la grosse pierre au pied du ',true); layers.text.addObject(objs.obj904);
+	objs.obj905=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'grillage. Un bon tremplin…',true); layers.text.addObject(objs.obj905);
+	objs.obj906=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Kevin fulminait.',true); layers.text.addObject(objs.obj906);
+	objs.src40=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'kevin', 'src35' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src40);
+	objs.obj973=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Amenez-le-moi !',true);
+	objs.src40.addObject(objs.obj973);
+	objs.obj908=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Les trois autres s’élancèrent. Mais, ',true); layers.text.addObject(objs.obj908);
+	objs.obj909=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'juste avant que leurs mains ne se ',true); layers.text.addObject(objs.obj909);
+	objs.obj910=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'referment sur lui, il s’était jeté sur le ',true); layers.text.addObject(objs.obj910);
+	objs.obj911=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'côté. D’une roulade il avait atteint la ',true); layers.text.addObject(objs.obj911);
+	objs.obj912=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'pierre. Il se redressa d’un bond, prit ',true); layers.text.addObject(objs.obj912);
+	objs.obj913=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'appui sur le rocher et entreprit ',true); layers.text.addObject(objs.obj913);
+	objs.obj914=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'l’escalade du grillage.',true); layers.text.addObject(objs.obj914);
+	objs.src40=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'kevin', 'src35' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src40);
+	objs.obj974=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Il va s’échapper ! Faites ',true);
+	objs.src40.addObject(objs.obj974);
+	objs.obj975=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'quelque chose !',true);
+	objs.src40.addObject(objs.obj975);
+	objs.src42=new mse.Speaker( layers.text,{"size":[mse.coor('cid15'),mse.coor('cid2')]}, 'unknown', 'src41' , mse.coor(mse.joinCoor(45)) , '#f99200' ); layers.text.addObject(objs.src42);
+	objs.obj976=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'Mais… Il ne peut pas aller loin, ',true);
+	objs.src42.addObject(objs.obj976);
+	objs.obj977=new mse.Text(layers.text,{"size":[mse.coor('cid22'),mse.coor('cid20')]},'il n’y a rien après.',true);
+	objs.src42.addObject(objs.obj977);
+	objs.obj978=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj978);
+	objs.obj982=new FindSimon(); layers.text.addGame(objs.obj982);
+	objs.obj980=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj980);
+	objs.obj979=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'C’était vrai.',true); layers.text.addObject(objs.obj979);
+	objs.obj920=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Il n’y avait plus rien. Rien d’autre ',true); layers.text.addObject(objs.obj920);
+	objs.obj921=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'qu’un énorme trou de ténèbres.',true); layers.text.addObject(objs.obj921);
+	objs.obj922=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Mais il était trop tard pour reculer.',true); layers.text.addObject(objs.obj922);
+	objs.obj923=new mse.Text(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]},'Simon s’élança dans le vide.',true); layers.text.addObject(objs.obj923);
+	objs.obj958=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj958);
+	objs.obj959=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj959);
+	objs.obj960=new mse.Text(layers.text,{"size":[mse.coor('cid15'),mse.coor('cid20')],"pos":[mse.coor('cid2'),mse.coor('cid29')],"fillStyle":"rgb(255, 255, 255)","globalAlpha":1,"font":"normal "+mse.coor('cid19')+"px Gudea","textAlign":"center"},'À SUIVRE...',true); layers.text.addObject(objs.obj960);
+	objs.obj961=new mse.UIObject(layers.text,{"size":[mse.coor('cid21'),mse.coor('cid20')]}); layers.text.addObject(objs.obj961);
+	layers.text.setDefile(1300);
+	temp.layerDefile=layers.text;
+	pages.Content.addLayer('text',layers.text);
+	animes.fouine=new mse.Animation(22,1,true);
+	animes.fouine.block=true;
+	temp.obj=new mse.Mask(null,{'pos':[mse.coor('cid2'),mse.coor('cid2')],'size':[mse.coor('cid0'),mse.coor('cid1')],'fillStyle':'rgb(255, 255, 255)'});
+	animes.fouine.addObj('obj567',temp.obj);
+	temp.obj=new mse.Image(null,{'pos':[mse.coor('cid30'),mse.coor('cid31')],'size':[mse.coor('cid32'),mse.coor('cid33')]},'src0');
+	animes.fouine.addObj('src0',temp.obj);
+	animes.fouine.addAnimation('obj567',{'frame':JSON.parse('[0,1,9,15,21,22]'),'opacity':JSON.parse('[1,0,1,1,0,0]')});
+	animes.fouine.addAnimation('src0',{'frame':JSON.parse('[0,1,9,15,21,22]'),'opacity':JSON.parse('[1,0,1,1,0,0]'),'pos':[[mse.coor('cid30'),mse.coor('cid31')],[mse.coor('cid30'),mse.coor('cid31')],[mse.coor('cid30'),mse.coor('cid31')],[mse.coor('cid30'),mse.coor('cid31')],[mse.coor('cid2'),mse.coor('cid34')],[mse.coor('cid2'),mse.coor('cid34')]],'size':[[mse.coor('cid32'),mse.coor('cid33')],[mse.coor('cid32'),mse.coor('cid33')],[mse.coor('cid32'),mse.coor('cid33')],[mse.coor('cid32'),mse.coor('cid33')],[mse.coor('cid0'),mse.coor('cid35')],[mse.coor('cid0'),mse.coor('cid35')]]});
+	animes.titleshow=new mse.Animation(101,1,false);
+	animes.titleshow.block=true;
+	animes.titleshow.addObj('obj13',objs.obj13);
+	animes.titleshow.addAnimation('obj13',{'frame':JSON.parse('[0,75,88,101]'),'opacity':JSON.parse('[0,0,1,1]')});
+	animes.chashow=new mse.Animation(101,1,false);
+	animes.chashow.block=true;
+	animes.chashow.addObj('obj14',objs.obj14);
+	animes.chashow.addAnimation('obj14',{'frame':JSON.parse('[0,75,88,101]'),'opacity':JSON.parse('[0,0,1,1]')});
+	animes.simcour=new mse.Animation(58,1,true);
+	animes.simcour.block=true;
+	temp.obj=new mse.Sprite(null,{'pos':[mse.coor('cid14'),mse.coor('cid45')],'size':[mse.coor('cid46'),mse.coor('cid47')]},'src6',[[186,0,119,254]]);
+	animes.simcour.addObj('src6',temp.obj);
+	temp.obj.appendFrame([362,0,260,254]);
+	temp.obj.appendFrame([0,0,299,254]);
+	temp.obj.appendFrame([302,0,199,254]);
+	animes.simcour.addAnimation('src6',{'frame':JSON.parse('[0,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58]'),'opacity':JSON.parse('[0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0]'),'spriteSeq':JSON.parse('[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,3]'),'size':[[mse.coor('cid46'),mse.coor('cid47')],[mse.coor('cid46'),mse.coor('cid47')],[mse.coor('cid46'),mse.coor('cid47')],[mse.coor('cid46'),mse.coor('cid47')],[mse.coor('cid48'),mse.coor('cid47')],[mse.coor('cid48'),mse.coor('cid47')],[mse.coor('cid48'),mse.coor('cid47')],[mse.coor('cid48'),mse.coor('cid47')],[mse.coor('cid50'),mse.coor('cid47')],[mse.coor('cid50'),mse.coor('cid47')],[mse.coor('cid50'),mse.coor('cid47')],[mse.coor('cid50'),mse.coor('cid47')],[mse.coor('cid53'),mse.coor('cid47')],[mse.coor('cid53'),mse.coor('cid47')],[mse.coor('cid53'),mse.coor('cid47')],[mse.coor('cid53'),mse.coor('cid47')],[mse.coor('cid53'),mse.coor('cid47')]],'pos':[[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid14'),mse.coor('cid45')],[mse.coor('cid49'),mse.coor('cid45'),1],[mse.coor('cid49'),mse.coor('cid45'),1],[mse.coor('cid49'),mse.coor('cid45'),1],[mse.coor('cid51'),mse.coor('cid45')],[mse.coor('cid52'),mse.coor('cid45')],[mse.coor('cid52'),mse.coor('cid45')],[mse.coor('cid52'),mse.coor('cid45')],[mse.coor('cid52'),mse.coor('cid45')],[mse.coor('cid52'),mse.coor('cid45')]]});
+	animes.piege=new mse.Animation(51,1,true);
+	animes.piege.block=true;
+	temp.obj=new mse.Image(null,{'pos':[mse.coor('cid2'),mse.coor('cid2')],'size':[mse.coor('cid0'),mse.coor('cid1')]},'grillageimg');
+	animes.piege.addObj('grillageimg',temp.obj);
+	temp.obj=new mse.Text(null,{'pos':[mse.coor('cid55'),mse.coor('cid56')],'size':[mse.coor('cid57'),mse.coor('cid32')],'fillStyle':'rgb(255, 255, 255)','textBaseline':'top','font':'normal '+mse.coor('cid54')+'px Verdana','textAlign':'left'},'Piégé!!!',true);
+	animes.piege.addObj('obj587',temp.obj);
+	animes.piege.addAnimation('grillageimg',{'frame':JSON.parse('[0,6,22,25,44,50,51]'),'opacity':JSON.parse('[0,1,1,1,1,0,0]')});
+	animes.piege.addAnimation('obj587',{'frame':JSON.parse('[0,6,22,25,44,50,51]'),'fontSize':[mse.coor('cid54'),mse.coor('cid54'),mse.coor('cid58'),mse.coor('cid61'),mse.coor('cid61'),mse.coor('cid61'),mse.coor('cid61')],'pos':[[mse.coor('cid55'),mse.coor('cid56')],[mse.coor('cid55'),mse.coor('cid56')],[mse.coor('cid59'),mse.coor('cid60')],[mse.coor('cid62'),mse.coor('cid63')],[mse.coor('cid62'),mse.coor('cid63')],[mse.coor('cid62'),mse.coor('cid63')],[mse.coor('cid62'),mse.coor('cid63')]],'opacity':JSON.parse('[0,0,0.699999988079,1,1,0,0]')});
+	animes.maskAnime=new mse.Animation(89,1,false);
+	animes.maskAnime.block=true;
+	animes.maskAnime.addObj('obj710',objs.obj710);
+	animes.maskAnime.addAnimation('obj710',{'frame':JSON.parse('[0,75,88,89]'),'opacity':JSON.parse('[0,0,0.80000001192093,0.80000001192093]')});
+	animes.quarantAnime=new mse.Animation(27,1,false);
+	animes.quarantAnime.block=true;
+	animes.quarantAnime.addObj('obj828',objs.obj828);
+	animes.quarantAnime.addAnimation('obj828',{'frame':JSON.parse('[0,13,26,27]'),'fontSize':[mse.coor('cid64'),mse.coor('cid67'),mse.coor('cid64'),mse.coor('cid64')]});
+	animes.trentAnime=new mse.Animation(27,1,false);
+	animes.trentAnime.block=true;
+	animes.trentAnime.addObj('obj833',objs.obj833);
+	animes.trentAnime.addAnimation('obj833',{'frame':JSON.parse('[0,13,26,27]'),'fontSize':[mse.coor('cid64'),mse.coor('cid31'),mse.coor('cid64'),mse.coor('cid64')]});
+	animes.addGrilleBack=new mse.Animation(2,1,false);
+	animes.addGrilleBack.block=true;
+	animes.addGrilleBack.addObj('obj957',objs.obj957);
+	animes.addGrilleBack.addAnimation('obj957',{'frame':JSON.parse('[0,1,2]'),'opacity':JSON.parse('[0,1,1]')});
+	animes.textAnime=new mse.Animation(15,1,false);
+	animes.textAnime.block=true;
+	animes.textAnime.addObj('obj178',objs.obj178);
+	animes.textAnime.addAnimation('obj178',{'frame':JSON.parse('[0,8,14,15]'),'fontSize':[mse.coor('cid64'),mse.coor('cid71'),mse.coor('cid64'),mse.coor('cid64')]});
+	animes.trenteAnime=new mse.Animation(15,1,false);
+	animes.trenteAnime.block=true;
+	animes.trenteAnime.addObj('obj183',objs.obj183);
+	animes.trenteAnime.addAnimation('obj183',{'frame':JSON.parse('[0,8,14,15]'),'fontSize':[mse.coor('cid64'),mse.coor('cid71'),mse.coor('cid64'),mse.coor('cid64')]});
+	var action={};
+	var reaction={};
+	action.titleshowsc=new mse.Script([{src:pages.Chapitre,type:'show'}]);
+	reaction.titleshowsc=function(){ 
+		animes.titleshow.start(); 
+	};
+	action.titleshowsc.register(reaction.titleshowsc);
+	action.chashowsc=action.titleshowsc;
+	reaction.chashowsc=function(){ 
+		animes.chashow.start(); 
+	};
+	action.chashowsc.register(reaction.chashowsc);
+	action.transCont=new mse.Script([{src:pages.Chapitre,type:'click'}]);
+	reaction.transCont=function(){ 
+		root.transition(pages.Content); 
+	};
+	action.couvcursor=new mse.Script([{src:pages.Couverture,type:'show'}]);
+	reaction.couvcursor=function(){ 
+		mse.setCursor('pointer'); 
+	};
+	action.couvcursor.register(reaction.couvcursor);
+	action.chacursor=new mse.Script([{src:animes.chashow,type:'end'}]);
+	reaction.chacursor=function(){ 
+		mse.setCursor('pointer'); 
+	};
+	action.chacursor.register(reaction.chacursor);
+	action.contcursor=new mse.Script([{src:pages.Content,type:'show'}]);
+	reaction.contcursor=function(){ 
+		mse.setCursor('default'); 
+	};
+	action.contcursor.register(reaction.contcursor);
+	action.chahidecursor=action.titleshowsc;
+	reaction.chahidecursor=function(){ 
+		mse.setCursor('default'); 
+	};
+	action.chahidecursor.register(reaction.chahidecursor);
+	action.addTextEffet=action.couvcursor;
+	reaction.addTextEffet=function(){ 
+		function textEffect(effet,obj) {
+	obj.startEffect(effet);
+}
+for(var i = 0; i < layers.text.objList.length; i++){
+	var objCible = layers.text.getObject(i);
+	if(objCible instanceof mse.Text){
+	    objCible.evtDeleg.addListener('firstShow', new mse.Callback(textEffect, null, {"typewriter":{}}, objCible));
+	}
+} 
+	};
+	action.addTextEffet.register(reaction.addTextEffet);
+	action.transCha=new mse.Script([{src:pages.Couverture,type:'click'}]);
+	reaction.transCha=function(){ 
+		root.transition(pages.Chapitre); 
+	};
+	action.transCha.register(reaction.transCha);
+	action.maskShow=action.titleshowsc;
+	reaction.maskShow=function(){ 
+		animes.maskAnime.start(); 
+	};
+	action.maskShow.register(reaction.maskShow);
+	action.addTransContSc=new mse.Script([{src:animes.titleshow,type:'end'}]);
+	reaction.addTransContSc=function(){ 
+		action.transCont.register(reaction.transCont); 
+	};
+	action.addTransContSc.register(reaction.addTransContSc);
+	action.showFouine=new mse.Script([{src:objs.obj739,type:'firstShow'}]);
+	reaction.showFouine=function(){ 
+		animes.fouine.start(); 
+	};
+	action.showFouine.register(reaction.showFouine);
+	action.changeBack=new mse.Script([{src:objs.obj795,type:'firstShow'}]);
+	reaction.changeBack=function(){ 
+		temp.width=objs.obj708.getWidth();temp.height=objs.obj708.getHeight();temp.boundingbox=imgBoundingInBox('src46',temp.width,temp.height);temp.obj=new mse.Image(objs.obj708.parent,temp.boundingbox,'src46');mse.transition(objs.obj708,temp.obj,25); 
+	};
+	action.changeBack.register(reaction.changeBack);
+	action.start40Anime=new mse.Script([{src:objs.obj828,type:'firstShow'}]);
+	reaction.start40Anime=function(){ 
+		animes.quarantAnime.start(); 
+	};
+	action.start40Anime.register(reaction.start40Anime);
+	action.start30Anime=new mse.Script([{src:objs.obj833,type:'firstShow'}]);
+	reaction.start30Anime=function(){ 
+		animes.trentAnime.start(); 
+	};
+	action.start30Anime.register(reaction.start30Anime);
+	action.startPiege=new mse.Script([{src:objs.obj870,type:'firstShow'}]);
+	reaction.startPiege=function(){ 
+		animes.piege.start(); 
+	};
+	action.startPiege.register(reaction.startPiege);
+	action.startPiegeSon=action.startPiege;
+	reaction.startPiegeSon=function(){ 
+		mse.src.getSrc('piegeson').play(); 
+	};
+	action.startPiegeSon.register(reaction.startPiegeSon);
+	action.addGrilleBackSc=new mse.Script([{src:animes.piege,type:'end'}]);
+	reaction.addGrilleBackSc=function(){ 
+		animes.addGrilleBack.start(); 
+	};
+	action.addGrilleBackSc.register(reaction.addGrilleBackSc);
+	action.addCouteauAnimeSc=action.contcursor;
+	reaction.addCouteauAnimeSc=function(){ 
+		// Couteau
+mse.src.addSource('cran', 'images/cran.png', 'img', false);
+mse.src.addSource('audCran', 'audios/cran', 'aud', false);
+
+var mx = (mse.coor('cid0')-51)/2, my = (mse.coor('cid1')-350)/2+140;
+var manche = new mse.Sprite(null, {}, 'cran', 51,210, 0,0,51,210);
+var lame = new mse.Sprite(null, {pos:[-12,-127]}, 'cran', 25,196, 51,0,25,139);
+var couteau = new mse.UIObject(null, {});
+couteau.count = 0; couteau.angle = -180;
+couteau.draw = function(ctx){
+    if(this.count == 10) mse.src.getSrc('audCran').play();
+    if(this.count >= 10 && this.count <= 14)
+    	this.angle = -180 + (this.count-10) * 180/4;
+    this.count++;
+    
+	ctx.save();
+	ctx.globalAlpha = this.globalAlpha;
+	// Origin of rotation: point on the top of manche
+	ctx.translate(mx+24,my+16);
+	// Rotation of the lame
+	ctx.rotate(this.angle * Math.PI / 180);
+	lame.draw(ctx);
+	// Draw Manche
+	ctx.rotate(-this.angle * Math.PI / 180);
+	ctx.translate(-24,-16);
+	manche.draw(ctx);
+	ctx.restore();
+};
+
+animes.couteau=new mse.Animation(36,1,true);
+animes.couteau.block=true;
+animes.couteau.addObj('couteau',couteau);
+animes.couteau.addAnimation('couteau', {
+		frame	: [0, 6, 30, 36],
+		opacity	: [0, 1, 1,  0]
+	});
+
+action.showCouteau=new mse.Script([{src:objs.obj888,type:'firstShow'}]);
+reaction.showCouteau=function(){ animes.couteau.start(); };
+action.showCouteau.register(reaction.showCouteau) 
+	};
+	action.addCouteauAnimeSc.register(reaction.addCouteauAnimeSc);
+	action.startRatGame=new mse.Script([{src:objs.obj759,type:'firstShow'}]);
+	reaction.startRatGame=function(){ 
+		games.RatGame.start(); 
+	};
+	action.startRatGame.register(reaction.startRatGame);
+	action.startSimCour=new mse.Script([{src:objs.obj764,type:'firstShow'}]);
+	reaction.startSimCour=function(){ 
+		animes.simcour.start(); 
+	};
+	action.startSimCour.register(reaction.startSimCour);
+	action.playIntroMusic=action.couvcursor;
+	reaction.playIntroMusic=function(){ 
+		mse.src.getSrc('intro').play(); 
+	};
+	action.playIntroMusic.register(reaction.playIntroMusic);
+	action.playKevinSpeak_click=new mse.Script([{src:objs.obj924,type:'click'}]);
+	reaction.playKevinSpeak_click=function(){ 
+		mse.src.getSrc('kevinSpeak').play(); 
+	};
+	action.playKevinSpeak_click.register(reaction.playKevinSpeak_click);
+	action.playKevinSpeak_show=new mse.Script([{src:objs.obj924,type:'firstShow'}]);
+	reaction.playKevinSpeak_show=function(){ 
+		mse.src.getSrc('kevinSpeak').play(); 
+	};
+	action.playKevinSpeak_show.register(reaction.playKevinSpeak_show);
+	action.playWoosh=new mse.Script([{src:animes.fouine,type:'start'}]);
+	reaction.playWoosh=function(){ 
+		mse.src.getSrc('woosh').play(); 
+	};
+	action.playWoosh.register(reaction.playWoosh);
+	action.playIlestla_clic=new mse.Script([{src:objs.obj934,type:'click'}]);
+	reaction.playIlestla_clic=function(){ 
+		mse.src.getSrc('ilestla').play(); 
+	};
+	action.playIlestla_clic.register(reaction.playIlestla_clic);
+	action.playIlestla_show=new mse.Script([{src:objs.obj934,type:'firstShow'}]);
+	reaction.playIlestla_show=function(){ 
+		mse.src.getSrc('ilestla').play(); 
+	};
+	action.playIlestla_show.register(reaction.playIlestla_show);
+	action.playRestartRun_clic=new mse.Script([{src:objs.obj954,type:'click'}]);
+	reaction.playRestartRun_clic=function(){ 
+		mse.src.getSrc('restartrun').play(); 
+	};
+	action.playRestartRun_clic.register(reaction.playRestartRun_clic);
+	action.playRestartRun_show=new mse.Script([{src:objs.obj954,type:'firstShow'}]);
+	reaction.playRestartRun_show=function(){ 
+		mse.src.getSrc('restartrun').play(); 
+	};
+	action.playRestartRun_show.register(reaction.playRestartRun_show);
+	action.playOnletien_clic=new mse.Script([{src:objs.obj962,type:'click'}]);
+	reaction.playOnletien_clic=function(){ 
+		mse.src.getSrc('onletien').play(); 
+	};
+	action.playOnletien_clic.register(reaction.playOnletien_clic);
+	action.playOnletien_show=new mse.Script([{src:objs.obj962,type:'firstShow'}]);
+	reaction.playOnletien_show=function(){ 
+		mse.src.getSrc('onletien').play(); 
+	};
+	action.playOnletien_show.register(reaction.playOnletien_show);
+	action.playIntroEnd=new mse.Script([{src:objs.obj960,type:'firstShow'}]);
+	reaction.playIntroEnd=function(){ 
+		mse.src.getSrc('intro').play(); 
+	};
+	action.playIntroEnd.register(reaction.playIntroEnd);
+	mse.currTimeline.start();};
+mse.autoFitToWindow(createbook);
