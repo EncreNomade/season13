@@ -48,7 +48,7 @@ header {
 }
 
 header #logo {
-    background: transparent url('../img/13logo.png') no-repeat left top;
+    background: transparent url('../img/season13/13logo.png') no-repeat left top;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -167,6 +167,10 @@ footer p {
     z-index: 3;
     letter-spacing: 1.5px;
 }
+footer p a {
+    text-decoration: none;
+    color: #686868;
+}
 footer ul li.fb_btn {
     background: transparent;
 }
@@ -180,7 +184,7 @@ footer ul li.fb_btn img {
 
 .dialog {
     position: absolute;
-    top: 10px;
+    top: -500px;
     right: 10px;
     margin: 0;
     padding: 15px 15px 30px 15px;
@@ -207,11 +211,18 @@ footer ul li.fb_btn img {
     top: -32px;
     width: 18px;
     height: 18px;
-    background: transparent url('../img/ui/dialog_close.png') no-repeat left top;
+    background: transparent url('../img/season13/ui/dialog_close.png') no-repeat left top;
 }
-#signup_dialog.show, #login_dialog.show {
+#signup_dialog.show, #login_dialog.show, #update_dialog.show {
+    top: 10px;
     opacity: 1;
     z-index: 11;
+}
+
+#signup_dialog .fb_btn, #login_dialog .fb_btn {
+    position: absolute;
+    top: -5px;
+    right: 0px;
 }
 
 
@@ -226,10 +237,10 @@ footer ul li.fb_btn img {
 }
 
 .fb_btn {
-    background: transparent url('../img/fb_btn.jpg') no-repeat left top;
+    background: transparent url('../img/season13/fb_btn.jpg') no-repeat left top;
 }
 .twitter_btn {
-    background: transparent url('../img/twitter_btn.jpg') no-repeat left top;
+    background: transparent url('../img/season13/twitter_btn.jpg') no-repeat left top;
 }
 
 
@@ -284,11 +295,6 @@ footer ul li.fb_btn img {
     cursor: pointer;
 
 }
-#signup_dialog .fb_btn {
-    position: absolute;
-    top: -5px;
-    right: 0px;
-}
 .dialog .section p {
     position: relative;
     margin: 10px 0 10px 6px;
@@ -305,7 +311,7 @@ footer ul li.fb_btn img {
 .dialog .section p label.alert {
     color: #d50000;
 }
-.dialog .section p input, .dialog .section p select {
+.dialog .section p input, .dialog .section p select, .dialog .section p span {
     position: relative;
     left: 160px;
 }
@@ -327,7 +333,17 @@ footer ul li.fb_btn img {
     left: 165px;
     width: 134px;
     height: 86px;
-    background: transparent url('../img/ui/btn_signup.png') no-repeat left top;
+    background: transparent url('../img/season13/ui/btn_signup.png') no-repeat left top;
+    color: transparent;
+    border: none;
+}
+.dialog #updateBtn {
+    position: absolute;
+    top: 0px;
+    left: 165px;
+    width: 134px;
+    height: 86px;
+    background: transparent url('../img/season13/ui/btn_update.png') no-repeat left top;
     color: transparent;
     border: none;
 }
@@ -337,7 +353,7 @@ footer ul li.fb_btn img {
     left: 165px;
     width: 134px;
     height: 86px;
-    background: transparent url('../img/ui/btn_login.png') no-repeat left top;
+    background: transparent url('../img/season13/ui/btn_login.png') no-repeat left top;
     color: transparent;
     border: none;
 }

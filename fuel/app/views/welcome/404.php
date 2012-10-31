@@ -11,6 +11,6 @@
 
 <div class="main_container">
 
-    <?php echo Asset::img('illus/404.jpg'); ?>
+    <?php echo Asset::img('season13/illus/404.jpg', array('alt' => 'Page Inconnue sur SEASON 13')); ?>
 
 </div>

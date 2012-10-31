@@ -29,7 +29,7 @@ class Controller_Welcome extends Controller_Template
     }
     
     public function action_concept() {
-        $this->template->title = 'Concept de SEASON13';
+        $this->template->title = 'Concept de SEASON 13';
         // Set supplementation css and js file
         $this->template->css_supp = 'concept.css';
         $this->template->js_supp = '';
@@ -48,7 +48,7 @@ class Controller_Welcome extends Controller_Template
 	    // Data
 	    $data['admin_13episodes'] = Model_Admin_13episode::find('all');
 	
-	    $this->template->title = 'SEASON13';
+	    $this->template->title = 'SEASON 13 Voodoo Connection';
 	    // Set supplementation css and js file
 	    $this->template->css_supp = 'welcome.css';
 	    $this->template->js_supp = 'welcome.js';
@@ -64,7 +64,7 @@ class Controller_Welcome extends Controller_Template
 	 */
 	public function action_404()
 	{
-		$this->template->title = 'SEASON13';
+		$this->template->title = 'SEASON 13 Voodoo Connection';
 		
 		$this->template->content = View::forge('welcome/404');
 	}
@@ -125,7 +125,15 @@ class Controller_Welcome extends Controller_Template
 	            break;
 	    }
 	
-	    $this->template->title = 'SEASON13';
+	    $this->template->title = 'SEASON 13 Voodoo Connection';
 	    $this->template->content = View::forge('welcome/upgradenav', $data);
 	}
+	
+	
+	public function action_mentionslegals() {
+	    $this->template->title = 'SEASON 13 Voodoo Connection';
+	    
+	    $this->template->content = View::forge('welcome/mentionslegals');
+	}
+	
 }

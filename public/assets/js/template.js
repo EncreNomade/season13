@@ -14,6 +14,12 @@ function showLogin() {
     $('#conn li').removeClass('inactive');
     $('#open_signup').addClass('inactive');
 }
+function showUpdate() {
+    $('.dialog').removeClass('show');
+    $('#update_dialog').addClass('show');
+    $('#conn li').removeClass('inactive');
+    $('#logout').addClass('inactive');
+}
 function monthChanged() {
     var m = parseInt($('#signupbMonth').val());
     var d = parseInt($('#signupbDay').val());
@@ -31,6 +37,24 @@ function monthChanged() {
     }
     $('#signupbDay').html(day);
     if(d <= nb) $('#signupbDay').val(d);
+}
+function updateMonthChanged() {
+    var m = parseInt($('#updatebMonth').val());
+    var d = parseInt($('#updatebDay').val());
+    var day = "";
+    var smallList = [4, 6, 9, 11];
+    var nb = 30;
+    if(m == 2)
+        var nb = 28;
+    else if($.inArray(m, smallList) != -1)
+        var nb = 30;
+    else nb = 31;
+    
+    for(var i = 1; i <= nb; ++i) {
+        day += "<option value='"+i+"'>"+i+"</option>";
+    }
+    $('#updatebDay').html(day);
+    if(d <= nb) $('#updatebDay').val(d);
 }
 
 
@@ -55,8 +79,10 @@ function init() {
     $('#open_login').click(showLogin);
     $('#toLogin').click(showLogin);
     $('#dialog_mask').click(hideDialog);
+    $('#user_id').click(showUpdate);
     
     $('#signupbMonth').change(monthChanged);
+    $('#updatebMonth').change(updateMonthChanged);
     
     $('.dialog .close').click(function() {
         hideDialog();
@@ -88,7 +114,6 @@ function init() {
         var codpos = $('#signupCP').val();
         var tel = $('#signupPortable').val();
         var notif = $('#signupNotif').val();
-        var cp = $('#signupCP').val();
 
         var valid = true;
         if(name == "") {$('#signupId').siblings('cite').addClass('alert');valid = false;}
@@ -120,7 +145,6 @@ function init() {
             'codpos': codpos,
             'portable': tel,
             'notif': notif,
-            'ville': cp, 
             'fbToken': $('#signup_fbToken').val()
         };
 
@@ -141,13 +165,19 @@ function init() {
                 }
                 else
                 {
-                    alert('Signup error');
+                    if(data.errorType) {
+                        if(data.errorType == 'mail') 
+                            $('#signupMail').siblings('label').addClass('alert');
+                        else if(data.errorType == 'pseudo') 
+                            $('#signupId').siblings('label').addClass('alert');
+                    }
+                    if(data.errorMessage) alert('Erreur d\'inscription: '+ data.errorMessage);
                     $('input[type=submit]').removeAttr('disabled');
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown)
             {
-                alert('Page request error');
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
                 $('input[type=submit]').removeAttr('disabled');
             }
         });
@@ -171,10 +201,10 @@ function init() {
                 });
             } 
             else if (response.status === 'not_authorized'){
-            
+                alert('Ton compte Facebook ne vous permet pas de rejoindre notre site');
             }
             else { // fail
-                
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
             }
         }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});       
     });
@@ -198,13 +228,14 @@ function init() {
                     }
                     else
                     {
-                        alert('Page request error');
+                        if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
                         $('input[type=submit]').removeAttr('disabled');
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown)
                 {
-                    console.log(arguments);
+                    alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                    $('input[type=submit]').removeAttr('disabled');
                 }
             });   
         }
@@ -251,13 +282,87 @@ function init() {
                 }
                 else
                 {
-                    alert('Signup error');
+                    if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
                     $('input[type=submit]').removeAttr('disabled');
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown)
             {
-                alert('Page request error');
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                $('input[type=submit]').removeAttr('disabled');
+            }
+        });
+    });
+    
+    
+    $('#update_dialog form').submit(function(e) {
+        // Stop full page reload
+        e.preventDefault();
+        
+        $('#update_dialog').find('cite, label').removeClass('alert');
+
+        // Check fields
+        var pass = $('#updatePass').val();
+        var conf = $('#updateConf').val();
+        var sex = $('#updateSex').val();
+        var bDay = $('#updatebDay').val()+"/"+$('#updatebMonth').val()+"/"+$('#updatebYear').val();
+        var pays = $('#updatePays').val();
+        var codpos = $('#updateCP').val();
+        var oldPass = $('#updateOldPass').val();
+
+        var valid = true;
+        if(pass != "" && pass.length < 6) {$('#updatePass').siblings('label').addClass('alert');valid = false;}
+        if(conf != "" && conf != pass) {$('#updateConf').siblings('cite').addClass('alert');valid = false;}
+        if( codpos != "" && !regs.codpos.test(codpos) ) {
+            $('#updateCP').siblings('label').addClass('alert');
+            valid = false;
+        }
+        if(oldPass == "") {
+            $('#updateOldPass').siblings('cite').addClass('alert');valid = false;
+        }
+        
+        if(!valid) return;
+        
+        $('input[type=submit]', this).attr('disabled', 'disabled');
+
+        // Request
+        var data = {
+            'oldPass': oldPass,
+            'newPass': pass,
+            'sex': sex,
+            'birthday': bDay,
+            'pays': pays,
+            'codpos': codpos
+        };
+
+        // Send
+        $.ajax({
+            url: './base/update',
+            dataType: 'json',
+            type: 'POST',
+            data: data,
+            success: function(data, textStatus, XMLHttpRequest)
+            {
+                // now, we get two important pieces of data back from our rest controller
+                // data.valid = true/false
+                // data.redirect = the page we redirect to on successful login
+                if (data.valid)
+                {
+                    document.location.href = data.redirect;
+                }
+                else
+                {
+                    if(data.errorType) {
+                        if(data.errorType == 'password') 
+                            $('#updateOldPass').siblings('label').addClass('alert');
+                    }
+                    if(data.errorMessage) alert('Erreur de la mise à jour: '+ data.errorMessage);
+                    $('input[type=submit]').removeAttr('disabled');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown)
+            {
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
                 $('input[type=submit]').removeAttr('disabled');
             }
         });
@@ -281,13 +386,13 @@ function init() {
                 }
                 else
                 {
-                    alert('Signup error');
+                    if(data.errorMessage) alert('Erreur de déconnexion: '+ data.errorMessage);
                     $('input[type=submit]').removeAttr('disabled');
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown)
             {
-                alert('Page request error');
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
                 $('input[type=submit]').removeAttr('disabled');
             }
         });

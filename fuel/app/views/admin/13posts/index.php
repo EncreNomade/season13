@@ -7,7 +7,7 @@
     </div>
     
     <div id="actu_banner">
-<?php echo Asset::img("cpt_banner.png"); ?>
+<?php echo Asset::img("season13/cpt_banner.png"); ?>
     </div>
     
 <?php if ($admin_13posts): ?>

@@ -70,7 +70,7 @@ gui.Slider = function(w, level, parent, val) {
     this.jqObj = $("<div class='slider'></div>");
     this.line = $("<div class='line'></div>");
     this.btn = $("<div class='ctrlbtn'></div>");
-    this.back = $("<img class='background' src='./assets/img/ui/slider_back.png'/>");
+    this.back = $("<img class='background' src='./assets/img/season13/ui/slider_back.png'/>");
     this.jqObj.append(this.back).append(this.line).append(this.btn);
     
     if(!isNaN(w)) this.jqObj.css('width', w);
@@ -163,7 +163,33 @@ gui.openhideMenu = function(e) {
 gui.openPref = function() {
     if(!gui.center.hasClass('show')) gui.center.addClass('show');
     if(!gui.pref.hasClass('show')) {
+        gui.pref.siblings().removeClass('show');
+        
         gui.pref.addClass('show');
+        
+        mse.currTimeline.pause();
+        gui.updatePlayPauseIcon();
+    }
+}
+
+gui.openAuthorBio = function() {
+    if(!gui.center.hasClass('show')) gui.center.addClass('show');
+    if(!gui.author_bio.hasClass('show')) {
+        gui.author_bio.siblings().removeClass('show');
+        
+        gui.author_bio.addClass('show');
+        
+        mse.currTimeline.pause();
+        gui.updatePlayPauseIcon();
+    }
+}
+
+gui.openCredits = function() {
+    if(!gui.center.hasClass('show')) gui.center.addClass('show');
+    if(!gui.credits.hasClass('show')) {
+        gui.credits.siblings().removeClass('show');
+        
+        gui.credits.addClass('show');
         
         mse.currTimeline.pause();
         gui.updatePlayPauseIcon();
@@ -184,9 +210,9 @@ gui.openhideUploader = function(e) {
 
 gui.updatePlayPauseIcon = function() {
     if(mse.currTimeline.inPause) {
-        $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/ui/wheel_play.png"/>');
+        $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/season13/ui/wheel_play.png"/>');
     }
-    else $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/ui/wheel_pause.png"/>');
+    else $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/season13/ui/wheel_pause.png"/>');
 }
 
 
@@ -198,6 +224,7 @@ gui.openComment = function(){
     if(!gui.center.hasClass('show')) gui.center.addClass('show');
     if(!gui.comment.hasClass('show')) {
         gui.comment.addClass('show');
+        gui.comment.siblings().removeClass('show');
         
         mse.currTimeline.pause();
         gui.updatePlayPauseIcon();
@@ -353,6 +380,8 @@ $(window).load(function() {
     gui.menu = $('#menu');
     gui.center = $('#center')
     gui.pref = $('#preference');
+    gui.author_bio = $('#author_bio');
+    gui.credits = $('#credits');
     gui.controler = $('#controler');
     gui.comment = $('#comment');
     gui.comment_menu = $('#comment_menu');
@@ -403,6 +432,10 @@ $(window).load(function() {
     gui.speedctrl.observe('value', new Callback(function(level) {
             mse.ArticleLayer.prototype.speedLevel = level;
         }, null));
+        
+    // Author bio and credits
+    $('#btn_author').click(gui.openAuthorBio);
+    $('#btn_credits').click(gui.openCredits);
     
     // Controler activation
     gui.controler.children('#circle').click(function() {

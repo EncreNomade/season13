@@ -9,6 +9,7 @@
 <meta property="og:image"  content="http://season13.com/voodoo/cover.jpg" />
 
 <meta charset="UTF-8" />
+<meta name="description" content="Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web." />
 <meta name="robots" content="noindex"/>
 <meta name="viewport" content="minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, width=device-width, user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -87,7 +88,7 @@ addEventListener("load", function(){
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '141570392646490', // App ID
-                channelUrl : 'http://testfb.encrenomade.com/channelfile', // Path to your Channel File
+                channelUrl : 'http://season13.com/channelfile', // Path to your Channel File
                 status     : true, // check login status
                 cookie     : true, // enable cookies to allow the server to access the session
                 xfbml      : true  // parse XFBML
@@ -102,7 +103,8 @@ addEventListener("load", function(){
     <header>
         <div class="left">
             <div id="tache">
-                <?php echo Asset::img('story/story_tache.png'); ?>
+                <?php echo Asset::img('season13/story/story_tache.png', array('alt' => 'SEASON 13')); ?>
+                <a href="http://www.season13.com/" target="_blank"></a>
             </div>
             <div id="sep_left"></div>
             <h1>Voodoo Connection</h1>
@@ -110,7 +112,7 @@ addEventListener("load", function(){
         
         <div class="right">
             <div id="icon_menu">
-                <?php echo Asset::img('story/story_menu.png'); ?>
+                <?php echo Asset::img('season13/story/story_menu.png', array('alt' => 'Menu d\'episode SEASON 13')); ?>
             </div>
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
@@ -119,33 +121,82 @@ addEventListener("load", function(){
     
     <ul id="menu">
         <!--<li id="btn_aide">
-            <?php echo Asset::img('story/story_aide.png'); ?>
+            <?php echo Asset::img('season13/story/story_aide.png'); ?>
             <a>Aide</a>
         </li>-->
         <li id="btn_param">
-            <?php echo Asset::img('story/story_param.png'); ?>
+            <?php echo Asset::img('season13/story/story_param.png', array('alt' => 'Paramètre d\'episode SEASON 13')); ?>
             <a>Paramètres</a>
         </li>
         <li id="btn_author">
-            <?php echo Asset::img('story/story_author.png'); ?>
+            <?php echo Asset::img('season13/story/story_author.png', array('alt' => 'Autheur de Voodoo Connection')); ?>
             <a>Auteur</a>
         </li>
         <!--<li id="btn_download">
-            <?php echo Asset::img('story/story_download.png'); ?>
+            <?php echo Asset::img('season13/story/story_download.png'); ?>
             <a>Téléchargement</a>
         </li>-->
-        <li id="btn_credit">
-            <?php echo Asset::img('story/story_credit.png'); ?>
+        <li id="btn_credits">
+            <?php echo Asset::img('season13/story/story_credit.png', array('alt' => 'Crédits de SEASON 13')); ?>
             <a>Crédits</a>
         </li>
         
         <div>
-            <?php echo Html::img('assets/img/logo_white.png', array("id" => "menu_logo")); ?>
-            <?php echo Html::anchor('http://season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
+            <?php echo Asset::img('season13/logo_white.png', array("id" => "menu_logo", 'alt' => 'LOGO SEASON 13')); ?>
+            <?php echo Html::anchor('http://www.season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
         </div>
     </ul>
     
     <div id="center">
+    <!-- Author bio dialog-->
+        <div id="author_bio" class="dialog">
+            <div class="close"></div>
+            <h1>BIO de Chris Debien</h1>
+            <div class="sep_line"></div>
+            
+            <div class="content">
+                <?php echo Asset::img('season13/story/chris.png', array('alt' => 'Chris Debien - Autheur de Voodoo Connection')); ?>
+                <p style="font-style: italic; text-align: center; margin: 0; padding: 0;">Photo par Marc Dubord</p>
+                <br/>
+                <h5>Né par un beau jour d’automne, j’ai la chance de mener trois vies parallèles : celle de chef de tribu (trois ewoks à mon actif), celle de responsable des urgences psychiatriques du CHU de Fort de France et celle d’ « écriveur ».<br/>
+                Initié par mon ami Patrick Bauwen aux délices du Jeu de Rôle, j’ai commencé par écrire des scénarios, des aides de jeux puis une rubrique régulière au sein de la revue <a href="http://fr.wikipedia.org/wiki/Casus_Belli" target="_blank">Casus Belli</a> pendant près de dix ans.<br/>
+                Puis j’ai croisé la route d’une marraine-fée nommée Charlotte Ruffault (alors directrice éditoriale chez Hachette) qui m’a confié la novélisation de la série Lanfeust de Troy pour la Bibliothéque Verte toujours en collaboration avec Patrick (nous avons aussi commis un JdR Lanfeust et un roman plus « adulte »).<br/>
+                J’ai poursuivi par la novélisation du dessin d'animation <a href="http://fr.wikipedia.org/wiki/Skyland" target="_blank">Skyland</a> (récompensé par le Prix du Salon du Fantastique et de la SF de Liévin, catégorie Jeunesse[1]) ainsi que par l’écriture de mon premier véritable roman, une histoire particulièrement sombre, L'Affaire du Boucher du Vieux-Lille, aux éditions <a href="http://fr.wikipedia.org/wiki/Ravet-Anceau" target="_blank">Ravet-Anceau</a>.<br/>
+                En 2008, j’ai eu l’immense honneur de pouvoir développer un projet plus ambitieux : une trilogie de d’heroïc-fantasy, <a href="http://fr.wikipedia.org/wiki/Les_Chroniques_de_Khëradön" target="_blank">Les Chroniques de Khëradön</a> (l’occasion pour moi de rendre hommage à mes « maîtres, Tolkien, Moorcock, …).<br/>
+                Enfin, aujourd’hui, je partage mon temps entre le développement de ma série de thrillers d’anticipation Black Rain, l’écriture de romans policiers et quelques petites incartades dans la bande-dessinée (avec LucyloO) ou au fond des catacombes parisiennes aux côtés d’un certain inspecteur Angéli…</h5>
+            </div>
+        </div>
+        
+    <!-- Author bio dialog-->
+        <div id="credits" class="dialog">
+            <div class="close"></div>
+            <h1>Credits</h1>
+            <div class="sep_line"></div>
+            
+            <div class="content">
+                <h5>
+                    <label>--- Auteur ---</label><br/>
+                    Chris Debien<br/>
+                    <br/>
+                    <label>--- Illustrateurs ---</label><br/>
+                    David Goujard<br/>
+                    Mathieu Sablier<br/>
+                    Bruno Wright<br/>
+                    <br/>
+                    <label>--- Graphistes et typographes ---</label><br/>
+                    MAT. <a href="http://maintenantautravail.fr" target="_blank">maintenantautravail.fr</a><br/>
+                    <br/>
+                    <label>--- Conception informatique ---</label><br/>
+                    Huabin Ling<br/>
+                    <br/>
+                    <label>--- Développeurs ---</label><br/>
+                    Huabin Ling<br/>
+                    Florent Baldino<br/>
+                    Artur Brongniart<br/>
+                </h5>
+            </div>
+        </div>
+    
     <!-- Preferece dialog -->
         <div id="preference" class="dialog">
             <div class="close"></div>
@@ -168,15 +219,15 @@ addEventListener("load", function(){
             <ul id="comment_menu">
                 <li id="btn_share" title="Partage ton commentaire">
                     <?php if(!is_null($current_user) && ($current_user->fbid != "" && $current_user->fbid != 0)) : ?>
-                        <?php echo Asset::img('story/comment_fb.png'); ?>
+                        <?php echo Asset::img('season13/story/comment_fb.png'); ?>
                     <?php endif; ?>
                     <h5>Partager</h5>
                 </li>
                 <li id="btn_upload_img" title="Télécharge ton propre dessin">
-                    <?php echo Asset::img('story/comment_image.png'); ?>
+                    <?php echo Asset::img('season13/story/comment_image.png'); ?>
                 </li>
                 <li id="btn_capture_img" title="Capture une image dans l'épisode">
-                    <?php echo Asset::img('story/comment_camera.png'); ?>
+                    <?php echo Asset::img('season13/story/comment_camera.png'); ?>
                 </li>
             </ul>
             
@@ -206,7 +257,7 @@ addEventListener("load", function(){
             <div id="toolbox">
                 <ul id="sb_tools">
                     <li id="sb_pencil">
-                        <?php echo Asset::img('ui/scriber_edit.png'); ?>
+                        <?php echo Asset::img('season13/ui/scriber_edit.png'); ?>
                         <h5>Dessiner</h5>
                         
                         <ul id="sb_colorset">
@@ -227,11 +278,11 @@ addEventListener("load", function(){
                         </ul>
                     </li>
                     <li id="sb_eraser">
-                        <?php echo Asset::img('ui/scriber_erase.png'); ?>
+                        <?php echo Asset::img('season13/ui/scriber_erase.png'); ?>
                         <h5>Effacer</h5>
                     </li>
                     <!--<li id="sb_resize">
-                        <?php echo Asset::img('ui/scriber_resize.png'); ?>
+                        <?php echo Asset::img('season13/ui/scriber_resize.png'); ?>
                         <h5>Redimensionner</h5>
                     </li>-->
                 </ul>
@@ -248,15 +299,14 @@ addEventListener("load", function(){
                     <div class="dragicon editicon"></div>
                     <div class="deleteicon editicon"></div>
                 </div>
-                <!--<img class="resize" src="./UI/button/resize.png" draggable="false">-->
             </div>
             
             <ul id="scriber_menu">
-                <li id="sb_edit" title="Modifie l'image"><?php echo Asset::img('ui/scriber_edit.png'); ?></li>
+                <li id="sb_edit" title="Modifie l'image"><?php echo Asset::img('season13/ui/scriber_edit.png'); ?></li>
                 <div class="sep_line"></div>
-                <li id="sb_recap" title="Recommence"><?php echo Asset::img('ui/scriber_recap2.png'); ?></li>
+                <li id="sb_recap" title="Recommence"><?php echo Asset::img('season13/ui/scriber_recap2.png'); ?></li>
                 <div class="sep_line"></div>
-                <li id="sb_confirm" title="Valide ton dessin"><?php echo Asset::img('ui/scriber_confirm.png'); ?></li>
+                <li id="sb_confirm" title="Valide ton dessin"><?php echo Asset::img('season13/ui/scriber_confirm.png'); ?></li>
             </ul>
         </div>
     </div>
@@ -266,16 +316,16 @@ addEventListener("load", function(){
         <div id="controler">
             <div class="back"></div>
             <div id="circle">
-                <?php echo Asset::img('ui/controler_config.png'); ?>
+                <?php echo Asset::img('season13/ui/controler_config.png', array('alt' => 'Panneau de Contrôle SEASON 13')); ?>
                 <span></span>
             </div>
             
             <ul>
-                <li id="ctrl_like"><?php echo Asset::img('ui/wheel_like2.png'); ?></li>
-                <li id="ctrl_speedup"><?php echo Asset::img('ui/wheel_rabbit.png'); ?></li>
-                <li id="ctrl_playpause"><?php echo Asset::img('ui/wheel_pause.png'); ?></li>
-                <li id="ctrl_slowdown"><?php echo Asset::img('ui/wheel_turtle.png'); ?></li>
-                <li id="ctrl_comment"><?php echo Asset::img('ui/wheel_comment.png'); ?></li>
+                <li id="ctrl_like"><?php echo Asset::img('season13/ui/wheel_like2.png', array('alt' => 'Aime Voodoo Connection sur Facebook')); ?></li>
+                <li id="ctrl_speedup"><?php echo Asset::img('season13/ui/wheel_rabbit.png', array('alt' => 'Plus vite')); ?></li>
+                <li id="ctrl_playpause"><?php echo Asset::img('season13/ui/wheel_pause.png', array('alt' => 'Reprendre/Pause')); ?></li>
+                <li id="ctrl_slowdown"><?php echo Asset::img('season13/ui/wheel_turtle.png', array('alt' => 'Moins vite')); ?></li>
+                <li id="ctrl_comment"><?php echo Asset::img('season13/ui/wheel_comment.png', array('alt' => 'Commentaire sur Facebook et SEASON 13')); ?></li>
             </ul>
         </div>
     
@@ -283,7 +333,7 @@ addEventListener("load", function(){
         <div class="video"></div>
         <div id="imgShower"><div>
                 <img id="theImage" src=""/>
-                <?php echo Html::img('assets/img/story/button/close.png', array("id" => "closeBn")); ?>
+                <?php echo Asset::img('season13/story/button/close.png', array("id" => "closeBn")); ?>
         </div></div>
         
         <div id="game_container" class="dialog">
@@ -294,8 +344,8 @@ addEventListener("load", function(){
             
             <div id="game_center">
                 <div id="game_result">
-                    <?php echo Asset::img('fb_btn.jpg'); ?>
-                    <h2>GAGNE !</h2>
+                    <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
+                    <h2>GAGNÉ !</h2>
                     <h5>Ton score : <span>240</span> pts</h5>
                     <ul>
                         <li id="game_restart">REJOUER</li>

@@ -17,16 +17,31 @@ class Auth_Login_FBAuth extends Auth\Auth_Login_SimpleAuth
 			return false;
 		}
 
-		$this->user = \DB::select_array(\Config::get('simpleauth.table_columns', array('*')))
+		$result = \DB::select_array(\Config::get('simpleauth.table_columns', array('*')))
 			->where_open()
 			->where('pseudo', '=', $pseudo_or_email)
 			->or_where('email', '=', $pseudo_or_email)
 			->where_close()
-			->where('fbid', '=', $fbID)
 			->from(\Config::get('simpleauth.table_name'))
-			->execute(\Config::get('simpleauth.db_connection'))->current();
-
-		return $this->user ?: false;
+			->as_object('Model_13user')
+			->execute(\Config::get('simpleauth.db_connection'));
+		
+		if(count($result) > 0) {
+		    $this->user = $result->current();
+		    
+    		if($this->user->fbid == 0) {
+    		     $this->user->fbid = $fbID;
+    		     
+    		     // Update user
+    		     if($this->user->save() === false)
+    		         return false; // Fail update
+    		     else return $this->user; // Success update
+    		 }
+    		else if($this->user->fbid != $fbID)
+    		    return false;
+    		else return $this->user;
+		}
+		else return false;
 	}
 
 	/**

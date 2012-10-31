@@ -60,7 +60,7 @@ class Controller_Upload extends Controller_Rest
 	    if(is_null($this->current_user)) {
 	        $this->response(array(
 	            'success' => false,
-	            'errorMessage' => 'You are not logged in'
+	            'errorMessage' => 'Connecte-toi sur la page d\'Accueil'
 	        ));
 	    }
 	    else {
@@ -88,7 +88,7 @@ class Controller_Upload extends Controller_Rest
             	if( !$uploaded ) {
             	    $this->response(array(
             	        'success' => false,
-            	        'errorMessage' => 'Fail to upload file'
+            	        'errorMessage' => 'Echec à télécharger le fichier'
             	    ));
             	}
             	else {
@@ -110,7 +110,7 @@ class Controller_Upload extends Controller_Rest
                 	else {
                 	    $this->response(array(
                 	        'success' => false,
-                	        'errorMessage' => 'Fail to register the upload record'
+                	        'errorMessage' => 'Echec à enregisterer le téléchargement'
                 	    ));
                 	}
             	}
@@ -125,7 +125,7 @@ class Controller_Upload extends Controller_Rest
             	if( !$file ) {
             	    $this->response(array(
             	        'success' => false,
-            	        'errorMessage' => 'Unknown error'
+            	        'errorMessage' => 'Erreur inconnu'
             	    ));
             	}
             	else {
@@ -142,7 +142,7 @@ class Controller_Upload extends Controller_Rest
 	    if(is_null($this->current_user)) {
 	        $this->response(array(
 	            'success' => false,
-	            'errorMessage' => 'You are not logged in'
+	            'errorMessage' => 'Connecte-toi sur la page d\'Accueil'
 	        ));
 	    }
 	    else {
@@ -156,7 +156,7 @@ class Controller_Upload extends Controller_Rest
     	    if(!$filename) {
     	        $this->response(array(
     	            'success' => false,
-    	            'errorMessage' => 'Fail to save the drawing',
+    	            'errorMessage' => 'Echec à sauvegarder ton dessin',
     	        ));
     	    }
     	    else {
@@ -177,7 +177,7 @@ class Controller_Upload extends Controller_Rest
     	        else {
     	            $this->response(array(
     	                'success' => false,
-    	                'errorMessage' => 'Fail to register the upload record'
+    	                'errorMessage' => 'Echec à enregisterer le téléchargement'
     	            ));
     	        }
     	    }

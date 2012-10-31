@@ -1,4 +1,7 @@
 <style>
+    .main_container {
+        background: #fff;
+    }
 	.main_container div {
 		text-align: center;
 		background: #fff;
@@ -25,8 +28,8 @@
     	<p>Pour profiter de l'experience, nous vous conseillons d'installer :</p>
     <?php endif; ?>
     	<p>
-    		<a href="https://www.google.com/chrome?hl=fr"><img src="assets/img/chrome.png" height="60" width="60" alt="Chrome"/>Chrome</a>
-    		<a href="http://www.apple.com/fr/safari/"><img src="assets/img/safari.png" height="60" width="60" alt="Safari"/>Safari</a>
+    		<a href="https://www.google.com/chrome?hl=fr"><img src="assets/img/season13/chrome.png" height="60" width="60" alt="Chrome"/>Chrome</a>
+    		<a href="http://www.apple.com/fr/safari/"><img src="assets/img/season13/safari.png" height="60" width="60" alt="Safari"/>Safari</a>
     	</p>
     </div>
 </div>

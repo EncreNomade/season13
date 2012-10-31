@@ -1,10 +1,10 @@
 <div class="main_container">
 
     <div id="back" class="layer">
-        <?php echo Asset::img('illus/petite_ceinture.jpg'); ?>
+        <?php echo Asset::img('season13/illus/petite_ceinture.jpg', array('alt' => 'Fond SEASON 13')); ?>
     </div>
     <div id="booktitle" class="layer">
-        <?php echo Asset::img('illus/titre_2.png'); ?>
+        <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
     </div>
     <div id="bookresume" class="layer">
         <p>Simon est poursuivi par une bande, la nuit, dans Paris. 
@@ -46,7 +46,7 @@
             <div class="ep_list">
             <!--
                 <div id="ep_prev_btn">
-                    <?php echo Asset::img("ui/btn_left.jpg"); ?>
+                    <?php echo Asset::img("season13/ui/btn_left.jpg"); ?>
                 </div>
             -->
                 <ul>
@@ -60,7 +60,7 @@
                 </ul>
             <!--
                 <div id="ep_next_btn">
-                    <?php echo Asset::img("ui/btn_right.jpg"); ?>
+                    <?php echo Asset::img("season13/ui/btn_right.jpg"); ?>
                 </div>
             -->
             </div>
@@ -70,7 +70,7 @@
 </div>
 
 
-<div id="simon" class="layer"></div>
+<div id="simon" class="layer" title="Simon SEASON 13"></div>
 <div id="bande4" class="layer">
-    <?php echo Asset::img('illus/bande4.png'); ?>
+    <?php echo Asset::img('season13/illus/bande4.png', array('alt' => 'Les 4 SEASON 13')); ?>
 </div>

@@ -6,6 +6,7 @@ return array(
 	'concept' => 'welcome/concept', // Route for concept page
 	'story'   => 'story/index', // Route for episode page
 	'upgradenav' => 'welcome/upgradenav', // Route for upgrade navigator notification page
+	'mentionslegals' => 'welcome/mentionslegals',
 	
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 );
