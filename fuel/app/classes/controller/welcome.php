@@ -131,9 +131,24 @@ class Controller_Welcome extends Controller_Template
 	
 	
 	public function action_mentionslegals() {
-	    $this->template->title = 'SEASON 13 Voodoo Connection';
+	    $this->template->title = 'Mention Légales SEASON 13';
 	    
 	    $this->template->content = View::forge('welcome/mentionslegals');
+	}
+	
+	
+	public function action_contact() {
+	    $this->template->title = 'Contact SEASON 13';
+	    
+	    $this->template->css_supp = 'contact.css';
+	    $this->template->content = View::forge('welcome/contact');
+	}
+	
+	
+	public function action_thanksto() {
+	    $this->template->title = 'Remerciement SEASON 13';
+	    
+	    $this->template->content = View::forge('welcome/thanksto');
 	}
 	
 }

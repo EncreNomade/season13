@@ -88,6 +88,14 @@ function init() {
         hideDialog();
     });
     
+    $('.flash-close').click(function() {
+        var alert = $(this).parent('.flash-alert');
+        alert.fadeOut(500);
+        setTimeout(function() {
+            alert.remove();
+        }, 500);
+    });
+    
     $('#cpt_banner, #actu_banner').click(function() {
         window.location = "/story?ep=1&source=banner";
     });

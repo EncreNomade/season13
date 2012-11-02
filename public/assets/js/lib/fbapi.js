@@ -106,8 +106,22 @@ fbapi.postGame = function(game){
     if(game){
         var msg = "J'ai " + (game.result.win ? "gagné" : "perdu") + " le jeu " + game.config.title + " en regardant Voodoo Connection, episode " + mse.configs.epid + ". Mon score est de " + game.result.score + "! Peux-tu me battre?";
         FB.api('/me/feed', 'POST', {'message': msg}, function(obj){
-            if(!obj.id) msgCenter.send('Une erreur est survenue lors de l\'envoie du message.');
-            else msgCenter.send('<p>Ton resultat de jeu a été bien publié sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
+            if(!obj.id) {
+                if(obj.error) {
+                    switch (obj.error.code) {
+                    case 506:
+                        msgCenter.send('T\'as déjà posté ton score.');
+                        break;
+                    default:
+                        msgCenter.send('Une erreur est survenue lors de l\'envoie du message.');
+                        break;
+                    }
+                }
+                else msgCenter.send('Une erreur est survenue lors de l\'envoie du message.');
+            }
+            else {
+                msgCenter.send('<p>Ton resultat de jeu a été bien publié sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
+            }
         });
     }
 };

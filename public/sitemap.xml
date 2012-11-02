@@ -7,11 +7,15 @@
 
     <url>
       <loc>http://www.season13.com/</loc>
-      <changefreq>weekly</changefreq>
+      <changefreq>daily</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/story?ep=1</loc>
+      <changefreq>daily</changefreq>
     </url>
     <url>
       <loc>http://www.season13.com/?s=episode</loc>
-      <changefreq>weekly</changefreq>
+      <changefreq>daily</changefreq>
     </url>
     <url>
       <loc>http://www.season13.com/concept</loc>
@@ -19,10 +23,18 @@
     </url>
     <url>
       <loc>http://www.season13.com/actu</loc>
-      <changefreq>weekly</changefreq>
+      <changefreq>daily</changefreq>
     </url>
     <url>
       <loc>http://www.season13.com/mentionslegals</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/thanksto</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/contact</loc>
       <changefreq>weekly</changefreq>
     </url>
 </urlset>

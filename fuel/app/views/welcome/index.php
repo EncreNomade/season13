@@ -7,12 +7,7 @@
         <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
     </div>
     <div id="bookresume" class="layer">
-        <p>Simon est poursuivi par une bande, la nuit, dans Paris. 
-           Après une folle course poursuite, il réussit à semer ses 
-           poursuivants et  trouve refuge dans les catacombes. Un 
-           sorcier vaudou et un étrange commissaire  vont l’entraîner 
-           dans une aventure fantastique.
-       </p>
+        <p>Simon, jeune orphelin, s’évade de son foyer, poursuivi par une bande : la Meute. Obligé de se réfugier dans les catacombes de Paris, il croise un sorcier vaudou et un inquiétant zombi. Ils vont l’entrainer dans une aventure aux multiples rebondissements.</p>
     </div>
     <div id="btns" class="layer">
         <ul>

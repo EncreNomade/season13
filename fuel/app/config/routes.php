@@ -7,6 +7,8 @@ return array(
 	'story'   => 'story/index', // Route for episode page
 	'upgradenav' => 'welcome/upgradenav', // Route for upgrade navigator notification page
 	'mentionslegals' => 'welcome/mentionslegals',
+	'contact' => 'welcome/contact',
+	'thanksto' => 'welcome/thanksto',
 	
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 );

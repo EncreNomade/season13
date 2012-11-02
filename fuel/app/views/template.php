@@ -545,7 +545,7 @@
 	<footer>
 	    <ul><li class="fb_btn"><?php echo Asset::img('season13/btn_fblike.png', array('alt' => 'Aime SEASON 13 sur Facebook')); ?></li><!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
-		<p><a href="<?php echo $remote_path; ?>mentionslegals">Contacts et Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
+		<p><a href="<?php echo $remote_path; ?>thanksto">Remerciement</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegals">Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
 	</footer>
 </body>
 </html>

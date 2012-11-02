@@ -1277,6 +1277,7 @@ ul#menu div #menu_link {
     text-align: center;
     height: 50px;
     border-bottom: 1px solid #000;
+    z-index: 1;
 }
 #game_result img {
     position: absolute;
@@ -1284,6 +1285,7 @@ ul#menu div #menu_link {
     top: 10px;
     width: 30px;
     height: 30px;
+    z-index: 2;
 }
 #game_result h5 {
     position: relative;
