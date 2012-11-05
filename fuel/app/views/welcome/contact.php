@@ -3,7 +3,7 @@
 
     <h1>Contact</h1>
     <h5>
-        Pour tout renseignement ou question, n'hésitez pas à nous contacter.
+        Pour tout renseignement ou question, n'hésite pas à nous contacter.
         <br/>
         Season13<br/>
         99A, boulevard Descat<br/>
@@ -39,7 +39,7 @@
             		</div>
         		<?php else: ?>
             		<div class="clearfix">
-            			<?php echo Form::label('Nom Prenom', 'nom'); ?>
+            			<?php echo Form::label('Ton Prenom', 'nom'); ?>
             
             			<div class="input">
             				<?php echo Form::input('nom', Input::post('nom', isset($admin_13contactmsg) ? $admin_13contactmsg->nom : ''), array('class' => 'span4')); ?>

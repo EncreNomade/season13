@@ -29,7 +29,7 @@ class Controller_Welcome extends Controller_Template
     }
     
     public function action_concept() {
-        $this->template->title = 'Concept de SEASON 13';
+        $this->template->title = 'Concept - SEASON 13';
         // Set supplementation css and js file
         $this->template->css_supp = 'concept.css';
         $this->template->js_supp = '';
@@ -48,7 +48,7 @@ class Controller_Welcome extends Controller_Template
 	    // Data
 	    $data['admin_13episodes'] = Model_Admin_13episode::find('all');
 	
-	    $this->template->title = 'SEASON 13 Voodoo Connection';
+	    $this->template->title = 'Bienvenue - SEASON 13';
 	    // Set supplementation css and js file
 	    $this->template->css_supp = 'welcome.css';
 	    $this->template->js_supp = 'welcome.js';
@@ -64,7 +64,7 @@ class Controller_Welcome extends Controller_Template
 	 */
 	public function action_404()
 	{
-		$this->template->title = 'SEASON 13 Voodoo Connection';
+		$this->template->title = 'Page inconnu - SEASON 13';
 		
 		$this->template->content = View::forge('welcome/404');
 	}
@@ -125,20 +125,21 @@ class Controller_Welcome extends Controller_Template
 	            break;
 	    }
 	
-	    $this->template->title = 'SEASON 13 Voodoo Connection';
+	    $this->template->title = 'Mise à Jour du Navigateur - SEASON 13';
+	    $this->template->description = "Les histoires de SEASON 13 utilise les nouvelles fonctionnalités de HTML5, un navigateur moderne est indispensable.";
 	    $this->template->content = View::forge('welcome/upgradenav', $data);
 	}
 	
 	
 	public function action_mentionslegals() {
-	    $this->template->title = 'Mention Légales SEASON 13';
+	    $this->template->title = 'Mention Légales - SEASON 13';
 	    
 	    $this->template->content = View::forge('welcome/mentionslegals');
 	}
 	
 	
 	public function action_contact() {
-	    $this->template->title = 'Contact SEASON 13';
+	    $this->template->title = 'Contact - SEASON 13';
 	    
 	    $this->template->css_supp = 'contact.css';
 	    $this->template->content = View::forge('welcome/contact');
@@ -146,7 +147,7 @@ class Controller_Welcome extends Controller_Template
 	
 	
 	public function action_thanksto() {
-	    $this->template->title = 'Remerciement SEASON 13';
+	    $this->template->title = 'Remerciement - SEASON 13';
 	    
 	    $this->template->content = View::forge('welcome/thanksto');
 	}

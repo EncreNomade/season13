@@ -270,7 +270,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web." />
+	<meta name="Description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
 	<title><?php echo $title; ?></title>
 	<?php
 	    echo Asset::css('BebasNeue.css');
@@ -376,7 +376,7 @@
             </div>
             <div class="section">
                 <div class="sep_line"></div>
-                <h1>AVEC UN COMPTE SEASON13</h1>
+                <h1>AVEC UN COMPTE SEASON 13</h1>
                 <!--<h5>Remplis ce petit formulaire et crée ton compte sur Season13. Tu pourras toujours lier ton compte à Facebook par la suite !</h5>-->
                 <p>
                     <label>TU ES</label>
@@ -460,7 +460,7 @@
         <form method="post" action="base/update">
             <div class="section">
                 <div class="sep_line"></div>
-                <h1>MODIFIE TON COMPTE SEASON13</h1>
+                <h1>MODIFIE TON COMPTE SEASON 13</h1>
                 <p>
                     <label>TU ES</label>
                     <select id="updateSex">
@@ -471,7 +471,7 @@
                 <p>
                     <label>Ton Pseudo</label>
                     <span><?php echo $current_user->pseudo; ?></span>
-                    <cite>Tu ne peux pas modifier ton mail</cite>
+                    <cite>Tu ne peux pas modifier ton pseudo</cite>
                 </p>
                 <p>
                     <label>Ton mot de passe</label>
@@ -545,7 +545,7 @@
 	<footer>
 	    <ul><li class="fb_btn"><?php echo Asset::img('season13/btn_fblike.png', array('alt' => 'Aime SEASON 13 sur Facebook')); ?></li><!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
-		<p><a href="<?php echo $remote_path; ?>thanksto">Remerciement</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegals">Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
+		<p><a href="<?php echo $remote_path; ?>thanksto">Remerciements</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegals">Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
 	</footer>
 </body>
 </html>

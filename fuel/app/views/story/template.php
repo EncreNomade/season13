@@ -9,13 +9,13 @@
 <meta property="og:image"  content="http://season13.com/voodoo/cover.jpg" />
 
 <meta charset="UTF-8" />
-<meta name="description" content="Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web." />
 <meta name="robots" content="noindex"/>
 <meta name="viewport" content="minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, width=device-width, user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
 <title><?php echo $title; ?></title>
+<meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection, Season: 1, Episode <?php echo $episode->title; ?>" />
 
 <!-- Script for integrate the font: Helvetica Ultra Compressed
     <script type="text/javascript" src="http://fast.fonts.com/jsapi/11bfc142-9579-4cac-b6a6-2a561db23028.js"></script>
