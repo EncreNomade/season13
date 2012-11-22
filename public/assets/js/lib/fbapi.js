@@ -39,7 +39,7 @@ fbapi.checkConnect = function(){
 fbapi.like = function(){
     FB.getLoginStatus(function(response){
         if (response.status === 'connected') { // do only if connected
-            FB.api('/me/og.likes', 'post', { object:location.href }, function(res) {
+            FB.api('/me/og.likes', 'post', { object: document.URL }, function(res) {
                 if (!res || res.error) {
                     if(res.error.code == 3501) { // already like it !
                         if(window.msgCenter) msgCenter.send('Tu aimes déjà cette page');
@@ -47,7 +47,7 @@ fbapi.like = function(){
                         return;
                     }
                     // console.error(res);
-                    if(confirm("Une erreur s'est produite lors de l'envoie. Réessayes ?"))
+                    if(confirm("Une erreur s'est produite lors de l'envoi. Tu veux réessayer ? (Code d'erreur: "+res.error.code+")"))
                         fbapi.connect(fbapi.like);
                 } 
                 else {
@@ -105,7 +105,13 @@ fbapi.post = function(imgUrl, msg, position, successCB, failCB){
 fbapi.postGame = function(game){
     if(game){
         var msg = "J'ai " + (game.result.win ? "gagné" : "perdu") + " le jeu " + game.config.title + " en regardant Voodoo Connection, episode " + mse.configs.epid + ". Mon score est de " + game.result.score + "! Peux-tu me battre?";
-        FB.api('/me/feed', 'POST', {'message': msg}, function(obj){
+        var data = {
+            'message': msg,
+            'picture': config.episode.image,
+            'name': game.config.title,
+            'link': document.URL
+        };
+        FB.api('/me/feed', 'POST', data, function(obj){
             if(!obj.id) {
                 if(obj.error) {
                     switch (obj.error.code) {

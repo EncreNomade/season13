@@ -78,6 +78,7 @@ class Controller_Admin_13contactmsgs extends Controller_Template
 				    // And set the body.
 				    $email->body(Input::post('message'));
 				    
+				    $fail = false;
 				    try
 				    {
 				        $email->send();
@@ -85,15 +86,17 @@ class Controller_Admin_13contactmsgs extends Controller_Template
 				    catch(\EmailValidationFailedException $e)
 				    {
 				        // The validation failed
-				        //Session::set_flash('error', 'Email Validation Failed.');
+				        Session::set_flash('error', 'Echec de validation du mail.');
+				        $fail = true;
 				    }
 				    catch(\EmailSendingFailedException $e)
 				    {
 				        // The driver could not send the email
-				        //Session::set_flash('error', 'Email Sending Failed.');
+				        Session::set_flash('error', 'Echec d\'envoie du mail.');
+				        $fail = true;
 				    }
 				    
-					Session::set_flash('success', 'Ton message a été bien envoyé.');
+					if(!$fail) Session::set_flash('success', 'Ton message a été bien envoyé.');
 				}
 
 				else

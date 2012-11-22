@@ -1,1 +1,260 @@
-eval(function(B,D,A,G,E,F){function C(A){return A<62?String.fromCharCode(A+=A<26?65:A<52?71:-4):A<63?'_':A<64?'$':C(A>>6)+C(A&63)}while(A>0)E[C(G--)]=D[--A];return B.replace(/[\w\$]+/g,function(A){return E[A]==F[A]?A:E[A]})}('BH.R={};(l(B){M C=B.R,A=["keydown","keypress","keyup"],J=["move","longPress","click","doubleClick","scroll","mousewheel","gestureSingle","gestureStart","gestureUpdate","gestureEnd","gestureMulti","2","BG","9","swipeleft","swiperight","swipe"];C.3=l(K,J,A){S.evtName=K;S.m=J;S.BC=A?A:Z;};C.3.t={x:C.3,BI:l(K){S.m.invoke(K);}};C._=l(J,K,A){S.Q=J;S.p=V;K.6(S);K.6("setDelegate",N n(S.BJ,S));S.h=N C.$(S.Q);S.0=N GestureAnalyser(S.h);S.h.w("2",N n(S.0.addBlob,S.0));S.h.w("BG",N n(S.0.updateBlob,S.0));S.h.w("9",N n(S.0.removeBlob,S.0));L(A){S.4(A);}};C._.t={x:C._,BJ:l(J){L(B.R&&C.currTimeline.inPause){c;}L(S.Q==C.W&&C.W.o&&J&&!J.BE&&!isNaN(J.BF)){J.BF+=C.W.o.BN;J.offsetY+=C.W.o.BO;J.BE=T;}L(S.p){S.h.v(J.X,J);}U{M K=S.h.v(J.X,J);L(!K.i&&S.u){S.u.BK(J.X,J);}}},4:l(K){L(K instanceof C.8){S.u=K;}},y:l(K){S.p=K;L(S.u){S.u.y(K);}},w:l(K,J,A){S.h.w(K,J,A);},7:l(K){S.h.7(K);},5:l(K,J){S.h.5(K,J);}};C.8=l(K){S.r={};S.parent=K;S.d=V;};C.8.t={x:C.8,BB:l(J,K){L(!J||!J.s){c-I;}U{L(!K||!K.s){c I;}U{L(J.s()<K.s()){c I;}U{L(J.s()>K.s()){c-I;}U{c H;}}}}},BM:l(B,A){L(g B!="BD"||!A||!A.BA){c;}L(!S.r[B]){S.r[B]=N a();}M J=S.r[B];L(K.j(A,J)==-I){J.Y(A);}S.r[B].sort(S.BB);},z:l(C,B){M A=S.r[C];L(!A){c;}M J=K.j(B,A);L(J!=-I){A.f(J,I);}},y:l(K){S.d=K;},BK:l(E,C){M F=Z,D=S.r[E];L(!D){c F;}D=D.slice();P(M A BL D){L((!S.d||S.d==D[A])){L(K.j(E,J)==-I){M B=D[A].BA.v(E,C);}U{B=D[A].eventCheck(E,C);}L(B.k){F=T;}L(B.i){b;}}}D=V;c F;}};C.$=l(K){S.O=K;S.q={};};C.$.t={x:C.$,w:l(K,D,E){L(g K!="BD"||!D){c Z;}M B=N C.3(K,D,E);L(!S.q[K]){S.q[K]=N a();S.q[K].Y(B);L(S.O&&S.O.1){M A=S.O.1();L(A&&A.u){A.u.BM(K,S.O);}}c T;}M F=Z,J=S.q[K];P(M G BL J){L(J[G].m==D){F=T;J.f(G,I,B);}}L(!F){S.q[K].Y(B);}c T;},7:l(K){delete S.q[K];L(S.O&&S.O.1){M J=S.O.1();}L(J){J.u.z(K,S.O);}},5:l(K,A){M J=S.q[K];L(J){P(M B=H;B<J.e;B++){L(J[B].m==A){J.f(B,I);L(J.e==H){S.7(K);}b;}}}},hasListener:l(K){c(S.q[K]!=V);},v:l(J,B){M K={i:Z,k:Z},A=S.q[J];L(!A){c K;}P(M C=H;C<A.e;++C){K.k=T;L(A[C].BC){K.i=T;}A[C].BI(B);}c K;}};})(BH);','0|1|_|$|if|var|new|obj|for|src|mse|this|true|else|null|root|type|push|false|Array|break|return|domObj|length|splice|typeof|rootEvt|prevent|inArray|success|function|callback|Callback|viewport|dominate|listeners|observers|getZindex|prototype|dispatcher|eventNotif|addListener|constructor|setDominate|stopObserve|rootAnalyser|getContainer|multiGestAdd|EventListener|setDispatcher|removeListener|mseInteraction|removeListeners|EventDispatcher|multiGestRemove|EventDistributor|EventDelegateSystem|evtDeleg|zSort|preventBubbling|string|corrected|offsetX|multiGestUpdate|window|notify|distributor|dispatch|in|observe|x|y'.split('|'),72,78,{},{}))
+/*!
+ * Events Dispatch Library
+ * Encre Nomade
+ *
+ * Author: LING Huabin - lphuabin@gmail.com
+ * Copyright, Encre Nomade
+ *
+ * Date of creation: 08/06/2012
+ */
+
+
+window.mse = {};
+
+(function( window ) {
+var mse = window.mse;
+
+var nonLocationEvts = ['keydown', 'keypress', 'keyup'];
+var locationEvts = ['move', 'longPress', 'click', 'doubleClick', 'scroll', 'mousewheel', 
+                    'gestureSingle', 'gestureStart', 'gestureUpdate', 'gestureEnd', 
+                    'gestureMulti', 'multiGestAdd', 'multiGestUpdate', 'multiGestRemove',
+                    'swipeleft', 'swiperight', 'swipe'];
+
+// Event System
+
+mse.EventListener = function(evtName, callback, prevent) {
+	this.evtName = evtName;
+	this.callback = callback;
+	this.preventBubbling = prevent ? prevent : false;
+};
+mse.EventListener.prototype = {
+    constructor: mse.EventListener,
+    notify: function(evt) {
+    	this.callback.invoke(evt);
+    }
+};
+
+
+/* Event distributor
+ *
+ * This is the distributor owned by mse.root, normally there is only one instance in one book.
+ * It's using for sending the events to the current page of root.
+ * It has also one event delegate of his own for the events of mse.root object like 'showover'.
+ *
+ */
+mse.EventDistributor = function(src, jqObj, dispatcher) {
+	this.src = src;
+	this.dominate = null;
+	jqObj.mseInteraction(this);
+	jqObj.mseInteraction('setDelegate', new Callback(this.distributor, this));
+	
+	this.rootEvt = new mse.EventDelegateSystem(this.src);
+	
+	// Mobile multi gesture support
+	this.rootAnalyser = new GestureAnalyser(this.rootEvt);
+	this.rootEvt.addListener('multiGestAdd', new Callback(this.rootAnalyser.addBlob, this.rootAnalyser));
+	this.rootEvt.addListener('multiGestUpdate', new Callback(this.rootAnalyser.updateBlob, this.rootAnalyser));
+	this.rootEvt.addListener('multiGestRemove', new Callback(this.rootAnalyser.removeBlob, this.rootAnalyser));
+	
+	if(dispatcher) this.setDispatcher(dispatcher);
+};
+mse.EventDistributor.prototype = {
+    constructor: mse.EventDistributor,
+    distributor: function(e) {
+        if(window.mse && mse.currTimeline.inPause) return;
+        
+        // Correction coordinates with root viewport
+        if(this.src == mse.root && mse.root.viewport && e && !e.corrected && !isNaN(e.offsetX)) {
+            e.offsetX += mse.root.viewport.x;
+            e.offsetY += mse.root.viewport.y;
+            e.corrected = true;
+        }
+    	if(this.dominate) this.rootEvt.eventNotif(e.type, e);
+    	else {
+    	    var res = this.rootEvt.eventNotif(e.type, e);
+    	    if(!res.prevent && this.dispatcher) this.dispatcher.dispatch(e.type, e);
+    	}
+    },
+    setDispatcher: function(dispatcher) {
+        if(dispatcher instanceof mse.EventDispatcher)
+        	this.dispatcher = dispatcher;
+    },
+    
+    setDominate: function(dominate) {
+        this.dominate = dominate;
+    	if(this.dispatcher) this.dispatcher.setDominate(dominate);
+    },
+    addListener: function(evtName, callback, pr) {
+    	this.rootEvt.addListener(evtName,callback,pr);
+    },
+    removeListeners: function(evtName) {
+    	this.rootEvt.removeListeners(evtName);
+    },
+    removeListener: function(evtName, callback) {
+    	this.rootEvt.removeListener(evtName, callback);
+    },
+};
+
+
+/* Event dispatcher for every container
+ *
+ * This class can analyse the structure of one container, and it can dispatch the events to the right objects.
+ * For doing this, it maintain a list of event names and the objects which observe the event.
+ * The objects will be organised in descendent of their z-depth to simulate the bubbling of location based events.
+ * Specially, for better supporting multitouch, it will conserve a list of bindings between the touches and the objects. One touch can only be attached to one object.
+ *
+ */
+mse.EventDispatcher = function(container) {
+    this.observers = {};
+    this.parent = container;
+    this.domObj = null;
+};
+mse.EventDispatcher.prototype = {
+    constructor: mse.EventDispatcher,
+    // Sort function for sort the obj in z-index order
+    zSort: function(a, b) {
+//!!! Attention if a or b null
+		if(!a || !a.getZindex) return -1;
+		else if(!b || !b.getZindex) return 1;
+		
+		else if(a.getZindex() < b.getZindex()) 
+			return 1;
+		else if(a.getZindex() > b.getZindex())
+			return -1;
+		else return 0;
+	},
+    observe: function(type, obj) {
+        if(typeof type != "string" || !obj || !obj.evtDeleg) return;
+    	// Listener array not until exist
+    	if( !this.observers[type] ) this.observers[type] = new Array();
+    	var arr = this.observers[type];
+    	// Register observer
+    	if($.inArray(obj, arr) == -1) arr.push(obj);
+    	
+    	// Reorganize the order in observers' list
+    	this.observers[type].sort(this.zSort);
+    },
+    stopObserve: function(type, obj) {
+        var arr = this.observers[type];
+        if(!arr) return;
+        var index = $.inArray(obj, arr);
+        if(index != -1) arr.splice(index, 1);
+    },
+    setDominate: function(dom) {
+    	this.domObj = dom;
+    },
+    dispatch: function(type, e) {
+        var success = false;
+        
+        var arr = this.observers[type];
+        if(!arr) return success;
+        
+        arr = arr.slice();
+        for(var val in arr) {
+        	if( (!this.domObj || this.domObj==arr[val]) ) {
+        	    // Non location based event, notify directly
+        	    if($.inArray(type, locationEvts) == -1) 
+        		    var res = arr[val].evtDeleg.eventNotif(type, e);
+        		// Location based event, event check in object
+        		else var res = arr[val].eventCheck(type, e);
+        		if(res.success) success = true;
+        		if(res.prevent) break;
+        	}
+        }
+        arr = null;
+        return success;
+    }
+};
+
+
+
+/* Event delegate
+ *
+ * This class belongs to another object as its events management delegate.
+ * It will conserve a array of listeners for every event, and it can notify all the listeners when the event happens
+ *
+ */
+mse.EventDelegateSystem = function(obj) {
+    this.obj = obj;
+	this.listeners = {};
+};
+mse.EventDelegateSystem.prototype = {
+    constructor: mse.EventDelegateSystem,
+
+	// Managerment of listeners
+	addListener: function(evtName, callback, prevent) {
+	    if(typeof evtName != "string" || !callback) return false;
+	    // Construction of listener
+	    var listener = new mse.EventListener(evtName,callback,prevent);
+		// Listener array not until exist
+		if( !this.listeners[evtName] ) {
+		    this.listeners[evtName] = new Array();
+		    this.listeners[evtName].push(listener);
+		    // Observe this event in the dispatcher of container
+		    if(this.obj && this.obj.getContainer) {
+		        var container = this.obj.getContainer();
+		        if(container && container.dispatcher) 
+		            container.dispatcher.observe(evtName, this.obj);
+		    }
+		    return true;
+		}
+		var exist = false;
+		var arr = this.listeners[evtName];
+		for(var i in arr) {
+			if(arr[i].callback == callback) {
+				exist = true;
+				// Replace in listeners' list
+				arr.splice(i, 1, listener);
+			}
+		}
+		// Push to the listener list
+		if(!exist) this.listeners[evtName].push(listener);
+		return true;
+	},
+	removeListeners: function(evtName) {
+		delete this.listeners[evtName];
+		// Stop observe the dispatcher of container
+		if(this.obj && this.obj.getContainer) var container = this.obj.getContainer();
+		if(container) container.dispatcher.stopObserve(evtName, this.obj);
+	},
+	removeListener: function(evtName, callback) {
+		var arr = this.listeners[evtName];
+		if(arr) {
+			for(var i = 0; i < arr.length; i++) {
+				if(arr[i].callback == callback){
+					// Delete listener
+					arr.splice(i,1);
+					// No more listener for this event type, remove the array and stop observe the dispatcher
+					if(arr.length == 0) {
+					    this.removeListeners(evtName);
+					}
+					break;
+				}
+			}
+		}
+	},
+	// Detect if there are listeners for one type of event
+	hasListener: function(evtName) {
+	    return (this.listeners[evtName] != null);
+	},
+	// Notify a event, and return true if the listener will prevent bubbling, if not return false
+	eventNotif: function(evtName, evt) {
+	    var res = {prevent: false, success: false};
+        
+		
+		var arr = this.listeners[evtName];
+		if(!arr) return res;
+		
+		for(var i = 0; i < arr.length; ++i) {
+		    res.success = true;
+		    // If one listener want to prevent the bubbling, it will prevent it by transfering the prevent as true in return value, but it can't prevent other listeners for the same event in this delegate
+		    if(arr[i].preventBubbling) 
+		        res.prevent = true;
+		    arr[i].notify(evt);
+		}
+		return res;
+	}
+};
+
+
+})(window);

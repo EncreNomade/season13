@@ -167,8 +167,10 @@ gui.openPref = function() {
         
         gui.pref.addClass('show');
         
-        mse.currTimeline.pause();
-        gui.updatePlayPauseIcon();
+        if(window.mse) {
+            mse.root.pause();
+            gui.updatePlayPauseIcon();
+        }
     }
 }
 
@@ -179,8 +181,10 @@ gui.openAuthorBio = function() {
         
         gui.author_bio.addClass('show');
         
-        mse.currTimeline.pause();
-        gui.updatePlayPauseIcon();
+        if(window.mse) {
+            mse.root.pause();
+            gui.updatePlayPauseIcon();
+        }
     }
 }
 
@@ -191,8 +195,10 @@ gui.openCredits = function() {
         
         gui.credits.addClass('show');
         
-        mse.currTimeline.pause();
-        gui.updatePlayPauseIcon();
+        if(window.mse) {
+            mse.root.pause();
+            gui.updatePlayPauseIcon();
+        }
     }
 }
 
@@ -209,7 +215,7 @@ gui.openhideUploader = function(e) {
 }
 
 gui.updatePlayPauseIcon = function() {
-    if(mse.currTimeline.inPause) {
+    if(mse.root.inPause) {
         $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/season13/ui/wheel_play.png"/>');
     }
     else $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/season13/ui/wheel_pause.png"/>');
@@ -226,7 +232,7 @@ gui.openComment = function(){
         gui.comment.addClass('show');
         gui.comment.siblings().removeClass('show');
         
-        mse.currTimeline.pause();
+        mse.root.pause();
         gui.updatePlayPauseIcon();
         
         if(gui.userComments.children('li').length == 0) {
@@ -373,7 +379,7 @@ gui.postComment = function(imgUrl, msg){
 };
 
 // Initialisation
-$(window).load(function() {
+$(document).ready(function() {
     initMseConfig();
     
     // Save variables
@@ -397,13 +403,13 @@ $(window).load(function() {
     gui.currPlayState = true;
     
     // Init scriber
-    gui.scriber.init();
+    if(gui.scriber) gui.scriber.init();
     
     // General Interaction
     // Close the preference panel or the comment panel
     gui.center.children().children('.close').click(function() {
         $(this).parent().removeClass('show');
-        mse.currTimeline.play();
+        mse.root.play();
         gui.updatePlayPauseIcon();
         
         var hasShownChild = false;
@@ -423,169 +429,174 @@ $(window).load(function() {
     gui.speedctrl = new gui.Slider(200, 10, gui.pref.children('p:eq(1)'), 5);
     gui.audioctrl.jqObj.css('left', 70);
     gui.speedctrl.jqObj.css('left', 70);
-    // Observer to audio
-    gui.audioctrl.observe('value', new Callback(mse.src.setVolume, mse.src));
+    if(window.mse) {
+        // Observer to audio
+        gui.audioctrl.observe('value', new Callback(mse.src.setVolume, mse.src));
 // Speed observation a little bit strange, because there are two models
-    mse.ArticleLayer.prototype.observe('speedLevel', new Callback(function(level) {
-            gui.speedctrl.setvalue(level);
-        }, null));
-    gui.speedctrl.observe('value', new Callback(function(level) {
-            mse.ArticleLayer.prototype.speedLevel = level;
-        }, null));
+        mse.ArticleLayer.prototype.observe('speedLevel', new Callback(function(level) {
+                gui.speedctrl.setvalue(level);
+            }, null));
+        gui.speedctrl.observe('value', new Callback(function(level) {
+                mse.ArticleLayer.prototype.speedLevel = level;
+            }, null));
+    }
         
     // Author bio and credits
     $('#btn_author').click(gui.openAuthorBio);
     $('#btn_credits').click(gui.openCredits);
     
-    // Controler activation
-    gui.controler.children('#circle').click(function() {
-        // Show or hide the controler btns
-        var lis = gui.controler.find('li');
-        if(lis.eq(1).hasClass('active')) {
-            lis.removeClass('active');
-            // Show the config image on circle
-            $(this).removeClass('active');
-        }
-        else {
-            lis.addClass('active');
-            // Hide the config image on circle for showing other informations
-            $(this).addClass('active');
-        }
-    });
-/*    gui.controler.mouseout(function() {
-        gui.controler.find('li').removeClass('active');
-    });*/
-    
-    // Controler interaction
-    var flash_info = gui.controler.children('#circle').children('span');
-    var timer;
-    $('#ctrl_playpause').click(function() {
-        mse.currTimeline.playpause();
-        gui.currPlayState = !mse.currTimeline.inPause;
-        gui.updatePlayPauseIcon();
-    });
-    gui.speedup.click(function() {
-        var v = mse.ArticleLayer.prototype.speedLevel + 1;
-        mse.ArticleLayer.prototype.setspeedLevel(v);
-        flash_info.text(v);
-        if(timer) clearTimeout(timer);
-        flash_info.animate({opacity: 1}, 300);
-        timer = setTimeout(function() {
-            flash_info.animate({opacity: 0}, 300);
-        }, 800);
-    });
-    gui.slowdown.click(function() {
-        var v = mse.ArticleLayer.prototype.speedLevel - 1;
-        mse.ArticleLayer.prototype.setspeedLevel(v);
-        flash_info.text(v);
-        if(timer) clearTimeout(timer);
-        flash_info.animate({opacity: 1}, 300);
-        timer = setTimeout(function() {
-            flash_info.animate({opacity: 0}, 300);
-        }, 800);
-    });
-    $('#ctrl_like').click(function() {
-        fbapi.like();
-    });
-    
-    
-    // Open Comment
-    gui.commentbtn.click(gui.openComment);
-    
-    // Comment like action
-    gui.userComments.on('click', '.comment_fblike', fbapi.commentLike);
-    
-    // Comment capture screen
-    gui.comment_menu.children('#btn_capture_img').click(function() {
-        gui.comment.removeClass('show');
-        mse.root.startCapture(new Callback(gui.scriber.showWithImg, gui.scriber));
-    });
-    
-    // Comment Image Uploader
-    gui.comment_menu.children('#btn_upload_img').click(gui.openhideUploader);
-    gui.uploader.click(function(e) {e.stopPropagation();});
-    
-    // Prepare Options Object for upload form
-    var options = {
-        type :      'POST',
-        url :       config.restUploadPath+'create_img', 
-        dataType :  'json',
-        success :   function(res) {
-            gui.comment_loading.removeClass('show');
-            gui.uploadForm.get(0).reset();
-            gui.openhideUploader();
-            if(res.success) {
-                gui.setCommentImage(res.path, 'path');
+    if(window.mse) {
+        // Controler activation
+        gui.controler.children('#circle').click(function() {
+            // Show or hide the controler btns
+            var lis = gui.controler.find('li');
+            if(lis.eq(1).hasClass('active')) {
+                lis.removeClass('active');
+                // Show the config image on circle
+                $(this).removeClass('active');
             }
             else {
-                if(res.errorMessage) msgCenter.send(res.errorMessage);
+                lis.addClass('active');
+                // Hide the config image on circle for showing other informations
+                $(this).addClass('active');
             }
-        },
-        error :     function(res) {
-            gui.comment_loading.removeClass('show');
-            gui.uploadForm.get(0).reset();
-            gui.openhideUploader();
-            msgCenter.send("Erreur de téléchargement");
-        }
-    };
-    // Prepare ajax form
-    gui.uploadForm.ajaxForm(options);
-    // Upload interaction
-    $('#imageuploadform #upload_btn').click(function() {
-        if(gui.comment_menu.children('#commentImg').length > 0) {
-            var ok = confirm("Tu vas remplacer l'image précédemment téléchargée, sûr?");
-            if(!ok) return;
-        }
-
-        gui.uploadForm.submit();
-        gui.comment_loading.addClass('show');
-    });
+        });
+    /*    gui.controler.mouseout(function() {
+            gui.controler.find('li').removeClass('active');
+        });*/
     
-    // Share process
-    // Post
-    gui.comment_menu.children('#btn_share').click(function(){
-        // Check image source existance and its type
-        var img = gui.comment_menu.children('#commentImg').children('img');
-        var imgSrc = img.prop('src');
-        var srcType = img.attr('type');
-        imgSrc = (!imgSrc || imgSrc.trim() == "") ? false : imgSrc;
-        var msg = gui.comment_content.val();
-        if(!imgSrc && msg == ''){
-            msgCenter.send('Ton message est vide.')
-            return;
-        }
+        // Controler interaction
+        var flash_info = gui.controler.children('#circle').children('span');
+        var timer;
+        $('#ctrl_playpause').click(function() {
+            if(mse.root.inPause) mse.root.play();
+            else mse.root.pause();
+            gui.currPlayState = !mse.root.inPause;
+            gui.updatePlayPauseIcon();
+        });
+        gui.speedup.click(function() {
+            var v = mse.ArticleLayer.prototype.speedLevel + 1;
+            mse.ArticleLayer.prototype.setspeedLevel(v);
+            flash_info.text(v);
+            if(timer) clearTimeout(timer);
+            flash_info.animate({opacity: 1}, 300);
+            timer = setTimeout(function() {
+                flash_info.animate({opacity: 0}, 300);
+            }, 800);
+        });
+        gui.slowdown.click(function() {
+            var v = mse.ArticleLayer.prototype.speedLevel - 1;
+            mse.ArticleLayer.prototype.setspeedLevel(v);
+            flash_info.text(v);
+            if(timer) clearTimeout(timer);
+            flash_info.animate({opacity: 1}, 300);
+            timer = setTimeout(function() {
+                flash_info.animate({opacity: 0}, 300);
+            }, 800);
+        });
+        $('#ctrl_like').click(function() {
+            fbapi.like();
+        });
+    
+    
+        // Open Comment
+        gui.commentbtn.click(gui.openComment);
         
-        //re init the comment form
-        img.parent().remove();
-        gui.comment_content.val('');
+        // Comment like action
+        gui.userComments.on('click', '.comment_fblike', fbapi.commentLike);
         
-        gui.comment_loading.addClass('show');
+        // Comment capture screen
+        gui.comment_menu.children('#btn_capture_img').click(function() {
+            gui.comment.removeClass('show');
+            mse.root.startCapture(new Callback(gui.scriber.showWithImg, gui.scriber));
+        });
         
-        // Upload image if needed
-        if(imgSrc && srcType == "base64") {
-            var postdata = {'imgData64': imgSrc};
-            if(fbapi.user) postdata.fbComment = true;
-            $.ajax({
-                'type' : 'POST',
-                'url' : config.restUploadPath+'create_drawing', 
-                'dataType' : 'json',
-                'data' : postdata, 
-                success : function(data){
-                    if(data.success) {
-                        imgSrc = data.path;
-                        gui.postComment(imgSrc, msg);
-                    }
-                    else {
-                        gui.comment_loading.removeClass('show');
-                        if(data.errorMessage) msgCenter.send(data.errorMessage);
-                    }
-                },
-                error : function(res) {
-                    gui.comment_loading.removeClass('show');
-                    msgCenter.send("Erreur de téléchargement");
+        // Comment Image Uploader
+        gui.comment_menu.children('#btn_upload_img').click(gui.openhideUploader);
+        gui.uploader.click(function(e) {e.stopPropagation();});
+        
+        // Prepare Options Object for upload form
+        var options = {
+            type :      'POST',
+            url :       config.restUploadPath+'create_img', 
+            dataType :  'json',
+            success :   function(res) {
+                gui.comment_loading.removeClass('show');
+                gui.uploadForm.get(0).reset();
+                gui.openhideUploader();
+                if(res.success) {
+                    gui.setCommentImage(res.path, 'path');
                 }
-            });
-        }
-        else gui.postComment(imgSrc, msg);
-    });
+                else {
+                    if(res.errorMessage) msgCenter.send(res.errorMessage);
+                }
+            },
+            error :     function(res) {
+                gui.comment_loading.removeClass('show');
+                gui.uploadForm.get(0).reset();
+                gui.openhideUploader();
+                msgCenter.send("Erreur de téléchargement");
+            }
+        };
+        // Prepare ajax form
+        gui.uploadForm.ajaxForm(options);
+        // Upload interaction
+        $('#imageuploadform #upload_btn').click(function() {
+            if(gui.comment_menu.children('#commentImg').length > 0) {
+                var ok = confirm("Tu vas remplacer l'image précédemment téléchargée, sûr?");
+                if(!ok) return;
+            }
+    
+            gui.uploadForm.submit();
+            gui.comment_loading.addClass('show');
+        });
+        
+        // Share process
+        // Post
+        gui.comment_menu.children('#btn_share').click(function(){
+            // Check image source existance and its type
+            var img = gui.comment_menu.children('#commentImg').children('img');
+            var imgSrc = img.prop('src');
+            var srcType = img.attr('type');
+            imgSrc = (!imgSrc || imgSrc.trim() == "") ? false : imgSrc;
+            var msg = gui.comment_content.val();
+            if(!imgSrc && msg == ''){
+                msgCenter.send('Ton message est vide.')
+                return;
+            }
+            
+            //re init the comment form
+            img.parent().remove();
+            gui.comment_content.val('');
+            
+            gui.comment_loading.addClass('show');
+            
+            // Upload image if needed
+            if(imgSrc && srcType == "base64") {
+                var postdata = {'imgData64': imgSrc};
+                if(fbapi.user) postdata.fbComment = true;
+                $.ajax({
+                    'type' : 'POST',
+                    'url' : config.restUploadPath+'create_drawing', 
+                    'dataType' : 'json',
+                    'data' : postdata, 
+                    success : function(data){
+                        if(data.success) {
+                            imgSrc = data.path;
+                            gui.postComment(imgSrc, msg);
+                        }
+                        else {
+                            gui.comment_loading.removeClass('show');
+                            if(data.errorMessage) msgCenter.send(data.errorMessage);
+                        }
+                    },
+                    error : function(res) {
+                        gui.comment_loading.removeClass('show');
+                        msgCenter.send("Erreur de téléchargement");
+                    }
+                });
+            }
+            else gui.postComment(imgSrc, msg);
+        });
+    }
 });

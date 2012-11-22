@@ -1,12 +1,20 @@
+<?php 
+
+    $expo_image = "http://season13.com/".$episode->image;
+
+ ?>
+
 <!DOCTYPE html> 
 <html lang="en">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# encrenomade: http://ogp.me/ns/fb/encrenomade#">
 
+<?php if(isset($episode)): ?>
 <meta property="fb:app_id" content="141570392646490" /> 
 <meta property="og:type"   content="encrenomade:episode" /> 
 <meta property="og:url"    content="<?php echo Uri::current(); ?>" /> 
 <meta property="og:title"  content="<?php echo stripcslashes( $episode->story." Episode ".$episode->episode.": ".$episode->title ); ?>" /> 
-<meta property="og:image"  content="http://season13.com/voodoo/cover.jpg" />
+<meta property="og:image"  content="<?php echo $expo_image; ?>" />
+<?php endif; ?>
 
 <meta charset="UTF-8" />
 <meta name="robots" content="noindex"/>
@@ -15,7 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
 <title><?php echo $title; ?></title>
-<meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection, Season: 1, Episode <?php echo $episode->title; ?>" />
+<meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection, Season: 1, Episode <?php if(isset($episode)) echo $episode->title; ?>" />
 
 <!-- Script for integrate the font: Helvetica Ultra Compressed
     <script type="text/javascript" src="http://fast.fonts.com/jsapi/11bfc142-9579-4cac-b6a6-2a561db23028.js"></script>
@@ -38,11 +46,22 @@
     echo Asset::js('config.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
-    echo Asset::js('story/scriber.js');
-    echo Asset::js('story/events.js');
-    echo Asset::js('story/mse.js');
-    echo Asset::js('story/effet_mini.js');
-    echo Asset::js('story/mdj.js');
+    if(isset($episode)) {
+        if(Fuel::$env == Fuel::DEVELOPMENT) {
+            echo Asset::js('story/scriber.js');
+            echo Asset::js('story/events.js');
+            echo Asset::js('story/mse.js');
+            echo Asset::js('story/effet_mini.js');
+            echo Asset::js('story/mdj.js');
+        }
+        else {
+            echo Asset::js('story/scriber.js');
+            echo Asset::js('story/events.min.js');
+            echo Asset::js('story/mse.min.js');
+            echo Asset::js('story/effet_mini.js');
+            echo Asset::js('story/mdj.min.js');
+        }
+    }
 ?>
 
 <script type="text/javascript">
@@ -52,10 +71,17 @@ addEventListener("load", function(){
 }, false);
 </script>
 
+<?php if(!Auth::member(100) && !Auth::member(4)): ?>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35640835-1']);
+  _gaq.push(['_setDomainName', 'season13.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+  
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36203496-1']);
   _gaq.push(['_setDomainName', 'season13.com']);
   _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
@@ -67,10 +93,21 @@ addEventListener("load", function(){
   })();
 
 </script>
+<?php endif; ?>
 
 </head>
 
 <body>
+
+    <script>
+    
+        config.episode = {
+            'title' : "<?php echo $title; ?>",
+            'story' : "<?php echo $episode->story; ?>",
+            'image' : "<?php echo $expo_image; ?>"
+        };
+        
+    </script>
 
     <div id="fb-root"></div>
     <script>
@@ -146,7 +183,32 @@ addEventListener("load", function(){
             <?php echo Html::anchor('http://www.season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
         </div>
     </ul>
-    
+<?php if(isset($accessfail)): ?>
+    <script type="text/javascript">
+    <?php 
+        
+        Config::load('errormsgs', true);
+        $codes = (array) Config::get('errormsgs.story_access', array ());
+        $msg = "";
+        switch($accessfail) {
+        // Episode indisponible
+        case 101:
+            $msg = $codes[101];
+            break;
+        // Login
+        case 201:
+            $msg = "Tu dois te connecter sur <a href='http://season13.com'>Season13.com</a>.";
+            break;
+        default:
+            $msg = $codes['default'];
+            break;
+        }
+        
+        echo "$(window).load(function() { msgCenter.send(\"".$msg."\", 0); });";
+        
+    ?>
+    </script>
+<?php endif; ?>
     <div id="center">
     <!-- Author bio dialog-->
         <div id="author_bio" class="dialog">
@@ -197,6 +259,7 @@ addEventListener("load", function(){
             </div>
         </div>
     
+    <?php if(isset($episode)): ?>
     <!-- Preferece dialog -->
         <div id="preference" class="dialog">
             <div class="close"></div>
@@ -233,7 +296,7 @@ addEventListener("load", function(){
             
             <div id="upload_container">
                 <div class="arrow"></div>
-                <form id="imageuploadform" method="POST" enctype="multipart/form-data" action='/seasion13/public/upload'>
+                <form id="imageuploadform" method="POST" enctype="multipart/form-data" action='<?php echo Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/'; ?>upload'>
                     <input type="file" name="upload_pic" id="upload_pic" />
                     <input type="button" value="Télécharge ton dessin" id="upload_btn" />
                 </form>
@@ -309,9 +372,10 @@ addEventListener("load", function(){
                 <li id="sb_confirm" title="Valide ton dessin"><?php echo Asset::img('season13/ui/scriber_confirm.png'); ?></li>
             </ul>
         </div>
+    <?php endif; ?>
     </div>
     
-    
+<?php if(isset($episode)): ?>
     <div id="root">
         <div id="controler">
             <div class="back"></div>
@@ -321,7 +385,7 @@ addEventListener("load", function(){
             </div>
             
             <ul>
-                <li id="ctrl_like"><?php echo Asset::img('season13/ui/wheel_like2.png', array('alt' => 'Aime Voodoo Connection sur Facebook')); ?></li>
+                <li id="ctrl_like"><?php echo Asset::img('season13/ui/wheel_like3.png', array('alt' => 'Aime Voodoo Connection sur Facebook')); ?></li>
                 <li id="ctrl_speedup"><?php echo Asset::img('season13/ui/wheel_rabbit.png', array('alt' => 'Plus vite')); ?></li>
                 <li id="ctrl_playpause"><?php echo Asset::img('season13/ui/wheel_pause.png', array('alt' => 'Reprendre/Pause')); ?></li>
                 <li id="ctrl_slowdown"><?php echo Asset::img('season13/ui/wheel_turtle.png', array('alt' => 'Moins vite')); ?></li>
@@ -367,6 +431,7 @@ addEventListener("load", function(){
     
     ?>
     </script>
+<?php endif; ?>
 
 </body>
 </html>

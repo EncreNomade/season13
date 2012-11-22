@@ -1080,8 +1080,9 @@ ul#menu div #menu_link {
     opacity: 1;
 }
 #controler ul li img {
-    left: 2px;
-    top: 2px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
     width: 25px;
     height: 25px;
     z-index: 3;

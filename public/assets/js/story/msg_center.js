@@ -75,7 +75,7 @@ var msgCenter =(function(){
     
     public.send = function(mes, time){
         if(normal.list.children('li').length == 0) // if no message the msgCenter is not in DOM
-            normal.box.prependTo('#root');
+            normal.box.prependTo('body');
             
         var message = $('<li></li>');
         message.append(mes);
@@ -127,7 +127,7 @@ var msgCenter =(function(){
             titre = 'Notifications';
             
         static.box.children('h1').html(titre);
-        static.box.prependTo('#root');
+        static.box.prependTo('body');
         
         var elemDOM = static.box.get(0);
         elemDOM.style.removeProperty('left');

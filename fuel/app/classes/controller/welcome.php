@@ -29,7 +29,7 @@ class Controller_Welcome extends Controller_Template
     }
     
     public function action_concept() {
-        $this->template->title = 'Concept - SEASON 13';
+        $this->template->title = 'Concept - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5';
         // Set supplementation css and js file
         $this->template->css_supp = 'concept.css';
         $this->template->js_supp = '';
@@ -48,7 +48,7 @@ class Controller_Welcome extends Controller_Template
 	    // Data
 	    $data['admin_13episodes'] = Model_Admin_13episode::find('all');
 	
-	    $this->template->title = 'Bienvenue - SEASON 13';
+	    $this->template->title = 'SEASON 13 - Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux';
 	    // Set supplementation css and js file
 	    $this->template->css_supp = 'welcome.css';
 	    $this->template->js_supp = 'welcome.js';
@@ -131,10 +131,18 @@ class Controller_Welcome extends Controller_Template
 	}
 	
 	
-	public function action_mentionslegals() {
+	public function action_aboutus() {
+	    $this->template->title = 'Équipe - SEASON 13, Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux';
+	    
+	    $this->template->css_supp = 'aboutus.css';
+	    $this->template->content = View::forge('welcome/aboutus');
+	}
+	
+	
+	public function action_mentionslegales() {
 	    $this->template->title = 'Mention Légales - SEASON 13';
 	    
-	    $this->template->content = View::forge('welcome/mentionslegals');
+	    $this->template->content = View::forge('welcome/mentionslegales');
 	}
 	
 	

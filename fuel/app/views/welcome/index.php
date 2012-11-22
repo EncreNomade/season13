@@ -1,3 +1,5 @@
+<?php echo Asset::js('lib/swfobject.js'); ?>
+
 <div class="main_container">
 
     <div id="back" class="layer">
@@ -7,7 +9,11 @@
         <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
     </div>
     <div id="bookresume" class="layer">
-        <p>Simon, jeune orphelin, s’évade de son foyer, poursuivi par une bande : la Meute. Obligé de se réfugier dans les catacombes de Paris, il croise un sorcier vaudou et un inquiétant zombi. Ils vont l’entrainer dans une aventure aux multiples rebondissements.</p>
+        <!--<object width="420" height="236"><param name="movie" value="http://www.youtube.com/v/lwuMe5fzeyU?version=3&amp;hl=fr_FR"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lwuMe5fzeyU?version=3&amp;hl=fr_FR&rel=0" type="application/x-shockwave-flash" width="420" height="236" allowscriptaccess="always" allowfullscreen="true"></embed></object>-->
+        <div id="ytapiplayer">
+            You need Flash player 8+ and JavaScript enabled to view this video.
+        </div>
+        <p>Simon, jeune orphelin, s’évade de son foyer, poursuivi par une bande : la Meute. Obligé de se réfugier dans les catacombes de Paris, il croise un sorcier vaudou et un inquiétant zombi...</p>
     </div>
     <div id="btns" class="layer">
         <ul>
@@ -37,6 +43,8 @@
             <div class="ep_title">
                 <h2><?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?></h2>
                 <a class="ep_play" target="_blank"></a>
+                
+                
             </div>
             <div class="ep_list">
             <!--
@@ -65,7 +73,16 @@
 </div>
 
 
-<div id="simon" class="layer" title="Simon SEASON 13"></div>
+<div id="simon" class="layer">
+    <?php echo Asset::img('season13/illus/simonHD.png', array('alt' => 'Simon - SEASON 13')); ?>
+</div>
 <div id="bande4" class="layer">
-    <?php echo Asset::img('season13/illus/bande4.png', array('alt' => 'Les 4 SEASON 13')); ?>
+    <?php echo Asset::img('season13/illus/bande4.png', array('alt' => 'Les 4 - SEASON 13')); ?>
+</div>
+
+<div class="center">
+    <div id="invitation_dialog" class="dialog">
+        <div class="close"></div>
+        <h1>Invitation</h1>
+    </div>
 </div>

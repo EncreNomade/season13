@@ -280,12 +280,14 @@
 	    echo Asset::js('lib/jquery-latest.js');
 	    echo Asset::js('lib/jquery.scrollTo-1.4.2-min.js');
 	    echo Asset::js('lib/jquery.parallax-1.1.3.js');
+	    echo Asset::js('lib/jquery.form.js');
 	    echo Asset::js('lib/fbapi.js');
 	    echo Asset::js('config.js');
 	    echo Asset::js('template.js');
 	    echo Asset::js($js_supp);
 	?>
 	
+	<?php if(!Auth::member(100) && !Auth::member(4)): ?>
 	<script type="text/javascript">
 	
 	  var _gaq = _gaq || [];
@@ -293,6 +295,12 @@
 	  _gaq.push(['_setDomainName', 'season13.com']);
 	  _gaq.push(['_setAllowLinker', true]);
 	  _gaq.push(['_trackPageview']);
+	  
+	  var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36203496-1']);
+      _gaq.push(['_setDomainName', 'season13.com']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
 	
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -301,6 +309,7 @@
 	  })();
 	
 	</script>
+	<?php endif; ?>
 	
 </head>
 <body>
@@ -328,9 +337,14 @@
     }
 
     </script>
+    
     <script type="text/javascript">
         window.current_section = "<?php echo $section; ?>";
     </script>
+    <?php 
+        // output the javascript function
+        echo Security::js_set_token(); 
+    ?>
 
     <header>
         <div id="logo"></div>
@@ -343,7 +357,7 @@
             <li class="text_sep_vertical"></li>
             <li><a href="<?php echo $remote_path; ?>concept">LE CONCEPT</a></li>
             <li class="text_sep_vertical"></li>
-            <li><a href="<?php echo $remote_path; ?>actu">L'ACTU</a></li>
+            <li><a href="<?php echo $remote_path; ?>news">L'ACTU</a></li>
         </ul>
     </header>
     
@@ -365,7 +379,8 @@
 <?php if($current_user == null): ?>
     <div id="signup_dialog" class="dialog">
         <div class="close"></div>
-        <form method="post" action="base/signup">
+        <form method="post" action="<?php echo $remote_path; ?>base/signup_normal">
+            <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <!--<div class="section">
                 <h5>En t’inscrivant, tu recevras 2 fois par semaine, le mercredi et le samedi, un nouvel épisode de ta série Voodoo Connection !</h5>
             </div>-->
@@ -380,13 +395,13 @@
                 <!--<h5>Remplis ce petit formulaire et crée ton compte sur Season13. Tu pourras toujours lier ton compte à Facebook par la suite !</h5>-->
                 <p>
                     <label>TU ES</label>
-                    <select id="signupSex">
-                        <option value="m">Un Garçon</option>
-                        <option value="f">Une fille</option>
+                    <select id="signupSex" name="sex">
+                        <option value="f" selected>Une fille</option>
+                        <option value="m">Un garçon</option>
                     </select>
                 </p>
-                <p><label>Ton Pseudo</label><input type="text" size="18" maxlength="64" id="signupId"><cite>Au moins 6 caractères, sans espaces</cite></p>
-                <p><label>Ton Mot de passe</label><input type="password" size="18" id="signupPass"><input type="password" size="18" id="signupConf"><cite>Tape 2 fois ton mot de passe pour être bien sûr !</cite></p>
+                <p><label>Ton Pseudo</label><input name="pseudo" type="text" size="18" maxlength="64" id="signupId"><cite>Au moins 6 caractères, sans espaces</cite></p>
+                <p><label>Ton Mot de passe</label><input name="password" type="password" size="18" id="signupPass"><input name="password_repeat" type="password" size="18" id="signupConf"><cite>Tape 2 fois ton mot de passe pour être bien sûr !</cite></p>
                 <p>
                     <label>Ta Date de naissance</label>
                     <select id="signupbDay">
@@ -404,11 +419,12 @@
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php echo \Form::hidden('birthday', '', array('id' => 'signupBirthday')); ?>
                 </p>
-                <p><label>Ton Mail</label><input type="email" size="18" id="signupMail"></p>
+                <p><label>Ton Mail</label><input name="email" type="email" size="18" id="signupMail"></p>
                 <p>
                     <label>Ton Pays</label>
-                    <select id="signupPays">
+                    <select name="pays" id="signupPays">
                         <option value="  " selected>Selectionnes ton pays</option>
                         <?php foreach ($countries as $key => $value): ?>
                         <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
@@ -416,13 +432,13 @@
                     </select>
                     <cite>Facultatif</cite>
                 </p>
-                <p><label>Code Postal</label><input type="text" size="10"  maxlength="10" id="signupCP"><cite>Facultatif</cite></p>
+                <p><label>Code Postal</label><input name="codpos" type="text" size="10"  maxlength="10" id="signupCP"><cite>Facultatif</cite></p>
                 <?php
                 /*
-                <p><label>Ton Numéro Portable</label><input type="text" size="18"  maxlength="20" id="signupPortable"><cite>Obligatoire si vous voulez la notification en sms</cite></p>
+                <p><label>Ton Numéro Portable</label><input name="portable" type="text" size="18"  maxlength="20" id="signupPortable"><cite>Obligatoire si vous voulez la notification en sms</cite></p>
                 <p>
                     <label>Choix Notification</label>
-                    <select id="signupNotif">
+                    <select name="notif" id="signupNotif">
                         <option value="mail">Mail</option>
                         <option value="sms">SMS</option>
                     </select>
@@ -431,7 +447,7 @@
                 */
                 ?>
                 <? //<p><label id="signupBtn"></label></p> ?>
-                <input type="hidden" id="signup_fbToken" value="empty" />
+                <input type="hidden" name="fbToken" id="signup_fbToken" value="empty" />
                 <p><input type="submit" id="signupBtn" title="Inscription sur SEASON 13"/></p>
             </div>
         </form>
@@ -439,6 +455,7 @@
     <div id="login_dialog" class="dialog">
         <div class="close"></div>
         <form method="post" action="base/login">
+            <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <div class="section">
                 <div class="sep_line"></div>
                 <h1>AVEC TON COMPTE FACEBOOK</h1>
@@ -457,15 +474,16 @@
     
     <div id="update_dialog" class="dialog">
         <div class="close"></div>
-        <form method="post" action="base/update">
+        <form method="post" action="<?php echo $remote_path; ?>base/update">
+            <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <div class="section">
                 <div class="sep_line"></div>
                 <h1>MODIFIE TON COMPTE SEASON 13</h1>
                 <p>
                     <label>TU ES</label>
-                    <select id="updateSex">
-                        <option value="m" <?php if($current_user->sex=="m") echo "selected"; ?>>Un Garçon</option>
+                    <select name="sex" id="updateSex">
                         <option value="f" <?php if($current_user->sex=="f") echo "selected"; ?>>Une fille</option>
+                        <option value="m" <?php if($current_user->sex=="m") echo "selected"; ?>>Un garçon</option>
                     </select>
                 </p>
                 <p>
@@ -475,7 +493,7 @@
                 </p>
                 <p>
                     <label>Ton mot de passe</label>
-                    <input type="password" size="18" id="updatePass">
+                    <input name="newPass" type="password" size="18" id="updatePass">
                     <input type="password" size="18" id="updateConf">
                     <cite>Tape 2 fois ton mot de passe pour être bien sûr !</cite>
                 </p>
@@ -507,6 +525,7 @@
                         <option value="<?php echo $i; ?>" <?php if($y == $i) echo "selected"; ?>><?php echo $i; ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php echo \Form::hidden('birthday', '', array('id' => 'updateBirthday')); ?>
                 </p>
                 <p>
                     <label>Ton Mail</label>
@@ -515,7 +534,7 @@
                 </p>
                 <p>
                     <label>Ton Pays</label>
-                    <select id="updatePays">
+                    <select name="pays" id="updatePays">
                         <option value="  " selected>Selectionnes ton pays</option>
                         <?php foreach ($countries as $key => $value): ?>
                         <option value="<?php echo $key; ?>" <?php if($current_user->pays == $key) echo "selected"; ?>><?php echo $value; ?></option>
@@ -525,7 +544,7 @@
                 </p>
                 <p>
                     <label>Code Postal</label>
-                    <input type="text" size="10" maxlength="10" id="updateCP" value="<?php echo $current_user->code_postal; ?>">
+                    <input name="codpos" type="text" size="10" maxlength="10" id="updateCP" value="<?php echo $current_user->code_postal; ?>">
                     <cite>Facultatif</cite>
                 </p>
                 <p>
@@ -543,9 +562,13 @@
 <?php echo $content; ?>
 
 	<footer>
-	    <ul><li class="fb_btn"><?php echo Asset::img('season13/btn_fblike.png', array('alt' => 'Aime SEASON 13 sur Facebook')); ?></li><!--<li class="twitter_btn"></li>--></ul>
+	    <ul>
+	        <li class="fb_btn">
+                <div class="fb-like" data-href="<?php echo Uri::base(false).Uri::string(); ?>" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+	        </li>
+	        <!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
-		<p><a href="<?php echo $remote_path; ?>thanksto">Remerciements</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegals">Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
+		<p><a href="<?php echo $remote_path; ?>aboutus">Équipe</a> - <a href="<?php echo $remote_path; ?>thanksto">Remerciements</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegales">Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
 	</footer>
 </body>
 </html>

@@ -121,7 +121,7 @@ footer {
 footer ul {
     position: absolute;
     left: 25px;
-    top: -40px;
+    top: -70px;
     width: auto;
     height: 40px;
     z-index: 1;
@@ -131,7 +131,7 @@ footer ul {
 footer ul li {
     position: relative;
     float: left;
-    top: 10px;
+    top: 25px;
     width: 40px;
     height: 40px;
     margin: 5px;
@@ -187,7 +187,7 @@ footer ul li.fb_btn img {
     top: -500px;
     right: 10px;
     margin: 0;
-    padding: 15px 15px 30px 15px;
+    padding: 15px 15px 0px 15px;
     width: 465px;
     height: auto;
     opacity: 0;
@@ -205,13 +205,22 @@ footer ul li.fb_btn img {
     -o-transition: opacity 0.3s linear;
     transition: opacity 0.3s linear;
 }
-.dialog .close {
+.dialog > .close {
     position: absolute;
     left: 0px;
     top: -32px;
     width: 18px;
     height: 18px;
     background: transparent url('../img/season13/ui/dialog_close.png') no-repeat left top;
+}
+.dialog > h1 {
+    position: absolute;
+    left: 10px;
+    top: -32px;
+    margin: 0;
+    padding: 0;
+    font: normal 25px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    color: #fff;
 }
 #signup_dialog.show, #login_dialog.show, #update_dialog.show {
     top: 10px;
@@ -341,16 +350,16 @@ footer ul li.fb_btn img {
 }
 .dialog .section p {
     position: relative;
-    margin: 10px 0 10px 6px;
+    margin: 0 0 20px 6px;
     padding: 0;
-    height: 30px;
+    height: auto;
     width: 100%;
 }
 .dialog .section p label {
     position: absolute;
     width: 160px;
     font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    height: 100%;
+    height: auto;
 }
 .dialog .section p label.alert {
     color: #d50000;
@@ -358,14 +367,20 @@ footer ul li.fb_btn img {
 .dialog .section p span {
     font-family: "DroidSansRegular";
 }
-.dialog .section p input, .dialog .section p select, .dialog .section p span {
+.dialog .section p input, .dialog .section p button, .dialog .section p select, .dialog .section p span, .dialog .section p textarea {
     position: relative;
     left: 160px;
+    top: 1px;
+}
+.dialog .section p textarea {
+    width: 200px;
+    height: 100px;
+    resize: none;
 }
 .dialog .section p cite {
     position: absolute;
     left: 160px;
-    top: 25px;
+    top: 24px;
     margin: 0;
     padding: 0;
     font: italic 10px/10px Arial, Helvetica, Geneva, sans-serif;
@@ -375,7 +390,7 @@ footer ul li.fb_btn img {
     color: #d50000;
 }
 .dialog #signupBtn {
-    position: absolute;
+    position: relative;
     top: 0px;
     left: 165px;
     width: 134px;
@@ -385,7 +400,7 @@ footer ul li.fb_btn img {
     border: none;
 }
 .dialog #updateBtn {
-    position: absolute;
+    position: relative;
     top: 0px;
     left: 165px;
     width: 134px;
@@ -395,7 +410,7 @@ footer ul li.fb_btn img {
     border: none;
 }
 .dialog #loginBtn {
-    position: absolute;
+    position: relative;
     top: 0px;
     left: 165px;
     width: 134px;

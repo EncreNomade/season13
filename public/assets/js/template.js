@@ -99,16 +99,38 @@ function init() {
     $('#cpt_banner, #actu_banner').click(function() {
         window.location = "/story?ep=1&source=banner";
     });
-    
-    // Facebook like
-    $('footer .fb_btn').click(function() {
-        fbapi.like();
-    });
 
-    $('#signup_dialog form').submit(function(e) {
-        // Stop full page reload
-        e.preventDefault();
-        
+    var options = {
+        type :      'POST',
+        dataType :  'json',
+        success :   function(data, textStatus, XMLHttpRequest) {
+            // now, we get two important pieces of data back from our rest controller
+            // data.valid = true/false
+            // data.redirect = the page we redirect to on successful login
+            if (data.valid)
+            {
+                document.location.href = data.redirect;
+            }
+            else
+            {
+                if(data.errorType) {
+                    if(data.errorType == 'mail') 
+                        $('#signupMail').siblings('label').addClass('alert');
+                    else if(data.errorType == 'pseudo') 
+                        $('#signupId').siblings('label').addClass('alert');
+                }
+                if(data.errorMessage) alert('Erreur d\'inscription: '+ data.errorMessage);
+                $('input[type=submit]').removeAttr('disabled');
+            }
+        },
+        error :     function(XMLHttpRequest, textStatus, errorThrown) {
+            alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+            $('input[type=submit]').removeAttr('disabled');
+        }
+    };
+    // Prepare ajax form
+    $('#signup_dialog form').ajaxForm(options);
+    $('#signupBtn').click(function(e) {
         $('#signup_dialog').find('cite, label').removeClass('alert');
 
         // Check fields
@@ -117,6 +139,7 @@ function init() {
         var conf = $('#signupConf').val();
         var sex = $('#signupSex').val();
         var bDay = $('#signupbDay').val()+"/"+$('#signupbMonth').val()+"/"+$('#signupbYear').val();
+        $('#signupBirthday').val(bDay);
         var mail = $('#signupMail').val();
         var pays = $('#signupPays').val();
         var codpos = $('#signupCP').val();
@@ -138,57 +161,10 @@ function init() {
             valid = false;
         }
         
-        if(!valid) return;
+        if(!valid) e.preventDefault();
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
-
-        // Request
-        var data = {
-            'pseudo': name,
-            'password': pass,
-            'email': mail,
-            'sex': sex,
-            'birthday': bDay,
-            'pays': pays,
-            'codpos': codpos,
-            'portable': tel,
-            'notif': notif,
-            'fbToken': $('#signup_fbToken').val()
-        };
-
-        // Send
-        $.ajax({
-            url: './base/signup_normal',
-            dataType: 'json',
-            type: 'POST',
-            data: data,
-            success: function(data, textStatus, XMLHttpRequest)
-            {
-                // now, we get two important pieces of data back from our rest controller
-                // data.valid = true/false
-                // data.redirect = the page we redirect to on successful login
-                if (data.valid)
-                {
-                    document.location.href = data.redirect;
-                }
-                else
-                {
-                    if(data.errorType) {
-                        if(data.errorType == 'mail') 
-                            $('#signupMail').siblings('label').addClass('alert');
-                        else if(data.errorType == 'pseudo') 
-                            $('#signupId').siblings('label').addClass('alert');
-                    }
-                    if(data.errorMessage) alert('Erreur d\'inscription: '+ data.errorMessage);
-                    $('input[type=submit]').removeAttr('disabled');
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown)
-            {
-                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-                $('input[type=submit]').removeAttr('disabled');
-            }
-        });
+        fuel_set_csrf_token($('#signup_dialog form').get(0));
     });
     
     // Facebook signup
@@ -206,6 +182,8 @@ function init() {
                     $('#signupMail').attr('readonly', 'readonly').val(u.email);
                     
                     $('#signup_fbToken').val(fbToken); // signal to server, it's a FB user !
+                    
+                    alert('Complète ton formulaire d\'inscription pour t\'inscrire');
                 });
             } 
             else if (response.status === 'not_authorized'){
@@ -245,7 +223,7 @@ function init() {
                     alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
                     $('input[type=submit]').removeAttr('disabled');
                 }
-            });   
+            });
         }
         var token = FB.getAccessToken();
         if(token) doFBLogin(token); // The user is connected with FB && auth to the app
@@ -303,10 +281,33 @@ function init() {
     });
     
     
-    $('#update_dialog form').submit(function(e) {
-        // Stop full page reload
-        e.preventDefault();
-        
+    
+    var options = {
+        type :      'POST',
+        dataType :  'json',
+        success :   function(data, textStatus, XMLHttpRequest) {
+            if (data.valid)
+            {
+                document.location.href = data.redirect;
+            }
+            else
+            {
+                if(data.errorType) {
+                    if(data.errorType == 'password') 
+                        $('#updateOldPass').siblings('label').addClass('alert');
+                }
+                if(data.errorMessage) alert('Erreur de la mise à jour: '+ data.errorMessage);
+                $('input[type=submit]').removeAttr('disabled');
+            }
+        },
+        error :     function(XMLHttpRequest, textStatus, errorThrown) {
+            alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+            $('input[type=submit]').removeAttr('disabled');
+        }
+    };
+    // Prepare ajax form
+    $('#update_dialog form').ajaxForm(options);
+    $('#updateBtn').click(function(e) {
         $('#update_dialog').find('cite, label').removeClass('alert');
 
         // Check fields
@@ -314,6 +315,7 @@ function init() {
         var conf = $('#updateConf').val();
         var sex = $('#updateSex').val();
         var bDay = $('#updatebDay').val()+"/"+$('#updatebMonth').val()+"/"+$('#updatebYear').val();
+        $('#updateBirthday').val(bDay);
         var pays = $('#updatePays').val();
         var codpos = $('#updateCP').val();
         var oldPass = $('#updateOldPass').val();
@@ -329,51 +331,10 @@ function init() {
             $('#updateOldPass').siblings('cite').addClass('alert');valid = false;
         }
         
-        if(!valid) return;
+        if(!valid) e.preventDefault();
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
-
-        // Request
-        var data = {
-            'oldPass': oldPass,
-            'newPass': pass,
-            'sex': sex,
-            'birthday': bDay,
-            'pays': pays,
-            'codpos': codpos
-        };
-
-        // Send
-        $.ajax({
-            url: './base/update',
-            dataType: 'json',
-            type: 'POST',
-            data: data,
-            success: function(data, textStatus, XMLHttpRequest)
-            {
-                // now, we get two important pieces of data back from our rest controller
-                // data.valid = true/false
-                // data.redirect = the page we redirect to on successful login
-                if (data.valid)
-                {
-                    document.location.href = data.redirect;
-                }
-                else
-                {
-                    if(data.errorType) {
-                        if(data.errorType == 'password') 
-                            $('#updateOldPass').siblings('label').addClass('alert');
-                    }
-                    if(data.errorMessage) alert('Erreur de la mise à jour: '+ data.errorMessage);
-                    $('input[type=submit]').removeAttr('disabled');
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown)
-            {
-                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-                $('input[type=submit]').removeAttr('disabled');
-            }
-        });
+        fuel_set_csrf_token($('#update_dialog form').get(0));
     });
     
     

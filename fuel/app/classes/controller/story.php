@@ -4,6 +4,50 @@ class Controller_Story extends Controller_Template
 {
     public $template = 'story/template';
     
+    public static function requestAccess($epid, $current_user) {
+        $access = array('valid' => true);
+        Config::load('errormsgs', true);
+        $codes = (array) Config::get('errormsgs.story_access', array ());
+        
+        if($epid == 1)
+            return $access;
+            
+        if( Auth::member(50) || Auth::member(100) )
+            return $access;
+            
+        // Inscription after first episode
+        if($epid >= 2) {
+            if(!Auth::check()) return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
+            
+            switch ($epid) {
+            case 3: 
+                $result = DB::select('*')->from('admin_13userpossesions')
+                                         ->where('user_id', $current_user->id)
+                                         ->and_where('episode_id', $epid)
+                                         ->execute();
+                $num_rows = count($result);
+                
+                if($num_rows !== 0)
+                    return $access;
+                else {
+                    $data = array();
+                    $data['pseudo'] = $current_user->pseudo;
+                    $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? '' : 'http://season13.com/';
+                    $data['price'] = "0,99";
+                    return array(
+                        'valid' => false, 
+                        'errorCode' => 303, 
+                        'errorMessage' => $codes[303], 
+                        'form' => View::forge('story/access/invitations', $data)->render()
+                    );
+                }
+                break;
+            default: return $access;
+            }
+        }
+        else return $access;
+    }
+    
     public function before()
     {
     	parent::before();
@@ -13,22 +57,25 @@ class Controller_Story extends Controller_Template
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
+    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
     	
-    	$epid = Input::get('ep');
+    	$this->episode = null;
+    	$epid = Input::get('ep') ? Input::get('ep') : null;
     	
-    	if(self::requestAccess($epid)) {
-    	    $this->episode = Model_Admin_13episode::find($epid);
-    	    $this->comments = Model_Admin_13comment::find_by_epid($epid);
+    	if(!is_null($epid)) {
+    	    $access = self::requestAccess($epid, $this->current_user);
     	    
-    	    View::set_global('episode', $this->episode);
+    	    if($access['valid'] === true) {
+        	    $this->episode = Model_Admin_13episode::find($epid);
+        	    $this->comments = Model_Admin_13comment::find_by_epid($epid);
+        	    
+        	    View::set_global('episode', $this->episode);
+    	    }
+    	    else $this->template->accessfail = $access['errorCode'];
     	}
     	else {
-    	    Response::redirect('404');
+    	    $this->template->accessfail = 101;
     	}
-    }
-    
-    private function requestAccess($epid) {
-        return true;
     }
 
 	public function action_index()
@@ -65,7 +112,7 @@ class Controller_Story extends Controller_Template
 	    }
 	
 	    if($capable) {
-    	    $this->template->title = stripslashes($this->episode->title);
+    	    $this->template->title = stripslashes( is_null($this->episode) ? "Episode Indisponible" : $this->episode->title );
     	}
     	else {
     	    Response::redirect('http://season13.com/upgradenav');

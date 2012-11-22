@@ -1,1 +1,1074 @@
-eval(function(B,D,A,G,E,F){function C(A){return A<62?String.fromCharCode(A+=A<26?65:A<52?71:-4):A<63?'_':A<64?'$':C(A>>6)+C(A&63)}while(A>0)E[C(G--)]=D[--A];return B.replace(/[\w\$]+/g,function(A){return E[A]==F[A]?A:E[A]})}('EQ.Y={};(7(U,A,T){Y.setGame=7(U){Y.currGame=U;};Y.getZoneVisible=7(A,T,H,F,U,E){V(H>=Q){Z G=Q;}g{G=-H;}V(F>=Q){Z C=Q;}g{C=-F;}V(H+A>U){Z D=(H>=Q?U-H:U);}g{D=(H>=Q?A:A-G);}V(F+T>E){Z B=(F>=Q?E-F:E);}g{B=(F>=Q?T:T-C);}0{CE:G,CC:C,CD:D,CG:B};};Y.BH=7(T,U,B){V(T $ A.Game){f.BR=T;}g{0;}f.4=[];f.BG=i;f.W=Q;f.X=Q;f.q=p(U)?f.BR.q:U;f.1=p(B)?f.BR.1:B;V(CX.B7){A.e.Cy("ED","./DT/D3/padbase.Dg","By",k);A.e.Cy("Dv","./DT/D3/padhandler.Dg","By",k);}};Y.BH._={Cb:Y.BH,Dr:7(U){V(U $ Y.BA){f.4.DN(U);f.Dc();}},D5:7(U){V(U $ Y.BA){f.BG=U;}},delLayer:7(U){V(U==i){0;}b(Z T BV f._layers){V(f.4[T].Bw==U){f.4.splice(T,R);}}},getLayer:7(U){V(U==i){0;}b(Z T BV f.4){V(f.4[T].Bw==U){0 f.4[T];}}},Dc:7(){f.4.sort(7(T,U){V(T.B0<U.B0){0-R;}g{V(T.B0>U.B0){0 R;}g{0 Q;}}});},t:7(U){b(Z T BV f.4){f.4[T].t(U);}V(f.BG){f.BG.t(U);}},EM:7(T,H,E,U,D){T.DG();T.DF(H,E);V(H>=Q){Z G=Q;}g{G=-H;}V(E>=Q){Z B=Q;}g{B=-E;}V(H+f.q>U){Z C=(H>=Q?U-H:U);}g{C=(H>=Q?f.q:f.q-G);}V(E+f.1>D){Z A=(E>=Q?D-E:D);}g{A=(E>=Q?f.1:f.1-B);}b(Z F BV f.4){f.4[F].n(T,G,B,C,A);}T.DM();V(f.BG){f.BG.n(T);}},setPosition:7(T,U){f.W=T;f.X=U;},Bk:7(){0 f.W;},Bj:7(){0 f.X;},Bc:7(U,T){f.W+=U;f.X+=T;},setCollision:7(U){}};Y.DA=7(F,U,G,C,E,B){Y.BH.o(f,F,U,G);f.EE=E;f.CL={};V(B $ A.9){f.CW=B;}g{f.CW=i;}Z D=f;T.ajax({url:C,dataType:"xml",success:7(U){D.D1(U);}});};5(Y.DA,Y.BH);T.5(Y.DA._,{D1:7(H){Z BC=T(H).find("Bo"),B=BD(BC.j("q")),J=BD(BC.j("1")),Ct=BD(BC.j("DR")),C=BD(BC.j("EP"));V(p(J)||p(B)||p(Ct)||p(C)){0;}Z I=BC.CH("Bq"),Db=f.EE,Da=f.CL;I.each(7(){Z E=T(f).j("Bw"),C=BD(T(f).j("firstgid")),H=BD(T(f).j("DR")),U=BD(T(f).j("EP")),G=T(f).CH("image"),F=Db+G.j("source"),B=BD(G.j("q")),D=BD(G.j("1"));Da[E]={e:F,Df:B,Dd:D,DX:C,w:H,v:U};A.e.Cy(E,F,"By",k);});Z D=BC.CH("layer");b(Z K=Q;K<D.BT;K++){Z L=T(D.get(K)),DY=L.j("Bw"),G=L.CH("Cp");V(G.BT==Q){B2;}Z F=G.text(),DZ=G.j("encoding"),U=G.j("compression");V(!F){B2;}CS(DZ){l"base64":BC=Base64.decodeBase64AsArray(F,BY);z;DL:B2;}CS(U){l"zlib":B2;l"gzip":B2;l"":z;}Z E=c Y.Bp(DY,f,K,B,J,Ct,C,BC);}V(f.CW){f.CW.Dx();}},BP:7(){f.Bq=c Y.B6(f);b(Z T BV f.CL){Z U=f.CL[T];f.Bq.EB(T,U.Df,U.Dd,U.DX,U.w,U.v);}b(T BV f.4){V(6 f.4[T].BP=="7"){f.4[T].BP();}}}});Y.B6=7(U){V(U $ Y.BH){f.BK=U;}f.B8=[];};Y.B6._={Cb:Y.B6,EV:7(U){V(f.B8[U]){0 f.B8[U];}g{0 i;}},EB:7(H,G,C,B,L,U){V((6 H!="string")||A.e.CK(H)==i||p(G)||p(C)||p(B)||p(L)||p(U)){0;}Z F=h.s(C/U),T=h.s(G/L),K=B;b(Z I=Q;I<F;++I){b(Z D=Q;D<T;++D){Z E=Cs.C$("C2"),J=E.DJ("Ci");E.q=L;E.Bb.q=L;E.1=U;E.Bb.1=U;J.BX(A.e.CK(H),D*L,I*U,L,U,Q,Q,L,U);f.B8[K]=E;K++;}}}};Y.BA=7(T,A,U){f.Bw=T;f.2=(A $ Y.BH)?A:i;f.B0=p(U)?Q:U;f.W=Q;f.X=Q;V(f.2){f.2.Dr(f);f.q=f.2.q;f.1=f.2.1;}g{f.q=Q;f.1=Q;}};Y.BA._={Bk:7(){0 Q;},Bj:7(){0 Q;},C6:7(){0 f.2;},t:7(){},n:7(U){}};Y.Bp=7(B,D,A,T,E,F,U,C){Y.BA.o(f,B,D,A);V(!C){0;}f.d=p(T)?Q:T;f.Bd=p(E)?Q:E;f.w=p(F)?Q:F;f.v=p(U)?Q:U;f.Bo=C;};5(Y.Bp,Y.BA);T.5(Y.Bp._,{BP:7(){f.r=Cs.C$("C2");Z B=f.r.DJ("Ci");f.r.q=f.d*f.w;f.r.Bb.q=f.d*f.w;f.r.1=f.Bd*f.v;f.r.Bb.1=f.Bd*f.v;b(Z T=Q;T<f.Bd;++T){b(Z U=Q;U<f.d;++U){Z A=f.Bo[T*f.d+U];f.Cu(B,A,h.s(U*f.w),h.s(T*f.v));}}},Cu:7(B,A,T,U){V(f.2.Bq){Z C=f.2.Bq.EV(A);V(C){B.BX(C,T,U);}}},n:7(E,J,G,I,A){V(f.r){E.BX(f.r,J,G,I,A,J,G,I,A);}g{V(arguments.BT<EZ){Z C=Q,H=Q,B=f.d,U=f.Bd;}g{C=h.s(J/f.w),H=h.s(G/f.v),B=h.DW((J+I)/f.w),U=h.DW((G+A)/f.v);}b(Z D=H;D<U;++D){b(Z T=C;T<B;++T){Z F=f.Bo[D*f.d+T];f.Cu(E,F,T*f.w,D*f.v);}}}}});Y.Ca=7(A,B,T,U){Y.BA.o(f,A,B,T);f.m=[];f.Cd=u;f.CM=U===k?k:u;};5(Y.Ca,Y.BA);T.5(Y.Ca._,{BP:7(){V(!f.r){f.r=Cs.C$("C2");}f.Dp=f.r.DJ("Ci");f.r.q=f.2.q;f.r.Bb.q=f.2.q;f.r.1=f.2.1;f.r.Bb.1=f.2.1;b(Z U=Q;U<f.m.BT;++U){f.m[U].n(f.Dp);}},Cx:7(U){V(U $ Y.BF){f.m.DN(U);U.2=f;}g{V(U $ A.D7){f.m.DN(U);U.2=i;}g{0;}}V(f.Cd&&f.CM){f.BP();}},t:7(U){b(Z T=Q;T<f.m.BT;++T){V(f.m[T]$ Y.BF){f.m[T].BE.t(U);}g{f.m[T].t(U);}}},n:7(U,D,A,B,T){V(!f.Cd){f.Cd=k;V(f.CM){f.BP();}}V(!f.CM||p(D)||p(A)||p(B)||p(T)){b(Z C=Q;C<f.m.BT;++C){f.m[C].n(U);}}g{U.BX(f.r,D,A,B,T,D,A,B,T);}}});Y.Dl=7(A,B,T,C,U){Y.BA.o(f,A,B,T);V(6 U=="7"){f.n=U;}V(6 C=="7"){f.t=C;}};5(Y.Dl,Y.BA);Y.BF=7(U){f.Dk(U);};Y.BF._={Cb:Y.BF,C6:7(){V(f.2){0 f.2.C6();}g{0 i;}},Dk:7(U){V(U $ Y.x){f.BE=U;}}};Y.Bn=7(U,T){Y.BF.o(f,U);f.By=T;};5(Y.Bn,Y.BF);T.5(Y.Bn._,{n:7(T){Z U=A.e.CK(f.By);V(U){T.DG();T.CY=f.BE.Ch;Z B=f.BE.B_();T.DF(B.O+B.N/S,B.P+B.M/S);T.D0(f.BE.Cc());T.BX(U,-B.N/S,-B.M/S,B.N,B.M);T.DM();}}});Y.CA=7(U,A,T){Y.BF.o(f,U);f.e=A;f.CZ=Q;f.BQ={};f.BL=i;f.B3=T.N;f.B5=T.M;f.CE=T.CE;f.CC=T.CC;f.CD=T.CD;f.CG=T.CG;f.d=h.s(f.CD/f.B3);f.Bd=h.s(f.CG/f.B5);};5(Y.CA,Y.BF);T.5(Y.CA._,{De:7(U){f.CZ=U;},n:7(T){V(f.BL){f.BL.t();}Z U=A.e.CK(f.e),D=f.CE+(f.CZ%f.d)*f.B3,C=f.CC+h.s(f.CZ/f.d)*f.B5;V(f.BE){T.DG();T.CY=f.BE.Ch;Z B=f.BE.B_();T.DF(B.O+B.N/S,B.P+B.M/S);T.D0(f.BE.Cc());T.BX(U,D,C,f.B3,f.B5,-B.N/S,-B.M/S,B.N,B.M);T.DM();}},getAnime:7(U){V(f.BQ[U]){0 f.BQ[U];}g{0 i;}},addAnime:7(U,T){V(T $ Y.CU){f.BQ[U]=T;}},playAnime:7(U){V(f.BQ[U]){f.BL=f.BQ[U];f.BL.D8();}},stopAnime:7(){V(f.BL){f.BL.ER();f.BL=i;}},deleteAnime:7(U){delete f.BQ[U];}});Y.CU=7(T,U,B,A){V(!U $ Array||!T $ Y.CA){0 i;}f.Dj=T;f.C_=U;f.Cw=p(B)?R:B;f.CQ=p(A)?Q:A;f.Bu=u;};Y.CU._={Cb:Y.CU,D8:7(){f.BU=Q;f.CP=R;f.CN=f.CQ;f.Bu=k;},ER:7(){f.BU=Q;f.CP=Q;f.Bu=u;},t:7(U){V(!f.Bu){0 u;}V(f.BU<f.C_.BT-R){V(f.CQ!=Q){V(f.CN==Q){f.BU++;f.CN=f.CQ;}f.CN--;}g{f.BU++;}}g{V(f.CP<f.Cw||f.Cw==Q){f.CP++;f.BU=Q;}g{f.Bu=u;0 k;}}f.Dj.De(f.C_[f.BU]);0 u;}};Y.x=7(T,B,U){f.W=p(T)?Q:T;f.X=p(B)?Q:B;f.q=Q;f.1=Q;f.D4=p(U)?Q:U;f.Ch=R;f.C8=f.W;f.C7=f.X;f.y=c A.EN();f.2=i;};Y.x._={Bc:7(A,U){f.C8=f.W;f.C7=f.X;f.W+=A;f.X+=U;Z T={Cn:A,Co:U,O:f.W,P:f.X};f.y.BS("Cg",T);},Bl:7(A,T){Z U={Cn:A-f.W,Co:T-f.X,O:A,P:T};f.W=A;f.X=T;f.y.BS("Cg",U);},cancelMove:7(){f.W=f.C8;f.X=f.C7;},B_:7(){0{O:f.Bg(),P:f.Bh(),N:f.CV(),M:f.CI()};},setCollisionBox:7(B,A,U,T){f.Bf={O:B,P:A,N:U,M:T};},DK:7(){V(f.Bf){0{O:f.Bg()+f.Bf.O,P:f.Bh()+f.Bf.P,N:f.Bf.N,M:f.Bf.M};}g{0 f.B_();}},Bg:7(){0 f.W;},Bh:7(){0 f.X;},Bk:7(){V(f.2){0 f.2.Bk()+f.Bg();}g{0 f.Bg();}},Bj:7(){V(f.2){0 f.2.Bj()+f.Bh();}g{0 f.Bh();}},CV:7(){0 Q;},CI:7(){0 Q;},Cc:7(){0 f.D4;},t:7(){}};Y.DC=7(B,C,A,U,T){Y.x.o(f,B,C,T);f.q=p(A)?Q:A;f.1=p(U)?Q:U;};5(Y.DC,Y.x);T.5(Y.DC._,{CV:7(){0 f.q;},CI:7(){0 f.1;}});Y.Cf=7(F,H,A,U,C,T,G){f.Dh=U.Cp.Dh;f.DP=U.Cp.DP;Z B=BM,E=c Bx.DO.b2FixtureDef;V(6 G!="object"){G={};}E.C3=p(G.C3)?R:G.C3;E.C1=p(G.C1)?Q.EY:G.C1;E.DI=p(G.DI)?Q.S:G.DI;f.Dw=C/S;f.Dt=C/S;E.EO=c Bx.Collision.Shapes.b2PolygonShape;E.EO.SetAsBox(f.Dw/B,f.Dt/B);Z D=c Bx.DO.b2BodyDef;D.type=Bx.DO.b2Body.b2_dynamicBody;D.D_.O=F/B;D.D_.P=H/B;D.angle=A;f.Ba=U.CreateBody(D);f.Ba.CreateFixture(E);Y.x.o(f,F,H,A);f.q=C;f.1=T;};5(Y.Cf,Y.x);T.5(Y.Cf._,{CV:7(){0 f.q;},CI:7(){0 f.1;},Cc:7(){0 f.Ba.GetAngle();},Bg:7(){0 f.Ba.DS().O*BM-f.q/S;},Bh:7(){0 f.Ba.DS().P*BM-f.1/S;},Bl:7(T,U){f.Ba.SetPosition(c Bx.Common.h.b2Vec2(T/BM,U/BM));}});Y.EH=7(B,T,D){V(!(T $ Y.x)){0;}f.3=T;f.8=D;f.BR=B;f.BJ=u;f.a="CF";f.BN="Cv";f.y=c A.EN();f.BO=u;V(!f.3.Ce&&f.3.CO==i){f.3.CO=BY;f.3.Ce=f.D2;}f.Cj=c A.9(f.Bc,f);f.Bz=c A.9(f.EF,f);f.C9=c A.9(f.EL,f);f.DB=c A.9(f.EI,f);f.EU=c A.9(f.C5,f);V(CX.B7&&A&&!f.EG){V(!B.Bv.BG){B.Bv.D5(c Y.Ca("ui",i,10));}f.Dz(B.Bv.BG);}Z U=f,C=B.Bv.t;B.Bv.t=7(){C.o(f);U.D9();};f.DH();B.evtDeleg.BI("end",f.EU);};Y.EH._={DH:7(){V(!f.8||f.BO){0;}f.8.BI("Dn",f.Cj);f.8.BI("Di",f.Bz);V(CX.B7){f.8.BI("ES",f.C9);f.8.BI("EC",f.DB);f.8.BI("Dy",f.Bz);}f.BO=k;},C5:7(){V(!f.8||!f.BO){0;}f.8.B1("Dn",f.Cj);f.8.B1("Di",f.Bz);V(CX.B7){f.8.B1("ES",f.C9);f.8.B1("EC",f.DB);f.8.B1("Dy",f.Bz);}f.BO=u;},setTarProxy:7(U){V(f.BO){f.C5();}f.8=U;V(f.BO){f.DH();}},D2:7(A){CS(A){l"CF":Z T=-R,U=Q;z;l"C4":T=R,U=Q;z;l"Cl":T=Q,U=-R;z;l"DE":T=Q,U=R;z;DL:0;}f.Bc(T*f.CO,U*f.CO);},EL:7(U){V(inrect(U.Bt,U.Bs,f.BZ)){f.DD=k;}f.BJ=u;},D9:7(){V(f.3.Ce&&f.BJ){f.3.Ce(f.a);}},EI:7(A){V(f.DD){Z D=f.BZ[Q]+BB,E=f.BZ[R]+BB,C=mseAngleForLine(D,E,A.Bt,A.Bs),B=distance2Pts(D,E,A.Bt,A.Bs);V(B<BB){f.BW.Bl(A.Bt-BB,A.Bs-BB);}g{f.BW.Bl(D+BB/B*(A.Bt-D)-BB,E+BB/B*(A.Bs-E)-BB);}V((C>=Q&&C<=Bm)||(C<=Q&&C>=-Bm)){Z T=BY,U=Q;f.a="C4";}g{V(C>=Dq&&C<=D$){U=-BY,T=Q;f.a="DE";}g{V(C>=DU||C<=-DU){T=-BY,U=Q;f.a="CF";}g{V(C<=-Dq&&C>=-D$){U=BY,T=Q;f.a="Cl";}g{0;}}}}V(f.BN!=f.a){f.y.BS("Cm",{a:f.a});}V(!f.BJ){f.BJ=k;V(6 f.3.B4=="7"){f.3.B4(f.a);}}f.BN=f.a;}},Bc:7(U){CS(U.keyCode){l __KEY_LEFT:f.a="CF";z;l __KEY_RIGHT:f.a="C4";z;l __KEY_UP:f.a="Cl";z;l __KEY_DOWN:f.a="DE";z;DL:0;}V(f.BN!=f.a){f.y.BS("Cm",{a:f.a});}V(!f.BJ){f.BJ=k;V(6 f.3.B4=="7"){f.3.B4(f.a);}}f.BN=f.a;},EF:7(U){f.BJ=u;f.DD=u;f.y.BS("Cm",{prev:f.BN,a:"Cv"});f.BN="Cv";V(6 f.3.EA=="7"){superthis.3.EA(a);}V(f.BW){f.BW.Bl(f.BZ[Q],f.BZ[R]);}f.startPt=i;},Dz:7(U){V(!A){0;}f.ET=c A.Bn(i,{DQ:[46,f.BR.1-103],Do:[Du,Du],CY:Q.DV},"ED");f.BW=c A.Bn(i,{DQ:[BM,f.BR.1-Dm],Do:[CB,CB],CY:Q.DV},"Dv");U.Cx(f.ET);U.Cx(f.BW);f.BZ=[BM,f.BR.1-Dm,CB,CB];f.EG=k;}};Y.D6=7(T,U,B,A,D,C){f.1=p(U)?Q:U;f.q=p(T)?Q:T;f.B$(B,A,D,C);};Y.D6._={Bc:7(U){f.W+=U.Cn;f.X+=U.Co;},B$:7(T,U,C,B){V(!U $ Y.x||!U $ A.D7||!T $ Y.BH){0;}f.3=U;f.BK=T;f.Cr=p(C)?Q:C;f.Cq=p(B)?Q:B;V(!p(f.W)){f.CR=Bm;f.C0=f.W;f.Cz=f.X;}f.W=U.Bk()-(f.q/S-f.Cr);f.X=U.Bj()-(f.1/S-f.Cq);},drawScene:7(T){V(f.3&&f.BK){f.W=h.B9(f.3.Bk()-(f.q/S-f.Cr));f.X=h.B9(f.3.Bj()-(f.1/S-f.Cq));V(f.W<Q){f.W=Q;}V(f.X<Q){f.X=Q;}V(f.W+f.q>f.BK.q){f.W=f.BK.q-f.q;}V(f.X+f.1>f.BK.1){f.X=f.BK.1-f.1;}V(f.CR>Q){Z U=(Bm-f.CR)/Bm;f.W=f.C0+h.B9((f.W-f.C0)*U);f.X=f.Cz+h.B9((f.X-f.Cz)*U);f.CR--;}f.BK.EM(T,-f.W,-f.X,f.q,f.1);}}};Y.Ds=7(U){f.B$(U);f.Bi={};f.CJ={};};Y.Ds._={register:7(U,B,T){V(U&&(T $ A.9||6 T=="7")){f.Bi[U]=B;f.CJ[U]=T;}},B$:7(U){V(U $ Y.x){f.Be=U;U.y.BI("Cg",c A.9(f.EW,f));U.y.BI("Ck",c A.9(f.EX,f));}},EX:7(T){Z U=T.CT;V(f.Bi[U]&&f.CJ[U]){T.CT=f.Bi[U];Br=f.CJ[U];V(Br $ A.9){Br.Dx(T);}g{V(6 Br=="7"){Br.o(f.Be,T);}}}},EW:7(T){V(f.Be){Z L=f.Be.DK();b(Z G BV f.Bi){Z F=f.Bi[G];V(F $ Y.x){Z U=F.DK();V(((U.O>=L.O&&U.O<=L.O+L.N)||(L.O>=U.O&&L.O<=U.O+U.N))&&((U.P>=L.P&&U.P<=L.P+L.M)||(L.P>=U.P&&L.P<=U.P+U.M))){f.Be.y.BS("Ck",{CT:G,EK:L.O+L.N-U.O,EJ:L.P+L.M-U.P});0;}}g{V(F $ Y.Bp){Z E=h.s(L.O/F.w),D=h.s(L.P/F.v),B=h.s((L.O+L.N)/F.w),C=h.s((L.P+L.M)/F.v);b(Z I=D;I<=C;++I){b(Z A=E;A<=B;++A){Z K=I*F.d+A;V(F.Bo[K]!=Q){Z H=I*F.v,J=A*F.w;f.Be.y.BS("Ck",{CT:G,gid:K,EK:L.O+L.N-J,EJ:L.P+L.M-H});0;}}}}}}}}};})(EQ,mse,U);','h|w|x|y|0|1|2|_|$|if|ox|oy|mdj|var|dir|for|new|col|src|this|else|Math|null|attr|true|case|objs|draw|call|isNaN|width|cache|floor|logic|false|tileh|tilew|Model|proxy|break|return|height|parent|target|layers|extend|typeof|function|tarProxy|Callback|prototype|instanceof|Layer|40|O|parseInt|model|View|uilayer|Scene|addListener|onmove|scene|currAnime|30|prevDir|enabled|init|animations|game|eventNotif|length|currFr|in|padHandler|drawImage|4|touchZone|body|style|move|row|tar|colliBox|getRelatX|getRelatY|detectors|getY|getX|setPos|15|Image|map|TileLayer|tileset|cb|offsetY|offsetX|active|currScene|name|Box2D|img|moveEndcb|zid|removeListener|continue|fw|startMove|fh|Tileset|iOS|grids|round|getBoundingBox|setTarget|Sprite|80|sy|sw|sx|LEFT|sh|children|getHeight|callbacks|getSrc|tilesetConfig|cachable|delayCount|inputv|currRep|delay|movecount|switch|detector|AnimationSprite|getWidth|lazyInit|MseConfig|globalAlpha|currfr|ObjLayer|constructor|getOrientation|firstDraw|stepMove|Box2DModel|movement|opacity|2d|movecb|collision|UP|dirChange|dx|dy|data|tarOffy|tarOffx|document|R|drawTile|NONE|rep|addObj|addSource|prevoy|prevox|friction|canvas|density|RIGHT|disable|getScene|prevOy|prevOx|touchStartcb|seq|createElement|TileMapScene|touchMovecb|BoxModel|touchValid|DOWN|translate|save|enable|restitution|getContext|getCollisionBox|default|restore|push|Dynamics|sceneH|pos|tilewidth|GetPosition|UI|165|6|ceil|fgid|M|N|Q|P|sortLayer|srch|setFrame|srcw|png|sceneW|keyup|sprite|setModel|UILayer|119|keydown|size|cacheCtx|75|addLayer|CollisionDetector|boxH|48|vPadHandler|boxW|invoke|gestureEnd|addVituralPadTo|rotate|initWithTMX|stepMovefn|button|rotation|setUILayer|Camera|UIObject|start|frameMove|position|105|endMove|addTileset|gestureUpdate|vPadBase|srcRelatPath|moveEnd|vPadActive|DirectionalInput|touchMove|offy|offx|touchStart|drawInRect|EventDelegateSystem|shape|tileheight|window|stop|gestureStart|padBase|disableCb|getGrid|detect|triger|3|5'.split('|'),270,281,{},{}))
+/*
+ * 2D Game Graphic Engine
+ * Encre Nomade
+ *
+ * Author: LING Huabin - lphuabin@gmail.com
+ * Copyright, Encre Nomade
+ *
+ * Date of creation: 25/11/2011
+ */
+ 
+
+
+
+window.mdj = {};
+ 
+(function(window, mse, $) {
+
+mdj.setGame = function(game) {
+    mdj.currGame = game;
+};
+
+mdj.getZoneVisible = function(width, height, x, y, w, h) {
+    if(x >= 0) var sx = 0;
+    else var sx = -x;
+    if(y >= 0) var sy = 0;
+    else var sy = -y;
+    
+    if(x + width > w) var sw = (x >= 0 ? w - x : w);
+    else var sw = (x >= 0 ? width : width - sx);
+    if(y + height > h) var sh = (y >= 0 ? h - y : h);
+    else var sh = (y >= 0 ? height : height - sy);
+    return {'sx':sx, 'sy':sy, 'sw':sw, 'sh':sh};
+};
+
+
+mdj.Scene = function(game, w, h) {
+    if(game instanceof mse.Game) this.game = game;
+    else return;
+    this.layers = [];
+    this.uilayer = null;
+    this.ox = 0;
+    this.oy = 0;
+    this.width = isNaN(w) ? this.game.width : w;
+    this.height = isNaN(h) ? this.game.height : h;
+    
+    if(MseConfig.iOS) {
+        var path = "./UI/";
+        if(config.publishMode == "release") path = "./assets/img/season13/story/";
+        mse.src.addSource('vPadBase', path+'button/padbase.png', 'img', true);
+        mse.src.addSource('vPadHandler', path+'button/padhandler.png', 'img', true);
+    }
+};
+mdj.Scene.prototype = {
+    constructor: mdj.Scene,
+    // Layer managerment
+    addLayer: function(layer){
+    	if(layer instanceof mdj.Layer) {
+    		this.layers.push(layer);
+    		this.sortLayer();
+    	}
+    },
+    setUILayer: function(uilayer) {
+        if(uilayer instanceof mdj.Layer)
+            this.uilayer = uilayer;
+    },
+    delLayer: function(name) {
+    	if(name == null) return;
+    	for(var i in this._layers) {
+    		if(this.layers[i].name == name) this.layers.splice(i,1);
+    	}
+    },
+    getLayer: function(name) {
+    	if(name == null) return;
+    	for(var i in this.layers) {
+    		if(this.layers[i].name == name) return this.layers[i];
+    	}
+    },
+    sortLayer: function() {
+    	this.layers.sort(function(a, b) {
+    		if(a.zid < b.zid)
+    			return -1;
+    		else if(a.zid > b.zid)
+    			return 1;
+    		else return 0;
+    	});
+    },
+    
+    logic: function(delta) {
+        for(var i in this.layers) {
+            this.layers[i].logic(delta);
+        }
+        if(this.uilayer) this.uilayer.logic(delta);
+    },
+	drawInRect: function(ctx, x, y, w, h){
+	    ctx.save();
+	    ctx.translate(x, y);
+	    
+	    if(x >= 0) var sx = 0;
+	    else var sx = -x;
+	    if(y >= 0) var sy = 0;
+	    else var sy = -y;
+	    
+	    if(x + this.width > w) var sw = (x >= 0 ? w - x : w);
+	    else var sw = (x >= 0 ? this.width : this.width - sx);
+	    if(y + this.height > h) var sh = (y >= 0 ? h - y : h);
+	    else var sh = (y >= 0 ? this.height : this.height - sy);
+	    
+	    for(var i in this.layers) {
+	        this.layers[i].draw(ctx, sx, sy, sw, sh);
+	    }
+	    ctx.restore();
+	    if(this.uilayer) this.uilayer.draw(ctx);
+	},
+	setPosition: function(offx, offy){
+		this.ox = offx;
+		this.oy = offy;
+	},
+	getX: function() {
+	    return this.ox;
+	},
+	getY: function() {
+	    return this.oy;
+	},
+	move: function(dx, dy){
+		this.ox += dx;
+		this.oy += dy;
+	},
+	setCollision: function(target){
+	    
+	}
+};
+
+mdj.TileMapScene = function(game, w, h, mapurl, srcRelatPath, lazyInit) {
+    mdj.Scene.call(this, game, w, h);
+    this.srcRelatPath = srcRelatPath;
+    this.tilesetConfig = {};
+    
+    if(lazyInit instanceof mse.Callback) this.lazyInit = lazyInit;
+    else this.lazyInit = null;
+    var scene = this;
+    $.ajax({
+        url: mapurl,
+        dataType: 'xml',
+        success: function(map){
+            scene.initWithTMX(map);
+        }
+    });
+};
+extend(mdj.TileMapScene, mdj.Scene);
+$.extend(mdj.TileMapScene.prototype, {
+    initWithTMX : function(xml) {
+    	var map = $(xml).find("map");
+    	var col = parseInt(map.attr("width"));
+    	var row = parseInt(map.attr("height"));
+    	var tilew = parseInt(map.attr("tilewidth"));
+    	var tileh = parseInt(map.attr("tileheight"));
+    	if(isNaN(row) || isNaN(col) || isNaN(tilew) || isNaN(tileh)) return;
+    	// Tilesets
+    	var tilesets = map.children("tileset");
+    	var srcRelatPath = this.srcRelatPath;
+    	var tilesetConfig = this.tilesetConfig;
+    	tilesets.each(function() {
+    	    var name = $(this).attr('name');
+    	    var firstgid = parseInt($(this).attr('firstgid'));
+    	    var tilew = parseInt($(this).attr('tilewidth'));
+    	    var tileh = parseInt($(this).attr('tileheight'));
+    	    var srcnode = $(this).children('image');
+    	    var src = srcRelatPath + srcnode.attr("source");
+    	    var srcw = parseInt(srcnode.attr('width'));
+    	    var srch = parseInt(srcnode.attr('height'));
+    	    tilesetConfig[name] = {'src':src, 'srcw':srcw, 'srch':srch, 'fgid':firstgid, 'tilew':tilew, 'tileh':tileh};
+    	    mse.src.addSource(name, src, 'img', true);
+    	});
+    	
+    	// Layers
+    	var layers = map.children("layer");
+    	for(var i = 0; i < layers.length; i++) {
+    	    var layernode = $(layers.get(i));
+            var name = layernode.attr("name");
+            var datanode = layernode.children("data");
+            if(datanode.length == 0) continue;
+            var data = datanode.text();
+            var encoding = datanode.attr("encoding");
+            var comp = datanode.attr("compression");
+            
+            if(!data) continue;
+            // Decoding data
+            switch(encoding) {
+            case "base64":
+                var map = Base64.decodeBase64AsArray(data, 4);break;
+            default: continue;
+            }
+            // Decompress data
+            switch(comp) {
+            case "zlib":
+                continue;
+            case "gzip":
+                continue;
+            case "":
+                break;
+            }
+            // Init Layer
+            var layer = new mdj.TileLayer(name, this, i, col, row, tilew, tileh, map);
+        }
+        // Lazy Init
+        if(this.lazyInit) this.lazyInit.invoke();
+    },
+    init: function() {
+        this.tileset = new mdj.Tileset(this);
+        for(var i in this.tilesetConfig) {
+            var conf = this.tilesetConfig[i];
+            this.tileset.addTileset(i, conf.srcw, conf.srch, conf.fgid, conf.tilew, conf.tileh);
+        }
+        for(var i in this.layers) {
+            if(typeof this.layers[i].init == "function") this.layers[i].init();
+        }
+    }
+});
+
+
+
+
+
+
+/********************************************* Tileset ***********************************************/
+mdj.Tileset = function(scene) {
+    if(scene instanceof mdj.Scene) this.scene = scene;
+    
+    this.grids = [];
+};
+mdj.Tileset.prototype = {
+    constructor: mdj.Tileset,
+    getGrid: function(gid) {
+        if(this.grids[gid]) return this.grids[gid];
+        else return null;
+    },
+    addTileset: function(srcname, srcw, srch, firstgid, tilew, tileh) {
+        if((typeof srcname != "string") || mse.src.getSrc(srcname) == null || isNaN(srcw) || isNaN(srch) || isNaN(firstgid) || isNaN(tilew) || isNaN(tileh)) return;
+        
+        var row = Math.floor(srch / tileh);
+        var col = Math.floor(srcw / tilew);
+        var gid = firstgid;
+        for(var r = 0; r < row; ++r) {
+            for(var c = 0; c < col; ++c) {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+                canvas.width = tilew;
+                canvas.style.width = tilew;
+                canvas.height = tileh;
+                canvas.style.height = tileh;
+                ctx.drawImage(mse.src.getSrc(srcname), c*tilew, r*tileh, tilew, tileh, 0, 0, tilew, tileh);
+                this.grids[gid] = canvas;
+                gid++;
+            }
+        }
+    }
+};
+
+
+
+
+
+
+/********************************************* PARTIE LAYER ***********************************************/
+
+mdj.Layer = function(name, parent, zid){
+    this.name = name;
+	this.parent = (parent instanceof mdj.Scene) ? parent : null;
+	this.zid = isNaN(zid) ? 0 : zid;
+	this.ox = 0;
+	this.oy = 0;
+	if(this.parent) {
+	    this.parent.addLayer(this);
+	    this.width = this.parent.width;
+	    this.height = this.parent.height;
+	}
+	else {
+	    this.width = 0;
+	    this.height = 0;
+	}
+};
+mdj.Layer.prototype = {
+    getX: function() {
+        return 0;
+    },
+    getY: function() {
+        return 0;
+    },
+    getScene: function() {
+        return this.parent;
+    },
+    logic: function(){},
+	draw: function(context) {}
+};
+
+
+mdj.TileLayer = function(name, parent, zid, col, row, tilew, tileh, map){
+	mdj.Layer.call(this, name, parent, zid);
+	if(!map) return;
+	this.col = isNaN(col) ? 0 : col;
+	this.row = isNaN(row) ? 0 : row;
+	this.tilew = isNaN(tilew) ? 0 : tilew;
+	this.tileh = isNaN(tileh) ? 0 : tileh;
+	
+	this.map = map;
+};
+extend(mdj.TileLayer, mdj.Layer);
+$.extend(mdj.TileLayer.prototype, {
+    init: function() {
+        this.cache = document.createElement("canvas");
+        var ctx = this.cache.getContext("2d");
+        this.cache.width = this.col * this.tilew;
+        this.cache.style.width = this.col * this.tilew;
+        this.cache.height = this.row * this.tileh;
+        this.cache.style.height = this.row * this.tileh;
+        
+        for(var r = 0; r < this.row; ++r){
+            for(var c = 0; c < this.col; ++c) {
+                var gid = this.map[r * this.col + c];
+                this.drawTile(ctx, gid, Math.floor(c*this.tilew), Math.floor(r*this.tileh));
+            }
+        }
+    },
+	drawTile: function(ctx, gid, offx, offy) {
+		if(this.parent.tileset) {
+		    var grid = this.parent.tileset.getGrid(gid);
+		    if(grid) ctx.drawImage(grid, offx, offy);
+		}
+	},
+	draw: function(ctx, sx, sy, sw, sh) {
+	    if(this.cache) {
+	        ctx.drawImage(this.cache, sx, sy, sw, sh, sx, sy, sw, sh);
+	    }
+	    else {
+	        if(arguments.length < 5) {
+	            var cmin = 0;
+	            var rmin = 0;
+	            var cmax = this.col;
+	            var rmax = this.row;
+	        }
+	        else {
+	            var cmin = Math.floor(sx/this.tilew);
+	            var rmin = Math.floor(sy/this.tileh);
+	            var cmax = Math.ceil((sx+sw)/this.tilew);
+	            var rmax = Math.ceil((sy+sh)/this.tileh);
+	        }
+	        
+	        for(var r = rmin; r < rmax; ++r){
+	            for(var c = cmin; c < cmax; ++c) {
+	                var gid = this.map[r * this.col + c];
+	                this.drawTile(ctx, gid, c*this.tilew, r*this.tileh);
+	            }
+	        }
+	    }
+	}
+});
+
+
+mdj.ObjLayer = function(name, parent, zid, cachable){
+    mdj.Layer.call(this, name, parent, zid);
+	this.objs = [];
+	this.firstDraw = false;
+	this.cachable = cachable===true ? true : false;
+};
+extend(mdj.ObjLayer, mdj.Layer);
+$.extend(mdj.ObjLayer.prototype, {
+    init: function() {
+        if(!this.cache) this.cache = document.createElement("canvas");
+        this.cacheCtx = this.cache.getContext("2d");
+        this.cache.width = this.parent.width;
+        this.cache.style.width = this.parent.width;
+        this.cache.height = this.parent.height;
+        this.cache.style.height = this.parent.height;
+        
+        for(var i = 0; i < this.objs.length; ++i) {
+        	this.objs[i].draw(this.cacheCtx);
+        }
+    },
+	addObj: function(obj){
+		if(obj instanceof mdj.View) {
+		    this.objs.push(obj);
+		    obj.parent = this;
+		}
+		else if(obj instanceof mse.UIObject) {
+		    this.objs.push(obj);
+		    obj.parent = null;
+		}
+		else return;
+		
+		if(this.firstDraw && this.cachable) this.init();
+	},
+	logic: function(delta) {
+	    for(var i = 0; i < this.objs.length; ++i) {
+	    	if(this.objs[i] instanceof mdj.View) this.objs[i].model.logic(delta);
+	    	else this.objs[i].logic(delta);
+	    }
+	},
+	draw: function(ctx, sx, sy, sw, sh){
+	    if(!this.firstDraw) {
+	        this.firstDraw = true;
+	        if(this.cachable) this.init();
+	    }
+	    if(!this.cachable || isNaN(sx) || isNaN(sy) || isNaN(sw) || isNaN(sh)) {
+	        for(var i = 0; i < this.objs.length; ++i)
+	            this.objs[i].draw(ctx);
+	    }
+	    else ctx.drawImage(this.cache, sx, sy, sw, sh, sx, sy, sw, sh);
+	}
+});
+
+
+mdj.UILayer = function(name, parent, zid, logic, draw){
+    mdj.Layer.call(this, name, parent, zid);
+    if(typeof draw == "function") this.draw = draw;
+    if(typeof logic == "function") this.logic = logic;
+};
+extend(mdj.UILayer, mdj.Layer);
+
+
+
+
+/********************************************* PARTIE VIEW ***********************************************/
+
+
+
+mdj.View = function (model) {
+	this.setModel(model);
+};
+mdj.View.prototype= {
+	constructor: mdj.View,
+	getScene: function() {
+	    if(this.parent)
+	        return this.parent.getScene();
+	    else return null;
+	},
+	setModel: function(model){
+	    if(model instanceof mdj.Model)
+    		this.model = model;
+	}
+};
+
+
+mdj.Image = function (model, img) {
+	mdj.View.call(this, model);
+	this.img = img;
+};
+extend(mdj.Image, mdj.View);
+$.extend(mdj.Image.prototype, {
+	draw: function (ctx){
+		var img = mse.src.getSrc(this.img);
+		if(img){
+		    ctx.save();
+		    ctx.globalAlpha = this.model.opacity;
+		    var box = this.model.getBoundingBox();
+		    ctx.translate(box.x + box.w/2, box.y + box.h/2);
+		    ctx.rotate(this.model.getOrientation());
+		    ctx.drawImage(img, -box.w/2, -box.h/2, box.w, box.h);
+		    ctx.restore();
+		}
+	}
+});
+
+
+mdj.Sprite = function(model, src, config) {
+	mdj.View.call(this, model);
+	this.src = src;
+	this.currfr = 0;
+	this.animations = {};
+	this.currAnime = null;
+	
+	this.fw = config.w;
+	this.fh = config.h;
+	this.sx = config.sx;
+	this.sy = config.sy;
+	this.sw = config.sw;
+	this.sh = config.sh;
+	
+	this.col = Math.floor(this.sw/this.fw); 
+	this.row = Math.floor(this.sh/this.fh);
+};
+extend( mdj.Sprite, mdj.View);
+$.extend( mdj.Sprite.prototype, {
+    setFrame: function(fr) {
+        this.currfr = fr;
+    },
+	draw: function(ctx){
+	    if (this.currAnime)
+	    	this.currAnime.logic();
+	    
+		var img = mse.src.getSrc(this.src);
+		var sx = this.sx + (this.currfr % this.col) * this.fw;
+		var sy = this.sy + Math.floor(this.currfr / this.col) * this.fh;
+		
+		if(this.model){
+		    ctx.save();
+		    ctx.globalAlpha = this.model.opacity;
+		    var box = this.model.getBoundingBox();
+		    ctx.translate(box.x + box.w/2, box.y + box.h/2);
+		    ctx.rotate(this.model.getOrientation());
+		    ctx.drawImage(img, sx, sy, this.fw, this.fh, -box.w/2, -box.h/2, box.w, box.h);
+		    ctx.restore();
+		}
+	},
+	getAnime: function(name){
+	    if(this.animations[name]) return this.animations[name];
+	    else return null;
+	},
+	addAnime: function(name, anime) {
+	    if (anime instanceof mdj.AnimationSprite)
+		    this.animations[name] = anime;
+	},
+	playAnime: function(name) {
+	    if(this.animations[name]) {
+		    this.currAnime = this.animations[name];
+		    this.currAnime.start();
+		}
+	},
+	stopAnime: function() {
+	    if(this.currAnime) {
+		    this.currAnime.stop();
+		    this.currAnime = null;
+		}
+	},
+	deleteAnime: function(name) {
+		delete this.animations[name];
+	}
+});
+
+
+//Les animations de sprite
+mdj.AnimationSprite = function(sprite, seq, rep, delay) {
+	if(!seq instanceof Array || !sprite instanceof mdj.Sprite) return null;
+	
+	this.sprite = sprite;
+	this.seq = seq;
+	this.rep = isNaN(rep) ? 1 : rep;
+	this.delay = isNaN(delay) ? 0 : delay;
+	this.active = false;
+};
+mdj.AnimationSprite.prototype = {
+	constructor: mdj.AnimationSprite,
+	start: function() {
+		this.currFr = 0;
+		this.currRep = 1;
+		this.delayCount = this.delay;
+		this.active = true;
+	},
+	stop: function() {
+		this.currFr = 0;
+		this.currRep = 0;
+		this.active = false;
+	},
+	logic: function(delta) {
+		if (!this.active) return false;
+		
+		if (this.currFr < this.seq.length-1) {
+			if (this.delay != 0) {
+				if (this.delayCount == 0) {
+					this.currFr++;
+					this.delayCount = this.delay;
+				}
+				this.delayCount--;
+			}
+			else this.currFr++;
+		}
+		else {
+			if (this.currRep < this.rep || this.rep == 0) {
+				this.currRep++;
+				this.currFr = 0;
+			}
+			else {
+				this.active = false;
+				return true;
+			}
+		}
+		this.sprite.setFrame(this.seq[this.currFr]);
+		return false;
+	}
+};
+
+
+ 
+ 
+ 
+/********************************************* PARTIE MODEL ***********************************************/
+
+mdj.Model = function(ox, oy, rotation) {
+	this.ox = isNaN(ox) ? 0 : ox;
+	this.oy = isNaN(oy) ? 0 : oy;
+	this.width = 0;
+	this.height = 0;
+	this.rotation = isNaN(rotation) ? 0 : rotation;
+	this.opacity = 1;
+	this.prevOx = this.ox;
+	this.prevOy = this.oy;
+	this.proxy = new mse.EventDelegateSystem();
+	this.parent = null;
+};
+mdj.Model.prototype = {
+	move: function(disx, disy) {
+	    this.prevOx = this.ox;
+	    this.prevOy = this.oy;
+		this.ox += disx;
+		this.oy += disy;
+		var e = {
+			dx : disx,
+			dy : disy,
+			x  : this.ox,
+			y  : this.oy
+		};
+		this.proxy.eventNotif('movement', e);
+	},
+	setPos: function(x, y) {
+	    var e = {
+	    	'dx' : x-this.ox,
+	    	'dy' : y-this.oy,
+	    	'x'  : x,
+	    	'y'  : y
+	    };
+	    this.ox = x;
+	    this.oy = y;
+	    this.proxy.eventNotif('movement', e);
+	},
+	cancelMove: function() {
+	    this.ox = this.prevOx;
+	    this.oy = this.prevOy;
+	},
+	getBoundingBox: function() {
+	    return {
+	        x: this.getRelatX(),
+	        y: this.getRelatY(),
+	        w: this.getWidth(),
+	        h: this.getHeight()
+	    };
+	},
+	setCollisionBox: function(x, y, w, h) {
+	    this.colliBox = {'x': x, 'y': y, 'w': w, 'h': h};
+	},
+	getCollisionBox: function() {
+	    if(this.colliBox) return {
+	            x: this.getRelatX()+this.colliBox.x,
+	            y: this.getRelatY()+this.colliBox.y,
+	            w: this.colliBox.w,
+	            h: this.colliBox.h
+	        };
+	    else return this.getBoundingBox();
+	},
+	getRelatX: function() {
+	    return this.ox;
+	},
+	getRelatY: function() {
+	    return this.oy;
+	},
+	getX: function() {
+	    if(this.parent) return this.parent.getX() + this.getRelatX();
+	    else return this.getRelatX();
+	},
+	getY: function() {
+	    if(this.parent) return this.parent.getY() + this.getRelatY();
+	    else return this.getRelatY();
+	},
+	getWidth: function() {
+	    return 0;
+	},
+	getHeight: function() {
+	    return 0;
+	},
+	getOrientation: function() {
+	    return this.rotation;
+	},
+	logic: function() {}
+};
+
+mdj.BoxModel = function(ox, oy, width, height, rotation) {
+    mdj.Model.call(this, ox, oy, rotation);
+    this.width = isNaN(width) ? 0 : width;
+    this.height = isNaN(height) ? 0 : height;
+};
+extend(mdj.BoxModel, mdj.Model);
+$.extend(mdj.BoxModel.prototype, {
+    getWidth: function() {
+        return this.width;
+    },
+    getHeight: function() {
+        return this.height;
+    }
+});
+
+mdj.Box2DModel = function(ox, oy, rotation, worldObj, width, height, fixDefParam) {
+    this.sceneW = worldObj.data.sceneW;
+    this.sceneH = worldObj.data.sceneH;
+    
+    var RATIO = 30;
+    
+    var fixDef = new Box2D.Dynamics.b2FixtureDef;
+    if(typeof fixDefParam != 'object') fixDefParam = {};    
+    fixDef.density = isNaN(fixDefParam.density)? 1 : fixDefParam.density;
+    fixDef.friction = isNaN(fixDefParam.friction)? 0.3 : fixDefParam.friction;
+    fixDef.restitution = isNaN(fixDefParam.restitution)? 0.2 : fixDefParam.restitution;
+    this.boxW = width / 2;
+    this.boxH = width / 2;
+    
+    fixDef.shape = new Box2D.Collision.Shapes.b2PolygonShape;
+    fixDef.shape.SetAsBox(this.boxW / RATIO,  this.boxH / RATIO);
+    
+    
+    var bodyDef = new Box2D.Dynamics.b2BodyDef;
+    bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
+    bodyDef.position.x = ox / RATIO;
+    bodyDef.position.y = oy / RATIO;
+    bodyDef.angle = rotation;
+    
+    this.body = worldObj.CreateBody(bodyDef);
+    this.body.CreateFixture(fixDef);
+    
+    mdj.Model.call(this, ox, oy, rotation);
+    
+    this.width = width;
+    this.height = height;
+};
+extend(mdj.Box2DModel, mdj.Model);
+$.extend(mdj.Box2DModel.prototype, {
+    getWidth: function() {
+        return this.width;
+    },
+    getHeight: function() {
+        return this.height;
+    },
+    getOrientation: function() {
+        return this.body.GetAngle();
+    },
+    getRelatX: function() {
+        return this.body.GetPosition().x * 30 - this.width/2;
+    },
+    getRelatY: function() {
+        return this.body.GetPosition().y * 30 - this.height/2;
+    },
+    setPos: function(x,y){
+        this.body.SetPosition(new Box2D.Common.Math.b2Vec2(x/30, y/30));
+    }
+});
+
+
+
+
+/********************************************* INPUT CONTROL ***********************************************/
+
+// gestion input clavier
+mdj.DirectionalInput = function(game, target, tarProxy){
+    if(!(target instanceof mdj.Model)) return;
+	this.target = target;
+	this.tarProxy = tarProxy;
+	this.game = game;
+	this.onmove = false;
+	this.dir = "LEFT";
+	this.prevDir = "NONE";
+	this.proxy = new mse.EventDelegateSystem();
+	this.enabled = false;
+	
+	// Add default step move function in target model
+	if(!this.target.stepMove && this.target.inputv == null) {
+	    this.target.inputv = 4;
+	    this.target.stepMove = this.stepMovefn;
+	}
+	
+	this.movecb = new mse.Callback(this.move, this);
+	this.moveEndcb = new mse.Callback(this.moveEnd, this);
+	this.touchStartcb = new mse.Callback(this.touchStart, this);
+	this.touchMovecb = new mse.Callback(this.touchMove, this);
+	this.disableCb = new mse.Callback(this.disable, this);
+	
+	// Add vitural pad
+	if(MseConfig.iOS && mse && !this.vPadActive) {
+	    if(!game.currScene.uilayer)
+	        game.currScene.setUILayer(new mdj.ObjLayer('ui', null, 10));
+	    this.addVituralPadTo(game.currScene.uilayer);
+    }
+    // Add directionalInput callback to target logic, but not a good implementation
+    var directionalInput = this;
+    var logic = game.currScene.logic;
+    game.currScene.logic = function() {
+        logic.call(this);
+        directionalInput.frameMove();
+    }
+	
+	this.enable();
+	game.evtDeleg.addListener("end", this.disableCb);
+};
+mdj.DirectionalInput.prototype = {
+    enable: function() {
+        if(!this.tarProxy || this.enabled) return;
+        this.tarProxy.addListener('keydown', this.movecb);
+        this.tarProxy.addListener('keyup', this.moveEndcb);
+        if(MseConfig.iOS){
+            this.tarProxy.addListener('gestureStart', this.touchStartcb);
+            this.tarProxy.addListener('gestureUpdate', this.touchMovecb);
+            this.tarProxy.addListener('gestureEnd', this.moveEndcb);
+        }
+        this.enabled = true;
+    },
+    disable: function() {
+        if(!this.tarProxy || !this.enabled) return;
+        this.tarProxy.removeListener('keydown', this.movecb);
+        this.tarProxy.removeListener('keyup', this.moveEndcb);
+        if(MseConfig.iOS){
+            this.tarProxy.removeListener('gestureStart', this.touchStartcb);
+            this.tarProxy.removeListener('gestureUpdate', this.touchMovecb);
+            this.tarProxy.removeListener('gestureEnd', this.moveEndcb);
+        }
+        this.onmove = false;
+        this.enabled = false;
+    },
+    setTarProxy: function(tarProxy) {
+        if(this.enabled) this.disable();
+        this.tarProxy = tarProxy;
+        if(this.enabled) this.enable();
+    },
+    stepMovefn: function(dir) {
+        switch(dir) {
+        case "LEFT":
+            var disx = -1, disy = 0;break;
+        case "RIGHT":
+            var disx = 1, disy = 0;break;
+        case "UP":
+            var disx = 0, disy = -1;break;
+        case "DOWN":
+            var disx = 0, disy = 1;break;
+        default : return;
+        }
+        this.move(disx*this.inputv, disy*this.inputv);
+    },
+    touchStart: function(e) {
+        if(inrect(e.offsetX, e.offsetY, this.touchZone)) this.touchValid = true;
+        this.onmove = false;
+    },
+    frameMove: function() {
+        if(this.target.stepMove && this.onmove) this.target.stepMove(this.dir);
+    },
+    touchMove: function(e) {
+        if(this.touchValid) {
+            var ox = this.touchZone[0]+40, oy = this.touchZone[1]+40;
+            var a = mseAngleForLine(ox, oy, e.offsetX, e.offsetY);
+            var dis = distance2Pts(ox, oy, e.offsetX, e.offsetY);
+            if(dis < 40) this.padHandler.setPos(e.offsetX-40, e.offsetY-40);
+            else this.padHandler.setPos(ox+40/dis*(e.offsetX-ox)-40, oy+40/dis*(e.offsetY-oy)-40);
+            if((a >= 0 && a <= 15) || (a <= 0 && a >= -15)){
+                // Right
+                var disx = 4, disy = 0;
+                this.dir = "RIGHT";
+            }
+            else if(a >= 75 && a <= 105) {
+                // Down
+                var disy = -4, disx = 0;
+                this.dir = "DOWN";
+            }
+            else if(a >= 165 || a <= -165) {
+                // Left
+                var disx = -4, disy = 0;
+                this.dir = "LEFT";
+            }
+            else if(a <= -75 && a >= -105) {
+                // Up
+                var disy = 4, disx = 0;
+                this.dir = "UP";
+            }
+            else return;
+            
+            // Direction change
+            if(this.prevDir != this.dir) {
+                this.proxy.eventNotif("dirChange", {'dir':this.dir});
+            }
+            
+            if(!this.onmove) {
+                this.onmove = true;
+                if(typeof this.target.startMove == "function") this.target.startMove(this.dir);
+            }
+            this.prevDir = this.dir;
+        }
+    },
+	move: function(e) {
+	    switch(e.keyCode) {
+	    case __KEY_LEFT:
+	        this.dir = "LEFT";break;
+	    case __KEY_RIGHT:
+	        this.dir = "RIGHT";break;
+	    case __KEY_UP:
+	        this.dir = "UP";break;
+	    case __KEY_DOWN:
+	        this.dir = "DOWN";break;
+	    default : return;
+	    }
+	    
+	    // Direction change
+	    if(this.prevDir != this.dir) {
+	        this.proxy.eventNotif("dirChange", {'dir':this.dir});
+	    }
+	    
+	    if(!this.onmove) {
+	        this.onmove = true;
+	        if(typeof this.target.startMove == "function") this.target.startMove(this.dir);
+	    }
+	    this.prevDir = this.dir;
+	},
+	moveEnd: function(e) {
+	    this.onmove = false;
+	    this.touchValid = false;
+	    this.proxy.eventNotif("dirChange", {'prev':this.prevDir,'dir':'NONE'});
+	    this.prevDir = "NONE";
+	    if(typeof this.target.endMove == "function") superthis.target.endMove(dir);
+	    if(this.padHandler) this.padHandler.setPos(this.touchZone[0], this.touchZone[1]);
+	    this.startPt = null;
+	},
+	addVituralPadTo: function(layer) {
+	    if(!mse) return;
+	    this.padBase = new mse.Image(null, {pos:[46, this.game.height-103],size:[48,48],globalAlpha:0.6}, 'vPadBase');
+	    this.padHandler = new mse.Image(null, {pos:[30, this.game.height-119],size:[80,80],globalAlpha:0.6}, 'vPadHandler');
+	    layer.addObj(this.padBase);
+	    layer.addObj(this.padHandler);
+	    this.touchZone = [30, this.game.height-119, 80, 80];
+	    this.vPadActive = true;
+	}
+};
+
+
+
+
+/********************************************* CAMERA ***********************************************/
+
+mdj.Camera = function(width, height, scene, target, tarOffx, tarOffy){
+	this.height = isNaN(height) ? 0 : height;
+	this.width = isNaN(width) ? 0 : width;
+	//this.moveCb = new mse.Callback(this.move, this);
+	this.setTarget(scene, target, tarOffx, tarOffy);
+};
+mdj.Camera.prototype = {
+	move: function(e){
+		this.ox += e.dx;
+		this.oy += e.dy;
+	},
+	setTarget: function(scene, target, tarOffx, tarOffy){
+		if(!target instanceof mdj.Model || !target instanceof mse.UIObject || !scene instanceof mdj.Scene) return;
+		this.target = target;
+		this.scene = scene;
+		this.tarOffx = isNaN(tarOffx) ? 0 : tarOffx;
+		this.tarOffy = isNaN(tarOffy) ? 0 : tarOffy;
+		// Already positioned
+		if(!isNaN(this.ox)) {
+		    this.movecount = 15;
+		    this.prevox = this.ox;
+		    this.prevoy = this.oy;
+		}
+		// Reposition the camera
+		this.ox = target.getX() - (this.width/2 - this.tarOffx);
+		this.oy = target.getY() - (this.height/2 - this.tarOffy);
+	},
+	drawScene: function(ctx) {
+	    if(this.target && this.scene) {
+	        // Reposition the camera
+	        this.ox = Math.round(this.target.getX() - (this.width/2 - this.tarOffx));
+	        this.oy = Math.round(this.target.getY() - (this.height/2 - this.tarOffy));
+	        
+	        // Calibration when the camera is at the border of the scene
+	        if(this.ox < 0) this.ox = 0;
+	        if(this.oy < 0) this.oy = 0;
+	        if(this.ox + this.width > this.scene.width) this.ox = this.scene.width - this.width;
+	        if(this.oy + this.height > this.scene.height) this.oy = this.scene.height - this.height;
+	        
+	        // Transition of camera
+	        if(this.movecount > 0) {
+	            var ratio = (15 - this.movecount)/15;
+	            this.ox = this.prevox + Math.round((this.ox - this.prevox)*ratio);
+	            this.oy = this.prevoy + Math.round((this.oy - this.prevoy)*ratio);
+	            this.movecount--;
+	        }
+	        
+	        // Draw scene
+	        this.scene.drawInRect(ctx, -this.ox, -this.oy, this.width, this.height);
+	    }
+	}
+};
+
+
+
+
+/********************************************* COLLISION ***********************************************/
+
+mdj.CollisionDetector = function(target){
+    this.setTarget(target);
+    this.detectors = {};
+    this.callbacks = {};
+};
+mdj.CollisionDetector.prototype = {
+    // Register detectors
+	register: function(ref, detector, cb){
+		if(ref && (cb instanceof mse.Callback || typeof cb == 'function')) {
+		    this.detectors[ref] = detector;
+		    this.callbacks[ref] = cb;
+		}
+	},
+	// Set the collision detect target
+	setTarget: function(target){
+	    if(target instanceof mdj.Model) {
+	        this.tar = target;
+		    target.proxy.addListener('movement', new mse.Callback(this.detect, this));
+		    target.proxy.addListener('collision', new mse.Callback(this.triger, this));
+		}
+	},
+	// Triger of all callbacks
+	triger: function(e) {
+	    var ref = e.detector;
+	    if( this.detectors[ref] && this.callbacks[ref] ) {
+	        e.detector = this.detectors[ref];
+	        cb = this.callbacks[ref];
+	        if(cb instanceof mse.Callback)
+	            cb.invoke(e);
+	        else if(typeof cb == 'function')
+	            cb.call(this.tar, e);
+	    }
+	},
+	// Detect collision function
+	detect: function(e) {
+	    if(this.tar) {
+	        var box = this.tar.getCollisionBox();
+	        for(var i in this.detectors) {
+	            var detector = this.detectors[i];
+	            // Detect collision between objs
+	            if(detector instanceof mdj.Model) {
+	                var comp = detector.getCollisionBox();
+	                // Detect for two rectangle no rotation
+	                if( ((comp.x >= box.x && comp.x <= box.x+box.w) ||
+	                    (box.x >= comp.x && box.x <= comp.x+comp.w)) &&
+	                    ((comp.y >= box.y && comp.y <= box.y+box.h) ||
+	                    (box.y >= comp.y && box.y <= comp.y+comp.h)) ) {
+	                    
+	                    this.tar.proxy.eventNotif('collision', {
+	                        'detector':i,
+	                        'offx':box.x+box.w-comp.x,
+	                        'offy':box.y+box.h-comp.y
+	                    });
+	                    return;
+	                }
+	            }
+	            // Detect collision between obj and tile layer
+	            else if(detector instanceof mdj.TileLayer) {
+	                var colmin = Math.floor(box.x/detector.tilew);
+	                var rowmin = Math.floor(box.y/detector.tileh);
+	                var colmax = Math.floor((box.x+box.w)/detector.tilew);
+	                var rowmax = Math.floor((box.y+box.h)/detector.tileh);
+	                for(var r = rowmin; r <= rowmax; ++r) {
+	                    for(var c = colmin; c <= colmax; ++c) {
+	                        // Collision
+	                        var gid = r * detector.col + c;
+	                        if(detector.map[gid] != 0) {
+	                            var offy = r * detector.tileh;
+	                            var offx = c * detector.tilew;
+	                            this.tar.proxy.eventNotif('collision', {
+	                                'detector':i,
+	                                'gid':gid,
+	                                'offx':box.x+box.w-offx,
+	                                'offy':box.y+box.h-offy
+	                            });
+	                            return;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }
+	}
+};
+
+
+
+})(window, mse, $);

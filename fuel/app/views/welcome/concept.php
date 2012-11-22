@@ -1,10 +1,10 @@
 <div class="main_container">
 
     <div id="concept" class="layer">
-        <div id="cpt_intro">
-            <h1>EXPLIQUER LE CONCEPT</h1>
+        <!--<div id="cpt_intro">
+            <h1>Explique le concept</h1>
             <cite>« Season13, de nouvelles expériences à vivre sur le web. Immerge-toi dans une série et découvre un suspense haletant »</cite>
-        </div>
+        </div>-->
         <div id="cpt_content">
             <div id="cpt1" class="cpt_section">
                 <?php echo Asset::img("season13/expos/concept1.jpg", array('alt' => 'Expérience - Conception SEASON 13')); ?>
@@ -28,8 +28,8 @@
                 <?php echo Asset::img("season13/expos/concept3.jpg", array('alt' => 'Jeu - Conception SEASON 13')); ?>
                 <h1>JEU</h1>
                 <h5>
-                    <p><strong>Chaque épisode de nos séries comprend un jeu vidéo.</strong></p>
-                    <p>Tu peux y jouer autant de fois que tu le désires pour obtenir un super score. Si tu l’affiches sur ton mur Facebook, tu pourras participer à un jeu concours entre les 30 meilleurs scores mensuels de ce jeu. Des dizaines de cadeaux à gagner : places de cinéma, sonneries de téléphone…</p>
+                    <p><strong>Chaque épisode comporte un jeu.</strong></p>
+                    <p>Publie ton score sur Facebook et gagne de nombreux cadeaux.</p>
                 </h5>
                 <div class="list_deco"></div>
             </div>
@@ -37,8 +37,8 @@
                 <?php echo Asset::img("season13/expos/concept4.jpg", array('alt' => 'Communauté - Conception SEASON 13')); ?>
                 <h1>COMMUNAUTÉ</h1>
                 <h5>
-                    <p><strong>Partage cette nouvelle expérience avec tes amis</strong> : envoie tes commentaires avec des extraits de la série sur Facebook.</p>
-                    <p>Utilise l’un des personnages comme avatar ou remplace sa tête dans la série par ta photo ou ton propre avatar.</p>
+                    <p><strong>Partage cette nouvelle expérience avec tes amis</strong></p>
+                    <p>Grâce à un système de commentaires et de partage sur Facebook, continue d'échanger sur ta série!</p>
                 </h5>
                 <div class="list_deco"></div>
             </div>
@@ -51,7 +51,7 @@
         <div id="cpt_multi">
             <h1>MULTI-SUPPORT</h1>
             <?php echo Asset::img("season13/cpt_multi.png", array('alt' => 'Multiplateforme - Conception SEASON 13')); ?>
-            <h5>Les histoires de Season13 sont lisibles sur <strong>iPad, iPhone, et tous les appareils disposant d’un navigateur de dernière génération</strong> (Chrome, Firefox 4+, IE 9, Safari, ...)</h5>
+            <h5>Season13 est multi-support, suis ton aventure préférée sur le site, sur <strong>PC, iPad ou iPhone.</strong></h5>
         </div>
     </div>
 

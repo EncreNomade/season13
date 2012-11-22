@@ -11,6 +11,7 @@ class Controller_Admin_13comments extends Controller_Template
 		
 		// Set a global variable so views can use it
 		View::set_global('current_user', $this->current_user);
+		View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
 
 		if ( ! Auth::member(100) and Request::active()->action != 'login')
 		{

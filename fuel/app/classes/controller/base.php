@@ -15,9 +15,82 @@ class Controller_Base extends Controller_Rest
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
     }
+    
+    private static function addToPrestashop($user, $pass) {
+        require_once( APPPATH.'classes/custom/PSWebServiceLibrary.php' );
+        
+        $storeurl = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/prestashop/' : 'http://shop.season13.com/';
+        $key = 'LSCWIFSSE16MA015TP5YTSZTMTR5C76M';
+        
+        try {
+            $webService = new PrestaShopWebservice( $storeurl, $key, false );
+        }
+        catch ( PrestaShopWebserviceException $ex ) {
+            $trace = $ex->getTrace(); // Retrieve all information on the error
+            $errorCode = $trace[ 0 ][ 'args' ][ 0 ]; // Retrieve the error code
+            return array('valid' => false, 'errorCode' => $errorCode, 'errorMessage' => $ex->getMessage());
+        }
+        
+        $xml = $webService->get( array( 'url' => $storeurl.'api/customers?schema=blank' ) );
+        $fields = $xml->children()->children();
+        
+        foreach ( $fields as $key => $field ) {
+            switch ($key) {
+            case "id_default_group":
+                $fields->$key = $user->group;
+                break;
+            case "passwd":
+                $fields->$key = $pass;
+                break;
+            case "lastname":
+                $fields->$key = " ";
+                break;
+            case "firstname":
+                $fields->$key = $user->pseudo;
+                break;
+            case "email":
+                $fields->$key = $user->email;
+                break;
+            case "id_gender":
+                $birth = date_timestamp_get(date_create_from_format('Y-m-d', $user->birthday));
+                $age = intval(Date::time_ago($birth, time(), 'year'));
+                $fields->$key = $user->sex == "m" ? 1 : ($age > 26 ? 2 : 3);
+                break;
+            case "birthday":
+                $fields->$key = $user->birthday;
+                break;
+            case "optin": case "is_guest": case "newsletter": case "deleted":
+                $fields->$key = 0;
+                break;
+            case "active":
+                $fields->$key = 1;
+                break;
+            default:
+                break;
+            }
+        }
+        
+        $opt = array( 'resource' => 'customers' ); // Resource definition
+        $opt[ 'postXml' ] = $xml->asXML();
+        
+        try {
+            $webService->add( $opt );
+        }
+        catch ( PrestaShopWebserviceException $ex ) {
+            $prestatrace = $ex->getTrace(); // Retrieve all information on the error
+            $errorCode = $prestatrace[ 0 ][ 'args' ][ 0 ]; // Retrieve the error code
+            return array('valid' => false, 'errorCode' => $errorCode, 'errorMessage' => $ex->getMessage());
+        }
+        
+        return array('valid' => true);
+    }
 	
 	public function post_signup_normal()
 	{
+	    if(!Security::check_token()) {
+	        return $this->response(array('valid' => false, 'errorMessage' => "CSRF attack"), 200);
+	    }
+	    
 	    $val = Validation::forge();
     
         $val->add('pseudo', 'Pseudo')
@@ -34,13 +107,13 @@ class Controller_Base extends Controller_Rest
 		    $existuser = Model_13user::find_by_email(Input::post('email'));
 		    if($existuser !== null) {
 		        $valide = false;
-		        $this->response(array('valid' => false, 'errorType' => 'mail', 'errorMessage' => 'Email existe déjà.'), 200);
+		        return $this->response(array('valid' => false, 'errorType' => 'mail', 'errorMessage' => 'Email existe déjà.'), 200);
 		    }
 		    else {
     		    $existuser = Model_13user::find_by_pseudo(Input::post('pseudo'));
     		    if($existuser !== null) {
     		        $valide = false;
-    		        $this->response(array('valid' => false, 'errorType' => 'pseudo', 'errorMessage' => 'Pseudo existe déjà.'), 200);
+    		        return $this->response(array('valid' => false, 'errorType' => 'pseudo', 'errorMessage' => 'Pseudo existe déjà.'), 200);
     		    }
 		    }
 		    
@@ -79,18 +152,27 @@ class Controller_Base extends Controller_Rest
     				$this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
     				// Set a global variable so views can use it
     				View::set_global('current_user', $this->current_user);
-    				$this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
-    
+    				
+    				// Save in prestashop
+    				//$prestasave = Controller_Base::addToPrestashop($this->current_user, Input::post('password'));
+    				
+    				//if($prestasave['valid']) {
+    				    return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+    				//}
+    				//else {
+    				//    $this->current_user->delete();
+    				//    return $this->response($prestasave, 200);
+    				//}
     			}
     			else
     			{
-    				$this->response(array('valid' => false, 'errorMessage' => 'Echec à créer utilisateur'), 200);
+    				return $this->response(array('valid' => false, 'errorMessage' => 'Echec à créer utilisateur'), 200);
     			}
 			}
 		}
 		else 
 		{
-		    $this->response(array('valid' => false, 'error' => $val->error()), 200);
+		    return $this->response(array('valid' => false, 'error' => $val->error()), 200);
 		}
 	}
 	
@@ -98,6 +180,10 @@ class Controller_Base extends Controller_Rest
 	
 	public function post_login_normal()
 	{
+	    //if(!Security::check_token()) {
+	    //    return $this->response(array('valid' => false, 'errorMessage' => "CSRF attack"), 200);
+	    //}
+	    
 		// Already logged in
 		Auth::check() and $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
 
@@ -173,16 +259,13 @@ class Controller_Base extends Controller_Rest
 	}
 	
 	
-	/*
-	'pseudo': name,
-	'oldPass': oldPass,
-	'newPass': pass,
-	'sex': sex,
-	'birthday': bDay,
-	'pays': pays,
-	'codpos': codpos*/
+	
 	public function post_update()
 	{
+	    if(!Security::check_token()) {
+	        return $this->response(array('valid' => false, 'errorMessage' => "Veuille recharger la page et puis réessayer."), 200);
+	    }
+	    
 	    $auth = Auth::instance();
         
         $update = array('old_password' => Input::post('oldPass'));
@@ -225,5 +308,25 @@ class Controller_Base extends Controller_Rest
 		    $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
 		}
 	}
+	
+	
+	
+    
+    
+    public function get_story_access() {
+        $epid = Input::get('epid') ? Input::get('epid') : null;
+        
+        Config::load('errormsgs', true);
+        $codes = (array) Config::get('errormsgs.story_access', array ());
+        
+        if(is_null($epid)) {
+            $this->response(array('valid' => false, 'errorCode' => '102', 'errorMessage' => $codes[102]), 200);
+        }
+        else {
+            $access = Controller_Story::requestAccess($epid, $this->current_user);
+            
+            $this->response($access, 200);
+        }
+    }
     
 }

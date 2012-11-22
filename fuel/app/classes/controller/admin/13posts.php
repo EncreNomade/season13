@@ -20,7 +20,9 @@ class Controller_Admin_13posts extends Controller_Template
 	public function action_index()
 	{
 		$data['admin_13posts'] = Model_Admin_13post::find('all');
-		$this->template->title = "L'actualités de SEASON13";
+		
+		$this->template->title = "L'actualité, Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux - SEASON13";
+		
 		$this->template->css_supp = 'post_index.css';
 		$this->template->content = View::forge('admin/13posts/index', $data);
 

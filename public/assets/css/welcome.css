@@ -1,8 +1,43 @@
+/* ================ Invitation ================ */
+#invitation_dialog {
+    position: absolute;
+    top: -600px;
+    left: -200px;
+    width: 400px;
+    height: 430px;
+    
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+#invitation_dialog.show {
+    top: 50px;
+    opacity: 1;
+    z-index: 12;
+}
+#invitation_dialog > .close {
+    right: 0px;
+    left: auto;
+}
+#invitation_dialog .section > h5 {
+    font: normal 15px/20px Arial;
+}
+#invitation_dialog .section label {
+    width: 230px;
+}
+#invitation_dialog .section p input, #invitation_dialog .section p button, #invitation_dialog .section p select, #invitation_dialog .section p span {
+    left: 230px;
+}
+
 .center {
     position: absolute;
     left: 50%;
-    top: 50%;
-    z-index: 1;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+    z-index: 12;
 }
 
 .layer {
@@ -25,18 +60,29 @@
     background: transparent;
     width: 370px;
     height: 116px;
-    z-index: 3;
+    z-index: 2;
     cursor: pointer;
 }
 
 #bookresume {
     left: 36%;
     top: 195px;
+    right: 20px;
     background: transparent;
-    width: 450px;
-    z-index: 2;
+    width: auto;
+    z-index: 3;
+}
+#bookresume object {
+    -webkit-box-shadow: 0px 0px 6px #fff;
+    -moz-box-shadow: 0px 0px 6px #fff;
+    -ms-box-shadow: 0px 0px 6px #fff;
+    -o-box-shadow: 0px 0px 6px #fff;
+    box-shadow: 0px 0px 6px #fff;
 }
 #bookresume p {
+    position: absolute;
+    left: 430px;
+    top: 0px;
     margin: 5px;
     color: #fff;
     font: normal 16px/20px Arial;
@@ -44,9 +90,9 @@
 
 #btns {
     right: 20px;
-    top: 340px;
+    top: 390px;
     background: transparent;
-    z-index: 5;
+    z-index: 4;
 }
 #btns ul {
     margin: 0px;
@@ -56,27 +102,33 @@
     background: #aa0000;
     color: #fff;
     margin: 0px 0px 10px 0px;
-    padding: 0px 0px 0px 12px;
-    width: 250px;
+    padding: 0;
+    width: 230px;
     height: 40px;
     visibility: visible;
 }
 #btns ul li a {
     position: absolute;
-    font: normal 25px/40px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    font: normal 23px/40px "BebasNeueRegular", "Helvetica LT Std", Arial;
     margin: 0px;
     padding: 2px 0px 0px 0px;
     height: 40px;
+    text-align: center;
+    width: 100%;
 }
 
 #simon {
     left: 85px;
     top: 90px;
     bottom: 0px;
-    background: transparent url('../img/season13/illus/simonHD.png') no-repeat left top;
+    background: transparent;
     width: 284px;
-    height: auto/*655px*/;
+    height: 612px;
     z-index: 5;
+}
+#simon img {
+    width: 100%;
+    height: 100%;
 }
 
 #bande4 {

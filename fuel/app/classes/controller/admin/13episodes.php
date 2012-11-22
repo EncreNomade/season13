@@ -2,6 +2,22 @@
 class Controller_Admin_13episodes extends Controller_Admin 
 {
     public $template = 'admin/template';
+        
+    public function before()
+    {
+    	parent::before();
+    	
+        // Assign current_user to the instance so controllers can use it
+		$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+		
+		// Set a global variable so views can use it
+		View::set_global('current_user', $this->current_user);
+
+		if ( ! Auth::member(100) and Request::active()->action != 'login')
+		{
+			Response::redirect('404');
+		}
+    }
 
 	public function action_index()
 	{

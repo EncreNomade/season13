@@ -2,7 +2,7 @@
 
 class Controller_Upload extends Controller_Rest
 {
-    private $img_ext_whitelist = array('jpg','jpeg','png','tiff','bmp','gif');
+    private static $img_ext_whitelist = array('jpg','jpeg','png','tiff','bmp','gif');
 
     public function before()
     {
@@ -12,11 +12,11 @@ class Controller_Upload extends Controller_Rest
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
     }
     
-    private function site_root() {
-        return 'http://'.$_SERVER['SERVER_NAME'].'/';
+    private static function site_root() {
+        return 'http://'.$_SERVER['SERVER_NAME'].(Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
     }
     
-    private function saveBase64Src($name, $encodedStr, $path, $ext_whitelist = false) {
+    private static function saveBase64Src($name, $encodedStr, $path, $ext_whitelist = false) {
         // Pattern regexp for get type, extension, codage of file
         $pattern = "/data:\s*(?P<type>\w+)\/(?P<ext>\w+);\s*(?P<codage>\w+),/";
         preg_match($pattern, $encodedStr, $res);
@@ -54,6 +54,83 @@ class Controller_Upload extends Controller_Rest
         else
             return false;
     }
+    
+    public static function saveUploadImage($savepath, $userid, $id, $access=1) {
+        Config::load('errormsgs', true);
+        $codes = (array) Config::get('errormsgs.upload', array ());
+    
+        // Custom configuration for this upload
+        $config = array(
+        	'path' => DOCROOT.$savepath,
+        	'prefix' => $userid.'_',
+        	'randomize' => true,
+        	'max_size' => 512000,
+        	'ext_whitelist' => self::$img_ext_whitelist,
+        );
+        
+        // process the uploaded files in $_FILES
+        Upload::process($config);
+        
+        // if there are any valid files
+        if (Upload::is_valid())
+        {
+        	// save them according to the config
+        	Upload::save(0);
+        	
+        	$uploaded = Upload::get_files($id);
+        	
+        	if( !$uploaded ) {
+        	    return array(
+        	        'success' => false,
+        	        'errorCode' => 1101,
+        	        'errorMessage' => $codes[1101]
+        	    );
+        	}
+        	else {
+        	    $fullpath = Controller_Upload::site_root().$savepath.DS.$uploaded['saved_as'];
+            	// call a model method to update the database
+            	$uploadRecord = Model_Upload::forge(array(
+            		'created_by' => $userid,
+            		'type' => 'img',
+            		'path' => $fullpath,
+            		'access' => $access
+            	));
+            	
+            	if($uploadRecord and $uploadRecord->save()) {
+            	    return array(
+                        'success' => true,
+                        'path' => $fullpath
+                    );
+            	}
+            	else {
+            	    return array(
+            	        'success' => false,
+            	        'errorCode' => 1201,
+            	        'errorMessage' => $codes[1201]
+            	    );
+            	}
+        	}
+        }
+        else {
+        	// and process any errors
+        	// $file is an array with all file information,
+        	// $file['errors'] contains an array of all error occurred
+        	// each array element is an an array containing 'error' and 'message'
+        	foreach(Upload::get_errors() as $file) {
+        	    return array(
+        	        'success' => false,
+        	        'errorCode' => $file['error'],
+        	        'errorMessage' => $file['message']
+        	    );
+        	}
+        	
+    	    return array(
+    	        'success' => false,
+    	        'errorCode' => 1101,
+    	        'errorMessage' => $codes[1101]
+    	    );
+        }
+    }
 
 	public function post_create_img($id = null)
 	{
@@ -65,76 +142,24 @@ class Controller_Upload extends Controller_Rest
 	    }
 	    else {
     	
-    	    // Custom configuration for this upload
-        	$config = array(
-            	'path' => DOCROOT.'custom_files/uploads',
-            	'prefix' => $this->current_user->id.'_',
-            	'randomize' => true,
-            	'max_size' => 512000,
-            	'ext_whitelist' => $this->img_ext_whitelist,
-        	);
-        	
-        	// process the uploaded files in $_FILES
-        	Upload::process($config);
-        	
-        	// if there are any valid files
-        	if (Upload::is_valid())
-        	{
-            	// save them according to the config
-            	Upload::save(0);
-            	
-            	$uploaded = Upload::get_files('upload_pic');
-            	
-            	if( !$uploaded ) {
-            	    $this->response(array(
-            	        'success' => false,
-            	        'errorMessage' => 'Echec à télécharger le fichier'
-            	    ));
-            	}
-            	else {
-            	    $fullpath = self::site_root().'custom_files/uploads/'.$uploaded['saved_as'];
-                	// call a model method to update the database
-                	$uploadRecord = Model_Upload::forge(array(
-                		'created_by' => $this->current_user->id,
-                		'type' => 'img',
-                		'path' => $fullpath,
-                		'access' => 1
-                	));
-                	
-                	if($uploadRecord and $uploadRecord->save()) {
-                	    $this->response(array(
-        	                'success' => true,
-        	                'path' => $fullpath
-        	            ));
-                	}
-                	else {
-                	    $this->response(array(
-                	        'success' => false,
-                	        'errorMessage' => 'Echec à enregisterer le téléchargement'
-                	    ));
-                	}
-            	}
-        	}
-        	else {
-            	// and process any errors
-            	// $file is an array with all file information,
-            	// $file['errors'] contains an array of all error occurred
-            	// each array element is an an array containing 'error' and 'message'
-            	$file = Upload::get_errors(0);
-            	
-            	if( !$file ) {
-            	    $this->response(array(
-            	        'success' => false,
-            	        'errorMessage' => 'Erreur inconnu'
-            	    ));
-            	}
-            	else {
-                	$this->response(array(
-            	        'success' => false,
-            	        'errors' => $file['errors']
-                	));
-        	    }
-    	    }
+    	    $this->response(Controller_Upload::saveUploadImage('custom_files'.DS.'uploads', $this->current_user->id, 'upload_pic'));
+    	    
+	    }
+	}
+	
+	
+	public function post_create_mail_attachment($id = null)
+	{
+	    if(is_null($this->current_user)) {
+	        $this->response(array(
+	            'success' => false,
+	            'errorMessage' => 'Connecte-toi sur la page d\'Accueil'
+	        ));
+	    }
+	    else {
+		
+		    $this->response(Controller_Upload::saveUploadImage('mail_attachments'.DS.'uploads', $this->current_user->id, 'upload_pic'));
+		    
 	    }
 	}
 	
@@ -151,7 +176,7 @@ class Controller_Upload extends Controller_Rest
     	    
     	    $content = Input::post('imgData64');
     	    
-    	    $filename = self::saveBase64Src($name, $content, DOCROOT.'custom_files/drawings/', $this->img_ext_whitelist);
+    	    $filename = Controller_Upload::saveBase64Src($name, $content, DOCROOT.'custom_files/drawings/', self::$img_ext_whitelist);
     	    
     	    if(!$filename) {
     	        $this->response(array(
@@ -164,14 +189,14 @@ class Controller_Upload extends Controller_Rest
     	        $uploadRecord = Model_Upload::forge(array(
     	        	'created_by' => $this->current_user->id,
     	        	'type' => 'img',
-    	        	'path' => self::site_root().'custom_files/drawings/'.$filename,
+    	        	'path' => Controller_Upload::site_root().'custom_files/drawings/'.$filename,
     	        	'access' => 1
     	        ));
     	        
     	        if($uploadRecord and $uploadRecord->save()) {
     	            $this->response(array(
     	                'success' => true,
-    	                'path' => self::site_root().'custom_files/drawings/'.$filename
+    	                'path' => Controller_Upload::site_root().'custom_files/drawings/'.$filename
     	            ));
     	        }
     	        else {

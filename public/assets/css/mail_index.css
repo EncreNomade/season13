@@ -1,0 +1,44 @@
+.clearfix, .actions {
+    margin: 5px auto;
+}
+
+form .clearfix {
+    width: 440px;
+    height: auto;
+}
+form .actions {
+    width: 200px;
+}
+form .clearfix label {
+    position: relative;
+    float: left;
+    text-align: right;
+    width: 100px;
+    margin: 0 10px 0 0;
+}
+form .clearfix div {
+    position: relative;
+    float: right;
+    text-align: left;
+    width: 330px;
+    min-height: 25px;
+}
+
+form .clearfix div textarea {
+    width: 290px;
+    resize: none;
+}
+
+.main_container > div {
+	font: normal 14px/25px 'DroidSansRegular', Arial, Helvetica;
+	margin: 30px 100px 30px 100px;
+}
+.main_container h1 {
+    font: normal 30px/45px 'DroidSansBold';
+}
+.main_container strong {
+    font: normal 20px/32px 'DroidSansBold';
+}
+.main_container h5.gris {
+    color: #686868;
+}
