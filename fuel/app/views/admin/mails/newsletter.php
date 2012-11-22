@@ -14,7 +14,7 @@
     	    <?php endif; ?>
     	    
     	    <div id="head_banner">
-    	        <?php echo Asset::img('season13/mail/newsletter_banner.jpg'); ?>
+    	        <?php echo Asset::img('season13/mail/simple_head.jpg'); ?>
     	        <h1>Newsletter</h1>
     	    </div>
     	    

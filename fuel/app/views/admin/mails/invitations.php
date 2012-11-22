@@ -9,13 +9,11 @@
     	<div class="main_container">
     	    
     	    <div id="head_banner">
-    	        <?php echo Asset::img('season13/mail/newsletter_banner.jpg'); ?>
-    	        <h1>Invitation</h1>
+    	        <?php echo Asset::img('season13/mail/invitation_head.jpg'); ?>
+    	        <!--<h1>Invitation</h1>-->
     	    </div>
     	    
     	    <div id="content_container">
-    	        <?php if(isset($img)) echo Asset::img($img); ?>
-    	    
     	        <div class="text_container">
     	        
     	        <h5>

@@ -199,7 +199,7 @@ class Controller_Base extends Controller_Rest
 			$auth = Auth::instance();
 
 			// check the credentials. This assumes that you have the previous table created
-			if (Auth::check() or $auth->login(Input::post('identifiant'), Input::post('password')))
+			if ( $auth->login(Input::post('identifiant'), Input::post('password')) )
 			{
 				// credentials ok, go right in
 				$this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
