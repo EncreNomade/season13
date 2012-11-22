@@ -4,7 +4,7 @@
     top: -600px;
     left: -200px;
     width: 400px;
-    height: 430px;
+    height: auto;
     
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;

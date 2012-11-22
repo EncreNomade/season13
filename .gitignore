@@ -3,7 +3,4 @@ fuel/packages/auth
 
 *.espressostorage
 
-SEASON13.esproj/user.panda.espressostorage
-
-SEASON13.esproj/Project.espressostorage
-SEASON13.esproj/Project.espressostorage
+docs/

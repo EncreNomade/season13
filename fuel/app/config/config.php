@@ -111,6 +111,13 @@ return array(
 		'csrf_autoload'    => true,
 		'csrf_token_key'   => 'fuel_csrf_token',
 		'csrf_expiration'  => 0,
+		
+        /**
+		 * This input filter can be any normal PHP function as well as 'xss_clean'
+		 *
+		 * WARNING: Using xss_clean will cause a performance hit.
+		 * How much is dependant on how much input data there is.
+		 */
 		'uri_filter'       => array('htmlentities'),
 
 		/**
@@ -128,6 +135,16 @@ return array(
 		 * How much is dependant on how much input data there is.
 		 */
 		'output_filter'  => array('Security::htmlentities'),
+
+		/**
+		 * Encoding mechanism to use on htmlentities()
+		 */
+		'htmlentities_flags' => ENT_QUOTES,
+
+		/**
+		 * Wether to encode HTML entities as well
+		 */
+		'htmlentities_double_encode' => false,
 
 		/**
 		 * Whether to automatically filter view data
@@ -174,6 +191,11 @@ return array(
 	),
 
 	/**
+	 * Controller class prefix
+	 */
+	 'controller_prefix' => 'Controller_',
+
+	/**
 	 * Routing settings
 	 */
 	'routing' => array(
@@ -181,6 +203,11 @@ return array(
 		 * Whether URI routing is case sensitive or not
 		 */
 		'case_sensitive' => true,
+
+		/**
+		 *  Wether to strip the extension
+		 */
+		'strip_extension' => true,
 	),
 
 	/**

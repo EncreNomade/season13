@@ -549,7 +549,7 @@
                 </p>
                 <p>
                     <label>Ancien mot de passe</label>
-                    <input type="password" size="18" id="updateOldPass">
+                    <input type="password" size="18" name="oldPass" id="updateOldPass">
                     <cite>Tape ton ancien mot de passe pour pouvoir modifier !</cite>
                 </p>
                 <p><input type="submit" id="updateBtn" value="Mettre à jour" title="Update ton compte sur SEASON 13"/></p>
