@@ -40,12 +40,27 @@
                 </div>
             <?php endforeach; ?>
             </div>
+            
             <div class="ep_title">
                 <h2><?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?></h2>
                 <a class="ep_play" target="_blank"></a>
                 
                 
+                <form id="buy_block" action="http://localhost:8888/prestashop/index.php?controller=cart" method="post">
+                    <p class="hidden">
+                        <input type="hidden" name="id_product" value="8" id="product_id">
+                        <input type="hidden" name="add" value="1">
+                        <input type="hidden" name="id_product_attribute" id="idCombination" value="">
+                        <input type="hidden" name="product_reference" value="5">
+                        <input type="hidden" name="qty" id="quantity_wanted" value="1">
+                    </p> 
+                    <div class="product_attributes">
+                        <span id="our_price_display">0,99 €</span>
+                        <input type="submit" name="Submit" id="add_to_cart" value="Ajouter au panier" class="exclusive">
+                    </div> 
+                </form>
             </div>
+            
             <div class="ep_list">
             <!--
                 <div id="ep_prev_btn">

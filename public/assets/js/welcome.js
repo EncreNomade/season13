@@ -219,7 +219,7 @@ function addToCart(idProduct, idCombination, static_token, addedFromProductPage,
 		async: true,
 		cache: false,
 		dataType: "json",
-		data: 'controller=cart&add=1&ajax=true&qty=' + ((quantity && quantity != null) ? quantity : '1') + '&id_product=' + idProduct + '&token=' + static_token + ( (parseInt(idCombination) && idCombination != null) ? '&ipa=' + parseInt(idCombination): ''),
+		data: 'controller=cart&add=1&ajax=true&qty=1&id_product=' + idProduct,
 		success: function(jsonData,textStatus,jqXHR)
 		{
 			// add appliance to whishlist module
@@ -317,7 +317,7 @@ function init() {
 	}
 	
 	elems.add_to_cart.click(function() {
-	    addToCart( $('#product_id').val(), $('#idCombination').val(), $('#cart_token').val(), true, null, 1, null );
+	    addToCart( $('#product_id').val(), "", "", true, null, 1, null );
 	});
 	
 	activeEpisode(0);
