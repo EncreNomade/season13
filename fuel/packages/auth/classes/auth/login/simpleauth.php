@@ -453,14 +453,14 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 	 * @param   string  $pseudo
 	 * @return  string
 	 */
-	public function reset_password($pseudo)
+	public function reset_password($email)
 	{
 		$new_password = \Str::random('alnum', 8);
 		$password_hash = $this->hash_password($new_password);
 
 		$affected_rows = \DB::update(\Config::get('simpleauth.table_name'))
 			->set(array('password' => $password_hash))
-			->where('pseudo', '=', $pseudo)
+			->or_where('email', '=', $email)
 			->execute(\Config::get('simpleauth.db_connection'));
 
 		if ( ! $affected_rows)

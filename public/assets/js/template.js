@@ -14,6 +14,13 @@ function showLogin() {
     $('#conn li').removeClass('inactive');
     $('#open_signup').addClass('inactive');
 }
+function showChPass() {
+    $('.dialog').removeClass('show');
+    $('#change_pass_dialog').addClass('show');
+    $('#change_pass_dialog').find('cite').text("").removeClass('alert');
+    $('#conn li').removeClass('inactive');
+    $('#open_signup').addClass('inactive');
+}
 function showUpdate() {
     $('.dialog').removeClass('show');
     $('#update_dialog').addClass('show');
@@ -278,6 +285,41 @@ function init() {
                 $('input[type=submit]').removeAttr('disabled');
             }
         });
+    });
+    
+    
+    
+    var options = {
+        type :      'POST',
+        dataType :  'json',
+        success :   function(data, textStatus, XMLHttpRequest) {
+            // now, we get two important pieces of data back from our rest controller
+            // data.valid = true/false
+            // data.redirect = the page we redirect to on successful login
+            if (data.valid)
+            {
+                $('#chpass_mail').siblings('cite').text("Ton nouveau mot de passe a été envoyé.");
+                alert("Ton nouveau mot de passe a été envoyé.");
+                hideDialog();
+            }
+            else
+            {
+                $('#chpass_mail').siblings('cite').text(data.errorMessage).addClass('alert');
+                $('input[type=submit]').removeAttr('disabled');
+            }
+        },
+        error :     function(XMLHttpRequest, textStatus, errorThrown) {
+            $('#chpass_mail').siblings('cite').text("Désolé, une erreur inconnue s'est produite, tu peux nous contacter: contact@encrenomade.com").addClass('alert');
+            $('input[type=submit]').removeAttr('disabled');
+        }
+    };
+    // Prepare ajax form
+    $('#change_pass_dialog form').ajaxForm(options);
+    $('#chPassBtn').click(function(e) {
+        $('#change_pass_dialog').find('cite, label').removeClass('alert');
+        
+        $('input[type=submit]', this).attr('disabled', 'disabled');
+        fuel_set_csrf_token($('#change_pass_dialog form').get(0));
     });
     
     

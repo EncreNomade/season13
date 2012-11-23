@@ -1,9 +1,9 @@
 <html>
 <head>
-    <?php echo Asset::css('newsletter.css'); ?>
 </head>
 
 <body>
+    <?php echo Asset::css('newsletter.css'); ?>
     <div id="mail_body">
     
     	<div class="main_container">

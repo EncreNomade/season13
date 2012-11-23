@@ -123,9 +123,7 @@ class Controller_Accessaction extends Controller_Rest
     		    catch(\EmailValidationFailedException $e)
     		    {
     		        // The validation failed
-    		        $csrfkey = Config::get('security.csrf_token_key');
-    		        $csrftoken = Security::fetch_token();
-    		        $this->response(array('valid' => false, 'errorMessage' => "Emails ne sont pas valid", 'key' => $csrfkey, 'value' => $csrftoken), 200);
+    		        $this->response(array('valid' => false, 'errorMessage' => "Emails ne sont pas valid"), 200);
     		        $fail = true;
     		    }
     		    catch(\EmailSendingFailedException $e)

@@ -222,7 +222,7 @@ footer ul li.fb_btn img {
     font: normal 25px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
     color: #fff;
 }
-#signup_dialog.show, #login_dialog.show, #update_dialog.show {
+.dialog.show {
     top: 10px;
     opacity: 1;
     z-index: 11;
@@ -318,6 +318,9 @@ footer ul li.fb_btn img {
     width: 100%;
     height: auto;
 }
+#change_pass_dialog .section h1 {
+    width: 250px;
+}
 .dialog .section h1 {
     position: relative;
     left: 0px;
@@ -367,10 +370,20 @@ footer ul li.fb_btn img {
 .dialog .section p span {
     font-family: "DroidSansRegular";
 }
+.dialog .section p a {
+    position: relative;
+    color: #000;
+    font: 14px/30px Arial;
+}
 .dialog .section p input, .dialog .section p button, .dialog .section p select, .dialog .section p span, .dialog .section p textarea {
     position: relative;
     left: 160px;
     top: 1px;
+    margin: 0 10px 0 0;
+}
+.dialog .section p input {
+    height: 14px;
+    margin: 4px 10px 4px 0px;
 }
 .dialog .section p textarea {
     width: 200px;
@@ -388,6 +401,16 @@ footer ul li.fb_btn img {
 }
 .dialog .section p cite.alert {
     color: #d50000;
+}
+.section p #chPassBtn {
+    position: relative;
+    top: 0px;
+    left: 165px;
+    width: 134px;
+    height: 86px;
+    background: transparent url('../img/season13/ui/btn_submit.png') no-repeat left top;
+    color: transparent;
+    border: none;
 }
 .dialog #signupBtn {
     position: relative;

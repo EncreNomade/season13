@@ -18,4 +18,10 @@ return array(
 	    1199 => "Erreur inconnu",
 	    1201 => "Echec à enregisterer le téléchargement",
 	),
+	
+	// Error codes while request to reset a pasword
+	'change_pass' => array(
+	    2101 => "Adresse email erronée !",
+	    2102 => "Nous n'avons pas d'utilisateur avec cette adresse !",
+	),
 );

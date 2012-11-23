@@ -465,11 +465,26 @@
                 <div class="sep_line"></div>
                 <h1>AVEC TON COMPTE SEASON13</h1>
                 <p><label>TON PSEUDO OU TON MAIL</label><input type="text" size="18" maxlength="64" id="loginId"></p>
-                <p><label>TON MOT DE PASSE</label><input type="password" size="18" id="loginPass"></p>
+                <p><label>TON MOT DE PASSE</label><input type="password" size="18" id="loginPass"><span><a href="javascript:showChPass();">Mot de passe oublié ?</a></span></p>
                 <p><input type="submit" id="loginBtn" title="Connexion sur SEASON 13"/></p>
             </div>
         </form>
     </div>
+    <div id="change_pass_dialog" class="dialog">
+        <div class="close"></div>
+        <form method="post" action="<?php echo $remote_path; ?>base/reset_pass">
+            <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
+            <div class="section">
+                <div class="sep_line"></div>
+                <h1>Demander un nouveau mot de passe</h1>
+                <p></p>
+                <p><label>TON MAIL D'INSCRIPTION</label><input type="text" size="18" maxlength="64" name="email" id="chpass_mail"><cite></cite></p>
+                <h5>Tu vas recevoir un mail avec ton nouveau mot de passe.</h5>
+                <p></p>
+                <p><input type="submit" id="chPassBtn"></p>
+            </div>
+        </form>
+    </div> 
 <?php else: ?>
     
     <div id="update_dialog" class="dialog">
@@ -492,7 +507,7 @@
                     <cite>Tu ne peux pas modifier ton pseudo</cite>
                 </p>
                 <p>
-                    <label>Ton mot de passe</label>
+                    <label>Nouveau mot de passe</label>
                     <input name="newPass" type="password" size="18" id="updatePass">
                     <input type="password" size="18" id="updateConf">
                     <cite>Tape 2 fois ton mot de passe pour être bien sûr !</cite>

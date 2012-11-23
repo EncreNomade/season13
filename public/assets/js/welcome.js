@@ -119,8 +119,7 @@ var accessGateway = {
                     invitation.removeClass('show');
                     accessGateway.success = true;
                 }
-                else if(res && res.key && res.value) {
-                    $('#invitation_csrf').prop('name', res.key).val(res.value);
+                else if(res && res.errorMessage) {
                     alert(res.errorMessage);
                 }
                 else {
@@ -135,6 +134,7 @@ var accessGateway = {
         $('#invitation_form').ajaxForm(options);
         $('#access_submit_btn').click(function(e) {
             e.preventDefault();
+            fuel_set_csrf_token($('#invitation_form').get(0));
             $('#invitation_form').submit();
             if(accessGateway.success) {
                 accessGateway.success = false;

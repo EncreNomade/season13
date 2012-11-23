@@ -16,6 +16,46 @@ class Controller_Base extends Controller_Rest
     	View::set_global('current_user', $this->current_user);
     }
     
+    public static function sendHtmlMail($frommail, $fromname = "", $tomail, $subject = "", $view, $viewdata) {
+        if( !is_string($frommail) || !is_string($fromname) || !is_string($subject) || !is_string($view) || !is_array($viewdata) || (!is_string($tomail) && !is_array($tomail)) ) {
+            return array('valid' => false, 'errorMessage' => "Adresses mails ou d'autres paramètres sont erronés");
+        }
+    
+        // Send mails
+        \Package::load('email');
+        // Create an instance
+        $email = Email::forge();
+        
+        // Set the from address
+        $email->from($frommail, $fromname);
+        
+        // Set the to address
+        $email->to($tomail);
+        
+        // Set a subject
+        $email->subject($subject);
+        
+        // And set the html body.
+        $email->html_body(View::forge($view, $viewdata));
+        
+        try
+        {
+            $email->send();
+        }
+        catch(\EmailValidationFailedException $e)
+        {
+            // The validation failed
+            return array('valid' => false, 'errorMessage' => "Adresses mails sont erronées");
+        }
+        catch(\EmailSendingFailedException $e)
+        {
+            // The driver could not send the email but we don't want to distube our clients
+            return array('valid' => false, 'errorMessage' => "Désolé, le mail n'a pas été envoyé");
+        }
+        
+        return array('valid' => true);
+    }
+    
     private static function addToPrestashop($user, $pass) {
         require_once( APPPATH.'classes/custom/PSWebServiceLibrary.php' );
         
@@ -293,7 +333,7 @@ class Controller_Base extends Controller_Rest
 		    $valide = false;
 		}
 		catch (SimpleUserUpdateException $e) {
-		    var_dump($e);
+		    //var_dump($e);
 		    switch ($e->code) {
 		    case 1:
 		        break;
@@ -307,6 +347,46 @@ class Controller_Base extends Controller_Rest
 		    View::set_global('current_user', $this->current_user);
 		    $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
 		}
+	}
+	
+	
+	
+	
+	public function post_reset_pass() {
+	    if(!Security::check_token()) {
+	        return $this->response(array('valid' => false, 'errorMessage' => "Veuille recharger la page et puis réessayer."), 200);
+	    }
+	    
+	    Config::load('errormsgs', true);
+	    $codes = (array) Config::get('errormsgs.change_pass', array ());
+	    
+	    $val = Validation::forge();
+	    
+		$val->add('email', 'Email')
+		    ->add_rule('required')
+		    ->add_rule('valid_email');
+	    
+	    if ($val->run())
+	    {
+	    	$auth = Auth::instance();
+    	    try {
+    	        $newpass = $auth->reset_password(Input::post('email'));
+    	        
+    	        $data = array(
+    	            'new_pass' => $newpass,
+    	        );
+    	        
+    	        $resp = Controller_Base::sendHtmlMail('no-reply@encrenomade.com', 'Season 13', Input::post('email'), 'Ooops...', 'admin/mails/newpassword', $data);
+    	        
+    	        return $this->response($resp, 200);
+    	    }
+    	    catch (SimpleUserUpdateException $e) {
+    	        return $this->response(array('valid' => false, 'errorCode' => 2102, 'errorMessage' => $codes[2102]), 200);
+    	    }
+    	}
+    	else {
+    	    return $this->response(array('valid' => false, 'errorCode' => 2101, 'errorMessage' => $codes[2101]), 200);
+    	}
 	}
 	
 	
