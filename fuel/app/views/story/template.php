@@ -269,7 +269,7 @@ addEventListener("load", function(){
             <div class="sep_line"></div>
             <p>Audio: </p>
             <p>Vitesse: </p>
-            <p>Partager les commentaires sur facebook: <input type="checkbox" checked="true"></p>
+            <p>Partager les commentaires sur facebook: <input id="share_comment_fb" type="checkbox" checked="true"></p>
         </div>
         
         

@@ -338,7 +338,7 @@ gui.postComment = function(imgUrl, msg){
             gui.comment_loading.removeClass('show');
             
             var msg = null;
-            if(fbapi.user && posted.fbpostid != "0") // the post is on facebook
+            if(fbapi.user && gui.fbShareEnabled && posted.fbpostid != "0") // the post is on facebook
                 msg = $('<p>Ton message a bien été posté sur SEASON13 et sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
             else 
                 msg = $('<p>Ton message a bien été posté.</p>')
@@ -356,7 +356,7 @@ gui.postComment = function(imgUrl, msg){
         msgCenter.send('Une erreur est survenue. Lors de l\'envoie ou la recupération du commentaire.');
     }
     
-    if(fbapi.user)
+    if(fbapi.user && gui.fbShareEnabled)
         return fbapi.post(imgUrl, msg, position, postSuccess, errorPost);
         
     if(imgUrl){
@@ -393,6 +393,7 @@ $(document).ready(function() {
     gui.comment_menu = $('#comment_menu');
     gui.comment_content = $('#comment_content');
     gui.comment_loading = gui.comment.children('.loading');
+    gui.comment_share_btn = gui.comment_menu.children('#btn_share');
     gui.userComments = $('#comment_list');
     gui.uploader = $('#upload_container');
     gui.uploadForm = $('#imageuploadform');
@@ -401,6 +402,7 @@ $(document).ready(function() {
     gui.commentbtn = $('#controler #ctrl_comment');
     gui.fblike = $('#controler #ctrl_like');
     gui.currPlayState = true;
+    gui.fbShareEnabled = true;
     
     // Init scriber
     if(gui.scriber) gui.scriber.init();
@@ -505,6 +507,13 @@ $(document).ready(function() {
         // Comment like action
         gui.userComments.on('click', '.comment_fblike', fbapi.commentLike);
         
+        // Comment share on Facebook activation/desactivation
+        gui.pref.find('#share_comment_fb').change(function() {
+            gui.fbShareEnabled = $(this).prop('checked');
+            if(gui.fbShareEnabled) gui.comment_share_btn.children('img').show();
+            else gui.comment_share_btn.children('img').hide();
+        });
+        
         // Comment capture screen
         gui.comment_menu.children('#btn_capture_img').click(function() {
             gui.comment.removeClass('show');
@@ -553,7 +562,7 @@ $(document).ready(function() {
         
         // Share process
         // Post
-        gui.comment_menu.children('#btn_share').click(function(){
+        gui.comment_share_btn.click(function(){
             // Check image source existance and its type
             var img = gui.comment_menu.children('#commentImg').children('img');
             var imgSrc = img.prop('src');
