@@ -25,14 +25,14 @@ div.main_container #head_banner img {
     width: 600px;
     height: 100px;
 }
-div.main_container #head_banner h1 {
+div.main_container h1 {
     position: absolute;
     top: 0px;
     left: 0px;
     width: 600px;
     height: 100px;
     text-align: center;
-    font: normal 40px/100px "Helvetica LT Std", Arial;
+    font: bold 40px/100px Arial;
     color: #fff;
     padding: 0;
     margin: 0;
@@ -68,20 +68,16 @@ div.main_container #head_banner h1 {
 div.text_container h2 {
     text-align: left;
     color: rgb(246, 168, 0);
-    font: bold 20px/36px Arial, Helvetica, Geneva, sans-serif;
+    font: bold 25px/36px Arial, Helvetica, Geneva, sans-serif;
 }
-div.text_container h5 {
+div.text_container h5, div.text_container h4 {
     text-align: left;
     color: #000;
-    font: normal 14px/20px Arial, Helvetica, Geneva, sans-serif;
+    font: normal 18px/28px Arial, Helvetica, Geneva, sans-serif;
     margin: 5px 0 10px 0;
 }
 div.text_container h5.from {
     text-align: right;
-}
-div.text_container a {
-    text-align: left;
-    font: normal 18px/32px "Helvetica LT Std", Arial;
 }
 
 div.main_container h5.outer_msg {
@@ -89,7 +85,7 @@ div.main_container h5.outer_msg {
     float: left;
     width: 600px;
     text-align: center;
-    font: normal 12px/25px Arial, Helvetica, Geneva, sans-serif;
+    font: normal 12px/20px Arial, Helvetica, Geneva, sans-serif;
     margin: 0;
     padding: 0;
 }

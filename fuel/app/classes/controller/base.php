@@ -263,26 +263,33 @@ class Controller_Base extends Controller_Rest
 	public function post_login_fb()
 	{
 	    // Already logged in
-		Auth::check() and $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
-
-        $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('fbToken')));
+		if( Auth::check() ){
+		    return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+		}
+		
+		if( !is_null(Input::post('token')) ) {
+            $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('token')));
+            
+            if( !is_object($fbUser) && !isset($fbUser->id) )
+                $this->response(array('valid' => false, 'errorMessage' => 'Problème de connexion à Facebook'), 200);
+            else {
+                $auth = Auth::instance('fbauth');
         
-        if( !is_object($fbUser) && !isset($fbUser->id) )
-            $this->response(array('valid' => false, 'errorMessage' => 'Problème de connexion à Facebook'), 200);
+                // check the credentials. This assumes that you have the previous table created
+                if (Auth::check() or $auth->login($fbUser->email, $fbUser->id))
+                {
+                    // credentials ok, go right in
+                    $this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
+                    $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+                }
+                else
+                {
+                    $this->response(array('valid' => false, 'errorMessage' => 'Erreur d\'authentification'), 200);
+                }
+            }
+        }
         else {
-            $auth = Auth::instance('fbauth');
-    
-            // check the credentials. This assumes that you have the previous table created
-            if (Auth::check() or $auth->login($fbUser->email, $fbUser->id))
-            {
-                // credentials ok, go right in
-                $this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
-                $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
-            }
-            else
-            {
-                $this->response(array('valid' => false, 'errorMessage' => 'Erreur d\'authentification'), 200);
-            }
+            $this->response(array('valid' => false, 'errorMessage' => 'Erreur de connexion avec Facebook'), 200);
         }
 	}
 	

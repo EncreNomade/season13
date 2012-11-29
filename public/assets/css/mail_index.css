@@ -1,10 +1,16 @@
+form {
+    width: 840px;
+}
+
 .clearfix, .actions {
     margin: 5px auto;
 }
 
 form .clearfix {
-    width: 440px;
+    position: relative;
+    width: 840px;
     height: auto;
+    float: left;
 }
 form .actions {
     width: 200px;
@@ -13,14 +19,14 @@ form .clearfix label {
     position: relative;
     float: left;
     text-align: right;
-    width: 100px;
+    width: 300px;
     margin: 0 10px 0 0;
 }
 form .clearfix div {
     position: relative;
     float: right;
     text-align: left;
-    width: 330px;
+    width: 530px;
     min-height: 25px;
 }
 

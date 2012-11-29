@@ -17,6 +17,7 @@ return array(
 				8 => '007_create_admin_13contactmsgs',
 				9 => '008_create_admin_13contactmsgs',
 				10 => '009_create_admin_13userpossesions',
+				11 => '010_create_admin_promocodes',
 			),
 		),
 		'module' => 

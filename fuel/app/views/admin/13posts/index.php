@@ -15,19 +15,19 @@
     <?php foreach ($admin_13posts as $admin_13post): ?>
     <div class="actu_section">
         <div class="actu_title">
-            <h2 class="actu_date"><?php echo date("d/m/Y", $admin_13post->created_at); ?></h2>
+            <h2 class="actu_date"><?php echo date("d/m/Y", $admin_13post['created_at']); ?></h2>
             <h2>
-                <?php echo $admin_13post->title; ?>
+                <?php echo $admin_13post['title']; ?>
                 <?php if (Auth::member(100)): ?>
                      | 
-                    <?php echo Html::anchor('admin/13posts/edit/'.$admin_13post->id, 'Edit'); ?> |
-                    <?php echo Html::anchor('admin/13posts/delete/'.$admin_13post->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+                    <?php echo Html::anchor('admin/13posts/edit/'.$admin_13post['id'], 'Edit'); ?> |
+                    <?php echo Html::anchor('admin/13posts/delete/'.$admin_13post['id'], 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
                 <?php endif; ?>
             </h2>
         </div>
         <div class="actu_content">
             <?php 
-                echo html_entity_decode($admin_13post->body);
+                echo html_entity_decode($admin_13post['body']);
             ?>
         </div>
     </div>

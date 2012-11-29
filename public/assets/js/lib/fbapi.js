@@ -2,6 +2,14 @@ fbapi = {};
 fbapi.user = null; // initiated in fbapi.connect or init
 fbapi.connect = function(callback){
     fbapi.callback = callback;
+    
+    if(fbapi.user) {
+        if(typeof fbapi.callback == 'function')
+            fbapi.callback.call(window);
+        fbapi.callback = false;
+        return;
+    }
+    
     FB.login(function(response) {
         if (response.status == 'connected') {
             FB.api('/me', function(user) {
@@ -13,9 +21,11 @@ fbapi.connect = function(callback){
             });
         } 
         else if (response.status === 'not_authorized'){
+            alert('Ton compte Facebook ne te permet pas de rejoindre notre site, modifie tes paramètres.');
             fbapi.callback = false;
         }
         else { // fail
+            alert('Désolé, facebook n\'a pas établi la connexion, réessaye dans quelques minutes');
             fbapi.callback = false;
         }
     }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});
@@ -53,7 +63,7 @@ fbapi.like = function(){
                 else {
                     var msg = $('<p>Tu as aimé cette page sur Facebook. </p>');
                     if(fbapi.user)
-                        msg.append('<a href="'+fbapi.user.link+'">Voir.</a>');
+                        msg.append('<a href="'+fbapi.user.link+'" target="_blank">Voir.</a>');
                     if(window.msgCenter) msgCenter.send(msg);
                     else alert('Tu as aimé cette page sur Facebook.');
                 }

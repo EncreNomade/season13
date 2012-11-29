@@ -19,7 +19,7 @@
             </div>
         <?php endif; ?>
         
-        <form id="imageuploadform" method="POST" enctype="multipart/form-data" action='<?php echo Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/'; ?>upload'>
+        <form id="imageuploadform" method="POST" enctype="multipart/form-data" action='<?php echo $remote_path; ?>upload'>
             <input type="file" name="upload_pic" id="upload_pic" />
             <input type="button" value="Télécharge" id="upload_btn" />
         </form>

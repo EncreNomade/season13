@@ -19,7 +19,12 @@ class Controller_Admin_13posts extends Controller_Template
 
 	public function action_index()
 	{
-		$data['admin_13posts'] = Model_Admin_13post::find('all');
+	    $result = DB::select('*')->from(Model_Admin_13post::table())
+	                             ->order_by('created_at','desc')
+	                             ->limit(20)
+	                             ->execute()
+	                             ->as_array();
+		$data['admin_13posts'] = $result;
 		
 		$this->template->title = "L'actualité, Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux - SEASON13";
 		

@@ -116,7 +116,8 @@ function init() {
             // data.redirect = the page we redirect to on successful login
             if (data.valid)
             {
-                document.location.href = data.redirect;
+                //document.location.href = data.redirect;
+                document.location.reload()
             }
             else
             {
@@ -194,7 +195,7 @@ function init() {
                 });
             } 
             else if (response.status === 'not_authorized'){
-                alert('Ton compte Facebook ne vous permet pas de rejoindre notre site');
+                alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
             }
             else { // fail
                 alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
@@ -204,37 +205,43 @@ function init() {
     
     // Facebook login
     $('#login_dialog .fb_btn').click(function(){
-        function doFBLogin(accessToken){
-            $.ajax({
-                url: './base/login_fb',
-                type: 'POST',
-                dataType: 'json',
-                data: {fbToken: accessToken},
-                success: function(data, textStatus, XMLHttpRequest)
-                {
-                    // now, we get two important pieces of data back from our rest controller
-                    // data.valid = true/false
-                    // data.redirect = the page we redirect to on successful login
-                    if (data.valid)
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                var token = response.authResponse.accessToken;
+                
+                $.ajax({
+                    url: './base/login_fb',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'token':token},
+                    success: function(data, textStatus, XMLHttpRequest)
                     {
-                        document.location.href = data.redirect;
-                    }
-                    else
+                        // now, we get two important pieces of data back from our rest controller
+                        // data.valid = true/false
+                        // data.redirect = the page we redirect to on successful login
+                        if (data.valid)
+                        {
+                            //document.location.href = data.redirect;
+                            document.location.reload()
+                        }
+                        else
+                        {
+                            if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
+                            $('input[type=submit]').removeAttr('disabled');
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown)
                     {
-                        if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
+                        alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
                         $('input[type=submit]').removeAttr('disabled');
                     }
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown)
-                {
-                    alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-                    $('input[type=submit]').removeAttr('disabled');
-                }
-            });
-        }
-        var token = FB.getAccessToken();
-        if(token) doFBLogin(token); // The user is connected with FB && auth to the app
-        // Here we could write the other cases...
+                });
+            } else if (response.status === 'not_authorized') {
+                alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
+            } else {
+                alert("Tu n'es pas connecté sur Facebook.");
+            }
+        });
     });
     
     $('#login_dialog form').submit(function(e) {
@@ -271,7 +278,8 @@ function init() {
                 // data.redirect = the page we redirect to on successful login
                 if (data.valid)
                 {
-                    document.location.href = data.redirect;
+                    //document.location.href = data.redirect;
+                    document.location.reload();
                 }
                 else
                 {
@@ -293,9 +301,6 @@ function init() {
         type :      'POST',
         dataType :  'json',
         success :   function(data, textStatus, XMLHttpRequest) {
-            // now, we get two important pieces of data back from our rest controller
-            // data.valid = true/false
-            // data.redirect = the page we redirect to on successful login
             if (data.valid)
             {
                 $('#chpass_mail').siblings('cite').text("Ton nouveau mot de passe a été envoyé.");
@@ -330,7 +335,8 @@ function init() {
         success :   function(data, textStatus, XMLHttpRequest) {
             if (data.valid)
             {
-                document.location.href = data.redirect;
+                //document.location.href = data.redirect;
+                document.location.reload();
             }
             else
             {
@@ -388,12 +394,10 @@ function init() {
             type: 'GET',
             success: function(data, textStatus, XMLHttpRequest)
             {
-                // now, we get two important pieces of data back from our rest controller
-                // data.valid = true/false
-                // data.redirect = the page we redirect to on successful login
                 if (data.valid)
                 {
-                    document.location.href = data.redirect;
+                    //document.location.href = data.redirect;
+                    document.location.reload()
                 }
                 else
                 {

@@ -1493,26 +1493,23 @@ $.extend(mse.Text.prototype, {
         else return false;
     },
     autoplay: function(audio) {
-    /*
+        /*
         if(MseConfig.iOS) {
-            var div = $('#audiodiv');
-            
-            if($('#audiodiv').length <= 0) {
-                div = $("<div id='audiodiv'/>");
-                div.attr('width', '1px');
-                div.attr('height', '1px');
-                div.attr('scrolling', 'no');
-                div.css({'border': "0px", 'left': '-1px', 'top': '-1px'});
-                $('body').append(div);
-            }
+            var div = $("<div id='audiodiv'/>");
             div.attr('src', audio.src);
-            
-            div.unbind('click').click(function(){
+            div.attr('width', '1px');
+            div.attr('height', '1px');
+            div.attr('scrolling', 'no');
+            div.css({'border': "0px", 'left': '-1px', 'top': '0px'});
+            if($('#audiodiv').length > 0)
+                $('#audiodiv').replaceWith(div);
+            else $('body').append(div);
+            div.click(function(){
                 audio.play();
             }).click();
         }
         else */
-            audio.play();
+        audio.play();
     },
     clicked: function(e) {
         var x = e.offsetX - this.getX();
@@ -1521,7 +1518,7 @@ $.extend(mse.Text.prototype, {
     	    var link = this.links[i];
     		if(x >= link.offx-15 && x <= link.offx+link.width+15 && y >= link.offy && y <= link.offy+this.lineHeight+24) {
     		    switch(link.type) {
-    		    case 'audio': this.autoplay(link.link);break;
+    		    case 'audio': link.link.play();break;
     		    case 'wiki': link.link.init(this.getContainer());break;
     		    case 'fb': window.open(linkObj.link);break;
     		    }
@@ -3494,9 +3491,13 @@ mse.Timeline.prototype = {
 			}
 			else {
 			    this.timer = requestAnimationFrame(this.frameFn);
-			    //if(this.switching) 
-			    this.src.runTimeline(this.interval);
-			    //this.switching = !this.switching;
+			    if(MseConfig.iOS) {
+			        if(this.switching) {
+			            this.src.runTimeline(this.interval);
+			        }
+			        this.switching = !this.switching;
+			    }
+			    else this.src.runTimeline(this.interval);
 			}
 		}
 		// END

@@ -10,5 +10,13 @@ return array(
 	    'free' => 1,
 	    'invitation' => 2,
 	    'buybutton' => 3,
+	    'code_promo' => 4,
+	    'offer_nopayment' => 5,
+	    'fblike' => 6,
+	),
+	
+	'fbapp' => array(
+	    'id' => '141570392646490',
+	    'secret' => '152a5d45dd79ce82924f1c9a792caf96',
 	),
 );

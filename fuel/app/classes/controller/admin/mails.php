@@ -27,10 +27,9 @@ class Controller_Admin_Mails extends Controller_Template
 
 	public function action_index()
 	{
-		$this->template->title = 'Admin mails &raquo; Send';
+		$this->template->title = 'Admin mails &raquo; Send normal mail';
 		$this->template->content = View::forge('admin/mails/index');
 	}
-	
 	
 	public function action_send() {
 	
@@ -102,7 +101,7 @@ class Controller_Admin_Mails extends Controller_Template
     		    $email = Email::forge();
     		    
     		    // Set the from address
-    		    $email->from(Input::post('from'), Input::post('SEASON13.com'));
+    		    $email->from(Input::post('from'), 'SEASON13.com');
     		    
     		    // Set the to address
     		    $email->to($toemails);
@@ -152,6 +151,120 @@ class Controller_Admin_Mails extends Controller_Template
 		}
 		
 	}
+	
+	
+	
+	public function action_promo_code() {
+	    $this->template->js_supp = '';
+	    $this->template->title = 'Admin mails &raquo; Send promotion code';
+	    $this->template->content = View::forge('admin/mails/promo_code');
+	}
+	
+	public function action_send_promocode() {
+	    if (Input::method() == 'POST')
+	    {
+	        $val = Validation::forge();
+	    
+	        $val->add('from', 'Expediteur')
+	            ->add_rule('required')
+	            ->add_rule('valid_email');
+	        $val->add('to', 'Destinateurs')
+	            ->add_rule('required')
+	            ->add_rule('valid_emails');
+	        $val->add('message', 'Message')
+	            ->add_rule('required');
+	        $val->add('offre', 'Offre')
+	            ->add_rule('required');
+	        
+	        $val->set_message('required', 'Vous devez remplir :label pour envoyer');
+	        $val->set_message('valid_email', ':label n\'est pas valid');
+	        $val->set_message('valid_emails', ':label n\'est pas valid, pour envoyer à plusieurs destinateur, sépare avec des virgules');
+	        $val->set_message('valid_url', 'Lien :label n\'est pas valid');
+	        
+	        if ($val->run())
+	    	{
+	    	    // Pretraitement
+	    	    $toemails = explode(",", Input::post('to'));
+
+	    	    \Package::load('email');
+	    	    
+	    	    $errors = array();
+	    	    foreach ($toemails as $id=>$mail) {
+	    	        $to = trim($mail);
+	    	        
+	    	        // Init offre in database
+	    	        $code = Str::random('unique');
+	    	        
+	    	        $promocodemodel = Model_Admin_Promocode::forge()->set(array(
+	    	            'code' => $code,
+	    	            'used' => 0,
+	    	            'used_by' => 0,
+	    	            'offer' => json_encode(Input::post('offre')),
+	    	            'ref' => ""
+	    	        ));
+	    	        
+	    	        // Insert a new user
+	    	        if($promocodemodel and $promocodemodel->save()) {
+	    	            // Create an instance
+	    	            $email = Email::forge();
+	    	            
+	    	            // Set the from address
+	    	            $email->from(Input::post('from'), 'SEASON13.com');
+	    	            
+	    	            // Set the to address
+	    	            $email->to($to);
+	    	            
+	    	            // Set a subject
+	    	            $email->subject("Offre gratuit de SEASON13");
+	    	            
+	    	            // And set the html body.
+	    	            $data = array();
+	    	            $data['subject'] = 'Offre gratuit de SEASON13';
+	    	            $data['content'] = Input::post('message');
+	    	            $data['codelink'] = (Fuel::$env == Fuel::DEVELOPMENT ? "http://localhost:8888/season13/public/cadeau" : "http://season13.com/cadeau")."?code=".$code;
+	    	            $data['code'] = $code;
+	    	            //$data['content'] = str_replace("\n", "<br/>", $data['content']);
+	    	            
+	    	            $email->html_body(View::forge('admin/mails/offre', $data));
+	    	            
+	    	            try
+	    	            {
+	    	                $email->send();
+	    	            }
+	    	            catch(\EmailValidationFailedException $e)
+	    	            {
+	    	                // The validation failed
+	    	                array_push($errors, "Adresse mail ".$id." erronée.");
+	    	            }
+	    	            catch(\EmailSendingFailedException $e)
+	    	            {
+	    	                // The driver could not send the email
+	    	                array_push($errors, "Echec d'envoie du mail ".$id.".");
+	    	            }
+	    	        }
+	    	        else {
+	    	            array_push($errors, "Code pour l'adresse mail ".$id." n'a pas été correctement sauvegardé, contact un developpeur.");
+	    	            continue;
+	    	        }
+	    	    }
+	    	    
+	    	    if(count($errors) == 0) 
+	    	        Session::set_flash('success', 'Ton message a été bien envoyé.');
+	    	    else 
+	    	        Session::set_flash('error', $errors);
+	    	}
+	    	else {
+	    	    Session::set_flash('error', $val->error());
+	    	}
+	    	
+	    	$this->template->title = 'Admin mails &raquo; Send promotion code';
+	    	$this->template->content = View::forge('admin/mails/promo_code');
+	    }
+	    else {
+	        Response::redirect('/admin/mails/promo_code');
+	    }
+	}
+	
 	
 	public function action_news() {
 	    $data['title'] = 'Newsletter';

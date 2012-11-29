@@ -267,10 +267,19 @@
  ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 	<meta charset="utf-8">
 	<meta name="Description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
+	
+	<meta property="og:title" content="SEASON13" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://season13.com/<?php echo Uri::string(); ?>" />
+	<meta property="og:image" content="http://season13.com/voodoo/cover.jpg" />
+	<meta property="og:site_name" content="SEASON13.com" />
+	<meta property="og:description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
+	<meta property="fb:app_id" content="141570392646490" />
+	
 	<title><?php echo $title; ?></title>
 	<?php
 	    echo Asset::css('BebasNeue.css');
@@ -316,14 +325,15 @@
     <div id="fb-root"></div>
     <script>
     // Load the SDK Asynchronously
-    (function(d){
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/fr_FR/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
-
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=141570392646490";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
     // Init the SDK upon load
     window.fbAsyncInit = function() {
@@ -347,7 +357,9 @@
     ?>
 
     <header>
-        <div id="logo"></div>
+        <div id="logo">
+            <?php echo Asset::img('season13/13logo.png'); ?>
+        </div>
         <a href="<?php echo $remote_path; ?>" id="logoLink" title="LOGO SEASON 13"></a>
         
         <ul id="menu">
@@ -385,13 +397,15 @@
                 <h5>En t’inscrivant, tu recevras 2 fois par semaine, le mercredi et le samedi, un nouvel épisode de ta série Voodoo Connection !</h5>
             </div>-->
             <div class="section">
-                <div class="sep_line"></div>
-                <h1>AVEC TON COMPTE FACEBOOK</h1>
+                <div class="sep_line">
+                    <h1>AVEC TON COMPTE FACEBOOK</h1>
+                </div>
                 <div class="fb_btn" title="Inscription via Facebook sur SEASON 13"></div>
             </div>
             <div class="section">
-                <div class="sep_line"></div>
-                <h1>AVEC UN COMPTE SEASON 13</h1>
+                <div class="sep_line">
+                    <h1>AVEC UN COMPTE SEASON 13</h1>
+                </div>
                 <!--<h5>Remplis ce petit formulaire et crée ton compte sur Season13. Tu pourras toujours lier ton compte à Facebook par la suite !</h5>-->
                 <p>
                     <label>TU ES</label>
@@ -457,13 +471,15 @@
         <form method="post" action="base/login">
             <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <div class="section">
-                <div class="sep_line"></div>
-                <h1>AVEC TON COMPTE FACEBOOK</h1>
+                <div class="sep_line">
+                    <h1>AVEC TON COMPTE FACEBOOK</h1>
+                </div>
                 <div class="fb_btn" title="Connexion via Facebook sur SEASON 13"></div>
             </div>
             <div class="section">
-                <div class="sep_line"></div>
-                <h1>AVEC TON COMPTE SEASON13</h1>
+                <div class="sep_line">
+                    <h1>AVEC TON COMPTE SEASON13</h1>
+                </div>
                 <p><label>TON PSEUDO OU TON MAIL</label><input type="text" size="18" maxlength="64" id="loginId"></p>
                 <p><label>TON MOT DE PASSE</label><input type="password" size="18" id="loginPass"><span><a href="javascript:showChPass();">Mot de passe oublié ?</a></span></p>
                 <p><input type="submit" id="loginBtn" title="Connexion sur SEASON 13"/></p>
@@ -475,8 +491,9 @@
         <form method="post" action="<?php echo $remote_path; ?>base/reset_pass">
             <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <div class="section">
-                <div class="sep_line"></div>
-                <h1>Demander un nouveau mot de passe</h1>
+                <div class="sep_line">
+                    <h1>Demander un nouveau mot de passe</h1>
+                </div>
                 <p></p>
                 <p><label>TON MAIL D'INSCRIPTION</label><input type="text" size="18" maxlength="64" name="email" id="chpass_mail"><cite></cite></p>
                 <h5>Tu vas recevoir un mail avec ton nouveau mot de passe.</h5>
@@ -492,8 +509,9 @@
         <form method="post" action="<?php echo $remote_path; ?>base/update">
             <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <div class="section">
-                <div class="sep_line"></div>
-                <h1>MODIFIE TON COMPTE SEASON 13</h1>
+                <div class="sep_line">
+                    <h1>MODIFIE TON COMPTE SEASON 13</h1>
+                </div>
                 <p>
                     <label>TU ES</label>
                     <select name="sex" id="updateSex">

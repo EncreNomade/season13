@@ -6,8 +6,10 @@ return array(
 	'story_access' => array(
 	    101 => "L'épisode est indisponible pour le moment.",
 	    102 => "Aucun épisode n'était demandé",
+	    103 => "L'épisode n'existe pas ou elle est indisponible.",
 	    201 => "Tu dois te connecter ou t'inscrire sur SEASON13.com.",
 	    303 => "",
+	    304 => "",
 	    'default' => "L'épisode n'existe pas ou elle est indisponible.",
 	),
 	

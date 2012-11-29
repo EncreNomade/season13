@@ -38,6 +38,10 @@
 						<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
 					</li>
 					<?php endforeach; ?>
+					
+					<li class="<?php echo Uri::segment(2) == 'send_codepromo' ? 'active' : '' ?>">
+						<?php echo Html::anchor('admin/mails/promo_code', 'send_codepromo') ?>
+					</li>
 	          </ul>
 
 	          <ul class="nav pull-right">

@@ -11,8 +11,10 @@
 <?php if(isset($episode)): ?>
 <meta property="fb:app_id" content="141570392646490" /> 
 <meta property="og:type"   content="encrenomade:episode" /> 
-<meta property="og:url"    content="<?php echo Uri::current(); ?>" /> 
+<meta property="og:url"    content="<?php echo $base_uri."story?ep=".$episode->id; ?>" /> 
 <meta property="og:title"  content="<?php echo stripcslashes( $episode->story." Episode ".$episode->episode.": ".$episode->title ); ?>" /> 
+<meta property="og:description" content="SEASON 13 Feuilltons Interactifs" />
+<meta property="og:site_name" content="SEASON13" />
 <meta property="og:image"  content="<?php echo $expo_image; ?>" />
 <?php endif; ?>
 
@@ -183,7 +185,7 @@ addEventListener("load", function(){
             <?php echo Html::anchor('http://www.season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
         </div>
     </ul>
-<?php if(isset($accessfail)): ?>
+<?php if(!$accessible): ?>
     <script type="text/javascript">
     <?php 
         
@@ -259,7 +261,7 @@ addEventListener("load", function(){
             </div>
         </div>
     
-    <?php if(isset($episode)): ?>
+    <?php if($accessible): ?>
     <!-- Preferece dialog -->
         <div id="preference" class="dialog">
             <div class="close"></div>
@@ -375,7 +377,7 @@ addEventListener("load", function(){
     <?php endif; ?>
     </div>
     
-<?php if(isset($episode)): ?>
+<?php if($accessible): ?>
     <div id="root">
         <div id="controler">
             <div class="back"></div>

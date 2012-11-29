@@ -32,11 +32,11 @@
 		</p>-->
 		
 		<p>
-		    <?php echo Form::submit('submit', 'Envoyer', array('id' => 'access_submit_btn')); ?>
+		    <?php echo Form::submit('submit', 'Envoyer', array('id' => 'access_submit_btn3')); ?>
 		</p>
 		<p>
 		    <label>Je ne souhaite pas inviter 5 amis</label>
-		    <?php echo Form::button('buy', 'J\'achète l\'épisode 3: '.$price.'€', array('id' => 'access_buy_btn')); ?>
+		    <?php echo Form::button('buy', 'J\'achète l\'épisode 3: '.$price.'€', array('id' => 'access_buy_btn3')); ?>
 		</p>
 	</div>
 <?php echo Form::close(); ?>

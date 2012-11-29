@@ -12,14 +12,19 @@ class Controller_Story extends Controller_Template
         if($epid == 1)
             return $access;
             
+        if(!$current_user) 
+            return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
+            
         if( Auth::member(50) || Auth::member(100) )
             return $access;
             
+        $access = array('valid' => false, 'errorCode' => 103, 'errorMessage' => $codes[103]);
         // Inscription after first episode
         if($epid >= 2) {
-            if(!Auth::check()) return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
-            
             switch ($epid) {
+            case 2:
+                return array('valid' => true);
+                break;
             case 3: 
                 $result = DB::select('*')->from('admin_13userpossesions')
                                          ->where('user_id', $current_user->id)
@@ -28,17 +33,38 @@ class Controller_Story extends Controller_Template
                 $num_rows = count($result);
                 
                 if($num_rows !== 0)
-                    return $access;
+                    return array('valid' => true);
                 else {
                     $data = array();
                     $data['pseudo'] = $current_user->pseudo;
-                    $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? '' : 'http://season13.com/';
+                    $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/";
                     $data['price'] = "0,99";
                     return array(
                         'valid' => false, 
                         'errorCode' => 303, 
                         'errorMessage' => $codes[303], 
                         'form' => View::forge('story/access/invitations', $data)->render()
+                    );
+                }
+                break;
+            case 4:
+                $result = DB::select('*')->from('admin_13userpossesions')
+                                         ->where('user_id', $current_user->id)
+                                         ->and_where('episode_id', $epid)
+                                         ->execute();
+                $num_rows = count($result);
+                
+                if($num_rows !== 0)
+                    return array('valid' => true);
+                else {
+                    $data = array();
+                    $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? '' : "http://".$_SERVER['HTTP_HOST']."/";
+                    $data['price'] = "0,99";
+                    return array(
+                        'valid' => false, 
+                        'errorCode' => 304, 
+                        'errorMessage' => $codes[304], 
+                        'form' => View::forge('story/access/like', $data)->render()
                     );
                 }
                 break;
@@ -58,18 +84,19 @@ class Controller_Story extends Controller_Template
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
     	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
+    	View::set_global('base_uri', Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://season13.com/');
     	
     	$this->episode = null;
     	$epid = Input::get('ep') ? Input::get('ep') : null;
     	
     	if(!is_null($epid)) {
-    	    $access = self::requestAccess($epid, $this->current_user);
+    	    $this->episode = Model_Admin_13episode::find($epid);
+    	    View::set_global('episode', $this->episode);
+    	    $access = Controller_Story::requestAccess($epid, $this->current_user);
+    	    View::set_global('accessible', $access['valid']);
     	    
     	    if($access['valid'] === true) {
-        	    $this->episode = Model_Admin_13episode::find($epid);
         	    $this->comments = Model_Admin_13comment::find_by_epid($epid);
-        	    
-        	    View::set_global('episode', $this->episode);
     	    }
     	    else $this->template->accessfail = $access['errorCode'];
     	}
