@@ -38,6 +38,7 @@
 <?php
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
+    echo Asset::css('dialog_auth_msg.css');
     echo Asset::css('story.css');
     echo Asset::js('lib/jquery-latest.js');
     echo Asset::js('lib/jquery.form.js');
@@ -46,6 +47,7 @@
     echo Asset::js('lib/Interaction.js');
     echo Asset::js('lib/fbapi.js');
     echo Asset::js('config.js');
+    echo Asset::js('auth.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
     if(isset($episode)) {
@@ -110,6 +112,10 @@ addEventListener("load", function(){
         };
         
     </script>
+    <?php 
+        // output the javascript function
+        echo Security::js_set_token(); 
+    ?>
 
     <div id="fb-root"></div>
     <script>
@@ -137,8 +143,6 @@ addEventListener("load", function(){
         }
     </script>
 
-    <div id="msgCenter"><ul></ul></div>
-
     <header>
         <div class="left">
             <div id="tache">
@@ -155,6 +159,43 @@ addEventListener("load", function(){
             </div>
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
+            
+            <ul id="conn">
+            <?php if($current_user == null): ?>
+                    <li id="open_signup">S'INSCRIRE</li>
+                    <li class="text_sep_vertical"></li>
+                    <li id="open_login">SE CONNECTER</li>
+            <?php else: ?>
+                <?php if(Auth::member(100)): ?>
+                    <li><a href="admin/">ADMIN</a></li>
+                <?php endif; ?>
+                    <li id="user_id">BIENVENUE: <?php echo $current_user->pseudo ?></li>
+                    <li class="text_sep_vertical"></li>
+                    <li id="logout">LOGOUT</li>
+            <?php endif; ?>
+                </ul>
+                
+            <?php if($current_user == null): ?>
+                <div id="signup_dialog" class="dialog">
+                    <div class="close"></div>
+                    <?php echo View::forge('auth/signup_form')->render(); ?>
+                </div>
+                <div id="login_dialog" class="dialog">
+                    <div class="close"></div>
+                    <?php echo View::forge('auth/login_form')->render(); ?>
+                </div>
+                <div id="change_pass_dialog" class="dialog">
+                    <div class="close"></div>
+                    <?php echo View::forge('auth/chpass_form')->render(); ?>
+                </div> 
+                
+            <?php else: ?>
+                <div id="update_dialog" class="dialog">
+                    <div class="close"></div>
+                    <?php echo View::forge('auth/update_form')->render(); ?>
+                </div>
+            
+            <?php endif; ?>
         </div>
     </header>
     
@@ -218,7 +259,7 @@ addEventListener("load", function(){
     <div id="center">
     <!-- Author bio dialog-->
         <div id="author_bio" class="dialog">
-            <div class="close"></div>
+            <div class="close right"></div>
             <h1>BIO de Chris Debien</h1>
             <div class="sep_line"></div>
             
@@ -237,7 +278,7 @@ addEventListener("load", function(){
         
     <!-- Author bio dialog-->
         <div id="credits" class="dialog">
-            <div class="close"></div>
+            <div class="close right"></div>
             <h1>Credits</h1>
             <div class="sep_line"></div>
             
@@ -268,7 +309,7 @@ addEventListener("load", function(){
     <?php if($accessible): ?>
     <!-- Preferece dialog -->
         <div id="preference" class="dialog">
-            <div class="close"></div>
+            <div class="close right"></div>
             <h1>Paramètres</h1>
             <div class="sep_line"></div>
             <p>Audio: </p>
@@ -279,7 +320,7 @@ addEventListener("load", function(){
         
     <!-- Comment dialog -->
         <div id="comment" class="dialog">
-            <div class="close"></div>
+            <div class="close right"></div>
             <h1>Commentaires</h1>
             <div class="sep_line"></div>
             
@@ -319,7 +360,7 @@ addEventListener("load", function(){
         
     <!-- Scriber dialog -->
         <div id="scriber" class="dialog">
-            <div class="close" id="sb_cancel"></div>
+            <div class="close right" id="sb_cancel"></div>
             <h1>Customise ton dessin</h1>
             <div class="sep_line"></div>
             

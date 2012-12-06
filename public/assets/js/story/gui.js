@@ -424,7 +424,7 @@ $(document).ready(function() {
     });
     gui.comment.children('.close').click(gui.closeComment);
 
-    $('header .right').click(gui.openhideMenu);
+    $('#icon_menu, #sep_right, #switch_menu').click(gui.openhideMenu);
 
     $('#btn_param').click(gui.openPref);
     gui.audioctrl = new gui.Slider(200, 100, gui.pref.children('p:first'), 50);

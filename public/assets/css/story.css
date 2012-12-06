@@ -16,49 +16,6 @@ ul {
     padding: 0;
 }
 
-.dialog {
-    position: absolute;
-    background: #fff;
-    color: #fff;
-    border-top: 60px solid #000;
-    border-bottom: 30px solid #000;
-    border-left: 10px solid #000;
-    border-right: 10px solid #000;
-    z-index: 19;
-    -webkit-box-shadow: 0px 0px 6px 2px #444;
-    -moz-box-shadow: 0px 0px 6px 2px #444;
-    -ms-box-shadow: 0px 0px 6px 2px #444;
-    -o-box-shadow: 0px 0px 6px 2px #444;
-    box-shadow: 0px 0px 6px 2px #444;
-}
-.dialog h1 {
-    position: absolute;
-    left: 0px;
-    top: -33px;
-    margin: 0;
-    padding: 0;
-    color: #fff;
-    font: normal 22px/30px "BebasNeueRegular", Helvetica, Geneva, sans-serif;
-    letter-spacing: 1.2px;
-}
-.dialog .sep_line {
-    position: absolute;
-    left: 0px;
-    top: -3px;
-    width: 100%;
-    height: 3px;
-    background: rgb(246, 168, 0);
-}
-
-.close {
-    position: absolute;
-    right: 0px;
-    top: -50px;
-    width: 18px;
-    height: 18px;
-    background: transparent url('../img/season13/ui/dialog_close.png') no-repeat left top;
-}
-
 .loading {
     position: absolute;
     left: 0px;
@@ -151,7 +108,7 @@ header #sep_left {
     background: #fff;
 }
 
-header h1 {
+header .left > h1 {
     float: left;
     margin: 0;
     padding: 0;
@@ -202,6 +159,45 @@ header #switch_menu {
 
 header #switch_menu.active {
     background: transparent url('../img/season13/story/story_hide_menu.png') no-repeat center center;
+}
+
+ul#conn {
+    position: relative;
+    float: right;
+    right: 0px;
+    top: 0px;
+    margin: 1px 15px 0 0;
+    z-index: 12;
+}
+#conn li {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background: transparent;
+    color: #fff;
+    margin: 0 7px;
+}
+ul#conn li.inactive {
+    opacity: 0.6;
+}
+ul#conn li, ul#conn li a {
+    font: normal 20px/27px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+#conn .text_sep_vertical {
+    top: -2px;
+    width: 2px;
+    height: 22px;
+    background: #fff;
+    cursor: default;
+}
+.dialog.show {
+    top: 3px;
+    opacity: 1;
+    z-index: 11;
 }
 
 
@@ -447,7 +443,7 @@ ul#menu div #menu_link {
     margin: 0;
     padding: 4px;
     border: none;
-    width: 312px;
+    width: 342px;
     height: 72px;
     color: black;
     text-align: left;
