@@ -16,6 +16,11 @@ class Controller_Welcome extends Controller_Template
     {        
     	parent::before();
     	
+    	if($_SERVER['HTTP_HOST'] == "www.season13.com" && Agent::browser() == "IE") {
+    	    // Problem of session in IE, the login and inscription doesn't work on www.season13.com
+    	    Response::redirect('http://season13.com');
+    	}
+    	
     	// Assign current_user to the instance so controllers can use it
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
     	
@@ -48,6 +53,7 @@ class Controller_Welcome extends Controller_Template
 	{
 	    // Data
 	    $data['admin_13episodes'] = Model_Admin_13episode::find('all');
+	    $data['current_user'] = $this->current_user;
 	
 	    $this->template->title = 'SEASON 13 - Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux';
 	    // Set supplementation css and js file
@@ -184,28 +190,28 @@ class Controller_Welcome extends Controller_Template
 	        }
 	        
 	        if($this->current_user == null) {
-	            Session::set_flash('error', 'Connecte ou inscris-toi d\'abord en haut à droite et réessaye ensuite.');
+	            Session::set_flash('error', 'Connecte-toi ou inscris-toi d\'abord en haut à droite de la page et réessaye ensuite.');
 	            return;
 	        }
 	        
 	        $val = Validation::forge();
 	        
-            $val->add('code', 'code de promotion')
+            $val->add('code', 'code cadeau')
                 ->add_rule('required')
                 ->add_rule('exact_length', 32);
                 
             $val->set_message('required', 'Tu dois remplir :label');
-            $val->set_message('exact_length', 'Ton :label n\'est pas valid');
+            $val->set_message('exact_length', 'Ton :label n\'est pas valide, retourne dans ton mail pour retrouver le bon code.');
             
             if ($val->run()){
                 $promocodemodel = Model_Admin_Promocode::find_by_code(Input::post('code'));
                 
                 if(!$promocodemodel) {
-                    Session::set_flash('error', 'Ton code de cadeau n\'a pas été accepté');
+                    Session::set_flash('error', 'Ton code cadeau n\'a pas été accepté');
                     return;
                 }
                 else if($promocodemodel->used == 1) {
-                    Session::set_flash('error', 'Ton code de cadeau n\'a pas été accepté car il est déjà utilisé');
+                    Session::set_flash('error', 'Ton code cadeau est refusé car il a déjà été utilisé');
                     return;
                 }
                 
@@ -235,7 +241,7 @@ class Controller_Welcome extends Controller_Template
                             }
                             else
                             {
-                            	Session::set_flash('error', 'Ton code de cadeau n\'a pas été accepté, contact nous par mail: contact@encrenomade.com');
+                            	Session::set_flash('error', 'Ton code cadeau n\'a pas été accepté, contacte-nous par mail: contact@encrenomade.com');
                             	break;
                             }
                         }
@@ -246,7 +252,8 @@ class Controller_Welcome extends Controller_Template
                 $promocodemodel->used_by = $this->current_user->id;
                 
                 if($promocodemodel->save()) {
-                    Session::set_flash('success', 'Ton code de cadeau est accepté, commence à profiter <a href="http://season13.com/?s=episode">nos histoires</a>!');
+                    //Session::set_flash('success', 'Ton code de cadeau est accepté, commence à profiter <a href="http://season13.com/?s=episode">nos histoires</a>!');
+                    Response::redirect('/?s=episode');
                 }
             }
             else {

@@ -237,6 +237,12 @@
     padding: 0px;
     font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
     letter-spacing: 1.5px;
+    text-align: left;
+}
+#episodes .ep_title h2 span {
+    right: 190px;
+    text-align: right;
+    position: absolute;
 }
 #episodes .ep_title .ep_play {
     position: absolute;

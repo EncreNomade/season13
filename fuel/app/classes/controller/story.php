@@ -15,58 +15,51 @@ class Controller_Story extends Controller_Template
         if(!$current_user) 
             return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
             
-        if( Auth::member(50) || Auth::member(100) )
+        if( Auth::member(10) || Auth::member(50) || Auth::member(100) )
             return $access;
             
         $access = array('valid' => false, 'errorCode' => 103, 'errorMessage' => $codes[103]);
-        // Inscription after first episode
+        // Permission after first episode
         if($epid >= 2) {
+            $result = DB::select('*')->from('admin_13userpossesions')
+                                     ->where('user_id', $current_user->id)
+                                     ->and_where('episode_id', $epid)
+                                     ->execute();
+            $num_rows = count($result);
+            
+            if($num_rows !== 0)
+                return array('valid' => true);
+                
+        
             switch ($epid) {
             case 2:
                 return array('valid' => true);
                 break;
             case 3: 
-                $result = DB::select('*')->from('admin_13userpossesions')
-                                         ->where('user_id', $current_user->id)
-                                         ->and_where('episode_id', $epid)
-                                         ->execute();
-                $num_rows = count($result);
-                
-                if($num_rows !== 0)
-                    return array('valid' => true);
-                else {
-                    $data = array();
-                    $data['pseudo'] = $current_user->pseudo;
-                    $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/";
-                    $data['price'] = "0,99";
-                    return array(
-                        'valid' => false, 
-                        'errorCode' => 303, 
-                        'errorMessage' => $codes[303], 
-                        'form' => View::forge('story/access/invitations', $data)->render()
-                    );
-                }
+                $data = array();
+                $data['pseudo'] = $current_user->pseudo;
+                $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/";
+                $data['price'] = "0,99";
+                return array(
+                    'valid' => false, 
+                    'errorCode' => 303, 
+                    'errorMessage' => $codes[303], 
+                    'form' => View::forge('story/access/invitations', $data)->render()
+                );
                 break;
             case 4:
-                $result = DB::select('*')->from('admin_13userpossesions')
-                                         ->where('user_id', $current_user->id)
-                                         ->and_where('episode_id', $epid)
-                                         ->execute();
-                $num_rows = count($result);
-                
-                if($num_rows !== 0)
-                    return array('valid' => true);
-                else {
-                    $data = array();
-                    $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? '' : "http://".$_SERVER['HTTP_HOST']."/";
-                    $data['price'] = "0,99";
-                    return array(
-                        'valid' => false, 
-                        'errorCode' => 304, 
-                        'errorMessage' => $codes[304], 
-                        'form' => View::forge('story/access/like', $data)->render()
-                    );
-                }
+                $data = array();
+                $data['root_path'] = Fuel::$env == Fuel::DEVELOPMENT ? '' : "http://".$_SERVER['HTTP_HOST']."/";
+                $data['price'] = "0,99";
+                return array(
+                    'valid' => false, 
+                    'errorCode' => 304, 
+                    'errorMessage' => $codes[304], 
+                    'form' => View::forge('story/access/like', $data)->render()
+                );
+                break;
+            case 5:
+                return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
                 break;
             default: return $access;
             }

@@ -2544,7 +2544,7 @@ $.extend( mse.GameExpose.prototype , {
             ctx.strokeRect(0, 0, this.resultw, this.resulth);
             // Window title
             ctx.fillStyle = "#000";
-            ctx.fillText(this.game.result.win ? "GAGNE !" : "PERDU !", this.resultw/2, 40);
+            ctx.fillText(this.game.result.win ? "GAGNÉ !" : "PERDU !", this.resultw/2, 40);
             ctx.drawImage(mse.src.getSrc('fbBn'), 145, 5, 30, 30);
             ctx.beginPath();
             ctx.moveTo(0, 40);

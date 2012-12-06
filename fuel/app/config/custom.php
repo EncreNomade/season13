@@ -19,4 +19,8 @@ return array(
 	    'id' => '141570392646490',
 	    'secret' => '152a5d45dd79ce82924f1c9a792caf96',
 	),
+	
+	'presta' => array(
+	    '_COOKIE_KEY_' => 'Oft84wshyVkbtEgVEc1ndiOqGhtAHcqFWHiKPF54MWBuLwQWfoD7vVJV',
+	),
 );

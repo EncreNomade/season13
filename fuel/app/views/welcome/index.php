@@ -31,18 +31,21 @@
                      data-id="<?php echo stripslashes($admin_13episode->id); ?>"
                      data-title="<?php echo stripslashes($admin_13episode->title); ?>"
                      data-episode="<?php echo $admin_13episode->episode; ?>"
+                     data-price="<?php echo $admin_13episode->price; ?>"
                      data-bref="<?php echo stripslashes($admin_13episode->bref); ?>"
                      data-path="<?php echo $admin_13episode->path; ?>"
                      data-dday="<?php echo $admin_13episode->dday; ?>">
                      
                     <?php echo Html::img($admin_13episode->image); ?>
-                    
                 </div>
             <?php endforeach; ?>
             </div>
             
             <div class="ep_title">
-                <h2><?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?></h2>
+                <h2>
+                    <?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?>
+                    <span><?php if($current_ep->price != "") echo $current_ep->price.'€'; ?></span>
+                </h2>
                 <a class="ep_play" target="_blank"></a>
                 
                 

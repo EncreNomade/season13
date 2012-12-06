@@ -215,11 +215,11 @@ class Controller_Admin_Mails extends Controller_Template
 	    	            $email->to($to);
 	    	            
 	    	            // Set a subject
-	    	            $email->subject("Offre gratuit de SEASON13");
+	    	            $email->subject("Offre Cadeau de Season13");
 	    	            
 	    	            // And set the html body.
 	    	            $data = array();
-	    	            $data['subject'] = 'Offre gratuit de SEASON13';
+	    	            $data['subject'] = 'OFFRE CADEAU';
 	    	            $data['content'] = Input::post('message');
 	    	            $data['codelink'] = (Fuel::$env == Fuel::DEVELOPMENT ? "http://localhost:8888/season13/public/cadeau" : "http://season13.com/cadeau")."?code=".$code;
 	    	            $data['code'] = $code;
@@ -274,6 +274,19 @@ class Controller_Admin_Mails extends Controller_Template
 	    $data['content'] = "What the fuck! What the fuck! What the fuck! What the fuck! What the fuck! What the fuck!";
 	    
 	    return Response::forge(View::forge('admin/mails/newsletter', $data));
+	}
+	
+	
+	public function action_offer() {
+	    $code = "asdjkfhsljdafhjshfjksdfhasjkdfad";
+	
+	    $data = array();
+	    $data['subject'] = 'OFFRE CADEAU';
+	    //$data['content'] = Input::post('message');
+	    $data['codelink'] = (Fuel::$env == Fuel::DEVELOPMENT ? "http://localhost:8888/season13/public/cadeau" : "http://season13.com/cadeau")."?code=".$code;
+	    $data['code'] = $code;
+	    
+	    return Response::forge(View::forge('admin/mails/offre', $data));
 	}
 
 }

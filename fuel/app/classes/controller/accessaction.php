@@ -16,6 +16,41 @@ class Controller_Accessaction extends Controller_Rest
     	View::set_global('current_user', $this->current_user);
     }
     
+    public function post_buy_episode() {
+        if( Input::post('epid') ) {
+            // Check possesion already set
+            $result = DB::select('*')->from('admin_13userpossesions')
+                                     ->where('user_id', $this->current_user->id)
+                                     ->and_where('episode_id', Input::post('epid'))
+                                     ->execute();
+            $num_rows = count($result);
+            
+            if($num_rows !== 0) {
+                $this->response(array('valid' => true), 200);
+            }
+            else {
+                // Set possesion of episode 4
+                Config::load('custom', true);
+                $codes = (array) Config::get('custom.possesion_src', array ());
+                
+                $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
+    				'user_id' => $this->current_user->id,
+    				'episode_id' => Input::post('epid'),
+    				'source' => $codes['offer_nopayment'],
+    			));
+    
+    			if ($admin_13userpossesion and $admin_13userpossesion->save())
+    			{
+    				$this->response(array('valid' => true), 200);
+    			}
+    			else
+    			{
+    				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour de profile a échoué"), 200);
+    			}
+    		}
+        }
+    }
+    
     public function post_liked() {
         $fields = @unserialize($this->current_user->get('profile_fields'));
         if(!array_key_exists('site_liked', $fields) || !$fields['site_liked']) {

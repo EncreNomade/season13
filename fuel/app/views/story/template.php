@@ -201,6 +201,10 @@ addEventListener("load", function(){
         case 201:
             $msg = "Tu dois te connecter sur <a href='http://season13.com'>Season13.com</a>.";
             break;
+        // Purchase
+        case 202:
+            $msg = $codes[202];
+            break;
         default:
             $msg = $codes['default'];
             break;

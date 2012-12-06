@@ -1230,6 +1230,11 @@ ul#menu div #menu_link {
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #game_container.nowindow {
     border: 3px solid #4c4c4c;

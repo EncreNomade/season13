@@ -11,6 +11,4 @@ return array(
 	'thanksto' => 'welcome/thanksto',
 	'aboutus' => 'welcome/aboutus',
 	'cadeau'   => 'welcome/cadeau',
-	
-	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 );

@@ -8,6 +8,7 @@ return array(
 	    102 => "Aucun épisode n'était demandé",
 	    103 => "L'épisode n'existe pas ou elle est indisponible.",
 	    201 => "Tu dois te connecter ou t'inscrire sur SEASON13.com.",
+	    202 => "Tu n'as pas l'accès à cet épisode.",
 	    303 => "",
 	    304 => "",
 	    'default' => "L'épisode n'existe pas ou elle est indisponible.",

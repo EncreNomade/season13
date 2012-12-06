@@ -350,6 +350,7 @@
     
     <script type="text/javascript">
         window.current_section = "<?php echo $section; ?>";
+        config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
     </script>
     <?php 
         // output the javascript function
@@ -468,7 +469,7 @@
     </div>
     <div id="login_dialog" class="dialog">
         <div class="close"></div>
-        <form method="post" action="base/login">
+        <form method="post" action="<?php echo $remote_path; ?>base/login">
             <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
             <div class="section">
                 <div class="sep_line">

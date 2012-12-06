@@ -204,42 +204,45 @@ function init() {
     });
     
     // Facebook login
+    function fb_logged(response) {
+        var token = response.authResponse.accessToken;
+        
+        $.ajax({
+            url: './base/login_fb',
+            type: 'POST',
+            dataType: 'json',
+            data: {'token':token},
+            success: function(data, textStatus, XMLHttpRequest)
+            {
+                // now, we get two important pieces of data back from our rest controller
+                // data.valid = true/false
+                // data.redirect = the page we redirect to on successful login
+                if (data.valid)
+                {
+                    //document.location.href = data.redirect;
+                    document.location.reload()
+                }
+                else
+                {
+                    if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
+                    $('input[type=submit]').removeAttr('disabled');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown)
+            {
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                $('input[type=submit]').removeAttr('disabled');
+            }
+        });
+    }
     $('#login_dialog .fb_btn').click(function(){
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-                var token = response.authResponse.accessToken;
-                
-                $.ajax({
-                    url: './base/login_fb',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {'token':token},
-                    success: function(data, textStatus, XMLHttpRequest)
-                    {
-                        // now, we get two important pieces of data back from our rest controller
-                        // data.valid = true/false
-                        // data.redirect = the page we redirect to on successful login
-                        if (data.valid)
-                        {
-                            //document.location.href = data.redirect;
-                            document.location.reload()
-                        }
-                        else
-                        {
-                            if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
-                            $('input[type=submit]').removeAttr('disabled');
-                        }
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown)
-                    {
-                        alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-                        $('input[type=submit]').removeAttr('disabled');
-                    }
-                });
+                fb_logged(response);
             } else if (response.status === 'not_authorized') {
                 alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
             } else {
-                alert("Tu n'es pas connecté sur Facebook.");
+                fbapi.connect(fb_logged);
             }
         });
     });

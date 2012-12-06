@@ -18,6 +18,11 @@ return array(
 				9 => '008_create_admin_13contactmsgs',
 				10 => '009_create_admin_13userpossesions',
 				11 => '010_create_admin_promocodes',
+				12 => '011_create_webservice_requestrecords',
+				13 => '012_create_achat_13extorders',
+				14 => '013_create_achat_13products',
+				15 => '014_create_webservice_plateformapps',
+				16 => '015_create_webservice_appermissions',
 			),
 		),
 		'module' => 

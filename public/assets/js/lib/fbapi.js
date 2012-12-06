@@ -16,7 +16,7 @@ fbapi.connect = function(callback){
                 fbapi.user = user;
 
                 if(typeof fbapi.callback == 'function')
-                    fbapi.callback.call(window);
+                    fbapi.callback.call(window, response);
                 fbapi.callback = false;
             });
         } 

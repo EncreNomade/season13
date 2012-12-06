@@ -64,8 +64,8 @@ function gotoSection(name) {
     elems.container.scrollTo({ top:offset, left:0 }, 600);
 }
 
-function titleContent(epid, title) {
-    return '#'+epid+'  '+title;
+function titleContent(epid, title, price) {
+    return '#'+epid+'  '+title+'<span>'+(price == "" ? "" : price+"€")+'</span>';
 }
 
 function activeEpisode(id) {
@@ -73,7 +73,7 @@ function activeEpisode(id) {
     elems.ep_btns.eq(id).addClass('active');
     elems.ep_expos.css( 'left', -config.expo_width * id );
     var expo = elems.ep_expos.children('.expo:eq('+id+')');
-    elems.ep_title.children('h2').text( titleContent(expo.data('episode'), expo.data('title')) );
+    elems.ep_title.children('h2').html( titleContent(expo.data('episode'), expo.data('title'), expo.data('price')) );
     
     // Availability
     var ddaystr = expo.data('dday');
@@ -101,6 +101,23 @@ function activeEpisode(id) {
 
 var accessGateway = {
     'success' : false,
+    
+    'buyClicked' : function(ep, updateAction) {
+        var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le "+ep+"ème épisode de Voodoo Connection.");
+        if(ok) {
+            if(updateAction) {
+                $.ajax({
+                    url: window.config.publicRoot+updateAction,
+                    type: 'POST',
+                    async: false,
+                    dataType : 'json',
+                    data: {'epid': ep},
+                });
+            }
+        
+            window.open(window.config.publicRoot+'story?ep='+ep, '_newtab');
+        }
+    },
     
     'ep3': function(data) {
         $('#invitation_dialog h1').nextAll().remove();
@@ -143,16 +160,8 @@ var accessGateway = {
         
         $('#access_buy_btn3').unbind('click').click(function(e) {
             e.preventDefault();
-            var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le 3ème épisode de Voodoo Connection.");
-            if(ok) {
-                $.ajax({
-                    url: window.config.publicRoot+'accessaction/no_invitation',
-                    type: 'POST'
-                });
-            
-                invitation.removeClass('show');
-                window.open(window.config.publicRoot+'story?ep=3', '_newtab');
-            }
+            invitation.removeClass('show');
+            accessGateway.buyClicked(3, 'accessaction/no_invitation');
         });
     },
     
@@ -228,21 +237,13 @@ var accessGateway = {
         
         $('#access_buy_btn4').unbind('click').click(function(e) {
             e.preventDefault();
-            var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le 3ème épisode de Voodoo Connection.");
-            if(ok) {
-                $.ajax({
-                    url: window.config.publicRoot+'accessaction/no_like',
-                    type: 'POST'
-                });
-            
-                $('.center #like_dialog').removeClass('show');
-                window.open(window.config.publicRoot+'story?ep=4', '_newtab');
-            }
+            $('.center #like_dialog').removeClass('show');
+            accessGateway.buyClicked(4, 'accessaction/no_like');
         });
     }
 };
 
-function story_access_resp(data) {
+function story_access_resp(data, epid) {
     if (!data.valid)
     {
         if(data.errorCode != null) {
@@ -257,6 +258,11 @@ function story_access_resp(data) {
                 
             case 304:
                 accessGateway.ep4(data);
+                break;
+            
+            case 202:
+                accessGateway.buyClicked(epid, 'accessaction/buy_episode');
+                data.errorMessage = "";
                 break;
             
             case 102:
@@ -284,7 +290,7 @@ function playEpisode(e) {
         success: function(data, textStatus, XMLHttpRequest)
         {
             if (!data.valid) e.preventDefault();
-            story_access_resp(data);
+            story_access_resp(data, epid);
         },
         error: function(XMLHttpRequest, textStatus, errorThrown)
         {

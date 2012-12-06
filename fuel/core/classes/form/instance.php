@@ -200,7 +200,7 @@ class Form_Instance
 		else
 		{
 			$attributes['name'] = (string) $field;
-			$attributes['value'] = (string) $value;
+			$attributes['value'] = substr(" ".$value, 1);
 		}
 
 		$attributes['type'] = empty($attributes['type']) ? 'text' : $attributes['type'];
