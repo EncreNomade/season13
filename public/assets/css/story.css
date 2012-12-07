@@ -290,7 +290,7 @@ ul#menu div #menu_link {
 /******************** Center Panels ********************/
 
 #center {
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     width: 0px;
@@ -299,6 +299,16 @@ ul#menu div #menu_link {
 }
 #center.show {
     z-index: 19;
+}
+
+#top_center {
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+    z-index: 12;
 }
 
 
@@ -390,7 +400,7 @@ ul#menu div #menu_link {
     -o-transition: visibility 0.5s linear;
     transition: visibility 0.5s linear;
 }
-#comment.show, #author_bio.show, #credits.show {
+#comment.show, #author_bio.show, #credits.show, #next_ep_dialog.show {
     visibility: visible;
 }
 
@@ -429,6 +439,57 @@ ul#menu div #menu_link {
 #credits div.content h5 label {
     font-family: 'DroidSansBold';
 }
+
+
+
+
+
+
+/******************** Next Episode Dialog ********************/
+
+#next_ep_dialog {
+    position: absolute;
+    width: 320px;
+    height: auto;
+    left: -170px;
+    top: 40px;
+    visibility: hidden;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    
+    -webkit-transition: visibility 0.5s linear;
+    -moz-transition: visibility 0.5s linear;
+    -ms-transition: visibility 0.5s linear;
+    -o-transition: visibility 0.5s linear;
+    transition: visibility 0.5s linear;
+}
+
+#next_ep_dialog .logo {
+    position: relative;
+    left: 100px;
+    width: 120px;
+    height: 104px;
+}
+
+#next_ep_dialog div.link {
+    position: relative;
+    width: 200px;
+    left: 0px;
+    text-align: center;
+    height: 50px;
+    margin: 10px 60px;
+    font: normal 20px/55px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    background: rgb(246, 168, 0);
+    
+    border-radius: 10px;
+}
+#next_ep_dialog div.link a {
+    text-decoration: none;
+    color: #fff;
+}
+
 
 
 
@@ -1246,6 +1307,7 @@ ul#menu div #menu_link {
     display: block;
     z-index: 15;
     visibility: visible;
+    opacity: 1;
 }
 #game_center {
     position: absolute;

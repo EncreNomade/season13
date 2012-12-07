@@ -1,8 +1,11 @@
 <?php echo Form::open(array('action' => $root_path.'accessaction/invitation_mail', 'method' => 'POST', 'id' => 'invitation_form')); ?>
     <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token(), array('id' => 'invitation_csrf')); ?>
     <div class="section">
-        <h5>Aide-nous à faire connaître Voodoo Connection.<br/>
-        Invite 5 de tes amis à le découvrir</h5>
+        <h5>
+            Aide-nous à faire connaître Voodoo Connection.<br/>
+            Nous t'offrons cet épisode si tu envoies cette invitation à 5 amis.<br/>
+            <br/>
+        </h5>
     </div>
 	<div class="section">
 	    <p>

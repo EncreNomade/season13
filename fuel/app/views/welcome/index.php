@@ -86,12 +86,9 @@
 </div>
 
 <div class="center">
-    <div id="invitation_dialog" class="dialog">
+    <div id="access_dialog" class="dialog">
         <div class="close"></div>
-        <h1>Invitation</h1>
-    </div>
-    <div id="like_dialog" class="dialog">
-        <div class="close"></div>
-        <h1>J'aime SEASON13 sur Facebook</h1>
+        <h1></h1>
+        <div class="sep_line"></div>
     </div>
 </div>

@@ -120,9 +120,11 @@ var accessGateway = {
     },
     
     'ep3': function(data) {
-        $('#invitation_dialog h1').nextAll().remove();
-        $('#invitation_dialog h1').after(data.form);
-        var invitation = $('.center #invitation_dialog');
+        $('#access_dialog').attr('class', 'dialog invitation_dialog');
+        $('#access_dialog h1').text('Invitation');
+        $('#access_dialog h1').nextAll().remove();
+        $('#access_dialog h1').after(data.form);
+        var invitation = $('#access_dialog');
         invitation.addClass('show');
 
         // Prepare Options Object for form
@@ -166,12 +168,14 @@ var accessGateway = {
     },
     
     'ep4': function(data) {
-        $('#like_dialog h1').nextAll().remove();
-        $('#like_dialog h1').after(data.form);
-        var like = $('.center #like_dialog');
+        $('#access_dialog').attr('class', 'dialog like_dialog');
+        $('#access_dialog h1').text('J\'aime SEASON13 sur Facebook');
+        $('#access_dialog h1').nextAll().remove();
+        $('#access_dialog h1').after(data.form);
+        var like = $('#access_dialog');
         
         // Like button
-        $('#like_dialog #like_section').html('<fb:like href="http://season13.com/" id="fb_like_form_btn" send="true" width="400" show_faces="true" font="lucida grande"></fb:like>');
+        $('#access_dialog #like_section').html('<fb:like href="http://season13.com/" id="fb_like_form_btn" send="true" width="400" show_faces="true" font="lucida grande"></fb:like>');
         FB.XFBML.parse();
         
         FB.Event.subscribe('edge.create', function(response) {
@@ -181,8 +185,8 @@ var accessGateway = {
             });
         
             //$('.center #like_dialog').removeClass('show');
-            $('#like_dialog #like_section fb').nextAll().remove();
-            $('#like_dialog #like_section').append("<p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>");
+            $('#access_dialog #like_section fb').nextAll().remove();
+            $('#access_dialog #like_section').append("<p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>");
         });
         
         // Prepare Options Object for form
@@ -226,7 +230,7 @@ var accessGateway = {
                 if (!result || !result.data) {
                     return;
                 } else if (result.data.length > 0) {
-                    $('#like_dialog #like_section').html("<h5>Bravo! Tu as déjà aimé SEASON13 sur Facebook, nous t'offrons le 4ème épisode de Voodoo Connection.</h5><p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>").nextAll().remove();
+                    $('#access_dialog #like_section').html("<h5>Bravo! Tu as déjà aimé SEASON13 sur Facebook, nous t'offrons le 4ème épisode de Voodoo Connection.<br/></h5><p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>").nextAll().remove();
                 } else if (result.error) {
                     console.log('Error: '+result.error.message+'');
                 }
@@ -237,7 +241,7 @@ var accessGateway = {
         
         $('#access_buy_btn4').unbind('click').click(function(e) {
             e.preventDefault();
-            $('.center #like_dialog').removeClass('show');
+            $('.center #access_dialog').removeClass('show');
             accessGateway.buyClicked(4, 'accessaction/no_like');
         });
     }
@@ -254,10 +258,12 @@ function story_access_resp(data, epid) {
             
             case 303:
                 accessGateway.ep3(data);
+                data.errorMessage = "";
                 break;
                 
             case 304:
                 accessGateway.ep4(data);
+                data.errorMessage = "";
                 break;
             
             case 202:

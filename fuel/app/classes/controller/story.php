@@ -77,7 +77,7 @@ class Controller_Story extends Controller_Template
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
     	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
-    	View::set_global('base_uri', Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://season13.com/');
+    	View::set_global('base_uri', Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/');
     	
     	$this->episode = null;
     	$epid = Input::get('ep') ? Input::get('ep') : null;
@@ -87,6 +87,7 @@ class Controller_Story extends Controller_Template
     	    View::set_global('episode', $this->episode);
     	    $access = Controller_Story::requestAccess($epid, $this->current_user);
     	    View::set_global('accessible', $access['valid']);
+    	    View::set_global('access', $access);
     	    
     	    if($access['valid'] === true) {
         	    $this->comments = Model_Admin_13comment::find_by_epid($epid);
@@ -94,7 +95,7 @@ class Controller_Story extends Controller_Template
     	    else $this->template->accessfail = $access['errorCode'];
     	}
     	else {
-    	    $this->template->accessfail = 101;
+    	    Response::redirect('404');
     	}
     }
 

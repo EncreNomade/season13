@@ -1,4 +1,10 @@
 <?php echo Form::open(array('action' => $root_path.'accessaction/liked', 'method' => 'POST', 'id' => 'like_form')); ?>
+    <div class="section">
+        <h5>
+            Nous t'offrons cet épisode si tu aimes Season13.com sur Facebook.<br/><br/>
+        </h5>
+    </div>
+
 	<div class="section" id="like_section">
 	    
 	</div>

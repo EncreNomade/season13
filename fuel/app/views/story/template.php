@@ -50,7 +50,7 @@
     echo Asset::js('auth.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
-    if(isset($episode)) {
+    if($accessible) {
         if(Fuel::$env == Fuel::DEVELOPMENT) {
             echo Asset::js('story/scriber.js');
             echo Asset::js('story/events.js');
@@ -103,23 +103,9 @@ addEventListener("load", function(){
 
 <body>
 
-    <script>
-    
-        config.episode = {
-            'title' : "<?php echo $title; ?>",
-            'story' : "<?php echo $episode->story; ?>",
-            'image' : "<?php echo $expo_image; ?>"
-        };
-        
-    </script>
-    <?php 
-        // output the javascript function
-        echo Security::js_set_token(); 
-    ?>
-
     <div id="fb-root"></div>
     <script>
-        // Load the SDK Asynchronously
+        // Load the SDK asynchronously
         (function(d){
             var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
             if (d.getElementById(id)) {return;}
@@ -140,8 +126,36 @@ addEventListener("load", function(){
             });
             
             fbapi.checkConnect();
+            
+            if(config.episode.epid == 4) 
+                story_access_resp(config.accessResp, config.episode.epid);
         }
     </script>
+
+    <script>
+    
+        config.episode = {
+            'epid' : <?php echo $episode->id; ?>,
+            'title' : "<?php echo $title; ?>",
+            'story' : "<?php echo $episode->story; ?>",
+            'image' : "<?php echo $expo_image; ?>"
+        };
+        
+        config.accessResp = {
+            'valid': <?php echo $access['valid'] ? 'true' : 'false'; ?>, 
+            <?php 
+            if($access['valid'] == false) 
+                echo "'errorCode':  ".$access['errorCode'].",\n";
+            if(array_key_exists('errorMessage', $access)) 
+                echo "'errorMessage': '".$access['errorMessage']."',\n";
+            ?>
+        };
+        
+    </script>
+    <?php 
+        // output the javascript function
+        echo Security::js_set_token(); 
+    ?>
 
     <header>
         <div class="left">
@@ -162,9 +176,9 @@ addEventListener("load", function(){
             
             <ul id="conn">
             <?php if($current_user == null): ?>
-                    <li id="open_signup">S'INSCRIRE</li>
+                    <li id="open_signup">Créer un compte</li>
                     <li class="text_sep_vertical"></li>
-                    <li id="open_login">SE CONNECTER</li>
+                    <li id="open_login">Déjà client</li>
             <?php else: ?>
                 <?php if(Auth::member(100)): ?>
                     <li><a href="admin/">ADMIN</a></li>
@@ -226,36 +240,18 @@ addEventListener("load", function(){
             <?php echo Html::anchor('http://www.season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
         </div>
     </ul>
-<?php if(!$accessible): ?>
-    <script type="text/javascript">
-    <?php 
-        
-        Config::load('errormsgs', true);
-        $codes = (array) Config::get('errormsgs.story_access', array ());
-        $msg = "";
-        switch($accessfail) {
-        // Episode indisponible
-        case 101:
-            $msg = $codes[101];
-            break;
-        // Login
-        case 201:
-            $msg = "Tu dois te connecter sur <a href='http://season13.com'>Season13.com</a>.";
-            break;
-        // Purchase
-        case 202:
-            $msg = $codes[202];
-            break;
-        default:
-            $msg = $codes['default'];
-            break;
-        }
-        
-        echo "$(window).load(function() { msgCenter.send(\"".$msg."\", 0); });";
-        
-    ?>
-    </script>
-<?php endif; ?>
+
+    <div id="top_center">
+    <!--Access dialog-->
+        <div id="access_dialog" class="dialog">
+            <div class="close right"></div>
+            <h1></h1>
+            <div class="sep_line"></div>
+            
+            <?php if(array_key_exists('form', $access)) echo html_entity_decode($access['form'], ENT_COMPAT, 'UTF-8'); ?>
+        </div>
+    </div>
+
     <div id="center">
     <!-- Author bio dialog-->
         <div id="author_bio" class="dialog">
@@ -304,6 +300,28 @@ addEventListener("load", function(){
                     Artur Brongniart<br/>
                 </h5>
             </div>
+        </div>
+        
+    <!--Continue read dialog-->
+        <div id="next_ep_dialog" class="dialog">
+            <div class="close right"></div>
+            <h1>L'épisode Suivant</h1>
+            <div class="sep_line"></div>
+            
+            <?php if($episode->id < 6): ?>
+                <div class="link">
+                    <a href="<?php echo $base_uri; ?>story?ep=<?php echo $episode->id+1; ?>">Continue l'histoire</a>
+                </div>
+            <?php else: ?>
+                <h5>
+                    Félicitation! Tu as fini la première saison du Voodoo Connection, nous te informerons par mail pour le lancement du deuxième saison qui arrive prochainement.<br/>
+                    Si tu as des questions, n'hésite pas à nous contacter: <a href="mailto:contact@encrenomade.com">contact@encrenomade.com</a></br>
+                    <br/>
+                    Nous te remercions et à très bientôt!
+                </h5>
+            <?php endif; ?>
+            
+            <?php echo Asset::img('season13/logo_black.png', array("class" => "logo", 'alt' => 'LOGO SEASON 13')); ?>
         </div>
     
     <?php if($accessible): ?>

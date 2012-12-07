@@ -119,9 +119,9 @@
     
     <ul id="conn">
 <?php if($current_user == null): ?>
-        <li id="open_signup">S'INSCRIRE</li>
+        <li id="open_signup">Créer un compte</li>
         <li class="text_sep_vertical"></li>
-        <li id="open_login">SE CONNECTER</li>
+        <li id="open_login">Déjà client</li>
 <?php else: ?>
     <?php if(Auth::member(100)): ?>
         <li><a href="admin/">ADMIN</a></li>

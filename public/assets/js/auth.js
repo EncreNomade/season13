@@ -109,7 +109,7 @@ function init() {
             if (data.valid)
             {
                 //document.location.href = data.redirect;
-                document.location.reload()
+                document.location.reload();
             }
             else
             {
@@ -212,7 +212,7 @@ function init() {
                 if (data.valid)
                 {
                     //document.location.href = data.redirect;
-                    document.location.reload()
+                    document.location.reload();
                 }
                 else
                 {
@@ -392,7 +392,7 @@ function init() {
                 if (data.valid)
                 {
                     //document.location.href = data.redirect;
-                    document.location.reload()
+                    document.location.reload();
                 }
                 else
                 {

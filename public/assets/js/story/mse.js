@@ -868,6 +868,9 @@ mse.Root.prototype = {
         }
         
         this.inPause = false;
+    },
+    bookFinished: function() {
+        this.evtDistributor.rootEvt.eventNotif("finished");
     }
 };
 
@@ -1914,7 +1917,10 @@ $.extend( mse.ArticleLayer.prototype , {
 					}
 					this.currIndex++;
 				}
-				else this.complete = true;
+				else {
+				    this.complete = true;
+				    mse.root.bookFinished();
+				}
 			}
 		}
 		

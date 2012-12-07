@@ -6,12 +6,12 @@ return array(
 	'story_access' => array(
 	    101 => "L'épisode est indisponible pour le moment.",
 	    102 => "Aucun épisode n'était demandé",
-	    103 => "L'épisode n'existe pas ou elle est indisponible.",
+	    103 => "L'épisode n'existe pas ou il est indisponible.",
 	    201 => "Tu dois te connecter ou t'inscrire sur SEASON13.com.",
 	    202 => "Tu n'as pas l'accès à cet épisode.",
-	    303 => "",
-	    304 => "",
-	    'default' => "L'épisode n'existe pas ou elle est indisponible.",
+	    303 => "Nous t'offrons cet épisode si tu envoies cette invitation à 5 amis",
+	    304 => "Nous t'offrons cet épisode si tu aimes Season13.com sur Facebook",
+	    'default' => "L'épisode n'existe pas ou il est indisponible.",
 	),
 	
 	// Error codes while upload a file

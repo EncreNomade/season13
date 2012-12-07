@@ -46,6 +46,14 @@
     font: normal 25px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
     color: #fff;
 }
+.dialog .sep_line {
+    position: absolute;
+    left: 0px;
+    top: -3px;
+    width: 100%;
+    height: 3px;
+    background: rgb(246, 168, 0);
+}
 .dialog.show {
     top: 10px;
     opacity: 1;
@@ -226,6 +234,65 @@
     background: transparent url('../img/season13/ui/btn_login.png') no-repeat left top;
     color: transparent;
     border: none;
+}
+
+
+
+
+
+
+/******************** Access dialogs ********************/
+
+#access_dialog {
+    left: -200px;
+}
+#access_dialog.show {
+    top: 50px;
+    opacity: 1;
+    z-index: 12;
+}
+#access_dialog > .close {
+    right: 0px;
+    left: auto;
+}
+#access_dialog .section > h5 {
+    font: normal 15px/20px Arial;
+}
+
+/* ================ Invitation ================ */
+.invitation_dialog {
+    position: absolute;
+    top: -600px;
+    width: 400px;
+    height: 430px;
+    
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.invitation_dialog .section label {
+    width: 230px;
+}
+.invitation_dialog .section p input, .invitation_dialog .section p button, .invitation_dialog .section p select, .invitation_dialog .section p span {
+    left: 230px;
+}
+
+/* ================ Like Dialog ================ */
+.like_dialog {
+    position: absolute;
+    top: -600px;
+    width: 400px;
+    height: auto;
+    
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.like_dialog fb {
+    left: 20px;
+    margin: 0 0 30px 0;
 }
 
 

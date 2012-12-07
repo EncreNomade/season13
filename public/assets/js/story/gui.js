@@ -61,6 +61,183 @@ var mmvc = (function(){
 }());
 
 
+
+
+// Access Gateway
+var accessGateway = {
+    'success' : false,
+    
+    'buyClicked' : function(ep, updateAction) {
+        var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le "+ep+"ème épisode de Voodoo Connection.");
+        if(ok) {
+            if(updateAction) {
+                $.ajax({
+                    url: window.config.publicRoot+updateAction,
+                    type: 'POST',
+                    async: false,
+                    dataType : 'json',
+                    data: {'epid': ep},
+                });
+            }
+        
+            document.location.reload();
+        }
+    },
+    
+    'ep3': function(data) {
+        $('#access_dialog').attr('class', 'dialog invitation_dialog');
+        $('#access_dialog h1').text('Invitation');
+        var invitation = $('#access_dialog');
+        invitation.addClass('show');
+
+        // Prepare Options Object for form
+        var options = {
+            type :      'POST',
+            async :     false,
+            dataType :  'json',
+            success :   function(res) {
+                if(res && res.valid && res.valid === true) {
+                    invitation.removeClass('show');
+                    accessGateway.success = true;
+                }
+                else if(res && res.errorMessage) {
+                    alert(res.errorMessage);
+                }
+                else {
+                    alert('Une erreur de connexion est survenue.');
+                }
+            },
+            error :     function(res) {
+                alert('Une erreur de connexion est survenue.');
+            }
+        };
+        // Prepare ajax form
+        $('#invitation_form').ajaxForm(options);
+        $('#access_submit_btn3').click(function(e) {
+            e.preventDefault();
+            fuel_set_csrf_token($('#invitation_form').get(0));
+            $('#invitation_form').submit();
+            if(accessGateway.success) {
+                accessGateway.success = false;
+                document.location.reload();
+            }
+        });
+        
+        $('#access_buy_btn3').unbind('click').click(function(e) {
+            e.preventDefault();
+            invitation.removeClass('show');
+            accessGateway.buyClicked(3, 'accessaction/no_invitation');
+        });
+    },
+    
+    'ep4': function(data) {
+        $('#access_dialog').attr('class', 'dialog like_dialog');
+        $('#access_dialog h1').text('J\'aime SEASON13 sur Facebook');
+        var like = $('#access_dialog');
+        
+        // Like button
+        $('#access_dialog #like_section').html('<fb:like href="http://season13.com/" id="fb_like_form_btn" send="true" width="400" show_faces="true" font="lucida grande"></fb:like>');
+        FB.XFBML.parse();
+        
+        FB.Event.subscribe('edge.create', function(response) {
+            $.ajax({
+                url: window.config.publicRoot+'accessaction/liked',
+                type: 'POST'
+            });
+        
+            //$('.center #like_dialog').removeClass('show');
+            $('#access_dialog #like_section fb').nextAll().remove();
+            $('#access_dialog #like_section').append("<p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>");
+        });
+        
+        // Prepare Options Object for form
+        var options = {
+            type :      'POST',
+            async :     false,
+            dataType :  'json',
+            success :   function(res) {
+                if(res && res.valid && res.valid === true) {
+                    like.removeClass('show');
+                    accessGateway.success = true;
+                }
+                else if(res && res.errorMessage) {
+                    alert(res.errorMessage);
+                }
+                else {
+                    alert('Une erreur de connexion est survenue.');
+                }
+            },
+            error :     function(res) {
+                alert('Une erreur de connexion est survenue.');
+            }
+        };
+        // Prepare ajax form
+        $('#like_form').ajaxForm(options);
+        $('#access_submit_btn4').live('click', function(e) {
+            e.preventDefault();
+            fuel_set_csrf_token($('#like_form').get(0));
+            $('#like_form').submit();
+            if(accessGateway.success) {
+                accessGateway.success = false;
+                document.location.reload();
+            }
+        });
+    
+        fbapi.connect(function() {
+            var user_id = fbapi.user.id;
+            var query = 'SELECT%20user_id%20FROM%20url_like%20WHERE%20url%3D"http://season13.com/"%20AND%20user_id%3D'+user_id;
+            var url = '/fql?q='+query;
+            FB.api(url, 'get', function(result) {
+                if (!result || !result.data) {
+                    return;
+                } else if (result.data.length > 0) {
+                    $('#access_dialog #like_section').html("<h5>Bravo! Tu as déjà aimé SEASON13 sur Facebook, nous t'offrons le 4ème épisode de Voodoo Connection.</h5><p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>").nextAll().remove();
+                } else if (result.error) {
+                    console.log('Error: '+result.error.message+'');
+                }
+            });
+        });
+        
+        like.addClass('show');
+        
+        $('#access_buy_btn4').unbind('click').click(function(e) {
+            e.preventDefault();
+            $('.center #access_dialog').removeClass('show');
+            accessGateway.buyClicked(4, 'accessaction/no_like');
+        });
+    }
+};
+
+function story_access_resp(data, epid) {
+    if (!data.valid)
+    {
+        if(data.errorCode != null) {
+            switch (data.errorCode) {
+            case 201:
+                if(showLogin) showLogin();
+                break;
+            
+            case 303:
+                accessGateway.ep3(data);
+                break;
+                
+            case 304:
+                accessGateway.ep4(data);
+                break;
+            
+            case 202:
+            case 102:
+            case 101:
+            default:
+                break;
+            }
+        }
+        if(data.errorMessage && data.errorMessage != "") msgCenter.send(data.errorMessage, 10000);
+    }
+}
+
+
+
 gui = {};
 
 
@@ -194,6 +371,21 @@ gui.openCredits = function() {
         gui.credits.siblings().removeClass('show');
         
         gui.credits.addClass('show');
+        
+        if(window.mse) {
+            mse.root.pause();
+            gui.updatePlayPauseIcon();
+        }
+    }
+}
+
+gui.openNextEp = function() {
+    var dialog = $('#next_ep_dialog');
+    if(!gui.center.hasClass('show')) gui.center.addClass('show');
+    if(!dialog.hasClass('show')) {
+        dialog.siblings().removeClass('show');
+        
+        dialog.addClass('show');
         
         if(window.mse) {
             mse.root.pause();
@@ -607,5 +799,14 @@ $(document).ready(function() {
             }
             else gui.postComment(imgSrc, msg);
         });
+        
+        
+        // Book Finish event
+        mse.root.evtDistributor.rootEvt.addListener('finished', new Callback(gui.openNextEp, gui));
     }
+    
+    
+    // Access error process
+    if(config.episode.epid != 4)
+        story_access_resp(config.accessResp, config.episode.epid);
 });
