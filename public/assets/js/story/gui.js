@@ -638,6 +638,7 @@ $(document).ready(function() {
     // Author bio and credits
     $('#btn_author').click(gui.openAuthorBio);
     $('#btn_credits').click(gui.openCredits);
+    $('#btn_nextep').click(gui.openNextEp);
     
     if(window.mse) {
         // Controler activation

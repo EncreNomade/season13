@@ -234,6 +234,10 @@ addEventListener("load", function(){
             <?php echo Asset::img('season13/story/story_credit.png', array('alt' => 'Crédits de SEASON 13')); ?>
             <a>Crédits</a>
         </li>
+        <li id="btn_nextep">
+            <?php echo Asset::img('season13/story/story_nextep.png', array('alt' => 'Continue l\'histoire - '.$episode->story)); ?>
+            <a>Continue l'histoire</a>
+        </li>
         
         <div>
             <?php echo Asset::img('season13/logo_white.png', array("id" => "menu_logo", 'alt' => 'LOGO SEASON 13')); ?>
@@ -310,7 +314,7 @@ addEventListener("load", function(){
             
             <?php if($episode->id < 6): ?>
                 <div class="link">
-                    <a href="<?php echo $base_uri; ?>story?ep=<?php echo $episode->id+1; ?>">Continue l'histoire</a>
+                    <a href="<?php echo $base_uri; ?>story?ep=<?php echo $episode->id+1; ?>" target="_blank">Continue l'histoire</a>
                 </div>
             <?php else: ?>
                 <h5>

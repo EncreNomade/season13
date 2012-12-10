@@ -522,16 +522,19 @@ class Controller_Base extends Controller_Rest
 		    return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
 		}
 		
-		if( !is_null(Input::post('token')) ) {
-            $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('token')));
+		if( !is_null(Input::post('fb_token')) && Input::post('fb_token') != "" ) {
+		    Config::load('errormsgs', true);
+		    $msgs = (array) Config::get('errormsgs.auth', array ());
+		
+            $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('fb_token')));
             
-            if( !is_object($fbUser) && !isset($fbUser->id) )
-                $this->response(array('valid' => false, 'errorMessage' => 'Problème de connexion à Facebook'), 200);
+            if( !is_object($fbUser) || !isset($fbUser->id) )
+                $this->response(array('valid' => false, 'errorCode' => 10, 'errorMessage' => $msgs[10]), 200);
             else {
                 $auth = Auth::instance('fbauth');
         
                 // check the credentials. This assumes that you have the previous table created
-                if (Auth::check() or $auth->login($fbUser->email, $fbUser->id))
+                if ($auth->login($fbUser->email, $fbUser->id))
                 {
                     // credentials ok, go right in
                     $this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
@@ -539,14 +542,87 @@ class Controller_Base extends Controller_Rest
                 }
                 else
                 {
-                    $this->response(array('valid' => false, 'errorMessage' => 'Erreur d\'authentification'), 200);
+                    $this->response(array('valid' => false, 'errorCode' => 12, 'errorMessage' => $msgs[12]), 200);
                 }
             }
         }
         else {
-            $this->response(array('valid' => false, 'errorMessage' => 'Erreur de connexion avec Facebook'), 200);
+            $this->response(array('valid' => false, 'errorCode' => 11, 'errorMessage' => $msgs[11]), 200);
         }
 	}
+	
+	
+	 /**
+	  * Facebook link action
+	  * 
+	  * need a valid facebook user id
+	  *
+	  * @access  public
+	  * @return  void
+	  */
+	public function post_link_fb()
+	{
+	    // Already logged in
+		if( Auth::check() ){
+		    return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+		}
+		
+		Config::load('errormsgs', true);
+		$msgs = (array) Config::get('errormsgs.auth', array ());
+		
+		$val = Validation::forge();
+		
+		$val->add('identifiant', 'Email or Username')
+		    ->add_rule('required');
+		$val->add('password', 'Password')
+		    ->add_rule('required');
+
+		if ($val->run())
+		{
+			$auth = Auth::instance();
+
+			// check the credentials. This assumes that you have the previous table created
+			if ( $auth->login(Input::post('identifiant'), Input::post('password')) )
+			{
+				// credentials ok, go right in
+				$this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
+				
+				if( !is_null(Input::post('fb_token')) && Input::post('fb_token') != "" ) {
+				    $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . Input::post('fb_token')));
+				    
+				    if( !is_object($fbUser) || !isset($fbUser->id) ) {
+				        return $this->response(array('valid' => false, 'errorCode' => 10, 'errorMessage' => $msgs[10]), 200);
+				    }
+				    else {
+			            // Update user fbid information
+			            $this->current_user->fbid = $fbUser->id;
+			            $this->current_user->avatar = 'https://graph.facebook.com/' . $fbUser->id . '/picture';
+			            // Fail update
+			            if($this->current_user->save() === false) {
+			                return $this->response(array('valid' => false, 'errorCode' => 13, 'errorMessage' => $msgs[13]), 200);
+			            }
+				    }
+				}
+				else {
+				    return $this->response(array('valid' => false, 'errorCode' => 11, 'errorMessage' => $msgs[11]), 200);
+				}
+				
+				$this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+			}
+			else
+			{
+				$this->response(array('valid' => false, 'errorCode' => 1, 'errorMessage' => $msgs[1]), 200);
+			}
+		}
+		else {
+		    if( $val->error('identifiant') )
+		        $this->response(array('valid' => false, 'errorCode' => 2, 'errorMessage' => $msgs[2]), 200);
+		    else if( $val->error('password') )
+		        $this->response(array('valid' => false, 'errorCode' => 3, 'errorMessage' => $msgs[3]), 200);
+		    else $this->response(array('valid' => false, 'errorCode' => 1, 'errorMessage' => $msgs[1]), 200);
+		}
+	}
+	
 	
 	/**
 	 * The logout action.

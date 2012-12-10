@@ -21,6 +21,13 @@ function showChPass() {
     $('#conn li').removeClass('inactive');
     $('#open_signup').addClass('inactive');
 }
+function showLinkFb() {
+    $('.dialog').removeClass('show');
+    $('#link_fb_dialog').addClass('show');
+    $('#link_fb_dialog').find('cite').text("").removeClass('alert');
+    $('#conn li').removeClass('inactive');
+    $('#open_signup').addClass('inactive');
+}
 function showUpdate() {
     $('.dialog').removeClass('show');
     $('#update_dialog').addClass('show');
@@ -190,7 +197,7 @@ function init() {
                 alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
             }
             else { // fail
-                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                alert('Désolé, une erreur inconnue s\'est produite, veuilles recharger la page et réessayer');
             }
         }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});       
     });
@@ -203,7 +210,7 @@ function init() {
             url: './base/login_fb',
             type: 'POST',
             dataType: 'json',
-            data: {'token':token},
+            data: {'fb_token':token},
             success: function(data, textStatus, XMLHttpRequest)
             {
                 // now, we get two important pieces of data back from our rest controller
@@ -216,7 +223,17 @@ function init() {
                 }
                 else
                 {
-                    if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
+                    switch (data.errorCode) {
+                    case 10:
+                    case 11:
+                        break;
+                    case 12:
+                        showLinkFb();
+                        data.errorMessage = "";
+                        break;
+                    }
+                    if(data.errorMessage && data.errorMessage != "") 
+                        alert('Erreur de connexion: '+ data.errorMessage);
                     $('input[type=submit]').removeAttr('disabled');
                 }
             },
@@ -228,16 +245,77 @@ function init() {
         });
     }
     $('#login_dialog .fb_btn').click(function(){
-        FB.getLoginStatus(function(response) {
-            if (response.status === 'connected') {
-                fb_logged(response);
-            } else if (response.status === 'not_authorized') {
-                alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
-            } else {
-                fbapi.connect(fb_logged);
-            }
-        });
+        fbapi.checkConnect(fb_logged);
     });
+    
+    
+    var options = {
+        type :      'POST',
+        dataType :  'json',
+        success :   function(data, textStatus, XMLHttpRequest) {
+            if(data.valid) {
+                alert("Félicitation, désormais tu peux te connecter avec ton compte Facebook.");
+                document.location.reload();
+                return;
+            }
+            
+            switch (data.errorCode) {
+            // Authentification errors
+            case 1:
+                $('#linkfbPass').siblings('label').addClass('alert');
+                $('#linkfbId').siblings('label').addClass('alert');
+                break;
+            case 2:
+                $('#linkfbId').siblings('label').addClass('alert');
+                break;
+            case 3:
+                $('#linkfbPass').siblings('label').addClass('alert');
+                break;
+                
+            // Facebook errors
+            case 10:
+            case 11:
+            case 13:
+                alert(data.errorMessage);
+                document.location.reload();
+                break;
+            default:
+                alert("Désolé, une erreur inconnue s'est produite, veuilles recharger la page et réessayer");
+                break;
+            }
+        
+            $('input[type=submit]').removeAttr('disabled');
+        },
+        error :     function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Désolé, une erreur inconnue s'est produite, tu peux nous contacter: contact@encrenomade.com");
+            $('input[type=submit]').removeAttr('disabled');
+        }
+    };
+    // Prepare ajax form
+    $('#link_fb_dialog form').ajaxForm(options);
+    $('#linkfbBtn').click(function(e) {
+        $('#link_fb_dialog').find('cite, label').removeClass('alert');
+
+        // Check fields
+        var name = $('#linkfbId').val();
+        var pass = $('#linkfbPass').val();
+
+        var valid = true;
+        if(name == "") {$('#linkfbId').siblings('label').addClass('alert');valid = false;}
+        if(pass == "") {$('#linkfbPass').siblings('label').addClass('alert');valid = false;}
+        if(!valid) {
+            // Stop full page load
+            e.preventDefault();
+            return;
+        }
+        
+        $('#linkfbToken').prop('value', fbapi.token);
+        
+        $('input[type=submit]', this).attr('disabled', 'disabled');
+        fuel_set_csrf_token($('#link_fb_dialog form').get(0));
+    });
+    
+    
     
     $('#login_dialog form').submit(function(e) {
         // Stop full page load
@@ -248,8 +326,8 @@ function init() {
         var pass = $('#loginPass').val();
 
         var valid = true;
-        if(name == "") {$('#loginId').addClass('invalid');valid = false;}
-        if(pass == "") {$('#loginPass').addClass('invalid');valid = false;}
+        if(name == "") {$('#loginId').siblings('label').addClass('alert');valid = false;}
+        if(pass == "") {$('#loginPass').siblings('label').addClass('alert');valid = false;}
         if(!valid) return;
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
@@ -301,6 +379,7 @@ function init() {
                 $('#chpass_mail').siblings('cite').text("Ton nouveau mot de passe a été envoyé.");
                 alert("Ton nouveau mot de passe a été envoyé.");
                 hideDialog();
+                $('input[type=submit]').removeAttr('disabled');
             }
             else
             {

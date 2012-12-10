@@ -225,7 +225,7 @@
     color: transparent;
     border: none;
 }
-.dialog #loginBtn {
+.dialog #loginBtn, .dialog #linkfbBtn {
     position: relative;
     top: 0px;
     left: 165px;

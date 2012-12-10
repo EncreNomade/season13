@@ -87,7 +87,7 @@ return array(
 	/**
 	 * $_POST key for login username
 	 */
-	'username_post_key' => 'username',
+	'username_post_key' => 'identifiant',
 
 	/**
 	 * $_POST key for login password

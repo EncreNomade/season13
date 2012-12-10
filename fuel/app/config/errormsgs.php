@@ -1,6 +1,15 @@
 <?php
 
 return array(
+    'auth' => array(
+        1 => 'Mot de passe ou identifiant erroné',
+        2 => 'Identifiant manquant',
+        3 => 'Mot de passe manquant',
+        10 => 'Problème de connexion à Facebook',
+        11 => 'Problème de connexion à Facebook, tu peux réessayer la prochaine fois',
+        12 => 'Facebook id n\'est lié à aucun compte',
+        13 => 'Ton facebook information n\'a pas pu être sauvegardé, tu peux réessayer la prochaine fois',
+    ),
 
     // Error codes while request the access to a story
 	'story_access' => array(

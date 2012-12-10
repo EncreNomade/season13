@@ -21,6 +21,7 @@ class Auth_Login_FBAuth extends Auth\Auth_Login_SimpleAuth
 			->where_open()
 			->where('pseudo', '=', $pseudo_or_email)
 			->or_where('email', '=', $pseudo_or_email)
+			->or_where('fbid', '=', $fbID)
 			->where_close()
 			->from(\Config::get('simpleauth.table_name'))
 			->as_object('Model_13user')
@@ -55,10 +56,9 @@ class Auth_Login_FBAuth extends Auth\Auth_Login_SimpleAuth
 	{
 		if ( ! ($this->user = $this->validate_user($pseudo_or_email, $fbID)))
 		{
-			$this->user = \Config::get('simpleauth.guest_login', true) ? static::$guest_login : false;
 			\Session::delete('pseudo');
 			\Session::delete('login_hash');
-			return DB::last_query();
+			return false;
 		}
 
 		\Session::set('pseudo', $this->user['pseudo']);

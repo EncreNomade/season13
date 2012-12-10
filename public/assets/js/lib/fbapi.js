@@ -12,6 +12,7 @@ fbapi.connect = function(callback){
     
     FB.login(function(response) {
         if (response.status == 'connected') {
+            fbapi.token = response.authResponse.accessToken;
             FB.api('/me', function(user) {
                 fbapi.user = user;
 
@@ -25,24 +26,30 @@ fbapi.connect = function(callback){
             fbapi.callback = false;
         }
         else { // fail
-            alert('Désolé, facebook n\'a pas établi la connexion, réessaye dans quelques minutes');
+            alert('Désolé, facebook n\'a pas établi la connexion, recharger la page et réessaye dans quelques minutes');
             fbapi.callback = false;
         }
     }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});
 }
-fbapi.checkConnect = function(){
+fbapi.checkConnect = function(callback){
     FB.getLoginStatus(function(response){ // test login
       if (response.status === 'connected') {
         var uid = response.authResponse.userID;
+        fbapi.token = response.authResponse.accessToken;
         FB.api('/me',function(u){
             fbapi.user = u;
         });
+        callback.call(this, response);
       } 
       else if (response.status === 'not_authorized') {//the user is logged in to Facebook, but has not authenticated your app
           fbapi.user = false;
+          fbapi.token = '';
+          alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
       } 
       else { // the user isn't logged in to Facebook.
           fbapi.user = false;
+          fbapi.token = '';
+          fbapi.connect(callback);
       }
     });
 };
