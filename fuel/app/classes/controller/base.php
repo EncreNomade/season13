@@ -480,7 +480,7 @@ class Controller_Base extends Controller_Rest
 	    //}
 	    
 		// Already logged in
-		Auth::check() and $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+		Auth::check() and return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
 
 		$val = Validation::forge();
 
