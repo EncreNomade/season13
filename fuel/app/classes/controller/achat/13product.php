@@ -40,36 +40,45 @@ class Controller_Achat_13product extends Controller_Template
 	{
 		if (Input::method() == 'POST')
 		{
-			$val = Model_Achat_13product::validate('create');
+			$val = Model_Achat_13product::validateWithMeta('create');
 			
 			if ($val->run())
 			{
-				$achat_13product = Model_Achat_13product::forge(array(
-					'reference' => Input::post('reference'),
-					'type' => Input::post('type'),
-					'pack' => Input::post('pack'),
-					'content' => Input::post('content'),
-					'presentation' => Input::post('presentation'),
-					'tags' => Input::post('tags'),
-					'title' => Input::post('title'),
-					'category' => Input::post('category'),
-					'metas' => Input::post('metas'),
-					'on_sale' => Input::post('on_sale'),
-					'price' => Input::post('price'),
-					'discount' => Input::post('discount'),
-					'sales' => Input::post('sales'),
-				));
-
-				if ($achat_13product and $achat_13product->save())
+				$metas = $this->mergeMetasArrays(Input::post('meta_type_content'), Input::post('meta_value_content'));
+				if($metas === FALSE) 
 				{
-					Session::set_flash('success', 'Added achat_13product #'.$achat_13product->id.'.');
-
-					Response::redirect('achat/13product');
+					Session::set_flash('error', 'The number of metas type and metas content is not equal');
 				}
+				else 
+				{					
+					$metas = Format::forge($metas)->to_json();
+					$achat_13product = Model_Achat_13product::forge(array(
+						'reference' => Input::post('reference'),
+						'type' => Input::post('type'),
+						'pack' => Input::post('pack'),
+						'content' => Input::post('content'),
+						'presentation' => Input::post('presentation'),
+						'tags' => Input::post('tags'),
+						'title' => Input::post('title'),
+						'category' => Input::post('category'),
+						'metas' => $metas,
+						'on_sale' => Input::post('on_sale'),
+						'price' => Input::post('price'),
+						'discount' => Input::post('discount'),
+						'sales' => Input::post('sales'),
+					));
 
-				else
-				{
-					Session::set_flash('error', 'Could not save achat_13product.');
+					if ($achat_13product and $achat_13product->save())
+					{
+						Session::set_flash('success', 'Added achat_13product #'.$achat_13product->id.'.');
+
+						Response::redirect('achat/13product');
+					}
+
+					else
+					{
+						Session::set_flash('error', 'Could not save achat_13product.');
+					}
 				}
 			}
 			else
@@ -89,35 +98,46 @@ class Controller_Achat_13product extends Controller_Template
 
 		$achat_13product = Model_Achat_13product::find($id);
 
-		$val = Model_Achat_13product::validate('edit');
+		$val = Model_Achat_13product::validateWithMeta('create');
+
+		$metas = $this->mergeMetasArrays(Input::post('meta_type_content'), Input::post('meta_value_content'));
 
 		if ($val->run())
 		{
-			$achat_13product->reference = Input::post('reference');
-			$achat_13product->type = Input::post('type');
-			$achat_13product->pack = Input::post('pack');
-			$achat_13product->content = Input::post('content');
-			$achat_13product->presentation = Input::post('presentation');
-			$achat_13product->tags = Input::post('tags');
-			$achat_13product->title = Input::post('title');
-			$achat_13product->category = Input::post('category');
-			$achat_13product->metas = Input::post('metas');
-			$achat_13product->on_sale = Input::post('on_sale');
-			$achat_13product->price = Input::post('price');
-			$achat_13product->discount = Input::post('discount');
-			$achat_13product->sales = is_numeric(Input::post('sales')) ? Input::post('sales') : 0;
-
-			if ($achat_13product->save())
+			if($metas === FALSE) 
 			{
-				Session::set_flash('success', 'Updated achat_13product #' . $id);
+				Session::set_flash('error', 'The number of metas type and metas content is not equal');
+			}
+			else 
+			{				
+				$metas = Format::forge($metas)->to_json();
+				$achat_13product->reference = Input::post('reference');
+				$achat_13product->type = Input::post('type');
+				$achat_13product->pack = Input::post('pack');
+				$achat_13product->content = Input::post('content');
+				$achat_13product->presentation = Input::post('presentation');
+				$achat_13product->tags = Input::post('tags');
+				$achat_13product->title = Input::post('title');
+				$achat_13product->category = Input::post('category');
+				$achat_13product->metas = $metas;
+				$achat_13product->on_sale = Input::post('on_sale');
+				$achat_13product->price = Input::post('price');
+				$achat_13product->discount = Input::post('discount');
+				$achat_13product->sales = is_numeric(Input::post('sales')) ? Input::post('sales') : 0;
 
-				Response::redirect('achat/13product');
+				if ($achat_13product->save())
+				{
+					Session::set_flash('success', 'Updated achat_13product #' . $id);
+
+					Response::redirect('achat/13product');
+				}
+
+				else
+				{
+					Session::set_flash('error', 'Could not update achat_13product #' . $id);
+				}				
 			}
 
-			else
-			{
-				Session::set_flash('error', 'Could not update achat_13product #' . $id);
-			}
 		}
 
 		else
@@ -132,7 +152,7 @@ class Controller_Achat_13product extends Controller_Template
 				$achat_13product->tags = $val->validated('tags');
 				$achat_13product->title = $val->validated('title');
 				$achat_13product->category = $val->validated('category');
-				$achat_13product->metas = $val->validated('metas');
+				$achat_13product->metas = $metas ? $metas : false;
 				$achat_13product->on_sale = $val->validated('on_sale');
 				$achat_13product->price = $val->validated('price');
 				$achat_13product->discount = $val->validated('discount');
@@ -164,6 +184,22 @@ class Controller_Achat_13product extends Controller_Template
 		}
 
 		Response::redirect('achat/13product');
+
+	}
+
+	private function mergeMetasArrays($types = [], $values = []) {
+		$res = [];
+		if(!is_array($types) || !is_array($values))
+			return FALSE;
+		if(sizeof($types) != sizeof($values))
+			return FALSE;
+
+		foreach ($types as $i => $type) {
+			$res[] = [  "type" => $type, 
+						"value" => $values[$i]  ];
+		}
+
+		return $res;
 
 	}
 

@@ -67,7 +67,7 @@
         </p>
         */
         ?>
-        <? //<p><label id="signupBtn"></label></p> ?>
+        <?php //<p><label id="signupBtn"></label></p> ?>
         <input type="hidden" name="fbToken" id="signup_fbToken" value="empty" />
         <p><input type="submit" id="signupBtn" title="Inscription sur SEASON 13"/></p>
     </div>
