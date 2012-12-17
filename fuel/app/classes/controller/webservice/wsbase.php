@@ -9,5 +9,9 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     	
     	
     }
+    
+    public function post_app() {
+        
+    }
 	
 }

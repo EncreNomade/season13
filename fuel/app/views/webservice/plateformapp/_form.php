@@ -1,11 +1,20 @@
 <?php echo Form::open(); ?>
 
+    <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
+    
+    <?php 
+        $appid = Str::random('unique');
+        $appsecret = Str::random('alnum', 16);
+        echo \Form::hidden('appid', $appid);
+        echo \Form::hidden('appsecret', $appsecret);
+     ?>
+
 	<fieldset>
 		<div class="clearfix">
 			<?php echo Form::label('Appid', 'appid'); ?>
 
 			<div class="input">
-				<?php echo Form::input('appid', Input::post('appid', isset($webservice_plateformapp) ? $webservice_plateformapp->appid : ''), array('class' => 'span4')); ?>
+				<?php echo Form::label(Input::post('appid', isset($webservice_plateformapp) ? $webservice_plateformapp->appid : $appid), 'appid'); ?>
 
 			</div>
 		</div>
@@ -13,7 +22,7 @@
 			<?php echo Form::label('Appsecret', 'appsecret'); ?>
 
 			<div class="input">
-				<?php echo Form::input('appsecret', Input::post('appsecret', isset($webservice_plateformapp) ? $webservice_plateformapp->appsecret : ''), array('class' => 'span4')); ?>
+				<?php echo Form::label(Input::post('appsecret', isset($webservice_plateformapp) ? $webservice_plateformapp->appsecret : $appsecret), 'appsecret'); ?>
 
 			</div>
 		</div>
@@ -37,31 +46,7 @@
 			<?php echo Form::label('Active', 'active'); ?>
 
 			<div class="input">
-				<?php echo Form::input('active', Input::post('active', isset($webservice_plateformapp) ? $webservice_plateformapp->active : ''), array('class' => 'span4')); ?>
-
-			</div>
-		</div>
-		<div class="clearfix">
-			<?php echo Form::label('Ip', 'ip'); ?>
-
-			<div class="input">
-				<?php echo Form::input('ip', Input::post('ip', isset($webservice_plateformapp) ? $webservice_plateformapp->ip : ''), array('class' => 'span4')); ?>
-
-			</div>
-		</div>
-		<div class="clearfix">
-			<?php echo Form::label('Host', 'host'); ?>
-
-			<div class="input">
-				<?php echo Form::input('host', Input::post('host', isset($webservice_plateformapp) ? $webservice_plateformapp->host : ''), array('class' => 'span4')); ?>
-
-			</div>
-		</div>
-		<div class="clearfix">
-			<?php echo Form::label('Extra', 'extra'); ?>
-
-			<div class="input">
-				<?php echo Form::textarea('extra', Input::post('extra', isset($webservice_plateformapp) ? $webservice_plateformapp->extra : ''), array('class' => 'span8', 'rows' => 8)); ?>
+				<?php echo Form::checkbox('active', 'Active', Input::post('active', isset($webservice_plateformapp) && $webservice_plateformapp->active == 0 ? false : true)); ?>
 
 			</div>
 		</div>

@@ -18,7 +18,7 @@
     	        
     	        <h5>
     	            <?php echo $from; ?> t’invite à venir découvrir Voodoo Connection, une série interactive dans laquelle tu peux jouer, participer à des jeux concours sur Facebook et découvrir les aventures pleines de rebondissement de Simon, poursuivi par une bande dans Paris.<br/>
-    	            <a href="http://season13.com/story?ep=1&source=invitation_mail">Découvre le 1er épisode de Voodoo Connection</a>
+    	            <a href="http://season13.com/Voodoo_Connection/season1/episode1?source=invitation_mail">Découvre le 1er épisode de Voodoo Connection</a>
     	        </h5>
     	        
     	        </div>

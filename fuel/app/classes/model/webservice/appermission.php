@@ -31,10 +31,10 @@ class Model_Webservice_Appermission extends Model
 		$val = Validation::forge($factory);
 		$val->add_field('appid', 'Appid', 'required');
 		$val->add_field('action', 'Action', 'required');
-		$val->add_field('can_get', 'Can Get', 'required|valid_string[numeric]');
-		$val->add_field('can_post', 'Can Post', 'required|valid_string[numeric]');
-		$val->add_field('can_put', 'Can Put', 'required|valid_string[numeric]');
-		$val->add_field('can_delete', 'Can Delete', 'required|valid_string[numeric]');
+		//$val->add_field('can_get', 'Can Get', 'required');
+		//$val->add_field('can_post', 'Can Post', 'required');
+		//$val->add_field('can_put', 'Can Put', 'required');
+		//$val->add_field('can_delete', 'Can Delete', 'required');
 
 		return $val;
 	}

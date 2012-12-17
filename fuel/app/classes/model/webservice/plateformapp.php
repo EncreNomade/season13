@@ -34,11 +34,11 @@ class Model_Webservice_Plateformapp extends Model
 		$val->add_field('appid', 'Appid', 'required');
 		$val->add_field('appsecret', 'Appsecret', 'required');
 		$val->add_field('appname', 'Appname', 'required');
-		$val->add_field('description', 'Description', 'required|max_length[255]');
-		$val->add_field('active', 'Active', 'required|valid_string[numeric]');
-		$val->add_field('ip', 'Ip', 'required');
-		$val->add_field('host', 'Host', 'required|max_length[255]');
-		$val->add_field('extra', 'Extra', 'required');
+		//$val->add_field('description', 'Description', 'required|max_length[255]');
+		$val->add_field('active', 'Active', 'required');
+		//$val->add_field('ip', 'Ip', 'required');
+		//$val->add_field('host', 'Host', 'required|max_length[255]');
+		//$val->add_field('extra', 'Extra', 'required');
 
 		return $val;
 	}

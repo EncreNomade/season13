@@ -1,6 +1,7 @@
 <?php 
 
-    $expo_image = "http://season13.com/".$episode->image;
+    if(isset($episode)) $expo_image = $base_uri.$episode->image;
+    else $expo_image = $base_uri."voodoo/cover.jpg";
 
  ?>
 
@@ -11,7 +12,7 @@
 <?php if(isset($episode)): ?>
 <meta property="fb:app_id" content="141570392646490" /> 
 <meta property="og:type"   content="encrenomade:episode" /> 
-<meta property="og:url"    content="<?php echo $base_uri."story?ep=".$episode->id; ?>" /> 
+<meta property="og:url"    content="<?php echo $base_uri.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode; ?>" /> 
 <meta property="og:title"  content="<?php echo stripcslashes( $episode->story." Episode ".$episode->episode.": ".$episode->title ); ?>" /> 
 <meta property="og:description" content="SEASON 13 Feuilltons Interactifs" />
 <meta property="og:site_name" content="SEASON13" />
@@ -132,6 +133,7 @@ addEventListener("load", function(){
         }
     </script>
 
+<?php if(isset($episode)): ?>
     <script>
     
         config.episode = {
@@ -152,6 +154,7 @@ addEventListener("load", function(){
         };
         
     </script>
+<?php endif; ?>
     <?php 
         // output the javascript function
         echo Security::js_set_token(); 
@@ -235,8 +238,8 @@ addEventListener("load", function(){
             <a>Crédits</a>
         </li>
         <li id="btn_nextep">
-            <?php echo Asset::img('season13/story/story_nextep.png', array('alt' => 'Continue l\'histoire - '.$episode->story)); ?>
-            <a>Continue l'histoire</a>
+            <?php echo Asset::img('season13/story/story_nextep.png', array('alt' => 'Continue l\'histoire - SEASON13')); ?>
+            <a>Épisode suivant</a>
         </li>
         
         <div>
@@ -306,27 +309,28 @@ addEventListener("load", function(){
             </div>
         </div>
         
+    <?php if(isset($episode)): ?>
     <!--Continue read dialog-->
         <div id="next_ep_dialog" class="dialog">
             <div class="close right"></div>
             <h1>L'épisode Suivant</h1>
             <div class="sep_line"></div>
             
-            <?php if($episode->id < 6): ?>
+            <?php if($episode->episode < 6): ?>
                 <div class="link">
-                    <a href="<?php echo $base_uri; ?>story?ep=<?php echo $episode->id+1; ?>" target="_blank">Continue l'histoire</a>
+                    <a href="<?php echo $base_uri.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".($episode->episode+1); ?>" target="_blank">Continue l'histoire</a>
                 </div>
             <?php else: ?>
-                <h5>
-                    Félicitation! Tu as fini la première saison du Voodoo Connection, nous te informerons par mail pour le lancement du deuxième saison qui arrive prochainement.<br/>
-                    Si tu as des questions, n'hésite pas à nous contacter: <a href="mailto:contact@encrenomade.com">contact@encrenomade.com</a></br>
-                    <br/>
-                    Nous te remercions et à très bientôt!
+                <h5 style="text-align: center;">
+                    Pour découvrir la descente infernale de Simon et Angéli en poubelle dans Montmartre,<br/>
+                    RDV le mercredi 9 janvier<br/>
+                    sur Voodoo Connection Saison 2<br/>
                 </h5>
             <?php endif; ?>
             
-            <?php echo Asset::img('season13/logo_black.png', array("class" => "logo", 'alt' => 'LOGO SEASON 13')); ?>
+            <a href="<?php echo $base_uri; ?>" target="_blank"><?php echo Asset::img('season13/logo_black.png', array("class" => "logo", 'alt' => 'LOGO SEASON 13')); ?></a>
         </div>
+    <?php endif; ?>
     
     <?php if($accessible): ?>
     <!-- Preferece dialog -->
@@ -493,10 +497,12 @@ addEventListener("load", function(){
     <script type="text/javascript">
     <?php 
         
-        echo "mse.configs.epid = ".$episode->id.";\n\t";
-        echo "mse.configs.srcPath = '".$episode->path."';\n\t";
-        $content = file_get_contents($episode->path."content.js");
-        echo $content;
+        if(isset($episode)) {
+            echo "mse.configs.epid = ".$episode->id.";\n\t";
+            echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";
+            $content = file_get_contents($episode->path."content.js");
+            echo $content;
+        }
     
     ?>
     </script>

@@ -8,7 +8,7 @@ function init() {
     
         
     $('#cpt_banner, #actu_banner').click(function() {
-        window.location = "/story?ep=1&source=banner";
+        window.location = "/Voodoo_Connection/season1/episode1?source=banner";
     });
 };
 

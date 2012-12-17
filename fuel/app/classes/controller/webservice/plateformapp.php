@@ -9,8 +9,15 @@ class Controller_Webservice_Plateformapp extends Controller_Template
     	
         // Assign current_user to the instance so controllers can use it
 		$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+		
+		if( !Auth::member(100) ) {
+		    Response::redirect('404');
+		}
+		
 		// Set a global variable so views can use it
 		View::set_global('current_user', $this->current_user);
+		View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
+		View::set_global('base_url', Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/");
     }
 
 	public function action_index()
@@ -36,37 +43,42 @@ class Controller_Webservice_Plateformapp extends Controller_Template
 	{
 		if (Input::method() == 'POST')
 		{
-			$val = Model_Webservice_Plateformapp::validate('create');
-			
-			if ($val->run())
-			{
-				$webservice_plateformapp = Model_Webservice_Plateformapp::forge(array(
-					'appid' => Input::post('appid'),
-					'appsecret' => Input::post('appsecret'),
-					'appname' => Input::post('appname'),
-					'description' => Input::post('description'),
-					'active' => Input::post('active'),
-					'ip' => Input::post('ip'),
-					'host' => Input::post('host'),
-					'extra' => Input::post('extra'),
-				));
-
-				if ($webservice_plateformapp and $webservice_plateformapp->save())
-				{
-					Session::set_flash('success', 'Added webservice_plateformapp #'.$webservice_plateformapp->id.'.');
-
-					Response::redirect('webservice/plateformapp');
-				}
-
-				else
-				{
-					Session::set_flash('error', 'Could not save webservice_plateformapp.');
-				}
-			}
-			else
-			{
-				Session::set_flash('error', $val->error());
-			}
+		    if ( ! \Security::check_token() ) {
+		        Session::set_flash('error', 'CSRF token error');
+		    }
+		    else {
+    			$val = Model_Webservice_Plateformapp::validate('create');
+    			
+    			if ($val->run())
+    			{
+    				$webservice_plateformapp = Model_Webservice_Plateformapp::forge(array(
+    					'appid' => Input::post('appid'),
+    					'appsecret' => Input::post('appsecret'),
+    					'appname' => Input::post('appname'),
+    					'description' => Input::post('description') ? Input::post('description') : "",
+    					'active' => Input::post('active') ? 1 : 0,
+    					'ip' => Input::post('ip') ? Input::post('ip') : "",
+    					'host' => Input::post('host') ? Input::post('host') : "",
+    					'extra' => Input::post('extra') ? Input::post('extra') : "",
+    				));
+    
+    				if ($webservice_plateformapp and $webservice_plateformapp->save())
+    				{
+    					Session::set_flash('success', 'Added webservice_plateformapp #'.$webservice_plateformapp->id.'.');
+    
+    					Response::redirect('webservice/plateformapp');
+    				}
+    
+    				else
+    				{
+    					Session::set_flash('error', 'Could not save webservice_plateformapp.');
+    				}
+    			}
+    			else
+    			{
+    				Session::set_flash('error', $val->error());
+    			}
+    		}
 		}
 
 		$this->template->title = "Webservice_Plateformapps";
@@ -77,52 +89,57 @@ class Controller_Webservice_Plateformapp extends Controller_Template
 	public function action_edit($id = null)
 	{
 		is_null($id) and Response::redirect('Webservice_Plateformapp');
-
-		$webservice_plateformapp = Model_Webservice_Plateformapp::find($id);
-
-		$val = Model_Webservice_Plateformapp::validate('edit');
-
-		if ($val->run())
-		{
-			$webservice_plateformapp->appid = Input::post('appid');
-			$webservice_plateformapp->appsecret = Input::post('appsecret');
-			$webservice_plateformapp->appname = Input::post('appname');
-			$webservice_plateformapp->description = Input::post('description');
-			$webservice_plateformapp->active = Input::post('active');
-			$webservice_plateformapp->ip = Input::post('ip');
-			$webservice_plateformapp->host = Input::post('host');
-			$webservice_plateformapp->extra = Input::post('extra');
-
-			if ($webservice_plateformapp->save())
-			{
-				Session::set_flash('success', 'Updated webservice_plateformapp #' . $id);
-
-				Response::redirect('webservice/plateformapp');
-			}
-
-			else
-			{
-				Session::set_flash('error', 'Could not update webservice_plateformapp #' . $id);
-			}
+		
+		if ( Input::method() == 'POST' && ! \Security::check_token() ) {
+		    Session::set_flash('error', 'CSRF token error');
 		}
-
-		else
-		{
-			if (Input::method() == 'POST')
-			{
-				$webservice_plateformapp->appid = $val->validated('appid');
-				$webservice_plateformapp->appsecret = $val->validated('appsecret');
-				$webservice_plateformapp->appname = $val->validated('appname');
-				$webservice_plateformapp->description = $val->validated('description');
-				$webservice_plateformapp->active = $val->validated('active');
-				$webservice_plateformapp->ip = $val->validated('ip');
-				$webservice_plateformapp->host = $val->validated('host');
-				$webservice_plateformapp->extra = $val->validated('extra');
-
-				Session::set_flash('error', $val->error());
-			}
-
-			$this->template->set_global('webservice_plateformapp', $webservice_plateformapp, false);
+		else {
+    		$webservice_plateformapp = Model_Webservice_Plateformapp::find($id);
+    
+    		$val = Model_Webservice_Plateformapp::validate('edit');
+    
+    		if ($val->run())
+    		{
+    			$webservice_plateformapp->appid = Input::post('appid');
+    			$webservice_plateformapp->appsecret = Input::post('appsecret');
+    			$webservice_plateformapp->appname = Input::post('appname');
+    			$webservice_plateformapp->description = Input::post('description');
+    			$webservice_plateformapp->active = Input::post('active') ? 1 : 0;
+    			$webservice_plateformapp->ip = Input::post('ip');
+    			$webservice_plateformapp->host = Input::post('host');
+    			$webservice_plateformapp->extra = Input::post('extra');
+    
+    			if ($webservice_plateformapp->save())
+    			{
+    				Session::set_flash('success', 'Updated webservice_plateformapp #' . $id);
+    
+    				Response::redirect('webservice/plateformapp');
+    			}
+    
+    			else
+    			{
+    				Session::set_flash('error', 'Could not update webservice_plateformapp #' . $id);
+    			}
+    		}
+    
+    		else
+    		{
+    			if (Input::method() == 'POST')
+    			{
+    				$webservice_plateformapp->appid = $val->validated('appid');
+    				$webservice_plateformapp->appsecret = $val->validated('appsecret');
+    				$webservice_plateformapp->appname = $val->validated('appname');
+    				$webservice_plateformapp->description = $val->validated('description');
+    				$webservice_plateformapp->active = $val->validated('active') ? 1 : 0;
+    				$webservice_plateformapp->ip = $val->validated('ip');
+    				$webservice_plateformapp->host = $val->validated('host');
+    				$webservice_plateformapp->extra = $val->validated('extra');
+    
+    				Session::set_flash('error', $val->error());
+    			}
+    
+    			$this->template->set_global('webservice_plateformapp', $webservice_plateformapp, false);
+    		}
 		}
 
 		$this->template->title = "Webservice_plateformapps";

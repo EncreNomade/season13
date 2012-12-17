@@ -27,7 +27,7 @@ mse.configs = {
 	},
 	getSrcPath : function(path) {
 	    // Path complete
-	    if(path[0] == '.') return path;
+	    if(path[0] == '.' || path.indexOf("http", 0) == 0) return path;
 	    else return mse.configs.srcPath + path;
 	}
 };
@@ -218,7 +218,7 @@ mse.init = function(configs) {
     
     // Images
     var path = "./UI/";
-    if(config.publishMode == "release") path = "./assets/img/season13/story/";
+    if(config.publishMode == "release") path = "http://" + window.location.host + config.publicRoot + "assets/img/season13/story/";
 	mse.src.addSource('imgNotif', path+'turn_comp.png', 'img');
 	mse.src.addSource('fbBar', path+'barre/fb.png', 'img');
 	mse.src.addSource('wikiBar', path+'barre/wiki.png', 'img');
@@ -229,7 +229,7 @@ mse.init = function(configs) {
 	
 	// Sound
 	path = "./audio/";
-	if(config.publishMode == "release") path = "./assets/aud/";
+	if(config.publishMode == "release") path = "http://" + window.location.host + config.publicRoot+"assets/aud/";
 	mse.src.addSource('aud_gameover', path+'gameover', 'aud');
 	mse.src.addSource('aud_inter_open', path+'interaction_open', 'aud');
 	mse.src.addSource('aud_inter_close', path+'interaction_close', 'aud');
@@ -1749,6 +1749,13 @@ $.extend( mse.ArticleLayer.prototype , {
 	        this.addObject(game);
 	    }
 	},
+	addAnimation : function(anime) {
+        anime.parent = this;
+        anime.addListener('firstShow', anime.startCb);
+        anime.addListener('click', anime.startCb);
+        anime.block = false;
+        this.addObject(anime);
+	},
 	insertObject : function(obj, index) {
 		var res = this.constructor.prototype.insertObject.call(this, obj, index);
 		if(!res) return res;
@@ -1775,6 +1782,13 @@ $.extend( mse.ArticleLayer.prototype , {
 	        game.addListener('firstShow', new mse.Callback(game.start, game));
 	        this.insertObject(game, index);
 	    }
+	},
+	insertAnimation : function(anime, index) {
+	    anime.parent = this;
+	    anime.addListener('firstShow', anime.startCb);
+	    anime.addListener('click', anime.startCb);
+	    anime.block = false;
+	    this.insertObject(anime, index);
 	},
 	delObject : function(obj) {
 		var res = mse.Layer.prototype.delObject.call(this, obj);
@@ -1899,13 +1913,22 @@ $.extend( mse.ArticleLayer.prototype , {
 	
 		if(!this.pause) {
 			this.currTime += delta;
-			var dt = (this.currIndex!=0 && this.objList[this.currIndex-1] instanceof mse.Image) ? 4000 : this.getInterval();
+		    
+		    var lastobj = this.objList[this.currIndex-1];
+		    var dt = this.getInterval();
+			if(this.currIndex!=0) {
+			    if(lastobj instanceof mse.Image) dt = 4000;
+			    else if(lastobj instanceof mse.Animation) 
+			        dt = (lastobj.duration+2)*mse.currTimeline.interval;
+			}
+			
 			if(this.currTime >= dt) {
 				this.currTime = 0;
 				// Move layer to right place
 				if(this.currIndex < this.objList.length) {
-					var focusy = this.objList[this.currIndex].offy + this.objList[this.currIndex].height/2;
-					var nbfr = this.objList[this.currIndex].height/3;
+				    var obj = this.objList[this.currIndex];
+					var focusy = obj.offy + obj.height/2;
+					var nbfr = (obj instanceof mse.Animation) ? 40 : obj.height/3;
 					if(nbfr < 15) nbfr = 15;
 					else if(nbfr > 70) nbfr = 70;
 					if(focusy > mse.root.height/2) {
@@ -2261,7 +2284,7 @@ $.extend(mse.Game.prototype, {
         if(!this.config.directShow) mse.root.gamewindow.loadandstart(this);
         else this.init();
         this.evtDeleg.eventNotif("start");
-        mse.src.getSrc('aud_inter_open').play();
+        //mse.src.getSrc('aud_inter_open').play();
     },
     getContainer: function() {
         if(!this.config.directShow) return mse.root.gamewindow;
@@ -3746,7 +3769,7 @@ mse.KeyFrameAnimation.prototype = {
 mse.Animation = function(duration, repeat, statiq, container, param){
     this.statiq = statiq ? true : false;
     // Super constructor
-    if(this.statiq) mse.UIObject.call(this, null, {});
+    if(this.statiq) mse.UIObject.call(this, null, param?param:{});
 	else mse.UIObject.call(this, container, param?param:{});
 	this.objs = {};
 	this.animes = [];
@@ -3755,6 +3778,7 @@ mse.Animation = function(duration, repeat, statiq, container, param){
 	this.state = 0;
 	this.startCb = new mse.Callback(this.start, this);
 	this.block = false;
+	this.firstShow = false;
 };
 extend(mse.Animation, mse.UIObject);
 $.extend(mse.Animation.prototype, {
@@ -3793,7 +3817,12 @@ $.extend(mse.Animation.prototype, {
         this.state = 0;
     },
     logic: function(delta){
-        if(this.state){
+        if(!this.firstShow) {
+            this.firstShow = true;
+            this.evtDeleg.eventNotif('firstShow');
+        }
+    
+        if(this.state == 1){
             for(var i in this.animes)
         	    this.animes[i].logic(delta);
         	    
@@ -3801,10 +3830,10 @@ $.extend(mse.Animation.prototype, {
         	    if(!this.animes[i].isEnd())
         	        return false;
         	}
-        	this.state = 0;
+        	this.state = 2;
         	return false;
         }
-        else {
+        else if(this.state == 2) {
             this.evtDeleg.eventNotif('end');
             return true;
         }

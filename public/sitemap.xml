@@ -14,12 +14,28 @@
       <changefreq>weekly</changefreq>
     </url>
     <url>
-      <loc>http://www.season13.com/story?ep=1</loc>
-      <changefreq>daily</changefreq>
+      <loc>http://www.season13.com/Voodoo_Connection/season1/episode1</loc>
+      <changefreq>weekly</changefreq>
     </url>
     <url>
-      <loc>http://www.season13.com/story?ep=2</loc>
-      <changefreq>daily</changefreq>
+      <loc>http://www.season13.com/Voodoo_Connection/season1/episode2</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/Voodoo_Connection/season1/episode3</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/Voodoo_Connection/season1/episode4</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/Voodoo_Connection/season1/episode5</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+    <url>
+      <loc>http://www.season13.com/Voodoo_Connection/season1/episode6</loc>
+      <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>http://www.season13.com/?s=episode</loc>

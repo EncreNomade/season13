@@ -23,6 +23,11 @@ return array(
 				14 => '013_create_achat_13products',
 				15 => '014_create_webservice_plateformapps',
 				16 => '015_create_webservice_appermissions',
+				17 => '016_create_book_13books',
+				18 => '017_create_book_13seasons',
+				19 => '018_create_book_13authors',
+				20 => '019_create_book_13games',
+				21 => '020_create_book_13hierarchies',
 			),
 		),
 		'module' => 

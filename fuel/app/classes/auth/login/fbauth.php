@@ -37,7 +37,7 @@ class Auth_Login_FBAuth extends Auth\Auth_Login_SimpleAuth
     		     if($this->user->save() === false)
     		         return false; // Fail update
     		     else return $this->user; // Success update
-    		 }
+    		}
     		else if($this->user->fbid != $fbID)
     		    return false;
     		else return $this->user;

@@ -4,6 +4,8 @@
 
 	echo Form::open(); ?>
 
+    <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
+
 	<fieldset>
 		<div class="clearfix">
 			<?php echo Form::label('Reference', 'reference'); ?>

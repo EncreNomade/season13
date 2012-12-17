@@ -204,6 +204,11 @@ function init() {
     
     // Facebook login
     function fb_logged(response) {
+        if(response.status === 'not_authorized') {
+            alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
+            return;
+        }
+    
         var token = response.authResponse.accessToken;
         
         $.ajax({

@@ -214,7 +214,7 @@ function story_access_resp(data, epid) {
         if(data.errorCode != null) {
             switch (data.errorCode) {
             case 201:
-                if(showLogin) showLogin();
+                if(showSignup) showSignup();
                 break;
             
             case 303:

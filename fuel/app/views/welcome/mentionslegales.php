@@ -31,12 +31,10 @@
         <br/>
         <strong>Propriétaire du site :</strong><br/>
         Encre Nomade<br/>
-        99 A, Boulevard Descat<br/>
-        59200 Tourcoing - France<br/>
-        <br/>
         RCS Lille n° 533792545<br/>
         SAS au Capital Social de 115 000 Euros<br/>
-        Siège social : 8, impasse Scalbert à Lille<br/>
+        Siège social : 99A, Boulevard Descat<br/>
+        59200 Tourcoing - France<br/>
         N° TVA FR 88533792545<br/>
         <br/>
         Season13 est une marque déposée d’Encre Nomade

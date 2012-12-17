@@ -1,5 +1,7 @@
 <?php echo Form::open(); ?>
 
+    <?php echo Form::hidden('user_id', isset($admin_13post) ? $admin_13post->user_id : $current_user->id); ?>
+
 	<fieldset>
 		<div class="clearfix">
 			<?php echo Form::label('Title', 'title'); ?>
@@ -14,14 +16,6 @@
 
 			<div class="input">
 				<?php echo Form::input('slug', Input::post('slug', isset($admin_13post) ? $admin_13post->slug : ''), array('class' => 'span4')); ?>
-
-			</div>
-		</div>
-		<div class="clearfix">
-			<?php echo Form::label('User id', 'user_id'); ?>
-
-			<div class="input">
-				<?php echo Form::input('user_id', Input::post('user_id', isset($admin_13post) ? $admin_13post->user_id : ''), array('class' => 'span4')); ?>
 
 			</div>
 		</div>

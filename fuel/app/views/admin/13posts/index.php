@@ -12,10 +12,13 @@
     
 <?php if ($admin_13posts): ?>
 
-    <?php foreach ($admin_13posts as $admin_13post): ?>
+    <?php 
+    foreach ($admin_13posts as $admin_13post): 
+        $date = Date::forge($admin_13post['created_at']);
+    ?>
     <div class="actu_section">
         <div class="actu_title">
-            <h2 class="actu_date"><?php echo date("d/m/Y", $admin_13post['created_at']); ?></h2>
+            <h2 class="actu_date"><?php echo $date->format("%d/%m/%Y"); ?></h2>
             <h2>
                 <?php echo $admin_13post['title']; ?>
                 <?php if (Auth::member(100)): ?>
@@ -29,6 +32,14 @@
             <?php 
                 echo html_entity_decode($admin_13post['body']);
             ?>
+        </div>
+        <div class="actu_footer">
+            <h5>Publié par <?php 
+                $username = "inconnu";
+                $user = Model_13user::find_by_id($admin_13post['user_id']);
+                if(!is_null($user)) $username = $user->pseudo;
+                echo $username." à ".$date->format("%d/%m/%Y %H:%M"); 
+            ?></h5>
         </div>
     </div>
     <?php endforeach; ?>

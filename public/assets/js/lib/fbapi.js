@@ -34,17 +34,17 @@ fbapi.connect = function(callback){
 fbapi.checkConnect = function(callback){
     FB.getLoginStatus(function(response){ // test login
       if (response.status === 'connected') {
-        var uid = response.authResponse.userID;
-        fbapi.token = response.authResponse.accessToken;
-        FB.api('/me',function(u){
-            fbapi.user = u;
-        });
-        callback.call(this, response);
+          var uid = response.authResponse.userID;
+          fbapi.token = response.authResponse.accessToken;
+          FB.api('/me',function(u){
+              fbapi.user = u;
+          });
+          if(callback) callback.call(this, response);
       } 
       else if (response.status === 'not_authorized') {//the user is logged in to Facebook, but has not authenticated your app
           fbapi.user = false;
           fbapi.token = '';
-          alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
+          if(callback) callback.call(window, response);
       } 
       else { // the user isn't logged in to Facebook.
           fbapi.user = false;

@@ -85,7 +85,7 @@ function activeEpisode(id) {
         var dday = new Date(arr[0], arr[1]-1, arr[2], 0, 0, 0, 0);
         // Available
         if(dday <= today) {
-            elems.ep_play.text("VOIR L'EPISODE").prop('href', window.config.publicRoot+"story?ep="+expo.data('id'));
+            elems.ep_play.text("VOIR L'EPISODE").prop('href', window.config.publicRoot+expo.data('title')+"/season"+expo.data('season')+"/episode"+expo.data('episode'));
             elems.ep_title.add(elems.ep_expos).removeClass('indispo');
         }
         else {
@@ -115,7 +115,7 @@ var accessGateway = {
                 });
             }
         
-            window.open(window.config.publicRoot+'story?ep='+ep, '_newtab');
+            window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode'+ep, '_newtab');
         }
     },
     
@@ -156,7 +156,7 @@ var accessGateway = {
             $('#invitation_form').submit();
             if(accessGateway.success) {
                 accessGateway.success = false;
-                window.open(window.config.publicRoot+'story?ep=3', '_newtab');
+                window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode3', '_newtab');
             }
         });
         
@@ -218,7 +218,7 @@ var accessGateway = {
             $('#like_form').submit();
             if(accessGateway.success) {
                 accessGateway.success = false;
-                window.open(window.config.publicRoot+'story?ep=4', '_newtab');
+                window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode4', '_newtab');
             }
         });
     
@@ -304,67 +304,6 @@ function playEpisode(e) {
             alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
         }
     });
-}
-
-function addToCart(idProduct, idCombination, static_token, addedFromProductPage, callerElement, quantity, whishlist){
-    var baseUri = "http://localhost:8888/prestashop/index.php";
-    
-	//disabled the button when adding to do not double add if user double click
-	//$(callerElement).attr('disabled', true);
-
-	//send the ajax request to the server
-	$.ajax({
-		type: 'POST',
-		url: baseUri,
-		async: true,
-		cache: false,
-		dataType: "json",
-		data: 'controller=cart&add=1&ajax=true&qty=1&id_product=' + idProduct,
-		success: function(jsonData,textStatus,jqXHR)
-		{
-			// add appliance to whishlist module
-			if (whishlist && !jsonData.errors)
-				WishlistAddProductCart(whishlist[0], idProduct, idCombination, whishlist[1]);
-
-			// add the picture to the cart
-			var $element = $(callerElement).parent().parent().find('a.product_image img,a.product_img_link img');
-			if (!$element.length)
-				$element = $('#bigpic');
-			var $picture = $element.clone();
-			var pictureOffsetOriginal = $element.offset();
-
-			if ($picture.size())
-				$picture.css({'position': 'absolute', 'top': pictureOffsetOriginal.top, 'left': pictureOffsetOriginal.left});
-
-			var pictureOffset = $picture.offset();
-			if ($('#cart_block').offset().top && $('#cart_block').offset().left)
-				var cartBlockOffset = $('#cart_block').offset();
-			else
-				var cartBlockOffset = $('#shopping_cart').offset();
-
-			// Check if the block cart is activated for the animation
-			if (cartBlockOffset != undefined && $picture.size())
-			{
-				$picture.appendTo('body');
-				$picture.css({ 'position': 'absolute', 'top': $picture.css('top'), 'left': $picture.css('left'), 'z-index': 4242 })
-				.animate({ 'width': $element.attr('width')*0.66, 'height': $element.attr('height')*0.66, 'opacity': 0.2, 'top': cartBlockOffset.top + 30, 'left': cartBlockOffset.left + 15 }, 1000)
-				.fadeOut(100, function() {
-					ajaxCart.updateCartInformation(jsonData, addedFromProductPage);
-				});
-			}
-			else
-				ajaxCart.updateCartInformation(jsonData, addedFromProductPage);
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown)
-		{
-			alert("Impossible to add the product to the cart.\n\ntextStatus: '" + textStatus + "'\nerrorThrown: '" + errorThrown + "'\nresponseText:\n" + XMLHttpRequest.responseText);
-			//reactive the button when adding has finished
-			if (addedFromProductPage)
-				$('body#product p#add_to_cart input').removeAttr('disabled').addClass('exclusive').removeClass('exclusive_disabled');
-			else
-				$(callerElement).removeAttr('disabled');
-		}
-	});
 }
 
 function init() {

@@ -61,6 +61,9 @@ class Controller_Story extends Controller_Template
             case 5:
                 return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
                 break;
+            case 6:
+                return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
+                break;
             default: return $access;
             }
         }
@@ -78,28 +81,9 @@ class Controller_Story extends Controller_Template
     	View::set_global('current_user', $this->current_user);
     	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
     	View::set_global('base_uri', Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/');
-    	
-    	$this->episode = null;
-    	$epid = Input::get('ep') ? Input::get('ep') : null;
-    	
-    	if(!is_null($epid)) {
-    	    $this->episode = Model_Admin_13episode::find($epid);
-    	    View::set_global('episode', $this->episode);
-    	    $access = Controller_Story::requestAccess($epid, $this->current_user);
-    	    View::set_global('accessible', $access['valid']);
-    	    View::set_global('access', $access);
-    	    
-    	    if($access['valid'] === true) {
-        	    $this->comments = Model_Admin_13comment::find_by_epid($epid);
-    	    }
-    	    else $this->template->accessfail = $access['errorCode'];
-    	}
-    	else {
-    	    Response::redirect('404');
-    	}
     }
 
-	public function action_index()
+	public function action_index($book = null, $season = null, $epid = null)
 	{
 	    $capable = false;
 	    // Check user browser capacity
@@ -133,6 +117,39 @@ class Controller_Story extends Controller_Template
 	    }
 	
 	    if($capable) {
+	        $this->episode = null;
+	        
+	        if(!isset($epid) && Input::get('ep')) $epid = Input::get('ep');
+	        
+	        if( isset($book) && isset($season) && isset($epid) ) {
+	            // Find the episode
+	            $this->episode = Model_Admin_13episode::query()->where(
+	                array(
+    	                'story' => str_replace('_', ' ', $book),
+    	                'season' => $season,
+    	                'episode' => $epid,
+	                )
+	            )->get_one();
+	            
+	            if(is_null($this->episode)) {
+	                Response::redirect('404');
+	            }
+	            else {
+    	            View::set_global('episode', $this->episode);
+    	            $access = Controller_Story::requestAccess($this->episode->id, $this->current_user);
+    	            View::set_global('accessible', $access['valid']);
+    	            View::set_global('access', $access);
+    	            
+    	            if($access['valid'] === true) {
+    	        	    $this->comments = Model_Admin_13comment::find_by_epid($this->episode->id);
+    	            }
+    	            else $this->template->accessfail = $access['errorCode'];
+	            }
+	        }
+	        else {
+	            Response::redirect('404');
+	        }
+	    
     	    $this->template->title = stripslashes( is_null($this->episode) ? "Episode Indisponible" : $this->episode->title );
     	}
     	else {
