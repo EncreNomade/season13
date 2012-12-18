@@ -250,7 +250,7 @@ function init() {
         });
     }
     $('#login_dialog .fb_btn').click(function(){
-        fbapi.checkConnect(fb_logged);
+        fbapi.connect(fb_logged);
     });
     
     

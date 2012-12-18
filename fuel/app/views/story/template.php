@@ -126,7 +126,7 @@ addEventListener("load", function(){
                 xfbml      : true  // parse XFBML
             });
             
-            fbapi.checkConnect();
+            fbapi.checkConnect(null, false);
             
             if(config.episode.epid == 4) 
                 story_access_resp(config.accessResp, config.episode.epid);
@@ -279,7 +279,7 @@ addEventListener("load", function(){
             </div>
         </div>
         
-    <!-- Author bio dialog-->
+    <!-- Author bio dialog -->
         <div id="credits" class="dialog">
             <div class="close right"></div>
             <h1>Credits</h1>
@@ -307,6 +307,19 @@ addEventListener("load", function(){
                     Artur Brongniart<br/>
                 </h5>
             </div>
+        </div>
+        
+    <!-- Concept card -->
+        <div id="concept" class="dialog">
+            <div class="close right"></div>
+            <h1>Tu vas vivre une nouvelle expérience</h1>
+            <div class="sep_line"></div>
+            
+            <?php echo Asset::img('season13/expos/concept1.jpg', array("class" => "logo", 'alt' => 'Concept de SEASON 13')); ?>
+            <h5>
+                <p><strong>Immerge-toi dans une série qui défile devant tes yeux</strong>, enrichie de sons, d’images, d’animations qui apparaissent au fur et à mesure.</p>
+                <p>Parfois, tout s’arrête : A toi de trouver la solution et d’agir pour faire redémarrer l’histoire.</p>
+            </h5>
         </div>
         
     <?php if(isset($episode)): ?>

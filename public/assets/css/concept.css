@@ -5,6 +5,10 @@
     height: 1320px;
     background: #fff;
     z-index: 4;
+    
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
 }
 
 #concept #cpt_intro {

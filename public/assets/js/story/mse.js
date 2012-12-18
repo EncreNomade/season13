@@ -739,7 +739,10 @@ mse.Root.prototype = {
     		if(proc[0] < proc[1]) {
     			mse.src.preloadPage(this.ctx, proc[0], proc[1]);
     		}
-    		else this.init = true;
+    		else {
+    		    this.init = true;
+    		    this.evtDistributor.rootEvt.eventNotif("loadover");
+    		}
     	}
     	else if(!this.end) {
     		this.logic(delta);

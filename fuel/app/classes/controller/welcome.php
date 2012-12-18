@@ -38,7 +38,7 @@ class Controller_Welcome extends Controller_Template
         $this->template->title = 'Concept - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5';
         // Set supplementation css and js file
         $this->template->css_supp = 'concept.css';
-        $this->template->js_supp = '';
+        $this->template->description = "Concept de SEASON 13 - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
         
         $this->template->content = View::forge('welcome/concept');
     }
@@ -72,6 +72,7 @@ class Controller_Welcome extends Controller_Template
 	public function action_404()
 	{
 		$this->template->title = 'Page inconnu - SEASON 13';
+		$this->template->description = "Page inconnu de SEASON 13 - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
 		
 		$this->template->content = View::forge('welcome/404');
 	}
@@ -142,12 +143,14 @@ class Controller_Welcome extends Controller_Template
 	    $this->template->title = 'Équipe - SEASON 13, Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux';
 	    
 	    $this->template->css_supp = 'aboutus.css';
+	    $this->template->description = "L'équipe de SEASON 13 - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
 	    $this->template->content = View::forge('welcome/aboutus');
 	}
 	
 	
 	public function action_mentionslegales() {
 	    $this->template->title = 'Mention Légales - SEASON 13';
+	    $this->template->description = "Mention Légales de SEASON 13 - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
 	    
 	    $this->template->content = View::forge('welcome/mentionslegales');
 	}
@@ -157,6 +160,7 @@ class Controller_Welcome extends Controller_Template
 	    $this->template->title = 'Contact - SEASON 13';
 	    
 	    $this->template->css_supp = 'contact.css';
+	    $this->template->description = "Contact de SEASON 13 - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
 	    $this->template->content = View::forge('welcome/contact');
 	}
 	
@@ -164,6 +168,7 @@ class Controller_Welcome extends Controller_Template
 	public function action_thanksto() {
 	    $this->template->title = 'Remerciement - SEASON 13';
 	    
+	    $this->template->description = "SEASON 13 remercie... - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
 	    $this->template->content = View::forge('welcome/thanksto');
 	}
 	

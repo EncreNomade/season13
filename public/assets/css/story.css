@@ -400,7 +400,7 @@ ul#menu div #menu_link {
     -o-transition: visibility 0.5s linear;
     transition: visibility 0.5s linear;
 }
-#comment.show, #author_bio.show, #credits.show, #next_ep_dialog.show {
+#comment.show, #author_bio.show, #credits.show, #next_ep_dialog.show, #concept.show {
     visibility: visible;
 }
 
@@ -488,6 +488,40 @@ ul#menu div #menu_link {
 #next_ep_dialog div.link a {
     text-decoration: none;
     color: #fff;
+}
+
+
+
+
+
+
+/******************** Concept Dialog ********************/
+
+#concept {
+    position: absolute;
+    width: 400px;
+    height: auto;
+    left: -200px;
+    top: -240px;
+    visibility: hidden;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    
+    -webkit-transition: visibility 0.5s linear;
+    -moz-transition: visibility 0.5s linear;
+    -ms-transition: visibility 0.5s linear;
+    -o-transition: visibility 0.5s linear;
+    transition: visibility 0.5s linear;
+}
+
+#concept img {
+    margin: 10px 40px;
+}
+
+#concept h5 {
+    font: normal 14px/20px Arial, Helvetica;
 }
 
 

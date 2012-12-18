@@ -247,7 +247,7 @@ gui.Slider = function(w, level, parent, val) {
     this.jqObj = $("<div class='slider'></div>");
     this.line = $("<div class='line'></div>");
     this.btn = $("<div class='ctrlbtn'></div>");
-    this.back = $("<img class='background' src='./assets/img/season13/ui/slider_back.png'/>");
+    this.back = $("<img class='background' src='"+config.publicRoot+"assets/img/season13/ui/slider_back.png'/>");
     this.jqObj.append(this.back).append(this.line).append(this.btn);
     
     if(!isNaN(w)) this.jqObj.css('width', w);
@@ -322,6 +322,17 @@ gui.Slider.prototype = {
 
 
 
+
+gui.downloadTimeout = function() {
+    if(msgCenter) {
+        //msgCenter.send("Le réseau est apparamment assez long, si tu ne vois pas encore l'épisode, tu peux essayer de <a href='"+document.location.href+"'>recharger</a>", 6000);
+    }
+}
+gui.removeDownloadTimer = function(timer) {
+    timer = timer ? timer : gui.downloadTimer;
+    clearTimeout(timer);
+}
+
 gui.openhideMenu = function(e) {
     e.stopPropagation();
     // Hide
@@ -392,6 +403,18 @@ gui.openNextEp = function() {
             gui.updatePlayPauseIcon();
         }
     }
+}
+
+gui.hideConcept = function() {
+    gui.concept.removeClass('show');
+    
+    var hasShownChild = false;
+    gui.center.children().each(function() {
+        if($(this).hasClass('show'))
+            hasShownChild = true;
+    });
+    if(!hasShownChild)
+        gui.center.removeClass('show');
 }
 
 gui.openhideUploader = function(e) {
@@ -593,6 +616,7 @@ $(document).ready(function() {
     gui.slowdown = $('#controler #ctrl_slowdown');
     gui.commentbtn = $('#controler #ctrl_comment');
     gui.fblike = $('#controler #ctrl_like');
+    gui.concept = $('#concept');
     gui.currPlayState = true;
     gui.fbShareEnabled = true;
     
@@ -801,11 +825,25 @@ $(document).ready(function() {
             else gui.postComment(imgSrc, msg);
         });
         
+        if(!window.mse.root.init)
+            gui.downloadTimer = setTimeout(gui.downloadTimeout, 20000);
+        
+        // Load over event
+        // 1. Remove downloadTimer
+        mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(gui.removeDownloadTimer, gui, gui.downloadTimer));
+        // 2. hide the concept dialog
+        mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(gui.hideConcept, gui));
+        
         
         // Book Finish event
         mse.root.evtDistributor.rootEvt.addListener('finished', new Callback(gui.openNextEp, gui));
     }
     
+    // Open concept in chargement
+    if(!window.mse || !window.mse.root.init) {
+        gui.concept.addClass('show');
+        gui.center.addClass('show');
+    }
     
     // Access error process
     if(config.episode.epid != 4)

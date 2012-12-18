@@ -11,7 +11,7 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 	<meta charset="utf-8">
-	<meta name="Description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
+	<meta name="Description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";  ?>" />
 	
 	<meta property="og:title" content="SEASON13" />
 	<meta property="og:type" content="website" />
@@ -27,7 +27,7 @@
 	    echo Asset::css('DroidSans.css');
 	    echo Asset::css('template.css');
 	    echo Asset::css('dialog_auth_msg.css');
-	    echo Asset::css($css_supp);
+	    if(isset($css_supp)) echo Asset::css($css_supp);
 	    echo Asset::js('lib/jquery-latest.js');
 	    echo Asset::js('lib/jquery.scrollTo-1.4.2-min.js');
 	    echo Asset::js('lib/jquery.parallax-1.1.3.js');
@@ -36,7 +36,7 @@
 	    echo Asset::js('config.js');
 	    echo Asset::js('template.js');
 	    echo Asset::js('auth.js');
-	    echo Asset::js($js_supp);
+	    if(isset($js_supp)) echo Asset::js($js_supp);
 	?>
 	
 	<?php if(!Auth::member(100) && !Auth::member(4)): ?>

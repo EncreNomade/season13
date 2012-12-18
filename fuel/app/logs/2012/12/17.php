@@ -43,3 +43,4 @@ Error - 2012-12-17 15:37:26 --> 8 - Trying to get property of non-object in /Use
 Error - 2012-12-17 15:37:34 --> 8 - Trying to get property of non-object in /Users/panda/Sites/season13/fuel/app/views/story/template.php on line 241
 Error - 2012-12-17 16:52:26 --> 8 - Trying to get property of non-object in /Users/panda/Sites/season13/fuel/app/classes/controller/story.php on line 133
 Error - 2012-12-17 18:11:43 --> 8 - Trying to get property of non-object in /Users/panda/Sites/season13/fuel/app/classes/controller/story.php on line 133
+Error - 2012-12-17 22:26:57 --> Error - Could not find asset: BebasNeue.css in /Users/panda/Sites/season13/fuel/core/classes/asset/instance.php on line 249

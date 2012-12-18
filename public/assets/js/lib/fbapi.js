@@ -31,7 +31,7 @@ fbapi.connect = function(callback){
         }
     }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});
 }
-fbapi.checkConnect = function(callback){
+fbapi.checkConnect = function(callback, willconnect){
     FB.getLoginStatus(function(response){ // test login
       if (response.status === 'connected') {
           var uid = response.authResponse.userID;
@@ -49,7 +49,7 @@ fbapi.checkConnect = function(callback){
       else { // the user isn't logged in to Facebook.
           fbapi.user = false;
           fbapi.token = '';
-          fbapi.connect(callback);
+          if(willconnect !== false) fbapi.connect(callback);
       }
     });
 };
