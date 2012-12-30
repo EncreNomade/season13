@@ -54,6 +54,10 @@
     margin: 5px;
     color: #fff;
     font: normal 16px/20px Arial;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 #btns {

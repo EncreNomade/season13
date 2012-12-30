@@ -20,7 +20,7 @@
             <label>Nouveau mot de passe</label>
             <input name="newPass" type="password" size="18" id="updatePass">
             <input type="password" size="18" id="updateConf">
-            <cite>Tape 2 fois ton mot de passe pour être bien sûr !</cite>
+            <cite>Au moins 6 caractères, tape 2 fois ton mot de passe pour être bien sûr !</cite>
         </p>
         <p>
             <?php 

@@ -7,14 +7,17 @@ class Controller_Achat_13product extends Controller_Template
     {
     	parent::before();
     	
-    	if(!Auth::check()) {
+    	// Assign current_user to the instance so controllers can use it
+    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+    	
+    	if( !Auth::member(100) ) {
     	    Response::redirect('404');
     	}
     	
-        // Assign current_user to the instance so controllers can use it
-		$this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
-		// Set a global variable so views can use it
-		View::set_global('current_user', $this->current_user);
+    	// Set a global variable so views can use it
+    	View::set_global('current_user', $this->current_user);
+    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
+    	View::set_global('base_url', Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/");
     }
 
 	public function action_index()
@@ -50,7 +53,7 @@ class Controller_Achat_13product extends Controller_Template
 					Session::set_flash('error', 'The number of metas type and metas content is not equal');
 				}
 				else 
-				{					
+				{
 					$metas = Format::forge($metas)->to_json();
 					$achat_13product = Model_Achat_13product::forge(array(
 						'reference' => Input::post('reference'),
@@ -187,16 +190,15 @@ class Controller_Achat_13product extends Controller_Template
 
 	}
 
-	private function mergeMetasArrays($types = [], $values = []) {
-		$res = [];
+	private function mergeMetasArrays($types, $values) {
+		$res = array();
 		if(!is_array($types) || !is_array($values))
 			return FALSE;
 		if(sizeof($types) != sizeof($values))
 			return FALSE;
 
 		foreach ($types as $i => $type) {
-			$res[] = [  "type" => $type, 
-						"value" => $values[$i]  ];
+			array_push($res, array("type" => $type, "value" => $values[$i]));
 		}
 
 		return $res;

@@ -36,4 +36,35 @@ return array(
 	    2101 => "Adresse email erronée !",
 	    2102 => "Nous n'avons pas d'utilisateur avec cette adresse !",
 	),
+	
+	// Error codes for webservice
+	'webservice' => array(
+	    3001 => "Application not exist",
+	    3002 => "Access token not found or not valid",
+	    3003 => "Access microtime not provided",
+	    3004 => "Application not permitted for the api requested",
+	    
+	    // Order
+	    3101 => "User not exist",
+	    3102 => "Reference of product not exist",
+	    3103 => "Order registration failed",
+	    3104 => "Request validation failed: one or more information is missing",
+	    3105 => "Product is not valid, content extracting error, contact the provider",
+	    3106 => "Failed to register one or more user possesion record",
+	    3107 => "Order id not given",
+	    3108 => "Order id not found",
+	    3109 => "Request has been denied", // App id not matched
+	    
+	    // Prodcut
+	    3201 => "Product id not given",
+	    3202 => "Product id not found",
+	    
+	    // Episode
+	    3301 => "User email not given",
+	    3302 => "Episode id not given",
+	    3303 => "User not found",
+	    3304 => "Episode not found",
+	    
+	    3999 => "Unknown error",
+	),
 );

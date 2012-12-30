@@ -33,4 +33,17 @@ class Model_13user extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+	
+	public static function validate($factory)
+	{
+		$val = Validation::forge($factory);
+		$val->add_field('pseudo', 'Pseudo', 'required');
+		$val->add_field('group', 'Group', 'required|valid_string[numeric]');
+		$val->add_field('email', 'Email', 'required|valid_email');
+		$val->add_field('avatar', 'Avatar', 'required');
+		$val->add_field('sex', 'Gender', 'required');
+		$val->add_field('birthday', 'Birthday', 'required');
+
+		return $val;
+	}
 }

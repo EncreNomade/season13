@@ -60,7 +60,7 @@ return array(
 	|	array('admin' => '1234')
 	|
 	*/
-	'valid_logins' => array('admin' => '1234'),
+	'valid_logins' => array('admin' => 'I_dont_know_what_to_put_here'),
 
 	/*
 	| Ignore HTTP_ACCEPT

@@ -85,7 +85,7 @@ function activeEpisode(id) {
         var dday = new Date(arr[0], arr[1]-1, arr[2], 0, 0, 0, 0);
         // Available
         if(dday <= today) {
-            elems.ep_play.text("VOIR L'EPISODE").prop('href', window.config.publicRoot+expo.data('title')+"/season"+expo.data('season')+"/episode"+expo.data('episode'));
+            elems.ep_play.text("VOIR L'EPISODE").prop('href', window.config.publicRoot+expo.data('story')+"/season"+expo.data('season')+"/episode"+expo.data('episode'));
             elems.ep_title.add(elems.ep_expos).removeClass('indispo');
         }
         else {

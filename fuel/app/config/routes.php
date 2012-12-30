@@ -12,5 +12,6 @@ return array(
 	'cadeau'   => 'welcome/cadeau',
 	
 	'(:segment)/season(:num)/episode(:num)' => 'story/index/$1/$2/$3',
+	'ws/(:segment)/season(:num)/episode(:num)' => 'story/webservice/$1/$2/$3',
 	'story' => 'story/index/Voodoo_Connection/1',
 );

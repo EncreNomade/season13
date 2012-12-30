@@ -29,7 +29,8 @@
                 <?php if(!isset($current_ep)) $current_ep = $admin_13episode; ?>
                 <div class="expo" 
                      data-id="<?php echo stripslashes($admin_13episode->id); ?>"
-                     data-title="<?php echo stripslashes(str_replace(' ', '_', $admin_13episode->story)); ?>"
+                     data-story="<?php echo stripslashes(str_replace(' ', '_', $admin_13episode->story)); ?>"
+                     data-title="<?php echo stripslashes($admin_13episode->title); ?>"
                      data-season="<?php echo stripslashes($admin_13episode->season); ?>"
                      data-episode="<?php echo $admin_13episode->episode; ?>"
                      data-price="<?php echo $admin_13episode->price; ?>"

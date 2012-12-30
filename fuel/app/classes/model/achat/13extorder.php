@@ -30,11 +30,10 @@ class Model_Achat_13extorder extends Model
 	{
 		$val = Validation::forge($factory);
 		$val->add_field('reference', 'Reference', 'required');
-		$val->add_field('owner', 'Owner', 'required|max_length[255]');
-		$val->add_field('order_source', 'Order Source', 'required|max_length[255]');
-		$val->add_field('appid', 'Appid', 'required|valid_string[numeric]');
+		$val->add_field('owner', 'Owner', 'required|valid_email');
+		$val->add_field('order_source', 'Order Source', 'max_length[255]');
+		$val->add_field('appid', 'Appid', 'required');
 		$val->add_field('price', 'Price', 'required');
-		$val->add_field('app_name', 'App Name', 'required');
 
 		return $val;
 	}

@@ -22,7 +22,7 @@
             </select>
         </p>
         <p><label>Ton Pseudo</label><input name="pseudo" type="text" size="18" maxlength="64" id="signupId"><cite>Au moins 6 caractères, sans espaces</cite></p>
-        <p><label>Ton Mot de passe</label><input name="password" type="password" size="18" id="signupPass"><input name="password_repeat" type="password" size="18" id="signupConf"><cite>Tape 2 fois ton mot de passe pour être bien sûr !</cite></p>
+        <p><label>Ton Mot de passe</label><input name="password" type="password" size="18" id="signupPass"><input name="password_repeat" type="password" size="18" id="signupConf"><cite>Au moins 6 caractères, tape 2 fois ton mot de passe pour être bien sûr !</cite></p>
         <p>
             <label>Ta Date de naissance</label>
             <select id="signupbDay">

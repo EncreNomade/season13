@@ -11,7 +11,7 @@ class Create_achat_13extorders
 			'reference' => array('constraint' => 32, 'type' => 'varchar'),
 			'owner' => array('constraint' => 255, 'type' => 'varchar'),
 			'order_source' => array('constraint' => 255, 'type' => 'varchar'),
-			'appid' => array('constraint' => 32, 'type' => 'int'),
+			'appid' => array('constraint' => 32, 'type' => 'varchar'),
 			'price' => array('constraint' => '20,6', 'type' => 'decimal'),
 			'app_name' => array('constraint' => 32, 'type' => 'varchar'),
 			'created_at' => array('constraint' => 11, 'type' => 'int'),

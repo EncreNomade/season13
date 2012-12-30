@@ -8,7 +8,7 @@ class Create_webservice_requestrecords
 	{
 		\DBUtil::create_table('webservice_requestrecords', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-			'appid' => array('constraint' => 11, 'type' => 'int'),
+			'appid' => array('constraint' => 32, 'type' => 'varchar'),
 			'service_requested' => array('constraint' => 32, 'type' => 'varchar'),
 			'params' => array('constraint' => 255, 'type' => 'varchar'),
 			'token' => array('constraint' => 32, 'type' => 'varchar'),

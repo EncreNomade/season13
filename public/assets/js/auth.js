@@ -156,7 +156,7 @@ function init() {
         var valid = true;
         if(name == "") {$('#signupId').siblings('cite').addClass('alert');valid = false;}
         if(pass == "") {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
-        else if(pass.length < 6) {$('#signupPass').siblings('label').addClass('alert');valid = false;}
+        else if(pass.length < 6) {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
         if(conf == "" || conf != pass) {$('#signupConf').siblings('cite').addClass('alert');valid = false;}
         if(!regs.mail.test(mail)) {$('#signupMail').siblings('label').addClass('alert');valid = false;}
         // if( (tel != "" && !regs.telephone.test(tel)) || (tel == "" && notif == "sms") ) {
@@ -448,7 +448,7 @@ function init() {
         var oldPass = $('#updateOldPass').val();
 
         var valid = true;
-        if(pass != "" && pass.length < 6) {$('#updatePass').siblings('label').addClass('alert');valid = false;}
+        if(pass != "" && pass.length < 6) {$('#updatePass').siblings('cite').addClass('alert');valid = false;}
         if(conf != "" && conf != pass) {$('#updateConf').siblings('cite').addClass('alert');valid = false;}
         if( codpos != "" && !regs.codpos.test(codpos) ) {
             $('#updateCP').siblings('label').addClass('alert');

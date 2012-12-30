@@ -6,11 +6,18 @@ class Controller_Achat_13extorder extends Controller_Template
     public function before()
     {
     	parent::before();
-    	
-        // Assign current_user to the instance so controllers can use it
+		
+		// Assign current_user to the instance so controllers can use it
 		$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+		
+		if( !Auth::member(100) ) {
+		    Response::redirect('404');
+		}
+		
 		// Set a global variable so views can use it
 		View::set_global('current_user', $this->current_user);
+		View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
+		View::set_global('base_url', Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/");
     }
 
 	public function action_index()
@@ -40,25 +47,44 @@ class Controller_Achat_13extorder extends Controller_Template
 			
 			if ($val->run())
 			{
-				$achat_13extorder = Model_Achat_13extorder::forge(array(
-					'reference' => Input::post('reference'),
-					'owner' => Input::post('owner'),
-					'order_source' => Input::post('order_source'),
-					'appid' => Input::post('appid'),
-					'price' => Input::post('price'),
-					'app_name' => Input::post('app_name'),
-				));
-
-				if ($achat_13extorder and $achat_13extorder->save())
-				{
-					Session::set_flash('success', 'Added achat_13extorder #'.$achat_13extorder->id.'.');
-
-					Response::redirect('achat/13extorder');
-				}
-
-				else
-				{
-					Session::set_flash('error', 'Could not save achat_13extorder.');
+			    $valid = true;
+			    $app = Model_Webservice_Plateformapp::find(Input::post('appid'));
+			    if(!$app) {
+			        Session::set_flash('error', 'App not exist.');
+			        $valid = false;
+			    }
+			    $user = Model_13user::find_by_email(Input::post('owner'));
+			    if(!$user) {
+			        Session::set_flash('error', 'User not exist.');
+			        $valid = false;
+			    }
+			    $product = Model_Achat_13product::find_by_reference(Input::post('reference'));
+			    if(!$product) {
+			        Session::set_flash('error', 'Product not exist.');
+			        $valid = false;
+			    }
+			    
+			    if($valid) {
+    				$achat_13extorder = Model_Achat_13extorder::forge(array(
+    					'reference' => Input::post('reference'),
+    					'owner' => Input::post('owner'),
+    					'order_source' => Input::post('order_source') ? Input::post('order_source') : "",
+    					'appid' => Input::post('appid'),
+    					'price' => Input::post('price'),
+    					'app_name' => $app->appname,
+    				));
+    
+    				if ($achat_13extorder and $achat_13extorder->save())
+    				{
+    					Session::set_flash('success', 'Added external order #'.$achat_13extorder->id.'.');
+    
+    					Response::redirect('achat/13extorder');
+    				}
+    
+    				else
+    				{
+    					Session::set_flash('error', 'Could not save external order.');
+    				}
 				}
 			}
 			else
@@ -82,23 +108,42 @@ class Controller_Achat_13extorder extends Controller_Template
 
 		if ($val->run())
 		{
-			$achat_13extorder->reference = Input::post('reference');
-			$achat_13extorder->owner = Input::post('owner');
-			$achat_13extorder->order_source = Input::post('order_source');
-			$achat_13extorder->appid = Input::post('appid');
-			$achat_13extorder->price = Input::post('price');
-			$achat_13extorder->app_name = Input::post('app_name');
-
-			if ($achat_13extorder->save())
-			{
-				Session::set_flash('success', 'Updated achat_13extorder #' . $id);
-
-				Response::redirect('achat/13extorder');
-			}
-
-			else
-			{
-				Session::set_flash('error', 'Could not update achat_13extorder #' . $id);
+		    $valid = true;
+		    $app = Model_Webservice_Plateformapp::find(Input::post('appid'));
+		    if(!$app) {
+		        Session::set_flash('error', 'App not exist.');
+		        $valid = false;
+		    }
+		    $user = Model_13user::find_by_email(Input::post('owner'));
+		    if(!$user) {
+		        Session::set_flash('error', 'User not exist.');
+		        $valid = false;
+		    }
+		    $product = Model_Achat_13product::find_by_reference(Input::post('reference'));
+		    if(!$product) {
+		        Session::set_flash('error', 'Product not exist.');
+		        $valid = false;
+		    }
+		
+		    if($valid) {
+    			$achat_13extorder->reference = Input::post('reference');
+    			$achat_13extorder->owner = Input::post('owner');
+    			$achat_13extorder->order_source = Input::post('order_source') ? Input::post('order_source') : "";
+    			$achat_13extorder->appid = Input::post('appid');
+    			$achat_13extorder->price = Input::post('price');
+    			$achat_13extorder->app_name = $app->appname;
+    
+    			if ($achat_13extorder->save())
+    			{
+    				Session::set_flash('success', 'Updated external order #' . $id);
+    
+    				Response::redirect('achat/13extorder');
+    			}
+    
+    			else
+    			{
+    				Session::set_flash('error', 'Could not update external order #' . $id);
+    			}
 			}
 		}
 
@@ -130,12 +175,12 @@ class Controller_Achat_13extorder extends Controller_Template
 		{
 			$achat_13extorder->delete();
 
-			Session::set_flash('success', 'Deleted achat_13extorder #'.$id);
+			Session::set_flash('success', 'Deleted external order #'.$id);
 		}
 
 		else
 		{
-			Session::set_flash('error', 'Could not delete achat_13extorder #'.$id);
+			Session::set_flash('error', 'Could not delete external order #'.$id);
 		}
 
 		Response::redirect('achat/13extorder');

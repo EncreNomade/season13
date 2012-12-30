@@ -13,6 +13,7 @@ return array(
 	    'code_promo' => 4,
 	    'offer_nopayment' => 5,
 	    'fblike' => 6,
+	    'external_order' => 7,
 	),
 	
 	'fbapp' => array(
