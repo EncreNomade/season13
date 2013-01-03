@@ -11,6 +11,7 @@
 			<th>Presentation</th>
 			<th>Tags</th>
 			<th>Title</th>
+			<th>Author</th>
 			<th>Category</th>
 			<th>Metas</th>
 			<th>On sale</th>
@@ -30,6 +31,11 @@
 			<td><?php echo $achat_13product->presentation; ?></td>
 			<td><?php echo $achat_13product->tags; ?></td>
 			<td><?php echo $achat_13product->title; ?></td>
+			<td><?php 
+			    $author = Model_Book_13author::find($achat_13product->author);
+			    if(!is_null($author)) echo $author->firstname." ".$author->lastname; 
+			    else echo "";
+			?></td>
 			<td><?php echo $achat_13product->category; ?></td>
 			<td><?php echo $achat_13product->metas; ?></td>
 			<td><?php echo $achat_13product->on_sale; ?></td>

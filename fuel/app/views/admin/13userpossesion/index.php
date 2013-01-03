@@ -13,7 +13,7 @@
 	<tbody>
 <?php foreach ($admin_13userpossesions as $admin_13userpossesion): ?>		<tr>
 
-			<td><?php echo $admin_13userpossesion->user_id; ?></td>
+			<td><?php echo Model_13user::find( $admin_13userpossesion->user_id )->pseudo; ?></td>
 			<td><?php echo $admin_13userpossesion->episode_id; ?></td>
 			<td><?php echo $admin_13userpossesion->source; ?></td>
 			<td>

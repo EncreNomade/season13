@@ -14,10 +14,13 @@ class Controller_Achat_13product extends Controller_Template
     	    Response::redirect('404');
     	}
     	
+    	$this->base_uri = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
+    	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
+    	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
-    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
-    	View::set_global('base_url', Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/");
+    	View::set_global('remote_path', $this->remote_path);
+    	View::set_global('base_url', $this->base_uri);
     }
 
 	public function action_index()
@@ -54,17 +57,46 @@ class Controller_Achat_13product extends Controller_Template
 				}
 				else 
 				{
-					$metas = Format::forge($metas)->to_json();
+				    // Content 
+				    $content = Input::post('content');
+				    if(count($content) == 0) {
+				        Session::set_flash('error', 'There is no content in this product');
+				    }
+				    else {
+				        $epid = $content[0];
+				        $ep = Model_Admin_13episode::find($epid);
+				        if(!is_null($ep)) {
+				            $extrait = $this->base_uri.$ep->path.'extrait.js';
+				        }
+				    }
+				    $contentstr = Format::forge(Input::post('content'))->to_json();
+
+// TEMPORARY IMPLEMENTATION
+				    // Set link extrait meta
+				    if(isset($extrait)) 
+				        array_push($metas, array('type'=>'extrait', 'value'=>$extrait));
+					$metasjson = Format::forge($metas)->to_json();
+					
+					// Find author
+					$author = -1;
+					$episode = Model_Admin_13episode::find($content[0]);
+					if(!is_null($episode)) {
+					    $book = Model_Book_13book::find_by_title($episode->story);
+					    if(!is_null($book))
+					        $author = $book->author_id;
+					}
+					
 					$achat_13product = Model_Achat_13product::forge(array(
 						'reference' => Input::post('reference'),
 						'type' => Input::post('type'),
 						'pack' => Input::post('pack'),
-						'content' => Input::post('content'),
+						'content' => $contentstr,
 						'presentation' => Input::post('presentation'),
 						'tags' => Input::post('tags'),
 						'title' => Input::post('title'),
+						'author' => $author,
 						'category' => Input::post('category'),
-						'metas' => $metas,
+						'metas' => $metasjson,
 						'on_sale' => Input::post('on_sale'),
 						'price' => Input::post('price'),
 						'discount' => Input::post('discount'),
@@ -92,7 +124,6 @@ class Controller_Achat_13product extends Controller_Template
 
 		$this->template->title = "Achat_13Products";
 		$this->template->content = View::forge('achat/13product/create');
-
 	}
 
 	public function action_edit($id = null)
@@ -112,12 +143,13 @@ class Controller_Achat_13product extends Controller_Template
 				Session::set_flash('error', 'The number of metas type and metas content is not equal');
 			}
 			else 
-			{				
+			{
+			    $content = Format::forge(Input::post('content'))->to_json();
 				$metas = Format::forge($metas)->to_json();
 				$achat_13product->reference = Input::post('reference');
 				$achat_13product->type = Input::post('type');
 				$achat_13product->pack = Input::post('pack');
-				$achat_13product->content = Input::post('content');
+				$achat_13product->content = $content;
 				$achat_13product->presentation = Input::post('presentation');
 				$achat_13product->tags = Input::post('tags');
 				$achat_13product->title = Input::post('title');
@@ -147,10 +179,11 @@ class Controller_Achat_13product extends Controller_Template
 		{
 			if (Input::method() == 'POST')
 			{
+			    $content = Format::forge($val->validated('content'))->to_json();
 				$achat_13product->reference = $val->validated('reference');
 				$achat_13product->type = $val->validated('type');
 				$achat_13product->pack = $val->validated('pack');
-				$achat_13product->content = $val->validated('content');
+				$achat_13product->content = $content;
 				$achat_13product->presentation = $val->validated('presentation');
 				$achat_13product->tags = $val->validated('tags');
 				$achat_13product->title = $val->validated('title');
@@ -189,6 +222,8 @@ class Controller_Achat_13product extends Controller_Template
 		Response::redirect('achat/13product');
 
 	}
+	
+	
 
 	private function mergeMetasArrays($types, $values) {
 		$res = array();
@@ -202,8 +237,6 @@ class Controller_Achat_13product extends Controller_Template
 		}
 
 		return $res;
-
 	}
-
 
 }

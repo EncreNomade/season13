@@ -72,6 +72,7 @@ class Controller_Achat_13extorder extends Controller_Template
     					'appid' => Input::post('appid'),
     					'price' => Input::post('price'),
     					'app_name' => $app->appname,
+    					'state' => "FINALIZE",
     				));
     
     				if ($achat_13extorder and $achat_13extorder->save())

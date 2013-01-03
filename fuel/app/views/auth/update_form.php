@@ -61,9 +61,6 @@
             <label>Ton Pays</label>
             <select name="pays" id="updatePays">
                 <option value="  " selected>Selectionnes ton pays</option>
-                <?php foreach (Controller_Base::$countries as $key => $value): ?>
-                <option value="<?php echo $key; ?>" <?php if($current_user->pays == $key) echo "selected"; ?>><?php echo $value; ?></option>
-                <?php endforeach; ?>
             </select>
             <cite>Facultatif</cite>
         </p>

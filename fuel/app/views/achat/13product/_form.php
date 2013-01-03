@@ -54,7 +54,7 @@
 		    	
 		    	echo Form::select(
 		    	    'content', 
-		    	    Input::post('content', isset($achat_13product) ? $achat_13product->content : ''), 
+		    	    Input::post('content', isset($achat_13product) ? Format::forge($achat_13product->content, 'json')->to_array() : ''), 
 		    	    $arr,
 		    	    array(
 		    	        'multiple' => 'multiple'
@@ -110,7 +110,7 @@
 				    	$values = Input::post('meta_value_content');
 				    	if(is_array($types) && is_array($values) && sizeof($types) == sizeof($values)) {
 				    		foreach ($types as $i => $type) {
-				    			$metas[] = [ "type" => $type, "value" => $values[$i] ];
+				    			$metas = array( "type" => $type, "value" => $values[$i] );
 				    		}
 				    	}				    	
 				    }
@@ -139,9 +139,9 @@
 					        array('disabled'=>'true')
 					    );
 
-					    echo Form::Input('meta_type_content[]', $meta["type"], ["type"=>"hidden"]);
+					    echo Form::Input('meta_type_content[]', $meta["type"], array("type"=>"hidden"));
 
-					    echo Form::Input('meta_value_content[]', $meta['value'], ['class'=>'span4', 'readonly' => "true"]);
+					    echo Form::Input('meta_value_content[]', $meta['value'], array('class'=>'span4', 'readonly' => "true"));
 
 				    	echo Form::button('meta_add', 'Delete', array('id' => 'meta_add', 'class' => 'btn btn-danger remove-meta'));
 

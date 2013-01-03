@@ -160,7 +160,7 @@ class Controller_Story extends Controller_Template
 	
 	
 	
-	public function action_webservice($book = null, $season = null, $epid = null)
+	public function action_webservice($book = null, $season = null, $episode = null)
 	{
 	    $capable = false;
 	    // Check user browser capacity
@@ -201,41 +201,22 @@ class Controller_Story extends Controller_Template
 	        if(is_null($mail)) {
 	            Response::redirect('404');
 	        }
-	        // Check token
-	        $access_token = Input::param('access_token');
-	        if(is_null($access_token)) {
-	            Response::redirect('404');
-	        }
 	        
-	        // Check token association
-	        $tokenstr = Crypt::decode($access_token);
-	        preg_match(Controller_Webservice_Wsbase::$access_token_ptn, $tokenstr, $result);
-	        
-	        $tokenverified = false;
-	        if( array_key_exists('time', $result) && 
-	            array_key_exists('email', $result) && 
-	            array_key_exists('appid', $result) ) {
-	            // Pattern match success
-	            if($result['email'] == $mail) {
-	                // Token user associated
-	                $tokenverified = true;
+	        if( isset($book) && isset($season) && isset($episode) ) {
+	            // Check token and token-email association
+	            $access_token = Input::param('access_token');
+	            if( is_null($access_token) || 
+	                !Controller_Webservice_Wsbase::checkAccessToken($access_token, $mail, $book.$season.$episode) ) {
+	                Response::redirect('404');
 	            }
-	        }
 	        
-	        // Not associated or pattern match fail
-	        if(!$tokenverified) {
-	            Response::redirect('404');
-	        }
-	        
-	        if(!isset($epid) && Input::get('ep')) $epid = Input::get('ep');
-	        
-	        if( isset($book) && isset($season) && isset($epid) ) {
+	            $book = str_replace('_', ' ', $book);
 	            // Find the episode
 	            $this->episode = Model_Admin_13episode::query()->where(
 	                array(
-		                'story' => str_replace('_', ' ', $book),
+		                'story' => $book,
 		                'season' => $season,
-		                'episode' => $epid,
+		                'episode' => $episode,
 	                )
 	            )->get_one();
 	            

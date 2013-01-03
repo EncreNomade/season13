@@ -11,6 +11,7 @@ class Model_Achat_13extorder extends Model
 		'appid',
 		'price',
 		'app_name',
+		'state',
 		'created_at',
 		'updated_at',
 	);

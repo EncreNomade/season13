@@ -7,6 +7,7 @@ function showSignup() {
     $('#signup_dialog').addClass('show');
     $('#conn li').removeClass('inactive');
     $('#open_login').addClass('inactive');
+    addCountries($('#signupPays'));
 }
 function showLogin() {
     $('.dialog').removeClass('show');
@@ -33,6 +34,14 @@ function showUpdate() {
     $('#update_dialog').addClass('show');
     $('#conn li').removeClass('inactive');
     $('#logout').addClass('inactive');
+    addCountries($('#updatePays'));
+}
+function addCountries(select) {
+    if(select.children().length < 2 && config.countries) {
+        for (var id in config.countries) {
+            select.append('<option value="'+id+'">'+config.countries[id]+'</option>');
+        }
+    }
 }
 function monthChanged() {
     var m = parseInt($('#signupbMonth').val());

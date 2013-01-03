@@ -47,9 +47,6 @@
             <label>Ton Pays</label>
             <select name="pays" id="signupPays">
                 <option value="  " selected>Selectionnes ton pays</option>
-                <?php foreach (Controller_Base::$countries as $key => $value): ?>
-                <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
-                <?php endforeach; ?>
             </select>
             <cite>Facultatif</cite>
         </p>

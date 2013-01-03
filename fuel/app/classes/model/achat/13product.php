@@ -12,6 +12,7 @@ class Model_Achat_13product extends Model
 		'presentation',
 		'tags',
 		'title',
+		'author',
 		'category',
 		'metas',
 		'on_sale',

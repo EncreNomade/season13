@@ -200,7 +200,7 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 	 * @param   Array
 	 * @return  bool
 	 */
-	public function create_user($pseudo, $password, $email, $portable = "", $group = 3, $avatar = "assets/img/season13/avatar_default.png", $sex = 'm', $birthday = '', $pays = '', $code_postal = '', $notif = 'mail', $fbid = '0', Array $profile_fields = array(), Array $sns_links = array())
+	public function create_user($pseudo, $password, $email, $portable = "", $group = 3, $avatar = "http://season13.com/assets/img/season13/avatar_default.png", $sex = 'm', $birthday = '', $pays = '', $code_postal = '', $notif = 'mail', $fbid = '0', Array $profile_fields = array(), Array $sns_links = array())
 	{
 		$password = trim($password);
 		$email = filter_var(trim($email), FILTER_VALIDATE_EMAIL);
@@ -229,9 +229,11 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 		}
 		
 		if (empty($avatar))
-		    $avatar = "assets/img/season13/avatar_default.png";
+		    $avatar = "http://season13.com/assets/img/season13/avatar_default.png";
 
         $format = 'd/m/Y';
+        if (empty($birthday))
+            $birthday = "22/10/2012";
         $birth = date_create_from_format($format, (string)$birthday);
 
 		$user = array(

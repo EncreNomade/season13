@@ -15,6 +15,7 @@ class Create_achat_13products
 			'presentation' => array('type' => 'text'),
 			'tags' => array('constraint' => 255, 'type' => 'varchar'),
 			'title' => array('constraint' => 255, 'type' => 'varchar'),
+			'author' => array('constraint' => 11, 'type' => 'int'),
 			'category' => array('constraint' => 64, 'type' => 'varchar'),
 			'metas' => array('type' => 'text'),
 			'on_sale' => array('constraint' => 1, 'type' => 'int'),

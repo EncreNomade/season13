@@ -45,7 +45,7 @@ return array(
 	    3004 => "Application not permitted for the api requested",
 	    
 	    // Order
-	    3101 => "User not exist",
+	    3101 => "User can not be added to the database of user",
 	    3102 => "Reference of product not exist",
 	    3103 => "Order registration failed",
 	    3104 => "Request validation failed: one or more information is missing",
@@ -54,10 +54,15 @@ return array(
 	    3107 => "Order id not given",
 	    3108 => "Order id not found",
 	    3109 => "Request has been denied", // App id not matched
+	    3110 => "Owner user of this order not exist",
 	    
 	    // Prodcut
 	    3201 => "Product id not given",
 	    3202 => "Product id not found",
+	    3203 => "User email not given",
+	    3204 => "User not found",
+	    3205 => "Order for the combination of the product and the user requested can not be found",
+	    3206 => "Order canceled",
 	    
 	    // Episode
 	    3301 => "User email not given",
