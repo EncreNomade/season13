@@ -13,3 +13,5 @@ Error - 2013-01-03 17:23:22 --> 8 - Undefined variable: user in /Users/panda/Sit
 Error - 2013-01-03 17:24:02 --> 2 - Attempt to assign property of non-object in /Users/panda/Sites/season13/fuel/app/classes/controller/achat/13product.php on line 291
 Error - 2013-01-03 17:26:30 --> 8 - Undefined variable: current_ep in /Users/panda/Sites/season13/fuel/app/views/achat/13product/package.php on line 9
 Error - 2013-01-03 17:31:54 --> 8 - Undefined variable: current_ep in /Users/panda/Sites/season13/fuel/app/views/achat/13product/package.php on line 9
+Error - 2013-01-03 22:18:47 --> Parsing Error - syntax error, unexpected T_ENDIF in /Users/panda/Sites/season13/fuel/app/views/story/ws_nolink.php on line 366
+Error - 2013-01-03 23:11:06 --> 8 - Undefined variable: base_url in /Users/panda/Sites/season13/fuel/app/views/auth/update_form.php on line 1

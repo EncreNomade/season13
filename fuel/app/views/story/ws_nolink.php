@@ -25,14 +25,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-<title><?php echo $title; ?></title>
+<title><?php echo $episode->title; ?></title>
 <meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection<?php if(isset($episode)) echo ", Season: ".$episode->season.", ".$episode->title; ?>" />
-
-<!-- Script for integrate the font: Helvetica Ultra Compressed
-    <script type="text/javascript" src="http://fast.fonts.com/jsapi/11bfc142-9579-4cac-b6a6-2a561db23028.js"></script>
--->
-
-<!--<link rel="stylesheet" href="/assets/font/gudea/stylesheet.css" type="text/css">-->
 
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -51,22 +45,12 @@
     echo Asset::js('auth.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
-    if($accessible) {
-        if(Fuel::$env == Fuel::DEVELOPMENT) {
-            echo Asset::js('story/scriber.js');
-            echo Asset::js('story/events.js');
-            echo Asset::js('story/mse.js');
-            echo Asset::js('story/effet_mini.js');
-            echo Asset::js('story/mdj.js');
-        }
-        else {
-            echo Asset::js('story/scriber.js');
-            echo Asset::js('story/events.min.js');
-            echo Asset::js('story/mse.min.js');
-            echo Asset::js('story/effet_mini.js');
-            echo Asset::js('story/mdj.min.js');
-        }
-    }
+    
+    echo Asset::js('story/scriber.js');
+    echo Asset::js('story/events.min.js');
+    echo Asset::js('story/mse.min.js');
+    echo Asset::js('story/effet_mini.js');
+    echo Asset::js('story/mdj.min.js');
 ?>
 
 <script type="text/javascript">
@@ -74,11 +58,10 @@
     	setTimeout(function(){window.scrollTo(0, 1);}, 0);
     	$('body').css({'margin':'0px','padding':'0px'});
     }, false);
-
+    
     config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
 </script>
 
-<?php if(!Auth::member(100) && !Auth::member(4)): ?>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -100,7 +83,6 @@
   })();
 
 </script>
-<?php endif; ?>
 
 </head>
 
@@ -135,28 +117,20 @@
         }
     </script>
 
-<?php if(isset($episode)): ?>
     <script>
     
         config.episode = {
             'epid' : <?php echo $episode->id; ?>,
-            'title' : "<?php echo $title; ?>",
+            'title' : "<?php echo $episode->title; ?>",
             'story' : "<?php echo $episode->story; ?>",
             'image' : "<?php echo $expo_image; ?>"
         };
         
         config.accessResp = {
-            'valid': <?php echo $access['valid'] ? 'true' : 'false'; ?>, 
-            <?php 
-            if($access['valid'] == false) 
-                echo "'errorCode':  ".$access['errorCode'].",\n";
-            if(array_key_exists('errorMessage', $access)) 
-                echo "'errorMessage': '".$access['errorMessage']."',\n";
-            ?>
+            'valid': true
         };
         
     </script>
-<?php endif; ?>
     <?php 
         // output the javascript function
         echo Security::js_set_token(); 
@@ -166,7 +140,6 @@
         <div class="left">
             <div id="tache">
                 <?php echo Asset::img('season13/story/story_tache.png', array('alt' => 'SEASON 13')); ?>
-                <a href="http://www.season13.com/" target="_blank"></a>
             </div>
             <div id="sep_left"></div>
             <h1>Voodoo Connection</h1>
@@ -178,43 +151,6 @@
             </div>
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
-            
-            <ul id="conn">
-            <?php if($current_user == null): ?>
-                    <li id="open_signup">Créer un compte</li>
-                    <li class="text_sep_vertical"></li>
-                    <li id="open_login">Déjà client</li>
-            <?php else: ?>
-                <?php if(Auth::member(100)): ?>
-                    <li><a href="admin/">ADMIN</a></li>
-                <?php endif; ?>
-                    <li id="user_id">BIENVENUE: <?php echo $current_user->pseudo ?></li>
-                    <li class="text_sep_vertical"></li>
-                    <li id="logout">LOGOUT</li>
-            <?php endif; ?>
-                </ul>
-                
-            <?php if($current_user == null): ?>
-                <div id="signup_dialog" class="dialog">
-                    <div class="close"></div>
-                    <?php echo View::forge('auth/signup_form')->render(); ?>
-                </div>
-                <div id="login_dialog" class="dialog">
-                    <div class="close"></div>
-                    <?php echo View::forge('auth/login_form')->render(); ?>
-                </div>
-                <div id="change_pass_dialog" class="dialog">
-                    <div class="close"></div>
-                    <?php echo View::forge('auth/chpass_form')->render(); ?>
-                </div> 
-                
-            <?php else: ?>
-                <div id="update_dialog" class="dialog">
-                    <div class="close"></div>
-                    <?php echo View::forge('auth/update_form')->render(); ?>
-                </div>
-            
-            <?php endif; ?>
         </div>
     </header>
     
@@ -239,27 +175,11 @@
             <?php echo Asset::img('season13/story/story_credit.png', array('alt' => 'Crédits de SEASON 13')); ?>
             <a>Crédits</a>
         </li>
-        <li id="btn_nextep">
-            <?php echo Asset::img('season13/story/story_nextep.png', array('alt' => 'Continue l\'histoire - SEASON13')); ?>
-            <a>Épisode suivant</a>
-        </li>
         
         <div>
             <?php echo Asset::img('season13/logo_white.png', array("id" => "menu_logo", 'alt' => 'LOGO SEASON 13')); ?>
-            <?php echo Html::anchor('http://www.season13.com', 'www.season13.com', array("id" => "menu_link", "target" => "_blank")); ?>
         </div>
     </ul>
-
-    <div id="top_center">
-    <!--Access dialog-->
-        <div id="access_dialog" class="dialog">
-            <div class="close right"></div>
-            <h1></h1>
-            <div class="sep_line"></div>
-            
-            <?php if(array_key_exists('form', $access)) echo html_entity_decode($access['form'], ENT_COMPAT, 'UTF-8'); ?>
-        </div>
-    </div>
 
     <div id="center">
     <!-- Author bio dialog-->
@@ -324,30 +244,6 @@
             </h5>
         </div>
         
-    <?php if(isset($episode)): ?>
-    <!--Continue read dialog-->
-        <div id="next_ep_dialog" class="dialog">
-            <div class="close right"></div>
-            <h1>L'épisode Suivant</h1>
-            <div class="sep_line"></div>
-            
-            <?php if($episode->episode < 6): ?>
-                <div class="link">
-                    <a href="<?php echo $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".($episode->episode+1); ?>" target="_blank">Continue l'histoire</a>
-                </div>
-            <?php else: ?>
-                <h5 style="text-align: center;">
-                    Pour découvrir la descente infernale de Simon et Angéli en poubelle dans Montmartre,<br/>
-                    RDV le mercredi 9 janvier<br/>
-                    sur Voodoo Connection Saison 2<br/>
-                </h5>
-            <?php endif; ?>
-            
-            <a href="<?php echo $base_url; ?>" target="_blank"><?php echo Asset::img('season13/logo_black.png', array("class" => "logo", 'alt' => 'LOGO SEASON 13')); ?></a>
-        </div>
-    <?php endif; ?>
-    
-    <?php if($accessible): ?>
     <!-- Preferece dialog -->
         <div id="preference" class="dialog">
             <div class="close right"></div>
@@ -460,10 +356,8 @@
                 <li id="sb_confirm" title="Valide ton dessin"><?php echo Asset::img('season13/ui/scriber_confirm.png'); ?></li>
             </ul>
         </div>
-    <?php endif; ?>
     </div>
     
-<?php if($accessible): ?>
     <div id="root">
         <div id="controler">
             <div class="back"></div>
@@ -498,7 +392,7 @@
                 <div id="game_result">
                     <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
                     <h2>GAGNÉ !</h2>
-                    <h5>Ton score : <span>240</span> pts</h5>
+                    <h5>Ton score : <span>250</span> pts</h5>
                     <ul>
                         <li id="game_restart">REJOUER</li>
                         <li id="game_quit">QUITTER</li>
@@ -521,7 +415,6 @@
     
     ?>
     </script>
-<?php endif; ?>
 
 </body>
 </html>

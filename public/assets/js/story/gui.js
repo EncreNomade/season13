@@ -247,7 +247,7 @@ gui.Slider = function(w, level, parent, val) {
     this.jqObj = $("<div class='slider'></div>");
     this.line = $("<div class='line'></div>");
     this.btn = $("<div class='ctrlbtn'></div>");
-    this.back = $("<img class='background' src='"+config.publicRoot+"assets/img/season13/ui/slider_back.png'/>");
+    this.back = $("<img class='background' src='"+config.base_url+"assets/img/season13/ui/slider_back.png'/>");
     this.jqObj.append(this.back).append(this.line).append(this.btn);
     
     if(!isNaN(w)) this.jqObj.css('width', w);
@@ -431,9 +431,9 @@ gui.openhideUploader = function(e) {
 
 gui.updatePlayPauseIcon = function() {
     if(mse.root.inPause) {
-        $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/season13/ui/wheel_play.png"/>');
+        $('#ctrl_playpause').html('<img src="'+config.base_url+'assets/img/season13/ui/wheel_play.png"/>');
     }
-    else $('#ctrl_playpause').html('<img src="'+config.publicRoot+'assets/img/season13/ui/wheel_pause.png"/>');
+    else $('#ctrl_playpause').html('<img src="'+config.base_url+'assets/img/season13/ui/wheel_pause.png"/>');
 }
 
 
@@ -488,7 +488,7 @@ gui.updateUsersComments = function(start) {
     start = isNaN(start) ? gui.userComments.children('li').length : start;
     $.ajax({
         type: 'GET', 
-        url: './13comments/comment_by_ep', 
+        url: config.publicRoot+'13comments/comment_by_ep', 
         data: {'start': start, 'ep': mse.configs.epid}, 
         dataType: 'json', 
         success: function(data, textStatus, jqXHR) {
@@ -576,7 +576,7 @@ gui.postComment = function(imgUrl, msg){
         
     if(imgUrl){
         if(msg == null) msg = "";
-        $.post('./13comments/comment', {'imgUrl': imgUrl, 
+        $.post(config.publicRoot + '13comments/comment', {'imgUrl': imgUrl, 
                                         'message': msg, 
                                         'position': position, 
                                         'fbID':'', 
@@ -584,7 +584,7 @@ gui.postComment = function(imgUrl, msg){
                                         }, postSuccess, 'json');
     }
     else if(msg){
-        $.post('./13comments/comment', {'imgUrl': '', 
+        $.post(config.publicRoot + '13comments/comment', {'imgUrl': '', 
                                         'message': msg, 
                                         'position': position, 
                                         'fbID':'', 
@@ -680,7 +680,7 @@ $(document).ready(function() {
                 $(this).addClass('active');
             }
         });
-    /*    gui.controler.mouseout(function() {
+        /*gui.controler.mouseout(function() {
             gui.controler.find('li').removeClass('active');
         });*/
     

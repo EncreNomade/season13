@@ -77,10 +77,12 @@ class Controller_Story extends Controller_Template
     	// Assign current_user to the instance so controllers can use it
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
     	
+    	$this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/';
+    	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
     	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
-    	View::set_global('base_uri', Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/');
+    	View::set_global('base_url', $this->base_url);
     }
 
 	public function action_index($book = null, $season = null, $epid = null)
@@ -145,15 +147,15 @@ class Controller_Story extends Controller_Template
     	            }
     	            else $this->template->accessfail = $access['errorCode'];
 	            }
+	            
+	            $this->template->title = stripslashes( is_null($this->episode) ? "Episode Indisponible" : $this->episode->title );
 	        }
 	        else {
 	            Response::redirect('404');
 	        }
-	    
-    	    $this->template->title = stripslashes( is_null($this->episode) ? "Episode Indisponible" : $this->episode->title );
     	}
     	else {
-    	    Response::redirect('http://season13.com/upgradenav');
+    	    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'/upgradenav');
     	}
 	}
 	
@@ -201,6 +203,13 @@ class Controller_Story extends Controller_Template
 	        if(is_null($mail)) {
 	            Response::redirect('404');
 	        }
+	        $user = Model_13user::find_by_email($mail);
+	        if(!is_null($user)) {
+	            $auth = Auth::instance();
+	            $auth->force_login($user->id);
+	            $this->current_user = $user;
+	            View::set_global('current_user', $this->current_user);
+	        }
 	        
 	        if( isset($book) && isset($season) && isset($episode) ) {
 	            // Check token and token-email association
@@ -231,12 +240,13 @@ class Controller_Story extends Controller_Template
 		            View::set_global('access', $access);
 		            $this->comments = Model_Admin_13comment::find_by_epid($this->episode->id);
 	            }
+	            
+	            $data = array('episode' => $this->episode);
+	            return new Response(View::forge('story/ws_nolink', $data));
 	        }
 	        else {
 	            Response::redirect('404');
 	        }
-	    
-		    $this->template->title = stripslashes( is_null($this->episode) ? "Episode Indisponible" : $this->episode->title );
 		}
 		else {
 		    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'/upgradenav');

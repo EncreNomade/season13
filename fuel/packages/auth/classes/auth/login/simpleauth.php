@@ -64,10 +64,11 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 	{
 		$pseudo    = \Session::get('pseudo');
 		$login_hash  = \Session::get('login_hash');
-
+        
 		// only worth checking if there's both a pseudo and login-hash
 		if ( ! empty($pseudo) and ! empty($login_hash))
 		{
+		    //\Debug::dump($pseudo." ".$login_hash." ".$this->user['login_hash']);
 			if (is_null($this->user) or ($this->user['pseudo'] != $pseudo and $this->user != static::$guest_login))
 			{
 				$this->user = \DB::select_array(\Config::get('simpleauth.table_columns', array('*')))
@@ -82,7 +83,7 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 				return true;
 			}
 		}
-
+		
 		// no valid login when still here, ensure empty session and optionally set guest_login
 		$this->user = \Config::get('simpleauth.guest_login', true) ? static::$guest_login : false;
 		\Session::delete('pseudo');

@@ -23,7 +23,7 @@ return array(
 	 *
 	 * Set this to null to have it automatically detected.
 	 */
-	'base_url'  => null,
+	'base_url'  => Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/',
 
 	/**
 	 * url_suffix - Any suffix that needs to be added to
@@ -270,7 +270,9 @@ return array(
 		/**
 		 * Classes to autoload & initialize even when not used
 		 */
-		'classes'  => array(),
+		'classes'  => array(
+		    'Session',
+		),
 
 		/**
 		 * Configs to autoload

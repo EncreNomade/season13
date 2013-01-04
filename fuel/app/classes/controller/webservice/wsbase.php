@@ -147,7 +147,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
 		    $user = Model_13user::find_by_email($ownermail);
 		    if(is_null($user)) {
 		        if ( Auth::instance()->create_user(
-		                substr($ownermail, 0, strpos($ownermail, '@')), 
+		                Input::post('username') ? Input::post('username') : substr($ownermail, 0, strpos($ownermail, '@')), 
                         Str::random('alnum', 16),
                         $ownermail,
                         "",

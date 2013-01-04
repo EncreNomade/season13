@@ -1,6 +1,8 @@
-function hideDialog() {
-    $('.dialog').removeClass('show');
-    $('#conn li').removeClass('inactive');
+function hideDialog(dialog) {
+    dialog.removeClass('show');
+    var name = dialog.prop('id');
+    if(name == "signup_dialog" || name == "login_dialog" || name == "change_pass_dialog" || name == "link_fb_dialog" || name == "update_dialog") 
+        $('#conn li').removeClass('inactive');
 }
 function showSignup() {
     $('.dialog').removeClass('show');
@@ -103,7 +105,7 @@ function init() {
     $('#updatebMonth').change(updateMonthChanged);
     
     $('.dialog .close').unbind('click').click(function() {
-        hideDialog();
+        hideDialog($(this).parents('.dialog'));
     });
     
     // Extra code for popup dialog alert
@@ -221,7 +223,7 @@ function init() {
         var token = response.authResponse.accessToken;
         
         $.ajax({
-            url: './base/login_fb',
+            url: config.publicRoot + 'base/login_fb',
             type: 'POST',
             dataType: 'json',
             data: {'fb_token':token},
@@ -354,7 +356,7 @@ function init() {
 
         // Send
         $.ajax({
-            url: './base/login_normal',
+            url: config.publicRoot + 'base/login_normal',
             dataType: 'json',
             type: 'POST',
             data: data,
@@ -477,7 +479,7 @@ function init() {
     $('#logout').click(function(e) {
         // Send
         $.ajax({
-            url: './base/logout',
+            url: config.publicRoot + 'base/logout',
             dataType: 'json',
             type: 'GET',
             success: function(data, textStatus, XMLHttpRequest)
