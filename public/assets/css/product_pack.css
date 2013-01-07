@@ -1,0 +1,128 @@
+html, body {
+	margin: 0;
+	background: white url('../img/season13/deco/tex45x48.png') repeat left top;
+}
+body {
+	min-width: 1024px;
+}
+
+header {
+	width: 100%;
+	height: 140px;
+	border-bottom: 10px solid #F6A800;
+	background: black;
+	position: relative;
+}
+
+header > img { /* LOGO */
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+header h1 {
+	position: absolute;
+	bottom: 10px;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-family: "BebasNeueRegular", "Helvetica LT Std", Arial;
+}
+
+header h1 img {
+	height: 70px;
+}
+
+.main_title {
+	height: 36px;
+	margin-top: 30px;
+	padding: 0 0 0 10px;
+	font: normal 36px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
+	line-height: 40px;
+	color: black;
+	position: relative;
+	margin-left: 30px;
+	max-width: 500px;
+}
+.main_title img {
+	position: absolute;
+	bottom: -10px;
+	left: -25px;
+}
+
+
+.episode {
+	list-style: none;
+	margin-bottom: 20px;
+	height: 170px;
+	margin-right: 20px;
+}	
+
+.episode a {
+	color: white;
+}	
+
+.episode .thumb{
+	list-style: none;
+	position: relative;	
+	float: left;
+	width: 528px;
+	height: 100%;
+	color: white;
+}
+.episode .thumb img {
+	width: 100%;
+	height: 100%;
+}
+
+.episode .thumb .title {
+	position: absolute;
+	bottom: 0;
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	height: 50px;
+	background: rgba(0, 0, 0, .5);
+}
+
+.episode .thumb .title h2 {
+	margin: 12px 0 10px 20px;
+	padding: 0px;
+	font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+	letter-spacing: 1.5px;
+	text-align: left;
+}
+
+.episode .thumb .title .voir {
+	position: absolute;
+	top: 0px;
+	right: 0;
+	width: 135px;
+	height: 28px;
+	background: #A00;
+	text-align: center;
+	padding: 12px 0 10px 0;
+	font: normal 16px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+	letter-spacing: 1.5px;
+	text-decoration: none;
+}
+
+.desc {	
+	overflow-y: auto;
+	margin-right: 225px;
+	height: 100%;
+	background: white;
+}
+
+.desc p {
+	vertical-align: middle;
+	margin: 10px;
+}
+
+#simon {	
+	position: fixed;
+	top: 70px;
+	right: 5px;
+	width: 235px;
+}

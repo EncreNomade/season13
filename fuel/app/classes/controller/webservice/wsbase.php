@@ -529,7 +529,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     
     
     public function get_test() {
-        $request = Request::forge('http://www.season13.com/ws/access_product', 'curl');
+        $request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
         
         /*
         $request->set_method('POST')->set_params(array(
