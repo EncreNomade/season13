@@ -14,13 +14,13 @@ class Controller_Achat_13product extends Controller_Template
     	    Response::redirect('404');
     	}
     	
-    	$this->base_uri = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
+    	$this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
     	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
     	View::set_global('remote_path', $this->remote_path);
-    	View::set_global('base_url', $this->base_uri);
+    	View::set_global('base_url', $this->base_url);
     }
 
 	public function action_index()
@@ -66,7 +66,7 @@ class Controller_Achat_13product extends Controller_Template
 				        $epid = $content[0];
 				        $ep = Model_Admin_13episode::find($epid);
 				        if(!is_null($ep)) {
-				            $extrait = $this->base_uri.$ep->path.'extrait.js';
+				            $extrait = $this->base_url.'ws/extrait/'.str_replace(' ', '_', $ep->story).'/season'.$ep->season.'/episode'.$ep->episode;
 				        }
 				    }
 				    $contentstr = Format::forge(Input::post('content'))->to_json();
