@@ -529,7 +529,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     
     
     public function get_test() {
-        $request = Request::forge('http://www.season13.com/ws/episode_for_user', 'curl');
+        $request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
         
         /*$request->set_method('POST')->set_params(array(
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
@@ -558,14 +558,14 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'reference' => 'ISBN9782717765332'
         ));*/
         
-        /*
+        
         $request->set_method('GET')->set_params(array(
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
-            'reference' => 'ISBN9782717765332',
+            'reference' => 'ISBN9782717765894',
             'user' => 'test@test.com'
-        ));*/
+        ));
         
         /*
         $request->set_method('GET')->set_params(array(
@@ -575,13 +575,14 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'reference' => 'ISBN9782717765332'
         ));*/
         
+        /*
         $request->set_method('GET')->set_params(array(
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
             'epid' => 5,
             'user' => 'test@test.com'
-        ));
+        ));*/
         
         $response = $request->execute()->response();
         

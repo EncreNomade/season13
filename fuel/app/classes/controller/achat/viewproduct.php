@@ -17,40 +17,44 @@ class Controller_Achat_Viewproduct extends Controller_Template
     	View::set_global('base_url', $this->base_uri);
     }
 
+    public function action_404 () {        
+        return View::forge('achat/13product/404');
+    }
+
     public function action_webservice($ref) {
         // Check ref
         if(!isset($ref)) {
-            Response::redirect('404');
+            Response::redirect('ws/product/404');
         }
     
         // Check user
         $user = Input::param('user');
         if(is_null($user)) {
-            Response::redirect('404');
+            Response::redirect('ws/product/404');
         }
         // Check token and token-email association
         $access_token = Input::param('access_token');
         if( is_null($access_token) || 
             !Controller_Webservice_Wsbase::checkAccessToken($access_token, $user, $ref) ) {
-            Response::redirect('404');
+            Response::redirect('ws/product/404');
         }
         
         // Check product existance
         $product = Model_Achat_13product::find_by_reference($ref);
         if(is_null($product)) {
-            Response::redirect('404');
+            Response::redirect('ws/product/404');
         }
         
         // Other type of content not supported yet
         if($product->type != 'episode') {
-            Response::redirect('404');
+            Response::redirect('ws/product/404');
         }
         
         // Retrieve content
         $arr = Format::forge($product->content, 'json')->to_array();
         // No content
         if(count($arr) == 0 || !isset($arr[0]))
-            Response::redirect('404');
+            Response::redirect('ws/product/404');
         
         // Single episode product
         if($product->pack == 0) {
@@ -58,7 +62,7 @@ class Controller_Achat_Viewproduct extends Controller_Template
             $ep = Model_Admin_13episode::find($epid);
             // Episode not found
             if(is_null($ep))
-                Response::redirect('404');
+                Response::redirect('ws/product/404');
             
             // Params    
             $story = str_replace(' ', '_', $ep->story);
@@ -85,8 +89,8 @@ class Controller_Achat_Viewproduct extends Controller_Template
         $data['product'] = $product;
         $data['episodes'] = $eps;
         $data['user'] = $user;
-        $this->template->title = $product->title;
-        $this->template->content = View::forge('achat/13product/package', $data);
+
+        return View::forge('achat/13product/package', $data);
     }
     
 }

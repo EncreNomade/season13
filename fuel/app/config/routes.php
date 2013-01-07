@@ -13,6 +13,7 @@ return array(
 	
 	'(:segment)/season(:num)/episode(:num)' => 'story/index/$1/$2/$3',
 	'ws/(:segment)/season(:num)/episode(:num)' => 'story/webservice/$1/$2/$3',
+	'ws/product/404' => 'achat/viewproduct/404',
 	'ws/product/(:segment)' => 'achat/viewproduct/webservice/$1',
 	'story' => 'story/index/Voodoo_Connection/1',
 	'ws/(:segment)' => 'webservice/wsbase/$1',
