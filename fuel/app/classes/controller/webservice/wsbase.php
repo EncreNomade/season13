@@ -106,14 +106,22 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     {
     	parent::before();
     	
-    	$this->base_uri = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
+    	$this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
     	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
     	
     	Config::load('errormsgs', true);
     	$this->msgs = (array) Config::get('errormsgs.webservice', array ());
     	
+    	// Search in URI for action name
+    	$segs = Uri::segments();
+    	$action = $segs[count($segs)-1];
+    	$paramoffset = strpos($action, '?');
+    	if($paramoffset !== false) 
+    	    $action = substr($action, 0, $paramoffset);
+    	
+    	if($action != "test") {
 	    // App authentification
-	    $this->access = self::checkAppAccess("order", "post", $this->msgs);
+	    $this->access = self::checkAppAccess($action, Input::method(), $this->msgs);
 	    if(!is_array($this->access))
 	        $this->access = array('success' => false, 'errorCode' => 3999, 'errorMessage' => $this->msgs[3999]);
 	    else if($this->access['success'] == true) {
@@ -122,13 +130,13 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     	    // The request record
     	    $this->record = Model_Webservice_Requestrecord::forge(array(
     	    	'appid' => $this->app->appid,
-    	    	'service_requested' => "order",
+    	    	'service_requested' => $action,
     	    	'params' => json_encode(Input::all()),
     	    	'token' => Input::param('token'),
     	    	'extra' => "",
     	    ));
     	    $this->record and $this->record->save();
-	    }
+	    }}
     }
     
     public function post_order() {
@@ -366,7 +374,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         else {
             $authorname = $author->firstname." ".$author->lastname;
             $authorbio = $author->biographie;
-            $authorphoto = $this->base_uri.$author->photo;
+            $authorphoto = $this->base_url.$author->photo;
         }
         
         $metas = Format::forge($product->metas, 'json')->to_array();
@@ -447,7 +455,34 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         
         // All ok
         $accesstoken = self::cryptAccessToken($mail, $this->app->appid, $reference);
-        return $this->response(array('success' => true, 'access_token' => $accesstoken), 200);
+        return $this->response(array(
+            'success' => true, 
+            'access_token' => $accesstoken, 
+            'link' => $this->base_url.'ws/product/'.$reference.'?user='.$mail.'&access_token='.$accesstoken
+        ), 200);
+    }
+    
+    public function get_access_product_sav() {
+        $msgs = $this->msgs;
+        
+        if(!isset($this->app)) {
+            if(isset($this->access)) return $this->response($this->access, 200);
+            else return $this->response(array('success' => false, 'errorCode' => 3999, 'errorMessage' => $msgs[3999]), 200);
+        }
+        
+        // Check reference
+        $reference = Input::get('reference');
+        if(is_null($reference)) {
+            return $this->response(array('success' => false, 'errorCode' => 3201, 'errorMessage' => $msgs[3201]), 200);
+        }
+        
+        $accesstoken = self::cryptAccessToken('SAV', $this->app->appid, $reference);
+        $access['success'] = array(
+            'success' => true,
+            'access_token' => $accesstoken,
+            'link' => $this->base_url.'ws/product/'.$reference."?user=SAV&access_token=".$accesstoken
+        );
+        return $this->response($access, 200);
     }
     
     
@@ -482,36 +517,75 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         unset($access['valid']);
         // Send access token
         if($access['success']) {
-            $accesstoken = self::cryptAccessToken($mail, $this->app->appid, str_replace(' ', '_', $ep->story).$ep->season.$ep->episode);
+            $story = str_replace(' ', '_', $ep->story);
+            $accesstoken = self::cryptAccessToken($mail, $this->app->appid, $story.$ep->season.$ep->episode);
             $access['access_token'] = $accesstoken;
+            
+            // Link
+            $access['link'] = $this->base_url."ws/".$story."/season".$ep->season."/episode".$ep->episode."?user=".$mail."&access_token=".$accesstoken;
         }
         return $this->response($access, 200);
     }
     
-    public function get_episode_sav() {
-        $msgs = $this->msgs;
+    
+    public function get_test() {
+        $request = Request::forge('http://www.season13.com/ws/episode_for_user', 'curl');
         
-        if(!isset($this->app)) {
-            if(isset($this->access)) return $this->response($this->access, 200);
-            else return $this->response(array('success' => false, 'errorCode' => 3999, 'errorMessage' => $msgs[3999]), 200);
-        }
+        /*$request->set_method('POST')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'owner' => 'test@test.com',
+            'username' => 'wstester',
+            'reference' => 'ISBN9782717765332',
+            'order_source' => 'Season 13 Site Order',
+            'price' => '0.99',
+        ));*/
         
-        $epid = Input::get('epid');
-        if(is_null($epid)) {
-            return $this->response(array('success' => false, 'errorCode' => 3302, 'errorMessage' => $msgs[3302]), 200);
-        }
-        $ep = Model_Admin_13episode::find($epid);
-        if(is_null($ep)) {
-            return $this->response(array('success' => false, 'errorCode' => 3304, 'errorMessage' => $msgs[3304]), 200);
-        }
+        /*
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'order_id' => '9'
+        ));*/
         
-        $access['success'] = array('success' => true);
-        // Send access token
-        if($access['success']) {
-            $accesstoken = self::cryptAccessToken('SAV', $this->app->appid, 'SAV');
-            $access['access_token'] = $accesstoken;
-        }
-        return $this->response($access, 200);
+        /*
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'reference' => 'ISBN9782717765332'
+        ));*/
+        
+        /*
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'reference' => 'ISBN9782717765332',
+            'user' => 'test@test.com'
+        ));*/
+        
+        /*
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'reference' => 'ISBN9782717765332'
+        ));*/
+        
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'epid' => 5,
+            'user' => 'test@test.com'
+        ));
+        
+        $response = $request->execute()->response();
+        
+        return $this->response($response, 200);
     }
 	
 }

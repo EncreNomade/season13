@@ -8,10 +8,12 @@
     <url>
       <loc>http://www.season13.com/</loc>
       <changefreq>daily</changefreq>
+      <priority>1.0</priority>
     </url>
     <url>
       <loc>http://www.season13.com/story</loc>
       <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
     </url>
     <url>
       <loc>http://www.season13.com/Voodoo_Connection/season1/episode1</loc>

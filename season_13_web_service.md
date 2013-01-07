@@ -1,0 +1,291 @@
+#Season 13 Web Service
+
+##Web Service Application
+
+Les applications de Season 13 Web Service sont admis par Encre Nomade. Encre Nomade distribue l'identifiant d'application `appid` (32 lettres en caractères et chiffres) et le mots de passe `appsecret` (16 lettres en caractères et chiffres) à chaque application.
+
+Exemple :
+
+	appname 	: SampleApp
+	description	: A sample application
+	appid 		: af869b310c1a2a2d76260a35224b832b
+	appsecret 	: 3YLlXNTsUno2obBy
+
+##Datas d'Envoie Obligatoires
+
+Chaque fois une application utilise les APIs web service, les datas concernant les informations d'application sont obligatoire pour vérifier le droit d'accès. Voici les datas obligatoires:
+
+- `appid` : L'identifiant de votre application
+
+- `microtime` : Timestamp du moment d'envoie
+
+- `token` : Le token d'accès est composé de la façon suivante
+		
+		md5( appid + appsecret + microtime )
+		
+Exemple :
+	
+	$data = array (
+		'appid' => 'af869b310c1a2a2d76260a35224b832b',
+		'microtime' => '1234567890',
+		'token' => '11a6f80053e9a504125ee5dbf0e81cab',
+	)
+	
+##Datas de Retour
+
+Les datas de retour sont fournissent en tableau associatif représenté en format JSON. Le clef `success` indique le succès de requête.
+
+##APIs Web Service###1. order
+Le webservice `order` sert à créer ou obtenir les enregistrements d'achats sur Season 13.
+####POST
+
+Une fois les utlisateurs finalisent leur achats sur votre site, les achats peuvent être enregistrés en utilisant le webservice: `order` avec la methode `POST`.
+	
+1. Méthode de requête : `POST`
+
+- Adresse url : ___http://www.season13.com/ws/order___
+
+- Datas d'envoie :
+
+	- Les datas d'application obligatoires.
+	- `owner` : Le mail d'utilisateur qui possède l'achat.
+	- `username` : Le pseudo d'utilisateur.
+	- `reference` : La référence du produit acheté.
+	- `order_source` : La description d'achat, par exemple 'Achat sur site Season 13'.
+	- `price` : Le prix.
+	
+			ex : $data = array (
+				'appid' => 'af869b310c1a2a2d76260a35224b832b',
+				'microtime' => '1234567890',
+				'token' => '5dc48577c5238b9038231f3568a7adb0',
+				'owner' => 'test@test.com',
+            	'username' => 'wstester',
+            	'reference' => 'ISBN9782717765332',
+            	'order_source' => 'Season 13 Site Order',
+            	'price' => '0.99'
+			)
+	
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' 	: true, 
+			'order_id' 	: 9
+		}
+####GET
+
+Après avoir créé un enregistrement d'achat, l'application peut obtenir les informations avec la méthode `GET`.1. Méthode de requête : `GET`
+
+- Adresse url : ___http://www.season13.com/ws/order___
+
+- Datas d'envoie :
+	
+	- Les datas d'application obligatoires.
+	- `order_id` : L'indentifiant d'enregistrement d'achat.
+	
+			ex : $data = array(
+            	'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            	'microtime' => '1234567890',
+            	'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            	'order_id' => '9'
+        	)
+
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' : true, 
+			'order' : {
+				'id' 			: 9,
+				'reference' 	: 'ISBN9782717765332',
+				'owner' 		: 'test@test.com',
+				'order_source' 	: 'Season 13 Site Order',
+				'appid' 		: 'a3db720844c6c391f2297b4fbece7d02',
+				'price' 		: '0.99',
+				'state' 		: 'FINALIZE',
+				'datetime' 		: '1357516220'
+			}
+		}###2. cancel_order
+Ce web service sert à annuler un enregistrement d'achat.####POST
+1. Méthode de requête : `POST`
+
+- Adresse url : ___http://www.season13.com/ws/cancel_order___
+
+- Datas d'envoie :
+	
+	- Les datas d'application obligatoires.
+	- `order_id` : L'indentifiant de enregistrement d'achat.
+
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' 	: true, 
+			'order_id' 	: 9
+		}###3. productCe web service sert à annuler un enregistrement d'achat.
+
+####GET
+
+1. Méthode de requête : `GET`
+
+- Adresse url : ___http://www.season13.com/ws/product___
+
+- Datas d'envoie :
+	
+	- Les datas d'application obligatoires.
+	- `reference` : La référence du produit.
+
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' : true, 
+			'product' : {
+				'reference' 		: 'ISBN9782717765332',
+                'type' 				: 'episode',
+                'pack' 				: false,
+                'content' 			: '[5]',
+                'presentation' 		: 'Voodoo Connection Season 1 Episode 5 : Les Enfants de l'Appocalypse',
+                'title' 			: 'Les Enfants de l'Appocalypse',
+                'author_fullname' 	: Chris Debien,
+                'author_bio' 		: 'Né par un beau jour d’automne, j’ai la chance de mener trois vies parallèles : …',
+                'author_photo' 		: 'http://www.season13.com/assets/img/season13/story/chris.png',
+                'images' 			: '["http://season13.com/voodoo/season1/ep5/ep5_expo.jpg"]',
+                'extrait' 			: 'http://season13.com/ws/extrait/Voodoo_Connection/season1/episode5',
+                'tags' 				: 'Voodoo Connection, Zombie',
+                'category' 			: 'Feuilleton interactif',
+                'price' 			: '0.99',
+			}
+		}###4. access_product
+Ce web service vous fourni un token d'accès pour que l'utilisateur de votre application puisse accéder à la page de produit. Ce token est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas le produit, vous recevrez une erreur.
+
+####GET
+
+1. Méthode de requête : `GET`
+
+- Adresse url : ___http://www.season13.com/ws/access_product___
+
+- Datas d'envoie :
+	
+	- Les datas d'application obligatoires.
+	- `reference` : La référence du produit.
+	- `user` : Le mail d'utilisateur qui possèdera l'accès.
+
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' 		: true, 
+			'access_token' 	: 'GjYl3PEFqiTml-oLaxPatT_wD_vdi7voa6rq8dxDm6bmQTw6Q--Dp77pi2kKJRlFVHhph943OYaal44E7cSak_hD4j43B9e5i2fnMBHMfnMjC5h76cPCzBx3yQ3-5HunZkUxUlV2WTJfblNjWmQ5NV9tMjBGdlJFemVqbzRpc3pDSW1kbFRqdUFUNA',
+			'link'			: 'http://www.season13.com/ws/product/ISBN9782717765332?user=test@test.com&access_token=GjYl3PEFqiTml-oLaxPatT_wD_vdi7voa6rq8dxDm6bmQTw6Q--Dp77pi2kKJRlFVHhph943OYaal44E7cSak_hD4j43B9e5i2fnMBHMfnMjC5h76cPCzBx3yQ3-5HunZkUxUlV2WTJfblNjWmQ5NV9tMjBGdlJFemVqbzRpc3pDSW1kbFRqdUFUNA'
+		}
+
+###5. access_product_savCe web service vous fourni un token d'accès pour le service après vente de votre application puisse accéder à la page d'un produit pour tester. Ce token sera valable pendant 24 heures.
+
+####GET
+
+1. Méthode de requête : `GET`
+
+- Adresse url : ___http://www.season13.com/ws/access_product_sav___
+
+- Datas d'envoie :
+	
+	- Les datas d'application obligatoires.
+	- `reference` : La référence du produit.
+
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' 		: true, 
+			'access_token' 	: 'lu6p2dYvbZaBfAxHkpxmlJOrmsljtvFlQh4ryFP3se4czb_UzVpQjHwM9qafto4vgX0yGG8oDVUvueegXteh79bZ8E5ktlPg5uIbEdeWAINQNnNaMERTWnl2dzdxbEZWYUtNTFNIM0JZdWstM3lpX192N1NLcnRiYS1r',
+			'link'			: 'http://www.season13.com/ws/product/ISBN9782717765332?user=SAV&access_token=lu6p2dYvbZaBfAxHkpxmlJOrmsljtvFlQh4ryFP3se4czb_UzVpQjHwM9qafto4vgX0yGG8oDVUvueegXteh79bZ8E5ktlPg5uIbEdeWAINQNnNaMERTWnl2dzdxbEZWYUtNTFNIM0JZdWstM3lpX192N1NLcnRiYS1r'
+		}###6. episode_for_user
+Ce web service vous fourni un token d'accès pour que l'utilisateur de votre application puisse accéder à la page d'un épisode. Ce token est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas l'épisode, vous receverez une erreur.
+
+####GET
+
+1. Méthode de requête : `GET`
+
+- Adresse url : ___http://www.season13.com/ws/episode_for_user___
+
+- Datas d'envoie :
+	
+	- Les datas d'application obligatoires.
+	- `epid` : L'id de l'épisode.
+	- `user` : Le mail d'utilisateur qui possèdera l'accès.
+
+- Datas de retour de requête réussie :
+
+		ex : { 
+			'success' 		: true, 
+			'access_token' 	: 'SZ_645l4_dBNyna6W8Yn_vVIqkmoMOULWF3Bjci3anmC_V9AQsTomQuu3EzwVl0nVAx88yFZ38RUrFz7EW91SpZ0mag0FOoz3AJPhZs8NTQItU-g1KCgG5rtw4JKxbeeZXctSXctNlZJUHBrdlZpUTI4bVpUQTBjeDlPZUlrZk5rdTJGNVRhVjNvWQ',
+			'link'			: 'http://www.season13.com/ws/Voodoo_Connection/season1/episode5?user=test@test.com&access_token=SZ_645l4_dBNyna6W8Yn_vVIqkmoMOULWF3Bjci3anmC_V9AQsTomQuu3EzwVl0nVAx88yFZ38RUrFz7EW91SpZ0mag0FOoz3AJPhZs8NTQItU-g1KCgG5rtw4JKxbeeZXctSXctNlZJUHBrdlZpUTI4bVpUQTBjeDlPZUlrZk5rdTJGNVRhVjNvWQ'
+		}
+##Erreurs et Exceptions
+| Code d'erreur | Message d'erreur |
+| ------------- | ---------------- |
+| 3001 | Application not exist |
+| 3002 | Access token not found or not valid |
+| 3003 | Access microtime not provided |
+| 3004 | Application not permitted for the api requested |
+| 3101 | User can not be added to the database of user |
+| 3102 | Reference of product not exist |
+| 3103 | Order registration failed |
+| 3104 | Request validation failed: one or more information is missing |
+| 3105 | Product is not valid, content extracting error, contact the provider |
+| 3106 | Failed to register one or more user possesion record |
+| 3107 | Order id not given |
+| 3108 | Order id not found |
+| 3109 | Request has been denied |
+| 3110 | Owner user of this order not exist |
+| 3201 | Product id not given |
+| 3202 | Product id not found |
+| 3203 | User email not given |
+| 3204 | User not found |
+| 3205 | Order for the combination of the product and the user requested can not be found |
+| 3206 | Order canceled |
+| 3301 | User email not given |
+| 3302 | Episode id not given |
+| 3303 | User not found |
+| 3304 | Episode not found |
+| 3999 | Unknown error |
+
+##Pages de Web Service
+
+###1. Page de produit
+
+Si le produit est un pack, cette page affichera une liste d'épisodes dans ce pack, l'utilisateur peut cliquer les épisodes pour visualiser.
+
+Si le produit est un seul épisode, cette page sera redirégée vers la page de l'épisode directement.
+
+1. Adresse url : __http://www.season13.com/ws/product/_(:reference)___
+
+- Datas d'envoie :
+	
+	- `user` : Le mail d'utilisateur qui possède l'accès.
+	- `access_token` : Le token d'accès obtenue aver le web service `access_product` ou `access_product_sav`.
+	
+			ex : http://www.season13.com/ws/product/ISBN9782717765332?user=test@test.com&access_token=GjYl3PEFqiTml-oLaxPatT_wD_vdi7voa6rq8dxDm6bmQTw6Q--Dp77pi2kKJRlFVHhph943OYaal44E7cSak_hD4j43B9e5i2fnMBHMfnMjC5h76cPCzBx3yQ3-5HunZkUxUlV2WTJfblNjWmQ5NV9tMjBGdlJFemVqbzRpc3pDSW1kbFRqdUFUNA
+
+- Dans certain cas, cette page sera redirégée vers la page 404 ou la page forbidden : 
+
+	- Si la référence n'est pas fournit.
+	- Si l'utilisateur n'est pas fournit ou l'utilisateur n'existe pas.
+	- Si le token d'accès n'est pas fournit ou le token n'est pas valide.
+	- Si le produit n'existe pas.
+	- Si le produit contient pas de contenu.
+
+###2. Page d'épisode
+
+Cette page affichera
+
+1. Adresse url : __http://www.season13.com/ws/_(:story)_/season_(:sid)_/episode_(:eid)___
+
+- Datas d'envoie :
+	
+	- `user` : Le mail d'utilisateur qui possède l'accès.
+	- `access_token` : Le token d'accès obtenue avec le web service `access_product` ou `episode_for_user`.
+	
+			ex : http://www.season13.com/ws/Voodoo_Connection/season1/episode5?user=test@test.com&access_token=SZ_645l4_dBNyna6W8Yn_vVIqkmoMOULWF3Bjci3anmC_V9AQsTomQuu3EzwVl0nVAx88yFZ38RUrFz7EW91SpZ0mag0FOoz3AJPhZs8NTQItU-g1KCgG5rtw4JKxbeeZXctSXctNlZJUHBrdlZpUTI4bVpUQTBjeDlPZUlrZk5rdTJGNVRhVjNvWQ
+
+- Dans certain cas, cette page sera redirégée vers la page 404 ou la page forbidden : 
+
+	- Si le nom d'histoire, l'id de saison ou l'id d'épisode n'est pas fournit dans l'adresse.
+	- Si l'utilisateur n'est pas fournit ou l'utilisateur n'existe pas.
+	- Si le token d'accès n'est pas fournit ou le token n'est pas valide.
+	- Si l'épisode n'existe pas.
