@@ -2,7 +2,7 @@
 
 ##Web Service Application
 
-Les applications de Season 13 Web Service sont admis par Encre Nomade. Encre Nomade distribue l'identifiant d'application `appid` (32 lettres en caractères et chiffres) et le mots de passe `appsecret` (16 lettres en caractères et chiffres) à chaque application.
+Les applications de Season 13 Web Service sont administrés par Encre Nomade. Encre Nomade distribue l'identifiant d'application `appid` (32 lettres en caractères et chiffres) et le mots de passe `appsecret` (16 lettres en caractères et chiffres) à chaque application.
 
 Exemple :
 
@@ -11,15 +11,18 @@ Exemple :
 	appid 		: af869b310c1a2a2d76260a35224b832b
 	appsecret 	: 3YLlXNTsUno2obBy
 
-##Datas d'Envoie Obligatoires
+##Données d'envoies obligatoires
 
-Chaque fois une application utilise les APIs web service, les datas concernant les informations d'application sont obligatoire pour vérifier le droit d'accès. Voici les datas obligatoires:
+(Chaque fois une application utilise les APIs web service, les datas concernant les informations d'application sont obligatoire pour vérifier le droit d'accès. Voici les datas obligatoires:)
+
+Chaque fois qu'une application utilise les APIs web service, certaines informations sont obligatoires pour vérifier le droit d'accès. Voici les données obligatoires :
 
 - `appid` : L'identifiant de votre application
 
 - `microtime` : Timestamp du moment d'envoie
 
-- `token` : Le token d'accès est composé de la façon suivante
+(- `token` : Le token d'accès est composé de la façon suivante)
+- `token` : Le jeton d'accès est composé de la façon suivante
 		
 		md5( appid + appsecret + microtime )
 		
@@ -31,25 +34,34 @@ Exemple :
 		'token' => '11a6f80053e9a504125ee5dbf0e81cab',
 	)
 	
-##Datas de Retour
+##Données retournées
 
-Les datas de retour sont fournissent en tableau associatif représenté en format JSON. Le clef `success` indique le succès de requête.
+(Les datas de retour sont fournissent en tableau associatif représenté en format JSON. Le clef `success` indique le succès de requête.)
 
-##APIs Web Service###1. order
-Le webservice `order` sert à créer ou obtenir les enregistrements d'achats sur Season 13.
-####POST
+Les données retournées sont un tableau associatif au format JSON. La clé `success` indique le succès de la requête.
 
-Une fois les utlisateurs finalisent leur achats sur votre site, les achats peuvent être enregistrés en utilisant le webservice: `order` avec la methode `POST`.
+##APIs Web Service
+
+###1. order
+
+Le webservice `order` sert à créer ou obtenir les enregistrements d'achats sur Season 13.
+
+####POST
+
+(Une fois les utlisateurs finalisent leur achats sur votre site, les achats peuvent être enregistrés en utilisant le webservice: `order` avec la methode `POST`.)
+
+Une fois que les utlisateurs finalisent leur achats sur votre site, les achats peuvent être enregistrés en utilisant le webservice : `order` avec la methode `POST`.
+
 	
 1. Méthode de requête : `POST`
 
 - Adresse url : ___http://www.season13.com/ws/order___
 
-- Datas d'envoie :
+- Données d'envoies :
 
-	- Les datas d'application obligatoires.
-	- `owner` : Le mail d'utilisateur qui possède l'achat.
-	- `username` : Le pseudo d'utilisateur.
+	- Les données d'application obligatoires.
+	- `owner` : Le mail de l'utilisateur qui possède l'achat.
+	- `username` : Le pseudo de l'utilisateur.
 	- `reference` : La référence du produit acheté.
 	- `order_source` : La description d'achat, par exemple 'Achat sur site Season 13'.
 	- `price` : Le prix.
@@ -65,21 +77,24 @@ Une fois les utlisateurs finalisent leur achats sur votre site, les achats peuve
             	'price' => '0.99'
 			)
 	
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' 	: true, 
 			'order_id' 	: 9
 		}
-####GET
 
-Après avoir créé un enregistrement d'achat, l'application peut obtenir les informations avec la méthode `GET`.1. Méthode de requête : `GET`
+####GET
+
+Après avoir créé un enregistrement d'achat, l'application peut obtenir les informations avec la méthode `GET`.
+
+1. Méthode de requête : `GET`
 
 - Adresse url : ___http://www.season13.com/ws/order___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
-	- Les datas d'application obligatoires.
+	- Les donnés d'application obligatoires.
 	- `order_id` : L'indentifiant d'enregistrement d'achat.
 	
 			ex : $data = array(
@@ -89,7 +104,7 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
             	'order_id' => '9'
         	)
 
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' : true, 
@@ -103,23 +118,33 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 				'state' 		: 'FINALIZE',
 				'datetime' 		: '1357516220'
 			}
-		}###2. cancel_order
-Ce web service sert à annuler un enregistrement d'achat.####POST
-1. Méthode de requête : `POST`
+		}
+
+###2. cancel_order
+
+Ce web service sert à annuler un enregistrement d'achat.
+
+####POST
+
+1. Méthode de requête : `POST`
 
 - Adresse url : ___http://www.season13.com/ws/cancel_order___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
-	- Les datas d'application obligatoires.
+	- Les données d'application obligatoires.
 	- `order_id` : L'indentifiant de enregistrement d'achat.
 
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' 	: true, 
 			'order_id' 	: 9
-		}###3. productCe web service sert à annuler un enregistrement d'achat.
+		}
+
+###3. product
+
+Ce web service sert récupérer des informations pour un produit.
 
 ####GET
 
@@ -127,12 +152,12 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 
 - Adresse url : ___http://www.season13.com/ws/product___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
-	- Les datas d'application obligatoires.
+	- Les données d'application obligatoires.
 	- `reference` : La référence du produit.
 
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' : true, 
@@ -152,8 +177,11 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
                 'category' 			: 'Feuilleton interactif',
                 'price' 			: '0.99',
 			}
-		}###4. access_product
-Ce web service vous fourni un token d'accès pour que l'utilisateur de votre application puisse accéder à la page de produit. Ce token est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas le produit, vous recevrez une erreur.
+		}
+
+###4. access_product
+
+Ce web service vous fourni un token d'accès pour que l'utilisateur de votre application puisse accéder à la page de produit. Ce token est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas le produit, vous recevrez une erreur.
 
 ####GET
 
@@ -161,13 +189,13 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 
 - Adresse url : ___http://www.season13.com/ws/access_product___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
 	- Les datas d'application obligatoires.
 	- `reference` : La référence du produit.
 	- `user` : Le mail d'utilisateur qui possèdera l'accès.
 
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' 		: true, 
@@ -175,7 +203,10 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 			'link'			: 'http://www.season13.com/ws/product/ISBN9782717765332?user=test@test.com&access_token=GjYl3PEFqiTml-oLaxPatT_wD_vdi7voa6rq8dxDm6bmQTw6Q--Dp77pi2kKJRlFVHhph943OYaal44E7cSak_hD4j43B9e5i2fnMBHMfnMjC5h76cPCzBx3yQ3-5HunZkUxUlV2WTJfblNjWmQ5NV9tMjBGdlJFemVqbzRpc3pDSW1kbFRqdUFUNA'
 		}
 
-###5. access_product_savCe web service vous fourni un token d'accès pour le service après vente de votre application puisse accéder à la page d'un produit pour tester. Ce token sera valable pendant 24 heures.
+###5. access_product_sav
+
+(Ce web service vous fourni un token d'accès pour le service après vente de votre application puisse accéder à la page d'un produit pour tester. Ce token sera valable pendant 24 heures.)
+Ce web service vous fourni un jeton d'accès (access token) pour que le service après vente de votre application puisse accéder à la page d'un produit pour le tester. Ce jeton sera valable pendant 24 heures.
 
 ####GET
 
@@ -183,19 +214,24 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 
 - Adresse url : ___http://www.season13.com/ws/access_product_sav___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
-	- Les datas d'application obligatoires.
+	- Les données d'application obligatoires.
 	- `reference` : La référence du produit.
 
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' 		: true, 
 			'access_token' 	: 'lu6p2dYvbZaBfAxHkpxmlJOrmsljtvFlQh4ryFP3se4czb_UzVpQjHwM9qafto4vgX0yGG8oDVUvueegXteh79bZ8E5ktlPg5uIbEdeWAINQNnNaMERTWnl2dzdxbEZWYUtNTFNIM0JZdWstM3lpX192N1NLcnRiYS1r',
 			'link'			: 'http://www.season13.com/ws/product/ISBN9782717765332?user=SAV&access_token=lu6p2dYvbZaBfAxHkpxmlJOrmsljtvFlQh4ryFP3se4czb_UzVpQjHwM9qafto4vgX0yGG8oDVUvueegXteh79bZ8E5ktlPg5uIbEdeWAINQNnNaMERTWnl2dzdxbEZWYUtNTFNIM0JZdWstM3lpX192N1NLcnRiYS1r'
-		}###6. episode_for_user
-Ce web service vous fourni un token d'accès pour que l'utilisateur de votre application puisse accéder à la page d'un épisode. Ce token est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas l'épisode, vous receverez une erreur.
+		}
+
+###6. episode_for_user
+
+(Ce web service vous fourni un token d'accès pour que l'utilisateur de votre application puisse accéder à la page d'un épisode. Ce token est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas l'épisode, vous receverez une erreur.)
+
+Ce web service vous fourni un jeton d'accès pour que l'utilisateur de votre application puisse accéder à la page d'un épisode. Ce jeton est uniquement associé avec l'utilisateur demandé. Si l'utilisateur ne possède pas l'épisode, vous receverez une erreur.
 
 ####GET
 
@@ -205,19 +241,21 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 
 - Datas d'envoie :
 	
-	- Les datas d'application obligatoires.
+	- Les données d'application obligatoires.
 	- `epid` : L'id de l'épisode.
 	- `user` : Le mail d'utilisateur qui possèdera l'accès.
 
-- Datas de retour de requête réussie :
+- Données retournée par une requête réussie :
 
 		ex : { 
 			'success' 		: true, 
 			'access_token' 	: 'SZ_645l4_dBNyna6W8Yn_vVIqkmoMOULWF3Bjci3anmC_V9AQsTomQuu3EzwVl0nVAx88yFZ38RUrFz7EW91SpZ0mag0FOoz3AJPhZs8NTQItU-g1KCgG5rtw4JKxbeeZXctSXctNlZJUHBrdlZpUTI4bVpUQTBjeDlPZUlrZk5rdTJGNVRhVjNvWQ',
 			'link'			: 'http://www.season13.com/ws/Voodoo_Connection/season1/episode5?user=test@test.com&access_token=SZ_645l4_dBNyna6W8Yn_vVIqkmoMOULWF3Bjci3anmC_V9AQsTomQuu3EzwVl0nVAx88yFZ38RUrFz7EW91SpZ0mag0FOoz3AJPhZs8NTQItU-g1KCgG5rtw4JKxbeeZXctSXctNlZJUHBrdlZpUTI4bVpUQTBjeDlPZUlrZk5rdTJGNVRhVjNvWQ'
 		}
-##Erreurs et Exceptions
-| Code d'erreur | Message d'erreur |
+
+##Erreurs et Exceptions
+
+| Code d'erreur | Message d'erreur |
 | ------------- | ---------------- |
 | 3001 | Application not exist |
 | 3002 | Access token not found or not valid |
@@ -249,26 +287,27 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 
 ###1. Page de produit
 
-Si le produit est un pack, cette page affichera une liste d'épisodes dans ce pack, l'utilisateur peut cliquer les épisodes pour visualiser.
+(Si le produit est un pack, cette page affichera une liste d'épisodes dans ce pack, l'utilisateur peut cliquer les épisodes pour visualiser.)
+Si le produit est un pack, cette page affichera la liste des épisodes de ce pack. L'utilisateur peut cliquer sur les épisodes pour les visualiser.
 
-Si le produit est un seul épisode, cette page sera redirégée vers la page de l'épisode directement.
+Si le produit est un seul épisode, cette page sera redirigée vers la page de l'épisode directement.
 
 1. Adresse url : __http://www.season13.com/ws/product/_(:reference)___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
 	- `user` : Le mail d'utilisateur qui possède l'accès.
-	- `access_token` : Le token d'accès obtenue aver le web service `access_product` ou `access_product_sav`.
+	- `access_token` : Le jeton d'accès obtenue aver le web service `access_product` ou `access_product_sav`.
 	
 			ex : http://www.season13.com/ws/product/ISBN9782717765332?user=test@test.com&access_token=GjYl3PEFqiTml-oLaxPatT_wD_vdi7voa6rq8dxDm6bmQTw6Q--Dp77pi2kKJRlFVHhph943OYaal44E7cSak_hD4j43B9e5i2fnMBHMfnMjC5h76cPCzBx3yQ3-5HunZkUxUlV2WTJfblNjWmQ5NV9tMjBGdlJFemVqbzRpc3pDSW1kbFRqdUFUNA
 
-- Dans certain cas, cette page sera redirégée vers la page 404 ou la page forbidden : 
+- Dans certain cas, cette page sera redirigée vers la page 404 ou la page forbidden : 
 
 	- Si la référence n'est pas fournit.
 	- Si l'utilisateur n'est pas fournit ou l'utilisateur n'existe pas.
-	- Si le token d'accès n'est pas fournit ou le token n'est pas valide.
+	(- Si le token d'accès n'est pas fournit ou le token n'est pas valide.)
+	- Si le jeton d'accès n'est pas fournit ou n'est pas valide.
 	- Si le produit n'existe pas.
-	- Si le produit contient pas de contenu.
 
 ###2. Page d'épisode
 
@@ -276,16 +315,18 @@ Cette page affichera
 
 1. Adresse url : __http://www.season13.com/ws/_(:story)_/season_(:sid)_/episode_(:eid)___
 
-- Datas d'envoie :
+- Données d'envoie :
 	
 	- `user` : Le mail d'utilisateur qui possède l'accès.
-	- `access_token` : Le token d'accès obtenue avec le web service `access_product` ou `episode_for_user`.
+	(- `access_token` : Le token d'accès obtenue avec le web service `access_product` ou `episode_for_user`.)
+	- `access_token` : Le jeton d'accès obtenue avec le web service `access_product` ou `episode_for_user`.
 	
 			ex : http://www.season13.com/ws/Voodoo_Connection/season1/episode5?user=test@test.com&access_token=SZ_645l4_dBNyna6W8Yn_vVIqkmoMOULWF3Bjci3anmC_V9AQsTomQuu3EzwVl0nVAx88yFZ38RUrFz7EW91SpZ0mag0FOoz3AJPhZs8NTQItU-g1KCgG5rtw4JKxbeeZXctSXctNlZJUHBrdlZpUTI4bVpUQTBjeDlPZUlrZk5rdTJGNVRhVjNvWQ
 
-- Dans certain cas, cette page sera redirégée vers la page 404 ou la page forbidden : 
+- Dans certain cas, cette page sera redirigée vers la page 404 ou la page forbidden : 
 
 	- Si le nom d'histoire, l'id de saison ou l'id d'épisode n'est pas fournit dans l'adresse.
 	- Si l'utilisateur n'est pas fournit ou l'utilisateur n'existe pas.
-	- Si le token d'accès n'est pas fournit ou le token n'est pas valide.
+	(- Si le token d'accès n'est pas fournit ou le token n'est pas valide.)
+	- Si le jeton d'accès n'est pas fournit ou n'est pas valide.
 	- Si l'épisode n'existe pas.
