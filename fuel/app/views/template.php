@@ -39,7 +39,7 @@
 	    if(isset($js_supp)) echo Asset::js($js_supp);
 	?>
 	
-	<?php if(!Auth::member(100) && !Auth::member(4)): ?>
+<?php if( Auth::member(3) || Auth::member(5) ): ?>
 	<script type="text/javascript">
 	
 	  var _gaq = _gaq || [];
@@ -61,7 +61,7 @@
 	  })();
 	
 	</script>
-	<?php endif; ?>
+<?php endif; ?>
 	
 </head>
 <body>

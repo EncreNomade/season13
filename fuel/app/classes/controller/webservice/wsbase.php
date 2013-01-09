@@ -159,7 +159,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
                         Str::random('alnum', 16),
                         $ownermail,
                         "",
-                        null,
+                        5,
                         "",
                         "m",
                         "",
@@ -525,6 +525,62 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             $access['link'] = $this->base_url."ws/".$story."/season".$ep->season."/episode".$ep->episode."?user=".$mail."&access_token=".$accesstoken;
         }
         return $this->response($access, 200);
+    }
+    
+    
+    
+    public function get_user_by_mail() {
+        $msgs = $this->msgs;
+        
+        if(!isset($this->app)) {
+            if(isset($this->access)) return $this->response($this->access, 200);
+            else return $this->response(array('success' => false, 'errorCode' => 3999, 'errorMessage' => $msgs[3999]), 200);
+        }
+        
+        $mail = Input::get('mail');
+        if(is_null($mail)) {
+            return $this->response(array('success' => false, 'errorCode' => 3401, 'errorMessage' => $msgs[3401]), 200);
+        }
+        $user = Model_13user::find_by_email($mail);
+        if(is_null($user)) {
+            return $this->response(array('success' => false, 'errorCode' => 3402, 'errorMessage' => $msgs[3402]), 200);
+        }
+        
+        return $this->response(array(
+            'success' => true, 
+            'user' => array(
+                'pseudo' => $user->pseudo,
+                'email' => $user->email,
+                'image' => $user->avatar,
+                'sex' => $user->sex == 'm' ? 'male' : 'female',
+                'birthday' => $user->birthday,
+            )
+        ), 200);
+    }
+    
+    public function get_current_user() {
+        $msgs = $this->msgs;
+        
+        if(!isset($this->app)) {
+            if(isset($this->access)) return $this->response($this->access, 200);
+            else return $this->response(array('success' => false, 'errorCode' => 3999, 'errorMessage' => $msgs[3999]), 200);
+        }
+        
+        $user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+        if(is_null($user)) {
+            return $this->response(array('success' => false, 'errorCode' => 3403, 'errorMessage' => $msgs[3403]), 200);
+        }
+        
+        return $this->response(array(
+            'success' => true, 
+            'user' => array(
+                'pseudo' => $user->pseudo,
+                'email' => $user->email,
+                'image' => $user->avatar,
+                'sex' => $user->sex == 'm' ? 'male' : 'female',
+                'birthday' => $user->birthday,
+            )
+        ), 200);
     }
     
     

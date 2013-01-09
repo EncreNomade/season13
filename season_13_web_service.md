@@ -1,6 +1,6 @@
 #Web Service Season 13
 
-Season 13 commercialize des feuilletons organisés de la manière suivante :<br/>
+Season 13 commercialise des feuilletons organisés de la manière suivante :<br/>
 Une histoire peut être racontée sur plusieurs saisons.<br/>
 Chaque saison comprend plusieurs épisodes.<br/>
 
@@ -57,7 +57,7 @@ Une fois que les utlisateurs finalisent leur achats sur votre site, les achats p
 
 - Adresse url : ___http://www.season13.com/ws/order___
 
-- Données d'envois :
+- Données d'envoi :
 
 	- Les données obligatoires d'application.
 	- `owner` : Le mail de l'utilisateur qui a réalisé cet achat.
@@ -92,7 +92,7 @@ Après avoir créé un enregistrement d'achat, l'application peut obtenir les in
 
 - Adresse url : ___http://www.season13.com/ws/order___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- Les données obligatoires d'application.
 	- `order_id` : L'indentifiant d'enregistrement d'achat.
@@ -130,10 +130,10 @@ Ce web service sert à annuler un enregistrement d'achat.
 
 - Adresse url : ___http://www.season13.com/ws/cancel_order___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- Les données obligatoires d'application.
-	- `order_id` : L'indentifiant de enregistrement d'achat.
+	- `order_id` : L'indentifiant de l'enregistrement d'achat.
 
 - Données retournées pour une requête réussie :
 
@@ -144,7 +144,7 @@ Ce web service sert à annuler un enregistrement d'achat.
 
 ###4.3. product
 
-Ce web service sert récupérer des informations pour un produit.
+Ce web service sert à récupérer des informations pour un produit.
 
 ####GET
 
@@ -152,7 +152,7 @@ Ce web service sert récupérer des informations pour un produit.
 
 - Adresse url : ___http://www.season13.com/ws/product___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- Les données obligatoires d'application.
 	- `reference` : La référence du produit.
@@ -189,7 +189,7 @@ Ce web service vous fournit un jeton d'accès pour que l'utilisateur de votre ap
 
 - Adresse url : ___http://www.season13.com/ws/access_product___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- Les datas obligatoires d'application.
 	- `reference` : La référence du produit.
@@ -237,7 +237,7 @@ Ce web service vous fournit un jeton d'accès pour que l'utilisateur de votre ap
 
 - Adresse url : ___http://www.season13.com/ws/episode_for_user___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- Les données obligatoires d'application.
 	- `epid` : L'id de l'épisode.
@@ -288,11 +288,11 @@ Ce web service vous fournit un jeton d'accès pour que l'utilisateur de votre ap
 
 Si le produit est un pack, cette page affichera la liste des épisodes de ce pack. L'utilisateur peut cliquer sur les épisodes pour les visualiser.
 
-Si le produit est un seul épisode, cette page sera redirigée vers la page de l'épisode directement.
+Si le produit est un seul épisode, cette page sera directement redirigée vers la page de l'épisode.
 
 1. Adresse url : __http://www.season13.com/ws/product/_(:reference)___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- `user` : Le mail d'utilisateur qui possède l'accès.
 	- `access_token` : Le jeton d'accès obtenu avec le web service `access_product` ou `access_product_sav`.
@@ -313,7 +313,7 @@ Cette page affichera
 
 1. Adresse url : __http://www.season13.com/ws/_(:story)_/season_(:sid)_/episode_(:eid)___
 
-- Données d'envois :
+- Données d'envoi :
 	
 	- `user` : Le mail d'utilisateur qui possède l'accès.
 	- `access_token` : Le jeton d'accès obtenu avec le web service `access_product` ou `episode_for_user`.

@@ -78,7 +78,7 @@
     config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
 </script>
 
-<?php if(!Auth::member(100) && !Auth::member(4)): ?>
+<?php if( Auth::member(3) || Auth::member(5) ): ?>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

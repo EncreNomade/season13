@@ -51,7 +51,8 @@ return array(
 		2    => array('name' => 'Guests', 'roles' => array()),
 		3    => array('name' => 'Users', 'roles' => array('user')),
 		4    => array('name' => 'Tester', 'roles' => array('user', 'tester')),
-		50   => array('name' => 'Moderators', 'roles' => array('user', 'moderator')),
+		5    => array('name' => 'AutoRegistedUser', 'roles' => array('user')),
+		50   => array('name' => 'Collaborators', 'roles' => array('user', 'collaborator')),
 		100  => array('name' => 'Administrators', 'roles' => array('user', 'moderator', 'admin')),
 	),
 
