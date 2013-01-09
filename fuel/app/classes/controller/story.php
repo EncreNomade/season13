@@ -21,13 +21,14 @@ class Controller_Story extends Controller_Template
         $access = array('valid' => false, 'errorCode' => 103, 'errorMessage' => $codes[103]);
         
         // Permission after first episode
-        $result = DB::select('*')->from('admin_13userpossesions')
-                                 ->where('user_id', $current_user->id)
-                                 ->and_where('episode_id', $epid)
-                                 ->execute();
-        $num_rows = count($result);
+        $existed = Model_Admin_13userpossesion::query()->where(
+            array(
+                'user_mail' => $current_user->email,
+                'episode_id' => $episode
+            )
+        )->get_one();
         
-        if($num_rows !== 0)
+        if( !is_null($existed) )
             return array('valid' => true);
             
         if($ext !== true) {

@@ -5,9 +5,10 @@ class Model_Admin_13userpossesion extends Model
 {
 	protected static $_properties = array(
 		'id',
-		'user_id',
+		'user_mail',
 		'episode_id',
 		'source',
+		'source_ref',
 		'created_at',
 		'updated_at',
 	);
@@ -26,7 +27,7 @@ class Model_Admin_13userpossesion extends Model
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
-		$val->add_field('user_id', 'User Id', 'required|valid_string[numeric]');
+		$val->add_field('user_mail', 'User Mail', 'required|valid_email');
 		$val->add_field('episode_id', 'Episode Id', 'required|valid_string[numeric]');
 		$val->add_field('source', 'Source', 'required|valid_string[numeric]');
 

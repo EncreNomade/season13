@@ -2,10 +2,10 @@
 
 	<fieldset>
 		<div class="clearfix">
-			<?php echo Form::label('User id', 'user_id'); ?>
+			<?php echo Form::label('User mail', 'user_mail'); ?>
 
 			<div class="input">
-				<?php echo Form::input('user_id', Input::post('user_id', isset($admin_13userpossesion) ? $admin_13userpossesion->user_id : ''), array('class' => 'span4')); ?>
+				<?php echo Form::input('user_mail', Input::post('user_mail', isset($admin_13userpossesion) ? $admin_13userpossesion->user_mail : ''), array('class' => 'span4')); ?>
 
 			</div>
 		</div>

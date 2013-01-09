@@ -204,16 +204,18 @@ class Controller_Webservice_Wsbase extends Controller_Rest
                 foreach ($eps as $episode) {
                     $existed = Model_Admin_13userpossesion::query()->where(
                         array(
-                            'user_id' => $user->id,
-                            'episode_id' => $episode
+                            'user_mail' => $user->email,
+                            'episode_id' => $episode,
+                            'source' => 7,
                         )
                     )->get_one();
 				
 				    if(is_null($existed)) {
 		                $userpossesion = Model_Admin_13userpossesion::forge(array(
-							'user_id' => $user->id,
+							'user_mail' => $user->email,
 							'episode_id' => $episode,
 							'source' => 7, // 7 means external order
+							'source_ref' => $achat_13extorder->id,
 						));
 		
 						if ($userpossesion and $userpossesion->save())
@@ -328,7 +330,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         foreach ($eps as $episode) {
             $record = Model_Admin_13userpossesion::query()->where(
                 array(
-                    'user_id' => $user->id,
+                    'user_mail' => $user->email,
                     'episode_id' => $episode,
                     'source' => 7, // 7 means external order
                 )

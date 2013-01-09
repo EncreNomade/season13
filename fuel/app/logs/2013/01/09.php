@@ -32,3 +32,4 @@ Error - 2013-01-09 11:04:12 --> 42000 - SQLSTATE[42000]: Syntax error or access 
 	`updated_at` int(11) NOT NULL,
 	PRIMARY KEY `id` (`id`)
 ) DEFAULT CHARACTER SET utf8;" in /Users/panda/Sites/season13/fuel/core/classes/database/pdo/connection.php on line 175
+Error - 2013-01-09 15:52:21 --> 23000 - SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'source_ref' cannot be null with query: "INSERT INTO `admin_13userpossesions` (`user_mail`, `episode_id`, `source`, `source_ref`, `created_at`, `updated_at`) VALUES ('lphuabin@gmail.com', '2', '5', null, 1357743141, 1357743141)" in /Users/panda/Sites/season13/fuel/core/classes/database/pdo/connection.php on line 175
