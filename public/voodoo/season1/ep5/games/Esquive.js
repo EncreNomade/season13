@@ -180,6 +180,8 @@ Simon.prototype = {
 
 var Esquive = function(){
     mse.Game.call(this, {fillback:true});
+    this.config.title = "Le Concert";
+    
     this.width = 600; 
     this.height = 440;
     
@@ -431,6 +433,7 @@ var Esquive = function(){
             this.getEvtProxy().removeListener('click', this.clickcb); // Mouse        
             this.getEvtProxy().removeListener('keydown', this.keyDowncb); // Keyboard        
             this.getEvtProxy().removeListener('keyup', this.keyUpcb);
+            this.setScore( 100 * this.currTime / 40 );
             this.lose();
         }
         else if (this.currTime > 40) {
@@ -438,7 +441,8 @@ var Esquive = function(){
             this.getEvtProxy().removeListener('click', this.clickcb); // Mouse        
             this.getEvtProxy().removeListener('keydown', this.keyDowncb); // Keyboard        
             this.getEvtProxy().removeListener('keyup', this.keyUpcb);
-            this.end();            
+            this.setScore( 100 + this.simon.life * this.simon.life * 5 );
+            this.win();
         }
     };
      
@@ -568,11 +572,3 @@ var Spot = function(parent, type){
         spot.startEffect(effect);
     };
 }
-
-
-
-
-
-
-
-

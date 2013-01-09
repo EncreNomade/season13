@@ -61,7 +61,7 @@ Ghost.prototype = {
             this.target.game.count = 50;
             this.target.game.input.disable();
             this.target.inputv = 0;
-            this.target.game.showMsg("Tu as été rattrapé par un fantôme !");
+            this.target.game.showMsg("Tu as été rattrapé par un fantôme!");
         }
         // Dead check
         var angle = mseAngleForLine(this.target.ox+8, this.target.oy+18, this.ox+8, this.oy+18);
@@ -175,7 +175,7 @@ var Donjon = function(){
                 this.simonM.inputv = 0;
                 this.simonV.getAnime('turn').rep = 4;
                 this.simonV.playAnime('turn');
-                this.showMsg("Simon as trouvé la sortie !");
+                this.showMsg("Simon a trouvé la sortie !");
             }
         }, this));
         this.simonM.logic = function(delta) {

@@ -1,7 +1,7 @@
 <?php
-use Orm\Model;
+// use Orm\Model;
 
-class Model_Book_13game extends Model
+class Model_Book_13game extends Orm\Model
 {
 	protected static $_properties = array(
 		'id',
@@ -14,6 +14,9 @@ class Model_Book_13game extends Model
 		'metas',
 		'created_at',
 		'updated_at',
+		'class_name',
+		'path',
+		'file_name'
 	);
 
 	protected static $_observers = array(

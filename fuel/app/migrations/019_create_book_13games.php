@@ -16,7 +16,10 @@ class Create_book_13games
 			'categories' => array('constraint' => 255, 'type' => 'varchar'),
 			'metas' => array('type' => 'text'),
 			'created_at' => array('constraint' => 11, 'type' => 'int'),
-			'updated_at' => array('constraint' => 11, 'type' => 'int'),
+			'updated_at' => array('constraint' => 11, 'type' => 'int'),			
+			'class_name' => array('type' => 'text'),
+			'path' => array('type' => 'text'),
+			'file_name' => array('type' => 'text')
 
 		), array('id'));
 	}
