@@ -1,14 +1,14 @@
 <?php
 use Orm\Model;
 
-class Model_Admin_13userpossesion extends Model
+class Model_Achat_Productprice extends Model
 {
 	protected static $_properties = array(
 		'id',
-		'user_mail',
-		'episode_id',
-		'source',
-		'source_ref',
+		'product_id',
+		'country_code',
+		'taxed_price',
+		'discount',
 		'created_at',
 		'updated_at',
 	);
@@ -27,9 +27,10 @@ class Model_Admin_13userpossesion extends Model
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
-		$val->add_field('user_mail', 'User Mail', 'required|valid_email');
-		$val->add_field('episode_id', 'Episode Id', 'required|valid_string[numeric]');
-		$val->add_field('source', 'Source', 'required|valid_string[numeric]');
+		$val->add_field('product_id', 'Product Id', 'required|valid_string[numeric]');
+		$val->add_field('country_code', 'Country Code', 'required|max_length[3]');
+		$val->add_field('taxed_price', 'Taxed Price', 'required');
+		$val->add_field('discount', 'Discount', 'required');
 
 		return $val;
 	}

@@ -47,9 +47,10 @@ class Controller_Admin_13userpossesion extends Controller_Template
 			if ($val->run())
 			{
 				$admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-					'user_id' => Input::post('user_id'),
+					'user_mail' => Input::post('user_mail'),
 					'episode_id' => Input::post('episode_id'),
 					'source' => Input::post('source'),
+					'source_ref' => "",
 				));
 
 				if ($admin_13userpossesion and $admin_13userpossesion->save())
@@ -85,7 +86,7 @@ class Controller_Admin_13userpossesion extends Controller_Template
 
 		if ($val->run())
 		{
-			$admin_13userpossesion->user_id = Input::post('user_id');
+			$admin_13userpossesion->user_mail = Input::post('user_mail');
 			$admin_13userpossesion->episode_id = Input::post('episode_id');
 			$admin_13userpossesion->source = Input::post('source');
 
@@ -106,7 +107,7 @@ class Controller_Admin_13userpossesion extends Controller_Template
 		{
 			if (Input::method() == 'POST')
 			{
-				$admin_13userpossesion->user_id = $val->validated('user_id');
+				$admin_13userpossesion->user_mail = $val->validated('user_mail');
 				$admin_13userpossesion->episode_id = $val->validated('episode_id');
 				$admin_13userpossesion->source = $val->validated('source');
 

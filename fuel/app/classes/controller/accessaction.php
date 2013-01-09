@@ -18,36 +18,21 @@ class Controller_Accessaction extends Controller_Rest
     
     public function post_buy_episode() {
         if( Input::post('epid') ) {
-            // Check possesion already set
-            $result = DB::select('*')->from('admin_13userpossesions')
-                                     ->where('user_id', $this->current_user->id)
-                                     ->and_where('episode_id', Input::post('epid'))
-                                     ->execute();
-            $num_rows = count($result);
-            
-            if($num_rows !== 0) {
-                $this->response(array('valid' => true), 200);
-            }
-            else {
-                // Set possesion of episode 4
-                Config::load('custom', true);
-                $codes = (array) Config::get('custom.possesion_src', array ());
-                
-                $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-    				'user_id' => $this->current_user->id,
-    				'episode_id' => Input::post('epid'),
-    				'source' => $codes['offer_nopayment'],
-    			));
-    
-    			if ($admin_13userpossesion and $admin_13userpossesion->save())
-    			{
-    				$this->response(array('valid' => true), 200);
-    			}
-    			else
-    			{
-    				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour de profile a échoué"), 200);
-    			}
-    		}
+            // Set possesion of episode 4
+            $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
+				'user_mail' => $this->current_user->email,
+				'episode_id' => Input::post('epid'),
+				'source' => 5, // offer_nopayment
+			));
+
+			if ($admin_13userpossesion and $admin_13userpossesion->save())
+			{
+				$this->response(array('valid' => true), 200);
+			}
+			else
+			{
+				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour de profile a échoué"), 200);
+			}
         }
     }
     
@@ -59,35 +44,20 @@ class Controller_Accessaction extends Controller_Rest
             $updated = $this->current_user->save();
         }
         
-        // Check possesion already set
-        $result = DB::select('*')->from('admin_13userpossesions')
-                                 ->where('user_id', $this->current_user->id)
-                                 ->and_where('episode_id', 4)
-                                 ->execute();
-        $num_rows = count($result);
-        
-        if($num_rows !== 0) {
-            $this->response(array('valid' => true), 200);
-        }
-        else {
-            // Set possesion of episode 4
-            Config::load('custom', true);
-            $codes = (array) Config::get('custom.possesion_src', array ());
-            
-            $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-				'user_id' => $this->current_user->id,
-				'episode_id' => 4,
-				'source' => $codes['fblike'],
-			));
+        // Set possesion of episode 4
+        $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
+			'user_mail' => $this->current_user->email,
+			'episode_id' => 4,
+			'source' => 6, // fblike
+		));
 
-			if ($admin_13userpossesion and $admin_13userpossesion->save())
-			{
-				$this->response(array('valid' => true), 200);
-			}
-			else
-			{
-				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour de profile a échoué"), 200);
-			}
+		if ($admin_13userpossesion and $admin_13userpossesion->save())
+		{
+			$this->response(array('valid' => true), 200);
+		}
+		else
+		{
+			$this->response(array('valid' => false, 'errorMessage' => "La mise à jour de profile a échoué"), 200);
 		}
     }
     
@@ -99,35 +69,20 @@ class Controller_Accessaction extends Controller_Rest
             $updated = $this->current_user->save();
         }
         
-        // Check possesion already set
-        $result = DB::select('*')->from('admin_13userpossesions')
-                                 ->where('user_id', $this->current_user->id)
-                                 ->and_where('episode_id', 4)
-                                 ->execute();
-        $num_rows = count($result);
-        
-        if($num_rows !== 0) {
-            $this->response(array('valid' => true), 200);
-        }
-        else {
-            // Set possesion of episode 4
-            Config::load('custom', true);
-            $codes = (array) Config::get('custom.possesion_src', array ());
-            
-            $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-				'user_id' => $this->current_user->id,
-				'episode_id' => 4,
-				'source' => $codes['offer_nopayment'],
-			));
+        // Set possesion of episode 4
+        $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
+			'user_mail' => $this->current_user->email,
+			'episode_id' => 4,
+			'source' => 5, // offer_nopayment
+		));
 
-			if ($admin_13userpossesion and $admin_13userpossesion->save())
-			{
-				$this->response(array('valid' => true), 200);
-			}
-			else
-			{
-				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour d'achat a échoué"), 200);
-			}
+		if ($admin_13userpossesion and $admin_13userpossesion->save())
+		{
+			$this->response(array('valid' => true), 200);
+		}
+		else
+		{
+			$this->response(array('valid' => false, 'errorMessage' => "La mise à jour d'achat a échoué"), 200);
 		}
     }
     
@@ -141,37 +96,23 @@ class Controller_Accessaction extends Controller_Rest
                 $updated = $this->current_user->save();
             }
             
-            // Check possesion already set
-            $result = DB::select('*')->from('admin_13userpossesions')
-                                     ->where('user_id', $this->current_user->id)
-                                     ->and_where('episode_id', 3)
-                                     ->execute();
-            $num_rows = count($result);
+            // Set possesion of episode 3
             
-            if($num_rows !== 0) {
-                $this->response(array('valid' => true), 200);
-            }
-            else {
-                // Set possesion of episode 3
-                Config::load('custom', true);
-                $codes = (array) Config::get('custom.possesion_src', array ());
-                
-                $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-    				'user_id' => $this->current_user->id,
-    				'episode_id' => 3,
-    				'source' => $codes['offer_nopayment'],
-    			));
-    
-    			if ($admin_13userpossesion and $admin_13userpossesion->save())
-    			{
-    				$this->response(array('valid' => true), 200);
-    			}
-    			else
-    			{
-    				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour d'achat a échoué"), 200);
-    			}
+            $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
+				'user_mail' => $this->current_user->email,
+				'episode_id' => 3,
+				'source' => 5, // offer_nopayment
+			));
+
+			if ($admin_13userpossesion and $admin_13userpossesion->save())
+			{
+				$this->response(array('valid' => true), 200);
 			}
-        }
+			else
+			{
+				$this->response(array('valid' => false, 'errorMessage' => "La mise à jour d'achat a échoué"), 200);
+			}
+		}
     }
     
     public function post_invitation_mail() {
@@ -258,13 +199,11 @@ class Controller_Accessaction extends Controller_Rest
         			$this->current_user->profile_fields = serialize($fields);
         			$updated = $this->current_user->save();
         			
-        			Config::load('custom', true);
-		            $codes = (array) Config::get('custom.possesion_src', array ());
-		            
 		            $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-						'user_id' => $this->current_user->id,
+						'user_mail' => $this->current_user->email,
 						'episode_id' => 3,
-						'source' => $codes['invitation'],
+						'source' => 2, // invitation
+						'source_ref' => Format::forge($tomails)->to_json(),
 					));
 		
 					if ($admin_13userpossesion and $admin_13userpossesion->save())

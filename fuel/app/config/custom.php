@@ -7,13 +7,13 @@ return array(
 	'remote_path' => '/season13/public/',
 	
 	'possesion_src' => array(
-	    'free' => 1,
-	    'invitation' => 2,
-	    'buybutton' => 3,
-	    'code_promo' => 4,
-	    'offer_nopayment' => 5,
-	    'fblike' => 6,
-	    'external_order' => 7,
+        1 => 'free',
+	    2 => 'invitation',
+	    3 => 'buybutton',
+	    4 => 'code_promo',
+	    5 => 'offer_nopayment',
+	    6 => 'fblike',
+	    7 => 'external_order',
 	),
 	
 	'fbapp' => array(

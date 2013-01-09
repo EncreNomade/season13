@@ -70,6 +70,11 @@ return array(
 	    3303 => "User not found",
 	    3304 => "Episode not found",
 	    
+	    // User
+	    3401 => "User email not given",
+	    3402 => "User not found",
+	    3403 => "No user logged in",
+	    
 	    3999 => "Unknown error",
 	),
 );

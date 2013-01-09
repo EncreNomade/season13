@@ -159,7 +159,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
                         Str::random('alnum', 16),
                         $ownermail,
                         "",
-                        null,
+                        5,
                         "",
                         "m",
                         "",
@@ -204,16 +204,18 @@ class Controller_Webservice_Wsbase extends Controller_Rest
                 foreach ($eps as $episode) {
                     $existed = Model_Admin_13userpossesion::query()->where(
                         array(
-                            'user_id' => $user->id,
-                            'episode_id' => $episode
+                            'user_mail' => $user->email,
+                            'episode_id' => $episode,
+                            'source' => 7,
                         )
                     )->get_one();
 				
 				    if(is_null($existed)) {
 		                $userpossesion = Model_Admin_13userpossesion::forge(array(
-							'user_id' => $user->id,
+							'user_mail' => $user->email,
 							'episode_id' => $episode,
 							'source' => 7, // 7 means external order
+							'source_ref' => $achat_13extorder->id,
 						));
 		
 						if ($userpossesion and $userpossesion->save())
@@ -328,7 +330,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         foreach ($eps as $episode) {
             $record = Model_Admin_13userpossesion::query()->where(
                 array(
-                    'user_id' => $user->id,
+                    'user_mail' => $user->email,
                     'episode_id' => $episode,
                     'source' => 7, // 7 means external order
                 )
@@ -528,18 +530,75 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     }
     
     
+    
+    public function get_user_by_mail() {
+        $msgs = $this->msgs;
+        
+        if(!isset($this->app)) {
+            if(isset($this->access)) return $this->response($this->access, 200);
+            else return $this->response(array('success' => false, 'errorCode' => 3999, 'errorMessage' => $msgs[3999]), 200);
+        }
+        
+        $mail = Input::get('mail');
+        if(is_null($mail)) {
+            return $this->response(array('success' => false, 'errorCode' => 3401, 'errorMessage' => $msgs[3401]), 200);
+        }
+        $user = Model_13user::find_by_email($mail);
+        if(is_null($user)) {
+            return $this->response(array('success' => false, 'errorCode' => 3402, 'errorMessage' => $msgs[3402]), 200);
+        }
+        
+        return $this->response(array(
+            'success' => true, 
+            'user' => array(
+                'pseudo' => $user->pseudo,
+                'email' => $user->email,
+                'image' => $user->avatar,
+                'sex' => $user->sex == 'm' ? 'male' : 'female',
+                'birthday' => $user->birthday,
+            )
+        ), 200);
+    }
+    
+    public function get_current_user() {
+        $msgs = $this->msgs;
+        
+        if(!isset($this->app)) {
+            if(isset($this->access)) return $this->response($this->access, 200);
+            else return $this->response(array('success' => false, 'errorCode' => 3999, 'errorMessage' => $msgs[3999]), 200);
+        }
+        
+        $user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+        if(is_null($user)) {
+            return $this->response(array('success' => false, 'errorCode' => 3403, 'errorMessage' => $msgs[3403]), 200);
+        }
+        
+        return $this->response(array(
+            'success' => true, 
+            'user' => array(
+                'pseudo' => $user->pseudo,
+                'email' => $user->email,
+                'image' => $user->avatar,
+                'sex' => $user->sex == 'm' ? 'male' : 'female',
+                'birthday' => $user->birthday,
+            )
+        ), 200);
+    }
+    
+    
     public function get_test() {
         $request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
         
-        /*$request->set_method('POST')->set_params(array(
+        /*
+        $request->set_method('POST')->set_params(array(
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
             'owner' => 'test@test.com',
             'username' => 'wstester',
-            'reference' => 'ISBN9782717765332',
+            'reference' => 'ISBN9782717765894',
             'order_source' => 'Season 13 Site Order',
-            'price' => '0.99',
+            'price' => '4.49',
         ));*/
         
         /*

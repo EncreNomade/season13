@@ -220,24 +220,24 @@ class Controller_Welcome extends Controller_Template
                     return;
                 }
                 
-                Config::load('custom', true);
-                $confcodes = (array) Config::get('custom.possesion_src', array ());
-                
                 $offer = json_decode($promocodemodel->offer);
                 foreach ($offer as $key => $ep) {
                     if(is_numeric($ep)) {
                         // Check possesion already set
-                        $result = DB::select('*')->from('admin_13userpossesions')
-                                                 ->where('user_id', $this->current_user->id)
-                                                 ->and_where('episode_id', $ep)
-                                                 ->execute();
-                        $num_rows = count($result);
+                        $result = Model_Admin_13userpossesion::query()->where(
+                            array(
+                                'user_mail' => $this->current_user->email,
+                                'episode_id' => $episode,
+                                'source' => 7,
+                            )
+                        )->get_one();
                         
-                        if($num_rows == 0) {
+                        if(is_null($result)) {
                             $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
-                            	'user_id' => $this->current_user->id,
+                            	'user_mail' => $this->current_user->email,
                             	'episode_id' => $ep,
-                            	'source' => $confcodes['code_promo'],
+                            	'source' => 4, // code_promo
+                            	'source_ref' => $promocodemodel->code,
                             ));
                             
                             if ($admin_13userpossesion and $admin_13userpossesion->save())

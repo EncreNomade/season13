@@ -25,7 +25,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-<title><?php echo $episode->title; ?></title>
+<title><?php echo stripcslashes( $episode->title ); ?></title>
 <meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection<?php if(isset($episode)) echo ", Season: ".$episode->season.", ".$episode->title; ?>" />
 
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
