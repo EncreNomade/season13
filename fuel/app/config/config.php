@@ -78,8 +78,8 @@ return array(
 	'language'           => 'fr', // Default language
 	'language_fallback'  => 'fr', // Fallback language when file isn't available for default language
 	'locale'             => 'fr_FR', // PHP set_locale() setting, null to not set
-
-	'encoding'  => 'UTF-8',
+    
+	'encoding'           => 'UTF-8',
 
 	/**
 	 * DateTime settings
@@ -193,7 +193,7 @@ return array(
 	/**
 	 * Controller class prefix
 	 */
-	 'controller_prefix' => 'Controller_',
+	'controller_prefix' => 'Controller_',
 
 	/**
 	 * Routing settings
@@ -282,7 +282,11 @@ return array(
 		 * add it like 'session' => 'auth'.
 		 * If you don't want the config in a group use null as groupname.
 		 */
-		'config'  => array(),
+		'config'  => array(
+		    'achat',
+		    'custom',
+		    'errormsgs',
+		),
 
 		/**
 		 * Language files to autoload

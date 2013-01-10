@@ -77,4 +77,13 @@ return array(
 	    
 	    3999 => "Unknown error",
 	),
+	
+	// Payment system
+	'payment' => array(
+	    4001 => "Product not found",
+	    4002 => "Price for product not fount",
+	    4003 => "Product haven't been saved",
+	    4004 => "The product isn't in this cart",
+	    4005 => "The product is already in this cart",
+	),
 );

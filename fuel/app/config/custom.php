@@ -1,6 +1,6 @@
 <?php
 /**
- * The development server settings.
+ * The custom settings.
  */
 
 return array(
