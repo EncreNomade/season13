@@ -19,8 +19,10 @@
 
 <div id="single_game_shower"><iframe src="about:blank"></iframe></div>
 <div class="main_container">
-    <?php foreach($games as $game): ?>
-        <!-- <p class="game_link" data-gameId="<?php //echo $game->id; ?>"><?php //echo $game->name ?></p> -->
-        <p><a href="<?php echo Uri::create("book/gameview/info/") . $game->id ?>"><?php echo $game->name ?></a></p>
-    <?php endforeach; ?>
+	<h1><?php echo $game->name; ?></h1>
+	<?php if(!is_null($current_user)): ?>
+		<p>vous devez vous inscrire pour jouer</p>
+	<?php else: ?>
+		<button class="game_link" data-gameId="<?php echo $game->id; ?>">Jouer</button>
+	<?php endif; ?>
 </div>

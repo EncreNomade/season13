@@ -1,5 +1,5 @@
 /*!
- * Canvas JavaScript Library v1.0.0
+ * Canvas JavaScript Library
  * Encre Nomade
  *
  * Author: LING Huabin - lphuabin@gmail.com
@@ -1984,7 +1984,7 @@ $.extend( mse.ArticleLayer.prototype , {
 	}
 } );
 
-if(mmvc) mmvc.makeModel(mse.ArticleLayer.prototype, ['speedLevel']);
+if(typeof mmvc != "undefined") mmvc.makeModel(mse.ArticleLayer.prototype, ['speedLevel']);
 
 
 

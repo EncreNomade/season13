@@ -1,6 +1,22 @@
+<?php 
+    $likeUrl = "http://season13.com/book/gameview/info/" . $game->id;
+?>
+
 <html>
 <head>
-    <title>Single Game</title>        
+    <title>Single Game</title>
+
+    <meta charset="utf-8">
+    <meta name="Description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";  ?>" />
+    
+    <meta property="og:title" content="SEASON13" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?php echo $likeUrl; ?>" />
+    <meta property="og:image" content="http://season13.com/voodoo/cover.jpg" />
+    <meta property="og:site_name" content="SEASON13.com" />
+    <meta property="og:description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
+    <meta property="fb:app_id" content="141570392646490" />        
+
     <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <?php 
@@ -52,12 +68,28 @@
             right: -30px;
             cursor: pointer;
         }
+        .like-container {
+            position: absolute;
+            top: -30px;
+            right: 20px;
+        }
     </style>
 
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
     <div id="game_container" class="dialog">
         <h1></h1>
+        <div class="like-container"><div class="fb-like" data-href="<?php echo $likeUrl ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
         <div class="sep_line"></div>
         <?php echo Asset::img('season13/ui/btn_close.png', array('id'=> 'close_game_icon')) ?>        
         <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
@@ -76,18 +108,22 @@
     </div>
 
     <script type="text/javascript">
-        $(function(){
-            $('#game_quit, #close_game_icon').click(window.parent.gameNotifier.quit);
-        });
+        if(window.parent.gameNotifier) {     
+            var gameNotifier = window.parent.gameNotifier;       
+            $(function(){
+                $('#game_quit, #close_game_icon').click(gameNotifier.quit);
+            });
 
-        window.initMseConfig();
-        mse.init();
-        mse.currTimeline.start();
-        $('.bookroot').hide();
-        mse.configs.srcPath='<?php echo Uri::base(false) . "$path/" ?>';
-        var game = new <?php echo $className ?>();
-        game.config.indep = true;
-        game.start();
+            window.initMseConfig();
+            mse.init(null, null, $(window.parent.document).width(), $(window.parent.document).height());
+            mse.currTimeline.start();
+            $('.bookroot').hide();
+            mse.configs.srcPath='<?php echo Uri::base(false) . "$path/" ?>';
+            window.game = new <?php echo $className ?>();
+            game.config.indep = true;
+            game.start();
+
+        }
     </script>
 </body>
 </html>

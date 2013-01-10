@@ -202,6 +202,8 @@ var Donjon = function(){
         }
         
         this.camera = new mdj.Camera(this.width, this.height, this.currScene, this.simonM, 8, 18);
+        
+        this.lazyInit();
     }, this));
     
     var maskLayer = new mdj.Layer("mask", this.currScene, 3);
@@ -241,30 +243,37 @@ var Donjon = function(){
     // Map
     this.map = new mse.Image(null, {pos:[2*this.width/3-20, 20],size:[this.width/3,0.715*this.width/3]}, 'map');
     
-    this.state = "INIT";
+    this.state = "CREAT";
 };
 extend(Donjon, mse.Game);
 $.extend(Donjon.prototype, {
     init: function() {
         this.currScene.init();
+        
+        // UI objects
+        this.showMsg(this.help);
+        this.light.setFrame(0);
+
+        if(this.state == "CREAT") 
+            this.state = "PREINIT";
+        else this.lazyInit();
+        this.currTime = 0;
+        this.nblight = 3;
+    },
+    lazyInit: function() {
         this.input.setTarProxy(this.getEvtProxy());
         this.simonM.inputv = 4;
         this.simonM.setPos(31*32+7, 2*32);
         // Orientation
         this.simonM.orient = "DOWN";
         
+        this.simonV.playAnime('turn');
+
         // Ghosts
         for(var i = 0; i < this.ghosts.length; ++i)
             this.ghosts[i].reinit(50 + randomInt(1700), 50 + randomInt(1200));
         
-        // UI objects
-        this.showMsg(this.help);
-        this.light.setFrame(0);
-
-        this.simonV.playAnime('turn');
         this.state = "INIT";
-        this.currTime = 0;
-        this.nblight = 3;
     },
     showMsg: function(txt) {
         this.info.setText(txt);
@@ -314,10 +323,14 @@ $.extend(Donjon.prototype, {
             }
             else this.count--;
         }
+
         this.currScene.logic(delta);
-        for(var i = 0; i < this.ghosts.length; ++i) {
-            if(this.ghosts[i].model.state == "DEAD") {
-                this.ghosts[i].reinit(50 + randomInt(1700), 50 + randomInt(1200));
+
+        if(this.state != "PREINIT" && this.state != "CREAT") {
+            for(var i = 0; i < this.ghosts.length; ++i) {
+                if(this.ghosts[i].model.state == "DEAD") {
+                    this.ghosts[i].reinit(50 + randomInt(1700), 50 + randomInt(1200));
+                }
             }
         }
         
@@ -326,7 +339,8 @@ $.extend(Donjon.prototype, {
     draw: function(ctx) {
         ctx.save();
         
-        this.camera.drawScene(ctx);
+        if(this.state != "PREINIT" && this.state != "CREAT")
+            this.camera.drawScene(ctx);
         
         // Light
         this.light.draw(ctx);
