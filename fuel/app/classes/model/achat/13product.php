@@ -1,7 +1,10 @@
 <?php
 use Orm\Model;
 
-class EpisodeNotFoundExeption extends FuelException {}
+class EpisodeNotFoundException extends FuelException {}
+class CountryNotFoundException extends FuelException {}
+class DefaultPriceNotFoundException extends FuelException {}
+
 
 class Model_Achat_13product extends Model
 {
@@ -93,7 +96,7 @@ class Model_Achat_13product extends Model
 			if ($ep)
 				$episodes[] = $ep;
 			else
-				throw new EpisodeNotFoundExeption(Config::get('errormsgs.payment.4006') . " Error code : 4006, Episode ID: ".$episodeId);
+				throw new EpisodeNotFoundException(Config::get('errormsgs.payment.4501') . " Error code : 4501, Episode ID: ".$episodeId);
 				
 		}
 
@@ -130,25 +133,36 @@ class Model_Achat_13product extends Model
 
 	public function getLocalPrice($countryCode = null)
 	{
-		$price = Model_Achat_Productprice::find_by_product_country($this->id, $countryCode);
+		$price = Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
 
-		if ($price) {
-			return $price->taxed_price;
+		if ($price) { 						// a price is found for this product & this country
+			return floatval($price->taxed_price);
 		}
-		else { // apply default price calculte with currency
-			// search if currency exist in table
-			$defaultPrice = Model_Achat_Productprice::find_by_product_country($this->id, "FR");
-			$isoCode = Config::get("currencies.$countryCode.currency");
-			$currency = Model_Achat_Currency::find_by_iso($isoCode);
-			if($currency) {
-				$finalPrice = floatval($defaultPrice) * floatval($currency->conversion_rate);
+		else { 								// if not search for the french price and apply conversion
+			$defaultPrice = Model_Achat_Productprice::find_by_id_and_country($this->id, 'FR');	
+			$country = Model_Achat_Country::getWithCurrency($countryCode);
+
+			if(!$defaultPrice) 
+				throw new DefaultPriceNotFoundException(Config::get('errormsgs.payment.4502') . " Error code : 4502");					
+
+			if(!$country) {
+				throw new CountryNotFoundException(Config::get('errormsgs.payment.4503')." Error code : 4503, country : ".$countryCode);
+			}
+			else {							// we found a country and we have a default price => we can apply conversion rate
+				$rate = floatval($country->currency->conversion_rate);
+				$finalPrice = $rate * floatval($defaultPrice->taxed_price);
+				return $finalPrice;			
 			}
 		}
 	}
 
-	public function getLocalDiscount($country = null)
+	public function getLocalDiscount($countryCode = null)
 	{
-		
+		$price = Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
+		if($price) 
+			return floatval($price->discount);
+		else
+			return 0;		
 	}
 }
 

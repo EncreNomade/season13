@@ -27,6 +27,17 @@ class Model_Achat_Currency extends Model
 		),
 	);
 
+	// a currency could be used in many countries
+	protected static $_has_many = array(
+		'countries' => array(
+			'key_from' => 'iso_code',
+			'model_to' => 'Model_Achat_Country',
+			'key_to' => 'currency_code',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		)
+	);
+
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);

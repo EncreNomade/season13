@@ -88,6 +88,8 @@ return array(
 	    4005 => "The product is already in this cart",
 
 	    // product
-	    4501 => "The product is referencing unknown episode"
+	    4501 => "The product is referencing unknown episode",
+	    4502 => "The product have default price (FR)",
+	    4503 => "Can't find the country in database, so conversion can't be applied"
 	),
 );

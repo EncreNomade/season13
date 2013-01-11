@@ -26,6 +26,17 @@ class Model_Achat_Country extends Model
 		),
 	);
 
+	// a country should have only one currency
+	protected static $_belongs_to = array(
+		'currency' => array(
+			'key_from' => 'currency_code',
+			'model_to' => 'Model_Achat_Currency',
+			'key_to' => 'iso_code',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		)
+	);
+
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
@@ -37,6 +48,11 @@ class Model_Achat_Country extends Model
 		$val->add_field('active', 'Active', 'required|valid_string[numeric]');
 
 		return $val;
+	}
+
+	public static function getWithCurrency($countryCode = '') 
+	{
+		return self::query()->related('currency', array('join_type' => 'inner'))->where('iso_code', $countryCode)->get_one();
 	}
 
 }

@@ -35,7 +35,7 @@ class Model_Achat_Productprice extends Model
 		return $val;
 	}
 
-	public static function find_by_product_country($product = "", $country = "")
+	public static function find_by_id_and_country($product = "", $country = "")
 	{
 		$obj = self::find('first', array(
 			"where" => array(
