@@ -41,4 +41,10 @@ class Model_Achat_Currency extends Model
 		return $val;
 	}
 
+	public static function find_by_iso($isoCode) {
+		return Model_Achat_Currency::query()->where('iso_code', $isoCode)->get_one();
+	}
 }
+
+
+

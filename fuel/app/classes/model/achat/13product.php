@@ -1,6 +1,8 @@
 <?php
 use Orm\Model;
 
+class EpisodeNotFoundExeption extends FuelException {}
+
 class Model_Achat_13product extends Model
 {
 	protected static $_properties = array(
@@ -79,4 +81,77 @@ class Model_Achat_13product extends Model
 
 		return $val;
 	}
+
+	public function getContent()
+	{
+		$content = Format::forge($this->content, 'json')->to_array();
+
+		$episodes = array();
+
+		foreach ($content as $episodeId) {
+			$ep = Model_Admin_13episode::find_by_id($episodeId);
+			if ($ep)
+				$episodes[] = $ep;
+			else
+				throw new EpisodeNotFoundExeption(Config::get('errormsgs.payment.4006') . " Error code : 4006, Episode ID: ".$episodeId);
+				
+		}
+
+		return $episodes;
+	}
+
+	public function getImages()
+	{
+		$metas = Format::forge($this->metas, 'json')->to_array();
+
+		$imagesUrl = array();
+
+		foreach ($metas as $m) {
+			if ($m["type"] == "image")
+				$imagesUrl[] = $m["value"];
+		}
+
+		return $imagesUrl;
+	}
+
+	public function getExtrait()
+	{		
+		$metas = Format::forge($this->metas, 'json')->to_array();
+
+		$extraits = array();
+
+		foreach ($metas as $m) {
+			if ($m["type"] == "extrait")
+				$extraits[] = $m["value"];
+		}
+
+		return $extraits;
+	}
+
+	public function getLocalPrice($countryCode = null)
+	{
+		$price = Model_Achat_Productprice::find_by_product_country($this->id, $countryCode);
+
+		if ($price) {
+			return $price->taxed_price;
+		}
+		else { // apply default price calculte with currency
+			// search if currency exist in table
+			$defaultPrice = Model_Achat_Productprice::find_by_product_country($this->id, "FR");
+			$isoCode = Config::get("currencies.$countryCode.currency");
+			$currency = Model_Achat_Currency::find_by_iso($isoCode);
+			if($currency) {
+				$finalPrice = floatval($defaultPrice) * floatval($currency->conversion_rate);
+			}
+		}
+	}
+
+	public function getLocalDiscount($country = null)
+	{
+		
+	}
 }
+
+
+
+
