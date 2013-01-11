@@ -1,5 +1,7 @@
 <?php
 
+class CartException extends \FuelException {}
+
 class Model_Achat_Cart extends \Orm\Model
 {
 	protected static $_properties = array(
@@ -38,12 +40,45 @@ class Model_Achat_Cart extends \Orm\Model
 		return $val;
 	}
 	
+	public static function createCart($user_id, $country_code) {
+	    
+	}
+	
 	
 	public function getUser() {
 	    if( is_null($this->user) )
 	        $this->user = Model_13user::find($this->user_id);
 	    
 	    return $this->user;
+	}
+	
+	public function refresh() {
+	    if($this->ordered) return false;
+	    
+	    $cartproducts = $this->getProducts();
+        $deleted = array();
+        $modified = array();
+        
+	    foreach ($cartproducts as $cartproduct) {
+	        $product = Model_Achat_13product::find($cartproduct->product_id);
+	        $title = $cartproduct->product_title;
+	        
+	        if($product) {
+	            $taxed_price = $product->getLocalPrice($this->country_code);
+	            $discount = $product->getLocalDiscount($this->country_code);
+	            if( $cartproduct->taxed_price != $taxed_price || $cartproduct->discount != $discount ) {
+	                $cartproduct->taxed_price = $taxed_price;
+	                $cartproduct->discount = $discount;
+	                array_push($modified, $title);
+	            }
+	        }
+	        else {
+	            $cartproduct->delete();
+	            array_push($deleted, $title);
+	        }
+	    }
+	    
+	    return array('deleted' => $deleted, 'modified' => $modified);
 	}
 	
 	
@@ -62,64 +97,46 @@ class Model_Achat_Cart extends \Orm\Model
 	}
 	
 	public function addProduct($product_id, $is_offer = 0, $offer_tar = "") {
+	    if($this->ordered) return false;
+	    
 	    // Find product
 	    $product = Model_Achat_13product::find($product_id);
 	    if( is_null($product) ) {
-	        return array('success' => false, 'errorCode' => 4001, 'errorMessage' => Config::get('errormsgs.payment.4001'));
+	        throw new CartException(Config::get('errormsgs.payment.4001')." (Error code : 4001)");
 	    }
 	    
 	    // Test addable
 	    if( !$is_offer && !$this->addable($product_id) ) {
-	        return array('success' => false, 'errorCode' => 4005, 'errorMessage' => Config::get('errormsgs.payment.4005'));
+	        throw new CartException(Config::get('errormsgs.payment.4005')." (Error code : 4005)");
 	    }
 	
 	    // Find taxed price and discount for the product
-	    $localprice = Model_Achat_Productprice::query()->where(
-	        array(
-	            'product_id' => $product_id,
-	            'country_code' => $this->country_code,
-	        )
-	    )->get_one();
-	    
-	    if( is_null($localprice) ) {
-	        // Get default taxed price
-	        $localprice = Model_Achat_Productprice::query()->where(
-	            array(
-	                'product_id' => $product_id,
-	                'country_code' => Config::get('achat.default_country'),
-	            )
-	        )->get_one();
-	        
-	        if( is_null($localprice) ) {
-	            return array('success' => false, 'errorCode' => 4002, 'errorMessage' => Config::get('errormsgs.payment.4002'));
-	        }
-	        
-	        // Conversion default price to local price
-	        // Suppose that default price has the currency conversion rate at 1.0
-	        $localprice->taxed_price = $localprice->taxed_price * $this->conversion_rate;
-	        $localprice->discount = 1;
-	    }
+	    $taxed_price = $product->getLocalPrice($this->country_code);
+	    $discount = $product->getLocalDiscount($this->country_code);
 	    
 	    // Forge the cart product model
 	    $cartProduct = Model_Achat_Cartproduct::forge(array(
 	        "cart_id" => $this->id,
 	        "product_id" => $product_id,
-	        "taxed_price" => $localprice->taxed_price,
-	        "discount" => $localprice->discount,
+	        "product_title" => $product->title,
+	        "taxed_price" => $taxed_price,
+	        "discount" => $discount,
 	        "offer" => $is_offer ? 1 : 0, 
 	        "offer_target" => $offer_tar,
 	    ));
 	    
 	    // Save product
 	    if ($cartProduct and $cartProduct->save()) {
-	        return array('success' => true);
+	        return true;
 	    }
 	    else {
-	        return array('success' => false, 'errorCode' => 4003, 'errorMessage' => Config::get('errormsgs.payment.4003'));
+	        throw new CartException(Config::get('errormsgs.payment.4003')." (Error code : 4003)");
 	    }
 	}
 	
 	public function removeProduct($product_id) {
+	    if($this->ordered) return false;
+	    
 	    // Find product in cart
 	    $cartproduct = Model_Achat_Cartproduct::query()->where(
 	        array(
@@ -129,11 +146,11 @@ class Model_Achat_Cart extends \Orm\Model
 	    )->get_one();
 	    
 	    if( is_null($cartproduct) ) {
-	        return array('success' => false, 'errorCode' => 4004, 'errorMessage' => Config::get('errormsgs.payment.4004'));
+	        throw new CartException(Config::get('errormsgs.payment.4004')." (Error code : 4004)");
 	    }
 	    else {
 	        $cartproduct->delete();
-	        return array('success' => true);
+	        return true;
 	    }
 	}
 	
@@ -142,4 +159,25 @@ class Model_Achat_Cart extends \Orm\Model
 	    $cartproducts = Model_Achat_Cartproduct::find_by_cart_id($this->id);
 	    return $cartproducts;
 	}
+	
+    public function clear() {
+        if($this->ordered) return false;
+        
+        // Find products in cart
+        $cartproducts = $this->getProducts();
+        foreach ($cartproducts as $product) {
+            $product->delete();
+        }
+        return true;
+    }
+    
+    
+    public function addition() {
+        $cartproducts = $this->getProducts();
+        $total = 0;
+        foreach ($cartproducts as $product) {
+            $total += $product->discount * $product->taxed_price;
+        }
+        return round($total, 2);
+    }
 }

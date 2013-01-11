@@ -1,6 +1,6 @@
 <div class="main_container">
     <div id="actu_header">
-        <h1>L'actualités de SEASON13</h1>
+        <h1>L'actualité de SEASON13</h1>
         <?php if (Auth::member(100)): ?>
             <?php echo Html::anchor('admin/13posts/create', 'Add new Admin 13post', array('class' => 'btn btn-success')); ?>
         <?php endif; ?>

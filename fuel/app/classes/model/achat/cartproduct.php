@@ -6,6 +6,7 @@ class Model_Achat_Cartproduct extends \Orm\Model
 		'id',
 		'cart_id',
 		'product_id',
+		'product_title',
 		'taxed_price',
 		'discount',
 		'offer',

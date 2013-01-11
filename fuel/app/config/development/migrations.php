@@ -34,6 +34,7 @@ return array(
 				25 => '024_create_achat_cartproducts',
 				26 => '025_create_achat_currencies',
 				27 => '026_create_achat_productprices',
+				28 => '027_create_achat_countries',
 			),
 		),
 		'module' => 

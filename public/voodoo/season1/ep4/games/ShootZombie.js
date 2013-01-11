@@ -103,7 +103,7 @@ Rock.prototype = {
 
 var ShootZombie = function() {
     mse.Game.call(this, {fillback:true, size:[600,440]});
-    this.config.title = "Parc Montsouris";
+    this.config.title = "La cauchemar de Simon";
     
     this.msg = {
         "BEFOREINIT": "Clique pour jouer.",

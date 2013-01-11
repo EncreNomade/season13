@@ -173,11 +173,11 @@ return array(
 		// Restrict the path that the cookie is available to
 		'path'        => '/',
 		// Restrict the domain that the cookie is available to
-		'domain'      => null,
+		'domain'      => Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/' : 'http://'.$_SERVER['HTTP_HOST'].'/',
 		// Only transmit cookies over secure connections
 		'secure'      => false,
 		// Only transmit cookies over HTTP, disabling Javascript access
-		'http_only'   => false,
+		'http_only'   => true,
 	),
 
 	/**
