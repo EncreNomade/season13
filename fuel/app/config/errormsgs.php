@@ -74,18 +74,17 @@ return array(
 	    3401 => "User email not given",
 	    3402 => "User not found",
 	    3403 => "No user logged in",
-	    
 	    3999 => "Unknown error",
 	),
 	
 	// Payment system
 	'payment' => array(
 		// cart
-	    4001 => "Product not found",
+	    4001 => "Produit non trouvé",
 	    4002 => "Price for product not fount",
-	    4003 => "Product haven't been saved",
-	    4004 => "The product isn't in this cart",
-	    4005 => "The product is already in this cart",
+	    4003 => "Le produit n'a pas était ajouté",
+	    4004 => "Ce produit n'est pas dans le panier",
+	    4005 => "Ce produit est déja dans le panier",
 	    4006 => "Country not found",
 	    4007 => "Cart can't be saved",
 	    4008 => "User ip addr not given",
@@ -93,7 +92,7 @@ return array(
 
 	    // product
 	    4501 => "The product is referencing unknown episode",
-	    4502 => "The product have default price (FR)",
+	    4502 => "The product don't have default price (FR)",
 	    4503 => "Can't find the country in database, so conversion can't be applied",
 	),
 );

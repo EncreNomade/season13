@@ -106,8 +106,6 @@ function init() {
     $('#toLogin').click(showLogin);
     $('#dialog_mask').click(hideDialog);
     $('#user_id').click(showUpdate);
-
-    $('#cart').click(showCart);
     
     $('#signupbMonth').change(monthChanged);
     $('#updatebMonth').change(updateMonthChanged);

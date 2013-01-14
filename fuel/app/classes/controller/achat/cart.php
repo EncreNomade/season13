@@ -15,20 +15,39 @@ class Controller_Achat_Cart extends Controller {
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
 
-        $this->cart = Model_Achat_Cart::create();
+        $this->cart = is_null($this->cart) ? Model_Achat_Cart::createCart(Input::real_ip()) : $this->cart;
     }
     
     public function action_add()
     {
         $pid = Input::post('productId');
+        $data = array();
+        $data['remote_path'] = $this->remote_path;
+        $data['cart'] = $this->cart;
 
-        if ($this->cart->addProduct($pid)) {
-            $data = array();
-            $data['remote_path'] = $this->remote_path;
-            $data['products'] = $this->cart->getProducts();
-
-            return View::forge('achat/cart', $data);
+        try { 
+            $this->cart->addProduct($pid); 
+        } catch (CartException $e) {
+            Session::set_flash('cart_error', $e->getMessage().".");
         }
+
+        return View::forge('achat/cart', $data);
+    }
+
+    public function action_remove()
+    {        
+        $data = array();
+        $data['remote_path'] = $this->remote_path;
+        $data['cart'] = $this->cart;
+
+        try {
+            $this->cart->removeProduct(Input::post('productId'));            
+        } catch (CartException $e) {
+            Session::set_flash('cart_error', $e->getMessage().".");
+        }
+
+
+        return View::forge('achat/cart', $data);
     }
 }
 

@@ -162,7 +162,9 @@
 <?php endif; ?>
     <div id="cart_dialog" class="dialog">
         <div class="close"></div>
-        <?php echo View::forge('achat/cart')->render(); ?>
+        <div class="cart_container">
+            <?php echo View::forge('achat/cart')->render(); ?>
+        </div>
     </div>
     	    
 <?php echo $content; ?>

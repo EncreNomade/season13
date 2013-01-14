@@ -28,7 +28,7 @@ class Model_Achat_Cart extends \Orm\Model
 	);
 	
 	private static $token_ptn = "/(?P<ip>[\d\.]+)\_(?P<cart>\d+)\_(?P<user>\d+)\_(?P<time>\d+)/";
-	private static $token_expire_time = 60*60*24;
+	private static $token_expire_time = 86400; // 60*60*24
 	
 	private static function decryptToken($token) {
 	    $tokenstr = Crypt::decode($token);
@@ -49,12 +49,12 @@ class Model_Achat_Cart extends \Orm\Model
 	    $token = Crypt::encode($ip."_".$cart_id."_".$user_id."_".time());
 	    return $token;
 	}
-	private static function validateToken($tokenarr, $ip, $user = null) {
+	private static function validateToken($tokenarr, $ip, $user_id = null) {
 	    if(is_null($user_id))
 	        $user_id = 0;
 	        
 	    if(is_array($tokenarr)) {
-	        if( $ip == $tokenarr['ip'] && $user == $tokenarr['user'] ) {
+	        if( $ip == $tokenarr['ip'] && $user_id == $tokenarr['user'] ) {
 	            $duration = time()-$tokenarr['time'];
 	            if($duration > 0 && $duration < self::$token_expire_time) {
 	                return true;
@@ -78,16 +78,16 @@ class Model_Achat_Cart extends \Orm\Model
 		return $val;
 	}
 	
-	public static function create($realip, $country_code, $user_id = null) {
+	public static function createCart($realip, $country_code = "FR", $user_id = null) {
 	    if(is_null($realip) || $realip == '0.0.0.0') {
-	        throw new CartException(Config::get('errormsgs.payment.4008')." (Error code : 4008)");
+	        throw new CartException(Config::get('errormsgs.payment.4008'), 4008);
 	    }
 	    
 	    // Find user
 	    if(!is_null($user_id)) {
 	        $user = Model_13user::find($user_id);
 	        if(is_null($user)) {
-	            throw new CartException(Config::get('errormsgs.payment.4009')." (Error code : 4009)");
+	            throw new CartException(Config::get('errormsgs.payment.4009'), 4009);
 	        }
 	    }
 	    
@@ -115,7 +115,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    // Find country
 	    $country = Model_Achat_Country::getWithCurrency($country_code);
 	    if(is_null($country)) {
-	        throw new CartException(Config::get('errormsgs.payment.4006')." (Error code : 4006)");
+	        throw new CartException(Config::get('errormsgs.payment.4006'), 4006);
 	    }
 	    
 	    $cart = self::forge(array(
@@ -128,6 +128,8 @@ class Model_Achat_Cart extends \Orm\Model
 	        'ordered' => 0,
 	        'supp' => ""
 	    ));
+
+	    $cart->currency = $country->currency;
 	    
 	    if( $cart and $cart->save() ) {
 	        $cookieValue = self::cryptToken($realip, $cart->id, $user_id);
@@ -136,8 +138,15 @@ class Model_Achat_Cart extends \Orm\Model
 	        return $cart;
 	    }
 	    else {
-	        throw new CartException(Config::get('errormsgs.payment.4007')." (Error code : 4007)");
+	        throw new CartException(Config::get('errormsgs.payment.4007'), 4007);
 	    }
+	}
+
+	public function getCurrency() {
+		if(empty($this->currency)) {
+			$this->currency = Model_Achat_Currency::find_by_iso($this->currency_code);
+		}
+		return $this->currency;
 	}
 	
 	
@@ -201,12 +210,12 @@ class Model_Achat_Cart extends \Orm\Model
 	    // Find product
 	    $product = Model_Achat_13product::find($product_id);
 	    if( is_null($product) ) {
-	        throw new CartException(Config::get('errormsgs.payment.4001')." (Error code : 4001)");
+	        throw new CartException(Config::get('errormsgs.payment.4001'), 4001);
 	    }
 	    
 	    // Test addable
 	    if( !$is_offer && !$this->addable($product_id) ) {
-	        throw new CartException(Config::get('errormsgs.payment.4005')." (Error code : 4005)");
+	        throw new CartException(Config::get('errormsgs.payment.4005'), 4005);
 	    }
 	
 	    // Find taxed price and discount for the product
@@ -229,7 +238,7 @@ class Model_Achat_Cart extends \Orm\Model
 	        return true;
 	    }
 	    else {
-	        throw new CartException(Config::get('errormsgs.payment.4003')." (Error code : 4003)");
+	        throw new CartException(Config::get('errormsgs.payment.4003'), (4003));
 	    }
 	}
 	
@@ -245,7 +254,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    )->get_one();
 	    
 	    if( is_null($cartproduct) ) {
-	        throw new CartException(Config::get('errormsgs.payment.4004')." (Error code : 4004)");
+	        throw new CartException(Config::get('errormsgs.payment.4004'), 4004);
 	    }
 	    else {
 	        $cartproduct->delete();
@@ -256,6 +265,10 @@ class Model_Achat_Cart extends \Orm\Model
 	public function getProducts() {
 	    // Find all products in cart
 	    $cartproducts = Model_Achat_Cartproduct::find_by_cart_id($this->id);
+
+	    $cartproducts = Model_Achat_Cartproduct::query()->where('cart_id', $this->id)->get();
+	    // if(!is_null($cartproducts))
+	    // 	$cartproducts = is_array($cartproducts) ? $cartproducts : array($cartproducts);
 	    return $cartproducts;
 	}
 	

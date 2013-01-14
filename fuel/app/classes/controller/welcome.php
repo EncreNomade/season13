@@ -11,7 +11,6 @@
  */
 class Controller_Welcome extends Controller_Template
 {
-
     public function before()
     {        
     	parent::before();
@@ -23,11 +22,14 @@ class Controller_Welcome extends Controller_Template
     	
     	// Assign current_user to the instance so controllers can use it
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+    	$this->cart = empty($this->cart) ? Model_Achat_Cart::createCart(Input::real_ip()) : $this->cart;
+
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
     	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
     	View::set_global('base_url', Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/");
+    	View::set_global('cart', $this->cart);
     	
     	// Set supplementation css and js file
         $this->template->css_supp = '';
