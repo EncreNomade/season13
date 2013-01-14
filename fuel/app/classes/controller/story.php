@@ -24,7 +24,7 @@ class Controller_Story extends Controller_Template
         $existed = Model_Admin_13userpossesion::query()->where(
             array(
                 'user_mail' => $current_user->email,
-                'episode_id' => $episode
+                'episode_id' => $epid
             )
         )->get_one();
         

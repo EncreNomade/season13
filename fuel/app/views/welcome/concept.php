@@ -1,10 +1,16 @@
 <div class="main_container">
 
-    <div id="concept" class="layer">
-        <!--<div id="cpt_intro">
-            <h1>Explique le concept</h1>
-            <cite>« Season13, de nouvelles expériences à vivre sur le web. Immerge-toi dans une série et découvre un suspense haletant »</cite>
-        </div>-->
+    <div id="cpt_intro">
+        <h1>Le coup de coeur du Furet</h1>
+        <?php echo Asset::img('season13/furet_logo.jpg', array('alt' => 'Coup de coeur du Furet du nord - SEASON 13')); ?>
+        <h5>
+            « Season13 est un concept innovant mêlant à la fois lecture, interactions, jeux. C'est une approche tout à fait nouvelle de la lecture dématérialisée. Ce nouveau concept nous a séduit par cette dimension innovante de la lecture à destination d'un public qui, pour une partie, s'en désintéresse. La qualité du contenu et des graphismes en est un des point fort.<br/>
+            Le Furet du Nord a été un des premiers fans de Season13 ! »<br/>
+        </h5>
+        <h5 class="right">Christophe Desbonnet, directeur marketing du Furet</h5>
+    </div>
+    
+    <div id="concept" class="layer"> 
         <div id="cpt_content">
             <div id="cpt1" class="cpt_section">
                 <?php echo Asset::img("season13/expos/concept1.jpg", array('alt' => 'Expérience - Conception SEASON 13')); ?>

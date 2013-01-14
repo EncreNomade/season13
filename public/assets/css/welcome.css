@@ -26,10 +26,37 @@
     left: 36%;
     top: 50px;
     background: transparent;
-    width: 370px;
-    height: 116px;
+    width: 420px;
+    height: 136px;
     z-index: 2;
     cursor: pointer;
+}
+#booktitle a {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 360px;
+    height: 120px;
+    margin: 8px 30px;
+    background: transparent;
+}
+#booktitle a img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+#booktitle a h5 {
+    position: absolute;
+    font: normal 32px/40px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 2px;
+    color: #fff;
+    width: 320px;
+    height: 80px;
+    margin: 20px;
+    padding: 0;
+    text-align: center;
+    z-index: 1;
 }
 
 #bookresume {
@@ -47,7 +74,7 @@
     -o-box-shadow: 0px 0px 6px #fff;
     box-shadow: 0px 0px 6px #fff;
 }
-#bookresume p {
+#resumebody {
     position: absolute;
     left: 430px;
     top: 0px;
@@ -59,12 +86,18 @@
     -ms-user-select: text;
     user-select: text;
 }
+#resumebody img {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
 
 #btns {
     right: 20px;
     top: 390px;
     background: transparent;
     z-index: 4;
+    visibility: hidden;
 }
 #btns ul {
     margin: 0px;
@@ -77,7 +110,7 @@
     padding: 0;
     width: 230px;
     height: 40px;
-    visibility: visible;
+    visibility: hidden;
 }
 #btns ul li a {
     position: absolute;
@@ -111,6 +144,24 @@
 }
 #bande4 img {
     width: 100%
+}
+
+#furet {
+    position: absolute;
+    right: 20px;
+    top: 74px;
+    z-index: 5;
+    width: 170px;
+    height: 80px;
+    color: #fff;
+    text-decoration: none;
+    font: normal 20px/103px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 1.5px;
+}
+#furet img {
+    width: 60px;
+    height: 73px;
+    float: right;
 }
 
 

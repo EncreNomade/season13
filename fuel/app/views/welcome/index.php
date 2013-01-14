@@ -1,19 +1,29 @@
 <?php echo Asset::js('lib/swfobject.js'); ?>
 
+<a id="furet" href="<?php echo $remote_path; ?>concept">
+    Coup de coeur<?php echo Asset::img('season13/furet_logo.jpg', array('alt' => 'Coup de coeur du Furet du nord - SEASON 13')); ?>
+</a>
+
 <div class="main_container">
 
     <div id="back" class="layer">
         <?php echo Asset::img('season13/illus/petite_ceinture.jpg', array('alt' => 'Fond SEASON 13')); ?>
     </div>
     <div id="booktitle" class="layer">
-        <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
+        <a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?source=discoverbtn">
+            <?php echo Asset::img('season13/btn_discover.png', array('alt' => 'Découvrir 1er épisode de Voodoo Connection')); ?>
+            <h5>LANCE-TOI GRATUITEMENT DANS L'HISTOIRE</h5>
+        </a>
     </div>
     <div id="bookresume" class="layer">
         <!--<object width="420" height="236"><param name="movie" value="http://www.youtube.com/v/lwuMe5fzeyU?version=3&amp;hl=fr_FR"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lwuMe5fzeyU?version=3&amp;hl=fr_FR&rel=0" type="application/x-shockwave-flash" width="420" height="236" allowscriptaccess="always" allowfullscreen="true"></embed></object>-->
         <div id="ytapiplayer">
             You need Flash player 8+ and JavaScript enabled to view this video.
         </div>
-        <p>Simon, jeune orphelin, s’évade de son foyer, poursuivi par une bande : la Meute. Obligé de se réfugier dans les catacombes de Paris, il croise un sorcier vaudou et un inquiétant zombi...</p>
+        <div id="resumebody">
+            <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
+            <p>Simon, jeune orphelin, s’évade de son foyer, poursuivi par une bande : la Meute. Obligé de se réfugier dans les catacombes de Paris, il croise un sorcier vaudou et un inquiétant zombi...</p>
+        </div>
     </div>
     <div id="btns" class="layer">
         <ul>
@@ -83,9 +93,10 @@
 <div id="simon" class="layer">
     <?php echo Asset::img('season13/illus/simonHD.png', array('alt' => 'Simon - SEASON 13')); ?>
 </div>
+<!--
 <div id="bande4" class="layer">
     <?php echo Asset::img('season13/illus/bande4.png', array('alt' => 'Les 4 - SEASON 13')); ?>
-</div>
+</div>-->
 
 <div class="center">
     <div id="access_dialog" class="dialog">

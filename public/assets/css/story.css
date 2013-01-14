@@ -411,7 +411,7 @@ ul#menu div #menu_link {
 /****************** Author&Credits Dialog ******************/
 
 #author_bio div.content, #credits div.content {
-    position: absolute;
+    position: relative;
     left: 0px;
     top: 0px;
     margin: 20px 10px;

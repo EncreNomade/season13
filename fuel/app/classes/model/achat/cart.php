@@ -27,6 +27,44 @@ class Model_Achat_Cart extends \Orm\Model
 		),
 	);
 	
+	private static $token_ptn = "/(?P<ip>[\d\.]+)\_(?P<cart>\d+)\_(?P<user>\d+)\_(?P<time>\d+)/";
+	private static $token_expire_time = 60*60*24;
+	
+	private static function decryptToken($token) {
+	    $tokenstr = Crypt::decode($token);
+	    preg_match(self::$token_ptn, $tokenstr, $result);
+	    
+	    if( array_key_exists('ip', $result) && 
+	        array_key_exists('cart', $result) && 
+	        array_key_exists('user', $result) && 
+	        array_key_exists('time', $result) ) {
+	        return $result;
+	    }
+	    
+	    return false;
+	}
+	private static function cryptToken($ip, $cart_id, $user_id = null) {
+	    if(is_null($user_id))
+	        $user_id = 0;
+	    $token = Crypt::encode($ip."_".$cart_id."_".$user_id."_".time());
+	    return $token;
+	}
+	private static function validateToken($tokenarr, $ip, $user = null) {
+	    if(is_null($user_id))
+	        $user_id = 0;
+	        
+	    if(is_array($tokenarr)) {
+	        if( $ip == $tokenarr['ip'] && $user == $tokenarr['user'] ) {
+	            $duration = time()-$tokenarr['time'];
+	            if($duration > 0 && $duration < self::$token_expire_time) {
+	                return true;
+	            }
+	        }
+	    }
+	    
+	    return false;
+	}
+	
     public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
@@ -40,12 +78,73 @@ class Model_Achat_Cart extends \Orm\Model
 		return $val;
 	}
 	
-	public static function createCart($user_id, $country_code) {
+	public static function create($realip, $country_code, $user_id = null) {
+	    if(is_null($realip) || $realip == '0.0.0.0') {
+	        throw new CartException(Config::get('errormsgs.payment.4008')." (Error code : 4008)");
+	    }
 	    
+	    // Find user
+	    if(!is_null($user_id)) {
+	        $user = Model_13user::find($user_id);
+	        if(is_null($user)) {
+	            throw new CartException(Config::get('errormsgs.payment.4009')." (Error code : 4009)");
+	        }
+	    }
+	    
+	    // Get existed cart with cookie
+	    $token = Cookie::get('cart_token');
+	    if($token) {
+    	    // Decrypt
+    	    $tokenarr = self::decryptToken($token);
+    	    if($tokenarr) {
+        	    // Validate token
+        	    $valid = self::validateToken($tokenarr, $realip, $user_id);
+        	    if($valid) {
+        	        // Init cart
+        	        $cart = self::find($tokenarr['cart']);
+        	        if($cart) {
+            	        // Update cookie
+            	        Cookie::set('cart_token', $token, self::$token_expire_time);
+            	        return $cart;
+        	        }
+        	    }
+    	    }
+	    }
+	
+	    // No existed valid cart found
+	    // Find country
+	    $country = Model_Achat_Country::getWithCurrency($country_code);
+	    if(is_null($country)) {
+	        throw new CartException(Config::get('errormsgs.payment.4006')." (Error code : 4006)");
+	    }
+	    
+	    $cart = self::forge(array(
+	        'user_id' => $user_id ? $user_id : "",
+	        'secure_key' => Str::random('alnum', 16),
+	        'tax_rate' => $country->tax_rate,
+	        'country_code' => $country_code,
+	        'currency_code' => $country->currency_code,
+	        'conversion_rate' => $country->currency->conversion_rate,
+	        'ordered' => 0,
+	        'supp' => ""
+	    ));
+	    
+	    if( $cart and $cart->save() ) {
+	        $cookieValue = self::cryptToken($realip, $cart->id, $user_id);
+	        Cookie::set('cart_token', $cookieValue, self::$token_expire_time);
+	    
+	        return $cart;
+	    }
+	    else {
+	        throw new CartException(Config::get('errormsgs.payment.4007')." (Error code : 4007)");
+	    }
 	}
 	
 	
 	public function getUser() {
+	    if($this->user_id == "")
+	        return null;
+	        
 	    if( is_null($this->user) )
 	        $this->user = Model_13user::find($this->user_id);
 	    

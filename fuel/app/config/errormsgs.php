@@ -86,10 +86,14 @@ return array(
 	    4003 => "Product haven't been saved",
 	    4004 => "The product isn't in this cart",
 	    4005 => "The product is already in this cart",
+	    4006 => "Country not found",
+	    4007 => "Cart can't be saved",
+	    4008 => "User ip addr not given",
+	    4009 => "User not found",
 
 	    // product
 	    4501 => "The product is referencing unknown episode",
 	    4502 => "The product have default price (FR)",
-	    4503 => "Can't find the country in database, so conversion can't be applied"
+	    4503 => "Can't find the country in database, so conversion can't be applied",
 	),
 );
