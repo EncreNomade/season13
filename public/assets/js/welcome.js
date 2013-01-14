@@ -315,11 +315,6 @@ function init() {
     
     $('#open_login2').click(showLogin);
     
-    // Title click to episodes
-    $('#booktitle').click(function() {
-        gotoSection('episode');
-    });
-    
     // Set anchor for menu
     $('#continue').click(gotoSection);
     $('#menu li a:lt(2)').parent().click(gotoSection);

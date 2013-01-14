@@ -89,6 +89,13 @@ return array(
 	    4007 => "Cart can't be saved",
 	    4008 => "User ip addr not given",
 	    4009 => "User not found",
+	    4010 => "User doesn't exist",
+	    
+	    // order
+	    4101 => "Order can't be saved correctly",
+	    4102 => "Parametre payment invalid",
+	    4103 => "Order invalid (Cart haven't been passed to order)",
+	    4104 => "Order content (cart) can't be found",
 
 	    // product
 	    4501 => "The product is referencing unknown episode",

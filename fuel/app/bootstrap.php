@@ -10,7 +10,8 @@ require COREPATH.'bootstrap.php';
 
 Autoloader::add_classes(array(
 	// Add classes you want to override here
-	// Example: 'View' => APPPATH.'classes/view.php',
+	'Payment' => APPPATH.'classes/achat/payment.php',
+	
 ));
 
 // Register the autoloader
