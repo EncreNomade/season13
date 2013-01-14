@@ -35,7 +35,8 @@
 	    echo Asset::js('lib/fbapi.js');
 	    echo Asset::js('config.js');
 	    echo Asset::js('template.js');
-	    echo Asset::js('auth.js');
+        echo Asset::js('cart.js');
+        echo Asset::js('auth.js');
 	    if(isset($js_supp)) echo Asset::js($js_supp);
 	?>
 	
@@ -130,6 +131,8 @@
         <li class="text_sep_vertical"></li>
         <li id="logout">LOGOUT</li>
 <?php endif; ?>
+        <li class="text_sep_vertical"></li>
+        <li id="cart"><?php echo Asset::img("season13/ui/cart.png") ?></li>
     </ul>
     
 <?php if($current_user == null): ?>
@@ -157,6 +160,10 @@
     </div>
 
 <?php endif; ?>
+    <div id="cart_dialog" class="dialog">
+        <div class="close"></div>
+        <?php echo View::forge('achat/cart')->render(); ?>
+    </div>
     	    
 <?php echo $content; ?>
 

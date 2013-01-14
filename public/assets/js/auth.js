@@ -1,41 +1,47 @@
 function hideDialog(dialog) {
     dialog.removeClass('show');
     var name = dialog.prop('id');
-    if(name == "signup_dialog" || name == "login_dialog" || name == "change_pass_dialog" || name == "link_fb_dialog" || name == "update_dialog") 
+    // if(name == "signup_dialog" || name == "login_dialog" || name == "change_pass_dialog" || name == "link_fb_dialog" || name == "update_dialog") 
         $('#conn li').removeClass('inactive');
 }
+
 function showSignup() {
     $('.dialog').removeClass('show');
     $('#signup_dialog').addClass('show');
-    $('#conn li').removeClass('inactive');
-    $('#open_login').addClass('inactive');
+    var $this = $(this);
+    $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
+    $this.removeClass('inactive');
     addCountries($('#signupPays'));
 }
 function showLogin() {
     $('.dialog').removeClass('show');
     $('#login_dialog').addClass('show');
-    $('#conn li').removeClass('inactive');
-    $('#open_signup').addClass('inactive');
+    var $this = $(this);
+    $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
+    $this.removeClass('inactive');
 }
 function showChPass() {
     $('.dialog').removeClass('show');
     $('#change_pass_dialog').addClass('show');
     $('#change_pass_dialog').find('cite').text("").removeClass('alert');
-    $('#conn li').removeClass('inactive');
-    $('#open_signup').addClass('inactive');
+    var $this = $(this);
+    $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
+    $this.removeClass('inactive');
 }
 function showLinkFb() {
     $('.dialog').removeClass('show');
     $('#link_fb_dialog').addClass('show');
     $('#link_fb_dialog').find('cite').text("").removeClass('alert');
-    $('#conn li').removeClass('inactive');
-    $('#open_signup').addClass('inactive');
+    var $this = $(this);
+    $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
+    $this.removeClass('inactive');
 }
 function showUpdate() {
     $('.dialog').removeClass('show');
     $('#update_dialog').addClass('show');
-    $('#conn li').removeClass('inactive');
-    $('#logout').addClass('inactive');
+    var $this = $(this);
+    $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
+    $this.removeClass('inactive');
     addCountries($('#updatePays'));
 }
 function addCountries(select) {
@@ -100,6 +106,8 @@ function init() {
     $('#toLogin').click(showLogin);
     $('#dialog_mask').click(hideDialog);
     $('#user_id').click(showUpdate);
+
+    $('#cart').click(showCart);
     
     $('#signupbMonth').change(monthChanged);
     $('#updatebMonth').change(updateMonthChanged);
@@ -394,7 +402,7 @@ function init() {
             {
                 $('#chpass_mail').siblings('cite').text("Ton nouveau mot de passe a été envoyé.");
                 alert("Ton nouveau mot de passe a été envoyé.");
-                hideDialog();
+                hideDialog($('#change_pass_dialog'));
                 $('input[type=submit]').removeAttr('disabled');
             }
             else
