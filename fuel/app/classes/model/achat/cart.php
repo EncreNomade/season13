@@ -185,6 +185,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    return true;
 	}
 	
+	
 	public function refresh() {
 	    if($this->ordered) return false;
 	    
@@ -227,6 +228,10 @@ class Model_Achat_Cart extends \Orm\Model
 	    if( $existed > 0 )
 	        return false;
 	    else return true;
+	}
+	
+	public function isEmpty() {
+	    return (Model_Achat_Cartproduct::query()->where('cart_id', $this->id)->count() == 0);
 	}
 	
 	public function addProduct($product_id, $is_offer = 0, $offer_tar = "") {
@@ -289,8 +294,6 @@ class Model_Achat_Cart extends \Orm\Model
 	
 	public function getProducts() {
 	    // Find all products in cart
-	    $cartproducts = Model_Achat_Cartproduct::find_by_cart_id($this->id);
-
 	    $cartproducts = Model_Achat_Cartproduct::query()->where('cart_id', $this->id)->get();
 	    return $cartproducts;
 	}

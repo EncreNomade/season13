@@ -9,7 +9,7 @@
  * @package  app
  * @extends  Controller
  */
-class Controller_Welcome extends Controller_Season13
+class Controller_Welcome extends Controller_Frontend
 {
     public function before()
     {        
@@ -19,9 +19,6 @@ class Controller_Welcome extends Controller_Season13
     	    // Problem of session in IE, the login and inscription doesn't work on www.season13.com
     	    Response::redirect('http://season13.com');
     	}
-    	
-    	//$this->cart = empty($this->cart) ? Model_Achat_Cart::createCart(Input::real_ip()) : $this->cart;
-    	//View::set_global('cart', $this->cart);
     }
     
     public function action_concept() {
