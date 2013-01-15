@@ -141,7 +141,6 @@ class Controller_User_Address extends Controller
 		}
 
 		return View::forge('user/address/create');
-
 	}
 
 

@@ -22,6 +22,8 @@
 			<p><button class="remove_product" data-pid="<?php echo $p->product_id ;?>">Supprimer</button></p>
 		</div>
 	<?php endforeach; ?>
+	<div><?php Html::anchor('achat/order/view', '<button>Payer</button>') ?></div>
 <?php endif; ?>
+
 
 
