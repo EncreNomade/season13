@@ -1,22 +1,6 @@
 <?php
-class Controller_Achat_Viewproduct extends Controller_Template 
+class Controller_Achat_Viewproduct extends Controller_Season13 
 {
-    public function before()
-    {
-    	parent::before();
-    	
-    	// Assign current_user to the instance so controllers can use it
-    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
-    	
-    	$this->base_uri = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
-    	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
-    	
-    	// Set a global variable so views can use it
-    	View::set_global('current_user', $this->current_user);
-    	View::set_global('remote_path', $this->remote_path);
-    	View::set_global('base_url', $this->base_uri);
-    }
-
     public function action_404 () {        
         return View::forge('achat/13product/404');
     }

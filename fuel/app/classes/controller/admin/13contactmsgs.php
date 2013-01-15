@@ -1,19 +1,9 @@
 <?php
-class Controller_Admin_13contactmsgs extends Controller_Template 
+class Controller_Admin_13contactmsgs extends Controller_Season13 
 {
     public $template = 'admin/template';
 
-    public function before()
-    {
-    	parent::before();
-    	
-        // Assign current_user to the instance so controllers can use it
-		$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
-		// Set a global variable so views can use it
-		View::set_global('current_user', $this->current_user);
-    }
-
-	public function action_index()
+    public function action_index()
 	{
 		if ( ! Auth::member(100) and Request::active()->action != 'login')
 		{

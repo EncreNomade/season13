@@ -78,10 +78,11 @@ class Model_Achat_Cart extends \Orm\Model
 		return $val;
 	}
 	
-	public static function createCart($realip, $country_code = "FR", $user_id = null) {
+	public static function createCart($realip, $country_code, $user_id = null) {
 	    if(is_null($realip) || $realip == '0.0.0.0') {
 	        throw new CartException(Config::get('errormsgs.payment.4008'), 4008);
 	    }
+	    if(empty($country_code)) $country_code = "FR";
 	    
 	    // Find user
 	    if(!is_null($user_id)) {
@@ -105,6 +106,7 @@ class Model_Achat_Cart extends \Orm\Model
         	        if($cart) {
             	        // Update cookie
             	        Cookie::set('cart_token', $token, self::$token_expire_time);
+            	        Session::set('current_cart', $cart);
             	        return $cart;
         	        }
         	    }
@@ -134,12 +136,21 @@ class Model_Achat_Cart extends \Orm\Model
 	    if( $cart and $cart->save() ) {
 	        $cookieValue = self::cryptToken($realip, $cart->id, $user_id);
 	        Cookie::set('cart_token', $cookieValue, self::$token_expire_time);
+	        Session::set('current_cart', $cart);
 	    
 	        return $cart;
 	    }
 	    else {
 	        throw new CartException(Config::get('errormsgs.payment.4007'), 4007);
 	    }
+	}
+	
+	public static function getCurrentCart() {
+	    $current_cart = Session::get('current_cart');
+	    if($current_cart) {
+	        return $current_cart;
+	    }
+	    else return false;
 	}
 
 	public function getCurrency() {
@@ -158,6 +169,20 @@ class Model_Achat_Cart extends \Orm\Model
 	        $this->user = Model_13user::find($this->user_id);
 	    
 	    return $this->user;
+	}
+	
+	public function setUser($user_id) {
+	    // User id already exist
+	    if(!empty($this->user_id))
+	        return false;
+	        
+	    $user = Model_13user::find($user_id);
+	    if(is_null($user)) {
+	        throw new CartException(Config::get('errormsgs.payment.4010')." (Error code : 4010)");
+	    }
+	    $this->user = $user;
+	    
+	    return true;
 	}
 	
 	public function refresh() {

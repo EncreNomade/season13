@@ -68,10 +68,11 @@ header #logoLink {
 header ul#menu {
     position: absolute;
     text-align: center;
-    padding-left: 0;
+    padding: 0;
     bottom: 10px;
-    width: 100%;
-    margin: 0 0 0 45px;
+    width: auto;
+    left: 36%;
+    margin: 0;
 }
 
 ul#conn {

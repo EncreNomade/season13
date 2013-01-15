@@ -158,12 +158,12 @@
         <div class="close"></div>
         <?php echo View::forge('auth/update_form')->render(); ?>
     </div>
-
 <?php endif; ?>
+    
     <div id="cart_dialog" class="dialog">
         <div class="close"></div>
         <div class="cart_container">
-            <?php echo View::forge('achat/cart')->render(); ?>
+            <?php //echo View::forge('achat/cart')->render(); ?>
         </div>
     </div>
     	    
