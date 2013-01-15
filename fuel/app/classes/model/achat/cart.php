@@ -78,7 +78,7 @@ class Model_Achat_Cart extends \Orm\Model
 		return $val;
 	}
 	
-	public static function createCart($realip, $country_code, $user_id = null) {
+	public static function createCart($realip, $country_code = "FR", $user_id = null) {
 	    if(is_null($realip) || $realip == '0.0.0.0') {
 	        throw new CartException(Config::get('errormsgs.payment.4008'), 4008);
 	    }
