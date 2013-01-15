@@ -21,7 +21,7 @@
 <?php if($current_user): ?>
 
     <div id="order-adresse">
-        <?php View::forge('user/adresse/view', $user_adresse); ?>
+        <?php echo View::forge('user/address/view')->render(); ?>
     </div>
     
 <?php else: ?>

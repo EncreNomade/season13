@@ -24,7 +24,9 @@ class Controller_Achat_Order extends Controller_Frontend
     	                'products' => $products,
     	                'currency' => $currency,
     	            );
-    	            View::set_global('user_adresse', Model_User_Address::find_by_User_id($this->current_user->id));
+    	            
+    	            $user_address = Model_User_Address::query()->where('user_id', $this->current_user->id)->get_one();
+    	            View::set_global('user_address', $user_address);
     	            
     	            $this->template->title = 'Commande - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5';
     	        	$this->template->content = View::forge('achat/order/view', $data);
