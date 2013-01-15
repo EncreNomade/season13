@@ -28,6 +28,16 @@ class Model_Achat_13product extends Model
 		'updated_at',
 	);
 
+	protected static $_has_many = array(
+	    'cartproduct' => array(
+	        'key_from' => 'id',
+	        'model_to' => 'Model_Achat_Cartproduct',
+	        'key_to' => 'product_id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false,
+	    )
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
