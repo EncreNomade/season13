@@ -163,7 +163,7 @@
     <div id="cart_dialog" class="dialog">
         <div class="close"></div>
         <div class="cart_container">
-            <?php //echo View::forge('achat/cart')->render(); ?>
+            <?php echo View::forge('achat/cart/cart_view')->render(); ?>
         </div>
     </div>
     	    

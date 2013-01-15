@@ -19,10 +19,11 @@
 		<div class="cart_product">
 			<p><strong><?php echo $p->product_title ;?></strong></p>
 			<p>prix : <?php echo $p->taxed_price . $sign ;?></p>
-			<p><button class="remove_product" data-pid="<?php echo $p->product_id ;?>">Supprimer</button></p>
+			<p><button class="remove_product" data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></p>
+			<?php // echo DB::last_query() ?>
 		</div>
 	<?php endforeach; ?>
-	<div><?php Html::anchor('achat/order/view', '<button>Payer</button>') ?></div>
+	<?php echo Html::anchor('achat/order/view', '<button>Payer</button>'); ?>
 <?php endif; ?>
 
 

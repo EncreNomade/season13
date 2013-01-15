@@ -5,6 +5,7 @@ class Model_User_Address extends Model
 {
 	protected static $_properties = array(
 		'id',
+		'user_id',
 		'firstname',
 		'lastname',
 		'address',

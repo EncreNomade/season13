@@ -16,7 +16,7 @@ var cart = (function(Export) {
 		cartBtn = $('#cart');
 		cartBtn.click(cart.show);
 		cartContainer.on('click', 'button.remove_product', function(e) {
-			cart.remove($(this).data('pid'));
+			cart.remove($(this).data('productref'));
 		});
 	};
 
@@ -28,12 +28,12 @@ var cart = (function(Export) {
 	    $this.removeClass('inactive');
 	};
 
-	Export.add = function(pid) {
+	Export.add = function(productRef) {
 		$.ajax({
 			url: config.base_url + 'achat/cart/add',
 			type: "POST",
 			dataType: "html",
-			data: { productId: pid },
+			data: { "product_ref": productRef },
 			success: function(data) {
 				cartContainer.html(data);
 				cart.show();
@@ -42,12 +42,12 @@ var cart = (function(Export) {
 		});		
 	};
 
-	Export.remove = function(pid) {
+	Export.remove = function(productRef) {
 		$.ajax({
 			url: config.base_url + 'achat/cart/remove',
 			type: "POST",
 			dataType: "html",
-			data: { productId: pid },
+			data: { "product_ref": productRef },
 			success: function(data) {
 				cartContainer.html(data);
 				cart.show();

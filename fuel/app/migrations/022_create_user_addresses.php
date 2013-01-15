@@ -8,6 +8,7 @@ class Create_user_addresses
 	{
 		\DBUtil::create_table('user_addresses', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
 			'firstname' => array('constraint' => 32, 'type' => 'varchar'),
 			'lastname' => array('constraint' => 32, 'type' => 'varchar'),
 			'address' => array('constraint' => 255, 'type' => 'varchar'),
