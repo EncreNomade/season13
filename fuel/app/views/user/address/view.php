@@ -1,32 +1,32 @@
-<h2>Viewing #<?php echo $user_address->id; ?></h2>
+<h2>Adresse</h2>
 
 <p>
-	<strong>Firstname:</strong>
-	<?php echo $user_address->firstname; ?></p>
+	<strong>Prénom :</strong>
+	<?php echo $user_address->firstname; ?>
+</p>
 <p>
-	<strong>Lastname:</strong>
-	<?php echo $user_address->lastname; ?></p>
+	<strong>Nom :</strong>
+	<?php echo $user_address->lastname; ?>
+</p>
 <p>
-	<strong>Address:</strong>
-	<?php echo $user_address->address; ?></p>
+	<strong>Adresse :</strong>
+	<?php echo $user_address->address; ?>
+</p>
 <p>
-	<strong>Postcode:</strong>
-	<?php echo $user_address->postcode; ?></p>
+	<strong>Code postal :</strong>
+	<?php echo $user_address->postcode; ?>
+</p>
 <p>
-	<strong>City:</strong>
-	<?php echo $user_address->city; ?></p>
+	<strong>Ville :</strong>
+	<?php echo $user_address->city; ?>
+</p>
 <p>
-	<strong>Country code:</strong>
-	<?php echo $user_address->country_code; ?></p>
+	<strong>Pays :</strong>
+	<?php echo Config::get("currencies." .$user_address->country_code. ".name"); ?>
+</p>
 <p>
-	<strong>Tel:</strong>
-	<?php echo $user_address->tel; ?></p>
-<p>
-	<strong>Title:</strong>
-	<?php echo $user_address->title; ?></p>
-<p>
-	<strong>Supp:</strong>
-	<?php echo $user_address->supp; ?></p>
+	<strong>Téléphone :</strong>
+	<?php echo $user_address->tel; ?>
+</p>
 
-<?php echo Html::anchor('user/address/edit/'.$user_address->id, 'Edit'); ?> |
-<?php echo Html::anchor('user/address', 'Back'); ?>
+<?php echo Html::anchor('user/address/edit/'.$user_address->id, '<button>Modifier</button>'); ?>

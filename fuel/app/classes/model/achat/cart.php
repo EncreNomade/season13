@@ -267,8 +267,6 @@ class Model_Achat_Cart extends \Orm\Model
 	    $cartproducts = Model_Achat_Cartproduct::find_by_cart_id($this->id);
 
 	    $cartproducts = Model_Achat_Cartproduct::query()->where('cart_id', $this->id)->get();
-	    // if(!is_null($cartproducts))
-	    // 	$cartproducts = is_array($cartproducts) ? $cartproducts : array($cartproducts);
 	    return $cartproducts;
 	}
 	

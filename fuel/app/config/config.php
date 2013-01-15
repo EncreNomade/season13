@@ -286,6 +286,7 @@ return array(
 		    'achat',
 		    'custom',
 		    'errormsgs',
+		    'currencies'
 		),
 
 		/**

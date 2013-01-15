@@ -39,8 +39,8 @@ class Model_User_Address extends Model
 		$val->add_field('city', 'City', 'required|max_length[64]');
 		$val->add_field('country_code', 'Country Code', 'required|max_length[2]');
 		$val->add_field('tel', 'Tel', 'required|max_length[16]');
-		$val->add_field('title', 'Title', 'required|max_length[32]');
-		$val->add_field('supp', 'Supp', 'required|max_length[255]');
+		$val->add_field('title', 'Title', 'max_length[32]');
+		$val->add_field('supp', 'Supp', 'max_length[255]');
 
 		return $val;
 	}

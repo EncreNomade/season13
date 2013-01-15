@@ -1,7 +1,4 @@
-<h2>Editing User_address</h2>
-<br>
+<h2>Edition adresse</h2>
 
 <?php echo render('user/address/_form'); ?>
-<p>
-	<?php echo Html::anchor('user/address/view/'.$user_address->id, 'View'); ?> |
-	<?php echo Html::anchor('user/address', 'Back'); ?></p>
+

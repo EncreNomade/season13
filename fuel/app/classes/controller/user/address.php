@@ -1,14 +1,6 @@
 <?php
-class Controller_User_Address extends Controller_Template 
+class Controller_User_Address extends Controller
 {
-
-	public function action_index()
-	{
-		$data['user_addresses'] = Model_User_Address::find('all');
-		$this->template->title = "User_addresses";
-		$this->template->content = View::forge('user/address/index', $data);
-
-	}
 
 	public function action_view($id = null)
 	{
@@ -16,53 +8,11 @@ class Controller_User_Address extends Controller_Template
 
 		is_null($id) and Response::redirect('User_Address');
 
-		$this->template->title = "User_address";
-		$this->template->content = View::forge('user/address/view', $data);
+		return View::forge('user/address/view', $data);
 
 	}
 
-	public function action_create()
-	{
-		if (Input::method() == 'POST')
-		{
-			$val = Model_User_Address::validate('create');
-			
-			if ($val->run())
-			{
-				$user_address = Model_User_Address::forge(array(
-					'firstname' => Input::post('firstname'),
-					'lastname' => Input::post('lastname'),
-					'address' => Input::post('address'),
-					'postcode' => Input::post('postcode'),
-					'city' => Input::post('city'),
-					'country_code' => Input::post('country_code'),
-					'tel' => Input::post('tel'),
-					'title' => Input::post('title'),
-					'supp' => Input::post('supp'),
-				));
-
-				if ($user_address and $user_address->save())
-				{
-					Session::set_flash('success', 'Added user_address #'.$user_address->id.'.');
-
-					Response::redirect('user/address');
-				}
-
-				else
-				{
-					Session::set_flash('error', 'Could not save user_address.');
-				}
-			}
-			else
-			{
-				Session::set_flash('error', $val->error());
-			}
-		}
-
-		$this->template->title = "User_Addresses";
-		$this->template->content = View::forge('user/address/create');
-
-	}
+	
 
 	public function action_edit($id = null)
 	{
@@ -81,14 +31,14 @@ class Controller_User_Address extends Controller_Template
 			$user_address->city = Input::post('city');
 			$user_address->country_code = Input::post('country_code');
 			$user_address->tel = Input::post('tel');
-			$user_address->title = Input::post('title');
-			$user_address->supp = Input::post('supp');
+			$user_address->title = 'defaut';
+			$user_address->supp = '';
 
 			if ($user_address->save())
 			{
 				Session::set_flash('success', 'Updated user_address #' . $id);
 
-				Response::redirect('user/address');
+				Response::redirect('user/address/view/' . $id);
 			}
 
 			else
@@ -114,15 +64,27 @@ class Controller_User_Address extends Controller_Template
 				Session::set_flash('error', $val->error());
 			}
 
-			$this->template->set_global('user_address', $user_address, false);
+			View::set_global('user_address', $user_address);
+			return View::forge('user/address/edit');
 		}
 
-		$this->template->title = "User_addresses";
-		$this->template->content = View::forge('user/address/edit');
+		View::set_global('user_address', $user_address);
+		return View::forge('user/address/edit');
+	}
+
+    /*
+    * index, delete and create methode are disabled
+ 	*/
+
+ 	public function action_index()
+	{	
+		$data = array();
+		$data['user_addresses'] = Model_User_Address::find('all');
+		return View::forge('user/address/index', $data);
 
 	}
 
-	public function action_delete($id = null)
+	private function action_delete($id = null)
 	{
 		if ($user_address = Model_User_Address::find($id))
 		{
@@ -140,5 +102,48 @@ class Controller_User_Address extends Controller_Template
 
 	}
 
+	private function action_create()
+	{
+		if (Input::method() == 'POST')
+		{
+			$val = Model_User_Address::validate('create');
+			
+			if ($val->run())
+			{
+				$user_address = Model_User_Address::forge(array(
+					'firstname' => Input::post('firstname'),
+					'lastname' => Input::post('lastname'),
+					'address' => Input::post('address'),
+					'postcode' => Input::post('postcode'),
+					'city' => Input::post('city'),
+					'country_code' => Input::post('country_code'),
+					'tel' => Input::post('tel'),
+					'title' => Input::post('title'),
+					'supp' => Input::post('supp') ? Input::post('supp') : '',
+				));
+
+				if ($user_address and $user_address->save())
+				{
+					Session::set_flash('success', 'Added user_address #'.$user_address->id.'.');
+
+					Response::redirect('user/address');
+				}
+
+				else
+				{
+					Session::set_flash('error', 'Could not save user_address.');
+				}
+			}
+			else
+			{
+				Session::set_flash('error', $val->error());
+			}
+		}
+
+		return View::forge('user/address/create');
+
+	}
+
 
 }
+
