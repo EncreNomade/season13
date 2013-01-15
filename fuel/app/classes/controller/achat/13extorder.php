@@ -1,16 +1,7 @@
 <?php
-class Controller_Achat_13extorder extends Controller_Season13
+class Controller_Achat_13extorder extends Controller_Backend
 {
     public $template = 'admin/template';
-    
-    public function before()
-    {
-    	parent::before();
-		
-		if( !Auth::member(100) ) {
-		    Response::redirect('404');
-		}
-    }
 
 	public function action_index()
 	{
