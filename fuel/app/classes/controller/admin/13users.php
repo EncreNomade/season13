@@ -1,26 +1,8 @@
 <?php
-class Controller_Admin_13users extends Controller_Template 
+class Controller_Admin_13users extends Controller_Backend 
 {
     public $template = 'admin/template';
-
-    public function before()
-    {
-    	parent::before();
-    	
-        // Assign current_user to the instance so controllers can use it
-		$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
-		
-		// Set a global variable so views can use it
-		View::set_global('current_user', $this->current_user);
-		View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
-		View::set_global('base_uri', Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/');
-
-		if ( ! Auth::member(100) )
-		{
-			Response::redirect('404');
-		}
-    }
-
+    
 	public function action_index()
 	{
 		$data['users'] = Model_13user::find('all');

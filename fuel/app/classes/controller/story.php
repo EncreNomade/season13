@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Story extends Controller_Template
+class Controller_Story extends Controller_Frontend
 {
     public $template = 'story/template';
     
@@ -69,21 +69,6 @@ class Controller_Story extends Controller_Template
             }
         }
         else return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
-    }
-    
-    public function before()
-    {
-    	parent::before();
-    	
-    	// Assign current_user to the instance so controllers can use it
-    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
-    	
-    	$this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : 'http://'.$_SERVER['HTTP_HOST'].'/';
-    	
-    	// Set a global variable so views can use it
-    	View::set_global('current_user', $this->current_user);
-    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
-    	View::set_global('base_url', $this->base_url);
     }
 
 	public function action_index($book = null, $season = null, $epid = null)
@@ -159,8 +144,6 @@ class Controller_Story extends Controller_Template
     	    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'/upgradenav');
     	}
 	}
-	
-	
 	
 	
 	public function action_webservice($book = null, $season = null, $episode = null)

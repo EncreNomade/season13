@@ -78,10 +78,11 @@ class Model_Achat_Cart extends \Orm\Model
 		return $val;
 	}
 	
-	public static function createCart($realip, $country_code = "FR", $user_id = null) {
+	public static function createCart($realip, $country_code, $user_id = null) {
 	    if(is_null($realip) || $realip == '0.0.0.0') {
 	        throw new CartException(Config::get('errormsgs.payment.4008'), 4008);
 	    }
+	    if(empty($country_code)) $country_code = "FR";
 	    
 	    // Find user
 	    if(!is_null($user_id)) {
@@ -143,13 +144,6 @@ class Model_Achat_Cart extends \Orm\Model
 	        throw new CartException(Config::get('errormsgs.payment.4007'), 4007);
 	    }
 	}
-
-	public function getCurrency() {
-		if(empty($this->currency)) {
-			$this->currency = Model_Achat_Currency::find_by_iso($this->currency_code);
-		}
-		return $this->currency;
-	}
 	
 	public static function getCurrentCart() {
 	    $current_cart = Session::get('current_cart');
@@ -157,6 +151,13 @@ class Model_Achat_Cart extends \Orm\Model
 	        return $current_cart;
 	    }
 	    else return false;
+	}
+
+	public function getCurrency() {
+		if(empty($this->currency)) {
+			$this->currency = Model_Achat_Currency::find_by_iso($this->currency_code);
+		}
+		return $this->currency;
 	}
 	
 	

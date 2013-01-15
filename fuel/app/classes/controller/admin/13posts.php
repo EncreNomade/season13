@@ -1,22 +1,6 @@
 <?php
-class Controller_Admin_13posts extends Controller_Template 
+class Controller_Admin_13posts extends Controller_Frontend
 {
-    public function before()
-    {
-    	parent::before();
-    	
-    	// Assign current_user to the instance so controllers can use it
-    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
-    	
-    	// Set a global variable so views can use it
-    	View::set_global('current_user', $this->current_user);
-    	View::set_global('remote_path', Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/');
-    	View::set_global('base_url', Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public' : "http://".$_SERVER['HTTP_HOST']."/");
-    	
-    	// Set supplementation css and js file
-        $this->template->css_supp = '';
-        $this->template->js_supp = '';
-    }
 
 	public function action_index()
 	{
@@ -36,6 +20,10 @@ class Controller_Admin_13posts extends Controller_Template
 
 	public function action_view($id = null)
 	{
+	    if ( !Auth::member(100) ) {
+	    	Response::redirect('404');
+	    }
+	    
 		$data['admin_13post'] = Model_Admin_13post::find($id);
 
 		is_null($id) and Response::redirect('Admin_13posts');
@@ -47,6 +35,10 @@ class Controller_Admin_13posts extends Controller_Template
 
 	public function action_create()
 	{
+	    if ( !Auth::member(100) ) {
+	    	Response::redirect('404');
+	    }
+	
 		if (Input::method() == 'POST')
 		{
 			$val = Model_Admin_13post::validate('create');
@@ -87,6 +79,10 @@ class Controller_Admin_13posts extends Controller_Template
 
 	public function action_edit($id = null)
 	{
+	    if ( !Auth::member(100) ) {
+	    	Response::redirect('404');
+	    }
+	
 		is_null($id) and Response::redirect('Admin_13posts');
 
 		$admin_13post = Model_Admin_13post::find($id);
@@ -139,6 +135,10 @@ class Controller_Admin_13posts extends Controller_Template
 
 	public function action_delete($id = null)
 	{
+	    if ( !Auth::member(100) ) {
+	    	Response::redirect('404');
+	    }
+	
 		if ($admin_13post = Model_Admin_13post::find($id))
 		{
 			$admin_13post->delete();
