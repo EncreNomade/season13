@@ -37,22 +37,22 @@ class Model_Achat_Order extends \Orm\Model
 	    }
 	    
 	    // Cart already ordered
-	    if($cart->ordered) 
-	        return false;
+	    //if($cart->ordered) 
+	    //    return false;
 	    // User not defined in cart
 	    if(empty($cart->user_id))
 	        return false;
 	
 	    $order = self::forge(array(
-	        'user_id' : $cart->user_id,
-	        'user_addr' : "",
-	        'cart_id' : $cart->id,
-	        'country_code' : $cart->country_code,
-	        'state' : "ORDER",
-	        'secure_key' : $cart->secure_key,
-	        'payment' : "",
-	        'total_paid_taxed' : 0,
-	        'currency_code' : $cart->currency_code
+	        'user_id' => $cart->user_id,
+	        'user_addr' => "",
+	        'cart_id' => $cart->id,
+	        'country_code' => $cart->country_code,
+	        'state' => "ORDER",
+	        'secure_key' => $cart->secure_key,
+	        'payment' => "",
+	        'total_paid_taxed' => 0,
+	        'currency_code' => $cart->currency_code
 	    ));
 	    
 	    if($order && $order->save()) {

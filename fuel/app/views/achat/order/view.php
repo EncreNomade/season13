@@ -1,14 +1,12 @@
 <div class="main_container">
-
-<?php if($current_user): ?>
     
     <div id="order-detail">
         <table border="1" class="products">
-            <th>
-            	<td>Titre</td>
-            	<td>Prix</td>
-            	<td>Action</td>
-            </th>
+            <tr>
+            	<th>Titre</th>
+            	<th>Prix</th>
+            	<th>Action</th>
+            </tr>
             
     	    <?php foreach ($products as $p): ?>
     		<tr>
@@ -19,7 +17,9 @@
     	    <?php endforeach; ?>
     	</table>
     </div>
-    
+
+<?php if($current_user): ?>
+
     <div id="order-adresse">
         <?php View::forge('user/adresse/view', $user_adresse); ?>
     </div>

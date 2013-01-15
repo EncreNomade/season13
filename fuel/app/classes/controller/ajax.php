@@ -1,15 +1,21 @@
 <?php
 
 /**
- * The Basic Frontend View Controller.
+ * The Basic Ajax View Controller.
  */
-class Controller_Frontend extends Controller_Season13
+class Controller_Ajax extends Controller
 {
     protected $cart;
-
+    
     public function before()
     {        
     	parent::before();
+    	
+    	// Assign current_user to the instance so controllers can use it
+    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+    
+        $this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
+        $this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
     	
         // Get cart if cart not exist
         if(!isset($this->cart)) {
@@ -27,10 +33,14 @@ class Controller_Frontend extends Controller_Season13
                 if( $this->current_user )
                     $current_cart->setUser($this->current_user->id);
             }
+            
             $this->cart = $current_cart;
         }
     	
     	// Set a global variable so views can use it
+    	View::set_global('current_user', $this->current_user);
+    	View::set_global('remote_path', $this->remote_path);
+    	View::set_global('base_url', $this->base_url);
     	View::set_global('cart', $this->cart);
     }
 }

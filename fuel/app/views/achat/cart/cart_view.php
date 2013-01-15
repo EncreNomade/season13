@@ -23,7 +23,8 @@
 			<?php // echo DB::last_query() ?>
 		</div>
 	<?php endforeach; ?>
-	<?php echo Html::anchor('achat/order/view', '<button>Payer</button>'); ?>
+
+	<div><?php echo Html::anchor('achat/order/view', '<button>Payer</button>'); ?></div>
 <?php endif; ?>
 
 

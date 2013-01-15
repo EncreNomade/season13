@@ -104,6 +104,9 @@ class Model_Achat_Cart extends \Orm\Model
         	        // Init cart
         	        $cart = self::find($tokenarr['cart']);
         	        if($cart) {
+        	            // Set user
+        	            if( $user )
+        	                $cart->setUser($user->id);
             	        // Update cookie
             	        Cookie::set('cart_token', $token, self::$token_expire_time);
             	        Session::set('current_cart', $cart);
@@ -172,15 +175,13 @@ class Model_Achat_Cart extends \Orm\Model
 	}
 	
 	public function setUser($user_id) {
-	    // User id already exist
-	    if(!empty($this->user_id))
-	        return false;
-	        
 	    $user = Model_13user::find($user_id);
 	    if(is_null($user)) {
 	        throw new CartException(Config::get('errormsgs.payment.4010')." (Error code : 4010)");
 	    }
 	    $this->user = $user;
+	    $this->user_id = $user_id;
+	    $this->save();
 	    
 	    return true;
 	}
