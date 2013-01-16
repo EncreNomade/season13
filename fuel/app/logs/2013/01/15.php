@@ -24,3 +24,7 @@ Error - 2013-01-15 16:52:39 --> 8 - Trying to get property of non-object in /Use
 Error - 2013-01-15 16:53:00 --> 2 - array_key_exists() expects parameter 2 to be array, string given in /Users/panda/Sites/season13/fuel/packages/orm/classes/model.php on line 621
 Error - 2013-01-15 16:54:15 --> 8 - Trying to get property of non-object in /Users/panda/Sites/season13/fuel/app/views/user/address/view.php on line 5
 Error - 2013-01-15 16:56:08 --> 8 - Trying to get property of non-object in /Users/panda/Sites/season13/fuel/app/views/user/address/view.php on line 5
+Error - 2013-01-15 17:42:33 --> 8 - Trying to get property of non-object in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 32
+Error - 2013-01-15 17:44:44 --> Error - The product don't have default price (FR) Error code : 4502 in /Users/panda/Sites/season13/fuel/app/classes/model/achat/13product.php on line 156
+Error - 2013-01-15 20:21:58 --> Parsing Error - syntax error, unexpected T_THROW in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 110
+Error - 2013-01-15 20:22:26 --> Parsing Error - syntax error, unexpected T_THROW in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 110

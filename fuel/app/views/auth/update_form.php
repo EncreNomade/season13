@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo $remote_path; ?>base/update">
+<form id="updateForm" method="post" action="<?php echo $remote_path; ?>base/update">
     <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
     <div class="section">
         <div class="sep_line">

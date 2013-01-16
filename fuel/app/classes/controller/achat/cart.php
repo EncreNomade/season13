@@ -35,8 +35,6 @@ class Controller_Achat_Cart extends Controller_Ajax {
             Session::set_flash('cart_error', $e->getMessage().".");
         }
 
-
         return View::forge('achat/cart/cart_view', $data);
     }
 }
-

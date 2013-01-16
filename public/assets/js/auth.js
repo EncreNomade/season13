@@ -8,7 +8,7 @@ function hideDialog(dialog) {
 function showSignup() {
     $('.dialog').removeClass('show');
     $('#signup_dialog').addClass('show');
-    var $this = $(this);
+    var $this = $('#open_signup');
     $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
     $this.removeClass('inactive');
     addCountries($('#signupPays'));
@@ -16,7 +16,7 @@ function showSignup() {
 function showLogin() {
     $('.dialog').removeClass('show');
     $('#login_dialog').addClass('show');
-    var $this = $(this);
+    var $this = $('#open_login');
     $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
     $this.removeClass('inactive');
 }
@@ -24,7 +24,7 @@ function showChPass() {
     $('.dialog').removeClass('show');
     $('#change_pass_dialog').addClass('show');
     $('#change_pass_dialog').find('cite').text("").removeClass('alert');
-    var $this = $(this);
+    var $this = $('#open_login');
     $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
     $this.removeClass('inactive');
 }
@@ -32,14 +32,14 @@ function showLinkFb() {
     $('.dialog').removeClass('show');
     $('#link_fb_dialog').addClass('show');
     $('#link_fb_dialog').find('cite').text("").removeClass('alert');
-    var $this = $(this);
+    var $this = $('#open_login');
     $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
     $this.removeClass('inactive');
 }
 function showUpdate() {
     $('.dialog').removeClass('show');
     $('#update_dialog').addClass('show');
-    var $this = $(this);
+    var $this = $('#user_id');
     $this.siblings(':not(.text_sep_vertical)').addClass('inactive');
     $this.removeClass('inactive');
     addCountries($('#updatePays'));
@@ -153,9 +153,9 @@ function init() {
         }
     };
     // Prepare ajax form
-    $('#signup_dialog form').ajaxForm(options);
+    $('#signupForm').ajaxForm(options);
     $('#signupBtn').click(function(e) {
-        $('#signup_dialog').find('cite, label').removeClass('alert');
+        $('#signupForm').find('cite, label').removeClass('alert');
 
         // Check fields
         var name = $('#signupId').val();
@@ -188,11 +188,13 @@ function init() {
         if(!valid) e.preventDefault();
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
-        fuel_set_csrf_token($('#signup_dialog form').get(0));
+        $('#signupForm').each(function() {
+            fuel_set_csrf_token(this);
+        });
     });
     
     // Facebook signup
-    $('#signup_dialog .fb_btn').click(function(){    
+    $('#signupForm .fb_btn').click(function(){    
         FB.login(function(response) {
             if (response.status == 'connected') {                
                 var fbToken = response.authResponse.accessToken;
@@ -266,7 +268,7 @@ function init() {
             }
         });
     }
-    $('#login_dialog .fb_btn').click(function(){
+    $('#loginForm .fb_btn').click(function(){
         fbapi.connect(fb_logged);
     });
     
@@ -314,9 +316,9 @@ function init() {
         }
     };
     // Prepare ajax form
-    $('#link_fb_dialog form').ajaxForm(options);
+    $('#linkFbForm').ajaxForm(options);
     $('#linkfbBtn').click(function(e) {
-        $('#link_fb_dialog').find('cite, label').removeClass('alert');
+        $('#linkFbForm').find('cite, label').removeClass('alert');
 
         // Check fields
         var name = $('#linkfbId').val();
@@ -334,12 +336,12 @@ function init() {
         $('#linkfbToken').prop('value', fbapi.token);
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
-        fuel_set_csrf_token($('#link_fb_dialog form').get(0));
+        fuel_set_csrf_token($('#linkFbForm').get(0));
     });
     
     
     
-    $('#login_dialog form').submit(function(e) {
+    $('#loginForm').submit(function(e) {
         // Stop full page load
         e.preventDefault();
 
@@ -415,12 +417,12 @@ function init() {
         }
     };
     // Prepare ajax form
-    $('#change_pass_dialog form').ajaxForm(options);
+    $('#chPassForm').ajaxForm(options);
     $('#chPassBtn').click(function(e) {
-        $('#change_pass_dialog').find('cite, label').removeClass('alert');
+        $('#chPassForm').find('cite, label').removeClass('alert');
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
-        fuel_set_csrf_token($('#change_pass_dialog form').get(0));
+        fuel_set_csrf_token($('#chPassForm').get(0));
     });
     
     
@@ -450,9 +452,9 @@ function init() {
         }
     };
     // Prepare ajax form
-    $('#update_dialog form').ajaxForm(options);
+    $('#updateForm').ajaxForm(options);
     $('#updateBtn').click(function(e) {
-        $('#update_dialog').find('cite, label').removeClass('alert');
+        $('#updateForm').find('cite, label').removeClass('alert');
 
         // Check fields
         var pass = $('#updatePass').val();
@@ -478,7 +480,7 @@ function init() {
         if(!valid) e.preventDefault();
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
-        fuel_set_csrf_token($('#update_dialog form').get(0));
+        fuel_set_csrf_token($('#updateForm').get(0));
     });
     
     

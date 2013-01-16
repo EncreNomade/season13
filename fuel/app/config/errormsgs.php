@@ -96,6 +96,10 @@ return array(
 	    4102 => "Parametre payment invalid",
 	    4103 => "Order invalid (Cart haven't been passed to order)",
 	    4104 => "Order content (cart) can't be found",
+	    4105 => "Content of order haven't been correctly saved, see \$order->fails",
+	    4106 => "No owner for this order",
+	    4107 => "User address not given",
+	    4108 => "Order state error (order has been finalized, canceled or returned)",
 
 	    // product
 	    4501 => "The product is referencing unknown episode",

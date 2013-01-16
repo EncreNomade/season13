@@ -10,6 +10,9 @@ class Controller_Achat_Order extends Controller_Frontend
 	    if($this->cart) {
 	        $products = $this->cart->getProducts();
 	        $currency = $this->cart->getCurrency();
+	        $total = $this->cart->addition();
+	        $ht = round($total * (1 - $this->cart->tax_rate/100), 2);
+	        $tax = $total - $ht;
 	        
 	        if($this->current_user) {
     	        // Order the cart
@@ -23,6 +26,9 @@ class Controller_Achat_Order extends Controller_Frontend
     	            $data = array(
     	                'order' => $order,
     	                'cart' => $this->cart,
+    	                'total' => $total,
+    	                'ht' => $ht,
+    	                'tax' => $tax,
     	                'products' => $products,
     	                'currency' => $currency,
     	            );
@@ -38,6 +44,9 @@ class Controller_Achat_Order extends Controller_Frontend
 	        else {
 	            $data = array(
 	                'cart' => $this->cart,
+	                'total' => $total,
+	                'ht' => $ht,
+	                'tax' => $tax,
 	                'products' => $products,
 	                'currency' => $currency,
 	            );

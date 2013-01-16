@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo $remote_path; ?>base/signup_normal">
+<form id="signupForm" method="post" action="<?php echo $remote_path; ?>base/signup_normal">
     <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
     <!--<div class="section">
         <h5>En t’inscrivant, tu recevras 2 fois par semaine, le mercredi et le samedi, un nouvel épisode de ta série Voodoo Connection !</h5>
