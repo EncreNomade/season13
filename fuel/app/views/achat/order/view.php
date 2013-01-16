@@ -1,7 +1,8 @@
 <div class="main_container">
 
     <br/>
-    <br/>
+    
+    <h1>Récapitulatif de la commande</h1>
     
     <div id="order-detail">
         <table border="1" class="products">
@@ -47,6 +48,9 @@
     </div>
     
     <div id="order-payment">
+        <a href="<?php echo $base_url; ?>achat/order/passCommande">
+            <?php echo Asset::img('season13/btn_buynow_paypal.gif'); ?>
+        </a>
     </div>
     
 <?php else: ?>

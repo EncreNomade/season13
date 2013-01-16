@@ -82,7 +82,9 @@ class Model_Achat_Cart extends \Orm\Model
 	    if(is_null($realip) || $realip == '0.0.0.0') {
 	        throw new CartException(Config::get('errormsgs.payment.4008'), 4008);
 	    }
-	    if(empty($country_code)) $country_code = "FR";
+	    // Default country code
+	    if(empty($country_code) || trim($country_code) == "") 
+	        $country_code = "FR";
 	    
 	    // Find user
 	    $user = null;
