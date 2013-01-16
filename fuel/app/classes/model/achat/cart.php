@@ -109,7 +109,7 @@ class Model_Achat_Cart extends \Orm\Model
         	                $cart->setUser($user->id);
             	        // Update cookie
             	        Cookie::set('cart_token', $token, self::$token_expire_time);
-            	        Session::set('current_cart', $cart);
+            	        Session::set('current_cart', $cart->id);
             	        return $cart;
         	        }
         	    }
@@ -139,7 +139,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    if( $cart and $cart->save() ) {
 	        $cookieValue = self::cryptToken($realip, $cart->id, $user_id);
 	        Cookie::set('cart_token', $cookieValue, self::$token_expire_time);
-	        Session::set('current_cart', $cart);
+	        Session::set('current_cart', $cart->id);
 	    
 	        return $cart;
 	    }
@@ -149,9 +149,12 @@ class Model_Achat_Cart extends \Orm\Model
 	}
 	
 	public static function getCurrentCart() {
-	    $current_cart = Session::get('current_cart');
-	    if($current_cart) {
-	        return $current_cart;
+	    $current_cart_id = Session::get('current_cart');
+	    if($current_cart_id) {
+	        $current_cart = self::find($current_cart_id);
+	        if($current_cart)
+	            return $current_cart;
+	        else return false;
 	    }
 	    else return false;
 	}

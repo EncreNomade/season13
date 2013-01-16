@@ -14,6 +14,7 @@ return array(
 	    5 => 'offer_nopayment',
 	    6 => 'fblike',
 	    7 => 'external_order',
+	    8 => 'season13_order',
 	),
 	
 	'fbapp' => array(
