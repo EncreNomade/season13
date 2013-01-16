@@ -85,6 +85,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    if(empty($country_code)) $country_code = "FR";
 	    
 	    // Find user
+	    $user = null;
 	    if(!is_null($user_id)) {
 	        $user = Model_13user::find($user_id);
 	        if(is_null($user)) {

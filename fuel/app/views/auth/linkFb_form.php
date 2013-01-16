@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo $remote_path; ?>base/link_fb">
+<form id="linkFbForm" method="post" action="<?php echo $remote_path; ?>base/link_fb">
     <?php echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token()); ?>
     <?php echo Form::hidden('fb_token', Input::post('fb_token', ''), array('id' => 'linkfbToken')); ?>
     <div class="section">

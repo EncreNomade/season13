@@ -30,7 +30,7 @@ class Model_Achat_Order extends \Orm\Model
 	    // Existed order
 	    $current_order_id = Session::get('current_order');
 	    $current_order = self::find($current_order_id);
-	    if($current_order && $current_order->secure_key == $cart->secure_key) {
+	    if(isset($current_order->secure_key) && $current_order->secure_key == $cart->secure_key) {
 	        // Lock cart
 	        $cart->ordered = 1;
 	        
@@ -73,12 +73,15 @@ class Model_Achat_Order extends \Orm\Model
 	
 	public static function getCurrentOrder() {
 	    $current_order_id = Session::get('current_order');
-	    $current_order = self::find($current_order_id);
+	    if($current_order_id) {
+	        $current_order = self::find($current_order_id);
 	    
-	    $current_cart = Model_Achat_Cart::getCurrentCart();
-	    
-	    if($current_order && $current_cart && $current_order->secure_key == $current_cart->secure_key) {
-	        return $current_order;
+	        $current_cart = Model_Achat_Cart::getCurrentCart();
+	        
+	        if($current_order && $current_cart && $current_order->secure_key == $current_cart->secure_key) {
+	            return $current_order;
+	        }
+	        else return false;
 	    }
 	    else return false;
 	}
