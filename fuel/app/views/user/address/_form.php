@@ -1,4 +1,7 @@
-<?php echo Form::open(); ?>
+<?php 
+	$url = isset($user_address) ? 'user/address/edit/'.$user_address->id : 'user/address/create';
+	echo Form::open($url); 
+?>
 	<fieldset>
 		<div class="clearfix">
 			<?php echo Form::label('Prénom', 'firstname'); ?>
@@ -66,7 +69,17 @@
 			</div>
 		</div>
 		<div class="actions">
-			<?php echo Form::submit('submit', 'Valider', array('class' => 'btn btn-primary')); ?>
+			<?php 
+				if (isset($requestType)) {
+					if($requestType == "create")
+						echo Form::submit('submit', 'Envoyer', array('id' => 'sendCreateAddress',
+																	 'class' => 'btn btn-primary'));
+				}
+				else
+					echo Form::submit('submit', 'Valider', array('id' => 'sendModifyAddress',
+																 'class' => 'btn btn-primary')); 
+
+			?>
 
 		</div>
 	</fieldset>

@@ -1,26 +1,43 @@
 <?php
-class Controller_User_Address extends Controller
+class Controller_User_Address extends Controller_Ajax
 {
+	private function getUserAdress($id) {
+		if(is_null($id))
+			return null;
+
+		$user_address = Model_User_Address::find($id);
+		if(is_null($this->current_user) || is_null($user_address) || $this->current_user->id != $user_address->user_id)
+			return null;
+		else
+			return $user_address;
+	}
 
 	public function action_view($id = null)
 	{
-		$data['user_address'] = Model_User_Address::find($id);
+		$user_address = $this->getUserAdress($id);
 
-		is_null($id) and Response::redirect('User_Address');
+		if(!$user_address) {
+			Response::redirect('404');
+		}
 
+		$data['user_address'] = $user_address;
 		return View::forge('user/address/view', $data);
-
 	}
 
 	
 
 	public function action_edit($id = null)
 	{
-		is_null($id) and Response::redirect('User_Address');
+		$user_address = $this->getUserAdress($id);
+
+		if(!$user_address) {
+			Response::redirect('404');
+		}
 
 		$user_address = Model_User_Address::find($id);
-
-		$val = Model_User_Address::validate('edit');
+		$val = Model_User_Address::validate('edit');		
+		$val->set_message('required', 'Tu dois remplir :label');
+		$val->set_message('max_length', ':label ne doit pas dépasser :param:1 caractères');		
 
 		if ($val->run())
 		{
@@ -60,7 +77,7 @@ class Controller_User_Address extends Controller
 				$user_address->tel = $val->validated('tel');
 				$user_address->title = $val->validated('title');
 				$user_address->supp = $val->validated('supp');
-
+		
 				Session::set_flash('error', $val->error());
 			}
 
@@ -72,16 +89,66 @@ class Controller_User_Address extends Controller
 		return View::forge('user/address/edit');
 	}
 
+
+	public function action_create()
+	{
+		if(isset($this->current_user)) {
+			if (Input::method() == 'POST')
+			{
+				Input::post('user_id', $this->current_user->id);
+				$val = Model_User_Address::validate('create');
+				$val->set_message('required', 'Tu dois remplir :label');
+				$val->set_message('max_length', ':label ne doit pas dépasser :param:1 caractères');		
+				
+				if ($val->run())
+				{
+					$user_address = Model_User_Address::forge(array(
+						'user_id' => $this->current_user->id,
+						'firstname' => Input::post('firstname'),
+						'lastname' => Input::post('lastname'),
+						'address' => Input::post('address'),
+						'postcode' => Input::post('postcode'),
+						'city' => Input::post('city'),
+						'country_code' => Input::post('country_code'),
+						'tel' => Input::post('tel'),
+						'title' => 'defaut',
+						'supp' => ''
+					));
+
+					if ($user_address and $user_address->save())
+					{
+						Session::set_flash('success', 'Added user_address #'.$user_address->id.'.');
+
+						Response::redirect('user/address/view/'.$user_address->id);
+					}
+
+					else
+					{
+						Session::set_flash('error', 'Could not save user_address.');
+					}
+				}
+				else
+				{
+					Session::set_flash('error', $val->error());
+				}
+			}
+		}
+		else {
+			Session::set_flash('error', 'Tu dois être inscrit et connecté pour enregistré une adresse');
+		}
+
+		return View::forge('user/address/create');
+	}
+
     /*
     * index, delete and create methode are disabled
  	*/
 
- 	public function action_index()
+ 	private function action_index()
 	{	
 		$data = array();
 		$data['user_addresses'] = Model_User_Address::find('all');
 		return View::forge('user/address/index', $data);
-
 	}
 
 	private function action_delete($id = null)
@@ -102,46 +169,6 @@ class Controller_User_Address extends Controller
 
 	}
 
-	private function action_create()
-	{
-		if (Input::method() == 'POST')
-		{
-			$val = Model_User_Address::validate('create');
-			
-			if ($val->run())
-			{
-				$user_address = Model_User_Address::forge(array(
-					'firstname' => Input::post('firstname'),
-					'lastname' => Input::post('lastname'),
-					'address' => Input::post('address'),
-					'postcode' => Input::post('postcode'),
-					'city' => Input::post('city'),
-					'country_code' => Input::post('country_code'),
-					'tel' => Input::post('tel'),
-					'title' => Input::post('title'),
-					'supp' => Input::post('supp') ? Input::post('supp') : '',
-				));
-
-				if ($user_address and $user_address->save())
-				{
-					Session::set_flash('success', 'Added user_address #'.$user_address->id.'.');
-
-					Response::redirect('user/address');
-				}
-
-				else
-				{
-					Session::set_flash('error', 'Could not save user_address.');
-				}
-			}
-			else
-			{
-				Session::set_flash('error', $val->error());
-			}
-		}
-
-		return View::forge('user/address/create');
-	}
 
 
 }

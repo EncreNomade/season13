@@ -31,10 +31,10 @@
     	<?php echo $user_address->tel; ?>
     </p>
     
-    <?php echo Html::anchor('user/address/edit/'.$user_address->id, '<button>Modifier</button>'); ?>
+    <button id="askModifyAddress" data-addr_id="<?php echo $user_address->id ?>">Modifier</button>
 
 <?php else: ?>
 
-    <?php echo render('user/address/_form'); ?>
+    <?php echo render('user/address/create'); ?>
     
 <?php endif; ?>
