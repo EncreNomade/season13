@@ -51,7 +51,7 @@
 			$selectedItem = Input::post('country_code', isset($user_address) ? $user_address->country_code : 'FR');
 			foreach ($countries as $country_code => $country) {
 				$data[$country_code] = $country['name'];
-			}			
+			}
 		?>
 		<div class="clearfix">
 			<?php echo Form::label('Pays', 'country_code'); ?>

@@ -52,7 +52,7 @@
 <?php else: ?>
     
     <div id="order-login">
-        <h5>Tu dois te connecter ou t'inscrire d'abord avec les bouttons en haut à droite de la page.</h5>
+        <h5>Tu dois <a href="javascript:showLogin()">te connecter</a> ou <a href="javascript:showSignup()">t'inscrire</a> d'abord avec les bouttons en haut à droite de la page.</h5>
         <script type="text/javascript">
             $(document).ready(showLogin);
         </script>
