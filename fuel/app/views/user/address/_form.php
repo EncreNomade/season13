@@ -23,7 +23,7 @@
 			<?php echo Form::label('Adresse', 'address'); ?>
 
 			<div class="input">
-				<?php echo Form::input('address', Input::post('address', isset($user_address) ? $user_address->address : ''), array('class' => 'span4')); ?>
+				<?php echo Form::textarea('address', Input::post('address', isset($user_address) ? $user_address->address : ''), array('class' => 'span4')); ?>
 
 			</div>
 		</div>

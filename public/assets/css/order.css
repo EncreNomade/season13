@@ -1,0 +1,96 @@
+#order_container {	
+	margin: 30px auto;
+	width: 600px;
+}
+
+/*
+*	ORDER DETAIL
+*/
+#order_container h1 {
+	text-align: center;
+}
+
+#order-detail table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#order-detail td, #order-detail th{
+	padding: 5px;
+	border-color: rgb(184, 184, 184);
+}
+
+#order-detail thead th {
+	color: white;
+	text-shadow: 1px 1px 4px #333;
+	height: 35px;
+	text-transform: uppercase;
+
+	background-image: linear-gradient(bottom, rgb(112,112,112) 0%, rgb(179,179,179) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(112,112,112) 0%, rgb(179,179,179) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(112,112,112) 0%, rgb(179,179,179) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(112,112,112) 0%, rgb(179,179,179) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(112,112,112) 0%, rgb(179,179,179) 100%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(112,112,112)),
+		color-stop(1, rgb(179,179,179))
+	);
+
+	background-color: rgb(146, 146, 146);
+}
+
+#order-detail tbody td, #order-detail tfoot td {
+	text-align: center;
+}
+#order-detail tbody td:first-child, 
+#order-detail tfoot td:first-child {
+	text-align: left;
+}
+
+#order-detail tfoot {
+	border-top: solid 1px black;
+}
+
+/*
+*	ORDER ADDRESS
+*/
+/* form */
+#order-adresse form label {
+	float: left;
+	width: 100px;
+	font-weight: bold;
+}
+
+#order-adresse form .inputs input, #order-adresse form .inputs label {
+	padding: 3px;
+}
+
+#order-adresse form .clearfix {
+	clear: both;
+}
+
+#order-adresse form select {
+	max-width: 200px;
+}
+#order-adresse form .actions, .addr_info .actions {
+	text-align: center;
+	margin-top: 15px;
+}
+
+/* view */
+#order-adresse p {
+	margin: 5px;
+}
+#order-adresse .addr_info {
+	border: 2px groove threedface;
+	padding: 0px 6px 10px 6px;
+}
+.addr_info strong {
+	float: left;
+	width: 100px;
+}

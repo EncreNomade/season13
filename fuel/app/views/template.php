@@ -26,7 +26,8 @@
 	    echo Asset::css('BebasNeue.css');
 	    echo Asset::css('DroidSans.css');
 	    echo Asset::css('template.css');
-	    echo Asset::css('dialog_auth_msg.css');
+        echo Asset::css('dialog_auth_msg.css');
+	    echo Asset::css('cart.css');
 	    if(isset($css_supp)) echo Asset::css($css_supp);
 	    echo Asset::js('lib/jquery-latest.js');
 	    echo Asset::js('lib/jquery.scrollTo-1.4.2-min.js');
@@ -132,7 +133,7 @@
         <li id="logout">LOGOUT</li>
 <?php endif; ?>
         <li class="text_sep_vertical"></li>
-        <li id="cart"><?php echo Asset::img("season13/ui/cart.png") ?></li>
+        <li id="cart"><?php echo Asset::img("season13/ui/cart.png") ?><span></span></li>
     </ul>
     
 <?php if($current_user == null): ?>

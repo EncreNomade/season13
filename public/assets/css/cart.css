@@ -1,0 +1,50 @@
+.cart_product {
+	padding: 5px;
+	border-bottom: solid 1px #BEBEBE;
+	margin-bottom: 10px;
+	min-height: 50px;
+}
+
+.cart_product h3 {
+	margin: 0;
+}
+
+.cart_product .imgContainer {
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin: 5px 10px 5px 5px;
+}
+
+
+.cart_product .remove_product {
+	float: right;
+	height: 50px;
+	margin: 5px 5px 5px 10px;
+}
+
+.cart_product img {
+	width: 50px;
+}
+
+/*	old price after discount  */
+.cart_product del {
+	color: gray;
+}
+
+.pay_button {
+	text-align: center;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.cart_container .total {
+	text-align: center;
+	clear: both;
+}
+
+/*	Cart notifier  */
+#cart span {	
+	position: absolute;
+	bottom: 0;
+}

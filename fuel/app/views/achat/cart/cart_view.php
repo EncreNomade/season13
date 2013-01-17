@@ -1,5 +1,5 @@
 <?php 
-	$products = $cart->getProducts();
+	$cartProducts = $cart->getProducts();
 	$flash = Session::get_flash('cart_error');
 	$sign = $cart->getCurrency()->sign;
 	Session::delete_flash('cart_error');
@@ -12,19 +12,44 @@
 	</div>
 <?php endif; ?>
 
-<?php if(empty($products)): ?>
+<?php if(empty($cartProducts)): ?>
 	<p><strong>Votre panier est vide.</strong></p>
 <?php else: ?>
-	<?php foreach ($products as $p): ?>
+	<?php foreach ($cartProducts as $cartProd): ?>
+		<?php  
+			$product = $cartProd->product;
+			if ($imgs = $product->getImages()) {
+				$image = $imgs[0];
+			}
+		?>
 		<div class="cart_product">
-			<p><strong><?php echo $p->product_title ;?></strong></p>
-			<p>prix : <?php echo $p->taxed_price . $sign ;?></p>
-			<p><button class="remove_product" data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></p>
-			<?php // echo DB::last_query() ?>
+			<div class="imgContainer">
+				<?php if(isset($image)) echo "<img src=\"$image\" />"; ?>
+			</div>
+			<div class="remove_product">
+				<button data-productref="<?php echo $product->reference ;?>">Supprimer</button>
+			</div>
+			<div class="product_info">
+				<h3><?php echo $cartProd->product_title ;?></h3>
+				<?php 
+					$price = '';
+					if(floatval($cartProd->discount) < 1){
+						$price .= '<del>' . $cartProd->taxed_price . '</del> &rarr; ';
+						$newPrice = floatval($cartProd->discount) * floatval($cartProd->taxed_price);
+						$price .=  round($newPrice, 2);
+					}
+					else {
+						$price .= $cartProd->taxed_price;
+					}
+					$price .= $sign;
+				?>
+				<i><?php echo $price;?></i>
+			</div>			
 		</div>
 	<?php endforeach; ?>
+	<div class="total">Total : <strong><?php echo $cart->addition() . $sign; ?></strong></div>
 
-	<div><?php echo Html::anchor('achat/order/view', '<button>Payer</button>'); ?></div>
+	<div class="pay_button"><?php echo Html::anchor('achat/order/view', '<button>Payer</button>'); ?></div>
 <?php endif; ?>
 
 

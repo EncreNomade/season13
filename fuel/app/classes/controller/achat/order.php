@@ -6,6 +6,7 @@ class Controller_Achat_Order extends Controller_Frontend
     public function action_view()
 	{
         $this->template->js_supp = 'order.js';
+        $this->template->css_supp = 'order.css';
 
 	    if($this->cart) {
 	        $products = $this->cart->getProducts();
