@@ -21,7 +21,7 @@
 	<meta property="og:description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
 	<meta property="fb:app_id" content="141570392646490" />
 	
-	<title><?php echo $title; ?></title>
+	<title><?php if(isset($title)) echo $title; ?></title>
 	<?php
 	    echo Asset::css('BebasNeue.css');
 	    echo Asset::css('DroidSans.css');
@@ -168,7 +168,7 @@
         </div>
     </div>
     	    
-<?php echo $content; ?>
+<?php if(isset($content)) echo $content; ?>
 
 	<footer>
 	    <ul>

@@ -321,8 +321,8 @@ class Model_Achat_Cart extends \Orm\Model
         $cartproducts = $this->getProducts();
         $total = 0;
         foreach ($cartproducts as $product) {
-            $total += $product->discount * $product->taxed_price;
+            $total += $product->getRealPrice();
         }
-        return round($total, 2);
+        return $total;
     }
 }

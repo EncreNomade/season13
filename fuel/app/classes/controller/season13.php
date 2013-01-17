@@ -13,7 +13,7 @@ class Controller_Season13 extends Controller_Template
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
 
         $this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
-        $this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
+        $this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);

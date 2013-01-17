@@ -12,7 +12,8 @@ class Model_Achat_Order extends \Orm\Model
 		'secure_key',
 		'payment',
 		'total_paid_taxed',
-		'currency_code'
+		'currency_code',
+		'transaction_infos',
 	);
 
 	protected static $_observers = array(
@@ -53,7 +54,8 @@ class Model_Achat_Order extends \Orm\Model
 	        'secure_key' => $cart->secure_key,
 	        'payment' => "",
 	        'total_paid_taxed' => 0,
-	        'currency_code' => $cart->currency_code
+	        'currency_code' => $cart->currency_code,
+	        'transaction_infos' => Format::forge(array())->to_json(),
 	    ));
 	    
 	    if($order && $order->save()) {
@@ -127,7 +129,7 @@ class Model_Achat_Order extends \Orm\Model
 	}
 	
 	
-	public function finalize($paid) {
+	public function finalize($paid, $transaction_infos) {
 	    // Verification
 	    if(empty($this->cart->user_id))
 	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
@@ -178,6 +180,7 @@ class Model_Achat_Order extends \Orm\Model
 	    }
 	    
 	    $this->state = "FINALIZE";
+	    $this->transaction_infos = Format::forge($transaction_infos)->to_json();
 	    $this->save();
 	    // Successfully set the user possesion
 	    if(count($fails) == 0) {

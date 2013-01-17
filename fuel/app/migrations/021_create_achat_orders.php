@@ -17,6 +17,7 @@ class Create_achat_orders
 			'payment' => array('constraint' => 10, 'type' => 'varchar'),
 			'total_paid_taxed' => array('constraint' => '8,2', 'type' => 'decimal'),
 			'currency_code' => array('constraint' => 3, 'type' => 'varchar'),
+			'transaction_infos' => array('type' => 'text'),
 			'created_at' => array('constraint' => 11, 'type' => 'int'),
 			'updated_at' => array('constraint' => 11, 'type' => 'int'),
 

@@ -40,33 +40,60 @@
         	</table>
         </div>
 
-    <?php if($current_user): ?>
+<?php if($current_user): ?>
 
-        <div id="order-adresse">
-            <?php echo View::forge('user/address/view')->render(); ?>
-        </div>
-        
-        <div id="order-agreement">
-            <h5>
-                <label><input type="checkbox"/>J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les Conditions générales de vente)</label>
-            </h5>
-        </div>
-        
-        <div id="order-payment">
-            <a href="<?php echo $base_url; ?>achat/order/passCommande">
-                <?php echo Asset::img('season13/btn_buynow_paypal.gif'); ?>
-            </a>
-        </div>
-        
-    <?php else: ?>
-        
-        <div id="order-login">
-            <h5>Tu dois <a href="javascript:showLogin()">te connecter</a> ou <a href="javascript:showSignup()">t'inscrire</a> d'abord avec les bouttons en haut à droite de la page.</h5>
-            <script type="text/javascript">
-                $(document).ready(showLogin);
-            </script>
-        </div>
-        
-    <?php endif; ?>        
+    <div id="order-adresse">
+        <?php echo View::forge('user/address/view')->render(); ?>
     </div>
+    
+    <div id="order-agreement">
+        <h5>
+            <input type="checkbox"/>J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les Conditions générales de vente)
+        </h5>
+    </div>
+    
+    <div id="order-payment">
+    
+        <!-- INFO: The post URL "checkout.php" is invoked when clicked on "Pay with PayPal" button.-->
+        
+        <form action='<?php echo $base_url; ?>achat/order/paypalCheckout' METHOD='POST'>
+        	<input type='image' name='paypal_submit' id='paypal_submit'  src='https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' border='0' align='top' alt='Pay with PayPal'/>
+        </form>
+        
+        <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->
+        
+        <script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
+        
+        <script>
+        
+        	var dg = new PAYPAL.apps.DGFlow(
+        	{
+        		trigger: 'paypal_submit',
+        		expType: 'instant'
+        		 //PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
+        	});
+        
+        </script>
+        
+        <!--
+        <a href="<?php echo $base_url; ?>achat/order/passCommande">
+            <?php echo Asset::img('season13/btn_buynow_paypal.gif'); ?>
+        </a>-->
+    </div>
+    
+<?php else: ?>
+    
+    <div id="order-login">
+        <h5>Tu dois <a href="javascript:showLogin()">te connecter</a> ou <a href="javascript:showSignup()">t'inscrire</a> d'abord avec les bouttons en haut à droite de la page.</h5>
+        <script type="text/javascript">
+            $(document).ready(showLogin);
+        </script>
+    </div>
+    
+<?php endif; ?>
+
+    <br/>
+    <br/>
+    <br/>
+    
 </div>
