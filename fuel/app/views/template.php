@@ -21,7 +21,7 @@
 	<meta property="og:description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
 	<meta property="fb:app_id" content="141570392646490" />
 	
-	<title><?php echo $title; ?></title>
+	<title><?php if(isset($title)) echo $title; ?></title>
 	<?php
 	    echo Asset::css('BebasNeue.css');
 	    echo Asset::css('DroidSans.css');
@@ -132,8 +132,10 @@
         <li class="text_sep_vertical"></li>
         <li id="logout">LOGOUT</li>
 <?php endif; ?>
+<!--
         <li class="text_sep_vertical"></li>
         <li id="cart"><?php echo Asset::img("season13/ui/cart.png") ?><span></span></li>
+-->
     </ul>
     
 <?php if($current_user == null): ?>
@@ -168,7 +170,7 @@
         </div>
     </div>
     	    
-<?php echo $content; ?>
+<?php if(isset($content)) echo $content; ?>
 
 	<footer>
 	    <ul>

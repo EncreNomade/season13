@@ -33,4 +33,8 @@ class Model_Achat_Cartproduct extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+	
+	public function getRealPrice() {
+	    return round($this->discount * $this->taxed_price, 2);
+	}
 }

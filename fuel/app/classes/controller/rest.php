@@ -3,13 +3,19 @@
 /**
  * The Basic Frontend View Controller.
  */
-class Controller_Frontend extends Controller_Season13
+class Controller_Restbase extends Controller_Rest
 {
     protected $cart;
 
     public function before()
     {        
     	parent::before();
+    	
+    	// Assign current_user to the instance so controllers can use it
+    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
+
+        $this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
+        $this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
     	
         // Get cart if cart not exist
         if(empty($this->cart)) {
@@ -30,8 +36,5 @@ class Controller_Frontend extends Controller_Season13
             }
             $this->cart = $current_cart;
         }
-    	
-    	// Set a global variable so views can use it
-    	View::set_global('cart', $this->cart);
     }
 }

@@ -8,6 +8,7 @@ class Model_Achat_Cart extends \Orm\Model
 		'id',
 		'user_id',
 		'secure_key',
+		'token',
 		'tax_rate',
 		'country_code',
 		'currency_code',
@@ -129,6 +130,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    $cart = self::forge(array(
 	        'user_id' => $user_id ? $user_id : "",
 	        'secure_key' => Str::random('alnum', 16),
+	        'token' => "",
 	        'tax_rate' => $country->tax_rate,
 	        'country_code' => $country_code,
 	        'currency_code' => $country->currency_code,
@@ -141,6 +143,8 @@ class Model_Achat_Cart extends \Orm\Model
 	    
 	    if( $cart and $cart->save() ) {
 	        $cookieValue = self::cryptToken($realip, $cart->id, $user_id);
+	        $cart->token = $cookieValue;
+	        $cart->save();
 	        Cookie::set('cart_token', $cookieValue, self::$token_expire_time);
 	        Session::set('current_cart', $cart->id);
 	    
@@ -174,7 +178,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    if($this->user_id == "")
 	        return null;
 	        
-	    if( is_null($this->user) )
+	    if( empty($this->user) )
 	        $this->user = Model_13user::find($this->user_id);
 	    
 	    return $this->user;
@@ -242,8 +246,6 @@ class Model_Achat_Cart extends \Orm\Model
 	}
 	
 	public function addProduct($product_id, $is_offer = 0, $offer_tar = "") {
-	    if($this->ordered) return false;
-	    
 	    // Find product
 	    $product = Model_Achat_13product::find($product_id);
 	    if( is_null($product) ) {
@@ -280,8 +282,6 @@ class Model_Achat_Cart extends \Orm\Model
 	}
 	
 	public function removeProduct($product_id) {
-	    if($this->ordered) return false;
-	    
 	    // Find product in cart
 	    $cartproduct = Model_Achat_Cartproduct::query()->where(
 	        array(
@@ -306,8 +306,6 @@ class Model_Achat_Cart extends \Orm\Model
 	}
 	
     public function clear() {
-        if($this->ordered) return false;
-        
         // Find products in cart
         $cartproducts = $this->getProducts();
         foreach ($cartproducts as $product) {
@@ -316,13 +314,24 @@ class Model_Achat_Cart extends \Orm\Model
         return true;
     }
     
+    public function checkout() {
+        $this->save();
+        Session::delete('current_cart');
+        Cookie::delete('cart_token');
+    }
+    public function reactive() {
+        if(!empty($this->token)) 
+            Cookie::set('cart_token', $this->token, self::$token_expire_time);
+        Session::set('current_cart', $this->id);
+    }
+    
     
     public function addition() {
         $cartproducts = $this->getProducts();
         $total = 0;
         foreach ($cartproducts as $product) {
-            $total += $product->discount * $product->taxed_price;
+            $total += $product->getRealPrice();
         }
-        return round($total, 2);
+        return $total;
     }
 }

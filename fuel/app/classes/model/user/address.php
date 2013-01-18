@@ -45,5 +45,16 @@ class Model_User_Address extends Model
 
 		return $val;
 	}
+	
+	public static function getUserAdress($user_id) {
+		if(is_null($user_id))
+			return null;
+
+		$user_address = self::find_by_user_id($user_id);
+		if(is_null($user_address))
+			return null;
+		else
+			return $user_address;
+	}
 
 }
