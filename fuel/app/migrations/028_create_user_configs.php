@@ -1,0 +1,25 @@
+<?php
+
+namespace Fuel\Migrations;
+
+class Create_user_configs
+{
+	public function up()
+	{
+		\DBUtil::create_table('user_configs', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+			'key' => array('constraint' => 255, 'type' => 'varchar'),
+			'value' => array('constraint' => 255, 'type' => 'varchar'),
+			'supp' => array('constraint' => 255, 'type' => 'varchar'),
+			'created_at' => array('constraint' => 11, 'type' => 'int'),
+			'updated_at' => array('constraint' => 11, 'type' => 'int'),
+
+		), array('id'));
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('user_configs');
+	}
+}

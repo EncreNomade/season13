@@ -849,3 +849,88 @@ $(document).ready(function() {
     if(config.episode.epid != 4)
         story_access_resp(config.accessResp, config.episode.epid);
 });
+
+// save config and position 
+
+var userData = (function() {
+    var userData = {}, exports = userData;
+
+    $(window).unload(function() {
+        userData.save();
+    });
+    $(document).ready(function() {
+        userData.retrieve();
+    });
+
+    exports.save = function() {
+        var progress = window.mse && window.mse.root ? mse.root.getProgress() : {};
+        $.ajax({
+            url: config.base_url + 'user/data/update',
+            type: 'POST',
+            data: {
+                // config data
+                speed: gui.speedctrl.value,
+                fbShareEnabled: gui.fbShareEnabled,
+                volume: gui.audioctrl.value,
+                // episode data
+                epId: config.episode.epid,
+                position: progress,
+                started: true,
+                completed: false
+            }
+        });
+
+        /*$.post(config.base_url + 'user/data/update', {
+            // config data
+            speed: gui.speedctrl.value,
+            fbShareEnabled: gui.fbShareEnabled,
+            volume: gui.audioctrl.value,
+            // episode data
+            epId: config.episode.epid,
+            position: window.mse && window.mse.root ? mse.root.getProgress() : {},
+            started: true,
+            completed: false
+        }).success(function(data) {
+            console.log(data);
+        }).error(ajaxError);*/
+    };
+
+    exports.retrieve = function() {
+        $.ajax({
+            url: config.base_url + 'user/data/retrieve',
+            type: 'GET',
+            data: { epId: config.episode.epid },
+            dataType: 'json',
+            success: function(data) {  
+                // console.log(data);
+                // data.epInfo
+                if (data.config) {
+                    var c = data.config;
+                    if(c.fbShareEnabled){
+                        gui.pref.find('#share_comment_fb').prop('checked', c.fbShareEnabled == 'true' ? true : false);
+                    }
+                    if(c.speed) {
+                        gui.speedctrl.setvalue(parseInt(c.speed));
+                    }
+                    if(c.volume) {
+                        gui.audioctrl.setvalue(parseInt(c.volume));
+                    }
+                }
+            },
+            error: ajaxError
+        });
+    };
+
+    function ajaxError(jqXhr) {
+        if(config.readerMode != 'debug')
+                return;
+        var newWindow = window.open('_blank');
+        newWindow.document.open();
+        newWindow.document.write(jqXhr.responseText);
+        newWindow.document.close();
+    }
+
+    return exports;
+})();
+
+
