@@ -12,7 +12,7 @@ class Create_achat_orders
 			'user_addr' => array('constraint' => 11, 'type' => 'int'),
 			'cart_id' => array('constraint' => 11, 'type' => 'int'),
 			'country_code' => array('constraint' => 2, 'type' => 'varchar'),
-			'state' => array('constraint' => '"ORDER","CANCEL","FINALIZE", "RETURN"', 'type' => 'enum'),
+			'state' => array('constraint' => '"ORDER","CANCEL","FINALIZE","RETURN","FAIL","STARTPAY"', 'type' => 'enum'),
 			'secure_key' => array('constraint' => 32, 'type' => 'varchar'),
 			'payment' => array('constraint' => 10, 'type' => 'varchar'),
 			'total_paid_taxed' => array('constraint' => '8,2', 'type' => 'decimal'),

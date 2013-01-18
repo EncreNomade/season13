@@ -66,6 +66,9 @@ class Model_Achat_Order extends \Orm\Model
 	        // Save to session
 	        Session::set('current_order', $order->id);
 	        
+	        // Save cart ordered state
+	        $cart->save();
+	        
 	        return $order;
 	    }
 	    else {
@@ -89,10 +92,10 @@ class Model_Achat_Order extends \Orm\Model
 	}
 	
 	public function getCart() {
-	    if(is_null($this->cart)) {
+	    if(empty($this->cart)) {
 	        $this->cart = Model_Achat_Cart::find($this->cart_id);
 	        
-	        if(is_null($this->cart)) {
+	        if(empty($this->cart)) {
 	            throw new CartException(Config::get('errormsgs.payment.4104'), 4104);
 	        }
 	    }
@@ -100,21 +103,84 @@ class Model_Achat_Order extends \Orm\Model
 	    return $this->cart;
 	}
 	
-	public function suspendOrder() {
-	    $this->cart->ordered = 0;
+	public function checkout($token) {
+	    // Verification
+	    if(empty($this->cart->user_id))
+	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
+	        
+	    // Set user address
+	    if(empty($this->user_addr)) {
+	        $addr = Model_User_Address::getUserAdress($this->cart->user_id);
+	        if(empty($addr))
+    	        throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
+    	    else {
+    	        $this->user_addr = $addr->id;
+    	    }
+	    }
+	    
+	    // Update order state
+	    $this->state = "STARTPAY";
+	    $this->save();
+	
+	    // Forbiden double checkout
+	    $orders = Session::get('checkout_order');
+	    
+	    if(isset($orders[$token])) {
+	        throw new CartException(Config::get('errormsgs.payment.4109'), 4109);
+	    }
+	    
+	    // Add check out order to session
+	    $orders[$token] = $this->id;
+	    Session::set('checkout_order', $orders);
+	
+	    // Delete from session
+	    Session::delete('current_order');
+	    // Delete cart
+	    $this->getCart()->checkout();
+	}
+	
+	public static function getCheckoutOrder($token) {
+	    $orders = Session::get('checkout_order');
+	    
+	    if(isset($orders[$token])) {
+	        $order = self::find($orders[$token]);
+            return $order;
+	    }
+	    else {
+	        return null;
+	    }
+	}
+	
+	public function cancelPayment($token) {
+	    // Update order state
+        $this->state = "CANCEL";
+        $this->save();
+        
+        // Reactive cart
+        $this->getCart()->reactive();
+    
+        // Update checkout orders
+        $orders = Session::get('checkout_order');
+        
+        // Remove check out order from session
+        if(isset($orders[$token])) {
+            unset($orders[$token]);
+        }
+        Session::set('checkout_order', $orders);
+    
+        // Readd order to session
+        Session::set('current_order', $this->id);
 	}
 	
 	public function payWith($payment) {
 	    // Panier not until ordered
-	    if(!$this->cart->ordered) {
+	    if(!$this->getCart()->ordered) {
 	        throw new CartException(Config::get('errormsgs.payment.4103'), 4103);
 	    }
-	    if(empty($this->cart->user_id))
+	    if(empty($this->getCart()->user_id))
 	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
 	    if(empty($this->user_addr))
 	        throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
-	    if($this->state != "ORDER")
-	        throw new CartException(Config::get('errormsgs.payment.4108'), 4108);
 	
 	    Autoloader::load('Payment');
 	
@@ -129,26 +195,40 @@ class Model_Achat_Order extends \Orm\Model
 	}
 	
 	
-	public function finalize($paid, $transaction_infos) {
-	    // Verification
-	    if(empty($this->cart->user_id))
-	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
-        if(empty($this->user_addr))
-            throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
-        if($this->state != "ORDER")
-	        throw new CartException(Config::get('errormsgs.payment.4108'), 4108);
+	public function payfailed($payment, $transaction_infos, $paid = 0) {
+	    $cart = $this->getCart();
 	    
 	    // Update order info
 	    if(empty($this->user_id))
-	        $this->user_id = $this->cart->user_id;
+	        $this->user_id = $cart->user_id;
 	    $this->total_paid_taxed = $paid;
 	    
-	    $user = $this->cart->getUser();
-	    $products = $this->cart->getProducts();
+	    $this->state = "FAIL";
+	    $this->payment = $payment;
+	    $this->transaction_infos = Format::forge($transaction_infos)->to_json();
+	    $this->save();
+	}
+	
+	
+	public function finalize($payment, $transaction_infos, $paid) {
+	    $cart = $this->getCart();
+	    // Verification
+	    if(empty($cart->user_id))
+	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
+	    
+	    // Update order info
+	    if(empty($this->user_id))
+	        $this->user_id = $cart->user_id;
+	    $this->total_paid_taxed = $paid;
+	    $this->payment = $payment;
+	    
+	    $user = $cart->getUser();
+	    $cartproducts = $this->getCart()->getProducts();
 	    $fails = array();
 	    
 	    // Save user possesion information
-	    foreach ($products as $product) {
+	    foreach ($cartproducts as $cartproduct) {
+	        $product = $cartproduct->product;
 	        $eps = Format::forge($product->content, 'json')->to_array();      
             
             foreach ($eps as $episode) {
@@ -182,6 +262,7 @@ class Model_Achat_Order extends \Orm\Model
 	    $this->state = "FINALIZE";
 	    $this->transaction_infos = Format::forge($transaction_infos)->to_json();
 	    $this->save();
+	    
 	    // Successfully set the user possesion
 	    if(count($fails) == 0) {
 	        return true;

@@ -100,6 +100,7 @@ return array(
 	    4106 => "No owner for this order",
 	    4107 => "User address not given",
 	    4108 => "Order state error (order has been finalized, canceled or returned)",
+	    4109 => "The order has been sended",
 
 	    // product
 	    4501 => "The product is referencing unknown episode",

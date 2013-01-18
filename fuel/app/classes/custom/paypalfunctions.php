@@ -156,7 +156,7 @@
 	'		The NVP Collection object of the GetExpressCheckoutDetails Call Response.
 	'--------------------------------------------------------------------------------------------------------------------------------------------	
 	*/
-	function ConfirmPayment( $token, $paymentType, $currencyCodeType, $payerID, $FinalPaymentAmt )
+	function ConfirmPayment( $token, $paymentType, $currencyCodeType, $payerID, $FinalPaymentAmt, $items )
 	{
 		/* Gather the information to make the final call to
 		   finalize the PayPal payment.  The variable nvpstr
@@ -170,6 +170,13 @@
 
 		$nvpstr  = '&TOKEN=' . $token . '&PAYERID=' . $payerID . '&PAYMENTREQUEST_0_PAYMENTACTION=' . $paymentType . '&PAYMENTREQUEST_0_AMT=' . $FinalPaymentAmt;
 		$nvpstr .= '&PAYMENTREQUEST_0_CURRENCYCODE=' . $currencyCodeType . '&IPADDRESS=' . $serverName; 
+
+		foreach($items as $index => $item) {
+			$nvpstr .= "&L_PAYMENTREQUEST_0_NAME" . $index . "=" . urlencode($item["name"]);
+			$nvpstr .= "&L_PAYMENTREQUEST_0_AMT" . $index . "=" . urlencode($item["amt"]);
+			$nvpstr .= "&L_PAYMENTREQUEST_0_QTY" . $index . "=" . urlencode($item["qty"]);
+			$nvpstr .= "&L_PAYMENTREQUEST_0_ITEMCATEGORY" . $index . "=Digital";
+		}
 
 		 /* Make the call to PayPal to finalize payment
 		    If an error occured, show the resulting errors

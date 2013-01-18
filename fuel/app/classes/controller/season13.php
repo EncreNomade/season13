@@ -5,6 +5,10 @@
  */
 class Controller_Season13 extends Controller_Template
 {
+    protected $current_user;
+    protected $remote_path;
+    protected $base_url;
+
     public function before()
     {        
     	parent::before();
