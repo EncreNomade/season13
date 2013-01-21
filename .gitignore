@@ -2,3 +2,5 @@
 *.espressostorage
 
 docs/
+
+fuel/app/logs/

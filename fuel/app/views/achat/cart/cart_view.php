@@ -34,9 +34,7 @@
 				<?php 
 					$price = '';
 					if(floatval($cartProd->discount) < 1){
-						$price .= '<del>' . $cartProd->taxed_price . '</del> &rarr; ';
-						$newPrice = floatval($cartProd->discount) * floatval($cartProd->taxed_price);
-						$price .=  round($newPrice, 2);
+						$price .= '<del>' . $cartProd->taxed_price . '</del> &rarr; ' . $cartProd->getRealPrice();
 					}
 					else {
 						$price .= $cartProd->taxed_price;

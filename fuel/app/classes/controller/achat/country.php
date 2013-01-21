@@ -1,6 +1,7 @@
 <?php
-class Controller_Achat_Country extends Controller_Template 
+class Controller_Achat_Country extends Controller_Backend
 {
+    public $template = 'admin/template';
 
 	public function action_index()
 	{

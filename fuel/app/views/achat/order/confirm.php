@@ -49,7 +49,7 @@
                 <tr>
                     <td><strong><?php echo $p->product->reference ;?></strong></td>
                     <td><strong><?php echo $p->product_title ;?></strong></td>
-                    <td><?php echo $p->taxed_price . $currency->sign ;?></td>
+                    <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
