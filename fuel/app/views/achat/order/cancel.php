@@ -1,3 +1,8 @@
+<?php 
+	$flash = Session::get_flash('error');
+	Session::delete_flash('error');
+?>
+
 <html>
 
 <head>
@@ -32,6 +37,13 @@
     <h1>Paiement échoué</h1>
     <h5>Le paiement a été refusé, recommandez si tu veux</h5>
     
+    <?php if($flash): ?>
+    	<div class="flash-alert">
+    		<?php echo $flash; ?>
+    	</div>
+    <?php endif; ?>
+    
+    <br/>
     <a href="javascript:window.close();">Ferme cette page</a>
 </body>
 

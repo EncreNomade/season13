@@ -11,6 +11,7 @@ require COREPATH.'bootstrap.php';
 Autoloader::add_classes(array(
 	// Add classes you want to override here
 	'Payment' => APPPATH.'classes/achat/payment.php',
+	'Paypal' => APPPATH.'classes/achat/paypal.php',
 	
 ));
 

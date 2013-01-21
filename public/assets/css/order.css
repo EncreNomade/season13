@@ -1,3 +1,8 @@
+.alert {
+    color: #f00;
+}
+
+
 #order_container {	
 	margin: 30px auto;
 	width: 600px;

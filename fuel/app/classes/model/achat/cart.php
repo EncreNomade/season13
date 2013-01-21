@@ -14,7 +14,9 @@ class Model_Achat_Cart extends \Orm\Model
 		'currency_code',
 		'conversion_rate',
 		'ordered',
-		'supp'
+		'supp',
+		'created_at',
+		'updated_at',
 	);
 
 	protected static $_observers = array(
