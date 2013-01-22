@@ -7,7 +7,9 @@
 		createAddrBtn,
 		
 		paypal_submit,
-		paypal_dg;
+		paypal_dg,
+
+		removeProdBtn;
 
 	function ajaxError(jqXHR) {		
 		if(config.readerMode == "debug") {			
@@ -24,6 +26,10 @@
 		sendModifAddrBtn = $('#sendModifyAddress');
 		createAddrBtn = $('#sendCreateAddress');
 		paypal_submit = $('#paypal_submit');
+
+		removeProdBtn = $('#order-detail .remove_product');
+
+		removeProdBtn.click(removeProduct);
 
 		addrContainer.on('click', '#askModifyAddress', modifyAddr);
 		addrContainer.on('submit', 'form', function(e) {
@@ -145,6 +151,19 @@
 			dataType: "html",
 			success: function(data) {
 				addrContainer.html(data);
+			},
+			error: ajaxError
+		});
+	}
+
+	function removeProduct(e) {
+		var ref = $(this).data('productref');
+		$.ajax({
+			url: config.base_url + 'achat/cart/remove',
+			type: 'POST',
+			data: { product_ref: ref },
+			success: function(data) {
+				window.location.reload();
 			},
 			error: ajaxError
 		});

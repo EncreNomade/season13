@@ -15,7 +15,14 @@
                     <?php foreach ($products as $p): ?>
                     <tr>
                         <td><strong><?php echo $p->product->reference ;?></strong></td>
-                        <td><strong><?php echo $p->product_title ;?></strong><button class="remove_product" data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></td>
+                        <td>
+                            <strong><?php echo $p->product_title ;?></strong> 
+                            <?php echo Asset::img('season13/ui/btn_delete_red.png', array(
+                                'class' => "remove_product",
+                                'data-productref' => $p->product->reference,
+                                'alt' => 'supprimer'
+                            )); ?>
+                        </td>
                         <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
                     </tr>
                     <?php endforeach; ?>

@@ -48,7 +48,7 @@
 	<div class="total">Total : <strong><?php echo $cart->addition() . $sign; ?></strong></div>
 
 	<div class="pay_button">
-	    <a href="<?php echo $base_url; ?>achat/order/view"><?php echo Asset::img("season13/ui/btn_achat.png"); ?></a>
+		<?php echo Html::anchor('achat/order/view', Asset::img("season13/ui/btn_achat.png")) ?>
 	</div>
 <?php endif; ?>
 

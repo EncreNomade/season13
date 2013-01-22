@@ -105,3 +105,9 @@
 #accept-cgv, #order-login {
     font-family: Arial;
 }
+
+#order-detail img.remove_product {
+	cursor: pointer;
+	height: 20px;
+	float: right;
+}
