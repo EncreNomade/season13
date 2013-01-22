@@ -2,7 +2,7 @@
 	$errors = Session::get_flash('error');
 	$errors and Session::delete_flash('error');
 ?>
-<h2>Edition adresse</h2>
+<h2>Modification adresse</h2>
 <?php if($errors): ?>
 	<div class="flash-alert">
 		<?php foreach ($errors as $e): ?>

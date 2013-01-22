@@ -107,6 +107,7 @@ class Controller_User_Address extends Controller_Ajax
 						'firstname' => Input::post('firstname'),
 						'lastname' => Input::post('lastname'),
 						'address' => Input::post('address'),
+						'email' => Input::post('email'),
 						'postcode' => Input::post('postcode'),
 						'city' => Input::post('city'),
 						'country_code' => Input::post('country_code'),

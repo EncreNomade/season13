@@ -19,6 +19,16 @@ class Model_Book_13game extends Orm\Model
 		'file_name'
 	);
 
+	protected static $_belongs_to = array(
+	    'episode' => array(
+	        'key_from' => 'user_id',
+	        'model_to' => 'Model_13user',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false
+	    )
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),

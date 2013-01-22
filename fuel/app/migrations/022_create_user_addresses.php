@@ -12,6 +12,7 @@ class Create_user_addresses
 			'firstname' => array('constraint' => 32, 'type' => 'varchar'),
 			'lastname' => array('constraint' => 32, 'type' => 'varchar'),
 			'address' => array('constraint' => 255, 'type' => 'varchar'),
+			'email' => array('constraint' => 255, 'type' => 'varchar'),
 			'postcode' => array('constraint' => 12, 'type' => 'varchar'),
 			'city' => array('constraint' => 64, 'type' => 'varchar'),
 			'country_code' => array('constraint' => 2, 'type' => 'varchar'),

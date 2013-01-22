@@ -9,6 +9,7 @@ class Model_User_Address extends Model
 		'firstname',
 		'lastname',
 		'address',
+		'email',
 		'postcode',
 		'city',
 		'country_code',
@@ -35,6 +36,7 @@ class Model_User_Address extends Model
 		$val = Validation::forge($factory);
 		$val->add_field('firstname', 'Firstname', 'required|max_length[32]');
 		$val->add_field('lastname', 'Lastname', 'required|max_length[32]');
+		$val->add_field('email', 'Email', 'required|valid_email');
 		$val->add_field('address', 'Address', 'required|max_length[255]');
 		$val->add_field('postcode', 'Postcode', 'required|max_length[12]');
 		$val->add_field('city', 'City', 'required|max_length[64]');

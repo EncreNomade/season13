@@ -51,6 +51,8 @@
     echo Asset::js('auth.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
+    echo Asset::js('story/gameinfo.js');
+
     if($accessible) {
         if(Fuel::$env == Fuel::DEVELOPMENT) {
             echo Asset::js('story/scriber.js');
@@ -67,16 +69,34 @@
             echo Asset::js('story/mdj.min.js');
         }
     }
+
+?>
+    <script type="text/javascript">
+        addEventListener("load", function(){
+            setTimeout(function(){window.scrollTo(0, 1);}, 0);
+            $('body').css({'margin':'0px','padding':'0px'});
+        }, false);
+
+        config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
+    </script>
+
+<?php
+    if(isset($episode)) {    
+        echo "<script>";
+        echo "mse.configs.epid = ".$episode->id.";\n\t";
+        echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";  
+        echo "</script>";
+
+        // print games
+        $games = $episode->games;
+        foreach ($games as $g) {
+            $url = $base_url . $g->path.'/games/'.$g->file_name;
+            echo "<script src=\"$url\" />";
+        }
+    }
 ?>
 
-<script type="text/javascript">
-    addEventListener("load", function(){
-    	setTimeout(function(){window.scrollTo(0, 1);}, 0);
-    	$('body').css({'margin':'0px','padding':'0px'});
-    }, false);
 
-    config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
-</script>
 
 <?php if( Auth::member(3) || Auth::member(5) ): ?>
 <script type="text/javascript">
@@ -510,13 +530,16 @@
     
     
     <script type="text/javascript">
-    <?php 
-        
+    <?php         
         if(isset($episode)) {
-            echo "mse.configs.epid = ".$episode->id.";\n\t";
-            echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";
-            $content = file_get_contents($episode->path."content.js");
-            echo $content;
+            if($episode->id == 3) {
+                $content = file_get_contents($episode->path."content_francais.js");
+                echo $content;
+            }
+            else {
+                $content = file_get_contents($episode->path."content.js");
+                echo $content;
+            }
         }
     
     ?>

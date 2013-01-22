@@ -850,8 +850,9 @@ $(document).ready(function() {
         story_access_resp(config.accessResp, config.episode.epid);
 });
 
-// save config and position 
 
+
+// save config and position 
 var userData = (function() {
     var userData = {}, exports = userData;
 
@@ -860,27 +861,11 @@ var userData = (function() {
     });
     $(document).ready(function() {
         userData.retrieve();
+        $('#game_quit').click(userData.save);
     });
 
     exports.save = function() {
-        var progress = window.mse && window.mse.root ? mse.root.getProgress() : {};
-        $.ajax({
-            url: config.base_url + 'user/data/update',
-            type: 'POST',
-            data: {
-                // config data
-                speed: gui.speedctrl.value,
-                fbShareEnabled: gui.fbShareEnabled,
-                volume: gui.audioctrl.value,
-                // episode data
-                epId: config.episode.epid,
-                position: progress,
-                started: true,
-                completed: false
-            }
-        });
-
-        /*$.post(config.base_url + 'user/data/update', {
+        $.post(config.base_url + 'user/data/update', {
             // config data
             speed: gui.speedctrl.value,
             fbShareEnabled: gui.fbShareEnabled,
@@ -890,9 +875,7 @@ var userData = (function() {
             position: window.mse && window.mse.root ? mse.root.getProgress() : {},
             started: true,
             completed: false
-        }).success(function(data) {
-            console.log(data);
-        }).error(ajaxError);*/
+        }).error(ajaxError);
     };
 
     exports.retrieve = function() {
@@ -906,7 +889,7 @@ var userData = (function() {
                 // data.epInfo
                 if (data.config) {
                     var c = data.config;
-                    if(c.fbShareEnabled){
+                    if(c.fbShareEnabled) {
                         gui.pref.find('#share_comment_fb').prop('checked', c.fbShareEnabled == 'true' ? true : false);
                     }
                     if(c.speed) {
@@ -921,9 +904,12 @@ var userData = (function() {
         });
     };
 
+    
+
+
     function ajaxError(jqXhr) {
         if(config.readerMode != 'debug')
-                return;
+            return;
         var newWindow = window.open('_blank');
         newWindow.document.open();
         newWindow.document.write(jqXhr.responseText);

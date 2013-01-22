@@ -2271,6 +2271,9 @@ $.extend(mse.Game.prototype, {
     setScore: function(score) {
         this.result.score = Math.floor(score);
     },
+    setHighScore: function(score) {
+    	this.result.highScore = score;
+    },
     setEvtProxy: function(proxy) {
         if(proxy instanceof mse.EventDistributor || 
            proxy instanceof mse.EventDispatcher || 
@@ -2307,7 +2310,6 @@ $.extend(mse.Game.prototype, {
     },
     draw: function(ctx) {},
     end: function() {
-        this.evtDeleg.eventNotif("end");
         mse.root.evtDistributor.setDominate(null);
         if(!this.config.directShow) mse.root.gamewindow.end();
         if(this.expo) this.expo.endGame();
@@ -2315,10 +2317,12 @@ $.extend(mse.Game.prototype, {
     win: function() {
         this.result.win = true;
         if(this.config.indep && !this.config.directShow) mse.root.gamewindow.showResult();
+        this.evtDeleg.eventNotif("end");
     },
     lose: function() {
         this.result.win = false;
         if(!this.config.directShow) mse.root.gamewindow.showResult();
+        this.evtDeleg.eventNotif("end");
     },
     init: function(){},
     mobileLazyInit: function() {}

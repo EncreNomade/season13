@@ -104,7 +104,8 @@ Ghost.prototype = {
 
 
 var Donjon = function(){
-    mse.Game.call(this, {fillback:true});
+    mse.Game.call(this, { fillback:true });
+    GameInfo.register(this, 'Donjon'); 
     
     mse.src.addSource('light', 'games/trans.png', 'img', true);
     mse.src.addSource('sprite', 'games/sprite.png', 'img', true);

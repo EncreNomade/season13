@@ -19,6 +19,16 @@ class Model_Admin_13episode extends Model
 		'updated_at',
 	);
 
+	protected static $_has_many = array(
+		'games' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Book_13game',
+			'key_to' => 'epid',
+			'cascade_save' => true,
+			'cascade_delete' => false
+		)
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),

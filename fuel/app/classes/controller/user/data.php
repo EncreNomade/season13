@@ -1,8 +1,8 @@
 <?php
 
-class Controller_User_Data extends Controller_Ajax
+class Controller_User_Data extends Controller_Restbase
 {
-	public function action_update()
+	public function post_update()
 	{
 		Log::write('AJAX', 'Ajax a été appelé');
 		if(Input::method() != 'POST' || is_null($this->current_user))
@@ -22,10 +22,10 @@ class Controller_User_Data extends Controller_Ajax
 			$epInfo->save();
 		}
 
-		return 'user config & episode info updated';
+		return true;
 	}
 
-	public function action_retrieve()
+	public function get_retrieve()
 	{
 		if(!Input::is_ajax())
 			Response::redirect('404');
@@ -45,6 +45,42 @@ class Controller_User_Data extends Controller_Ajax
 			$result['config'][$c->key] = $c->value;
 		}
 
-		return Format::forge($result)->to_json();
+		return $result;
+	}
+
+	public function get_gameInfo()
+	{
+		$gameInfo = Model_User_GameInfo::get_by_user_and_game($this->current_user, Input::get('className'));
+
+		// return $this->response(array('user null' => is_null($this->current_user), 'class null' => Input::get('className')));
+
+		if($gameInfo) {
+			return $this->response(array(
+				'high_score' => (int) $gameInfo->high_score,
+				'retry_count' => (int) $gameInfo->retry_count
+			));
+		}
+			
+		else
+			return $this->response(null); // http code 204 == no content
+	}
+
+	public function post_gameInfo()
+	{
+		$uId = $this->current_user ? $this->current_user->id : null;
+		$gameInfo = Model_User_GameInfo::get_by_user_and_game($this->current_user, Input::post('className'));
+
+		if(is_null($gameInfo))
+			return $this->response(false, 500); // 500 == server error
+
+		$score = Input::post('score');
+		if($gameInfo->isLowerThan($score))
+			$gameInfo->high_score = $score;
+		$gameInfo->retry_count++;
+
+		$gameInfo->save();
+
+
+		return $this->response(true);
 	}
 }

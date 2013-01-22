@@ -16,7 +16,7 @@
                     <tr>
                         <td><strong><?php echo $p->product_title ;?></strong></td>
                         <td><?php echo $p->taxed_price . $currency->sign ;?></td>
-                        <td><button class="remove_product" data-pid="<?php echo $p->product_id ;?>">Supprimer</button></td>
+                        <td><button class="remove_product"  data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -48,7 +48,7 @@
     
     <div id="order-agreement">
         <h5>
-            <input type="checkbox"/>J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les Conditions générales de vente)
+            <label><input type="checkbox"/>J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les Conditions générales de vente)</label>
         </h5>
     </div>
     

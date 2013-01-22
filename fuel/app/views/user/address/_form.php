@@ -20,6 +20,14 @@
 			</div>
 		</div>
 		<div class="clearfix">
+			<?php echo Form::label('E-mail', 'email'); ?>
+			<?php $defaultMail = isset($current_user) ? $current_user->email : '' ;?>
+			<div class="input">
+				<?php echo Form::input('email', Input::post('email', isset($user_address) ? $user_address->email : $defaultMail), array('class' => 'span4')); ?>
+
+			</div>
+		</div>
+		<div class="clearfix">
 			<?php echo Form::label('Adresse', 'address'); ?>
 
 			<div class="input">

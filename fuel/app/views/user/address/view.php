@@ -1,6 +1,8 @@
-<h2>Adresse</h2>
+
 
 <?php if(isset($user_address)): ?>
+
+    <h2>Adresse</h2>
 
     <div class="addr_info">
         <p>
@@ -8,8 +10,12 @@
         	<?php echo $user_address->firstname; ?>
         </p>
         <p>
-        	<strong>Nom</strong>
-        	<?php echo $user_address->lastname; ?>
+            <strong>Nom</strong>
+            <?php echo $user_address->lastname; ?>
+        </p>
+        <p>
+            <strong>E-mail</strong>
+            <?php echo $user_address->email; ?>
         </p>
         <p>
         	<strong>Adresse</strong>

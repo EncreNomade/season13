@@ -38,6 +38,7 @@
         echo Asset::js('lib/Tools.js');
         echo Asset::js('lib/Interaction.js');
         echo Asset::js('config.js');
+        echo Asset::js('story/gameinfo.js');
         // echo Asset::js('story/gui.js');    
 
 
@@ -59,7 +60,7 @@
         }
 
     ?>
-    <script src="<?php echo Uri::base(false)."$path/games/$fileName"; ?>"></script>
+    <script src="<?php echo $base_url."$path/games/$fileName"; ?>"></script>
 
     <style type="text/css">
         img#close_game_icon {
@@ -108,6 +109,7 @@
     </div>
 
     <script type="text/javascript">
+        config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
         if(window.parent.gameNotifier) {     
             var gameNotifier = window.parent.gameNotifier;       
             $(function(){
@@ -121,7 +123,7 @@
             mse.configs.srcPath='<?php echo Uri::base(false) . "$path/" ?>';
             window.game = new <?php echo $className ?>();
             game.config.indep = true;
-            game.start();
+            // game.start();
 
         }
     </script>

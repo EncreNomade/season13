@@ -20,7 +20,7 @@
 <div id="single_game_shower"><iframe src="about:blank"></iframe></div>
 <div class="main_container">
 	<h1><?php echo $game->name; ?></h1>
-	<?php if(!is_null($current_user)): ?>
+	<?php if(is_null($current_user)): ?>
 		<p>vous devez vous inscrire pour jouer</p>
 	<?php else: ?>
 		<button class="game_link" data-gameId="<?php echo $game->id; ?>">Jouer</button>
