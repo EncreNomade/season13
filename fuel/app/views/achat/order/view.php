@@ -14,15 +14,9 @@
                 <tbody>
                     <?php foreach ($products as $p): ?>
                     <tr>
-<<<<<<< HEAD
-                        <td><strong><?php echo $p->product_title ;?></strong></td>
-                        <td><?php echo $p->taxed_price . $currency->sign ;?></td>
-                        <td><button class="remove_product"  data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></td>
-=======
                         <td><strong><?php echo $p->product->reference ;?></strong></td>
-                        <td><strong><?php echo $p->product_title ;?></strong><button class="remove_product" data-pid="<?php echo $p->product_id ;?>">Supprimer</button></td>
+                        <td><strong><?php echo $p->product_title ;?></strong><button class="remove_product" data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></td>
                         <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
->>>>>>> eef05d1605b55dee0e597531843f6b1649acbe14
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -54,11 +48,9 @@
     
     <div id="order-agreement">
         <h5>
-<<<<<<< HEAD
-            <label><input type="checkbox"/>J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les Conditions générales de vente)</label>
-=======
-            <input id="accept-cgv" type="checkbox"/>  J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les <a href="#">Conditions générales de vente</a>)
->>>>>>> eef05d1605b55dee0e597531843f6b1649acbe14
+            <label>
+                <input id="accept-cgv" type="checkbox"/>  J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les <a href="#">Conditions générales de vente</a>)
+            </label>
         </h5>
     </div>
     
