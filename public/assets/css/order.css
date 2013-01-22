@@ -1,6 +1,13 @@
+.alert {
+    color: #f00;
+}
+
+
 #order_container {	
 	margin: 30px auto;
 	width: 600px;
+	
+	font-family: Arial;
 }
 
 /*
@@ -93,4 +100,8 @@
 .addr_info strong {
 	float: left;
 	width: 100px;
+}
+
+#accept-cgv, #order-login {
+    font-family: Arial;
 }

@@ -1,10 +1,13 @@
 <?php
 
 /**
- * The Basic Frontend View Controller.
+ * The Basic Rest Controller.
  */
 class Controller_Restbase extends Controller_Rest
 {
+    protected $current_user;
+    protected $remote_path;
+    protected $base_url;
     protected $cart;
 
     public function before()

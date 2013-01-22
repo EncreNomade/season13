@@ -6,17 +6,23 @@
             <table border="1" class="products">
                 <thead>
                     <tr>
+                        <th>Référence</th>
                         <th>Description</th>
                         <th>Prix</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($products as $p): ?>
                     <tr>
+<<<<<<< HEAD
                         <td><strong><?php echo $p->product_title ;?></strong></td>
                         <td><?php echo $p->taxed_price . $currency->sign ;?></td>
                         <td><button class="remove_product"  data-productref="<?php echo $p->product->reference ;?>">Supprimer</button></td>
+=======
+                        <td><strong><?php echo $p->product->reference ;?></strong></td>
+                        <td><strong><?php echo $p->product_title ;?></strong><button class="remove_product" data-pid="<?php echo $p->product_id ;?>">Supprimer</button></td>
+                        <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
+>>>>>>> eef05d1605b55dee0e597531843f6b1649acbe14
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -33,12 +39,12 @@
                         <td colspan="2"><strong>Total produits TTC:</strong></td>
                         <td><?php echo $total . $currency->sign; ?></td>
                     </tr>
-                </tfoot>
-
-                
+                </tfoot>                
         	    
         	</table>
         </div>
+        <br/>
+        <a href="<?php echo $base_url; ?>">Je continue mes achat</a>
 
 <?php if($current_user): ?>
 
@@ -48,7 +54,11 @@
     
     <div id="order-agreement">
         <h5>
+<<<<<<< HEAD
             <label><input type="checkbox"/>J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les Conditions générales de vente)</label>
+=======
+            <input id="accept-cgv" type="checkbox"/>  J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les <a href="#">Conditions générales de vente</a>)
+>>>>>>> eef05d1605b55dee0e597531843f6b1649acbe14
         </h5>
     </div>
     
@@ -64,17 +74,6 @@
         
         <script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
         
-        <script>
-        
-        	var dg = new PAYPAL.apps.DGFlow(
-        	{
-        		trigger: 'paypal_submit',
-        		expType: 'instant'
-        		//PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
-        	});
-        
-        </script>
-        
         <!--
         <a href="<?php echo $base_url; ?>achat/order/passCommande">
             <?php echo Asset::img('season13/btn_buynow_paypal.gif'); ?>
@@ -84,7 +83,7 @@
 <?php else: ?>
     
     <div id="order-login">
-        <h5>Tu dois <a href="javascript:showLogin()">te connecter</a> ou <a href="javascript:showSignup()">t'inscrire</a> d'abord avec les bouttons en haut à droite de la page.</h5>
+        <h5>Tu dois <a href="javascript:showLogin()">te connecter</a> ou <a href="javascript:showSignup()">créer un compte</a> d'abord avec les boutons en haut à droite de la page.</h5>
         <script type="text/javascript">
             $(document).ready(showLogin);
         </script>

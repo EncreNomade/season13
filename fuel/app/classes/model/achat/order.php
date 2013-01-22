@@ -14,6 +14,8 @@ class Model_Achat_Order extends \Orm\Model
 		'total_paid_taxed',
 		'currency_code',
 		'transaction_infos',
+		'created_at',
+		'updated_at',
 	);
 
 	protected static $_observers = array(
@@ -109,25 +111,21 @@ class Model_Achat_Order extends \Orm\Model
 	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
 	        
 	    // Set user address
-	    if(empty($this->user_addr)) {
-	        $addr = Model_User_Address::getUserAdress($this->cart->user_id);
-	        if(empty($addr))
-    	        throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
-    	    else {
-    	        $this->user_addr = $addr->id;
-    	    }
+	    if(empty($this->user_addr) || !$this->user_addr) {
+	        throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
 	    }
+    
+        // Forbiden double checkout
+        $orders = Session::get('checkout_order');
+        
+        if(isset($orders[$token])) {
+            throw new CartException(Config::get('errormsgs.payment.4109'), 4109);
+        }
 	    
 	    // Update order state
 	    $this->state = "STARTPAY";
+	    //$this->updated_at = time();
 	    $this->save();
-	
-	    // Forbiden double checkout
-	    $orders = Session::get('checkout_order');
-	    
-	    if(isset($orders[$token])) {
-	        throw new CartException(Config::get('errormsgs.payment.4109'), 4109);
-	    }
 	    
 	    // Add check out order to session
 	    $orders[$token] = $this->id;
@@ -149,6 +147,24 @@ class Model_Achat_Order extends \Orm\Model
 	    else {
 	        return null;
 	    }
+	}
+	public static function getRecentCheckoutOrder() {
+	    $orders = Session::get('checkout_order');
+	    
+	    $max = 0;
+	    $recent = array('token' => "", 'order' => null);
+	    if(!is_array($orders)) return $recent;
+	    
+	    foreach ($orders as $token => $order_id) {
+	        $order = self::find($order_id);
+	        if($order->updated_at > $max) {
+	            $recent['order'] = $order;
+	            $recent['token'] = $token;
+	            $max = $order->updated_at;
+	        }
+	    }
+	    
+	    return $recent;
 	}
 	
 	public function cancelPayment($token) {
@@ -172,26 +188,36 @@ class Model_Achat_Order extends \Orm\Model
         Session::set('current_order', $this->id);
 	}
 	
-	public function payWith($payment) {
-	    // Panier not until ordered
-	    if(!$this->getCart()->ordered) {
-	        throw new CartException(Config::get('errormsgs.payment.4103'), 4103);
-	    }
+	public function checkoutWith($payment) {
+	    // Verification payment
+        if( !is_subclass_of($payment, 'Payment') ) {
+            throw new CartException(Config::get('errormsgs.payment.4102'), 4102);
+        }
+	    
+	    // User exsitance
 	    if(empty($this->getCart()->user_id))
 	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
-	    if(empty($this->user_addr))
-	        throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
-	
-	    Autoloader::load('Payment');
-	
-	    if( !is_subclass_of($payment, 'Payment') ) {
-	        throw new CartException(Config::get('errormsgs.payment.4102'), 4102);
+	        
+	    // Set user address
+	    if(empty($this->user_addr) || !$this->user_addr) {
+	        $addr = Model_User_Address::getUserAdress($this->cart->user_id);
+	        if(empty($addr))
+	            throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
+	        else {
+	            $this->user_addr = $addr->id;
+	        }
 	    }
 	    
+	    // Save payment obj
+	    $this->payment_obj = $payment;
 	    $this->payment = $payment->name;
-	    $this->save();
 	    
-	    $payment->passOrder($this);
+	    // Process to payment gateway
+	    $result = $payment->checkoutOrder($this);
+        
+        if(empty($result)) 
+            return array('success' => true);
+        else return $result;
 	}
 	
 	

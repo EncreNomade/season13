@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Commande confirmé - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5</title>
+    <title>Commande confirmée - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5</title>
     
     <script type="text/javascript">
     
@@ -26,17 +26,20 @@
       })();
     
     </script>
+    
+    <?php echo Asset::css('order.css'); ?>
 </head>
 
 <body>
-    <h1>Commande confirmé</h1>
+    <h1>Commande confirmée</h1>
     
-    <h5>un mail de confirmation a été envoyé</h5>
+    <h5>un mail de confirmation t'a été envoyé</h5>
     
     <div id="order-detail">
         <table border="1" class="products">
             <thead>
                 <tr>
+                    <th>Référence</th>
                     <th>Description</th>
                     <th>Prix</th>
                 </tr>
@@ -44,28 +47,30 @@
             <tbody>
                 <?php foreach ($products as $p): ?>
                 <tr>
+                    <td><strong><?php echo $p->product->reference ;?></strong></td>
                     <td><strong><?php echo $p->product_title ;?></strong></td>
-                    <td><?php echo $p->taxed_price . $currency->sign ;?></td>
+                    <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td><strong>Total HT:</strong></td>
+                    <td colspan="2"><strong>Total HT:</strong></td>
                     <td><?php echo $ht . $currency->sign; ?></td>
                 </tr>
                 <tr>
-                    <td><strong>Total taxes:</strong></td>
+                    <td colspan="2"><strong>Total taxes:</strong></td>
                     <td><?php echo $tax . $currency->sign; ?></td>
                 </tr>
                 <tr>
-                    <td><strong>Total produits TTC:</strong></td>
+                    <td colspan="2"><strong>Total produits TTC:</strong></td>
                     <td><?php echo $total . $currency->sign; ?></td>
                 </tr>
             </tfoot>
     	</table>
     </div>
     
+    <br/>
     <a href="javascript:window.close();">Ferme cette page</a>
 </body>
 

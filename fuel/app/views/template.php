@@ -132,10 +132,10 @@
         <li class="text_sep_vertical"></li>
         <li id="logout">LOGOUT</li>
 <?php endif; ?>
-
+<?php if(Fuel::$env == Fuel::DEVELOPMENT): ?>
         <li class="text_sep_vertical"></li>
-        <li id="cart"><?php echo Asset::img("season13/ui/cart.png") ?><span></span></li>
-
+        <li id="cart"><?php echo Asset::img("season13/ui/cart.png"); ?><span></span></li>
+<?php endif; ?>
     </ul>
     
 <?php if($current_user == null): ?>

@@ -34,9 +34,7 @@
 				<?php 
 					$price = '';
 					if(floatval($cartProd->discount) < 1){
-						$price .= '<del>' . $cartProd->taxed_price . '</del> &rarr; ';
-						$newPrice = floatval($cartProd->discount) * floatval($cartProd->taxed_price);
-						$price .=  round($newPrice, 2);
+						$price .= '<del>' . $cartProd->taxed_price . '</del> &rarr; ' . $cartProd->getRealPrice();
 					}
 					else {
 						$price .= $cartProd->taxed_price;
@@ -49,7 +47,9 @@
 	<?php endforeach; ?>
 	<div class="total">Total : <strong><?php echo $cart->addition() . $sign; ?></strong></div>
 
-	<div class="pay_button"><?php echo Html::anchor('achat/order/view', '<button>Payer</button>'); ?></div>
+	<div class="pay_button">
+	    <a href="<?php echo $base_url; ?>achat/order/view"><?php echo Asset::img("season13/ui/btn_achat.png"); ?></a>
+	</div>
 <?php endif; ?>
 
 

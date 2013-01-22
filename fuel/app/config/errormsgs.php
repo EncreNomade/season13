@@ -97,10 +97,13 @@ return array(
 	    4103 => "Order invalid (Cart haven't been passed to order)",
 	    4104 => "Order content (cart) can't be found",
 	    4105 => "Content of order haven't been correctly saved, see \$order->fails",
-	    4106 => "No owner for this order",
-	    4107 => "User address not given",
-	    4108 => "Order state error (order has been finalized, canceled or returned)",
-	    4109 => "The order has been sended",
+	    4106 => "Pas de connexion d'utilisateur, tu peux essayer de te connecter ou de t'inscrire.",
+	    4107 => "Adresse d'utilisateur n'existe pas.",
+	    4108 => "La commande n'est pas valide.",
+	    4109 => "La commande est déjà envoyé pour le paiement.",
+	    
+	    // Payment
+	    4201 => "La commande n'est pas valide.", // No commande or commande class error
 
 	    // product
 	    4501 => "The product is referencing unknown episode",

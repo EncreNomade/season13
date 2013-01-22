@@ -1,6 +1,5 @@
 <?php defined('COREPATH') or exit('No direct script access allowed'); ?>
 
-<<<<<<< HEAD
 Warning - 2013-01-18 17:23:48 --> Fuel\Core\Fuel::init - The configured locale fr_FR is not installed on your system.
 Warning - 2013-01-18 17:23:51 --> Fuel\Core\Fuel::init - The configured locale fr_FR is not installed on your system.
 Warning - 2013-01-18 17:24:49 --> Fuel\Core\Fuel::init - The configured locale fr_FR is not installed on your system.
@@ -67,7 +66,7 @@ Warning - 2013-01-18 17:51:22 --> Fuel\Core\Fuel::init - The configured locale f
 Warning - 2013-01-18 17:51:33 --> Fuel\Core\Fuel::init - The configured locale fr_FR is not installed on your system.
 Warning - 2013-01-18 17:51:34 --> Fuel\Core\Fuel::init - The configured locale fr_FR is not installed on your system.
 Warning - 2013-01-18 17:51:34 --> Fuel\Core\Fuel::init - The configured locale fr_FR is not installed on your system.
-=======
-Error - 2013-01-18 10:12:36 --> 4106 - No owner for this order in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 109
-Error - 2013-01-18 10:13:28 --> 4107 - User address not given in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 115
->>>>>>> 75beb659aa110db438582c7ba6a7fad919278a47
+
+Error - 2013-01-18 18:56:57 --> 2 - Invalid argument supplied for foreach() in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 159
+Error - 2013-01-18 18:58:51 --> 2 - Invalid argument supplied for foreach() in /Users/panda/Sites/season13/fuel/app/classes/model/achat/order.php on line 159
+Error - 2013-01-18 19:01:40 --> Error - Property "updated_at" not found for Model_Achat_Order. in /Users/panda/Sites/season13/fuel/packages/orm/classes/model.php on line 1007
