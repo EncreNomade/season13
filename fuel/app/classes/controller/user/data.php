@@ -30,7 +30,7 @@ class Controller_User_Data extends Controller_Restbase
 		if(!Input::is_ajax())
 			Response::redirect('404');
 		if(is_null($this->current_user))
-			return Format::forge(array())->to_json();
+			return $this->response(array('error' => Config::get('errormsgs.story_access.201')));
 
 		$result = array('epInfo' => array(), 'config' => array());
 
@@ -45,7 +45,7 @@ class Controller_User_Data extends Controller_Restbase
 			$result['config'][$c->key] = $c->value;
 		}
 
-		return $result;
+		return $this->response($result);
 	}
 
 	public function get_gameInfo()
