@@ -13,6 +13,16 @@ class Model_Admin_13userpossesion extends Model
 		'updated_at',
 	);
 
+	protected static $_belongs_to = array(
+	    'user' => array(
+	        'key_from' => 'user_mail',
+	        'model_to' => 'Model_13user',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false
+	    )
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),

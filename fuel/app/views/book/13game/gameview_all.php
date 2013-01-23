@@ -12,7 +12,7 @@
             <?php echo Asset::img($game->expo, array("class" => "expo")); ?>
             <p><?php echo $game->presentation; ?></p>
             <div>
-                <?php echo Html::anchor("book/gameview/info/".$game->id, 'Infos'); ?>
+                <?php echo Html::anchor("book/gameview/info/".$game->class_name, 'Infos'); ?>
             </div>
         </li>
     <?php endforeach; ?>

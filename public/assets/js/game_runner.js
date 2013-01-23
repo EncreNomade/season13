@@ -5,8 +5,8 @@ $(function(){
 	var iframeLoaded = false;
 
 	$(".game_link").click(function() {
-		var gameId = $(this).attr('data-gameId');
-		var newUrl = config.base_url+'book/gameview/play/'+gameId;
+		var gameClass = $(this).attr('data-gameClass');
+		var newUrl = config.base_url+'book/gameview/play/'+gameClass;
 
 		if(!iframeLoaded) { 							// check if the game have ever been loaded
 			iframe.prop('src', newUrl);					// if not : load the game

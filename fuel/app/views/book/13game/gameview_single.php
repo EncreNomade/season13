@@ -19,10 +19,37 @@
 
 <div id="single_game_shower"><iframe src="about:blank"></iframe></div>
 <div class="main_container">
-	<h1><?php echo $game->name; ?></h1>
-	<?php if(is_null($current_user)): ?>
-		<p>vous devez vous inscrire pour jouer</p>
-	<?php else: ?>
-		<button class="game_link" data-gameId="<?php echo $game->id; ?>">Jouer</button>
-	<?php endif; ?>
+    <div id="single_game_info">
+        <h1><?php echo $game->name; ?></h1>
+        <?php echo Asset::img($game->expo, array('class' => 'expo')); ?>
+        <div class="info right">
+            <p><?php echo $game->presentation; ?></p>
+            <?php if($game->instruction): ?>
+                <p class="instruction">
+                    Instruction :<br>
+                    <?php echo $game->instruction; ?>
+                </p>
+            <?php endif; ?>
+        </div>
+        <div class="play right">  
+            <?php if(isset($current_user)): ?>    
+                <?php if( $current_user->ownEpisode($game->epid) ): ?>
+                    <?php if($current_user->havePlayed($game->id)): ?>
+                        <button class="game_link playBtn" data-gameClass="<?php echo $game->class_name; ?>">Jouer</button>      
+                    <?php else: ?>
+                        <p>
+                            Tu dois avoir joué au moins une fois à ce jeu en lisant l'épisode :  
+                            <b><?php echo Html::anchor($game->episode->getRelatLink(), $game->episode->title); ?></b>
+                            .
+                        </p>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <p>Pour jouer tu dois possèdez l'épisode : <b><?php echo $game->episode->title; ?></b>.</p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p>tu dois être inscrit et connecté pour jouer ici.</p>                
+            <?php endif; ?> 
+        </div>     
+        <div class="clear"></div>  
+    </div>
 </div>

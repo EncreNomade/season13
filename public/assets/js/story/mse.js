@@ -2312,6 +2312,7 @@ $.extend(mse.Game.prototype, {
     },
     draw: function(ctx) {},
     end: function() {
+        this.destroy();
         mse.root.evtDistributor.setDominate(null);
         if(!this.config.directShow) mse.root.gamewindow.end();
         if(this.expo) this.expo.endGame();
@@ -2327,7 +2328,8 @@ $.extend(mse.Game.prototype, {
         this.evtDeleg.eventNotif("end");
     },
     init: function(){},
-    mobileLazyInit: function() {}
+    mobileLazyInit: function() {},
+    destroy: function() {}
 });
 
 

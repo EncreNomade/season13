@@ -3,20 +3,23 @@ var GameInfo = (function() {
     var GameInfo = {}, exports = GameInfo;
     var lastRegistredGame;
 
-    exports.register = function(game, className) {
+    exports.register = function(game) {
+        if(!game.className)
+            return false;
+
         lastRegistredGame = game;
-        game.evtDeleg.addListener( 'end', new Callback(saveScore, this, game, className) );
-        getScore(game, className);
+        game.evtDeleg.addListener( 'end', new Callback(saveScore, this, game) );
+        getScore(game);
     };
 
     // public access to the game result
     // exports.__defineGetter__('result', function(){ return lastRegistredGame.result ; });
 
-    function getScore(game, className) {
+    function getScore(game) {
         $.ajax({
             url: config.base_url + 'user/data/gameInfo',
             type: 'GET',
-            data: { 'className': className },
+            data: { 'className': game.className },
             dataType: 'json',
             success: function(gameInfo) {
                 if(gameInfo.high_score)
@@ -26,12 +29,12 @@ var GameInfo = (function() {
         });
     }
 
-    function saveScore(game, className) {
+    function saveScore(game) {
         $.ajax({
             url: config.base_url + 'user/data/gameInfo',
             type: 'POST',
             data: {
-                'className': className,
+                'className': game.className,
                 'score': game.result.score
             },
             dataType: 'json',

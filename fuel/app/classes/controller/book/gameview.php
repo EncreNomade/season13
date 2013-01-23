@@ -16,15 +16,15 @@ class Controller_Book_Gameview extends Controller_Frontend {
         $this->template->content = View::forge('book/13game/gameview_all', $data);
     }
 
-    public function action_info($id = null)
+    public function action_info($className = null)
     {        
-        $g = Model_Book_13game::find_by_id($id);
+        $g = Model_Book_13game::find_by_class_name($className);
         $data = array();
         if(!$g) {     
             return Response::redirect('404');
         }
         else {
-
+            $this->template->css_supp = "gameview.css"; 
             $this->template->js_supp = "game_runner.js"; 
             
             $data = array("game" => $g);
@@ -38,9 +38,9 @@ class Controller_Book_Gameview extends Controller_Frontend {
         }
     }
 
-	public function action_play($id = null) {
+	public function action_play($className = null) {
 
-        $g = Model_Book_13game::find_by_id($id);
+        $g = Model_Book_13game::find_by_class_name($className);
         $data = array();
         if(!$g) {     
             return View::forge('book/13game/gameview_frame_error', array("message" => "Erreur : Jeux non trouvé."));

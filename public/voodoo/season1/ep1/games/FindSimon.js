@@ -523,5 +523,9 @@ var FindSimon = function() {
 	this.moveovercb = new mse.Callback(this.moveover, this);
 	this.touchStartcb = new mse.Callback(this.touchStart, this);
 	this.touchMovecb = new mse.Callback(this.touchMove, this);
+
+    this.destroy = function() {
+        mse.src.getSrc('aud_findsimon').pause();
+    };
 };
 extend(FindSimon, mse.Game);

@@ -53,6 +53,14 @@ class Model_13user extends \Orm\Model
 			'key_to' => 'user_id',
 			'cascade_save' => true,
 			'cascade_delete' => false
+		),
+		'possessions' => array (
+			'key_from' => 'email',
+			'model_to' => 'Model_Admin_13userpossesion',
+			'key_to' => 'user_mail',
+			'cascade_save' => true,
+			'cascade_delete' => false
+
 		)
 	);
 
@@ -114,6 +122,11 @@ class Model_13user extends \Orm\Model
 		else return $this->_saveOneConfig($keyOrArr, $value);
 	}
 
+	/**
+	 * Retrieve an existing episode info or create a new one
+	 * @param int|string $episodeId
+	 * @return Model_User_Episodeinfo 
+	 */
 	public function getEpisodeInfo($episodeId = null)
 	{
 		if(is_null($episodeId))
@@ -130,5 +143,34 @@ class Model_13user extends \Orm\Model
 		$epInfo->episode_id = $episodeId;
 
 		return $epInfo;
+	}
+
+	/**
+	 * Know if an episode is owned by this user
+	 * @param int|string $episodeId the episode id
+	 * @return bool
+	 */
+	public function ownEpisode($episodeId = null)
+	{
+		$possessions = $this->possessions;
+		foreach ($possessions as $p) 
+			if($p->episode_id == $episodeId) return true;
+
+		return false;
+	}
+
+	/**
+	 * Know if a user have ever played the game
+	 * @param int|string $gameId the game id
+	 * @return bool
+	 */
+	public function havePlayed($gameId = null) {
+		$gameInfos = $this->gameInfos;
+
+		foreach ($gameInfos as $g) {
+			if($g->game_id == $gameId && $g->retry_count > 0)
+				return true;
+		}
+		return false;
 	}
 }
