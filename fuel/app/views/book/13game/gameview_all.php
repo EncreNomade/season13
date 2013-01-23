@@ -1,26 +1,21 @@
-<style type="text/css">
-    #single_game_shower {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(255, 255, 255, 0.78);
-        display: none;
-        z-index: 4;
-    }
-    #single_game_shower iframe {
-        border: none;
-        width: 100%;
-        height: 100%;
-    }
-</style>
 
-
-<div id="single_game_shower"><iframe src="about:blank"></iframe></div>
 <div class="main_container">
+    <ul class="game_list">
     <?php foreach($games as $game): ?>
+        <li>
         <!-- <p class="game_link" data-gameId="<?php //echo $game->id; ?>"><?php //echo $game->name ?></p> -->
-        <p><a href="<?php echo Uri::create("book/gameview/info/") . $game->id ?>"><?php echo $game->name ?></a></p>
+            <h1><?php echo $game->name; ?></h1>
+            <p>
+                <strong>Episode : </strong>
+                <?php echo Html::anchor($game->episode->getRelatLink(), $game->episode->title) ?>
+            </p>
+            <?php echo Asset::img($game->expo, array("class" => "expo")); ?>
+            <p><?php echo $game->presentation; ?></p>
+            <div>
+                <?php echo Html::anchor("book/gameview/info/".$game->id, 'Infos'); ?>
+            </div>
+        </li>
     <?php endforeach; ?>
+
+    </ul>
 </div>

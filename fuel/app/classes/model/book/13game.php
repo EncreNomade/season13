@@ -21,8 +21,8 @@ class Model_Book_13game extends Orm\Model
 
 	protected static $_belongs_to = array(
 	    'episode' => array(
-	        'key_from' => 'user_id',
-	        'model_to' => 'Model_13user',
+	        'key_from' => 'epid',
+	        'model_to' => 'Model_Admin_13episode',
 	        'key_to' => 'id',
 	        'cascade_save' => true,
 	        'cascade_delete' => false

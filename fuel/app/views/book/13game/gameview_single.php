@@ -7,7 +7,7 @@
         left: 0;
         background: rgba(255, 255, 255, 0.78);
         display: none;
-        z-index: 4;
+        z-index: 30;
     }
     #single_game_shower iframe {
         border: none;

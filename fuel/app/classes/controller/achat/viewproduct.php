@@ -5,9 +5,9 @@ class Controller_Achat_Viewproduct extends Controller_Season13
         return View::forge('achat/13product/404');
     }
 
-    public function action_webservice($ref) {
+    public function action_webservice($ref = null) {
         // Check ref
-        if(!isset($ref)) {
+        if(is_null($ref)) {
             Response::redirect('ws/product/404');
         }
     

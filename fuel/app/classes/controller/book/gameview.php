@@ -5,7 +5,8 @@ class Controller_Book_Gameview extends Controller_Frontend {
 	public function action_index()
     {
         $games = Model_Book_13game::find('all');
-        $this->template->js_supp = "game_runner.js"; 
+        // $this->template->js_supp = "game_runner.js"; 
+        $this->template->css_supp = "gameview.css"; 
     	
 		$data = array("games" => $games);
     
