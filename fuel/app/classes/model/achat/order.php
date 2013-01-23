@@ -4,6 +4,7 @@ class Model_Achat_Order extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id',
+		'reference',
 		'user_id',
 		'user_addr',
 		'cart_id',
@@ -29,6 +30,22 @@ class Model_Achat_Order extends \Orm\Model
 		),
 	);
 	
+	private static function getNextIncrement() {
+	    try {
+    	    $conn = new PDO(Config::get('db.default.connection.dsn'), 
+    	                    Config::get('db.default.connection.username'), 
+    	                    Config::get('db.default.connection.password'));
+    	                   
+    	    $result = $conn->query("SHOW TABLE STATUS LIKE '". Model_Achat_Order::table() ."'")->fetch();
+    	    $nextId = $result['Auto_increment'];
+	    }
+	    catch (Exception $e) {
+	        $nextId = Model_Achat_Order::query()->max('id') + 1;
+	    }
+	    
+	    return $nextId;
+	}
+	
 	public static function orderCart($cart) {
 	    // Existed order
 	    $current_order_id = Session::get('current_order');
@@ -48,6 +65,7 @@ class Model_Achat_Order extends \Orm\Model
 	        return false;
 	
 	    $order = self::forge(array(
+	        'reference' => Date::time()->format("%y%m%d").Str::sub("".(10000+self::getNextIncrement()%1000), 1),
 	        'user_id' => $cart->user_id,
 	        'user_addr' => "",
 	        'cart_id' => $cart->id,
@@ -62,7 +80,7 @@ class Model_Achat_Order extends \Orm\Model
 	    
 	    if($order && $order->save()) {
 	        $order->cart = $cart;
-	        // Lock cart
+	        // Cart state
 	        $cart->ordered = 1;
 	        
 	        // Save to session
@@ -112,7 +130,12 @@ class Model_Achat_Order extends \Orm\Model
 	        
 	    // Set user address
 	    if(empty($this->user_addr) || !$this->user_addr) {
-	        throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
+	        $addr = Model_User_Address::getUserAdress($this->cart->user_id);
+	        if(empty($addr))
+	            throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
+	        else {
+	            $this->user_addr = $addr->id;
+	        }
 	    }
     
         // Forbiden double checkout

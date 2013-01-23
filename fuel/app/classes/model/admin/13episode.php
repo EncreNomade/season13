@@ -57,4 +57,42 @@ class Model_Admin_13episode extends Model
 		return $val;
 	}
 
+
+
+    public function isAvailable() {
+        return (time() > Date::create_from_string($this->dday, '%Y-%m-%d')->get_timestamp());
+    }
+    
+    public function getRelatLink() {
+        return str_replace(' ', '_', $this->story) . "/season" . $this->season . "/episode" . $this->episode;
+    }
+    
+    public function hasAccess($user) {
+        // Episode 1 free for public
+        if($this->id == 1)
+            return true;
+            
+        if(!$user) 
+            return false;
+        // Episode 2 free for all user
+        else if($this->id == 2)
+            return true;
+            
+        // Free for all important user
+        if( $user->group >= 10 )
+            return true;
+            
+        // Permission after first episode
+        $existed = Model_Admin_13userpossesion::query()->where(
+            array(
+                'user_mail' => $user->email,
+                'episode_id' => $this->id
+            )
+        )->count();
+        
+        if( $existed > 0 )
+            return true;
+        else return false;
+    }
+
 }

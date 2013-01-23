@@ -2,6 +2,8 @@
     <div id="order_container">
         <h1>Récapitulatif de la commande</h1>
         
+        <?php if($current_user)  echo "<h5>Référence de commande : " . $order->reference . "</h5>"; ?>
+        
         <div id="order-detail">
             <table border="1" class="products">
                 <thead>
@@ -27,20 +29,20 @@
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
-                <tfoot>                    
+                <tfoot>
                     <tr>
-                        <td colspan="2"><strong>Total HT:</strong></td>
-                        <td><?php echo $ht . $currency->sign; ?></td>
+                        <td colspan="2"><strong>TVA:</strong></td>
+                        <td><?php echo $tva; ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><strong>Total taxes:</strong></td>
+                        <td colspan="2"><strong>Montant total TVA:</strong></td>
                         <td><?php echo $tax . $currency->sign; ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><strong>Total produits TTC:</strong></td>
+                        <td colspan="2"><strong>Montant total TTC:</strong></td>
                         <td><?php echo $total . $currency->sign; ?></td>
                     </tr>
-                </tfoot>                
+                </tfoot>
         	    
         	</table>
         </div>
@@ -63,20 +65,29 @@
     
     <div id="order-payment">
     
+    <?php if($total): ?>
         <!-- INFO: The post URL "checkout.php" is invoked when clicked on "Pay with PayPal" button.-->
         
         <form action='<?php echo $base_url; ?>achat/order/paypalCheckout' METHOD='POST'>
-        	<input type='image' name='paypal_submit' id='paypal_submit'  src='https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' border='0' align='top' alt='Pay with PayPal'/>
+        	<input type='image' name='paypal_submit' id='paypal_submit' src='https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' border='0' align='top' alt='Pay with PayPal'/>
         </form>
         
         <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->
         
         <script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
         
+    <?php else: ?>
+        
+        <a id='checkout' href="<?php echo $base_url; ?>achat/order/freeCheckout">
+            <button>Confirme Commande</button>
+        </a>
         <!--
         <a href="<?php echo $base_url; ?>achat/order/passCommande">
             <?php echo Asset::img('season13/btn_buynow_paypal.gif'); ?>
         </a>-->
+    
+    <?php endif; ?>
+    
     </div>
     
 <?php else: ?>

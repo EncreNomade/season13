@@ -101,9 +101,11 @@ return array(
 	    4107 => "Adresse d'utilisateur n'existe pas.",
 	    4108 => "La commande n'est pas valide.",
 	    4109 => "La commande est déjà envoyé pour le paiement.",
+	    4110 => "Commande introuvable",
 	    
 	    // Payment
 	    4201 => "La commande n'est pas valide.", // No commande or commande class error
+	    4202 => "La commande est vide ou elle exige un autre moyen de payment",
 
 	    // product
 	    4501 => "The product is referencing unknown episode",

@@ -227,7 +227,7 @@ class Database_Query
 		// Compile the SQL query
 		$sql = $this->compile($db);
 
-		switch(strtoupper(substr(ltrim($sql,'('), 0, 6)))
+		switch(strtoupper(substr(ltrim($sql,'('), 0, 5)))
 		{
 			case 'SELECT':
 				$this->_type = \DB::SELECT;

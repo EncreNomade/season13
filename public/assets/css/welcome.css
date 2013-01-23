@@ -198,16 +198,23 @@
     -o-transition: left 0.4s ease-in-out;
     transition: left 0.4s ease-in-out;
 }
-#episodes #expos.indispo {
-    opacity: 0.6;
-}
-#episodes #expos .expo {
+#expos .expo {
     position: relative;
     float: left;
     width: 684px;
     height: 220px;
 }
-#episodes #expos .expo img {
+#expos .indispo {
+    opacity: 0.6;
+}
+#episodes #expos .ep_img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+#episodes #expos .ep_img img {
     width: 100%;
     height: 100%;
 }

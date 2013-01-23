@@ -86,14 +86,23 @@ class Model_Achat_13product extends Model
 		$val->add_field('price', 'Price', 'required');
 		$val->add_field('discount', 'Discount', 'required');
 		$val->add_field('sales', 'Sales', 'valid_string[numeric]');
-
-
-		
 		$val->add_field('meta_type_content', 'Metas types ', 'required|is_array');
 		$val->add_field('meta_value_content', 'Metas values', 'required|is_array');
 
 		return $val;
 	}
+	
+	
+	public static function getProductForEpisode($ep) {
+	    foreach (self::query()->where(array('pack' => 0))->get() as $product) {
+	        $eps = Format::forge($product->content, 'json')->to_array();;
+	        if(in_array($ep, $eps)) {
+	            return $product;
+	        }
+	    }
+	    return null;
+	}
+	
 
 	public function getContent()
 	{
@@ -107,7 +116,6 @@ class Model_Achat_13product extends Model
 				$episodes[] = $ep;
 			else
 				throw new EpisodeNotFoundException(Config::get('errormsgs.payment.4501') . " Error code : 4501, Episode ID: ".$episodeId);
-				
 		}
 
 		return $episodes;
@@ -141,7 +149,7 @@ class Model_Achat_13product extends Model
 		return $extraits;
 	}
 
-	public function getLocalPrice($countryCode = null)
+	public function getLocalPrice($countryCode = 'FR')
 	{
 		$price = Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
 

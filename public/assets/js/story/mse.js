@@ -246,7 +246,8 @@ mse.init = function(configs, id, width, height, orientation) {
 	              window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
 	        }
 	    }
-	    if (!window.requestAnimationFrame)
+	    //if (!window.requestAnimationFrame)
+	    else {
 	        window.requestAnimationFrame = function(callback, element) {
 	            var currTime = new Date().getTime();
 	            // 33 means 33ms, which will do the loop in 30fps
@@ -256,6 +257,7 @@ mse.init = function(configs, id, width, height, orientation) {
 	            lastTime = currTime + timeToCall;
 	            return id;
 	        };
+	    }
 	    if (!window.cancelAnimationFrame)
 	        window.cancelAnimationFrame = function(id) {
 	            clearTimeout(id);

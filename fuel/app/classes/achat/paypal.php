@@ -91,6 +91,7 @@ class Paypal extends Payment {
             'total' => $o['total_amt'],
             'ht' => $o['total_ht'],
             'tax' => $o['total_tax'],
+            'tva' => $o['tva'],
             'products' => $o['products'],
             'currency' => $o['currency'],
         );

@@ -160,6 +160,13 @@
     margin: 0 10px 0 0;
     color: #000;
 }
+.dialog .section p .right {
+    position: relative;
+    left: 160px;
+    top: 0px;
+    margin: 0 10px 0 0;
+    color: #000;
+}
 .dialog .section p input {
     height: auto;
     margin: 4px 10px 4px 0px;
@@ -275,7 +282,7 @@
 .invitation_dialog .section label {
     width: 230px;
 }
-.invitation_dialog .section p input, .invitation_dialog .section p button, .invitation_dialog .section p select, .invitation_dialog .section p span {
+.invitation_dialog .section p input, .invitation_dialog .section p button, .invitation_dialog .section p select, .invitation_dialog .section p span, .invitation_dialog .section p .right {
     left: 230px;
 }
 

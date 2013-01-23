@@ -72,52 +72,10 @@ function activeEpisode(id) {
     elems.ep_btns.removeClass('active');
     elems.ep_btns.eq(id).addClass('active');
     elems.ep_expos.css( 'left', -config.expo_width * id );
-    var expo = elems.ep_expos.children('.expo:eq('+id+')');
-    elems.ep_title.children('h2').html( titleContent(expo.data('episode'), expo.data('title'), expo.data('price')) );
-    
-    // Availability
-    var ddaystr = expo.data('dday');
-    var today = new Date();
-    
-    elems.ep_play.data('id', expo.data('id'));
-    if(dateReg.test(ddaystr)) {
-        var arr = ddaystr.split("-", 3);
-        var dday = new Date(arr[0], arr[1]-1, arr[2], 0, 0, 0, 0);
-        // Available
-        if(dday <= today) {
-            elems.ep_play.text("VOIR L'EPISODE").prop('href', window.config.publicRoot+expo.data('story')+"/season"+expo.data('season')+"/episode"+expo.data('episode'));
-            elems.ep_title.add(elems.ep_expos).removeClass('indispo');
-        }
-        else {
-            elems.ep_play.text("Disponible le "+arr[2]+"/"+arr[1]).prop('href', "");
-            elems.ep_title.add(elems.ep_expos).addClass('indispo');
-        }
-    }
-    else {
-        elems.ep_play.text("Indisponible").prop('href', "");
-        elems.ep_title.add(elems.ep_expos).addClass('indispo');
-    }
 }
 
 var accessGateway = {
     'success' : false,
-    
-    'buyClicked' : function(ep, updateAction) {
-        var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le "+ep+"ème épisode de Voodoo Connection.");
-        if(ok) {
-            if(updateAction) {
-                $.ajax({
-                    url: window.config.publicRoot+updateAction,
-                    type: 'POST',
-                    async: false,
-                    dataType : 'json',
-                    data: {'epid': ep},
-                });
-            }
-        
-            window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode'+ep, '_newtab');
-        }
-    },
     
     'ep3': function(data) {
         $('#access_dialog').attr('class', 'dialog invitation_dialog');
@@ -161,9 +119,7 @@ var accessGateway = {
         });
         
         $('#access_buy_btn3').unbind('click').click(function(e) {
-            e.preventDefault();
             invitation.removeClass('show');
-            accessGateway.buyClicked(3, 'accessaction/no_invitation');
         });
     },
     
@@ -240,9 +196,7 @@ var accessGateway = {
         like.addClass('show');
         
         $('#access_buy_btn4').unbind('click').click(function(e) {
-            e.preventDefault();
             $('.center #access_dialog').removeClass('show');
-            accessGateway.buyClicked(4, 'accessaction/no_like');
         });
     }
 };
@@ -267,10 +221,6 @@ function story_access_resp(data, epid) {
                 break;
             
             case 202:
-                accessGateway.buyClicked(epid, 'accessaction/buy_episode');
-                data.errorMessage = "";
-                break;
-            
             case 102:
             case 101:
             default:
@@ -281,11 +231,11 @@ function story_access_resp(data, epid) {
     }
 }
 function playEpisode(e) {
-    if(elems.ep_title.hasClass('indispo')) {
-        e.preventDefault();
+    if($(this).attr('href') != "#")
         return;
-    }
-    var epid = elems.ep_play.data('id');
+    
+    var expo = $(this).parents('.expo');
+    var epid = expo.data('id');
     
     $.ajax({
         url: './base/story_access',
@@ -334,27 +284,20 @@ function init() {
 	// Episodes list interaction
 	elems.episodes = $('#episodes');
 	elems.ep_expos = elems.episodes.children('#expos');
-	elems.ep_title = elems.episodes.children('.ep_title');
-	elems.ep_play = elems.ep_title.children('.ep_play');
+	elems.ep_play = elems.episodes.find('.ep_play');
 	elems.ep_btns = elems.episodes.find('.ep_list ul li');
-	elems.add_to_cart = elems.episodes.find('#add_to_cart');
 	elems.ep_btns.each(function(id) {
 	    $(this).click(function() {
 	        activeEpisode(id);
 	    });
 	});
 	
+	// Play episode for request access
 	elems.ep_play.click(playEpisode);
 	
 	if(current_section) {
 	    gotoSection(current_section);
 	}
-	
-	elems.add_to_cart.click(function() {
-	    addToCart( $('#product_id').val(), "", "", true, null, 1, null );
-	});
-	
-	activeEpisode(0);
 	
 	// Youtube video
 	var params = { allowScriptAccess: "always" };

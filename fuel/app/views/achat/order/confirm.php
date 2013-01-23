@@ -55,15 +55,15 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2"><strong>Total HT:</strong></td>
-                    <td><?php echo $ht . $currency->sign; ?></td>
+                    <td colspan="2"><strong>TVA:</strong></td>
+                    <td><?php echo $tva; ?></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><strong>Total taxes:</strong></td>
+                    <td colspan="2"><strong>Montant total TVA:</strong></td>
                     <td><?php echo $tax . $currency->sign; ?></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><strong>Total produits TTC:</strong></td>
+                    <td colspan="2"><strong>Montant total TTC:</strong></td>
                     <td><?php echo $total . $currency->sign; ?></td>
                 </tr>
             </tfoot>
@@ -71,7 +71,11 @@
     </div>
     
     <br/>
-    <a href="javascript:window.close();">Ferme cette page</a>
+    <?php if(isset($return_page)): ?>
+        <a href="<?php echo $base_url."?s=episode"; ?>">Page d'accueil</a>
+    <?php else: ?>
+        <a href="javascript:window.close();">Ferme cette page</a>
+    <?php endif; ?>
 </body>
 
 </html>
