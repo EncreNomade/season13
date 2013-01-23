@@ -41,6 +41,7 @@ abstract class Payment {
                      'user_id' => $user_id, 
                      'items' => $items,
                      'total_amt' => $total_amount,
+                     'tva' => number_format($cart->tax_rate, 2, '.', '')."%",
                      'total_ht' => $ht,
                      'total_tax' => $tax);
     }

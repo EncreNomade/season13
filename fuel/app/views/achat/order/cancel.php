@@ -44,7 +44,11 @@
     <?php endif; ?>
     
     <br/>
-    <a href="javascript:window.close();">Ferme cette page</a>
+    <?php if(isset($return_page)): ?>
+        <a href="<?php echo $base_url."?s=episode"; ?>">Page d'accueil</a>
+    <?php else: ?>
+        <a href="javascript:window.close();">Ferme cette page</a>
+    <?php endif; ?>
 </body>
 
 </html>

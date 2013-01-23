@@ -99,7 +99,7 @@ fbapi.post = function(imgUrl, msg, position, successCB, failCB){
                     'ep': mse.configs.epid,
                     'fbUserID': fbImgObj.from.id
                 };
-                $.post('./13comments/comment', postData, successCB, 'json');
+                $.post(config.base_url+'13comments/comment', postData, successCB, 'json');
             });
         });
     }
@@ -114,7 +114,7 @@ fbapi.post = function(imgUrl, msg, position, successCB, failCB){
                 'ep': mse.configs.epid,
                 'fbUserID': obj.id.split('_')[0]  // obj.id = "<fbuserID>_<postID>"
             }; 
-            $.post('./13comments/comment', postData, successCB, 'json');
+            $.post(config.base_url+'13comments/comment', postData, successCB, 'json');
         });
     }
 };

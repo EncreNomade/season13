@@ -10,7 +10,7 @@
         <?php echo Asset::img('season13/illus/petite_ceinture.jpg', array('alt' => 'Fond SEASON 13')); ?>
     </div>
     <div id="booktitle" class="layer">
-        <a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?source=discoverbtn">
+        <a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?source=discoverbtn" target="_blank">
             <?php echo Asset::img('season13/btn_discover.png', array('alt' => 'Découvrir 1er épisode de Voodoo Connection')); ?>
             <h5>LANCE-TOI GRATUITEMENT DANS L'HISTOIRE</h5>
         </a>
@@ -35,32 +35,67 @@
     <div id="episodes_section" class="layer">
         <div id="episodes">
             <div id="expos">
-            <?php foreach ($admin_13episodes as $admin_13episode): ?>
-                <?php if(!isset($current_ep)) $current_ep = $admin_13episode; ?>
-                <div class="expo" 
-                     data-id="<?php echo stripslashes($admin_13episode->id); ?>"
-                     data-story="<?php echo stripslashes(str_replace(' ', '_', $admin_13episode->story)); ?>"
-                     data-title="<?php echo stripslashes($admin_13episode->title); ?>"
-                     data-season="<?php echo stripslashes($admin_13episode->season); ?>"
-                     data-episode="<?php echo $admin_13episode->episode; ?>"
-                     data-price="<?php echo $admin_13episode->price; ?>"
-                     data-bref="<?php echo stripslashes($admin_13episode->bref); ?>"
-                     data-path="<?php echo $admin_13episode->path; ?>"
-                     data-dday="<?php echo $admin_13episode->dday; ?>">
-                     
-                    <?php echo Html::img($admin_13episode->image); ?>
-                </div>
-            <?php endforeach; ?>
-            </div>
+            <?php foreach ($episodes as $ep): ?>
             
-            <div class="ep_title">
-                <h2>
-                    <?php echo '#'.$current_ep->episode.'  '.stripslashes($current_ep->title); ?>
-                    <span><?php if($current_ep->price != "") echo $current_ep->price.'€'; ?></span>
-                </h2>
-                <a class="ep_play" target="_blank"></a>
+                <div class="expo" 
+                     data-id="<?php echo stripslashes($ep->id); ?>"
+                     data-story="<?php echo stripslashes(str_replace(' ', '_', $ep->story)); ?>"
+                     data-title="<?php echo stripslashes($ep->title); ?>"
+                     data-season="<?php echo stripslashes($ep->season); ?>"
+                     data-episode="<?php echo $ep->episode; ?>"
+                     data-price="<?php echo $ep->price; ?>"
+                     data-bref="<?php echo stripslashes($ep->bref); ?>"
+                     data-path="<?php echo $ep->path; ?>"
+                     data-dday="<?php echo $ep->dday; ?>">
+                     
+                    <?php 
+                        $info = $supp[$ep->id];
+                        $product = $info['product'];
+                        if(!isset($current_ep)) $current_ep = $ep; 
+                    ?>
+                    <div class="ep_img">
+                         
+                        <?php echo Html::img($ep->image); ?>
+                    </div>
+                    
+                    <div class="ep_title">
+                        <h2>
+                            <?php echo '#'.$ep->episode.'  '.stripslashes($ep->title); ?>
+                            <span>
+                                <?php if(!$info['access'] && $product) echo $product->getLocalPrice().'€'; ?>
+                            </span>
+                        </h2>
+                    
+                    <?php if(!$info['available']): // Indisponible ?>
+                    
+                        <a class="ep_play" href="#">Disponible le <?php echo Date::create_from_string($ep->dday, '%Y-%m-%d')->format("%d/%m"); ?></a>
+                        
+                    <?php elseif($info['access']): // Has access ?>
+                    
+                        <a class="ep_play" href="<?php echo $info['link']; ?>" target="_blank">VOIR L'ÉPISODE</a>
+                    
+                    <?php elseif(empty($product)): // No product, free ?>
+                    
+                        <a class="ep_play" href="<?php echo $info['link']; ?>" target="_blank">VOIR L'ÉPISODE</a>
+                    
+                    <?php else: // Buy Product  ?>
+                    
+                        <?php if($ep->id == 2): ?>
+                            <a class="ep_play" href="#">CADEAU D'INSCRIPTION</a>
+                        <?php elseif($ep->id == 3): ?>
+                            <a class="ep_play" href="#">INVITER 5 AMIS</a>
+                        <?php elseif($ep->id == 4): ?>
+                            <a class="ep_play" href="#">AIMER SEASON13</a>
+                        <?php else: ?>
+                            <a class="ep_play" href="javascript:cart.add('<?php echo $product->reference; ?>')">ACHETER</a>
+                        <?php endif; ?>
+                        
+                    <?php endif; ?>
+                    
+                    </div>
+                </div>
                 
-                
+            <?php endforeach; ?>
             </div>
             
             <div class="ep_list">
@@ -70,11 +105,11 @@
                 </div>
             -->
                 <ul>
-                <?php foreach ($admin_13episodes as $admin_13episode): ?>
-                    <?php if($current_ep == $admin_13episode): ?>
-                    <li class="active"><?php echo '#'.$admin_13episode->episode; ?></li>
+                <?php foreach ($episodes as $episode): ?>
+                    <?php if($current_ep == $episode): ?>
+                    <li class="active"><?php echo '#'.$episode->episode; ?></li>
                     <?php else: ?>
-                    <li><?php echo '#'.$admin_13episode->episode; ?></li>
+                    <li><?php echo '#'.$episode->episode; ?></li>
                     <?php endif; ?>
                 <?php endforeach; ?>
                 </ul>

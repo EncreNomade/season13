@@ -39,7 +39,7 @@
 		</p>
 		<p>
 		    <label>Je ne souhaite pas inviter 5 amis</label>
-		    <?php echo Form::button('buy', 'J\'achète l\'épisode 3: '.$price.'€', array('id' => 'access_buy_btn3')); ?>
+		    <a href="javascript:cart.add('isbn12852934');" id="access_buy_btn3" class="right">J'achète l'épisode 3: <?php echo$price.'€'; ?></a>
 		</p>
 	</div>
 <?php echo Form::close(); ?>

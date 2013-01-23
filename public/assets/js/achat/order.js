@@ -8,7 +8,8 @@
 		
 		paypal_submit,
 		paypal_dg,
-
+		
+		checkoutBtn,
 		removeProdBtn;
 
 	function ajaxError(jqXHR) {		
@@ -26,6 +27,7 @@
 		sendModifAddrBtn = $('#sendModifyAddress');
 		createAddrBtn = $('#sendCreateAddress');
 		paypal_submit = $('#paypal_submit');
+		checkoutBtn = $('#checkout');
 
 		removeProdBtn = $('#order-detail .remove_product');
 
@@ -46,16 +48,33 @@
 		        cgvCheckbox.parent().addClass('alert');
 		});
 		
-		dg = new PAYPAL.apps.DGFlow({
-			//trigger: 'paypal_submit',
-			expType: 'instant'
-			//PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
-		});
-		
-		var closefn = dg.closeFlow;
-		dg.closeFlow = function() {
-		    closefn.apply(this, Array.prototype.slice.call(arguments));
+		if(window.PAYPAL) {
+        	dg = new PAYPAL.apps.DGFlow({
+        		//trigger: 'paypal_submit',
+        		expType: 'instant'
+        		//PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
+        	});
 		}
+		
+		checkoutBtn.click(function(e) {
+		    // Verify CGV checkbox
+		    if(!cgvCheckbox.prop('checked')) {
+		        cgvCheckbox.parent().addClass('alert');
+		        e.preventDefault();
+		        return;
+		    }
+		    
+		    // Verify address
+		    var addrForm = addrContainer.find('form');
+		    if(addrForm.length > 0) {
+		        var alert = addrContainer.children('.flash-alert');
+		        if(alert.length == 0)
+		            alert = $('<div class="flash-alert">').insertBefore(addrForm);
+		        alert.append('<p>Tu dois valider ton adresse d\'abord</p>');
+		        e.preventDefault();
+		        return;
+		    }
+		});
 		
 		paypal_submit.click(function(e) {
 		    e.preventDefault();

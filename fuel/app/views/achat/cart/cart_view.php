@@ -16,7 +16,7 @@
 	<p><strong>Votre panier est vide.</strong></p>
 <?php else: ?>
 	<?php foreach ($cartProducts as $cartProd): ?>
-		<?php  
+		<?php
 			$product = $cartProd->product;
 			if ($imgs = $product->getImages()) {
 				$image = $imgs[0];

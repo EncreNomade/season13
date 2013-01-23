@@ -19,7 +19,6 @@ class Controller_13comments extends Controller_Rest
             ));
         }
         else {
-    
             $epid = Input::get('ep');
             
 // Verify access for user to this episode

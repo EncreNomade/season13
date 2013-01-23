@@ -85,6 +85,15 @@ class Controller_Achat_13product extends Controller_Backend
 
 					if ($achat_13product and $achat_13product->save())
 					{
+					    // Add default product price
+					    $price = Model_Achat_Productprice::forge(array(
+					    	'product_id' => $achat_13product->id,
+					    	'country_code' => 'FR',
+					    	'taxed_price' => 0.99,
+					    	'discount' => 1,
+					    ));
+					    if($price) $price->save();
+					
 						Session::set_flash('success', 'Added achat_13product #'.$achat_13product->id.'.');
 
 						Response::redirect('achat/13product');

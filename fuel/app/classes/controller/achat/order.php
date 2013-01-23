@@ -28,6 +28,7 @@ class Controller_Achat_Order extends Controller_Frontend
     	                'cart' => $this->cart,
     	                'total' => $total,
     	                'ht' => $ht,
+    	                'tva' => number_format($this->cart->tax_rate/100, 2, '.', ''),
     	                'tax' => $tax,
     	                'products' => $products,
     	                'currency' => $currency,
@@ -46,6 +47,7 @@ class Controller_Achat_Order extends Controller_Frontend
 	                'cart' => $this->cart,
 	                'total' => $total,
 	                'ht' => $ht,
+	                'tva' => number_format($this->cart->tax_rate/100, 2, '.', ''),
 	                'tax' => $tax,
 	                'products' => $products,
 	                'currency' => $currency,
@@ -115,6 +117,51 @@ class Controller_Achat_Order extends Controller_Frontend
     	}
     	
     	return Response::forge(View::forge('achat/order/cancel'));
+	}
+	
+	public function action_freeCheckout() {
+	    $order = Model_Achat_Order::getCurrentOrder();
+	    
+	    // Verify order
+	    if($order) {
+	        $token = Str::random('alnum', 16);
+	        $cart = $order->getCart();
+	        $products = $cart->getProducts();
+	        $total = $cart->addition();
+	        
+	        // Free order check
+	        if(count($products) > 0 && $total == 0) {
+                // Check out order
+                $order->checkout($token);
+                // Directly confirm order
+                $order->finalize('free', array(), 0);
+                
+                // Prepare view data
+                $ht = round($total * (1 - $cart->tax_rate/100), 2);
+                $tax = $total - $ht;
+            
+                $data = array(
+                    'total' => $total,
+                    'ht' => $ht,
+                    'tax' => $tax,
+                    'tva' => number_format($cart->tax_rate, 2, '.', '')."%",
+                    'products' => $products,
+                    'currency' => $cart->getCurrency(),
+                    'return_page' => true,
+                );
+            
+                return Response::forge(View::forge('achat/order/confirm', $data));
+	        }
+	        
+	        else {
+	            Session::set_flash('error', Config::get('errormsgs.payment.4202'));
+	        }
+	    }
+	    else {
+	        Session::set_flash('error', Config::get('errormsgs.payment.4110'));
+	    }
+	    
+	    return Response::forge(View::forge('achat/order/cancel', array('return_page' => true)));
 	}
 	
 	public function action_cancel()

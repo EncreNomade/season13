@@ -72,7 +72,7 @@ var accessGateway = {
         if(ok) {
             if(updateAction) {
                 $.ajax({
-                    url: window.config.publicRoot+updateAction,
+                    url: window.config.base_url+updateAction,
                     type: 'POST',
                     async: false,
                     dataType : 'json',
@@ -141,7 +141,7 @@ var accessGateway = {
         
         FB.Event.subscribe('edge.create', function(response) {
             $.ajax({
-                url: window.config.publicRoot+'accessaction/liked',
+                url: window.config.base_url+'accessaction/liked',
                 type: 'POST'
             });
         
@@ -488,7 +488,7 @@ gui.updateUsersComments = function(start) {
     start = isNaN(start) ? gui.userComments.children('li').length : start;
     $.ajax({
         type: 'GET', 
-        url: config.publicRoot+'13comments/comment_by_ep', 
+        url: config.base_url+'13comments/comment_by_ep', 
         data: {'start': start, 'ep': mse.configs.epid}, 
         dataType: 'json', 
         success: function(data, textStatus, jqXHR) {
@@ -576,7 +576,7 @@ gui.postComment = function(imgUrl, msg){
         
     if(imgUrl){
         if(msg == null) msg = "";
-        $.post(config.publicRoot + '13comments/comment', {'imgUrl': imgUrl, 
+        $.post(config.base_url + '13comments/comment', {'imgUrl': imgUrl, 
                                         'message': msg, 
                                         'position': position, 
                                         'fbID':'', 
@@ -584,7 +584,7 @@ gui.postComment = function(imgUrl, msg){
                                         }, postSuccess, 'json');
     }
     else if(msg){
-        $.post(config.publicRoot + '13comments/comment', {'imgUrl': '', 
+        $.post(config.base_url + '13comments/comment', {'imgUrl': '', 
                                         'message': msg, 
                                         'position': position, 
                                         'fbID':'', 

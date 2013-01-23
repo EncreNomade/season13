@@ -38,9 +38,29 @@ class Controller_Welcome extends Controller_Frontend
 	 */
 	public function action_index()
 	{
-	    // Data
-	    $data['admin_13episodes'] = Model_Admin_13episode::find('all');
-	    $data['current_user'] = $this->current_user;
+	    // Episodes
+	    $data['episodes'] = Model_Admin_13episode::find('all');
+	    
+	    // Info supplementaire
+	    $supp = array();
+	    foreach ($data['episodes'] as $episode) {
+	        $info = array();
+	        
+	        // Product
+	        $info['product'] = Model_Achat_13product::getProductForEpisode($episode->id);
+	        
+	        // Disponibilite
+	        $info['available'] = $episode->isAvailable();
+	        
+	        // Link
+	        $info['link'] = $this->base_url . $episode->getRelatLink();
+	        
+	        // Access
+	        $info['access'] = $episode->hasAccess($this->current_user);
+	        
+	        $supp[$episode->id] = $info;
+	    }
+	    $data['supp'] = $supp;
 	
 	    $this->template->title = 'SEASON 13 - Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux';
 	    // Set supplementation css and js file

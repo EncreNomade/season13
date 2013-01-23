@@ -8,6 +8,7 @@ class Create_achat_orders
 	{
 		\DBUtil::create_table('achat_orders', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+			'reference' => array('constraint' => 32, 'type' => 'varchar'),
 			'user_id' => array('constraint' => 11, 'type' => 'int'),
 			'user_addr' => array('constraint' => 11, 'type' => 'int'),
 			'cart_id' => array('constraint' => 11, 'type' => 'int'),
@@ -20,7 +21,6 @@ class Create_achat_orders
 			'transaction_infos' => array('type' => 'text'),
 			'created_at' => array('constraint' => 11, 'type' => 'int'),
 			'updated_at' => array('constraint' => 11, 'type' => 'int'),
-
 		), array('id'));
 	}
 
