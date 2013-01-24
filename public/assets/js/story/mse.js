@@ -20,7 +20,6 @@ mse.configs = {
 	font 	: 'Gudea',
 	defaultFont : '18px Gudea',
 	srcPath	: '',
-	headerH : 43,
 	zids: {
 	    text: 12,
 	    wiki: 15
@@ -195,7 +194,7 @@ var initCoordinateSys = function(){
 }();
 
 function changeCoords() {
-    mse.coorRatio = (MseConfig.pageHeight-cfs.headerH) / mse.coords['cid1'];
+    mse.coorRatio = (MseConfig.pageHeight-MseConfig.headerH) / mse.coords['cid1'];
     for(var i in mse.coords) {
         mse.coords[i] = parseFloat(new Number(mse.coorRatio * mse.coords[i]).toFixed(0));
     }
@@ -670,7 +669,7 @@ mse.Root.prototype = {
     },
     setCenteredViewport: function(){
         var pw = MseConfig.pageWidth;
-        var ph = MseConfig.pageHeight - cfs.headerH;
+        var ph = MseConfig.pageHeight - MseConfig.headerH;
         this.viewport = {};
         this.viewport.x = (this.width - pw)/2;
         this.viewport.y = (this.height - ph)/2;
@@ -2391,11 +2390,11 @@ mse.GameShower.prototype = {
 	    var offy = this.currGame.config.indep ? this.borderh : 1.5;
 	    
 	    if(isNaN(this.currGame.canvasox))
-	        this.left = ((MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(mse.root.jqObj.width()-this.width)/2) - offx;
-	    else this.left = this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0) - offx;
+	        this.left = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(MseConfig.pageWidth-this.width)/2 - offx;
+	    else this.left = mse.root.offx + this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0) - offx;
 	    if(isNaN(this.currGame.canvasoy))
-	        this.top = ((MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(mse.root.jqObj.height()-this.height)/2) - offy;
-	    else this.top = this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0) - offy;
+	        this.top = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(MseConfig.pageHeight-this.height)/2 - offy;
+	    else this.top = mse.root.offy + this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0) - offy;
 	    this.container.css({
 	        'left': this.left,
 	        'top': this.top,

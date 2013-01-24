@@ -44,6 +44,7 @@ class Controller_User_Address extends Controller_Ajax
 			$user_address->firstname = Input::post('firstname');
 			$user_address->lastname = Input::post('lastname');
 			$user_address->address = Input::post('address');
+			$user_address->email = Input::post('email');
 			$user_address->postcode = Input::post('postcode');
 			$user_address->city = Input::post('city');
 			$user_address->country_code = Input::post('country_code');
@@ -71,6 +72,7 @@ class Controller_User_Address extends Controller_Ajax
 				$user_address->firstname = $val->validated('firstname');
 				$user_address->lastname = $val->validated('lastname');
 				$user_address->address = $val->validated('address');
+				$user_address->email = $val->validated('email');
 				$user_address->postcode = $val->validated('postcode');
 				$user_address->city = $val->validated('city');
 				$user_address->country_code = $val->validated('country_code');

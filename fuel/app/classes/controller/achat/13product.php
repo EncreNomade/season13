@@ -89,8 +89,8 @@ class Controller_Achat_13product extends Controller_Backend
 					    $price = Model_Achat_Productprice::forge(array(
 					    	'product_id' => $achat_13product->id,
 					    	'country_code' => 'FR',
-					    	'taxed_price' => 0.99,
-					    	'discount' => 1,
+					    	'taxed_price' => $achat_13product->price,
+					    	'discount' => $achat_13product->discount,
 					    ));
 					    if($price) $price->save();
 					
