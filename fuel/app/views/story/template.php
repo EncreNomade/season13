@@ -91,8 +91,7 @@
         echo "mse.configs.epid = ".$episode->id.";\n\t";
         echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";  
         echo "</script>";
-<<<<<<< HEAD
-
+        
         // print games
         $games = $episode->games;
         foreach ($games as $g) {
@@ -100,8 +99,6 @@
             $url = $base_url . $g->path.'/games/'.$g->file_name;
             echo "<script src=\"$url\"> </script>";
         }
-=======
->>>>>>> Adaptation css to mobile
     }
 ?>
 
