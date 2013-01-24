@@ -1426,6 +1426,12 @@ ul#menu div #menu_link {
     border-right: 1px solid #000;
 }
 
+#game_container .like-container {
+    position: absolute;
+    top: -30px;
+    right: 20px;
+}
+
 .video {
     position: absolute;
     display: none;

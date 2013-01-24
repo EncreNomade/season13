@@ -122,11 +122,14 @@ fbapi.post = function(imgUrl, msg, position, successCB, failCB){
 fbapi.postGame = function(game){
     if(game){
         var msg = "J'ai " + (game.result.win ? "gagné" : "perdu") + " le jeu " + game.config.title + " en regardant Voodoo Connection, episode " + mse.configs.epid + ". Mon score est de " + game.result.score + "! Peux-tu me battre?";
+        var picUrl = config.episode.gameExpos ? config.episode.gameExpos[game.className] : null;
+        if(!picUrl) picUrl = config.episode.image;
+
         var data = {
             'message': msg,
-            'picture': config.episode.image,
+            'picture': picUrl,
             'name': game.config.title,
-            'link': document.URL
+            'link': game.class ? config.base_url+'book/gameview/info/'+game.class : document.URL
         };
         FB.api('/me/feed', 'POST', data, function(obj){
             if(!obj.id) {

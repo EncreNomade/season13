@@ -33,7 +33,7 @@
         </div>
         <div class="play right">  
             <?php if(isset($current_user)): ?>    
-                <?php if( $current_user->ownEpisode($game->epid) ): ?>
+                <?php if( $game->episode->hasAccess($current_user) ): ?>
                     <?php if($current_user->havePlayed($game->id)): ?>
                         <button class="game_link playBtn" data-gameClass="<?php echo $game->class_name; ?>">Jouer</button>      
                     <?php else: ?>

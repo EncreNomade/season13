@@ -2,7 +2,9 @@
 
     if(isset($episode)) $expo_image = $base_url.$episode->image;
     else $expo_image = $base_url."voodoo/cover.jpg";
-
+    $likeUrl = isset($episode) 
+                ? $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode
+                : $base_url;
  ?>
 
 <!DOCTYPE html> 
@@ -12,7 +14,7 @@
 <?php if(isset($episode)): ?>
 <meta property="fb:app_id" content="141570392646490" /> 
 <meta property="og:type"   content="encrenomade:episode" /> 
-<meta property="og:url"    content="<?php echo $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode; ?>" /> 
+<meta property="og:url"    content="<?php echo $likeUrl; ?>" /> 
 <meta property="og:title"  content="<?php echo stripcslashes( $episode->story." Episode ".$episode->episode.": ".$episode->title ); ?>" /> 
 <meta property="og:description" content="SEASON 13 Feuilltons Interactifs" />
 <meta property="og:site_name" content="SEASON13" />
@@ -90,8 +92,9 @@
         // print games
         $games = $episode->games;
         foreach ($games as $g) {
+            $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
             $url = $base_url . $g->path.'/games/'.$g->file_name;
-            echo "<script src=\"$url\" />";
+            echo "<script src=\"$url\"> </script>";
         }
     }
 ?>
@@ -136,6 +139,14 @@
             js.src = "//connect.facebook.net/fr_FR/all.js";
             ref.parentNode.insertBefore(js, ref);
         }(document));
+
+        // (function(d, s, id) {
+        //   var js, fjs = d.getElementsByTagName(s)[0];
+        //   if (d.getElementById(id)) return;
+        //   js = d.createElement(s); js.id = id; js.async = true;
+        //   js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+        //   fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
         
         
         // Init the SDK upon load
@@ -164,6 +175,11 @@
             'story' : "<?php echo $episode->story; ?>",
             'image' : "<?php echo $expo_image; ?>"
         };
+
+        config.episode.gameExpos = {};
+        <?php foreach ($episode->games as $g): ?>
+            config.episode.gameExpos["<?php echo $g->class_name; ?>"] = "<?php echo Asset::get_file($g->expo, 'img'); ?>";
+        <?php endforeach; ?>
         
         config.accessResp = {
             'valid': <?php echo $access['valid'] ? 'true' : 'false'; ?>, 
@@ -510,6 +526,7 @@
         
         <div id="game_container" class="dialog">
             <h1></h1>
+            <div class="like-container"><div class="fb-like" data-href="<?php echo $likeUrl ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
             <div class="sep_line"></div>
             
             <canvas id="gameCanvas" class='game' width=50 height=50></canvas>

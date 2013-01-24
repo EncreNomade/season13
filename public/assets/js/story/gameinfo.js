@@ -30,6 +30,8 @@ var GameInfo = (function() {
     }
 
     function saveScore(game) {
+        if(window.userData)
+            userData.save();
         $.ajax({
             url: config.base_url + 'user/data/gameInfo',
             type: 'POST',

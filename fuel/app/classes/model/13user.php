@@ -146,20 +146,6 @@ class Model_13user extends \Orm\Model
 	}
 
 	/**
-	 * Know if an episode is owned by this user
-	 * @param int|string $episodeId the episode id
-	 * @return bool
-	 */
-	public function ownEpisode($episodeId = null)
-	{
-		$possessions = $this->possessions;
-		foreach ($possessions as $p) 
-			if($p->episode_id == $episodeId) return true;
-
-		return false;
-	}
-
-	/**
 	 * Know if a user have ever played the game
 	 * @param int|string $gameId the game id
 	 * @return bool
