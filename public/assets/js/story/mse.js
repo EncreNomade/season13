@@ -2390,11 +2390,11 @@ mse.GameShower.prototype = {
 	    var offy = this.currGame.config.indep ? this.borderh : 1.5;
 	    
 	    if(isNaN(this.currGame.canvasox))
-	        this.left = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(mse.root.jqObj.width()-this.width)/2 - offx;
-	    else this.left = this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0) - offx;
+	        this.left = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(MseConfig.pageWidth-this.width)/2 - offx;
+	    else this.left = mse.root.offx + this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0) - offx;
 	    if(isNaN(this.currGame.canvasoy))
-	        this.top = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(mse.root.jqObj.height()-this.height)/2 - offy;
-	    else this.top = this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0) - offy;
+	        this.top = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(MseConfig.pageHeight-this.height)/2 - offy;
+	    else this.top = mse.root.offy + this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0) - offy;
 	    this.container.css({
 	        'left': this.left,
 	        'top': this.top,
