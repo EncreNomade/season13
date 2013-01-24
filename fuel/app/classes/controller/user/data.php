@@ -50,7 +50,7 @@ class Controller_User_Data extends Controller_Restbase
 
 	public function get_gameInfo()
 	{
-		$gameInfo = Model_User_GameInfo::get_by_user_and_game($this->current_user, Input::get('className'));
+		$gameInfo = Model_User_Gameinfo::get_by_user_and_game($this->current_user, Input::get('className'));
 
 		// return $this->response(array('user null' => is_null($this->current_user), 'class null' => Input::get('className')));
 
@@ -68,7 +68,7 @@ class Controller_User_Data extends Controller_Restbase
 	public function post_gameInfo()
 	{
 		$uId = $this->current_user ? $this->current_user->id : null;
-		$gameInfo = Model_User_GameInfo::get_by_user_and_game($this->current_user, Input::post('className'));
+		$gameInfo = Model_User_Gameinfo::get_by_user_and_game($this->current_user, Input::post('className'));
 
 		if(is_null($gameInfo))
 			return $this->response(false, 500); // 500 == server error

@@ -8,7 +8,9 @@ class Model_User_Gameinfo extends \Orm\Model
 		'game_id',
 		'high_score',
 		'retry_count',
-		'supp'
+		'supp',
+		'created_at',
+		'updated_at'
 	);
 
 	protected static $_belongs_to = array(
@@ -44,7 +46,7 @@ class Model_User_Gameinfo extends \Orm\Model
 		if(is_null($user) || is_null($gameClass))
 			return null;
 
-		$gameInfo = Model_User_GameInfo::query()
+		$gameInfo = self::query()
 			->related('game')
 			->where('game.class_name', $gameClass)
 			->where('user_id', $user->id)
@@ -55,7 +57,7 @@ class Model_User_Gameinfo extends \Orm\Model
 
 		$game = Model_Book_13game::find_by_class_name($gameClass);
 		if($game) {
-			$gameInfo = Model_User_GameInfo::forge();
+			$gameInfo = self::forge();
 			$gameInfo->game_id = $game->id;
 			$gameInfo->user_id = $user->id;
 			$gameInfo->high_score = 0;
@@ -63,7 +65,38 @@ class Model_User_Gameinfo extends \Orm\Model
 			$gameInfo->supp = '';
 
 			return $gameInfo;
-		}		
+		}	
+		else return null;	
+	}
+	/**
+	 * Get all game info for a game as array (ordered by high score)
+	 * @param string $gameClass the name of the javascript game class
+	 * @param int $limit OPTIONAL number of max gameinfo in returned array
+	 * @return Model_User_Gameinfo[]|null array is ordered by high_score
+	 */
+	public static function find_all_by_game_class($gameClass = null, $limit = null)
+	{
+		if(is_null($gameClass)) return null;
+
+		if(is_null($limit)) {			
+			$gameInfos = self::query()
+				->related('game')
+				->related('user')
+				->where('game.class_name', $gameClass)
+				->order_by('high_score', 'desc')
+				->get();
+		}
+		else {
+			$gameInfos = self::query()
+				->related('game')
+				->related('user')
+				->where('game.class_name', $gameClass)
+				->order_by('high_score', 'desc')
+				->limit( (int)$limit )
+				->get();
+		}
+
+		return empty($gameInfos) ? null : $gameInfos;
 	}
 
 	public function isLowerThan($score = null)

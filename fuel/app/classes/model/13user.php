@@ -35,7 +35,7 @@ class Model_13user extends \Orm\Model
 	protected static $_has_many = array(
 		'gameInfos' => array(
 			'key_from' => 'id',
-			'model_to' => 'Model_User_GameInfo',
+			'model_to' => 'Model_User_Gameinfo',
 			'key_to' => 'user_id',
 			'cascade_save' => true,
 			'cascade_delete' => false

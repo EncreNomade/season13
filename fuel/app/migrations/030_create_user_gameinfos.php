@@ -10,7 +10,7 @@ class Create_user_gameinfos
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
 			'user_id' => array('constraint' => 11, 'type' => 'int'),
 			'game_id' => array('constraint' => 11, 'type' => 'int'),
-			'high_score' => array('constraint' => 255, 'type' => 'varchar'),
+			'high_score' => array('constraint' => 11, 'type' => 'int'),
 			'retry_count' => array('constraint' => 3, 'type' => 'int'),
 			'supp' => array('constraint' => 255, 'type' => 'varchar'),
 			'created_at' => array('constraint' => 11, 'type' => 'int'),

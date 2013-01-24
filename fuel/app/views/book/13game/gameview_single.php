@@ -49,7 +49,12 @@
             <?php else: ?>
                 <p>tu dois être inscrit et connecté pour jouer ici.</p>                
             <?php endif; ?> 
-        </div>     
-        <div class="clear"></div>  
+        </div>
+        <?php if(!empty($gameInfos)): ?>
+            <div class="classement right">
+                <?php echo View::forge('book/13game/classement')->render(); ?>
+            </div>
+        <?php endif; ?>
+        <div class="clear"></div>
     </div>
 </div>
