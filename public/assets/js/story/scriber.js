@@ -377,17 +377,32 @@ gui.scriber = (function($, gui) {
             if(this.jq.parent().length == 0) 
                 gui.center.append(this.jq);
             
-            var outerw = width < 250 ? 250 : width;
-            var outerh = height < 290 ? 290 : height;
-            this.jq.css({
-                'left': -(width < 250 ? 135 : (width+20)/2),
-                'top': -(height < 290 ? 145 : (height+20)/2),
-                'width': outerw,
-                'height': outerh
-            });
+            if(!MseConfig.mobile) {
+                var outerw = width < 250 ? 250 : width;
+                var outerh = height < 290 ? 290 : height;
+                this.jq.css({
+                    'left': -(width < 250 ? 135 : (width+20)/2),
+                    'top': -(height < 290 ? 145 : (height+20)/2),
+                    'width': outerw,
+                    'height': outerh
+                });
+                
+                canvasContainer.css({'left':(outerw-width)/2, 'top':(outerh-height)/2, 'width':width, 'height':height});
+            }
+            else {
+                var outerw = width < 250 ? 250 : width;
+                var outerh = height < 290 ? 290 : height;
+                this.jq.css({
+                    'left': -(width < 250 ? 150 : (width+40)/2),
+                    'width': outerw,
+                    'height': outerh
+                });
+                
+                canvasContainer.css({'left':(outerw-width)/2, 'top':(outerh-height)/2, 'width':width, 'height':height});
+            }
+            
             this.jq.addClass('show');
             
-            canvasContainer.css({'left':(outerw-width)/2, 'top':(outerh-height)/2, 'width':width, 'height':height});
             // Resize draw canvas
             this.drawCanvas.width = width;
             this.drawCanvas.height = height;

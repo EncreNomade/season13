@@ -848,7 +848,10 @@ __KEY_SPACE = 32;
 
 		this.update();
 		
-		if(this.mobile) $(window).bind('orientationchange', 
+		if(this.mobile) {
+		    this.headerH = 28;
+		
+		    $(window).bind('orientationchange', 
 						function(e){
 							setTimeout(function(){
 								window.scrollTo(0, 1);
@@ -860,6 +863,10 @@ __KEY_SPACE = 32;
 								}
 							}, 50);
 						});
+	    }
+	    else {
+	        this.headerH = 43;
+	    }
 	}
 	
 	window.initMseConfig = function() {

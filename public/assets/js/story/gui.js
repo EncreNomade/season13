@@ -461,6 +461,8 @@ gui.closeComment = function() {
     gui.comment_content.val('');
 }
 function constructDomComment(comment) {
+    if(!comment) return $("");
+    
     // create a new javascript Date object based on the timestamp
     // multiplied by 1000 so that the argument is in milliseconds, not seconds
     var date = new Date(comment.date*1000);

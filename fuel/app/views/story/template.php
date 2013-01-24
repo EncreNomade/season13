@@ -42,7 +42,10 @@
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
     echo Asset::css('dialog_auth_msg.css');
-    echo Asset::css('story.css');
+    if (Agent::is_mobiledevice())
+        echo Asset::css('storymobi.css');
+    else 
+        echo Asset::css('story.css');
     echo Asset::js('lib/jquery-latest.js');
     echo Asset::js('lib/jquery.form.js');
     echo Asset::js('lib/BrowserDetect.js');
@@ -84,10 +87,11 @@
 
 <?php
     if(isset($episode)) {    
-        echo "<script>";
+        echo "<script type='text/javascript'>";
         echo "mse.configs.epid = ".$episode->id.";\n\t";
         echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";  
         echo "</script>";
+<<<<<<< HEAD
 
         // print games
         $games = $episode->games;
@@ -96,6 +100,8 @@
             $url = $base_url . $g->path.'/games/'.$g->file_name;
             echo "<script src=\"$url\"> </script>";
         }
+=======
+>>>>>>> Adaptation css to mobile
     }
 ?>
 
@@ -215,6 +221,7 @@
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
             
+        <?php if (!Agent::is_mobiledevice()): ?>
             <ul id="conn">
             <?php if($current_user == null): ?>
                     <li id="open_signup">Créer un compte</li>
@@ -251,6 +258,7 @@
                 </div>
             
             <?php endif; ?>
+        <?php endif; ?>
         </div>
     </header>
     
@@ -499,6 +507,30 @@
     <?php endif; ?>
     </div>
     
+    <div id="imgShower"><div>
+            <img id="theImage" src=""/>
+            <?php echo Asset::img('season13/story/button/close.png', array("id" => "closeBn")); ?>
+    </div></div>
+    
+    <div id="game_container" class="dialog">
+        <h1></h1>
+        <div class="sep_line"></div>
+        
+        <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
+        
+        <div id="game_center">
+            <div id="game_result">
+                <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
+                <h2>GAGNÉ !</h2>
+                <h5>Ton score : <span>240</span> pts</h5>
+                <ul>
+                    <li id="game_restart">REJOUER</li>
+                    <li id="game_quit">QUITTER</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
 <?php if($accessible): ?>
     <div id="root">
         <div id="controler">
@@ -519,44 +551,14 @@
     
         <canvas class="bookroot">Votre navigateur ne supporte pas HTML5</canvas>
         <div class="video"></div>
-        <div id="imgShower"><div>
-                <img id="theImage" src=""/>
-                <?php echo Asset::img('season13/story/button/close.png', array("id" => "closeBn")); ?>
-        </div></div>
-        
-        <div id="game_container" class="dialog">
-            <h1></h1>
-            <div class="like-container"><div class="fb-like" data-href="<?php echo $likeUrl ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
-            <div class="sep_line"></div>
-            
-            <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
-            
-            <div id="game_center">
-                <div id="game_result">
-                    <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
-                    <h2>GAGNÉ !</h2>
-                    <h5>Ton score : <span>240</span> pts</h5>
-                    <ul>
-                        <li id="game_restart">REJOUER</li>
-                        <li id="game_quit">QUITTER</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
     
     
     <script type="text/javascript">
     <?php         
         if(isset($episode)) {
-            if($episode->id == 3) {
-                $content = file_get_contents($episode->path."content_francais.js");
-                echo $content;
-            }
-            else {
-                $content = file_get_contents($episode->path."content.js");
-                echo $content;
-            }
+            $content = file_get_contents($episode->path."content.js");
+            echo $content;
         }
     
     ?>
