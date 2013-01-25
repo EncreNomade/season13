@@ -466,7 +466,7 @@ MseScenario.prototype = {
     getAction: function(name) {
         for (var i in this.actions) {
             if(this.actions[i].name == name)
-                return this.action[i];
+                return this.actions[i];
         }
         return null;
     },
@@ -511,10 +511,10 @@ var MseAction = function(name, data, start, end) {
     	}
     }
     
-    if(typeof start == "function") {
+    if(start && typeof start == "function") {
         this.realStart = start;
     }
-    if(typeof end == "function") {
+    if(end && typeof end == "function") {
         this.realEnd = end;
     }
 }
