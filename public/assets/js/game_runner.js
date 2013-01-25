@@ -40,8 +40,12 @@ $(function(){
 			if(message) alert(message);
 		},
 		start: function(game) {
-			gameShower.show();
-			game.start();
+			gameShower.show(0, function(){
+				iFrameWindow = iframe.get(0).contentWindow;
+				if(iFrameWindow.MseConfig)
+					iFrameWindow.MseConfig.update();
+				game.start();
+			});
 		}
 	};
 });

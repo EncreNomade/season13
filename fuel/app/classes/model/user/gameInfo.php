@@ -46,18 +46,24 @@ class Model_User_Gameinfo extends \Orm\Model
 		if(is_null($user) || is_null($gameClass))
 			return null;
 
-		$gameInfo = self::query()
+		$res = Model_User_Gameinfo::query()
 			->related('game')
 			->where('game.class_name', $gameClass)
 			->where('user_id', $user->id)
-			->get_one();
+			->get();
 
-		if($gameInfo)
+		$gameInfo = null;
+		foreach ($res as $gi) {
+			$gameInfo = $gi;
+			break;
+		}
+
+		if(!empty($gameInfo))
 			return $gameInfo;
 
 		$game = Model_Book_13game::find_by_class_name($gameClass);
 		if($game) {
-			$gameInfo = self::forge();
+			$gameInfo = Model_User_Gameinfo::forge();
 			$gameInfo->game_id = $game->id;
 			$gameInfo->user_id = $user->id;
 			$gameInfo->high_score = 0;
@@ -83,6 +89,7 @@ class Model_User_Gameinfo extends \Orm\Model
 				->related('game')
 				->related('user')
 				->where('game.class_name', $gameClass)
+				->where('high_score', '>', 0)
 				->order_by('high_score', 'desc')
 				->get();
 		}
@@ -91,6 +98,7 @@ class Model_User_Gameinfo extends \Orm\Model
 				->related('game')
 				->related('user')
 				->where('game.class_name', $gameClass)
+				->where('high_score', '>', 0)
 				->order_by('high_score', 'desc')
 				->limit( (int)$limit )
 				->get();

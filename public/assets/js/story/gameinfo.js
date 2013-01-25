@@ -39,7 +39,6 @@ var GameInfo = (function() {
                 'className': game.className,
                 'score': game.result.score
             },
-            dataType: 'json',
             error: ajaxError
         });
     };

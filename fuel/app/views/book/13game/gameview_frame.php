@@ -119,7 +119,7 @@
             window.initMseConfig();
             mse.init(null, null, $(window.parent.document).width(), $(window.parent.document).height());
             mse.currTimeline.start();
-            $('.bookroot').hide();
+            $('.bookroot').hide(0);
             mse.configs.srcPath='<?php echo Uri::base(false) . "$path/" ?>';
             window.game = new <?php echo $className ?>();
             game.config.indep = true;

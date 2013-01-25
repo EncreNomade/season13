@@ -57,6 +57,7 @@
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
     echo Asset::js('story/gameinfo.js');
+    echo Asset::js('story/tuto.js');
 
     if($accessible) {
         if(Fuel::$env == Fuel::DEVELOPMENT) {

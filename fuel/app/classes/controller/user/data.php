@@ -67,7 +67,6 @@ class Controller_User_Data extends Controller_Restbase
 
 	public function post_gameInfo()
 	{
-		$uId = $this->current_user ? $this->current_user->id : null;
 		$gameInfo = Model_User_Gameinfo::get_by_user_and_game($this->current_user, Input::post('className'));
 
 		if(is_null($gameInfo))
