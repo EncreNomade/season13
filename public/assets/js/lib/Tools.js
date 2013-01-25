@@ -410,8 +410,12 @@ MseScenario.prototype = {
     constructor: MseScenario,
     
     run: function(progress) {
-        if(!isNaN(progress) && progress < this.actions.length && progress > 0) 
+        if(!isNaN(progress) && progress < this.actions.length && progress >= 0) {
             this.progress = progress;
+        }
+        else if(this.progress >= this.actions.length && this.progress < 0) {
+            this.progress = 0;
+        }
         
         this.actions[this.progress].start();
     },
@@ -424,7 +428,7 @@ MseScenario.prototype = {
     },
     
     actionEnded: function(action) {
-        var id = this.actions.indexOf(target);
+        var id = this.actions.indexOf(action);
         
         if(id != -1) {
             this.run(id+1);
@@ -463,10 +467,11 @@ MseScenario.prototype = {
     },
 }
 
-var MseAction = function(data, start, end) {
+var MseAction = function(name, data, start, end) {
     
     this.state = "INIT";
     this.scenario = null;
+    this.name = name;
     
     // Add supplemental datas
     if(typeof data == "object") {
@@ -488,8 +493,8 @@ var MseAction = function(data, start, end) {
 MseAction.prototype = {
     constructor: MseAction,
     
-    realStart: function(){},
-    realEnd: function(){},
+    realStart: function() {},
+    realEnd: function() {},
     
     start: function() {
         this.state = "START";
@@ -500,6 +505,7 @@ MseAction.prototype = {
         this.realEnd();
         this.state = "END";
         if(this.scenario) {
+            this.scenario.actionEnded(this);
         }
     },
     
