@@ -56,12 +56,13 @@
     echo Asset::js('auth.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
-    echo Asset::js('story/gameinfo.js');
-    echo Asset::js('story/tuto.js');
 
     if($accessible) {
+        echo Asset::js('story/scriber.js');
+        echo Asset::js('story/gameinfo.js');
+        echo Asset::js('story/tuto.js');
+        
         if(Fuel::$env == Fuel::DEVELOPMENT) {
-            echo Asset::js('story/scriber.js');
             echo Asset::js('story/events.js');
             echo Asset::js('story/mse.js');
             echo Asset::js('story/effet_mini.js');
@@ -221,6 +222,8 @@
             
         <?php if (!Agent::is_mobiledevice()): ?>
             <ul id="conn">
+                    <li><a href="javascript:tuto.reset();tuto.run();">START TUTO</a></li>
+                    <li class="text_sep_vertical"></li>
             <?php if($current_user == null): ?>
                     <li id="open_signup">Créer un compte</li>
                     <li class="text_sep_vertical"></li>

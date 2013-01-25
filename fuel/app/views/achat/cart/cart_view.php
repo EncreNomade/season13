@@ -1,8 +1,11 @@
 <?php 
-	$cartProducts = $cart->getProducts();
-	$flash = Session::get_flash('cart_error');
-	$sign = $cart->getCurrency()->sign;
-	Session::delete_flash('cart_error');
+    $flash = Session::get_flash('cart_error');
+    Session::delete_flash('cart_error');
+    
+    if($cart) {
+    	$cartProducts = $cart->getProducts();
+    	$sign = $cart->getCurrency()->sign;
+	}
 ?>
 
 
@@ -12,9 +15,10 @@
 	</div>
 <?php endif; ?>
 
-<?php if(empty($cartProducts)): ?>
+<?php if(empty($cart) || empty($cartProducts) || count($cartProducts) == 0): ?>
 	<p><strong>Votre panier est vide.</strong></p>
 <?php else: ?>
+    
 	<?php foreach ($cartProducts as $cartProd): ?>
 		<?php
 			$product = $cartProd->product;

@@ -409,21 +409,35 @@ var MseScenario = function() {
 MseScenario.prototype = {
     constructor: MseScenario,
     
+    reset: function() {
+        for (var i in this.actions) {
+            this.actions[i].reset();
+        }
+        
+        this.progress = 0;
+    },
+    
     run: function(progress) {
         if(!isNaN(progress) && progress < this.actions.length && progress >= 0) {
             this.progress = progress;
         }
         else if(this.progress >= this.actions.length && this.progress < 0) {
-            this.progress = 0;
+            return;
         }
         
-        this.actions[this.progress].start();
+        var action = this.actions[this.progress];
+        
+        if(action.beginDelay) {
+            setTimeout(function() {
+                action.start();
+            }, action.beginDelay);
+        }
+        else action.start();
     },
     
-    next: function() {
+    passNext: function() {
         if(this.progress < this.actions.length) {
-            this.progress++;
-            this.actions[this.progress].start();
+            this.actions[this.progress].end();
         }
     },
     
@@ -431,27 +445,41 @@ MseScenario.prototype = {
         var id = this.actions.indexOf(action);
         
         if(id != -1) {
-            this.run(id+1);
+            if(action.endDelay) {
+                var scenario = this;
+                setTimeout(function() {
+                    scenario.run(id+1);
+                }, action.endDelay);
+            }
+            else this.run(id+1);
+        }
+    },
+    
+    addActions: function(actions) {
+        if($.isArray(actions)) {
+            for (var i in actions) {
+                this.addAction(actions[i]);
+            }
         }
     },
     
     getAction: function(name) {
-        for (var action in this.actions) {
-            if(action.name == name)
-                return action;
+        for (var i in this.actions) {
+            if(this.actions[i].name == name)
+                return this.action[i];
         }
         return null;
     },
     
     addAction: function(action) {
-        if(action instanceof Action) {
+        if(action instanceof MseAction) {
             this.actions.push(action);
             action.scenario = this;
         }
     },
     
     insertActionAfter: function(action, target) {
-        if(action instanceof Action) {
+        if(action instanceof MseAction) {
         
             if (target instanceof String) {
                 target = this.getAction(target);
@@ -496,12 +524,19 @@ MseAction.prototype = {
     realStart: function() {},
     realEnd: function() {},
     
+    reset: function() {
+        this.state = "INIT";
+    },
+    
     start: function() {
+        if(this.state != "INIT") return;
         this.state = "START";
         this.realStart();
     },
     
     end: function() {
+        if(this.state != "START") return;
+        
         this.realEnd();
         this.state = "END";
         if(this.scenario) {
