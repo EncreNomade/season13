@@ -112,4 +112,9 @@ return array(
 	    4502 => "The product don't have default price (FR)",
 	    4503 => "Can't find the country in database, so conversion can't be applied",
 	),
+	
+	// User info access
+	'user_config' => array(
+	    5010 => "Episode id introuvable",
+	),
 );

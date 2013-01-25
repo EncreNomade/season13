@@ -27,11 +27,11 @@ class Controller_User_Data extends Controller_Restbase
 
 	public function get_retrieve()
 	{
-		if(!Input::is_ajax())
+	    if(!Input::is_ajax())
 			Response::redirect('404');
 		if(is_null($this->current_user))
 			return $this->response(array('error' => Config::get('errormsgs.story_access.201')));
-
+		
 		$result = array('epInfo' => array(), 'config' => array());
 
 		$epInfo = $this->current_user->getEpisodeInfo(Input::get('epId'));

@@ -77,6 +77,23 @@ function activeEpisode(id) {
 var accessGateway = {
     'success' : false,
     
+    'buyClicked' : function(ep, updateAction) {
+        var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le "+ep+"ème épisode de Voodoo Connection.");
+        if(ok) {
+            if(updateAction) {
+                $.ajax({
+                    url: window.config.base_url+updateAction,
+                    type: 'POST',
+                    async: false,
+                    dataType : 'json',
+                    data: {'epid': ep},
+                });
+            }
+        
+            window.open(window.config.publicRoot+'story?ep='+ep, '_newtab');
+        }
+    },
+    
     'ep3': function(data) {
         $('#access_dialog').attr('class', 'dialog invitation_dialog');
         $('#access_dialog h1').text('Invitation');
@@ -120,6 +137,9 @@ var accessGateway = {
         
         $('#access_buy_btn3').unbind('click').click(function(e) {
             invitation.removeClass('show');
+        
+            e.preventDefault();
+            accessGateway.buyClicked(3, 'accessaction/no_invitation');
         });
     },
     
@@ -197,6 +217,9 @@ var accessGateway = {
         
         $('#access_buy_btn4').unbind('click').click(function(e) {
             $('.center #access_dialog').removeClass('show');
+            
+            e.preventDefault();
+            accessGateway.buyClicked(4, 'accessaction/no_like');
         });
     }
 };
@@ -221,6 +244,9 @@ function story_access_resp(data, epid) {
                 break;
             
             case 202:
+                accessGateway.buyClicked(epid, 'accessaction/buy_episode');
+                data.errorMessage = "";
+                break;
             case 102:
             case 101:
             default:

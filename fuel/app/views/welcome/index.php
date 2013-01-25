@@ -87,7 +87,8 @@
                         <?php elseif($ep->id == 4): ?>
                             <a class="ep_play" href="#">AIMER SEASON13</a>
                         <?php else: ?>
-                            <a class="ep_play" href="javascript:cart.add('<?php echo $product->reference; ?>')">ACHETER</a>
+                            <!--<a class="ep_play" href="javascript:cart.add('<?php echo $product->reference; ?>')">ACHETER</a>-->
+                            <a class="ep_play" href="#">ACHETER</a>
                         <?php endif; ?>
                         
                     <?php endif; ?>

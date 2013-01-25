@@ -322,7 +322,9 @@ var Base64 = {
 
 
 
-// Object Pool
+/* ***************************************************
+ * Object Pool
+ *****************************************************/
 var ObjectPool = function(constructor, capacity, activeList){
     this.capacity = capacity;
     this.objCons = constructor;
@@ -392,3 +394,103 @@ ObjectPool.prototype = {
         }
     }
 };
+
+
+
+
+/* ***************************************************
+ * Scenario and Action
+ *****************************************************/
+ 
+var MseScenario = function() {
+    this.actions = [];
+    this.progress = 0;
+}
+MseScenario.prototype = {
+    constructor: MseScenario,
+    
+    run: function(progress) {
+        if(!isNaN(progress) && progress < this.actions.length && progress > 0) 
+            this.progress = progress;
+        
+        this.actions[this.progress].start();
+    },
+    
+    next: function() {
+        if(this.progress < this.actions.length) {
+            this.progress++;
+            this.actions[this.progress].start();
+        }
+    },
+    
+    actionEnded: function(action) {
+        var id = this.actions.indexOf(target);
+        
+        if(id != -1) {
+            this.run(id+1);
+        }
+    },
+    
+    getAction: function(name) {
+        for (var action in this.actions) {
+            if(action.name == name)
+                return action;
+        }
+        return null;
+    },
+    
+    addAction: function(action) {
+        if(action instanceof Action) {
+            this.actions.push(action);
+            action.scenario = this;
+        }
+    },
+    
+    insertActionAfter: function(action, target) {
+        if(action instanceof Action) {
+        
+            if (target instanceof String) {
+                target = this.getAction(target);
+            }
+        
+            id = this.actions.indexOf(target);
+            if(id >= 0) {
+                this.actions.splice(id, 0, action);
+                action.scenario = this;
+            }
+            
+        }
+    },
+}
+
+var MseAction = function(data, start, end) {
+    
+    this.state = "INIT";
+    this.scenario = null;
+    
+    if(typeof start == "function") {
+        this.realStart = start;
+    }
+    if(typeof end == "function") {
+        this.realEnd = end;
+    }
+}
+MseAction.prototype = {
+    constructor: MseAction,
+    
+    realStart: function(){},
+    realEnd: function(){},
+    
+    start: function() {
+        this.state = "START";
+        this.realStart();
+    },
+    
+    end: function() {
+        this.realEnd();
+        this.state = "END";
+        if(this.scenario) {
+        }
+    },
+    
+}
