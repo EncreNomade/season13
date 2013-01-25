@@ -510,3 +510,95 @@ MseAction.prototype = {
     },
     
 }
+
+
+/**
+ * @class
+ * @param {jQuery} target
+ * @param {String|jQuery|HTMLElement} message
+ * @param {Object} [config] Optional, available property : width | height
+ */
+var MseTutoMsg = function(target, message, config) {
+    this._message = message;
+    this._target = target;
+
+    this._box = $('<div class="tutoBox"></div>');
+    this._boxText = $('<div class="msg"></div>');
+    this._boxIndicator = $('<div class="img"></div>');
+
+    if(config) {
+        if(config.width) this._box.width(config.width);
+        if(config.height) this._box.height(config.height);
+    }
+
+    this._box.append(this._boxText)
+             .append(this._boxIndicator);
+
+    this._boxText.html(message);
+};
+MseTutoMsg.prototype = {
+    constructor: MseTutoMsg,
+    set target(t) {
+        this._target = t;
+        this.reposition();
+    },
+    get target() {
+        return this._target;
+    },
+    set message(m) {
+        this._message = m;
+        this._boxText.html(m);
+        this.reposition();
+    },
+    get message() {
+        return this._message;
+    },
+    reposition: function() {
+        this._boxIndicator.removeClass('top');
+        var box = {
+            width: this._box.width(),
+            height: this._box.height()
+        };
+        var brwsr = {
+            width: $(window).width(),
+            height: $(window).height()
+        };
+        var newPos = this._target.offset();
+
+        // place tuto box on the top of the target
+        newPos.top -= ( box.height + this._boxIndicator.height() );
+
+        // correct new position if it's out the window
+        if(newPos.left <= 0)
+            newPos.left = 0;
+        else if(newPos.left + box.width > brwsr.width)
+            newPos.left = brwsr.width - box.width;
+        if(newPos.top <= 0) {
+            newPos.top = this._target.height() + this._boxIndicator.height();
+            this._boxIndicator.addClass('top');
+        }
+        else if(newPos.top + box.height > brwsr.height)
+            newPos.top = brwsr.height - box.height;
+
+        // positionnig the indicator
+        var tarCenter = this._target.width() / 2;
+        var indicWidth = this._boxIndicator.width();
+        var indicPos = tarCenter - indicWidth/2;
+        // reposition if indicator is out of the box
+        if(indicPos > box.width)
+            indicPos = box.width - indicWidth;
+        else if (indicPos < 0)
+            indicPos = 0;
+
+        // finally save the new postition
+        this._box.offset(newPos);
+        this._boxIndicator.css('left', indicPos+'px');
+    },
+    show: function() {
+        this._box.appendTo('body');       
+        this.reposition();
+    },
+    hide: function() {
+        this._box.detach();
+    }
+};
