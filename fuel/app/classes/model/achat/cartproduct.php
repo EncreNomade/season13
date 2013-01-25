@@ -10,7 +10,9 @@ class Model_Achat_Cartproduct extends \Orm\Model
 		'taxed_price',
 		'discount',
 		'offer',
-		'offer_target'
+		'offer_target',
+		'created_at',
+		'updated_at'
 	);
 
 	protected static $_belongs_to = array(

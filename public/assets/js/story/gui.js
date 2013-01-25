@@ -431,9 +431,27 @@ gui.openhideUploader = function(e) {
 
 gui.updatePlayPauseIcon = function() {
     if(mse.root.inPause) {
-        $('#ctrl_playpause').html('<img src="'+config.base_url+'assets/img/season13/ui/wheel_play.png"/>');
+        gui.playpause.html('<img src="'+config.base_url+'assets/img/season13/ui/wheel_play.png"/>');
     }
-    else $('#ctrl_playpause').html('<img src="'+config.base_url+'assets/img/season13/ui/wheel_pause.png"/>');
+    else gui.playpause.html('<img src="'+config.base_url+'assets/img/season13/ui/wheel_pause.png"/>');
+}
+
+gui.isToolsOpen = function() {
+    return gui.fblike.hasClass('active');
+}
+gui.openhideTools = function() {
+    // Show or hide the controler btns
+    var lis = gui.controler.find('li');
+    if(lis.eq(1).hasClass('active')) {
+        lis.removeClass('active');
+        // Show the config image on circle
+        $(this).removeClass('active');
+    }
+    else {
+        lis.addClass('active');
+        // Hide the config image on circle for showing other informations
+        $(this).addClass('active');
+    }
 }
 
 
@@ -614,6 +632,7 @@ $(document).ready(function() {
     gui.userComments = $('#comment_list');
     gui.uploader = $('#upload_container');
     gui.uploadForm = $('#imageuploadform');
+    gui.playpause = $('#ctrl_playpause');
     gui.speedup = $('#controler #ctrl_speedup');
     gui.slowdown = $('#controler #ctrl_slowdown');
     gui.commentbtn = $('#controler #ctrl_comment');
@@ -668,20 +687,7 @@ $(document).ready(function() {
     
     if(window.mse) {
         // Controler activation
-        gui.controler.children('#circle').click(function() {
-            // Show or hide the controler btns
-            var lis = gui.controler.find('li');
-            if(lis.eq(1).hasClass('active')) {
-                lis.removeClass('active');
-                // Show the config image on circle
-                $(this).removeClass('active');
-            }
-            else {
-                lis.addClass('active');
-                // Hide the config image on circle for showing other informations
-                $(this).addClass('active');
-            }
-        });
+        gui.controler.children('#circle').click(gui.openhideTools);
         /*gui.controler.mouseout(function() {
             gui.controler.find('li').removeClass('active');
         });*/
@@ -689,7 +695,7 @@ $(document).ready(function() {
         // Controler interaction
         var flash_info = gui.controler.children('#circle').children('span');
         var timer;
-        $('#ctrl_playpause').click(function() {
+        gui.playpause.click(function() {
             if(mse.root.inPause) mse.root.play();
             else mse.root.pause();
             gui.currPlayState = !mse.root.inPause;

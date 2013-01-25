@@ -21,9 +21,11 @@ class Controller_Ajax extends Controller
         $this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
     	
         // Get cart if cart not exist
-        if(!isset($this->cart)) {
+        if(empty($this->cart)) {
             // Get cart in session
             $current_cart = Model_Achat_Cart::getCurrentCart();
+            
+            /*
             if(!$current_cart) {
                 // Create cart for user already logged in
                 if(is_null($this->current_user))
@@ -31,13 +33,15 @@ class Controller_Ajax extends Controller
                 // Create cart for guest
                 else $current_cart = Model_Achat_Cart::createCart(Input::real_ip(), $this->current_user->pays, $this->current_user->id);
             }
-            else {
+            else {*/
+            if($current_cart) {
                 // Set user in cart if user not existed in cart
                 if( $this->current_user )
                     $current_cart->setUser($this->current_user->id);
+                $this->cart = $current_cart;
             }
-            
-            $this->cart = $current_cart;
+            else 
+                $this->cart = null;
         }
     	
     	// Set a global variable so views can use it

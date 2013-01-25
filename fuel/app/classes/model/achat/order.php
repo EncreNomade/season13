@@ -125,12 +125,12 @@ class Model_Achat_Order extends \Orm\Model
 	
 	public function checkout($token) {
 	    // Verification
-	    if(empty($this->cart->user_id))
+	    if(empty($this->getCart()->user_id))
 	        throw new CartException(Config::get('errormsgs.payment.4106'), 4106);
 	        
 	    // Set user address
 	    if(empty($this->user_addr) || !$this->user_addr) {
-	        $addr = Model_User_Address::getUserAdress($this->cart->user_id);
+	        $addr = Model_User_Address::getUserAdress($this->getCart()->user_id);
 	        if(empty($addr))
 	            throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
 	        else {
@@ -223,7 +223,7 @@ class Model_Achat_Order extends \Orm\Model
 	        
 	    // Set user address
 	    if(empty($this->user_addr) || !$this->user_addr) {
-	        $addr = Model_User_Address::getUserAdress($this->cart->user_id);
+	        $addr = Model_User_Address::getUserAdress($this->getCart()->user_id);
 	        if(empty($addr))
 	            throw new CartException(Config::get('errormsgs.payment.4107'), 4107);
 	        else {
