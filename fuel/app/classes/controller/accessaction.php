@@ -23,6 +23,7 @@ class Controller_Accessaction extends Controller_Rest
 				'user_mail' => $this->current_user->email,
 				'episode_id' => Input::post('epid'),
 				'source' => 5, // offer_nopayment
+				'source_ref' => "",
 			));
 
 			if ($admin_13userpossesion and $admin_13userpossesion->save())
@@ -49,6 +50,7 @@ class Controller_Accessaction extends Controller_Rest
 			'user_mail' => $this->current_user->email,
 			'episode_id' => 4,
 			'source' => 6, // fblike
+			'source_ref' => "",
 		));
 
 		if ($admin_13userpossesion and $admin_13userpossesion->save())
@@ -74,6 +76,7 @@ class Controller_Accessaction extends Controller_Rest
 			'user_mail' => $this->current_user->email,
 			'episode_id' => 4,
 			'source' => 5, // offer_nopayment
+			'source_ref' => "",
 		));
 
 		if ($admin_13userpossesion and $admin_13userpossesion->save())
@@ -102,6 +105,7 @@ class Controller_Accessaction extends Controller_Rest
 				'user_mail' => $this->current_user->email,
 				'episode_id' => 3,
 				'source' => 5, // offer_nopayment
+				'source_ref' => "",
 			));
 
 			if ($admin_13userpossesion and $admin_13userpossesion->save())

@@ -227,7 +227,7 @@
                     <li id="open_login">Déjà client</li>
             <?php else: ?>
                 <?php if(Auth::member(100)): ?>
-                    <li><a href="admin/">ADMIN</a></li>
+                    <!--<li><a href="admin/">ADMIN</a></li>-->
                 <?php endif; ?>
                     <li id="user_id">BIENVENUE: <?php echo $current_user->pseudo ?></li>
                     <li class="text_sep_vertical"></li>

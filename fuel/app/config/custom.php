@@ -3,7 +3,7 @@
  * The custom settings.
  */
 
-$SandboxFlag = true;
+$SandboxFlag = false;
 
 return array(
 	'remote_path' => '/season13/public/',
