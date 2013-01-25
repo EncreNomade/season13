@@ -468,6 +468,16 @@ var MseAction = function(data, start, end) {
     this.state = "INIT";
     this.scenario = null;
     
+    // Add supplemental datas
+    if(typeof data == "object") {
+        for (var i in data) {
+            // Forbidden to overwrite an existed property
+    		if(!this[i]) {
+    		    this[i] = data[i];
+    		}
+    	}
+    }
+    
     if(typeof start == "function") {
         this.realStart = start;
     }
