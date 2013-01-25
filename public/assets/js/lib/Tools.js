@@ -516,45 +516,59 @@ MseAction.prototype = {
  * @class
  * @param {jQuery} target
  * @param {String|jQuery|HTMLElement} message
- * @param {Object} [config] Optional, available property : width | height
+ * @param {Object} [config] available property : width{Number} | height{Number} | position{String} | animate{bool}
+ * @param {Number} [config.width]
+ * @param {Number} [config.height]
+ * @param {String} [config.position] ('left', 'right', 'bottom', 'top', 'auto')
+ * @param {bool} [config.animate] true will animate the target
  */
 var MseTutoMsg = function(target, message, config) {
-    this._message = message;
-    this._target = target;
-
     this._box = $('<div class="tutoBox"></div>');
     this._boxText = $('<div class="msg"></div>');
     this._boxIndicator = $('<div class="img"></div>');
 
-    if(config) {
-        if(config.width) this._box.width(config.width);
-        if(config.height) this._box.height(config.height);
-    }
-
     this._box.append(this._boxText)
              .append(this._boxIndicator);
 
-    this._boxText.html(message);
+    this.reinit(target, message, config);
 };
 MseTutoMsg.prototype = {
     constructor: MseTutoMsg,
+    get target() { return this._target; },
     set target(t) {
         this._target = t;
+        this.position = 'auto';
         this.reposition();
+        if(this._visible)
+            this.animateTarget();
     },
-    get target() {
-        return this._target;
-    },
+    get message() { return this._message; },
     set message(m) {
         this._message = m;
         this._boxText.html(m);
         this.reposition();
     },
-    get message() {
-        return this._message;
+    /** Reset all property with same property of the contructor */
+    reinit: function (target, message, config) {
+        this._target = target;
+        this._message = message;
+        this.position = "auto";
+        this.animate = false;
+        if(config) {
+            if(config.width) this._box.width(config.width);
+            if(config.height) this._box.height(config.height);
+            if(config.position) this.position = config.position;
+            if(config.animate) this.animate = config.animate;
+        }
+        this.hide();
+        this._boxText.html(message);
+
+        return this;
     },
+    /** Set the position of the box */
     reposition: function() {
-        this._boxIndicator.removeClass('top');
+        this._boxIndicator.removeClass('top bottom left right');
+        this._boxIndicator.css('left', 'initial');
         var box = {
             width: this._box.width(),
             height: this._box.height()
@@ -565,40 +579,74 @@ MseTutoMsg.prototype = {
         };
         var newPos = this._target.offset();
 
-        // place tuto box on the top of the target
-        newPos.top -= ( box.height + this._boxIndicator.height() );
-
-        // correct new position if it's out the window
-        if(newPos.left <= 0)
-            newPos.left = 0;
-        else if(newPos.left + box.width > brwsr.width)
-            newPos.left = brwsr.width - box.width;
-        if(newPos.top <= 0) {
-            newPos.top = this._target.height() + this._boxIndicator.height();
-            this._boxIndicator.addClass('top');
+        //        
+        switch (this.position) {
+            case "left":
+                newPos.left -= ( box.width + this._boxIndicator.width() );
+                this._boxIndicator.addClass('right');
+                break;
+            case "right":
+                newPos.left += this._target.width() + this._boxIndicator.width();
+                this._boxIndicator.addClass('left');
+                break;
+            case "bottom":
+                newPos.top += this._target.height() + this._boxIndicator.height();
+                this._boxIndicator.addClass('top');
+                break;
+            case "top":
+                newPos.top -= ( box.height + this._boxIndicator.height() );
+                this._boxIndicator.addClass('bottom');
+                break;
+            default:
+                newPos.top -= ( box.height + this._boxIndicator.height() );
+                // auto mode : correct position
+                if(newPos.left <= 0)
+                    newPos.left = 0;
+                else if(newPos.left + box.width > brwsr.width)
+                    newPos.left = brwsr.width - box.width;
+                if(newPos.top <= 0) {
+                    newPos.top = this._target.height() + this._boxIndicator.height();
+                    this._boxIndicator.addClass('top');
+                }
+                else if(newPos.top + box.height > brwsr.height)
+                    newPos.top = brwsr.height - box.height;
+                // positionnig the indicator
+                var tarCenter = this._target.width() / 2;
+                var indicWidth = this._boxIndicator.width();
+                var indicPos = tarCenter - indicWidth/2;
+                // reposition if indicator is out of the box
+                if(indicPos > box.width)
+                    indicPos = box.width - indicWidth;
+                else if (indicPos < 0)
+                    indicPos = 0;
+                this._boxIndicator.css('left', indicPos+'px');
         }
-        else if(newPos.top + box.height > brwsr.height)
-            newPos.top = brwsr.height - box.height;
 
-        // positionnig the indicator
-        var tarCenter = this._target.width() / 2;
-        var indicWidth = this._boxIndicator.width();
-        var indicPos = tarCenter - indicWidth/2;
-        // reposition if indicator is out of the box
-        if(indicPos > box.width)
-            indicPos = box.width - indicWidth;
-        else if (indicPos < 0)
-            indicPos = 0;
-
-        // finally save the new postition
         this._box.offset(newPos);
-        this._boxIndicator.css('left', indicPos+'px');
     },
     show: function() {
         this._box.appendTo('body');       
         this.reposition();
+        this.animateTarget();
+        this._visible = true;
     },
     hide: function() {
         this._box.detach();
+        this._visible = false;
+    },
+    animateTarget: function() {
+        if(!this.animate)
+            return;
+        var original = { "opacity": this._target.css('opacity') };
+        var min = { "opacity": 0.4 };
+        var max = { "opacity": 1 };
+
+        this._target.animate( min )
+                    .animate( max )
+                    .animate( min )
+                    .animate( max )
+                    .animate( min )
+                    .animate( max )
+                    .animate( original );
     }
 };

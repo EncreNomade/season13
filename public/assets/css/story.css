@@ -1458,7 +1458,7 @@ ul#menu div #menu_link {
 .tutoBox {
     position: fixed;
     display: inline-block;
-    z-index: 2000;
+    z-index: 20;
     padding: 3px;
     background: rgba(246, 168, 0, 0.7);
     color: white;
@@ -1473,10 +1473,28 @@ ul#menu div #menu_link {
     left: 0;
     width: 20px;
     height: 20px;
-    background: url('../img/season13/ui/indic_tuto.png');
+    background: url('../img/season13/ui/indic_tuto_bottom.png');
 }
 
 .tutoBox .img.top {
     top: -20px;
-    background: url('../img/season13/ui/indic_tuto_inv.png');
+    bottom:  auto;
+    background: url('../img/season13/ui/indic_tuto_top.png');
+}
+.tutoBox .img.bottom {
+    bottom: -20px;
+    top: auto;
+    background: url('../img/season13/ui/indic_tuto_bottom.png');
+}
+.tutoBox .img.left {
+    left: -20px;
+    right: auto;
+    top: 3px;
+    background: url('../img/season13/ui/indic_tuto_left.png');
+}
+.tutoBox .img.right {
+    left: auto;
+    right: -20px;
+    top: 3px;
+    background: url('../img/season13/ui/indic_tuto_right.png');
 }
