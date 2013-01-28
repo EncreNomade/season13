@@ -8,7 +8,9 @@ class Model_User_Episodeinfo extends \Orm\Model
 		'episode_id',
 		'position',
 		'started',
-		'completed'
+		'completed',
+		'created_at',
+		'updated_at',
 	);
 
 	protected static $_belongs_to = array(

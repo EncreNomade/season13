@@ -679,7 +679,7 @@ $(document).ready(function() {
                 mse.ArticleLayer.prototype.speedLevel = level;
             }, null));
     }
-        
+    
     // Author bio and credits
     $('#btn_author').click(gui.openAuthorBio);
     $('#btn_credits').click(gui.openCredits);

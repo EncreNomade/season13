@@ -657,6 +657,12 @@ mse.Root = function(id, width, height, orientation) {
 };
 mse.Root.prototype = {
     constructor: mse.Root,
+    getX: function() {
+        return this.jqObj.offset().left;
+    },
+    getY: function() {
+        return this.jqObj.offset().top;
+    },
     setPos: function(x, y) {
         this.jqObj.css({'left':'0px', 'top':'0px'});
     	$('#root').css({'left':x});
@@ -2391,10 +2397,10 @@ mse.GameShower.prototype = {
 	    
 	    if(isNaN(this.currGame.canvasox))
 	        this.left = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(MseConfig.pageWidth-this.width)/2 - offx;
-	    else this.left = mse.root.offx + this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0) - offx;
+	    else this.left = mse.root.getX() + this.currGame.canvasox - (mse.root.viewport?mse.root.viewport.x:0) - offx;
 	    if(isNaN(this.currGame.canvasoy))
 	        this.top = (MseConfig.iPhone||MseConfig.android) ? 0 : Math.round(MseConfig.pageHeight-this.height)/2 - offy;
-	    else this.top = mse.root.offy + this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0) - offy;
+	    else this.top = mse.root.getY() + this.currGame.canvasoy - (mse.root.viewport?mse.root.viewport.y:0) - offy;
 	    this.container.css({
 	        'left': this.left,
 	        'top': this.top,

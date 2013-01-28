@@ -16,7 +16,9 @@ class Model_Book_13game extends Orm\Model
 		'updated_at',
 		'class_name',
 		'path',
-		'file_name'
+		'file_name',
+		'created_at',
+		'updated_at'
 	);
 
 	protected static $_belongs_to = array(

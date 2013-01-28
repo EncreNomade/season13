@@ -8,7 +8,9 @@ class Model_Webservice_Requestrecord extends \Orm\Model
 		'service_requested',
 		'params',
 		'token',
-		'extra'
+		'extra',
+		'created_at',
+		'updated_at',
 	);
 
 	protected static $_observers = array(

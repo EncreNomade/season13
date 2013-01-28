@@ -8,7 +8,9 @@ class Model_Admin_Promocode extends \Orm\Model
 		'used',
 		'used_by',
 		'offer',
-		'ref'
+		'ref',
+		'created_at',
+		'updated_at',
 	);
 
 	protected static $_observers = array(

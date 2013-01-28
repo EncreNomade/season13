@@ -2,6 +2,16 @@ $(document).ready(function() {
     
     window.tuto = new MseScenario();
     
+    var topMessage = null;
+    
+    window.quitTuto = function() {
+        tuto.quit();
+        if(topMessage) {
+            msgCenter.closeMessage(topMessage);
+            topMessage = null;
+        }
+    };
+    
     var endfunction = function(e) {
         e.data.action.end();
     }
@@ -15,6 +25,101 @@ $(document).ready(function() {
     ];
     
     var actions = [
+        new MseAction(
+            'BtnMenu',
+            
+            {
+                'btn': $('#switch_menu'),
+                'endDelay': 600,
+            },
+            
+            // Start
+            function() {
+                topMessage = msgCenter.send("Le tutoriel est lancé, suivre les indications, vous pouvez arrêter à tout moment en cliquant <a href='javascript:quitTuto();'>ici</a>", 0);
+            
+                if(gui.menu.hasClass('active')) {
+                    this.end();
+                    return;
+                }
+            
+                $('#icon_menu, #sep_right, #switch_menu').click({'action': this}, endfunction);
+                
+                // Message
+                msgs[0].reinit(this.btn, "Clique pour ouvrir le menu", {'position':'left'}).show();
+            },
+            
+            // End
+            function() {
+                msgs[0].hide();
+                $('#icon_menu, #sep_right, #switch_menu').unbind('click', endfunction);
+            }
+        ),
+        
+        new MseAction(
+            'OpenParameters',
+            
+            {
+                'btn': $('#btn_param'),
+                'endDelay': 600,
+            },
+            
+            // Start
+            function() {
+                this.btn.click({'action': this}, endfunction);
+                
+                // Message
+                msgs[0].reinit(this.btn, "Clique pour configurer les paramètres", {'position':'left'}).show();
+            },
+            
+            // End
+            function() {
+                msgs[0].hide();
+                this.btn.unbind('click', endfunction);
+            }
+        ),
+        
+        new MseAction(
+            'Parameters',
+            
+            {
+                'audio': gui.audioctrl.jqObj,
+                'speed': gui.speedctrl.jqObj,
+                'fbComment': gui.pref.find('#share_comment_fb'),
+                'close': gui.pref.children('.close'),
+                'fbNotif': function() {
+                    if($(this).prop('checked')) {
+                        msgs[2].message = "Vos commentaires seront publiés sur Facebook aussi si votre compte Facebook est lié";
+                    }
+                    else {
+                        msgs[2].message = "Vos commentaires seront publiés que sur Season13";
+                    }
+                },
+                'endDelay': 600,
+            },
+            
+            // Start
+            function() {
+                // Message
+                msgs[0].reinit(this.audio, "Faire bouger pour changer la volume de son", {'position':'top'}).show();
+                msgs[1].reinit(this.speed, "Faire bouger pour changer la vitesse de lecture", {'position':'right'}).show();
+                msgs[2].reinit(this.fbComment, "Publication de vos commentaires sur Facebook", {'position':'bottom'}).show();
+                msgs[3].reinit(this.close, "Fermer cette fenêtre", {'position':'top'}).show();
+                
+                this.close.click({'action': this}, endfunction);
+                this.fbComment.change(this.fbNotif);
+            },
+            
+            // End
+            function() {
+                msgs[0].hide();
+                msgs[1].hide();
+                msgs[2].hide();
+                msgs[3].hide();
+                this.fbComment.unbind('change', this.fbNotif);
+                this.close.unbind('click', endfunction);
+            }
+        ),
+        
         new MseAction(
             'BtnTools',
             
@@ -30,9 +135,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].target = this.btn;
-                msgs[0].message = "Boîte à outils";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "Boîte à outils", {'position':'right'}).show();
             },
             
             // End
@@ -59,9 +162,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].target = this.btn;
-                msgs[0].message = "J'aime l'épisode, ou <a href='javascript:tuto.passNext();'>Saute cet étape</a>";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "J'aime l'épisode, ou <a href='javascript:tuto.passNext();'>Saute cet étape</a>").show();
             },
             
             // End
@@ -88,9 +189,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].target = this.btn;
-                msgs[0].message = "Lecture plus rapide";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "Lecture plus rapide").show();
             },
             
             // End
@@ -98,9 +197,7 @@ $(document).ready(function() {
                 this.btn.unbind('click', endfunction);
                 
                 // Message
-                msgs[0].target = this.circle;
-                msgs[0].message = "Ta vitesse de lecture";
-                msgs[0].show();
+                msgs[0].reinit(this.circle, "Ta vitesse de lecture").show();
             }
         ),
         
@@ -120,9 +217,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].target = this.btn;
-                msgs[0].message = "Lecture plus lente";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "Lecture plus lente").show();
             },
             
             // End
@@ -137,7 +232,7 @@ $(document).ready(function() {
             
             {
                 'btn': gui.playpause,
-                'endDelay': 2000,
+                'endDelay': 1200,
             },
             
             // Start
@@ -148,9 +243,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].target = this.btn;
-                msgs[0].message = "Arrêter ou recommencer la lecture";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "Arrêter ou recommencer la lecture").show();
             },
             
             // End
@@ -158,10 +251,9 @@ $(document).ready(function() {
                 this.btn.unbind('click', endfunction);
                 if(mse) {
                     // Message
-                    msgs[0].target = this.btn;
+                    msgs[0].reinit(this.btn, "Lecture recommencée");
                     if(mse.root.inPause) 
                         msgs[0].message = "Lecture arrêtée";
-                    else msgs[0].message = "Lecture recommencée";
                     msgs[0].show();
                 }
             }
@@ -183,9 +275,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].target = this.btn;
-                msgs[0].message = "Laisse un commentaire pour tes amis";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "Laisse un commentaire pour tes amis").show();
             },
             
             // End
@@ -211,12 +301,8 @@ $(document).ready(function() {
                 this.content.click({'action': this}, endfunction);
                 
                 // Messages
-                msgs[0].target = this.content;
-                msgs[0].message = "Ton commentaire ici";
-                msgs[0].show();
-                msgs[1].target = this.comments;
-                msgs[1].message = "Les commentaire des autres lecteurs";
-                msgs[1].show();
+                msgs[0].reinit(this.content, "Ton commentaire ici", {'position':'center'}).show();
+                msgs[1].reinit(this.comments, "Les commentaire des autres lecteurs", {'position':'center'}).show();
             },
             
             // End
@@ -237,9 +323,7 @@ $(document).ready(function() {
                     var action = e.data.action;
                     action.menu.children('li').unbind('mouseover', action.showMsg);
                     
-                    msgs[0].target = action.btn;
-                    msgs[0].message = "Capture une image";
-                    msgs[0].show();
+                    msgs[0].reinit(action.btn, "Capture une image").show();
                     
                     action.btn.click({'action': action}, endfunction);
                 },
@@ -270,9 +354,7 @@ $(document).ready(function() {
             
             // Start
             function() {
-                msgs[0].target = this.root;
-                msgs[0].message = "Capture une image en appuyant le bouton gauche du souris";
-                msgs[0].show();
+                msgs[0].reinit(this.root, "Capture une image en appuyant le bouton gauche du souris", {'position':'center'}).show();
                 
                 this.end();
             }
@@ -290,18 +372,10 @@ $(document).ready(function() {
                     var action = e.data.action;
                     action.scriber.unbind('mouseover', this.showMsg);
                     
-                    msgs[0].target = action.confirmBn;
-                    msgs[0].message = "Valide cette image";
-                    msgs[0].show();
-                    msgs[1].target = action.recapBn;
-                    msgs[1].message = "Change d'image";
-                    msgs[1].show();
-                    msgs[2].target = action.editBn;
-                    msgs[2].message = "Customise l'image";
-                    msgs[2].show();
-                    msgs[3].target = action.closeBn;
-                    msgs[3].message = "Annuler la capture";
-                    msgs[3].show();
+                    msgs[0].reinit(action.confirmBn, "Valide cette image", {'position':'right'}).show();
+                    msgs[1].reinit(action.recapBn, "Change d'image", {'position':'bottom'}).show();
+                    msgs[2].reinit(action.editBn, "Customise l'image", {'position':'top'}).show();
+                    msgs[3].reinit(action.closeBn, "Annuler la capture", {'position':'bottom'}).show();
                     
                     action.confirmBn.click({'action': action}, endfunction);
                     action.recapBn.click({'action': action}, endfunction);
@@ -345,12 +419,8 @@ $(document).ready(function() {
                     var action = e.data.action;
                     action.dialog.unbind('mouseover', action.showMsg);
                     
-                    msgs[0].target = action.btn;
-                    msgs[0].message = "Partager sur Facebook ou uniquement sur le site";
-                    msgs[0].show();
-                    msgs[1].target = action.content;
-                    msgs[1].message = "Tape ton commentaire";
-                    msgs[1].show();
+                    msgs[0].reinit(action.btn, "Partager sur Facebook ou uniquement sur le site").show();
+                    msgs[1].reinit(action.content, "Tape ton commentaire", {'position':'center'}).show();
                     
                     action.btn.click({'action': action}, endfunction);
                 },
@@ -374,25 +444,38 @@ $(document).ready(function() {
             'CommentUpload',
             
             {
-                'beginDelay': 2000,
+                'beginDelay': 1200,
                 'btn': gui.comment_menu.children('#btn_upload_img'),
-                'endDelay': 3000,
+                'endDelay': 600
             },
             
             // Start
             function() {
                 gui.openComment();
                 
-                msgs[0].target = this.btn;
-                msgs[0].message = "Tu peux aussi télécharger ton dessin";
-                msgs[0].show();
+                msgs[0].reinit(this.btn, "Tu peux aussi télécharger ton dessin").show();
                 
-                this.end();
+                var action = this;
+                setTimeout(function() {
+                    action.end();
+                }, 2500);
             },
             
             // End
             function() {
                 msgs[0].hide();
+            }
+        ),
+        
+        new MseAction(
+            'Finish',
+            
+            {},
+            
+            // Start
+            function() {
+                msgCenter.send("Le tutoriel est terminée, vous pouvez continuez votre histoire", 4000);
+                window.quitTuto();
             }
         ),
     ];

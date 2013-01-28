@@ -7,7 +7,9 @@ class Model_User_Config extends \Orm\Model
 		'user_id',
 		'key',
 		'value',
-		'supp'
+		'supp',
+		'created_at',
+		'updated_at',
 	);
 
 	protected static $_belongs_to = array(

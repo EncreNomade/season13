@@ -404,10 +404,19 @@ ObjectPool.prototype = {
  
 var MseScenario = function() {
     this.actions = [];
-    this.progress = 0;
+    this._progress = 0;
 }
 MseScenario.prototype = {
     constructor: MseScenario,
+    
+    get progress() {
+        return this._progress;
+    },
+    set progress(progress) {
+        if(!isNaN(progress) && progress < this.actions.length && progress >= 0) {
+            this._progress = progress;
+        }
+    },
     
     reset: function() {
         for (var i in this.actions) {
@@ -417,13 +426,13 @@ MseScenario.prototype = {
         this.progress = 0;
     },
     
+    quit: function() {
+        this.actions[this.progress].quit();
+        this.progress = 0;
+    },
+    
     run: function(progress) {
-        if(!isNaN(progress) && progress < this.actions.length && progress >= 0) {
-            this.progress = progress;
-        }
-        else if(this.progress >= this.actions.length && this.progress < 0) {
-            return;
-        }
+        this.progress = progress;
         
         var action = this.actions[this.progress];
         
@@ -528,6 +537,11 @@ MseAction.prototype = {
         this.state = "INIT";
     },
     
+    quit: function() {
+        this.realEnd();
+        this.state = "END";
+    },
+    
     start: function() {
         if(this.state != "INIT") return;
         this.state = "START";
@@ -559,16 +573,24 @@ MseAction.prototype = {
  */
 var MseTutoMsg = function(target, message, config) {
     this._box = $('<div class="tutoBox"></div>');
-    this._boxText = $('<div class="msg"></div>');
+    this._boxText = $('<h5 class="msg"></h5>');
+    this._boxClose = $('<span>x</span>');
     this._boxIndicator = $('<div class="img"></div>');
 
     this._box.append(this._boxText)
+             .append(this._boxClose)
              .append(this._boxIndicator);
+    
+    var msg = this;         
+    this._boxClose.click(function() {
+        msg.hide();
+    });
 
     this.reinit(target, message, config);
 };
 MseTutoMsg.prototype = {
     constructor: MseTutoMsg,
+    boxIndicatorSize: 10,
     get target() { return this._target; },
     set target(t) {
         this._target = t;
@@ -617,37 +639,43 @@ MseTutoMsg.prototype = {
         //        
         switch (this.position) {
             case "left":
-                newPos.left -= ( box.width + this._boxIndicator.width() );
+                newPos.left -= ( box.width + this.boxIndicatorSize );
                 this._boxIndicator.addClass('right');
                 break;
             case "right":
-                newPos.left += this._target.width() + this._boxIndicator.width();
+                newPos.left += this._target.width() + this.boxIndicatorSize;
                 this._boxIndicator.addClass('left');
+                this._boxIndicator.css('left', '-8px');
                 break;
             case "bottom":
-                newPos.top += this._target.height() + this._boxIndicator.height();
+                newPos.top += this._target.height() + this.boxIndicatorSize;
                 this._boxIndicator.addClass('top');
                 break;
             case "top":
-                newPos.top -= ( box.height + this._boxIndicator.height() );
+                newPos.top -= ( box.height + this.boxIndicatorSize );
                 this._boxIndicator.addClass('bottom');
                 break;
+            case "center":
+                newPos.top += this._target.height()/2 - (box.height + this.boxIndicatorSize);
+                newPos.left += this._target.width()/2 - box.width/2;
+                this._boxIndicator.addClass('center');
+                break;
             default:
-                newPos.top -= ( box.height + this._boxIndicator.height() );
+                newPos.top -= ( box.height + this.boxIndicatorSize );
                 // auto mode : correct position
                 if(newPos.left <= 0)
                     newPos.left = 0;
                 else if(newPos.left + box.width > brwsr.width)
                     newPos.left = brwsr.width - box.width;
                 if(newPos.top <= 0) {
-                    newPos.top = this._target.height() + this._boxIndicator.height();
+                    newPos.top = this._target.height() + this.boxIndicatorSize;
                     this._boxIndicator.addClass('top');
                 }
                 else if(newPos.top + box.height > brwsr.height)
                     newPos.top = brwsr.height - box.height;
                 // positionnig the indicator
                 var tarCenter = this._target.width() / 2;
-                var indicWidth = this._boxIndicator.width();
+                var indicWidth = this.boxIndicatorSize;
                 var indicPos = tarCenter - indicWidth/2;
                 // reposition if indicator is out of the box
                 if(indicPos > box.width)

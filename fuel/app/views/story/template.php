@@ -75,6 +75,14 @@
             echo Asset::js('story/effet_mini.js');
             echo Asset::js('story/mdj.min.js');
         }
+        
+        // print games
+        $games = $episode->games;
+        foreach ($games as $g) {
+            $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
+            $url = $base_url . $g->path.'/games/'.$g->file_name;
+            echo "<script src=\"$url\"> </script>";
+        }
     }
 
 ?>
@@ -85,24 +93,35 @@
         }, false);
 
         config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
-    </script>
+    
+    <?php if(isset($episode)): ?>
+        mse.configs.epid = <?php echo $episode->id; ?>;
+        mse.configs.srcPath = '<?php echo $remote_path.$episode->path; ?>';
+    
+        config.episode = {
+            'epid' : <?php echo $episode->id; ?>,
+            'title' : "<?php echo $title; ?>",
+            'story' : "<?php echo $episode->story; ?>",
+            'image' : "<?php echo $expo_image; ?>"
+        };
 
-<?php
-    if(isset($episode)) {    
-        echo "<script type='text/javascript'>";
-        echo "mse.configs.epid = ".$episode->id.";\n\t";
-        echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";  
-        echo "</script>";
+        config.episode.gameExpos = {};
+        <?php foreach ($episode->games as $g): ?>
+            config.episode.gameExpos["<?php echo $g->class_name; ?>"] = "<?php echo Asset::get_file($g->expo, 'img'); ?>";
+        <?php endforeach; ?>
         
-        // print games
-        $games = $episode->games;
-        foreach ($games as $g) {
-            $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
-            $url = $base_url . $g->path.'/games/'.$g->file_name;
-            echo "<script src=\"$url\"> </script>";
-        }
-    }
-?>
+        config.accessResp = {
+            'valid': <?php echo $access['valid'] ? 'true' : 'false'; ?>, 
+            <?php 
+            if($access['valid'] == false) 
+                echo "'errorCode':  ".$access['errorCode'].",\n";
+            if(array_key_exists('errorMessage', $access)) 
+                echo "'errorMessage': '".$access['errorMessage']."',\n";
+            ?>
+        };    
+    <?php endif; ?>
+    
+    </script>
 
 
 
@@ -130,6 +149,11 @@
 </script>
 <?php endif; ?>
 
+<?php 
+    // output the javascript function
+    echo Security::js_set_token(); 
+?>
+
 </head>
 
 <body>
@@ -137,21 +161,13 @@
     <div id="fb-root"></div>
     <script>
         // Load the SDK asynchronously
-        (function(d){
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/fr_FR/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-
-        // (function(d, s, id) {
-        //   var js, fjs = d.getElementsByTagName(s)[0];
-        //   if (d.getElementById(id)) return;
-        //   js = d.createElement(s); js.id = id; js.async = true;
-        //   js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-        //   fjs.parentNode.insertBefore(js, fjs);
-        // }(document, 'script', 'facebook-jssdk'));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
         
         
         // Init the SDK upon load
@@ -169,39 +185,8 @@
             if(config.episode.epid == 4) 
                 story_access_resp(config.accessResp, config.episode.epid);
         }
-    </script>
-
-<?php if(isset($episode)): ?>
-    <script>
-    
-        config.episode = {
-            'epid' : <?php echo $episode->id; ?>,
-            'title' : "<?php echo $title; ?>",
-            'story' : "<?php echo $episode->story; ?>",
-            'image' : "<?php echo $expo_image; ?>"
-        };
-
-        config.episode.gameExpos = {};
-        <?php foreach ($episode->games as $g): ?>
-            config.episode.gameExpos["<?php echo $g->class_name; ?>"] = "<?php echo Asset::get_file($g->expo, 'img'); ?>";
-        <?php endforeach; ?>
-        
-        config.accessResp = {
-            'valid': <?php echo $access['valid'] ? 'true' : 'false'; ?>, 
-            <?php 
-            if($access['valid'] == false) 
-                echo "'errorCode':  ".$access['errorCode'].",\n";
-            if(array_key_exists('errorMessage', $access)) 
-                echo "'errorMessage': '".$access['errorMessage']."',\n";
-            ?>
-        };
         
     </script>
-<?php endif; ?>
-    <?php 
-        // output the javascript function
-        echo Security::js_set_token(); 
-    ?>
 
     <header>
         <div class="left">
@@ -383,7 +368,7 @@
             <?php else: ?>
                 <h5 style="text-align: center;">
                     Pour découvrir la descente infernale de Simon et Angéli en poubelle dans Montmartre,<br/>
-                    RDV le mercredi 9 janvier<br/>
+                    RDV en Février<br/>
                     sur Voodoo Connection Saison 2<br/>
                 </h5>
             <?php endif; ?>
