@@ -161,6 +161,8 @@ Steak.prototype = {
 
 var VacheGame = function() {
     mse.Game.call(this, {fillback:true, size:[600,440]});
+    this.className = "VacheGame";
+    GameInfo.register(this);
     this.config.title = "Arthur et les vaches";
     
     this.msg = {

@@ -103,6 +103,8 @@ Rock.prototype = {
 
 var ShootZombie = function() {
     mse.Game.call(this, {fillback:true, size:[600,440]});
+    this.className = "ShootZombie";
+    GameInfo.register(this);
     this.config.title = "La cauchemar de Simon";
     
     this.msg = {
@@ -175,7 +177,7 @@ var ShootZombie = function() {
     	font:"20px Arial",
     	textAlign:"center",
     	textBaseline:"top",
-    	lineHeight:25}, "Simon rêve qu’il est attaqué par des zombis.\n \nMaintient le bouton gauche de la souris enfoncé et vise. Relache pour lancer le projectile.\n \nClique pour commencer!", true
+    	lineHeight:25}, "Simon rêve qu’il est attaqué par des zombis. Il lance des projectiles pour se défendre.\n \nMaintient le bouton gauche de la souris enfoncé et vise. Relache pour lancer le projectile.\n \nClique pour commencer!", true
     );
     this.currVague = 0;
     this.currTime = 0;
@@ -214,7 +216,7 @@ var ShootZombie = function() {
         this.getEvtProxy().removeListener('gestureEnd', cbEnd);
         this.state = "WIN";
         this.setScore( 20 * this.currVague + this.currTime * 0.05 );
-        this.prototype.win.call(this);
+        this.constructor.prototype.win.call(this);
     };
     this.die = function() {
         this.getEvtProxy().removeListener('gestureStart', cbStart);

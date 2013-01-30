@@ -180,6 +180,8 @@ Simon.prototype = {
 
 var Esquive = function(){
     mse.Game.call(this, {fillback:true});
+    this.className = "Esquive";
+    GameInfo.register(this);
     this.config.title = "Le Concert";
     
     this.width = 600; 
@@ -231,7 +233,7 @@ var Esquive = function(){
     
     // Help message
     if(MseConfig.iOS) var help = "L’intervention de l’inspecteur Angeli fait fuir le public du concert. \nAide Simon à ne pas se faire piétiner par les fuyards !\nTouche l'écran pour contrôler Simon.";
-    else var help = "L’intervention de l’inspecteur Angeli fait fuir le public du concert. \nAide Simon à ne pas se faire piétiner par les fuyards !\nUtilise les flèches pour contrôler Simon.";
+    else var help = "L’intervention de l’inspecteur Angeli fait fuir le public du concert. \nAide Simon à ne pas se faire piétiner par les fuyards !\nUtilises les flèches pour contrôler Simon.";
     this.info = new mse.Text(null, {
 		pos:[10,50],
 		size:[this.width-20,0],

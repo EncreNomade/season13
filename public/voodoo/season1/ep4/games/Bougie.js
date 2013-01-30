@@ -7,14 +7,14 @@ var Bougie = function() {
     this.offx = mse.coor(mse.joinCoor(0)); this.offy = mse.coor(mse.joinCoor(0));
     this.width = mse.coor(mse.joinCoor(800)); this.height = mse.coor(mse.joinCoor(600));
     this.bougiePos = [
-        {x:mse.coor(mse.joinCoor(108)),y:mse.coor(mse.joinCoor(275)),
-         w:mse.coor(mse.joinCoor(57)),h:mse.coor(mse.joinCoor(90))},
-        {x:mse.coor(mse.joinCoor(310)),y:mse.coor(mse.joinCoor(250)),
-         w:mse.coor(mse.joinCoor(40)),h:mse.coor(mse.joinCoor(60))},
-        {x:mse.coor(mse.joinCoor(485)),y:mse.coor(mse.joinCoor(270)),
-         w:mse.coor(mse.joinCoor(45)),h:mse.coor(mse.joinCoor(65))},
-        {x:mse.coor(mse.joinCoor(580)),y:mse.coor(mse.joinCoor(345)),
-         w:mse.coor(mse.joinCoor(65)),h:mse.coor(mse.joinCoor(110))}
+        {x:108*this.width/800,y:275*this.height/600,
+         w:57*this.width/800,h:90*this.height/600},
+        {x:310*this.width/800,y:250*this.height/600,
+         w:40*this.width/800,h:60*this.height/600},
+        {x:485*this.width/800,y:270*this.height/600,
+         w:45*this.width/800,h:65*this.height/600},
+        {x:580*this.width/800,y:345*this.height/600,
+         w:65*this.width/800,h:110*this.height/600}
     ];
     
     mse.src.addSource('zippoimg', 'games/flame.png', 'img', true);
@@ -28,11 +28,11 @@ var Bougie = function() {
     this.fire = new mse.Sprite(null, {}, 'zippoimg', 17,58, 57,0,68,58);
     this.fireAnime = new mse.FrameAnimation(this.fire, [0,1,2,3,3], 0, 2);
     this.part = [];
-    this.part[0] = new mse.Image(null, {pos:[0,0],size:[mse.coor(mse.joinCoor(355)),mse.coor(mse.joinCoor(600))],globalAlpha:0}, 'backcut0');
-    this.part[1] = new mse.Image(null, {pos:[mse.coor(mse.joinCoor(264)),mse.coor(mse.joinCoor(159))],size:[mse.coor(mse.joinCoor(129)),mse.coor(mse.joinCoor(208))],globalAlpha:0}, 'backcut1');
-    this.part[2] = new mse.Image(null, {pos:[mse.coor(mse.joinCoor(418)),mse.coor(mse.joinCoor(148))],size:[mse.coor(mse.joinCoor(180)),mse.coor(mse.joinCoor(236))],globalAlpha:0}, 'backcut2');
-    this.part[3] = new mse.Image(null, {pos:[mse.coor(mse.joinCoor(300)),0],size:[mse.coor(mse.joinCoor(500)),mse.coor(mse.joinCoor(600))],globalAlpha:0}, 'backcut3');
-    this.backlight = new mse.Image(null, {pos:[0,0],size:[mse.coor(mse.joinCoor(800)),mse.coor(mse.joinCoor(600))]}, 'backlight');
+    this.part[0] = new mse.Image(null, {pos:[0,0],size:[355*this.width/800,this.height],globalAlpha:0}, 'backcut0');
+    this.part[1] = new mse.Image(null, {pos:[264*this.width/800,159*this.height/600],size:[129*this.width/800,208*this.height/600],globalAlpha:0}, 'backcut1');
+    this.part[2] = new mse.Image(null, {pos:[418*this.width/800,148*this.height/600],size:[180*this.width/800,236*this.height/600],globalAlpha:0}, 'backcut2');
+    this.part[3] = new mse.Image(null, {pos:[300*this.width/800,0],size:[500*this.width/800,this.height],globalAlpha:0}, 'backcut3');
+    this.backlight = new mse.Image(null, {pos:[0,0],size:[this.width,this.height]}, 'backlight');
     
     this.light = [false, false, false, false];
     this.firstShow = false;
@@ -51,7 +51,10 @@ var Bougie = function() {
             if(!this.light[i] && 
                x > this.bougiePos[i].x && x < this.bougiePos[i].x+this.bougiePos[i].w &&
                y > this.bougiePos[i].y && y < this.bougiePos[i].y+this.bougiePos[i].h) {
+                
                 this.light[i] = true;
+                mse.src.getSrc('zippo').play();
+                
                 if(this.light[0] && this.light[1] && this.light[2] && this.light[3])
                     this.count = 60;
                 break;
@@ -88,8 +91,11 @@ var Bougie = function() {
     this.logic = function(ctx) {
         if(this.state != "START") return;
         for(var i = 0; i < 4; i++) {
-            if(this.light[i] && this.part[i].globalAlpha < 1) 
+            if(this.light[i] && this.part[i].globalAlpha < 1) {
                 this.part[i].globalAlpha += 0.04;
+                if(this.part[i].globalAlpha > 1)
+                    this.part[i].globalAlpha = 1;
+            }
         }
         if(this.count !== null) {
             if(this.count > 0)

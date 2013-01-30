@@ -96,6 +96,7 @@
     
     <?php if(isset($episode)): ?>
         mse.configs.epid = <?php echo $episode->id; ?>;
+        mse.configs.user = <?php if($current_user) echo "'".$current_user->pseudo."'"; else echo "false"; ?>;
         mse.configs.srcPath = '<?php echo $remote_path.$episode->path; ?>';
     
         config.episode = {
@@ -207,8 +208,6 @@
             
         <?php if (!Agent::is_mobiledevice()): ?>
             <ul id="conn">
-                    <li><a href="javascript:tuto.reset();tuto.run();">START TUTO</a></li>
-                    <li class="text_sep_vertical"></li>
             <?php if($current_user == null): ?>
                     <li id="open_signup">Créer un compte</li>
                     <li class="text_sep_vertical"></li>
@@ -249,9 +248,10 @@
     </header>
     
     <ul id="menu">
-        <!--<li id="btn_aide">
+        <!--
+        <li id="btn_aide">
             <?php echo Asset::img('season13/story/story_aide.png'); ?>
-            <a>Aide</a>
+            <a href="javascript:tuto.reset();tuto.run();">Tutoriel</a>
         </li>-->
         <li id="btn_param">
             <?php echo Asset::img('season13/story/story_param.png', array('alt' => 'Paramètre d\'episode SEASON 13')); ?>
@@ -386,6 +386,10 @@
             <p>Audio: </p>
             <p>Vitesse: </p>
             <p><label>Partager les commentaires sur facebook: <input id="share_comment_fb" type="checkbox" checked="true" /></label></p>
+            <div class="link">
+                <a href="javascript:gui.savePersonalData();">Sauvegarder</a>
+                <div class="loading"></div>
+            </div>
         </div>
         
         

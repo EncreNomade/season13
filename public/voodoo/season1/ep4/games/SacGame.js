@@ -3,6 +3,8 @@ var SacGame = function() {
     
     this.setDirectShow(true);
     this.firstShow = false;
+    this.audioplaying = false;
+    this.audioplaytime = 0;
     
     this.offx = mse.coor(mse.joinCoor(-30)); this.offy = mse.coor(mse.joinCoor(0));
     this.width = mse.coor(mse.joinCoor(400)); this.height = mse.coor(mse.joinCoor(200));
@@ -21,6 +23,13 @@ var SacGame = function() {
         var x = e.offsetX - this.getX();
         var y = e.offsetY - this.getY();
         
+        if (!this.audioplaying) {
+            this.audioplaying = true;
+            this.audioplaytime = 0;
+            var i = randomInt(2)+1;
+            mse.src.getSrc('zip'+i).play();
+        }
+        
         // Valid action
         if (x > 0.1*this.width && Math.abs(y - 0.5*this.height) < 0.4*this.height) {
             var ratio = Math.ceil(15 * (x - 0.1*this.width) / (0.9*this.width));
@@ -28,6 +37,7 @@ var SacGame = function() {
             if(ratio == 15) {
                 this.state = "ANIME";
                 this.anime.start();
+                mse.src.getSrc('peur').play();
             }
         }
     };
@@ -44,9 +54,9 @@ var SacGame = function() {
     this.init = function() {
         layers.content.interrupt();
         
-        this.getEvtProxy().addListener('gestureStart', cbStart, true);
-    	this.getEvtProxy().addListener('gestureUpdate', cbMove, true);
-    	this.getEvtProxy().addListener('gestureEnd', cbEnd, true);
+        this.getEvtProxy().addListener('gestureStart', cbStart);
+    	this.getEvtProxy().addListener('gestureUpdate', cbMove);
+    	this.getEvtProxy().addListener('gestureEnd', cbEnd);
     	
     	mse.setCursor('pointer');
     	this.state = "START";
@@ -66,6 +76,12 @@ var SacGame = function() {
         	this.firstShow = true;
         	this.evtDeleg.eventNotif('firstShow');
         	this.evtDeleg.eventNotif('start');
+        }
+        
+        if(this.audioplaying) {
+            this.audioplaytime++;
+            if(this.audioplaytime > 40)
+                this.audioplaying = false;
         }
         
         this.sac.draw(ctx);

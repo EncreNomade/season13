@@ -102,7 +102,6 @@ class Model_13user extends \Orm\Model
 			}
 		}
 
-		Debug::dump($value);
 		$config = Model_User_Config::forge();
 		$config->user_id = $this->id;
 		$config->key = $key;

@@ -37,10 +37,14 @@ class Controller_Book_13game extends Controller_Backend
     				$book_13game = Model_Book_13game::forge(array(
     					'name' => Input::post('name'),
     					'epid' => Input::post('epid'),
+    					'class_name' => Input::post('class_name'),
     					'expo' => Input::post('expo'),
     					'instruction' => Input::post('instruction') ? Input::post('instruction') : "",
     					'presentation' => Input::post('presentation') ? Input::post('presentation') : "",
+    					'independant' => Input::post('idependant') ? Input::post('idependant') : 0,
     					'categories' => Input::post('categories') ? Input::post('categories') : "",
+    					'path' => Input::post('path'),
+    					'file_name' => Input::post('file_name'),
     					'metas' => Input::post('metas') ? Input::post('metas') : "",
     				));
     
@@ -84,10 +88,14 @@ class Controller_Book_13game extends Controller_Backend
     		{
     			$book_13game->name = Input::post('name');
     			$book_13game->epid = Input::post('epid');
+    			$book_13game->class_name = Input::post('class_name');
     			$book_13game->expo = Input::post('expo');
     			$book_13game->instruction = Input::post('instruction') ? Input::post('instruction') : "";
     			$book_13game->presentation = Input::post('presentation') ? Input::post('presentation') : "";
+    			$book_13game->indenpendant = Input::post('indenpendant');
     			$book_13game->categories = Input::post('categories') ? Input::post('categories') : "";
+    			$book_13game->path = Input::post('path');
+    			$book_13game->file_name = Input::post('file_name');
     			$book_13game->metas = Input::post('metas') ? Input::post('metas') : "";
     
     			if ($book_13game->save())
@@ -109,10 +117,14 @@ class Controller_Book_13game extends Controller_Backend
     			{
     				$book_13game->name = $val->validated('name');
     				$book_13game->epid = $val->validated('epid');
+    				$book_13game->class_name = $val->validated('class_name');
     				$book_13game->expo = $val->validated('expo');
     				$book_13game->instruction = $val->validated('instruction');
     				$book_13game->presentation = $val->validated('presentation');
+    				$book_13game->indenpendant = $val->validated('indenpendant');
     				$book_13game->categories = $val->validated('categories');
+    				$book_13game->path = $val->validated('path');
+    				$book_13game->file_name = $val->validated('file_name');
     				$book_13game->metas = $val->validated('metas');
     
     				Session::set_flash('error', $val->error());

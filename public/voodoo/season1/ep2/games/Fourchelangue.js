@@ -1,5 +1,7 @@
 var Fourchelangue = function() {
     mse.Game.call(this, {fillback:true, size:[600,480]});
+    this.className = "Fourchelangue";
+    GameInfo.register(this);
     
     this.config.title = "Fourchelangue";
     this.score = 60;

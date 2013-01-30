@@ -164,6 +164,9 @@ var NPC = function(sprite, course, dir) {
 
 var FindSimon = function() {
     mse.Game.call(this, {fillback:true});
+    this.className = "FindSimon";
+    GameInfo.register(this);
+    
     this.msg = {
         "INIT": "Clique pour aider Simon\nà échapper à la Meute.\nUtilise les flêches du clavier.",
         "WIN": "Bravo!!! Tu as gagné."

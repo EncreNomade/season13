@@ -362,6 +362,22 @@ gui.openPref = function() {
     }
 }
 
+gui.savePersonalData = function() {
+    if(mse.configs.user) {
+        gui.prefSaveLoading.show();
+        userData.save(function() {
+            msgCenter.send('Tes configurations sont mise à jour.');
+            gui.prefSaveLoading.hide();
+        }, function() {
+            msgCenter.send("Échec de sauvegarder tes configurations.");
+            gui.prefSaveLoading.hide();
+        });
+    }
+    else {
+        alert("Tu dois être connecté pour pouvoir sauvegarder.");
+    }
+}
+
 gui.openAuthorBio = function() {
     if(!gui.center.hasClass('show')) gui.center.addClass('show');
     if(!gui.author_bio.hasClass('show')) {
@@ -621,6 +637,7 @@ $(document).ready(function() {
     gui.menu = $('#menu');
     gui.center = $('#center')
     gui.pref = $('#preference');
+    gui.prefSaveLoading = $('#preference .link .loading').hide();
     gui.author_bio = $('#author_bio');
     gui.credits = $('#credits');
     gui.controler = $('#controler');
@@ -872,7 +889,7 @@ var userData = (function() {
         $('#game_quit').click(userData.save);
     });
 
-    exports.save = function() {
+    exports.save = function(success, fail) {
         $.post(config.base_url + 'user/data/update', {
             // config data
             speed: gui.speedctrl.value,
@@ -883,7 +900,8 @@ var userData = (function() {
             position: window.mse && window.mse.root ? mse.root.getProgress() : {},
             started: true,
             completed: false
-        }).error(ajaxError);
+        }).success((typeof success == "function") ? success : function(){})
+        .error((typeof fail == "function") ? fail : ajaxError);
     };
 
     exports.retrieve = function() {

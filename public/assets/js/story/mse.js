@@ -268,7 +268,7 @@ mse.init = function(configs, id, width, height, orientation) {
 	width = width || MseConfig.pageWidth;
 	height = height || MseConfig.pageHeight;
 	orientation = orientation || 'portrait';
-	if(!window.root && !mse.root)
+	if(!mse.root)
 		window.root = new mse.Root(id, width, height, orientation);
     
     var imgShower = new mse.ImageShower();
@@ -2243,7 +2243,7 @@ mse.Game = function(params) {
     else {
         this.offx = 0;
         this.offy = 0;
-        this.height = Math.round(0.6*mse.root.height);
+        this.height = Math.round(0.6 * mse.root.height);
         this.width = Math.round(this.height*4/3);
     }
     

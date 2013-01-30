@@ -32,6 +32,24 @@ ul {
     opacity: 1;
 }
 
+div.link {
+    position: relative;
+    float: left;
+    width: 200px;
+    left: 0px;
+    text-align: center;
+    height: 50px;
+    margin: 10px 60px;
+    font: normal 20px/55px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    background: rgb(246, 168, 0);
+    
+    border-radius: 10px;
+}
+div.link a {
+    text-decoration: none;
+    color: #fff;
+}
+
 
 
 
@@ -288,7 +306,7 @@ ul#menu div #menu_link {
     left: -150px;
     top: 0px;
     width: 254px;
-    height: 150px;
+    height: 200px;
     background: #fff;
     color: #000;
     visibility: hidden;
@@ -438,23 +456,6 @@ ul#menu div #menu_link {
     left: 67px;
     width: 120px;
     height: 104px;
-}
-
-#next_ep_dialog div.link {
-    position: relative;
-    width: 200px;
-    left: 0px;
-    text-align: center;
-    height: 50px;
-    margin: 10px 27px;
-    font: normal 20px/55px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    background: rgb(246, 168, 0);
-    
-    border-radius: 10px;
-}
-#next_ep_dialog div.link a {
-    text-decoration: none;
-    color: #fff;
 }
 
 

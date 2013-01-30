@@ -34,6 +34,14 @@
 			</div>
 		</div>
 		<div class="clearfix">
+			<?php echo Form::label('Class Name', 'class_name'); ?>
+
+			<div class="input">
+				<?php echo Form::input('class_name', Input::post('class_name', isset($book_13game) ? $book_13game->class_name : ''), array('class' => 'span4')); ?>
+
+			</div>
+		</div>
+		<div class="clearfix">
 			<?php echo Form::label('Expo', 'expo'); ?>
 
 			<div class="input">
@@ -58,10 +66,41 @@
 			</div>
 		</div>
 		<div class="clearfix">
+			<?php echo Form::label('Path', 'path'); ?>
+
+			<div class="input">
+				<?php echo Form::input('path', Input::post('path', isset($book_13game) ? $book_13game->path : ''), array('class' => 'span4')); ?>
+
+			</div>
+		</div>
+		<div class="clearfix">
+			<?php echo Form::label('File Name', 'file_name'); ?>
+
+			<div class="input">
+				<?php echo Form::input('file_name', Input::post('file_name', isset($book_13game) ? $book_13game->file_name : ''), array('class' => 'span4')); ?>
+
+			</div>
+		</div>
+		<div class="clearfix">
 			<?php echo Form::label('Categories', 'categories'); ?>
 
 			<div class="input">
 				<?php echo Form::input('categories', Input::post('categories', isset($book_13game) ? $book_13game->categories : ''), array('class' => 'span4')); ?>
+
+			</div>
+		</div>
+		<div class="clearfix">
+			<?php echo Form::label('Independant', 'independant'); ?>
+
+			<div class="input">
+				
+				<?php 
+				echo Form::select(
+				    'independant', 
+				    Input::post('independant', isset($book_13game) ? $book_13game->independant : 0), 
+				    array(0, 1)
+				);
+				?>
 
 			</div>
 		</div>

@@ -22,7 +22,7 @@ var GameInfo = (function() {
             data: { 'className': game.className },
             dataType: 'json',
             success: function(gameInfo) {
-                if(gameInfo.high_score)
+                if(gameInfo && gameInfo.high_score)
                     game.setHighScore(gameInfo.high_score);
             },
             error: ajaxError

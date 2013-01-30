@@ -4,14 +4,13 @@ class Controller_Book_Gameview extends Controller_Frontend {
 
 	public function action_index()
     {
-        $games = Model_Book_13game::find('all');
-        // $this->template->js_supp = "game_runner.js"; 
-        $this->template->css_supp = "gameview.css"; 
+        $games = Model_Book_13game::query()->where('independant', 1)
+                                           ->get();
+        $this->template->css_supp = "gameview.css";
     	
 		$data = array("games" => $games);
-    
+        
         $this->template->title = 'SEASON 13 - Histoire Interactive | Voodoo Connection | Feuilleton Interactif | Livre Jeux';
-        // Set supplementation css and js file
         
         $this->template->content = View::forge('book/13game/gameview_all', $data);
     }
@@ -20,7 +19,7 @@ class Controller_Book_Gameview extends Controller_Frontend {
     {        
         $g = Model_Book_13game::find_by_class_name($className);
         $data = array();
-        if(!$g) {     
+        if(!$g) {
             return Response::redirect('404');
         }
         else {
@@ -35,9 +34,6 @@ class Controller_Book_Gameview extends Controller_Frontend {
             $this->template->title = 'SEASON 13 - jeux ' . $g->name;
 
             $this->template->content = View::forge('book/13game/gameview_single', $data);
-           
-
-            // return View::forge('book/13game/gameview_single', $data);
         }
     }
 
