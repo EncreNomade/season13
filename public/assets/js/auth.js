@@ -228,7 +228,7 @@ function init() {
             return;
         }
     
-        var token = response.authResponse.accessToken;
+        var token = fbapi.token;
         
         $.ajax({
             url: config.publicRoot + 'base/login_fb',

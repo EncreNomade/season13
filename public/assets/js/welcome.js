@@ -97,11 +97,48 @@ var accessGateway = {
     'ep3': function(data) {
         $('#access_dialog').attr('class', 'dialog invitation_dialog');
         $('#access_dialog h1').text('Invitation');
-        $('#access_dialog h1').nextAll().remove();
-        $('#access_dialog h1').after(data.form);
+        $('#access_dialog .sep_line').nextAll().remove();
+        $('#access_dialog .sep_line').after(data.form);
         var invitation = $('#access_dialog');
-        invitation.addClass('show');
-
+        
+        FB.XFBML.parse();
+        
+        // Send event
+        FB.Event.subscribe('message.send', function(response) {
+            $.ajax({
+                url : window.config.publicRoot+'accessaction/invitation_fb',
+                type : 'POST',
+                dataType : 'json',
+                success :   function(res) {
+                    if(res && res.valid && res.valid === true) {
+                        accessGateway.success = true;
+                    }
+                    else if(res && res.errorMessage) {
+                        alert(res.errorMessage);
+                    }
+                    else {
+                        alert('Une erreur de connexion est survenue.');
+                    }
+                },
+                error :     function(res) {
+                    alert('Une erreur de connexion est survenue.');
+                }
+                
+            });
+        
+            $('#access_dialog #fbsend_section').nextAll().remove();
+            $('#access_dialog #fbsend_section').append("<p><input id='send_fb_btn' type='submit' value=\"Accède à l'épisode 3\"></p>");
+            
+            $('#send_fb_btn').click(function(e) {
+                e.preventDefault();
+                if(accessGateway.success) {
+                    accessGateway.success = false;
+                    invitation.removeClass('show');
+                    window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode3', '_newtab');
+                }
+            });
+        });
+        
         // Prepare Options Object for form
         var options = {
             type :      'POST',
@@ -117,7 +154,7 @@ var accessGateway = {
                 }
                 else {
                     alert('Une erreur de connexion est survenue.');
-                }
+                 }
             },
             error :     function(res) {
                 alert('Une erreur de connexion est survenue.');
@@ -125,7 +162,7 @@ var accessGateway = {
         };
         // Prepare ajax form
         $('#invitation_form').ajaxForm(options);
-        $('#access_submit_btn3').click(function(e) {
+        $('#send_mail_btn').click(function(e) {
             e.preventDefault();
             fuel_set_csrf_token($('#invitation_form').get(0));
             $('#invitation_form').submit();
@@ -134,6 +171,8 @@ var accessGateway = {
                 window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode3', '_newtab');
             }
         });
+
+        invitation.addClass('show');
         
         $('#access_buy_btn3').unbind('click').click(function(e) {
             invitation.removeClass('show');
@@ -146,12 +185,12 @@ var accessGateway = {
     'ep4': function(data) {
         $('#access_dialog').attr('class', 'dialog like_dialog');
         $('#access_dialog h1').text('J\'aime SEASON13 sur Facebook');
-        $('#access_dialog h1').nextAll().remove();
-        $('#access_dialog h1').after(data.form);
+        $('#access_dialog .sep_line').nextAll().remove();
+        $('#access_dialog .sep_line').after(data.form);
         var like = $('#access_dialog');
         
         // Like button
-        $('#access_dialog #like_section').html('<fb:like href="http://season13.com/" id="fb_like_form_btn" send="true" width="400" show_faces="true" font="lucida grande"></fb:like>');
+        //$('#access_dialog #like_section').html();
         FB.XFBML.parse();
         
         FB.Event.subscribe('edge.create', function(response) {
@@ -230,6 +269,12 @@ function story_access_resp(data, epid) {
         if(data.errorCode != null) {
             switch (data.errorCode) {
             case 201:
+                alert(data.errorMessage);
+                if(showLogin) showLogin();
+                break;
+                
+            case 302:
+                alert(data.errorMessage);
                 if(showLogin) showLogin();
                 break;
             
@@ -250,10 +295,10 @@ function story_access_resp(data, epid) {
             case 102:
             case 101:
             default:
+                if(data.errorMessage && data.errorMessage != "") alert(data.errorMessage);
                 break;
             }
         }
-        if(data.errorMessage && data.errorMessage != "") alert(data.errorMessage);
     }
 }
 function playEpisode(e) {

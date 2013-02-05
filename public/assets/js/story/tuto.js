@@ -24,6 +24,52 @@ $(document).ready(function() {
         new MseTutoMsg(null, ""),
     ];
     
+    
+    // Event of start for article layer
+    var tutoDone = false;
+    if(mse && mse.configs) {
+        tutoDone = mse.configs.isTutoDone;
+    }
+    if(!tutoDone && window.layers) {
+        for (var i in layers) {
+            if(layers[i] instanceof mse.ArticleLayer) {
+                var obj = layers[i].getObject(1);
+                if(obj instanceof mse.UIObject) {
+                    obj.addListener('firstShow', new Callback(function() {
+                        gui.playpause.click();
+                        
+                        var dialog = $('#lance_tuto');
+                        if(dialog) {
+                            dialog.addClass('show');
+                            dialog.children('.floatlink').first().click(function() {
+                                $.post(config.publicRoot + 'base/has_done_tuto');
+                                dialog.removeClass('show');
+                                gui.playpause.click();
+                            });
+                            dialog.children('.floatlink').last().click(function() {
+                                tuto.reset();
+                                tuto.run();
+                                dialog.removeClass('show');
+                            });
+                        }
+                        else {
+                            var ok = confirm("Veux-tu démarrer le tutoriel ? Sinon, tu peux le démarrer plus tard dans le menu en haut à droite.");
+                            if(ok) {
+                                this.reset();
+                                this.run();
+                            }
+                            else {
+                                $.post(config.publicRoot + 'base/has_done_tuto');
+                                gui.playpause.click();
+                            }
+                        }
+                    }, tuto));
+                }
+                break;
+            }
+        }
+    }
+    
     var actions = [
         new MseAction(
             'BtnMenu',
@@ -35,7 +81,9 @@ $(document).ready(function() {
             
             // Start
             function() {
-                topMessage = msgCenter.send("Le tutoriel est lancé, suivre les indications, vous pouvez arrêter à tout moment en cliquant <a href='javascript:quitTuto();'>ici</a>", 0);
+                topMessage = msgCenter.send("Le tutoriel est lancé, à toi de suivre les indications, tu peux arrêter à tout moment en cliquant <a href='javascript:quitTuto();'>ici</a>", 0);
+                
+                $.post(config.publicRoot + 'base/has_done_tuto');
             
                 if(gui.menu.hasClass('active')) {
                     this.end();
@@ -45,7 +93,7 @@ $(document).ready(function() {
                 $('#icon_menu, #sep_right, #switch_menu').click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].reinit(this.btn, "Clique pour ouvrir le menu", {'position':'left'}).show();
+                msgs[0].reinit(this.btn, "Clique pour ouvrir le menu", {'position':'left','animate':true}).show();
             },
             
             // End
@@ -68,7 +116,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].reinit(this.btn, "Clique pour configurer les paramètres", {'position':'left'}).show();
+                msgs[0].reinit(this.btn, "Clique pour configurer les paramètres", {'position':'left','animate':true}).show();
             },
             
             // End
@@ -88,10 +136,10 @@ $(document).ready(function() {
                 'close': gui.pref.children('.close'),
                 'fbNotif': function() {
                     if($(this).prop('checked')) {
-                        msgs[2].message = "Vos commentaires seront publiés sur Facebook aussi si votre compte Facebook est lié";
+                        msgs[2].message = "Si tu t'es connecté avec ton compte Facebook, tes commentaires seront publiés sur ton mur";
                     }
                     else {
-                        msgs[2].message = "Vos commentaires seront publiés que sur Season13";
+                        msgs[2].message = "Vos commentaires ne seront publiés que sur Season13";
                     }
                 },
                 'endDelay': 600,
@@ -100,10 +148,10 @@ $(document).ready(function() {
             // Start
             function() {
                 // Message
-                msgs[0].reinit(this.audio, "Faire bouger pour changer la volume de son", {'position':'top'}).show();
-                msgs[1].reinit(this.speed, "Faire bouger pour changer la vitesse de lecture", {'position':'right'}).show();
-                msgs[2].reinit(this.fbComment, "Publication de vos commentaires sur Facebook", {'position':'bottom'}).show();
-                msgs[3].reinit(this.close, "Fermer cette fenêtre", {'position':'top'}).show();
+                msgs[0].reinit(this.audio, "Volume de son", {'position':'top'}).show();
+                msgs[1].reinit(this.speed, "Vitesse de défilement", {'position':'right'}).show();
+                msgs[2].reinit(this.fbComment, "Publication de tes commentaires sur Facebook", {'position':'bottom'}).show();
+                msgs[3].reinit(this.close, "Ferme la fenêtre pour continuer", {'position':'top','animate':true}).show();
                 
                 this.close.click({'action': this}, endfunction);
                 this.fbComment.change(this.fbNotif);
@@ -135,7 +183,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].reinit(this.btn, "Boîte à outils", {'position':'right'}).show();
+                msgs[0].reinit(this.btn, "Boîte à outils", {'position':'right','animate':true}).show();
             },
             
             // End
@@ -162,7 +210,7 @@ $(document).ready(function() {
                 this.btn.click({'action': this}, endfunction);
                 
                 // Message
-                msgs[0].reinit(this.btn, "J'aime l'épisode, ou <a href='javascript:tuto.passNext();'>Saute cet étape</a>").show();
+                msgs[0].reinit(this.btn, "J'aime l'épisode, ou <a href='javascript:tuto.passNext();'>passe</a>").show();
             },
             
             // End
@@ -226,7 +274,7 @@ $(document).ready(function() {
                 this.btn.unbind('click', endfunction);
             }
         ),
-        
+        /*
         new MseAction(
             'Playpause',
             
@@ -258,7 +306,7 @@ $(document).ready(function() {
                 }
             }
         ),
-        
+        */
         new MseAction(
             'Comment',
             
@@ -297,19 +345,21 @@ $(document).ready(function() {
             // Start
             function() {
                 gui.openComment();
-            
-                this.content.click({'action': this}, endfunction);
                 
                 // Messages
-                msgs[0].reinit(this.content, "Ton commentaire ici", {'position':'center'}).show();
-                msgs[1].reinit(this.comments, "Les commentaire des autres lecteurs", {'position':'center'}).show();
+                msgs[0].reinit(this.content, "Écris ton commentaire ici", {'position':'center'}).show();
+                msgs[1].reinit(this.comments, "Les commentaire des autres utilisateurs", {'position':'center'}).show();
+                
+                var action = this;
+                setTimeout(function() {
+                    action.end();
+                }, 5000);
             },
             
             // End
             function() {
                 msgs[0].hide();
                 msgs[1].hide();
-                this.content.unbind('click', endfunction);
             }
         ),
         
@@ -319,14 +369,6 @@ $(document).ready(function() {
             {
                 'menu': gui.comment_menu,
                 'btn': gui.comment_menu.children('#btn_capture_img'),
-                'showMsg': function(e) {
-                    var action = e.data.action;
-                    action.menu.children('li').unbind('mouseover', action.showMsg);
-                    
-                    msgs[0].reinit(action.btn, "Capture une image").show();
-                    
-                    action.btn.click({'action': action}, endfunction);
-                },
                 'endDelay': 600,
             },
             
@@ -334,7 +376,8 @@ $(document).ready(function() {
             function() {
                 gui.openComment();
             
-                this.menu.children('li').mouseover({'action': this}, this.showMsg);
+                msgs[0].reinit(this.btn, "Capture une image", {'animate':true}).show();
+                this.btn.click({'action': this}, endfunction);
             },
             
             // End
@@ -354,7 +397,7 @@ $(document).ready(function() {
             
             // Start
             function() {
-                msgs[0].reinit(this.root, "Capture une image en appuyant le bouton gauche du souris", {'position':'center'}).show();
+                msgs[0].reinit(this.root, "Capture une image en appuyant sur le bouton gauche de la souris", {'position':'center'}).show();
                 
                 this.end();
             }
@@ -419,8 +462,12 @@ $(document).ready(function() {
                     var action = e.data.action;
                     action.dialog.unbind('mouseover', action.showMsg);
                     
-                    msgs[0].reinit(action.btn, "Partager sur Facebook ou uniquement sur le site").show();
-                    msgs[1].reinit(action.content, "Tape ton commentaire", {'position':'center'}).show();
+                    msgs[0].reinit(action.btn, "Partager ou <a href='javascript:tuto.passNext();'>passe</a>").show();
+                    msgs[1].reinit(action.content, "Tape ton commentaire", {'position':'center', 'animate':true}).show();
+                    
+                    var img = gui.comment_menu.children('#commentImg');
+                    if(img.length > 0) 
+                        msgs[2].reinit(img, "Ton image est capturée", {'position':'bottom'}).show();
                     
                     action.btn.click({'action': action}, endfunction);
                 },
@@ -436,6 +483,7 @@ $(document).ready(function() {
             function() {
                 msgs[0].hide();
                 msgs[1].hide();
+                msgs[2].hide();
                 this.btn.unbind('click', endfunction);
             }
         ),
@@ -453,12 +501,12 @@ $(document).ready(function() {
             function() {
                 gui.openComment();
                 
-                msgs[0].reinit(this.btn, "Tu peux aussi télécharger ton dessin").show();
+                msgs[0].reinit(this.btn, "Tu peux télécharger un dessin ou une photo depuis ton ordinateur", {'animate':true}).show();
                 
                 var action = this;
                 setTimeout(function() {
                     action.end();
-                }, 2500);
+                }, 4200);
             },
             
             // End
@@ -474,7 +522,7 @@ $(document).ready(function() {
             
             // Start
             function() {
-                msgCenter.send("Le tutoriel est terminée, vous pouvez continuez votre histoire", 4000);
+                msgCenter.send("Le tutoriel est terminée, vous pouvez continuez votre histoire", 5000);
                 window.quitTuto();
             }
         ),
@@ -483,5 +531,3 @@ $(document).ready(function() {
     tuto.addActions(actions);
     
 });
-
-

@@ -278,9 +278,11 @@ mse.init = function(configs, id, width, height, orientation) {
 var DIST_PARAG = 15;
 var __count__ = 0;
 
-var linkColor = {fb		: 'rgb(74,108,164)',
-				 wiki	: 'rgb(230,82,82)',
-				 audio	: '#FFB11B'};
+var linkColor = {
+                    fb		: 'rgb(74,108,164)',
+				     wiki	: 'rgb(230,82,82)',
+				     audio	: '#FFF'//'#FFB11B'
+				 };
 				 
 var __bgLayers = {};
 

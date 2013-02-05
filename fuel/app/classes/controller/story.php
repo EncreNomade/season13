@@ -12,9 +12,13 @@ class Controller_Story extends Controller_Frontend
         if($epid == 1)
             return $access;
             
-        if(!$current_user) 
-            return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
-            
+        if(!$current_user) {
+            if($epid == 2)
+                return array('valid' => false, 'errorCode' => 302, 'errorMessage' => $codes[302]);
+            else 
+                return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
+        }
+        
         if( $current_user->group >= 10 )
             return $access;
             
@@ -126,6 +130,7 @@ class Controller_Story extends Controller_Frontend
     	            View::set_global('episode', $this->episode);
     	            $access = Controller_Story::requestAccess($this->episode->id, $this->current_user);
     	            View::set_global('accessible', $access['valid']);
+    	            View::set_global('extrait', false);
     	            View::set_global('access', $access);
     	            
     	            if($access['valid'] === true) {
@@ -141,8 +146,75 @@ class Controller_Story extends Controller_Frontend
 	        }
     	}
     	else {
-    	    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'/upgradenav');
+    	    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'upgradenav');
     	}
+	}
+	
+	
+	public function action_extrait($book = null, $season = null, $episode = null) {
+	    $capable = false;
+        // Check user browser capacity
+        // Process based on the browser name
+        switch (Agent::browser())
+        {
+            case 'Firefox':
+                if(Agent::version() < 3.7)
+                    $capable = false;
+                else 
+                    $capable = true;
+                break;
+            case 'IE':
+                if(Agent::version() < 9)
+                    $capable = false;
+                else 
+                    $capable = true;
+                break;
+            case 'Chrome':
+                $capable = true;
+                break;
+            case 'Safari':
+                $capable = true;
+                break;
+            case 'Unknown':
+                $capable = false;
+                break;
+            default:
+                $capable = true;
+                break;
+        }
+    
+        if($capable) {
+            $this->episode = null;
+            
+            if( isset($book) && isset($season) && isset($episode) ) {
+                // Find the episode
+                $this->episode = Model_Admin_13episode::query()->where(
+                    array(
+                        'story' => str_replace('_', ' ', $book),
+                        'season' => $season,
+                        'episode' => $episode,
+                    )
+                )->get_one();
+                
+                if(is_null($this->episode)) {
+                    Response::redirect('404');
+                }
+                else {
+                    View::set_global('episode', $this->episode);
+                    View::set_global('accessible', true);
+                    View::set_global('extrait', true);
+                    View::set_global('access', array('valid' => true));
+                    
+                    $this->template->title = stripslashes( $this->episode->title );
+                }
+            }
+            else {
+                Response::redirect('404');
+            }
+        }
+        else {
+            Response::redirect('http://'.$_SERVER['HTTP_HOST'].'upgradenav');
+        }
 	}
 	
 	
@@ -185,7 +257,7 @@ class Controller_Story extends Controller_Frontend
 	        // Check user
 	        $mail = Input::param('user');
 	        if(is_null($mail)) {
-	            Response::redirect('404');
+	            Response::redirect('ws404');
 	        }
 	        $user = Model_13user::find_by_email($mail);
 	        if(!is_null($user)) {
@@ -200,7 +272,7 @@ class Controller_Story extends Controller_Frontend
 	            $access_token = Input::param('access_token');
 	            if( is_null($access_token) || 
 	                !Controller_Webservice_Wsbase::checkAccessToken($access_token, $mail, $book.$season.$episode) ) {
-	                Response::redirect('404');
+	                Response::redirect('ws404');
 	            }
 	        
 	            $book = str_replace('_', ' ', $book);
@@ -214,26 +286,92 @@ class Controller_Story extends Controller_Frontend
 	            )->get_one();
 	            
 	            if(is_null($this->episode)) {
-	                Response::redirect('404');
+	                Response::redirect('ws404');
 	            }
 	            else {
 		            View::set_global('episode', $this->episode);
-		            
-		            $access = array('valid' => true);
-		            View::set_global('accessible', $access['valid']);
-		            View::set_global('access', $access);
+		            View::set_global('accessible', true);
+		            View::set_global('extrait', false);
+		            View::set_global('access', array('valid' => true));
 		            $this->comments = Model_Admin_13comment::find_by_epid($this->episode->id);
 	            }
 	            
-	            $data = array('episode' => $this->episode);
 	            return new Response(View::forge('story/ws_nolink', $data));
 	        }
 	        else {
-	            Response::redirect('404');
+	            Response::redirect('ws404');
 	        }
 		}
 		else {
-		    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'/upgradenav');
+		    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'wsupgradenav');
 		}
+	}
+	
+	
+	
+	public function action_wsextrait($book = null, $season = null, $episode = null) {
+	    $capable = false;
+	    // Check user browser capacity
+	    // Process based on the browser name
+	    switch (Agent::browser())
+	    {
+	        case 'Firefox':
+	            if(Agent::version() < 3.7)
+	                $capable = false;
+	            else 
+	                $capable = true;
+	            break;
+	        case 'IE':
+	            if(Agent::version() < 9)
+	                $capable = false;
+	            else 
+	                $capable = true;
+	            break;
+	        case 'Chrome':
+	            $capable = true;
+	            break;
+	        case 'Safari':
+	            $capable = true;
+	            break;
+	        case 'Unknown':
+	            $capable = false;
+	            break;
+	        default:
+	            $capable = true;
+	            break;
+	    }
+	
+	    if($capable) {
+	        $this->episode = null;
+	        
+	        if( isset($book) && isset($season) && isset($episode) ) {
+	            // Find the episode
+	            $this->episode = Model_Admin_13episode::query()->where(
+	                array(
+	                    'story' => str_replace('_', ' ', $book),
+	                    'season' => $season,
+	                    'episode' => $episode,
+	                )
+	            )->get_one();
+	            
+	            if(is_null($this->episode)) {
+	                Response::redirect('ws404');
+	            }
+	            else {
+	                View::set_global('episode', $this->episode);
+	                View::set_global('accessible', true);
+	                View::set_global('extrait', true);
+	                View::set_global('access', array('valid' => true));
+	                
+	                return new Response(View::forge('story/ws_nolink', $data));
+	            }
+	        }
+	        else {
+	            Response::redirect('ws404');
+	        }
+	    }
+	    else {
+	        Response::redirect('http://'.$_SERVER['HTTP_HOST'].'wsupgradenav');
+	    }
 	}
 }

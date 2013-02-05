@@ -578,7 +578,7 @@ var MseTutoMsg = function(target, message, config) {
     this._boxIndicator = $('<div class="img"></div>');
 
     this._box.append(this._boxText)
-             .append(this._boxClose)
+             //.append(this._boxClose)
              .append(this._boxIndicator);
     
     var msg = this;         
@@ -611,14 +611,31 @@ MseTutoMsg.prototype = {
         this._message = message;
         this.position = "auto";
         this.animate = false;
+        this._boxText.html(message);
         if(config) {
+            if(config.closeBtn) {
+                if(this._boxClose.parent().length == 0) 
+                    this._boxText.after(this._boxClose);
+            }
+            else {
+                this._boxClose.detach();
+            }
+        
             if(config.width) this._box.width(config.width);
             if(config.height) this._box.height(config.height);
             if(config.position) this.position = config.position;
+            if(config.offset) {
+                this.position = "fixed";
+                var pos = this._target.offset();
+                pos.top += config.offset.top;
+                pos.left += config.offset.left;
+                pos.top -= this.boxIndicatorSize;
+                
+                this._box.offset(pos);
+            }
             if(config.animate) this.animate = config.animate;
         }
         this.hide();
-        this._boxText.html(message);
 
         return this;
     },
@@ -638,6 +655,8 @@ MseTutoMsg.prototype = {
 
         //        
         switch (this.position) {
+            case "fixed":
+                return;
             case "left":
                 newPos.left -= ( box.width + this.boxIndicatorSize );
                 this._boxIndicator.addClass('right');

@@ -45,7 +45,19 @@ div.link {
     
     border-radius: 10px;
 }
-div.link a {
+.floatlink {
+    position: relative;
+    float: left;
+    width: 100px;
+    text-align: center;
+    height: 40px;
+    margin: 10px 10px;
+    font: normal 14px/42px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    background: rgb(246, 168, 0);
+    
+    border-radius: 10px;
+}
+div.link a, .floatlink a, .white_anchor {
     text-decoration: none;
     color: #fff;
 }
@@ -366,6 +378,30 @@ ul#menu div #menu_link {
 
 
 
+
+/***************** Lance tuto dialog *****************/
+
+#lance_tuto {
+    left: -143px;
+    width: 240px;
+    height: 100px;
+    background: #fff;
+    color: #000;
+    visibility: hidden;
+    
+    -webkit-transition: visibility 0.5s linear;
+    -moz-transition: visibility 0.5s linear;
+    -ms-transition: visibility 0.5s linear;
+    -o-transition: visibility 0.5s linear;
+    transition: visibility 0.5s linear;
+    
+    z-index: 19;
+}
+
+
+
+
+
 /***************** Common Dialog Settings *****************/
 
 #author_bio, #comment, #credits {
@@ -385,7 +421,7 @@ ul#menu div #menu_link {
     -o-transition: visibility 0.5s linear;
     transition: visibility 0.5s linear;
 }
-#comment.show, #author_bio.show, #credits.show, #next_ep_dialog.show, #concept.show {
+#comment.show, #author_bio.show, #credits.show, #next_ep_dialog.show, #concept.show, #lance_tuto.show {
     visibility: visible;
 }
 

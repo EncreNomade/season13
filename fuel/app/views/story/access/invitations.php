@@ -3,10 +3,22 @@
     <div class="section">
         <h5>
             Aide-nous à faire connaître Voodoo Connection.<br/>
-            Nous t'offrons cet épisode si tu envoies cette invitation à 5 amis.<br/>
+            Nous t'offrons cet épisode si tu invites 5 amis par Facebook.<br/>
             <br/>
         </h5>
     </div>
+    
+    <div class="section" id="fbsend_section">
+        <div class="fb-send" data-href="http://season13.com" data-font="lucida grande"></div>
+    </div>
+    
+    <div class="section">
+        <h5>
+            <br/>Ou par mail:
+        </h5>
+        <br/>
+    </div>
+    
 	<div class="section">
 	    <p>
 			<?php echo Form::label('Mail de ton 1 er Ami', 'to1'); ?>
@@ -28,17 +40,16 @@
 			<?php echo Form::label('Mail de ton 5 ème Ami', 'to5'); ?>
 			<?php echo Form::input('to5'); ?>
 		</p>
-		<!--
-		<p>
-			<?php echo Form::label('Ton invitation sera envoyée sous le nom de: ', 'from'); ?>
-			<?php echo Form::input('from', $pseudo); ?>
-		</p>-->
 		
 		<p>
-		    <?php echo Form::submit('submit', 'Envoyer', array('id' => 'access_submit_btn3')); ?>
+		    <?php echo Form::submit('submit', 'Envoyer', array('id' => 'send_mail_btn')); ?>
 		</p>
+	</div>
+	
+	<div class="section">
+	    <div class="sep_line"></div>
 		<p>
-		    <label>Je ne souhaite pas inviter 5 amis</label>
+		    <label>Sinon,</label>
 		    <!--<a href="javascript:cart.add('isbn12852934');" id="access_buy_btn3" class="right">J'achète l'épisode 3: <?php echo$price.'€'; ?></a>-->
 		    <?php echo Form::button('buy', 'J\'achète l\'épisode 3: '.$price.'€', array('id' => 'access_buy_btn3')); ?>
 		</p>

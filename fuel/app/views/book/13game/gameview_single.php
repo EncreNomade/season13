@@ -31,15 +31,15 @@
                 </p>
             <?php endif; ?>
         </div>
-        <div class="play right">  
-            <?php if(isset($current_user)): ?>    
+        <div class="play right">
+            <?php if(isset($current_user)): ?>
                 <?php if( $game->episode->hasAccess($current_user) ): ?>
                     <?php if($current_user->havePlayed($game->id)): ?>
-                        <button class="game_link playBtn" data-gameClass="<?php echo $game->class_name; ?>">Jouer</button>      
+                        <button class="game_link playBtn" data-gameClass="<?php echo $game->class_name; ?>">Jouer</button>
                     <?php else: ?>
                         <p>
                             Tu dois avoir joué au moins une fois à ce jeu en lisant l'épisode :  
-                            <b><?php echo Html::anchor($game->episode->getRelatLink(), $game->episode->title); ?></b>
+                            <b><?php echo Html::anchor($game->episode->getRelatLink(), stripslashes($game->episode->title)); ?></b>
                             .
                         </p>
                     <?php endif; ?>

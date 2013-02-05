@@ -6,7 +6,8 @@
     </div>
 
 	<div class="section" id="like_section">
-	    
+	    <fb:like href="http://season13.com/" id="fb_like_form_btn" send="true" width="400" show_faces="true" font="lucida grande">
+	    </fb:like>
 	</div>
 
     <div class="section">

@@ -498,4 +498,16 @@ class Controller_Base extends Controller_Rest
         }
     }
     
+    
+    public function post_has_done_tuto() {
+        Cookie::set('tuto_has_done', 'true');
+        
+        if($this->current_user) {
+            $this->current_user->hasDoneTuto();
+        }
+        else {
+            $this->response(array('valid' => false, 'errorCode' => '201', 'errorMessage' => $codes[201]), 200);
+        }
+    }
+    
 }

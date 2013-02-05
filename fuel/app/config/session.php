@@ -48,7 +48,7 @@ return array(
 	'cookie_http_only'	=> null,
 
 	// if true, the session expires when the browser is closed (optional, default = false)
-	'expire_on_close'	=> true,
+	'expire_on_close'	=> false,
 
 	// session expiration time, <= 0 means 2 years! (optional, default = 2 hours)
 	'expiration_time'	=> 14400,

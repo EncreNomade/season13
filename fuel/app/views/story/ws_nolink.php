@@ -2,7 +2,9 @@
 
     if(isset($episode)) $expo_image = $base_url.$episode->image;
     else $expo_image = $base_url."voodoo/cover.jpg";
-
+    $likeUrl = isset($episode) 
+                ? $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode
+                : $base_url;
  ?>
 
 <!DOCTYPE html> 
@@ -12,7 +14,7 @@
 <?php if(isset($episode)): ?>
 <meta property="fb:app_id" content="141570392646490" /> 
 <meta property="og:type"   content="encrenomade:episode" /> 
-<meta property="og:url"    content="<?php echo $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode; ?>" /> 
+<meta property="og:url"    content="<?php echo $likeUrl; ?>" /> 
 <meta property="og:title"  content="<?php echo stripcslashes( $episode->story." Episode ".$episode->episode.": ".$episode->title ); ?>" /> 
 <meta property="og:description" content="SEASON 13 Feuilltons Interactifs" />
 <meta property="og:site_name" content="SEASON13" />
@@ -25,7 +27,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-<title><?php echo stripcslashes( $episode->title ); ?></title>
+<title><?php echo ( $extrait ? "Extrait de " : "" ).$title; ?></title>
 <meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection<?php if(isset($episode)) echo ", Season: ".$episode->season.", ".$episode->title; ?>" />
 
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -34,7 +36,10 @@
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
     echo Asset::css('dialog_auth_msg.css');
-    echo Asset::css('story.css');
+    if (Agent::is_mobiledevice())
+        echo Asset::css('storymobi.css');
+    else 
+        echo Asset::css('story.css');
     echo Asset::js('lib/jquery-latest.js');
     echo Asset::js('lib/jquery.form.js');
     echo Asset::js('lib/BrowserDetect.js');
@@ -47,20 +52,69 @@
     echo Asset::js('story/gui.js');
     
     echo Asset::js('story/scriber.js');
+    echo Asset::js('story/gameinfo.js');
+    echo Asset::js('story/tuto.js');
     echo Asset::js('story/events.min.js');
     echo Asset::js('story/mse.min.js');
     echo Asset::js('story/effet_mini.js');
     echo Asset::js('story/mdj.min.js');
-?>
-
-<script type="text/javascript">
-    addEventListener("load", function(){
-    	setTimeout(function(){window.scrollTo(0, 1);}, 0);
-    	$('body').css({'margin':'0px','padding':'0px'});
-    }, false);
     
-    config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
-</script>
+    if(!$extrait) {
+        // print games
+        $games = $episode->games;
+        foreach ($games as $g) {
+            $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
+            $url = $base_url . $g->path.'/games/'.$g->file_name;
+            echo "<script src=\"$url\"> </script>";
+        }
+    }
+
+?>
+    <script type="text/javascript">
+        addEventListener("load", function(){
+            setTimeout(function(){window.scrollTo(0, 1);}, 0);
+            $('body').css({'margin':'0px','padding':'0px'});
+        }, false);
+
+        config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
+    
+    <?php if(isset($episode)): ?>
+        if(window.mse) {
+            mse.configs.epid = <?php echo $episode->id; ?>;
+            mse.configs.user = <?php if($current_user) echo "'".$current_user->pseudo."'"; else echo "false"; ?>;
+            mse.configs.isTutoDone = <?php 
+                if($extrait) echo "true";
+                else {
+                    echo Cookie::get('tuto_has_done') == "true" ? "true" : "false";
+                }
+            ?>;
+            mse.configs.srcPath = '<?php echo $remote_path.$episode->path; ?>';
+        }
+    
+        config.episode = {
+            'epid' : <?php echo $episode->id; ?>,
+            'title' : "<?php echo $title; ?>",
+            'story' : "<?php echo $episode->story; ?>",
+            'image' : "<?php echo $expo_image; ?>"
+        };
+
+        config.episode.gameExpos = {};
+        <?php foreach ($episode->games as $g): ?>
+            config.episode.gameExpos["<?php echo $g->class_name; ?>"] = "<?php echo Asset::get_file($g->expo, 'img'); ?>";
+        <?php endforeach; ?>
+        
+        config.accessResp = {
+            'valid': <?php echo $access['valid'] ? 'true' : 'false'; ?>, 
+            <?php 
+            if($access['valid'] == false) 
+                echo "'errorCode':  ".$access['errorCode'].",\n";
+            if(array_key_exists('errorMessage', $access)) 
+                echo "'errorMessage': '".$access['errorMessage']."',\n";
+            ?>
+        };    
+    <?php endif; ?>
+    
+    </script>
 
 <script type="text/javascript">
 
@@ -84,6 +138,11 @@
 
 </script>
 
+<?php 
+    // output the javascript function
+    echo Security::js_set_token(); 
+?>
+
 </head>
 
 <body>
@@ -91,13 +150,13 @@
     <div id="fb-root"></div>
     <script>
         // Load the SDK asynchronously
-        (function(d){
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/fr_FR/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
         
         
         // Init the SDK upon load
@@ -116,25 +175,6 @@
                 story_access_resp(config.accessResp, config.episode.epid);
         }
     </script>
-
-    <script>
-    
-        config.episode = {
-            'epid' : <?php echo $episode->id; ?>,
-            'title' : "<?php echo $episode->title; ?>",
-            'story' : "<?php echo $episode->story; ?>",
-            'image' : "<?php echo $expo_image; ?>"
-        };
-        
-        config.accessResp = {
-            'valid': true
-        };
-        
-    </script>
-    <?php 
-        // output the javascript function
-        echo Security::js_set_token(); 
-    ?>
 
     <header>
         <div class="left">
@@ -155,10 +195,10 @@
     </header>
     
     <ul id="menu">
-        <!--<li id="btn_aide">
+        <li id="btn_aide">
             <?php echo Asset::img('season13/story/story_aide.png'); ?>
-            <a>Aide</a>
-        </li>-->
+            <a class="white_anchor" href="javascript:tuto.reset();tuto.run();">Tutoriel</a>
+        </li>
         <li id="btn_param">
             <?php echo Asset::img('season13/story/story_param.png', array('alt' => 'Paramètre d\'episode SEASON 13')); ?>
             <a>Paramètres</a>
@@ -182,6 +222,28 @@
     </ul>
 
     <div id="center">
+    
+    <!-- Lance tuto dialog-->
+        <div id="lance_tuto" class="dialog">
+            <div class="close right"></div>
+            <h1>Tutoriel</h1>
+            <div class="sep_line"></div>
+            
+            <h5 style="text-align: center;">
+                Veux-tu démarrer le tutoriel ? Sinon, tu peux le démarrer plus tard dans le menu en haut à droite.<br/>
+            </h5>
+            
+            <div class="floatlink">
+                <a>Ne me demande plus</a>
+            </div>
+            
+            <div class="floatlink">
+                <a>Démarrer le tutoriel</a>
+            </div>
+            
+        </div>
+            
+    
     <!-- Author bio dialog-->
         <div id="author_bio" class="dialog">
             <div class="close right"></div>
@@ -251,7 +313,11 @@
             <div class="sep_line"></div>
             <p>Audio: </p>
             <p>Vitesse: </p>
-            <p>Partager les commentaires sur facebook: <input id="share_comment_fb" type="checkbox" checked="true"></p>
+            <p><label>Partager les commentaires sur facebook: <input id="share_comment_fb" type="checkbox" checked="true" /></label></p>
+            <div class="link">
+                <a href="javascript:gui.savePersonalData();">Sauvegarder</a>
+                <div class="loading"></div>
+            </div>
         </div>
         
         
@@ -358,6 +424,30 @@
         </div>
     </div>
     
+    <div id="imgShower"><div>
+            <img id="theImage" src=""/>
+            <?php echo Asset::img('season13/story/button/close.png', array("id" => "closeBn")); ?>
+    </div></div>
+    
+    <div id="game_container" class="dialog">
+        <h1></h1>
+        <div class="sep_line"></div>
+        
+        <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
+        
+        <div id="game_center">
+            <div id="game_result">
+                <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
+                <h2>GAGNÉ !</h2>
+                <h5>Ton score : <span>240</span> pts</h5>
+                <ul>
+                    <li id="game_restart">REJOUER</li>
+                    <li id="game_quit">QUITTER</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
     <div id="root">
         <div id="controler">
             <div class="back"></div>
@@ -377,29 +467,6 @@
     
         <canvas class="bookroot">Votre navigateur ne supporte pas HTML5</canvas>
         <div class="video"></div>
-        <div id="imgShower"><div>
-                <img id="theImage" src=""/>
-                <?php echo Asset::img('season13/story/button/close.png', array("id" => "closeBn")); ?>
-        </div></div>
-        
-        <div id="game_container" class="dialog">
-            <h1></h1>
-            <div class="sep_line"></div>
-            
-            <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
-            
-            <div id="game_center">
-                <div id="game_result">
-                    <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
-                    <h2>GAGNÉ !</h2>
-                    <h5>Ton score : <span>250</span> pts</h5>
-                    <ul>
-                        <li id="game_restart">REJOUER</li>
-                        <li id="game_quit">QUITTER</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
     
     
@@ -407,9 +474,14 @@
     <?php 
         
         if(isset($episode)) {
-            echo "mse.configs.epid = ".$episode->id.";\n\t";
-            echo "mse.configs.srcPath = '".$remote_path.$episode->path."';\n\t";
-            $content = file_get_contents($episode->path."content.js");
+            $content = "";
+            if($extrait) {
+                $content = file_get_contents($episode->path."extrait.js");
+            }
+            else {
+                $content = file_get_contents($episode->path."content.js");
+            }
+            
             echo $content;
         }
     

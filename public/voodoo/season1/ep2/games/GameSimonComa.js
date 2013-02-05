@@ -38,6 +38,8 @@ var GameSimonComa = function() {
     this.moveon = false;
     this.startAngle = -30;
     this.ratio = 0;
+    this.msgTimer = null;
+    this.msg = null;
     
     mse.src.addSource('sangmaskalpha', 'games/sangmask.png', 'img', true);
     this.back = new mse.Image(this, {pos:[0,20],size:[this.width,this.height-40]}, "simoncoma");
@@ -67,6 +69,11 @@ var GameSimonComa = function() {
         if( this.touching && x >= 0 && x <= this.zone.actif.w && y >= 0 && y <= this.zone.actif.h ) {
             this.ratio = y / this.zone.actif.h;
             if(this.mask.globalAlpha < 1) this.mask.globalAlpha += 0.004;
+            
+            if(this.msgTimer && this.mask.globalAlpha > 0.2) {
+                clearTimeout(this.msgTimer);
+                this.msgTimer = null;
+            }
         }
     };
     this.touchEnd = function(e) {
@@ -86,6 +93,11 @@ var GameSimonComa = function() {
     	this.getEvtProxy().addListener('gestureUpdate', cbMove);
     	this.getEvtProxy().addListener('gestureEnd', cbEnd);
     	this.getEvtProxy().addListener('move', cbMoveon);
+    	
+    	var game = this;
+    	this.msgTimer = setTimeout(function() {
+    	    game.showMsg();
+    	}, 6000);
     };
     this.end = function() {
         this.getEvtProxy().removeListener('gestureStart', cbStart);
@@ -94,7 +106,25 @@ var GameSimonComa = function() {
         this.getEvtProxy().removeListener('move', cbMoveon);
         mse.root.evtDistributor.setDominate(null);
         
+        if(this.msg) {
+            this.msg.hide();
+        }
+        
         this.parent.play();
+    };
+    
+    this.showMsg = function() {
+        this.msgTimer = null;
+        this.msg = new MseTutoMsg(mse.root.jqObj, 
+                                  "Tu dois soigner Simon en carressant la blessure", 
+                                  { 
+                                      'offset': {
+                                          'left': this.getX()+this.zone.mask.x, 
+                                          'top': this.getY()+this.zone.mask.y-30
+                                      },
+                                      'closeBtn': true
+                                  });
+        this.msg.show();
     };
     
     this.draw = function(ctx) {

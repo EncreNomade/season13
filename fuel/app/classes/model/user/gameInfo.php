@@ -80,24 +80,20 @@ class Model_User_Gameinfo extends \Orm\Model
 	 * @param int $limit OPTIONAL number of max gameinfo in returned array
 	 * @return Model_User_Gameinfo[]|null array is ordered by high_score
 	 */
-	public static function find_all_by_game_class($gameClass = null, $limit = null)
+	public static function highscores_by_game_id($gameid = null, $limit = null)
 	{
-		if(is_null($gameClass)) return null;
+		if(is_null($gameid)) return null;
 
 		if(is_null($limit)) {			
 			$gameInfos = self::query()
-				->related('game')
-				->related('user')
-				->where('game.class_name', $gameClass)
+				->where('game_id', $gameid)
 				->where('high_score', '>', 0)
 				->order_by('high_score', 'desc')
 				->get();
 		}
 		else {
 			$gameInfos = self::query()
-				->related('game')
-				->related('user')
-				->where('game.class_name', $gameClass)
+				->where('game_id', $gameid)
 				->where('high_score', '>', 0)
 				->order_by('high_score', 'desc')
 				->limit( (int)$limit )

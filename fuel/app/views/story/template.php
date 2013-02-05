@@ -27,7 +27,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-<title><?php echo $title; ?></title>
+<title><?php echo ( $extrait ? "Extrait de " : "" ).$title; ?></title>
 <meta name="Description" content="Author: Chris Debien, Titre: Voodoo Connection<?php if(isset($episode)) echo ", Season: ".$episode->season.", ".$episode->title; ?>" />
 
 <!-- Script for integrate the font: Helvetica Ultra Compressed
@@ -76,12 +76,14 @@
             echo Asset::js('story/mdj.min.js');
         }
         
-        // print games
-        $games = $episode->games;
-        foreach ($games as $g) {
-            $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
-            $url = $base_url . $g->path.'/games/'.$g->file_name;
-            echo "<script src=\"$url\"> </script>";
+        if(!$extrait) {
+            // print games
+            $games = $episode->games;
+            foreach ($games as $g) {
+                $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
+                $url = $base_url . $g->path.'/games/'.$g->file_name;
+                echo "<script src=\"$url\"> </script>";
+            }
         }
     }
 
@@ -95,9 +97,19 @@
         config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
     
     <?php if(isset($episode)): ?>
-        mse.configs.epid = <?php echo $episode->id; ?>;
-        mse.configs.user = <?php if($current_user) echo "'".$current_user->pseudo."'"; else echo "false"; ?>;
-        mse.configs.srcPath = '<?php echo $remote_path.$episode->path; ?>';
+        if(window.mse) {
+            mse.configs.epid = <?php echo $episode->id; ?>;
+            mse.configs.user = <?php if($current_user) echo "'".$current_user->pseudo."'"; else echo "false"; ?>;
+            mse.configs.isTutoDone = <?php 
+                if($extrait) echo "true";
+                else {
+                    if($current_user)
+                        echo $current_user->hasTutoDone() ? "true" : "false";
+                    else echo Cookie::get('tuto_has_done') == "true" ? "true" : "false";
+                }
+            ?>;
+            mse.configs.srcPath = '<?php echo $remote_path.$episode->path; ?>';
+        }
     
         config.episode = {
             'epid' : <?php echo $episode->id; ?>,
@@ -206,7 +218,7 @@
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
             
-        <?php if (!Agent::is_mobiledevice()): ?>
+        <?php if (!$extrait && !Agent::is_mobiledevice()): ?>
             <ul id="conn">
             <?php if($current_user == null): ?>
                     <li id="open_signup">Créer un compte</li>
@@ -225,20 +237,24 @@
             <?php if($current_user == null): ?>
                 <div id="signup_dialog" class="dialog">
                     <div class="close"></div>
+                    <div class="sep_line"></div>
                     <?php echo View::forge('auth/signup_form')->render(); ?>
                 </div>
                 <div id="login_dialog" class="dialog">
                     <div class="close"></div>
+                    <div class="sep_line"></div>
                     <?php echo View::forge('auth/login_form')->render(); ?>
                 </div>
                 <div id="change_pass_dialog" class="dialog">
                     <div class="close"></div>
+                    <div class="sep_line"></div>
                     <?php echo View::forge('auth/chpass_form')->render(); ?>
                 </div> 
                 
             <?php else: ?>
                 <div id="update_dialog" class="dialog">
                     <div class="close"></div>
+                    <div class="sep_line"></div>
                     <?php echo View::forge('auth/update_form')->render(); ?>
                 </div>
             
@@ -248,11 +264,10 @@
     </header>
     
     <ul id="menu">
-        <!--
         <li id="btn_aide">
             <?php echo Asset::img('season13/story/story_aide.png'); ?>
-            <a href="javascript:tuto.reset();tuto.run();">Tutoriel</a>
-        </li>-->
+            <a class="white_anchor" href="javascript:tuto.reset();tuto.run();">Tutoriel</a>
+        </li>
         <li id="btn_param">
             <?php echo Asset::img('season13/story/story_param.png', array('alt' => 'Paramètre d\'episode SEASON 13')); ?>
             <a>Paramètres</a>
@@ -269,10 +284,12 @@
             <?php echo Asset::img('season13/story/story_credit.png', array('alt' => 'Crédits de SEASON 13')); ?>
             <a>Crédits</a>
         </li>
+    <?php if (isset($episode) && !$extrait): ?>
         <li id="btn_nextep">
             <?php echo Asset::img('season13/story/story_nextep.png', array('alt' => 'Continue l\'histoire - SEASON13')); ?>
             <a>Épisode suivant</a>
         </li>
+    <?php endif; ?>
         
         <div>
             <?php echo Asset::img('season13/logo_white.png', array("id" => "menu_logo", 'alt' => 'LOGO SEASON 13')); ?>
@@ -292,6 +309,28 @@
     </div>
 
     <div id="center">
+    
+    <!-- Lance tuto dialog-->
+        <div id="lance_tuto" class="dialog">
+            <div class="close right"></div>
+            <h1>Tutoriel</h1>
+            <div class="sep_line"></div>
+            
+            <h5 style="text-align: center;">
+                Veux-tu démarrer le tutoriel ? Sinon, tu peux le démarrer plus tard dans le menu en haut à droite.<br/>
+            </h5>
+            
+            <div class="floatlink">
+                <a>Ne me demande plus</a>
+            </div>
+            
+            <div class="floatlink">
+                <a>Démarrer le tutoriel</a>
+            </div>
+            
+        </div>
+            
+    
     <!-- Author bio dialog-->
         <div id="author_bio" class="dialog">
             <div class="close right"></div>
@@ -354,7 +393,7 @@
             </h5>
         </div>
         
-    <?php if(isset($episode)): ?>
+    <?php if(isset($episode) && !$extrait): ?>
     <!--Continue read dialog-->
         <div id="next_ep_dialog" class="dialog">
             <div class="close right"></div>
@@ -545,9 +584,17 @@
     
     
     <script type="text/javascript">
-    <?php         
+    <?php 
+        
         if(isset($episode)) {
-            $content = file_get_contents($episode->path."content.js");
+            $content = "";
+            if($extrait) {
+                $content = file_get_contents($episode->path."extrait.js");
+            }
+            else {
+                $content = file_get_contents($episode->path."content.js");
+            }
+            
             echo $content;
         }
     

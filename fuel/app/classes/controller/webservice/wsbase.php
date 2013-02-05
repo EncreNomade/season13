@@ -400,15 +400,16 @@ class Controller_Webservice_Wsbase extends Controller_Rest
                 'type' => $product->type,
                 'pack' => $product->pack == 0 ? false : true,
                 'content' => $product->content,
-                'presentation' => $product->presentation,
+                'resume' => $product->presentation,
                 'title' => $product->title,
                 'author_fullname' => $authorname,
                 'author_bio' => $authorbio,
                 'author_photo' => $authorphoto,
                 'images' => Format::forge($images)->to_json(),
                 'extrait' => $extrait,
-                'tags' => $product->tags,
+                'keywords' => $product->tags,
                 'category' => $product->category,
+                'tag' => "Livre interactif",
                 'price' => $product->price,
             )
         ), 200);
@@ -587,7 +588,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     
     
     public function get_test() {
-        $request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
+        //$request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
         
         /*
         $request->set_method('POST')->set_params(array(
@@ -618,6 +619,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         ));*/
         
         
+        /*
         $request->set_method('GET')->set_params(array(
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
@@ -625,6 +627,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'reference' => 'ISBN9782717765894',
             'user' => 'test@test.com'
         ));
+        */
         
         /*
         $request->set_method('GET')->set_params(array(
@@ -643,9 +646,9 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'user' => 'test@test.com'
         ));*/
         
-        $response = $request->execute()->response();
+        //$response = $request->execute()->response();
         
-        return $this->response($response, 200);
+        //return $this->response($response, 200);
     }
 	
 }

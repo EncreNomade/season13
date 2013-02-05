@@ -726,7 +726,7 @@ $(document).ready(function() {
             flash_info.animate({opacity: 1}, 300);
             timer = setTimeout(function() {
                 flash_info.animate({opacity: 0}, 300);
-            }, 800);
+            }, 1600);
         });
         gui.slowdown.click(function() {
             var v = mse.ArticleLayer.prototype.speedLevel - 1;
@@ -736,7 +736,7 @@ $(document).ready(function() {
             flash_info.animate({opacity: 1}, 300);
             timer = setTimeout(function() {
                 flash_info.animate({opacity: 0}, 300);
-            }, 800);
+            }, 1600);
         });
         $('#ctrl_like').click(function() {
             fbapi.like();

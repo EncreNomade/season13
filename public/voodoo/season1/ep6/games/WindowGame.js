@@ -32,9 +32,14 @@ var WindowGame = function() {
     };
     
     this.click = function(e) {
-        this.getEvtProxy().removeListener('click', cbClick);
-        mse.root.evtDistributor.setDominate(null);
-        this.parent.play();
+        var x = e.offsetX - this.getX();
+        var y = e.offsetY - this.getY()
+        
+        if(x >= this.finish.offx && y >= this.finish.offy) {
+            this.getEvtProxy().removeListener('click', cbClick);
+            mse.root.evtDistributor.setDominate(null);
+            this.parent.play();
+        }
     };
     var cbClick = new mse.Callback(this.click, this);
     this.move = function(e) {

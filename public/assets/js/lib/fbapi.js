@@ -5,7 +5,7 @@ fbapi.connect = function(callback){
     
     if(fbapi.user) {
         if(typeof fbapi.callback == 'function')
-            fbapi.callback.call(window);
+            fbapi.callback.call(window, {'status': 'connected'});
         fbapi.callback = false;
         return;
     }

@@ -139,30 +139,36 @@
 <?php if($current_user == null): ?>
     <div id="signup_dialog" class="dialog">
         <div class="close"></div>
+        <div class="sep_line"></div>
         <?php echo View::forge('auth/signup_form')->render(); ?>
     </div>
     <div id="login_dialog" class="dialog">
         <div class="close"></div>
+        <div class="sep_line"></div>
         <?php echo View::forge('auth/login_form')->render(); ?>
     </div>
     <div id="change_pass_dialog" class="dialog">
         <div class="close"></div>
+        <div class="sep_line"></div>
         <?php echo View::forge('auth/chpass_form')->render(); ?>
     </div>
     <div id="link_fb_dialog" class="dialog">
         <div class="close"></div>
+        <div class="sep_line"></div>
         <?php echo View::forge('auth/linkFb_form')->render(); ?>
     </div>
     
 <?php else: ?>
     <div id="update_dialog" class="dialog">
         <div class="close"></div>
+        <div class="sep_line"></div>
         <?php echo View::forge('auth/update_form')->render(); ?>
     </div>
 <?php endif; ?>
     
     <div id="cart_dialog" class="dialog">
         <div class="close"></div>
+        <div class="sep_line"></div>
         <div class="cart_container">
             <?php echo View::forge('achat/cart/cart_view')->render(); ?>
         </div>

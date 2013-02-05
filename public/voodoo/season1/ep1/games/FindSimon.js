@@ -174,8 +174,6 @@ var FindSimon = function() {
     this.config.title = "Parc Montsouris";
     this.state = "INIT";
     
-    mse.src.addSource('aud_findsimon', 'audios/findsimon', 'aud');
-    mse.src.getSrc('aud_findsimon').loop = true;
     mse.src.addSource('parc', 'games/Parc.jpg', 'img', true);
     mse.src.addSource('perso_parc', 'games/personnages.png', 'img', true);
     mse.src.addSource('notice_parc', 'games/points-persos.png', 'img', true);
@@ -242,7 +240,7 @@ var FindSimon = function() {
     this.begintime = (new Date()).getTime();
     
     this.init = function() {
-        mse.src.getSrc('aud_findsimon').play();
+        if(this.sound) this.sound.play();
     
 		// Init NPCs
 	    this.npc = new Array();
@@ -384,7 +382,7 @@ var FindSimon = function() {
 		        this.getEvtProxy().removeListener('gestureUpdate', this.touchMovecb);
 		        this.getEvtProxy().removeListener('gestureEnd', this.moveovercb);
 		    }
-		    mse.src.getSrc('aud_findsimon').pause();
+		    if(this.sound) this.sound.pause();
 		    
 		    this.state = "WIN";
 		    this.setScore( 4000 * 1000 / ( (new Date()).getTime() - this.begintime ) );
@@ -412,7 +410,7 @@ var FindSimon = function() {
 		            this.getEvtProxy().removeListener('gestureEnd', this.moveovercb);
 		        }
 		        this.moveover();
-		        mse.src.getSrc('aud_findsimon').pause();
+		        if(this.sound) this.sound.pause();
 		        this.state = "LOSE";
 		        this.lose();
 		    }
@@ -526,9 +524,13 @@ var FindSimon = function() {
 	this.moveovercb = new mse.Callback(this.moveover, this);
 	this.touchStartcb = new mse.Callback(this.touchStart, this);
 	this.touchMovecb = new mse.Callback(this.touchMove, this);
+	
+	mse.src.addSource('aud_findsimon', 'audios/findsimon', 'aud');
+	this.sound = mse.src.getSrc('aud_findsimon');
+	this.sound.loop = true;
 
     this.destroy = function() {
-        mse.src.getSrc('aud_findsimon').pause();
+        this.sound.pause();
     };
 };
 extend(FindSimon, mse.Game);

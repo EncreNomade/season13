@@ -85,6 +85,23 @@ class Controller_Welcome extends Controller_Frontend
 	}
 	
 	/**
+	 * The 404 action for webservice application.
+	 * 
+	 * @access  public
+	 * @return  Response
+	 */
+	public function action_ws404()
+	{
+	    $data = array(
+	        'title'         => 'Page inconnu - SEASON 13',
+	        'description'   => "Page inconnu de SEASON 13 - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection",
+	        'content'       => View::forge('welcome/404')
+	    );
+		
+		return new Response(View::forge('template_ws', $data));
+	}
+	
+	/**
 	 * The upgrade navigator action for the application.
 	 * 
 	 * @access  public
@@ -143,6 +160,71 @@ class Controller_Welcome extends Controller_Frontend
 	    $this->template->title = 'Mise à Jour du Navigateur - SEASON 13';
 	    $this->template->description = "Les histoires de SEASON 13 utilise les nouvelles fonctionnalités de HTML5, un navigateur moderne est indispensable.";
 	    $this->template->content = View::forge('welcome/upgradenav', $data);
+	}
+	
+	/**
+	 * The upgrade navigator action for the application.
+	 * 
+	 * @access  public
+	 * @return  Response
+	 */
+	public function action_wsupgradenav() {
+	    // Init data
+	    $data['change']  = false;
+	    $data['maj'] = false;
+	    $data['browser'] = '';
+	    
+	    $capable = true;
+	    
+	    // Check user browser capacity
+	    // Process based on the browser name
+	    switch (Agent::browser())
+	    {
+	        case 'Firefox':
+	            if(Agent::version() < 3.7) {
+	                $capable = false;
+	                $data['maj'] = true;
+	                $data['browser'] = 'Firefox';
+	            }
+	            else 
+	                $capable = true;
+	            break;
+	        case 'IE':
+	            if(Agent::version() < 9) {
+	                $capable = false;
+	                if(Agent::platform() == 'Win7') {
+	                    $data['maj'] = true;
+	                    $data['browser'] = 'IE';
+	                }
+	                else {
+	                    $data['change'] = true;
+	                }
+	            }
+	            else 
+	                $capable = true;
+	            break;
+	        case 'Chrome':
+	            $capable = true;
+	            break;
+	        case 'Safari':
+	            $capable = true;
+	            break;
+	        case 'Unknown':
+	            $data['change'] = true;
+	            $capable = false;
+	            break;
+	        default:
+	            $capable = true;
+	            break;
+	    }
+	
+	    $templatedata = array(
+	        'title'         => 'Mise à Jour du Navigateur - SEASON 13',
+	        'description'   => "Les histoires de SEASON 13 utilise les nouvelles fonctionnalités de HTML5, un navigateur moderne est indispensable",
+	        'content'       => View::forge('welcome/upgradenav', $data)
+	    );
+	    
+	    return new Response(View::forge('template_ws', $templatedata));
 	}
 	
 	

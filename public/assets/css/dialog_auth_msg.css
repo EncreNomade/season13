@@ -272,7 +272,7 @@
     position: absolute;
     top: -600px;
     width: 400px;
-    height: 430px;
+    height: auto;
     
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;

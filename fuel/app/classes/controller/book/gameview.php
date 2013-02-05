@@ -7,6 +7,19 @@ class Controller_Book_Gameview extends Controller_Frontend {
         $games = Model_Book_13game::query()->where('independant', 1)
                                            ->get();
         $this->template->css_supp = "gameview.css";
+        
+        foreach ($games as $game) {
+            if($this->current_user) {
+                if( $game->episode->hasAccess($this->current_user) ) {
+                    if($this->current_user->havePlayed($game->id)) {
+                        $game->access = true;
+                        continue;
+                    }
+                }
+            }
+            
+            $game->access = false;
+        }
     	
 		$data = array("games" => $games);
         
@@ -23,12 +36,12 @@ class Controller_Book_Gameview extends Controller_Frontend {
             return Response::redirect('404');
         }
         else {
-            $this->template->css_supp = "gameview.css"; 
-            $this->template->js_supp = "game_runner.js"; 
+            $this->template->css_supp = "gameview.css";
+            $this->template->js_supp = "game_runner.js";
             
             $data['game'] = $g;
 
-            $gameInfos = Model_User_Gameinfo::find_all_by_game_class($className, 50);
+            $gameInfos = Model_User_Gameinfo::highscores_by_game_id($g->id, 50);
             View::set_global('gameInfos', $gameInfos);        
 
             $this->template->title = 'SEASON 13 - jeux ' . $g->name;

@@ -16,7 +16,6 @@
         </a>
     </div>
     <div id="bookresume" class="layer">
-        <!--<object width="420" height="236"><param name="movie" value="http://www.youtube.com/v/lwuMe5fzeyU?version=3&amp;hl=fr_FR"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lwuMe5fzeyU?version=3&amp;hl=fr_FR&rel=0" type="application/x-shockwave-flash" width="420" height="236" allowscriptaccess="always" allowfullscreen="true"></embed></object>-->
         <div id="ytapiplayer">
             You need Flash player 8+ and JavaScript enabled to view this video.
         </div>
@@ -27,7 +26,6 @@
     </div>
     <div id="btns" class="layer">
         <ul>
-            <!--<li id="open_login2"><a>SE CONNECTER</a></li>-->
             <li id="ep1"><a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?source=discoverbtn" target="_blank">DÉCOUVRIR GRATUITEMENT</a></li>
         </ul>
     </div>
@@ -62,7 +60,13 @@
                         <h2>
                             <?php echo '#'.$ep->episode.'  '.stripslashes($ep->title); ?>
                             <span>
-                                <?php if(!$info['access'] && $product) echo $product->getLocalPrice().'€'; ?>
+                                <?php 
+                                if(!$info['access'] && $product) {
+                                    $price = $product->getLocalPrice();
+                                    if($price > 0)
+                                        echo $price.'€'; 
+                                }
+                                 ?>
                             </span>
                         </h2>
                     
@@ -80,14 +84,10 @@
                     
                     <?php else: // Buy Product  ?>
                     
-                        <?php if($ep->id == 2): ?>
-                            <a class="ep_play" href="#">CADEAU D'INSCRIPTION</a>
-                        <?php elseif($ep->id == 3): ?>
-                            <a class="ep_play" href="#">INVITER 5 AMIS</a>
-                        <?php elseif($ep->id == 4): ?>
-                            <a class="ep_play" href="#">AIMER SEASON13</a>
+                        <?php if($ep->id <= 4): ?>
+                            <a class="ep_play" href="#">VOIR L'ÉPISODE</a>
                         <?php else: ?>
-                            <!--<a class="ep_play" href="javascript:cart.add('<?php echo $product->reference; ?>')">ACHETER</a>-->
+                            <!--<a class="ep_play" href="javascript:cart.add('')">ACHETER</a>-->
                             <a class="ep_play" href="#">ACHETER</a>
                         <?php endif; ?>
                         
@@ -100,11 +100,6 @@
             </div>
             
             <div class="ep_list">
-            <!--
-                <div id="ep_prev_btn">
-                    <?php echo Asset::img("season13/ui/btn_left.jpg"); ?>
-                </div>
-            -->
                 <ul>
                 <?php foreach ($episodes as $episode): ?>
                     <?php if($current_ep == $episode): ?>
@@ -114,11 +109,6 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
                 </ul>
-            <!--
-                <div id="ep_next_btn">
-                    <?php echo Asset::img("season13/ui/btn_right.jpg"); ?>
-                </div>
-            -->
             </div>
         </div>
     </div>
@@ -129,10 +119,6 @@
 <div id="simon" class="layer">
     <?php echo Asset::img('season13/illus/simonHD.png', array('alt' => 'Simon - SEASON 13')); ?>
 </div>
-<!--
-<div id="bande4" class="layer">
-    <?php echo Asset::img('season13/illus/bande4.png', array('alt' => 'Les 4 - SEASON 13')); ?>
-</div>-->
 
 <div class="center">
     <div id="access_dialog" class="dialog">

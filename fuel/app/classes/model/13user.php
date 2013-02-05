@@ -158,4 +158,28 @@ class Model_13user extends \Orm\Model
 		}
 		return false;
 	}
+	
+	/**
+	 * Know if a user have ever done the tutorial
+	 * @return bool
+	 */
+	public function hasTutoDone() {
+	    $str = htmlspecialchars_decode($this->get('profile_fields'));
+		$infos = @unserialize($str);
+		
+		return (array_key_exists('tuto_done', $infos) && $infos['tuto_done']) ? true : false;
+	}
+	
+	/**
+	 * Set have done the tutorial for the user
+	 * @return bool
+	 */
+	public function hasDoneTuto() {
+		$infos = @unserialize(htmlspecialchars_decode($this->profile_fields));
+		
+		$infos['tuto_done'] = true;
+		$this->profile_fields = serialize($infos);
+		
+		$this->save();
+	}
 }

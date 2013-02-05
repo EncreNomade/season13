@@ -1,21 +1,46 @@
 
 <div class="main_container">
-    <ul class="game_list">
-    <?php foreach($games as $game): $episode = $game->episode ?>
-        <li>
-        <!-- <p class="game_link" data-gameId="<?php //echo $game->id; ?>"><?php //echo $game->name ?></p> -->
-            <h1><?php echo $game->name; ?></h1>
-            <p>
-                <strong>Episode : </strong>
-                <?php echo Html::anchor(str_replace(' ', '_', $episode['story']) . "/season" . $episode['season'] . "/episode" . $episode['episode'], $episode['title']); ?>
-            </p>
-            <?php echo Asset::img($game->expo, array("class" => "expo")); ?>
-            <p><?php echo $game->presentation; ?></p>
-            <div>
-                <?php echo Html::anchor("book/gameview/info/".$game->class_name, 'Infos'); ?>
-            </div>
-        </li>
-    <?php endforeach; ?>
+    <header>
+        <p>
+            Découvre les épisodes pour débliquer les jeux:
+        </p>
+    </header>
 
-    </ul>
+    <section>
+    <?php 
+    $count = 0;
+    foreach($games as $game): 
+        $count++;
+        $episode = $game->episode; 
+    ?>
+        <article>
+            <h1><?php echo $count.". ".$game->name; ?></h1>
+            
+            <div class="expo">
+                <?php echo Asset::img($game->expo, array('class' => 'expoimage')); ?>
+                
+                <?php if(!$game->access): ?>
+                <a href="<?php echo $base_url . str_replace(' ', '_', $episode['story']) . "/season" . $episode['season'] . "/episode" . $episode['episode']; ?>" class="mask">
+                    
+                    <?php echo Asset::img('season13/ui/lock1.png', array("class" => "lock")); ?>
+                    <?php echo Asset::img('season13/ui/key1.png', array("class" => "key")); ?>
+                    <p>
+                        Découvre l'épisode <?php echo $episode['episode']; ?>
+                    </p>
+                </a>
+                    
+                <?php else: ?>
+                
+                <a href="<?php echo $base_url."book/gameview/info/".$game->class_name; ?>" class="mask">
+                    <?php echo Asset::img('season13/ui/btn_play.png', array("class" => "play")); ?>
+                </a>
+                
+                <?php endif; ?>
+                
+            </div>
+            
+        </article>
+    <?php endforeach; ?>
+    </section>
+    
 </div>

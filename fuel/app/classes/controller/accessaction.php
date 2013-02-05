@@ -119,6 +119,32 @@ class Controller_Accessaction extends Controller_Rest
 		}
     }
     
+    public function post_invitation_fb() {
+        $fields = @unserialize($this->current_user->get('profile_fields'));
+        if(!array_key_exists('site_liked', $fields) || !$fields['site_liked']) {
+            $fields['invitation_sent'] = true;
+            $this->current_user->profile_fields = serialize($fields);
+            $updated = $this->current_user->save();
+        }
+        
+        // Set possesion of episode 4
+        $admin_13userpossesion = Model_Admin_13userpossesion::forge(array(
+			'user_mail' => $this->current_user->email,
+			'episode_id' => 3,
+			'source' => 2, // fblike
+			'source_ref' => "",
+		));
+
+		if ($admin_13userpossesion and $admin_13userpossesion->save())
+		{
+			$this->response(array('valid' => true), 200);
+		}
+		else
+		{
+			$this->response(array('valid' => false, 'errorMessage' => "La mise à jour de profile a échoué"), 200);
+		}
+    }
+    
     public function post_invitation_mail() {
         if (Input::method() == 'POST' && Security::check_token())
         {
