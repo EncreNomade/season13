@@ -4,7 +4,7 @@ class Controller_Story extends Controller_Frontend
 {
     public $template = 'story/template';
     
-    public static function requestAccess($epid, $current_user, $ext = false) {
+    public static function requestAccess($epid, $current_user, $ext = false, $episode = null) {
         $access = array('valid' => true);
         Config::load('errormsgs', true);
         $codes = (array) Config::get('errormsgs.story_access', array ());
@@ -36,6 +36,13 @@ class Controller_Story extends Controller_Frontend
             return array('valid' => true);
             
         if($ext !== true) {
+            // Check available
+            if(is_null($episode)) 
+                $episode = Model_Admin_13episode::find($epid);
+            if(!$episode->isAvailable()) {
+                return array('valid' => false, 'errorCode' => 101, 'errorMessage' => $codes[101]);
+            }
+            
             switch ($epid) {
             case 2:
                 return array('valid' => true);
@@ -128,7 +135,7 @@ class Controller_Story extends Controller_Frontend
 	            }
 	            else {
     	            View::set_global('episode', $this->episode);
-    	            $access = Controller_Story::requestAccess($this->episode->id, $this->current_user);
+    	            $access = Controller_Story::requestAccess($this->episode->id, $this->current_user, false, $this->episode);
     	            View::set_global('accessible', $access['valid']);
     	            View::set_global('extrait', false);
     	            View::set_global('access', $access);

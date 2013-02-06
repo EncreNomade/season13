@@ -111,3 +111,20 @@
 	height: 20px;
 	float: right;
 }
+
+#cgv_dialog {
+    position: absolute;
+    top: -500px;
+    left: -250px;
+    width: 420px;
+    height: 500px;
+}
+#cgv_dialog.show {
+    top: 0px;
+}
+#cgv {
+    position: absolute;
+    width: 420px;
+    height: 480px;
+    overflow: scroll;
+}

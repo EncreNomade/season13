@@ -74,12 +74,17 @@ class Model_Admin_13episode extends Model
             
         if(!$user) 
             return false;
-        // Episode 2 free for all user
-        else if($this->id == 2)
-            return true;
             
         // Free for all important user
         if( $user->group >= 10 )
+            return true;
+            
+        // Not available
+        if(!$this->isAvailable())
+            return false;
+            
+        // Episode 2 free for all user
+        if($this->id == 2)
             return true;
             
         // Permission after first episode

@@ -151,7 +151,7 @@ $(document).ready(function() {
                 msgs[0].reinit(this.audio, "Volume de son", {'position':'top'}).show();
                 msgs[1].reinit(this.speed, "Vitesse de défilement", {'position':'right'}).show();
                 msgs[2].reinit(this.fbComment, "Publication de tes commentaires sur Facebook", {'position':'bottom'}).show();
-                msgs[3].reinit(this.close, "Ferme la fenêtre pour continuer", {'position':'top','animate':true}).show();
+                msgs[3].reinit(this.close, "Ferme la fenêtre pour continuer", {'position':'bottom','animate':true}).show();
                 
                 this.close.click({'action': this}, endfunction);
                 this.fbComment.change(this.fbNotif);
@@ -165,6 +165,7 @@ $(document).ready(function() {
                 msgs[3].hide();
                 this.fbComment.unbind('change', this.fbNotif);
                 this.close.unbind('click', endfunction);
+                mse.root.pause();
             }
         ),
         
@@ -376,7 +377,7 @@ $(document).ready(function() {
             function() {
                 gui.openComment();
             
-                msgs[0].reinit(this.btn, "Capture une image", {'animate':true}).show();
+                msgs[0].reinit(this.btn, "Capture une image", {'animate':true, 'position':'bottom'}).show();
                 this.btn.click({'action': this}, endfunction);
             },
             
@@ -462,12 +463,12 @@ $(document).ready(function() {
                     var action = e.data.action;
                     action.dialog.unbind('mouseover', action.showMsg);
                     
-                    msgs[0].reinit(action.btn, "Partager ou <a href='javascript:tuto.passNext();'>passe</a>").show();
+                    msgs[0].reinit(action.btn, "Partager ou <a href='javascript:tuto.passNext();'>passe</a>", {'position':'bottom'}).show();
                     msgs[1].reinit(action.content, "Tape ton commentaire", {'position':'center', 'animate':true}).show();
                     
                     var img = gui.comment_menu.children('#commentImg');
                     if(img.length > 0) 
-                        msgs[2].reinit(img, "Ton image est capturée", {'position':'bottom'}).show();
+                        msgs[2].reinit(img, "Ton image est capturée", {'position':'left'}).show();
                     
                     action.btn.click({'action': action}, endfunction);
                 },
@@ -492,7 +493,7 @@ $(document).ready(function() {
             'CommentUpload',
             
             {
-                'beginDelay': 1200,
+                'beginDelay': 600,
                 'btn': gui.comment_menu.children('#btn_upload_img'),
                 'endDelay': 600
             },
@@ -501,17 +502,67 @@ $(document).ready(function() {
             function() {
                 gui.openComment();
                 
-                msgs[0].reinit(this.btn, "Tu peux télécharger un dessin ou une photo depuis ton ordinateur", {'animate':true}).show();
+                msgs[0].reinit(this.btn, "Tu peux télécharger un dessin ou une photo depuis ton ordinateur", {'animate':true, 'position':'bottom'}).show();
                 
+                this.btn.click({'action': this}, endfunction);
                 var action = this;
-                setTimeout(function() {
+                this.timer = setTimeout(function() {
                     action.end();
                 }, 4200);
             },
             
             // End
             function() {
+                if(this.timer) clearTimeout(this.timer);
                 msgs[0].hide();
+                this.btn.unbind('click', endfunction);
+            }
+        ),
+        
+        new MseAction(
+            'CloseComment',
+            
+            {
+                'dialog' : gui.comment,
+                'close' : gui.comment.children('.close'),
+                'endDelay' : 600
+            },
+            
+            // Start
+            function() {
+                msgs[0].reinit(this.close, "Ferme la fenêtre pour continuer", {'animate':true, 'position':'bottom'}).show();
+                this.close.click({'action': this}, endfunction);
+            },
+            
+            // End
+            function() {
+                mse.root.pause();
+                msgs[0].hide();
+                this.close.unbind('click', endfunction);
+            }
+        ),
+        
+        new MseAction(
+            'Tutopages',
+            
+            {
+                'dialog' : $('#tuto_pages'),
+                'endDelay' : 600
+            },
+            
+            // Start
+            function() {
+                if(!gui.center.hasClass('show')) gui.center.addClass('show');
+                this.dialog.siblings().removeClass('show');
+                this.dialog.addClass('show');
+                this.dialog.find('a').click({'action': this}, endfunction);
+            },
+            
+            // End
+            function() {
+                this.dialog.removeClass('show');
+                gui.center.removeClass('show')
+                this.dialog.find('a').unbind('click', endfunction);
             }
         ),
         
@@ -522,7 +573,7 @@ $(document).ready(function() {
             
             // Start
             function() {
-                msgCenter.send("Le tutoriel est terminée, vous pouvez continuez votre histoire", 5000);
+                msgCenter.send("Le tutoriel est terminée, tu peux continuez votre histoire", 5000);
                 window.quitTuto();
             }
         ),

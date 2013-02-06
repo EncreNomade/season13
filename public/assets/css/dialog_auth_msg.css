@@ -14,6 +14,7 @@
     z-index: -1;
     display: block;
     background: #fff;
+    color: #000;
     border-top: 40px solid #000;
     border-bottom: 8px solid #000;
     border-left: 8px solid #000;
@@ -24,6 +25,11 @@
     -moz-transition: opacity 0.3s linear;
     -o-transition: opacity 0.3s linear;
     transition: opacity 0.3s linear;
+    
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 .dialog > .close {
     position: absolute;

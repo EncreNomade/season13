@@ -184,4 +184,8 @@ class Controller_Achat_Order extends Controller_Frontend
 	    
 	    return Response::forge(View::forge('achat/order/cancel'));
 	}
+	
+	public function action_CGV() {
+	    return Response::forge(View::forge('achat/order/cgv'));
+	}
 }

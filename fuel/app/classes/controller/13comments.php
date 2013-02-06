@@ -37,11 +37,18 @@ class Controller_13comments extends Controller_Rest
             
             $res = array();
             foreach ($comments as $comment) {
-                $user = Model_13user::find_by_id($comment->user);
+                if($comment->user == 0) {
+                    $user = (object) array(
+                        'pseudo' => $comment->position,
+                        'avatar' => 'http://season13.com/assets/img/season13/avatar_default.png'
+                    );
+                }
+                else $user = Model_13user::find_by_id($comment->user);
+                
                 array_push($res, array(
                     'user' => $user->pseudo,
                     'avatar' => $user->avatar,
-                    'content' => $comment->content,
+                    'content' => stripslashes($comment->content),
                     'image' => $comment->image,
                     'fbpostid' => $comment->fbpostid,
                     'verified' => $comment->verified,

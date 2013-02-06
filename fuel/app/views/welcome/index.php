@@ -51,7 +51,7 @@
                         $product = $info['product'];
                         if(!isset($current_ep)) $current_ep = $ep; 
                     ?>
-                    <div class="ep_img">
+                    <div class="ep_img<?php if(!$info['available']) echo " indispo"; ?>">
                          
                         <?php echo Html::img($ep->image); ?>
                     </div>

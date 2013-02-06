@@ -21,6 +21,7 @@
 
 	function init() {
 	    cgvCheckbox = $('#accept-cgv');
+	    cgv = $('#cgv_dialog');
 	    
 		addrContainer = $('#order-adresse');
 		modifyAddrBtn = $('#askModifyAddress');
@@ -46,6 +47,18 @@
 		        cgvCheckbox.parent().removeClass('alert');
 		    else
 		        cgvCheckbox.parent().addClass('alert');
+		});
+		
+		$('#show_cgv').click(function() {
+		    $.ajax({
+		        'url': config.publicRoot + 'achat/order/CGV',
+		        'type': 'GET',
+		        success: function(data) {
+		            cgv.children('.sep_line').nextAll().remove();
+		            cgv.children('.sep_line').after(data);
+		            cgv.addClass('show');
+		        }
+		    });
 		});
 		
 		if(window.PAYPAL) {

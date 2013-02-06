@@ -1,4 +1,4 @@
-<div class="main_container">
+<article class="main_container">
     <div id="order_container">
         <h1>Récapitulatif de la commande</h1>
         
@@ -58,7 +58,7 @@
         <div id="order-agreement">
             <h5>
                 <label>
-                    <input id="accept-cgv" type="checkbox"/>  J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire les <a href="#">Conditions générales de vente</a>)
+                    <input id="accept-cgv" type="checkbox"/>  J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire <a id="show_cgv" href="#">les Conditions générales de vente</a>)
                 </label>
             </h5>
         </div>
@@ -105,5 +105,13 @@
         <br/>
         <br/>
         
+    </div>
+</article>
+
+<div class="topcenter">
+    <div id="cgv_dialog" class="dialog animate_medium hidden">
+        <div class="close right"></div>
+        <h1>Conditions générales de ventes</h1>
+        <div class="sep_line"></div>
     </div>
 </div>

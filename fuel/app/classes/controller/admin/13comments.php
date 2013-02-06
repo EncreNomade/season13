@@ -1,6 +1,7 @@
 <?php
 class Controller_Admin_13comments extends Controller_Backend
 {
+    private static $ptn_comment = "/(?P<pseudo>\w+)\s*:\s*(?P<content>[\s\S]+)/";
 
 	public function action_index()
 	{
@@ -19,6 +20,55 @@ class Controller_Admin_13comments extends Controller_Backend
 		$this->template->title = "Admin_13comment";
 		$this->template->content = View::forge('admin/13comments/view', $data);
 
+	}
+	
+	public function action_multicreate() {
+	    if (Input::method() == 'POST')
+	    {
+	        $episode = Input::post('episode');
+	        $comments = Input::post('comments');
+	        
+	        if(!$episode || !$comments) {
+	            Session::set_flash('error', 'Information manquante.');
+	        }
+	        else {
+	            $comments = explode(";", $comments);
+	            if(is_array($comments)) {
+	                $count = 0;
+	            
+	                foreach ($comments as $comment) {
+	                    $comment = trim($comment);
+	                    
+	                    preg_match(self::$ptn_comment, $comment, $result);
+	                    if( array_key_exists('pseudo', $result) && array_key_exists('content', $result) ) {
+	                        $newcomment = Model_Admin_13comment::forge(array(
+	                        	'user' => 0,
+	                        	'content' => $result['content'],
+	                        	'image' => "",
+	                        	'fbpostid' => "",
+	                        	'position' => $result['pseudo'],
+	                        	'verified' => 1,
+	                        	'epid' => $episode,
+	                        ));
+	                        
+	                        if ($newcomment and $newcomment->save()) {
+	                            $count++;
+	                        }
+	                    }
+	                }
+	                
+	                Session::set_flash('success', $count.' commentaires ont été ajoutés pour l\'épisode '.$episode);
+	                
+	                Response::redirect('admin/13comments/multicreate');
+	            }
+	            else {
+	                Session::set_flash('error', 'Erreur de commentaires.');
+	            }
+	        }
+	    }
+	    
+	    $this->template->title = "Create user comments";
+	    $this->template->content = View::forge('admin/13comments/multicreate');
 	}
 
 	public function action_create()

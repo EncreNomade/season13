@@ -18,6 +18,20 @@ ul {
 
 
 
+/******************** Classes ********************/
+
+.topcenter {
+    position: fixed;
+    left: 50%;
+    top: 50px;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+}
+
+
+
+
 /******************** Structure ********************/
 html {
     overflow-y: hidden;
