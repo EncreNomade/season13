@@ -176,9 +176,6 @@ var accessGateway = {
         
         $('#access_buy_btn3').unbind('click').click(function(e) {
             invitation.removeClass('show');
-        
-            e.preventDefault();
-            accessGateway.buyClicked(3, 'accessaction/no_invitation');
         });
     },
     
@@ -256,9 +253,6 @@ var accessGateway = {
         
         $('#access_buy_btn4').unbind('click').click(function(e) {
             $('.center #access_dialog').removeClass('show');
-            
-            e.preventDefault();
-            accessGateway.buyClicked(4, 'accessaction/no_like');
         });
     }
 };
@@ -289,9 +283,6 @@ function story_access_resp(data, epid) {
                 break;
             
             case 202:
-                accessGateway.buyClicked(epid, 'accessaction/buy_episode');
-                data.errorMessage = "";
-                break;
             case 102:
             case 101:
             default:

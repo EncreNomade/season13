@@ -1,9 +1,12 @@
+.cart_container {
+    font-family: 'DroidSansRegular', Arial;
+}
+
 .cart_product {
 	padding: 5px;
 	border-bottom: solid 1px #BEBEBE;
 	margin-bottom: 10px;
 	min-height: 50px;
-	font-family: 'DroidSansRegular', Arial;
 }
 
 .cart_product h3 {

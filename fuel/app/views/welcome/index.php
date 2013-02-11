@@ -87,8 +87,7 @@
                         <?php if($ep->id <= 4): ?>
                             <a class="ep_play" href="#">VOIR L'ÉPISODE</a>
                         <?php else: ?>
-                            <!--<a class="ep_play" href="javascript:cart.add('')">ACHETER</a>-->
-                            <a class="ep_play" href="#">ACHETER</a>
+                            <a class="ep_play" href="javascript:cart.add('<?php echo $info['product']->reference; ?>')">ACHETER</a>
                         <?php endif; ?>
                         
                     <?php endif; ?>
