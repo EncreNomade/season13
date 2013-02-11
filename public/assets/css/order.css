@@ -5,9 +5,11 @@
 
 #order_container {	
 	margin: 30px auto;
-	width: 600px;
+	padding: 20px;
+	width: 620px;
+	border: 1px solid #ccc;
 	
-	font-family: Arial;
+	font-family: 'DroidSansRegular';
 }
 
 /*
@@ -67,10 +69,11 @@
 *	ORDER ADDRESS
 */
 /* form */
-#order-adresse form label {
+#order-adresse form label, .addr_info label {
 	float: left;
-	width: 100px;
-	font-weight: bold;
+	width: 150px;
+	font-size: 16px;
+	font-size-adjust: 26px;
 }
 
 #order-adresse form .inputs input, #order-adresse form .inputs label {
@@ -92,6 +95,7 @@
 /* view */
 #order-adresse p {
 	margin: 5px;
+	height: 20px;
 }
 #order-adresse .addr_info {
 	border: 2px groove threedface;
@@ -100,10 +104,6 @@
 .addr_info strong {
 	float: left;
 	width: 100px;
-}
-
-#accept-cgv, #order-login {
-    font-family: Arial;
 }
 
 #order-detail img.remove_product {
@@ -118,13 +118,18 @@
     left: -250px;
     width: 420px;
     height: 500px;
+    font: normal 14px/25px 'DroidSansRegular', Arial, Helvetica;
+    display: none;
 }
 #cgv_dialog.show {
     top: 0px;
+    display: block;
 }
 #cgv {
     position: absolute;
     width: 420px;
     height: 480px;
     overflow: scroll;
+    margin: 0;
+    padding: 0;
 }

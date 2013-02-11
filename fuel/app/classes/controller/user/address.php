@@ -35,20 +35,21 @@ class Controller_User_Address extends Controller_Ajax
 		}
 
 		$user_address = Model_User_Address::find($id);
-		$val = Model_User_Address::validate('edit');		
-		$val->set_message('required', 'Tu dois remplir :label');
-		$val->set_message('max_length', ':label ne doit pas dépasser :param:1 caractères');		
+		$val = Model_User_Address::validate('edit');
+		$val->set_message('required', 'Tu dois indiquer :label');
+		$val->set_message('max_length', ':label ne doit pas dépasser :param:1 caractères');
+		$val->set_message('valid_email', 'Tu dois indiquer un adresse mail correct');
 
 		if ($val->run())
 		{
-			$user_address->firstname = Input::post('firstname');
+			$user_address->firstname = Input::post('firstname') ? Input::post('firstname') : "";
 			$user_address->lastname = Input::post('lastname');
 			$user_address->address = Input::post('address');
 			$user_address->email = Input::post('email');
 			$user_address->postcode = Input::post('postcode');
 			$user_address->city = Input::post('city');
 			$user_address->country_code = Input::post('country_code');
-			$user_address->tel = Input::post('tel');
+			$user_address->tel = Input::post('tel') ? Input::post('tel') : "";
 			$user_address->title = 'defaut';
 			$user_address->supp = '';
 
@@ -69,14 +70,14 @@ class Controller_User_Address extends Controller_Ajax
 		{
 			if (Input::method() == 'POST')
 			{
-				$user_address->firstname = $val->validated('firstname');
+				$user_address->firstname = $val->validated('firstname') ? $val->validated('firstname') : "";
 				$user_address->lastname = $val->validated('lastname');
 				$user_address->address = $val->validated('address');
 				$user_address->email = $val->validated('email');
 				$user_address->postcode = $val->validated('postcode');
 				$user_address->city = $val->validated('city');
 				$user_address->country_code = $val->validated('country_code');
-				$user_address->tel = $val->validated('tel');
+				$user_address->tel = $val->validated('tel') ? $val->validated('tel') : "";
 				$user_address->title = $val->validated('title');
 				$user_address->supp = $val->validated('supp');
 		
@@ -99,21 +100,22 @@ class Controller_User_Address extends Controller_Ajax
 			{
 				Input::post('user_id', $this->current_user->id);
 				$val = Model_User_Address::validate('create');
-				$val->set_message('required', 'Tu dois remplir :label');
-				$val->set_message('max_length', ':label ne doit pas dépasser :param:1 caractères');		
+				$val->set_message('required', 'Tu dois indiquer :label');
+				$val->set_message('max_length', ':label ne doit pas dépasser :param:1 caractères');
+				$val->set_message('valid_email', 'Tu dois indiquer un adresse mail correct');	
 				
 				if ($val->run())
 				{
 					$user_address = Model_User_Address::forge(array(
 						'user_id' => $this->current_user->id,
-						'firstname' => Input::post('firstname'),
+						'firstname' => Input::post('firstname') ? Input::post('firstname') : "",
 						'lastname' => Input::post('lastname'),
 						'address' => Input::post('address'),
 						'email' => Input::post('email'),
 						'postcode' => Input::post('postcode'),
 						'city' => Input::post('city'),
 						'country_code' => Input::post('country_code'),
-						'tel' => Input::post('tel'),
+						'tel' => Input::post('tel') ? Input::post('tel') : "",
 						'title' => 'defaut',
 						'supp' => ''
 					));

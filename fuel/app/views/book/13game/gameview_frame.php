@@ -1,5 +1,5 @@
 <?php 
-    $likeUrl = "http://season13.com/book/gameview/info/" . $game->class_name;
+    $likeUrl = $base_url . "games/" . $game->class_name;
 ?>
 
 <html>

@@ -261,6 +261,13 @@ class Controller_Welcome extends Controller_Frontend
 	    $this->template->content = View::forge('welcome/thanksto');
 	}
 	
+	public function action_cgv() {
+	    $this->template->title = 'Conditions générales de ventes - SEASON 13';
+	    
+	    $this->template->description = "Conditions générales de ventes - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
+	    $this->template->content = View::forge('achat/order/cgv');
+	}
+	
 	
 	/**
 	 * The cadeau action

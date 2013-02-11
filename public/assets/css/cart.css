@@ -3,17 +3,18 @@
 	border-bottom: solid 1px #BEBEBE;
 	margin-bottom: 10px;
 	min-height: 50px;
+	font-family: 'DroidSansRegular', Arial;
 }
 
 .cart_product h3 {
 	margin: 0;
+	font-size: 16px;
 }
 
 .cart_product .imgContainer {
 	height: 50px;
 	width: 50px;
 	float: left;
-	margin: 5px 10px 5px 5px;
 }
 
 
@@ -24,7 +25,9 @@
 }
 
 .cart_product img {
-	width: 50px;
+	max-height: 50px;
+	max-width: 44px;
+	margin: 0px 3px;
 }
 
 /*	old price after discount  */

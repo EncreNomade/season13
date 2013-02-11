@@ -41,7 +41,7 @@
 	    if(isset($js_supp)) echo Asset::js($js_supp);
 	?>
 	
-<?php if( Auth::member(3) || Auth::member(5) ): ?>
+<?php if( !Auth::check() || Auth::member(3) || Auth::member(5) ): ?>
 	<script type="text/javascript">
 	
 	  var _gaq = _gaq || [];
@@ -51,10 +51,10 @@
 	  _gaq.push(['_trackPageview']);
 	  
 	  var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-36203496-1']);
-      _gaq.push(['_setDomainName', 'season13.com']);
-      _gaq.push(['_setAllowLinker', true]);
-      _gaq.push(['_trackPageview']);
+	  _gaq.push(['_setAccount', 'UA-36203496-1']);
+	  _gaq.push(['_setDomainName', 'season13.com']);
+	  _gaq.push(['_setAllowLinker', true]);
+	  _gaq.push(['_trackPageview']);
 	
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -106,16 +106,18 @@
         <div id="logo">
             <?php echo Asset::img('season13/13logo.png'); ?>
         </div>
-        <a href="<?php echo $remote_path; ?>" id="logoLink" title="LOGO SEASON 13"></a>
+        <a href="<?php echo $base_url; ?>" id="logoLink" title="LOGO SEASON 13"></a>
         
         <ul id="menu">
-            <li section="accueil"><a href="<?php echo $remote_path; ?>">ACCUEIL</a></li>
+            <li section="accueil"><a href="<?php echo $base_url; ?>">ACCUEIL</a></li>
             <li class="text_sep_vertical"></li>
-            <li section="episode"><a href="<?php echo $remote_path; ?>?s=episode">LES ÉPISODES</a></li>
+            <li section="episode"><a href="<?php echo $base_url; ?>?s=episode">ÉPISODES</a></li>
             <li class="text_sep_vertical"></li>
-            <li><a href="<?php echo $remote_path; ?>concept">LE CONCEPT</a></li>
+            <li><a href="<?php echo $base_url; ?>games">JEUX</a></li>
             <li class="text_sep_vertical"></li>
-            <li><a href="<?php echo $remote_path; ?>news">L'ACTU</a></li>
+            <li><a href="<?php echo $base_url; ?>concept">CONCEPT</a></li>
+            <li class="text_sep_vertical"></li>
+            <li><a href="<?php echo $base_url; ?>news">ACTU</a></li>
         </ul>
     </header>
     
@@ -126,7 +128,7 @@
         <li id="open_login">Déjà client</li>
 <?php else: ?>
     <?php if(Auth::member(100)): ?>
-        <li><a href="admin/">ADMIN</a></li>
+        <li><a href="<?php echo $base_url; ?>admin/">ADMIN</a></li>
     <?php endif; ?>
         <li id="user_id">BIENVENUE: <?php echo $current_user->pseudo ?></li>
         <li class="text_sep_vertical"></li>
@@ -183,7 +185,7 @@
 	        </li>
 	        <!--<li class="twitter_btn"></li>--></ul>
 	    <div class="mask"></div>
-		<p><a href="<?php echo $remote_path; ?>aboutus">Équipe</a> - <a href="<?php echo $remote_path; ?>thanksto">Remerciements</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegales">Mentions légales</a><!-- - <label>Conditions générales de vente</label>--></p>
+		<p><a href="<?php echo $remote_path; ?>aboutus">Équipe</a> - <a href="<?php echo $remote_path; ?>thanksto">Remerciements</a> - <a href="<?php echo $remote_path; ?>contact">Contact</a> - <a href="<?php echo $remote_path; ?>mentionslegales">Mentions légales</a> - <a href="<?php echo $base_url; ?>cgv">CGV</a></p>
 	</footer>
 </body>
 </html>

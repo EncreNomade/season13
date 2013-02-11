@@ -62,7 +62,7 @@
         echo Asset::js('story/gameinfo.js');
         echo Asset::js('story/tuto.js');
         
-        if(Fuel::$env == Fuel::DEVELOPMENT) {
+        if(Fuel::$env == Fuel::TEST) {
             echo Asset::js('story/events.js');
             echo Asset::js('story/mse.js');
             echo Asset::js('story/effet_mini.js');
@@ -80,7 +80,7 @@
             // print games
             $games = $episode->games;
             foreach ($games as $g) {
-                $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
+                $likeUrl = $base_url . 'games/' . $g->class_name;
                 $url = $base_url . $g->path.'/games/'.$g->file_name;
                 echo "<script src=\"$url\"> </script>";
             }
@@ -138,7 +138,7 @@
 
 
 
-<?php if( Auth::member(3) || Auth::member(5) ): ?>
+<?php if( !Auth::check() || Auth::member(3) || Auth::member(5) ): ?>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

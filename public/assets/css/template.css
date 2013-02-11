@@ -27,6 +27,18 @@ ul {
     width: 0px;
     height: 0px;
     overflow: visible;
+    z-index: 20;
+}
+.container_center {
+    position: relative;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+}
+.center_text {
+    width: 100%;
+    text-align: center;
 }
 
 
@@ -107,6 +119,12 @@ body > header ul li, #conn li {
 ul#conn li.inactive {
     opacity: 0.6;
 }
+ul#menu li a:hover, ul#conn li:hover {
+    color: rgb(246, 168, 0);
+}
+li.text_sep_vertical:hover {
+    color: #fff;
+}
 
 
 
@@ -120,6 +138,18 @@ ul#conn li.inactive {
     z-index: 1;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+#cgv {
+    position: relative;
+    top: 0px;
+    width: 450px;
+    height: auto;
+    margin: 0px auto;
+    padding: 25px 0 40px 0;
+    overflow: scroll;
+    z-index: 1;
+    font: normal 14px/25px 'DroidSansRegular', Arial, Helvetica;
 }
 
 

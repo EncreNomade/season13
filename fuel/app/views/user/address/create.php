@@ -2,7 +2,7 @@
 	$errors = Session::get_flash('error');
 	$errors and Session::delete_flash('error');
 ?>
-<h2>Création adresse</h2>
+<h2>Adresse de facturation</h2>
 <?php if($errors): ?>
 	<div class="flash-alert">
 		<?php if(is_array($errors)): ?>

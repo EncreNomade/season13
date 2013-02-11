@@ -34,14 +34,14 @@ class Model_User_Address extends Model
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
-		$val->add_field('firstname', 'Firstname', 'required|max_length[32]');
-		$val->add_field('lastname', 'Lastname', 'required|max_length[32]');
-		$val->add_field('email', 'Email', 'required|valid_email');
-		$val->add_field('address', 'Address', 'required|max_length[255]');
-		$val->add_field('postcode', 'Postcode', 'required|max_length[12]');
-		$val->add_field('city', 'City', 'required|max_length[64]');
-		$val->add_field('country_code', 'Country Code', 'required|max_length[2]');
-		$val->add_field('tel', 'Tel', 'required|max_length[16]');
+		$val->add_field('firstname', 'ton prénom', 'max_length[32]');
+		$val->add_field('lastname', 'ton nom', 'required|max_length[32]');
+		$val->add_field('email', 'ton adresse mail', 'required|valid_email');
+		$val->add_field('address', 'ton adresse', 'required|max_length[255]');
+		$val->add_field('postcode', 'ton code postal', 'required|max_length[12]');
+		$val->add_field('city', 'ta ville', 'required|max_length[64]');
+		$val->add_field('country_code', 'ton pays', 'required|max_length[2]');
+		$val->add_field('tel', 'ton numéro de téléphone', 'max_length[16]');
 		$val->add_field('title', 'Title', 'max_length[32]');
 		$val->add_field('supp', 'Supp', 'max_length[255]');
 

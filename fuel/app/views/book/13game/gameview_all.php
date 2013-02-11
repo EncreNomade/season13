@@ -2,7 +2,7 @@
 <div class="main_container">
     <header>
         <p>
-            Découvre les épisodes pour débliquer les jeux:
+            Découvre les épisodes pour débloquer les jeux:
         </p>
     </header>
 
@@ -31,7 +31,7 @@
                     
                 <?php else: ?>
                 
-                <a href="<?php echo $base_url."book/gameview/info/".$game->class_name; ?>" class="mask">
+                <a href="<?php echo $base_url."games/".$game->class_name; ?>" class="mask">
                     <?php echo Asset::img('season13/ui/btn_play.png', array("class" => "play")); ?>
                 </a>
                 

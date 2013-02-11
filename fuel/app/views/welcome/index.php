@@ -10,7 +10,7 @@
         <?php echo Asset::img('season13/illus/petite_ceinture.jpg', array('alt' => 'Fond SEASON 13')); ?>
     </div>
     <div id="booktitle" class="layer">
-        <a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?source=discoverbtn" target="_blank">
+        <a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?utm_source=discoverbtn&utm_medium=cpc" target="_blank">
             <?php echo Asset::img('season13/btn_discover.png', array('alt' => 'Découvrir 1er épisode de Voodoo Connection')); ?>
             <h5>LANCE-TOI GRATUITEMENT DANS L'HISTOIRE</h5>
         </a>
@@ -26,7 +26,7 @@
     </div>
     <div id="btns" class="layer">
         <ul>
-            <li id="ep1"><a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?source=discoverbtn" target="_blank">DÉCOUVRIR GRATUITEMENT</a></li>
+            <li id="ep1"><a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?utm_source=discoverbtn&utm_medium=cpc" target="_blank">DÉCOUVRIR GRATUITEMENT</a></li>
         </ul>
     </div>
     

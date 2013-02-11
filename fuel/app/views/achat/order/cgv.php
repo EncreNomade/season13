@@ -12,7 +12,6 @@
         <p>Les conditions contraires posées par le client seront réputées inopposables à la société ENCRE NOMADE, à défaut d’acceptation écrite de sa part.</p>
         <p>Encre Nomade est une SAS au capital de 115 000€, enregistrée au tribunal de commerce de Roubaix-Tourcoing sous le N°533792245, dont le siège est situé 99A, bd Descat 59200 Tourcoing France et immatriculée N° RCS : Roubaix-Tourcoing;</p>
         <p>Season13 est une marque déposée d’Encre Nomade.</p>
-        <br/>
         <p>SEASON13 se réserve le droit de modifier unilatéralement les termes des présentes conditions générales de vente, les conditions applicables étant celles en vigueur sur le Site à la date de passation de votre commande.</p>
         </section>
         
@@ -46,7 +45,6 @@
         
         <p>SEASON13 se réserve le droit de modifier à tout moment et sans préavis le prix de vente de ses Produits étant entendu que les articles commandés sont facturés au prix en vigueur lors de l’enregistrement de la commande, sous réserve de la disponibilité à cette date.</p>
         <p>Les offres promotionnelles sont valables pour une durée limitée et aux conditions énoncées pour chaque offre.</p>
-        <br/>
         <p>SEASON13 conserve l’entière propriété des Produits jusqu’à leur paiement complet et intégral par l’Utilisateur.</p>
         </section>
         
@@ -56,10 +54,10 @@
         <h3>4.1 Création d'un compte client</h3>
         <p>l'Utilisateur peut passer commande sur le Site, sous réserve de la création préalable et gratuite d’un compte Client sur le Site, et de la validation des Conditions Générales de Ventes.</p>
         <p>La création d'un compte Client nécessite pour l'Utilisateur de choisir un pseudo, une adresse de courrier électronique valide et un mot de passe confidentiel, lui permettant d'accéder à son compte et de passer des commandes sur le Site.</p>
-        <br/>
+        
         <strong>4-1-1 Exactitude des informations</strong>
-        Lors de la création du compte Client, l'Utilisateur s'engage à fournir des informations exactes et sincères et à procéder, le cas échéant, aux modifications et actualisations nécessaires lors de chaque nouvelle commande.
-        SEASON13 se réserve la faculté discrétionnaire et sans préavis de refuser, de suspendre ou d'invalider a posteriori l'inscription d'un Utilisateur dont les informations se révèleraient être erronées, incomplètes ou mensongères. Il est expressément précisé que l'application par SEASON13 de cette mesure ne pourra ouvrir droit à un quelconque dédommagement au bénéfice de l’utilisateur concerné.
+        <p>Lors de la création du compte Client, l'Utilisateur s'engage à fournir des informations exactes et sincères et à procéder, le cas échéant, aux modifications et actualisations nécessaires lors de chaque nouvelle commande.</p>
+        <p>SEASON13 se réserve la faculté discrétionnaire et sans préavis de refuser, de suspendre ou d'invalider a posteriori l'inscription d'un Utilisateur dont les informations se révèleraient être erronées, incomplètes ou mensongères. Il est expressément précisé que l'application par SEASON13 de cette mesure ne pourra ouvrir droit à un quelconque dédommagement au bénéfice de l’utilisateur concerné.</p>
         
         <strong>4-1-2 Confidentialité</strong>
         <p>Ces éléments d'identification sont personnels, confidentiels et incessibles. L'Utilisateur doit donc prendre les mesures appropriées afin d'éviter que des tiers puissent avoir connaissance de ces éléments.</p>
@@ -146,7 +144,6 @@
         <p><strong>8-1-2 :</strong> SEASON13 se réserve le droit de corriger, à tout moment et sans préavis, le contenu de ce site.</p>
         
         <p><strong>8-1-3 :</strong> Les photographies et graphismes reproduits et illustrant les Produits présentés sont uniquement donnés à titre indicatifs et n’ont donc pas valeur contractuelle. Pour toute question sur les Produits ou sur leur utilisation, le Client est invité à contacter le service clientèle de SEASON13 afin de s'informer des éventuelles conditions contractuelles et tarifaires applicables à ce produit.</p>
-        <br/>
         <p>Toute information contenue sur ce site est fournie à titre indicatif, même si elle a été établie à partir d’études sérieuses et réputées fiables.</p>
         <p>SEASON13décline toute responsabilité dans l'utilisation qui pourrait être faite de ces informations et des conséquences qui pourraient en découler, notamment au niveau des décisions qui pourraient être prises ou des actions qui pourraient être entreprises à partir de ces informations.</p>
         
@@ -177,10 +174,8 @@
         <p>En accord avec les lois régissant les droits de propriété intellectuelle, le présent Site et tous les éléments, marques, dessins, modèles, logos, graphiques, enregistrements etc, se trouvant dans le présent Site ainsi que leur compilation sont la propriété exclusive de SEASON13 ou de ses auteurs, ces derniers ne concédant aucune licence, ni aucun droit que celui de consulter le Site.</p>
         <p>Toute reproduction, modification, rediffusion et utilisation de ces éléments sont strictement interdites sans l'autorisation expresse et préalable de SEASON13 ou de leurs ayants-droit et constitueraient, sans cette autorisation, une contrefaçon sanctionnée par les articles L. 335-2 et suivants du Code de la propriété intellectuelle.</p>
         <p>Les Produits consultés par l’Utilisateur sont protégés par des dispositions nationales et internationales en matière de droits d’auteur et de droits voisins. L’Utilisateur n’est pas autorisé à utiliser des programmes automatiques afin de récupérer le contenu de l’Application Web.</p>
-        <br/>
         <p>SEASON13 concède dans ces conditions au Client un droit d’utilisation personnel et incessible des Produits, strictement limité à la consultation et à l’impression des Produits pour son usage exclusif.</p>
         <p>Le Client s’engage dans ces conditions à ne pas reproduire, résumer, modifier, altérer ou rediffuser les Produits, sans autorisation expresse préalable de SEASON13, ce qui exclut toutes opérations de transfert, de revente, de location, d’échange, et de mise à disposition des tiers par tous moyens.<p>
-        <br/>
         <p>Tout contrevenant ainsi que toute personne participant à la violation du présent article s’expose à la fermeture définitive de son compte ainsi qu’aux poursuites tant civiles que pénales prévues par le Code de la propriété intellectuelle au titre de la contrefaçon.</p>
         </section>
         
@@ -196,14 +191,14 @@
         <section>
         <h2>Article 11 - SERVICE CLIENTS</h2>
         <p>Pour toute information ou question, le Service Clientèle est à votre disposition aux coordonnées suivantes :</p>
-        <p>SEASON13 - 99A, bd Descat - 59200 Tourcoing - France</p>
-        <p>Ou par courrier électronique: contact@encrenomade.</p>
-        <p>Ou sur la page contact du Site www.Season13.com</p>
+        <p>SEASON13 - 99A, bd Descat - 59200 Tourcoing - France<br/>
+        Ou par courrier électronique: contact@encrenomade.<br/>
+        Ou sur la page contact du Site www.Season13.com</p>
         </section>
         
         <section>
         <h2>Article 12 – COOKIES</h2>
-        <p>Afin de permettre à SEASON13 de proposer des services personnalisés et d'améliorer la navigation et les fonctionnalités du Site, un ou plusieurs cookies pourront être transférés sur le disque dur de l'Utilisateur. La durée de conservation de ces informations dans l’ordinateur, le smartphone ou la tablette de l’utilisateur est de 15 jours.</p>
+        <p>Afin de permettre à SEASON13 de proposer des services personnalisés et d'améliorer la navigation et les fonctionnalités du Site, un ou plusieurs cookies pourront être transférés sur le disque dur de l'Utilisateur.</p>
         <p>Un cookie est un petit fichier qui peut être utilisé pour une authentification, ou pour stocker une information spécifique sur l'Utilisateur, comme les préférences d'un site ou le contenu d'un panier d'achat électronique. Ils ne sont ni des logiciels espions ni des virus.</p>
         <p>Les cookies peuvent être supprimés par l’Utilisateur en suivant la procédure indiquée par son navigateur. Toutefois, le rejet complet des cookies peut rendre le site inutilisable (connexion à l'aide d'identifiants, panier d'achat..).</p>
         </section>
@@ -216,8 +211,8 @@
         
     </article>
     
-    <p>
+    <!--<p>
         <a href="print">Sauvegarder en PDF</a>
-    </p>
+    </p>-->
     
 </div>

@@ -33,41 +33,17 @@
 <body>
     <h1>Commande confirmée</h1>
     
-    <h5>un mail de confirmation t'a été envoyé</h5>
+    <h5>Un mail de confirmation avec la facture t'a été envoyé</h5>
     
     <div id="order-detail">
-        <table border="1" class="products">
-            <thead>
-                <tr>
-                    <th>Référence</th>
-                    <th>Description</th>
-                    <th>Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($products as $p): ?>
-                <tr>
-                    <td><strong><?php echo $p->product->reference ;?></strong></td>
-                    <td><strong><?php echo $p->product_title ;?></strong></td>
-                    <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2"><strong>TVA:</strong></td>
-                    <td><?php echo $tva; ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><strong>Montant total TVA:</strong></td>
-                    <td><?php echo $tax . $currency->sign; ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><strong>Montant total TTC:</strong></td>
-                    <td><?php echo $total . $currency->sign; ?></td>
-                </tr>
-            </tfoot>
-    	</table>
+        <?php echo View::forge('achat/order/recaptulatif', array(
+                                'total' => $total,
+                                'ht' => $ht,
+                                'tva' => $tva,
+                                'tax' => $tax,
+                                'products' => $products,
+                                'currency' => $currency)
+                              ); ?>
     </div>
     
     <br/>

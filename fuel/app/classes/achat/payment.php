@@ -18,19 +18,29 @@ abstract class Payment {
         //::ITEMS::
         // NOTE : sum of all the item amounts should be equal to payment  amount 
         
-        $items = array();
+        //$items = array();
         $total_amount = 0;
         foreach ($products as $product) {
             $product_amt = $product->getRealPrice();
             
+            /*
             array_push($items, array(
                 'name' => $product->product_title, 
                 'amt' => number_format($product_amt, 2, '.', ''),
                 'qty' => 1
-            ));
+            ));*/
             
             $total_amount += $product_amt;
         }
+        
+        // Only one item to paypal
+        $items = array(
+            array(
+                'name' => "Commande Season 13", 
+                'amt' => number_format($total_amount, 2, '.', ''),
+                'qty' => 1
+            )
+        );
         
         $ht = round($total_amount * (1 - $cart->tax_rate/100), 2);
         $tax = $total_amount - $ht;

@@ -2,39 +2,39 @@
 
 <?php if(isset($user_address)): ?>
 
-    <h2>Adresse</h2>
+    <h2>Adresse de facturation</h2>
 
     <div class="addr_info">
         <p>
-        	<strong>Prénom</strong>
+        	<label>Prénom</label>
         	<?php echo $user_address->firstname; ?>
         </p>
         <p>
-            <strong>Nom</strong>
+            <label>Nom</label>
             <?php echo $user_address->lastname; ?>
         </p>
         <p>
-            <strong>E-mail</strong>
+            <label>E-mail</label>
             <?php echo $user_address->email; ?>
         </p>
         <p>
-        	<strong>Adresse</strong>
+        	<label>Adresse</label>
         	<?php echo $user_address->address; ?>
         </p>
         <p>
-        	<strong>Code postal</strong>
+        	<label>Code postal</label>
         	<?php echo $user_address->postcode; ?>
         </p>
         <p>
-        	<strong>Ville</strong>
+        	<label>Ville</label>
         	<?php echo $user_address->city; ?>
         </p>
         <p>
-        	<strong>Pays</strong>
+        	<label>Pays</label>
         	<?php echo Config::get("currencies." .$user_address->country_code. ".name"); ?>
         </p>
         <p>
-        	<strong>Téléphone</strong>
+        	<label>Téléphone</label>
         	<?php echo $user_address->tel; ?>
         </p>
         <div class="actions">

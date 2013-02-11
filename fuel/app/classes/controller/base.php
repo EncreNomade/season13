@@ -199,16 +199,17 @@ class Controller_Base extends Controller_Rest
     				// Set a global variable so views can use it
     				View::set_global('current_user', $this->current_user);
     				
-    				// Save in prestashop
-    				//$prestasave = Controller_Base::addToPrestashop($this->current_user, Input::post('password'));
+    				// Send welcome mail
+    				Controller_Base::sendHtmlMail(
+    				    'no-reply@encrenomade.com', 
+    				    'Season13.com', 
+    				    Input::post('email'), 
+    				    'Bienvenue sur Season13.com', 
+    				    'mail/welcome', 
+    				    array('pseudo' => Input::post('pseudo'))
+    				);
     				
-    				//if($prestasave['valid']) {
-    				    return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
-    				//}
-    				//else {
-    				//    $this->current_user->delete();
-    				//    return $this->response($prestasave, 200);
-    				//}
+    				return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
     			}
     			else
     			{

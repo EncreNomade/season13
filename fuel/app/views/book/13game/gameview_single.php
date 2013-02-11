@@ -19,20 +19,27 @@
 
 <div id="single_game_shower"><iframe src="about:blank"></iframe></div>
 <div class="main_container">
-    <div id="single_game_info">
-        <h1><?php echo $game->name; ?></h1>
-        <?php echo Asset::img($game->expo, array('class' => 'expo')); ?>
-        <div class="info right">
-            <p><?php echo $game->presentation; ?></p>
-            <?php if($game->instruction): ?>
-                <p class="instruction">
-                    Instruction :<br>
-                    <?php echo $game->instruction; ?>
-                </p>
-            <?php endif; ?>
-        </div>
-        <div class="play right">
-            <?php if(isset($current_user)): ?>
+    <div class="container_center">
+        <div id="single_game_info" class="dialog">
+            <h1><a href="<?php echo $base_url; ?>games">Les Jeux</a> > <?php echo $game->episode->episode.". ".$game->name; ?></h1>
+            <div class="sep_line"></div>
+            
+        <?php if(!isset($current_user)): ?>
+            <p class="center_text">Si tu n’es pas encore inscrit, débloque d’abord le 1er jeu dans l’épisode 1.</p>
+        <?php endif; ?>
+            
+            <?php echo Asset::img($game->expo, array('class' => 'expo')); ?>
+                        
+        <?php if(!isset($current_user)): ?>
+            <a id="discoverbtn" href="<?php echo $base_url; ?>Voodoo_Connection/season1/episode1?utm_source=game_discoverbtn&utm_medium=cpc" target="_blank" class="right">
+                <?php echo Asset::img('season13/btn_discover.png', array('alt' => 'Découvrir 1er jeu dans 1er episode')); ?>
+                <h5>DECOUVRE GRATUITEMENT LE 1ER JEU</h5>
+            </a>
+            
+            <p id="connect" class="right center_text">Déjà inscrit ? <a href="javascript:showLogin();">CONNECTE-TOI</a></p>
+            
+        <?php else: ?>
+            <div class="play right">
                 <?php if( $game->episode->hasAccess($current_user) ): ?>
                     <?php if($current_user->havePlayed($game->id)): ?>
                         <button class="game_link playBtn" data-gameClass="<?php echo $game->class_name; ?>">Jouer</button>
@@ -46,15 +53,19 @@
                 <?php else: ?>
                     <p>Pour jouer tu dois possèdez l'épisode : <b><?php echo $game->episode->title; ?></b>.</p>
                 <?php endif; ?>
-            <?php else: ?>
-                <p>tu dois être inscrit et connecté pour jouer ici.</p>                
-            <?php endif; ?> 
-        </div>
-        <?php if(!empty($gameInfos)): ?>
-            <div class="classement right">
-                <?php echo View::forge('book/13game/classement')->render(); ?>
             </div>
         <?php endif; ?>
-        <div class="clear"></div>
+            
+            <div class="right">
+                <div id="section_line"></div>
+            </div>
+            
+            <?php if(!empty($gameInfos)): ?>
+                <div class="classement right">
+                    <?php echo View::forge('book/13game/classement')->render(); ?>
+                </div>
+            <?php endif; ?>
+            <div class="clear"></div>
+        </div>
     </div>
 </div>

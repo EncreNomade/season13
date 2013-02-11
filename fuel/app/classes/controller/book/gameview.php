@@ -30,23 +30,28 @@ class Controller_Book_Gameview extends Controller_Frontend {
 
     public function action_info($className = null)
     {        
-        $g = Model_Book_13game::find_by_class_name($className);
+        $game = Model_Book_13game::find_by_class_name($className);
         $data = array();
-        if(!$g) {
+        if(!$game) {
             return Response::redirect('404');
         }
         else {
-            $this->template->css_supp = "gameview.css";
-            $this->template->js_supp = "game_runner.js";
-            
-            $data['game'] = $g;
-
-            $gameInfos = Model_User_Gameinfo::highscores_by_game_id($g->id, 50);
-            View::set_global('gameInfos', $gameInfos);        
-
-            $this->template->title = 'SEASON 13 - jeux ' . $g->name;
-
-            $this->template->content = View::forge('book/13game/gameview_single', $data);
+            if($this->current_user && !$this->current_user->havePlayed($game->id)) {
+                return Response::redirect('games');
+            }
+            else {
+                $this->template->css_supp = "gameview.css";
+                $this->template->js_supp = "game_runner.js";
+                
+                $data['game'] = $game;
+    
+                $gameInfos = Model_User_Gameinfo::highscores_by_game_id($game->id, 50);
+                View::set_global('gameInfos', $gameInfos);        
+    
+                $this->template->title = 'SEASON 13 - jeux ' . $game->name;
+    
+                $this->template->content = View::forge('book/13game/gameview_single', $data);
+            }
         }
     }
 

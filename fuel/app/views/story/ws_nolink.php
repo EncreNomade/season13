@@ -63,7 +63,7 @@
         // print games
         $games = $episode->games;
         foreach ($games as $g) {
-            $likeUrl = $base_url . 'book/gameview/info/' . $g->class_name;
+            $likeUrl = $base_url . 'games/' . $g->class_name;
             $url = $base_url . $g->path.'/games/'.$g->file_name;
             echo "<script src=\"$url\"> </script>";
         }

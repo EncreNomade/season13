@@ -129,7 +129,7 @@ fbapi.postGame = function(game){
             'message': msg,
             'picture': picUrl,
             'name': game.config.title,
-            'link': game.class ? config.base_url+'book/gameview/info/'+game.class : document.URL
+            'link': game.className ? config.base_url+'games/'+game.className : document.URL
         };
         FB.api('/me/feed', 'POST', data, function(obj){
             if(!obj.id) {

@@ -94,6 +94,7 @@ class Paypal extends Payment {
             'tva' => $o['tva'],
             'products' => $o['products'],
             'currency' => $o['currency'],
+            'user_id' => $o['user_id'],
         );
         
         /* =====================================

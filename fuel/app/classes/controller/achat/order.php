@@ -14,7 +14,6 @@ class Controller_Achat_Order extends Controller_Frontend
 	        $ht = round($total * (1 - $this->cart->tax_rate/100), 2);
 	        $tax = $total - $ht;
 	        
-	        // No product
 	        if(count($products) != 0) {
     	        
     	        if($this->current_user) {
@@ -60,11 +59,13 @@ class Controller_Achat_Order extends Controller_Frontend
     	            $this->template->content = View::forge('achat/order/view', $data);
     	        }
 	        }
+	        // No product
 	        else {
 	            $this->template->title = 'Commande - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5';
 	            $this->template->content = View::forge('achat/order/empty');
 	        }
 	    }
+	    // No cart
 	    else {
 	        $this->template->title = 'Commande - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5';
 	        $this->template->content = View::forge('achat/order/empty');
@@ -110,6 +111,29 @@ class Controller_Achat_Order extends Controller_Frontend
     	            $result = $payment->confirmPayment($order, $token, array('PayerID' => $_REQUEST['PayerID']));
     	            
     	            if($result['success']) {
+    	                $user_address = Model_User_Address::query()->where('user_id', $result['confirmData']['user_id'])->get_one();
+    	            
+    	                $datamail = array(
+    	                    'ref' => $order->reference,
+    	                    'total' => $result['confirmData']['total'],
+    	                    'ht' => $result['confirmData']['ht'],
+    	                    'tva' => $result['confirmData']['tva'],
+    	                    'tax' => $result['confirmData']['tax'],
+    	                    'products' => $result['confirmData']['products'],
+    	                    'currency' => $result['confirmData']['currency'],
+    	                    'addr' => $user_address,
+    	                    'cmdtime' => time()
+    	                );
+    	                // Send welcome mail
+    	                Controller_Base::sendHtmlMail(
+    	                    'no-reply@encrenomade.com', 
+    	                    'Season13.com', 
+    	                    $user_address->email, 
+    	                    'Facture Season13.com', 
+    	                    'mail/facture', 
+    	                    $datamail
+    	                );
+    	            
     	                return Response::forge(View::forge('achat/order/confirm', $result['confirmData']));
     	            }
     	            else {
@@ -156,6 +180,29 @@ class Controller_Achat_Order extends Controller_Frontend
                     'products' => $products,
                     'currency' => $cart->getCurrency(),
                     'return_page' => true,
+                );
+                
+                $user_address = Model_User_Address::query()->where('user_id', $order->user_id)->get_one();
+                
+                $datamail = array(
+                    'ref' => $order->reference,
+                    'total' => $total,
+                    'ht' => $ht,
+                    'tva' => $data['tva'],
+                    'tax' => $tax,
+                    'products' => $products,
+                    'currency' => $data['currency'],
+                    'addr' => $user_address,
+                    'cmdtime' => time()
+                );
+                // Send welcome mail
+                Controller_Base::sendHtmlMail(
+                    'no-reply@encrenomade.com', 
+                    'Season13.com', 
+                    $user_address->email, 
+                    'Facture Season13.com', 
+                    'mail/facture', 
+                    $datamail
                 );
             
                 return Response::forge(View::forge('achat/order/confirm', $data));

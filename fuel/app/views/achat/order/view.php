@@ -5,49 +5,18 @@
         <?php if($current_user)  echo "<h5>Référence de commande : " . $order->reference . "</h5>"; ?>
         
         <div id="order-detail">
-            <table border="1" class="products">
-                <thead>
-                    <tr>
-                        <th>Référence</th>
-                        <th>Description</th>
-                        <th>Prix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($products as $p): ?>
-                    <tr>
-                        <td><strong><?php echo $p->product->reference ;?></strong></td>
-                        <td>
-                            <strong><?php echo $p->product_title ;?></strong> 
-                            <?php echo Asset::img('season13/ui/btn_delete_red.png', array(
-                                'class' => "remove_product",
-                                'data-productref' => $p->product->reference,
-                                'alt' => 'supprimer'
-                            )); ?>
-                        </td>
-                        <td><?php echo $p->getRealPrice() . $currency->sign ;?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2"><strong>TVA:</strong></td>
-                        <td><?php echo $tva; ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><strong>Montant total TVA:</strong></td>
-                        <td><?php echo $tax . $currency->sign; ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><strong>Montant total TTC:</strong></td>
-                        <td><?php echo $total . $currency->sign; ?></td>
-                    </tr>
-                </tfoot>
-        	    
-        	</table>
+            <?php echo View::forge('achat/order/recaptulatif', array(
+                                    'total' => $total,
+                                    'ht' => $ht,
+                                    'tva' => $tva,
+                                    'tax' => $tax,
+                                    'products' => $products,
+                                    'currency' => $currency,
+                                    'modifiable' => true)
+                                  ); ?>
         </div>
         <br/>
-        <a href="<?php echo $base_url; ?>">Je continue mes achat</a>
+        <a href="<?php echo $base_url; ?>"><strong>Je continue mes achat</strong></a>
 
     <?php if($current_user): ?>
     
@@ -58,12 +27,14 @@
         <div id="order-agreement">
             <h5>
                 <label>
-                    <input id="accept-cgv" type="checkbox"/>  J'ai lu les conditions générales de vente et j'y adhère sans réserve. (Lire <a id="show_cgv" href="#">les Conditions générales de vente</a>)
+                    <input id="accept-cgv" type="checkbox"/>  J'ai lu <a id="show_cgv" href="#">les conditions générales de vente</a> et j'y adhère sans réserve.
                 </label>
             </h5>
         </div>
         
         <div id="order-payment">
+        
+            <h2>Je règle mes achats:</h2>
         
         <?php if($total): ?>
             <!-- INFO: The post URL "checkout.php" is invoked when clicked on "Pay with PayPal" button.-->

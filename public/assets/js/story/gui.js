@@ -510,7 +510,7 @@ function constructDomComment(comment) {
     str +=            '<h5>'+comment.content+'</h5>';
     str +=            (comment.image!='' ? '<img class="comment_image" src="'+comment.image+'"/>' : '');
     str +=            '<div class="comment_footer">';
-    str +=                '<h5>De '+comment.user+', le '+formattedDate+'</h5>';
+    str +=                '<h5>De '+comment.user+/*', le '+formattedDate+*/'</h5>';
     if(comment.fbpostid) {
         str +=            '<a class="comment_fblike" data-postid="'+comment.fbpostid+'"></a>';
         str +=            '<a class="comment_fblink" href="http://www.facebook.com/'+comment.fbpostid+'" target="_blank"></a>';

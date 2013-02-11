@@ -11,7 +11,11 @@ return array(
 	'contact' => 'welcome/contact',
 	'thanksto' => 'welcome/thanksto',
 	'aboutus' => 'welcome/aboutus',
-	'cadeau'   => 'welcome/cadeau',
+	'cgv'     => 'welcome/cgv',
+	'cadeau'  => 'welcome/cadeau',
+	'games'    => 'book/gameview',
+	
+	'games/(:segment)' => 'book/gameview/info/$1',
 	
 	'(:segment)/season(:num)/episode(:num)' => 'story/index/$1/$2/$3',
 	'ws/(:segment)/season(:num)/episode(:num)' => 'story/webservice/$1/$2/$3',
