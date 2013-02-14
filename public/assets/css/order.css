@@ -133,3 +133,13 @@
     margin: 0;
     padding: 0;
 }
+
+
+/*
+*	ORDER Payment
+*/
+#paypalBuyForm cite {
+    line-height: 35px;
+    font-size: 12px;
+    font-size-adjust: 35px;
+}

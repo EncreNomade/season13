@@ -34,7 +34,7 @@
     	                Vous trouverez ci-dessous la facture correspondant à votre achat.
     	            </p>
     	            
-    	            <p style="height: 50px; line-height: 50px;">
+    	            <p style="height: 60px; line-height: 50px;">
     	                <span style="position: relative; float: left; height: 50px; font-size-adjust: 50px; line-height: 50px;">A bientôt sur </span>
     	                <a style="position: relative; float: left; width: 50px; height: 50px;" href="http://season13.com/?utm_source=facture_mail&utm_medium=email">
     	                    <?php echo Asset::img('season13/logo_black.png', array('style'=>'width: 50px; height: 50px')); ?>
@@ -47,8 +47,9 @@
     	            <table border="1" style="width: 100%; border-collapse: collapse; border-spacing: 0;">
     	                <thead>
     	                    <tr style="text-align: center;">
-    	                        <strong>FACTURE N° <?php echo $ref; ?></strong>  Tourcoing, le <?php echo Date::forge($cmdtime)->format("%d/%m/%Y"); ?><br/>
-    	                        <br/>
+    	                        <th colspan="3" style="line-height: 35px;">
+        	                        <strong>FACTURE N° <?php echo $ref; ?></strong>  Tourcoing, le <?php echo Date::forge($cmdtime)->format("%d/%m/%Y"); ?><br/>
+    	                        </th>
     	                    </tr>
     	                    <tr style="text-align: center; font-weight: bold;">
     	                        <th style="color: white; text-shadow: 1px 1px 4px #333; height: 35px; text-transform: uppercase; background-color: rgb(146, 146, 146); border-top: 1px solid #000;">ISBN</th>

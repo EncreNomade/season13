@@ -111,16 +111,17 @@ class Controller_Achat_Order extends Controller_Frontend
     	            $result = $payment->confirmPayment($order, $token, array('PayerID' => $_REQUEST['PayerID']));
     	            
     	            if($result['success']) {
-    	                $user_address = Model_User_Address::query()->where('user_id', $result['confirmData']['user_id'])->get_one();
+    	                $data = $result['confirmData'];
+    	                $user_address = Model_User_Address::query()->where('user_id', $data['user_id'])->get_one();
     	            
     	                $datamail = array(
     	                    'ref' => $order->reference,
-    	                    'total' => $result['confirmData']['total'],
-    	                    'ht' => $result['confirmData']['ht'],
-    	                    'tva' => $result['confirmData']['tva'],
-    	                    'tax' => $result['confirmData']['tax'],
-    	                    'products' => $result['confirmData']['products'],
-    	                    'currency' => $result['confirmData']['currency'],
+    	                    'total' => $data['total'],
+    	                    'ht' => $data['ht'],
+    	                    'tva' => $data['tva'],
+    	                    'tax' => $data['tax'],
+    	                    'products' => $data['products'],
+    	                    'currency' => $data['currency'],
     	                    'addr' => $user_address,
     	                    'cmdtime' => time()
     	                );
@@ -134,7 +135,7 @@ class Controller_Achat_Order extends Controller_Frontend
     	                    $datamail
     	                );
     	            
-    	                return Response::forge(View::forge('achat/order/confirm', $result['confirmData']));
+    	                return Response::forge(View::forge('achat/order/confirm', $data));
     	            }
     	            else {
     	                if(isset($result['errorMessage'])) 

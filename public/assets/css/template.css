@@ -40,6 +40,11 @@ ul {
     width: 100%;
     text-align: center;
 }
+.text_selectable {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
 
 
 

@@ -33,7 +33,7 @@
             <td><?php echo number_format($ht, 2, ',', '') . $currency->sign; ?></td>
         </tr>
         <tr>
-            <td colspan="2"><strong>TVA:</strong></td>
+            <td colspan="2"><strong>TVA <?php echo $tva . "%"; ?>:</strong></td>
             <td><?php echo number_format($tax, 2, ',', '') . $currency->sign; ?></td>
         </tr>
         <tr>

@@ -27,8 +27,8 @@ return array(
 	'paypal' => array(
 	    // PayPal settings
 	    'account_email' => 'mseygnerole@encrenomade.com',
-	    'return_url' => Fuel::$env == Fuel::DEVELOPMENT ? "https://season13.com/achat/order/paypalConfirm" : "https://".$_SERVER['HTTP_HOST']."/achat/order/paypalConfirm",
-	    'cancel_url' => Fuel::$env == Fuel::DEVELOPMENT ? "https://season13.com/achat/order/cancel" : "https://".$_SERVER['HTTP_HOST']."/achat/order/cancel",
+	    'return_url' => Fuel::$env == Fuel::DEVELOPMENT ? "http://season13.com/achat/order/paypalConfirm" : "http://".$_SERVER['HTTP_HOST']."/achat/order/paypalConfirm",
+	    'cancel_url' => Fuel::$env == Fuel::DEVELOPMENT ? "http://season13.com/achat/order/cancel" : "http://".$_SERVER['HTTP_HOST']."/achat/order/cancel",
 	    
 	    //'------------------------------------
 	    //' PayPal API Credentials

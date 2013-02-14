@@ -1,4 +1,4 @@
-<article class="main_container">
+<article class="main_container text_selectable">
     <div id="order_container">
         <h1>Récapitulatif de la commande</h1>
         
@@ -39,8 +39,9 @@
         <?php if($total): ?>
             <!-- INFO: The post URL "checkout.php" is invoked when clicked on "Pay with PayPal" button.-->
             
-            <form action='<?php echo $base_url; ?>achat/order/paypalCheckout' METHOD='POST'>
+            <form id='paypalBuyForm' action='<?php echo $base_url; ?>achat/order/paypalCheckout' METHOD='POST'>
             	<input type='image' name='paypal_submit' id='paypal_submit' src='https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' border='0' align='top' alt='Pay with PayPal'/>
+            	<cite>En cliquant sur ce bouton, tu peux régler tes achats sans avoir de compte Paypal. Une carte bancaire suffit.</cite>
             </form>
             
             <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->
@@ -79,7 +80,7 @@
     </div>
 </article>
 
-<div class="topcenter">
+<div class="topcenter text_selectable">
     <div id="cgv_dialog" class="dialog animate_medium hidden">
         <div class="close right"></div>
         <h1>Conditions générales de ventes</h1>

@@ -12,10 +12,10 @@ class Controller_13comments extends Controller_Rest
     }
 
     public function get_comment_by_ep() {
-        if(is_null($this->current_user)) {
+        if(!Input::is_ajax()) {
             $this->response(array(
                 'success' => false,
-                'errorMessage' => 'Tu dois te connecter sur SEASON13.com'
+                'errorMessage' => ''
             ));
         }
         else {
@@ -61,7 +61,6 @@ class Controller_13comments extends Controller_Rest
                 'success' => true,
                 'comments' => $res
             ));
-            
         }
     }
     

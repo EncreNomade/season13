@@ -581,19 +581,25 @@ gui.postComment = function(imgUrl, msg){
     var position = JSON.stringify(mse.root.getProgress());
     function postSuccess(data){
         if(data) {
-            var posted = data.posted;
-            
-            gui.userComments.prepend(constructDomComment(posted));
-            gui.userComments.scrollTop(-gui.userComments.position().top);
-            // Hide loading
-            gui.comment_loading.removeClass('show');
-            
-            var msg = null;
-            if(fbapi.user && gui.fbShareEnabled && posted.fbpostid != "0") // the post is on facebook
-                msg = $('<p>Ton message a bien été posté sur SEASON13 et sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
-            else 
-                msg = $('<p>Ton message a bien été posté.</p>')
-            msgCenter.send(msg);
+            if(data.success) {
+                var posted = data.posted;
+                
+                gui.userComments.prepend(constructDomComment(posted));
+                gui.userComments.scrollTop(-gui.userComments.position().top);
+                // Hide loading
+                gui.comment_loading.removeClass('show');
+                
+                var msg = null;
+                if(fbapi.user && gui.fbShareEnabled && posted.fbpostid != "0") // the post is on facebook
+                    msg = $('<p>Ton message a bien été posté sur SEASON13 et sur Facebook. <a href="'+fbapi.user.link+'" target="_blank">Voir.</a></p>');
+                else 
+                    msg = $('<p>Ton message a bien été posté.</p>')
+                msgCenter.send(msg);
+            }
+            else {
+                gui.comment_loading.removeClass('show');
+                msgCenter.send(data.errorMessage);
+            }
         } else {
             errorPost(data, e);
         }

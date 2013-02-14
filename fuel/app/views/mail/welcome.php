@@ -54,10 +54,9 @@
     	            Adresse: 99A bld Descat 59200 Tourcoing<br/>
     	        </h5>
     	        
-    	        <div style="position: relative; float: right; right: 0px; top: 20px; width: 40px; height: 40px;">
-    	            <?php echo Asset::img('season13/fb_btn.jpg', array('style'=>'position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;')); ?>
-    	            <a href="http://www.facebook.com/season13officiel" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; background: transparent url('http://season13.com/assets/img/season13/fb_btn.jpg') no-repeat left top;"></a>
-    	        </div>
+    	        <a href="http://www.facebook.com/season13officiel" style="position: relative; float: right; right: 0px; top: 20px; width: 40px; height: 40px;">
+    	            <?php echo Asset::img('season13/fb_btn.jpg', array('style'=>'position: absolute; left: 0px; top: 0px; width: 40px; height: 40px;')); ?>
+    	        </a>
     	    </div>
     	</div>
     	
