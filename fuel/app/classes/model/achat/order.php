@@ -278,22 +278,25 @@ class Model_Achat_Order extends \Orm\Model
 	    // Save user possesion information
 	    foreach ($cartproducts as $cartproduct) {
 	        $product = $cartproduct->product;
-	        $eps = Format::forge($product->content, 'json')->to_array();      
+	        $eps = Format::forge($product->content, 'json')->to_array();
+	        
+	        $gift = $cartproduct->offer == 1 ? true : false;
+	        $owner = $gift ? $cartproduct->offer_target : $user->email;
             
             foreach ($eps as $episode) {
                 $existed = Model_Admin_13userpossesion::query()->where(
                     array(
-                        'user_mail' => $user->email,
+                        'user_mail' => $owner,
                         'episode_id' => $episode,
-                        'source' => 8,
+                        'source' => $gift ? 9 : 8,
                     )
                 )->count();
     		
     		    if($existed == 0) {
                     $userpossesion = Model_Admin_13userpossesion::forge(array(
-    					'user_mail' => $user->email,
+    					'user_mail' => $owner,
     					'episode_id' => $episode,
-    					'source' => 8, // 8 means normal order
+    					'source' => $gift ? 9 : 8, // 8 means normal order
     					'source_ref' => $this->id,
     				));
     

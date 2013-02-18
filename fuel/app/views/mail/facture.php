@@ -63,6 +63,10 @@
     	                        <td style="padding: 5px; border-color: rgb(184, 184, 184);"><strong><?php echo $p->product->reference ;?></strong></td>
     	                        <td style="padding: 5px; border-color: rgb(184, 184, 184);">
     	                            <strong><?php echo $p->product_title ;?></strong>
+	                            <?php if ($p->offer): ?>
+	                                <br/>
+	                                <i style="font-size: 12px;">Cadeau pour <?php echo $p->offer_target; ?></i>
+	                            <?php endif; ?>
     	                        </td>
     	                        <td style="padding: 5px; border-color: rgb(184, 184, 184);"><?php echo number_format($p->getRealPrice(), 2, ',', '') . $currency->sign ;?></td>
     	                    </tr>

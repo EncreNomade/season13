@@ -17,6 +17,7 @@ return array(
 	    6 => 'fblike',
 	    7 => 'external_order',
 	    8 => 'season13_order',
+	    9 => 'gift_with_order',
 	),
 	
 	'fbapp' => array(

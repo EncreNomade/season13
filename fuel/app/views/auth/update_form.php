@@ -11,17 +11,20 @@
                 <option value="m" <?php if($current_user->sex=="m") echo "selected"; ?>>Un garçon</option>
             </select>
         </p>
+        
         <p>
             <label>Ton Pseudo</label>
             <span><?php echo $current_user->pseudo; ?></span>
             <cite>Tu ne peux pas modifier ton pseudo</cite>
         </p>
+        
         <p>
             <label>Nouveau mot de passe</label>
             <input name="newPass" type="password" size="18" id="updatePass">
             <input type="password" size="18" id="updateConf">
             <cite>Au moins 6 caractères, tape 2 fois ton mot de passe pour être bien sûr !</cite>
         </p>
+        
         <p>
             <?php 
                 $birth = date_timestamp_get(date_create_from_format('Y-m-d', $current_user->birthday));
@@ -52,11 +55,26 @@
             </select>
             <?php echo \Form::hidden('birthday', '', array('id' => 'updateBirthday')); ?>
         </p>
+        
         <p>
             <label>Ton Mail</label>
             <span><?php echo $current_user->email; ?></span>
             <cite>Tu ne peux pas modifier ton mail</cite>
         </p>
+        
+        <p><label>Ton N° Portable</label><input name="portable" type="text" size="18"  maxlength="20" id="updatePortable" value="<?php echo $current_user->portable; ?>"><!--<cite>Obligatoire si vous voulez la notification en sms</cite>--></p>
+        
+        <input type="hidden" name="notif" value="<?php echo $current_user->notif; ?>" />
+        <!--
+        <p>
+            <label>Choix Notification</label>
+            <select name="notif" id="updateNotif">
+                <option value="mail">Mail</option>
+                <option value="sms">SMS</option>
+            </select>
+            <cite>On te notifie quand il y a des nouveautés de ton choix</cite>
+        </p>-->
+        
         <p>
             <label>Ton Pays</label>
             <select name="pays" id="updatePays">
@@ -64,16 +82,19 @@
             </select>
             <cite>Facultatif</cite>
         </p>
+        
         <p>
             <label>Code Postal</label>
             <input name="codpos" type="text" size="10" maxlength="10" id="updateCP" value="<?php echo $current_user->code_postal; ?>">
             <cite>Facultatif</cite>
         </p>
+        
         <p>
             <label>Ancien mot de passe</label>
             <input type="password" size="18" name="oldPass" id="updateOldPass">
             <cite>Tape ton ancien mot de passe pour pouvoir modifier !</cite>
         </p>
+        
         <p><input type="submit" id="updateBtn" value="Mettre à jour" title="Update ton compte sur SEASON 13"/></p>
     </div>
 </form>

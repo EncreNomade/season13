@@ -91,6 +91,7 @@ return array(
 	    4008 => "User ip addr not given",
 	    4009 => "User not found",
 	    4010 => "User doesn't exist",
+	    4011 => "L'adresse mail d'offre n'est pas valide",
 	    
 	    // order
 	    4101 => "Order can't be saved correctly",

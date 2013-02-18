@@ -21,26 +21,103 @@
 	<div class="navbar navbar-fixed-top">
 	    <div class="navbar-inner">
 	        <div class="container">
-	            <a href="/season13/public/" class="brand">My Site</a>
+	            <a href="<?php echo $remote_path; ?>" class="brand">My Site</a>
 	            <ul class="nav">
 	                <li class="<?php echo Uri::segment(2) == '' ? 'active' : '' ?>">
 						<?php echo Html::anchor('admin', 'Dashboard') ?>
 					</li>
-
-					<?php foreach (glob(APPPATH.'classes/controller/admin/*.php') as $controller): ?>
-
-						<?php
-						$section_segment = basename($controller, '.php');
-						$section_title = Inflector::humanize($section_segment);
-						?>
-
-	                <li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
-						<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
-					</li>
-					<?php endforeach; ?>
 					
-					<li class="<?php echo Uri::segment(2) == 'send_codepromo' ? 'active' : '' ?>">
-						<?php echo Html::anchor('admin/mails/promo_code', 'send_codepromo') ?>
+					<li class="dropdown">
+					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Users <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+					        <li>
+					            <?php echo Html::anchor($remote_path.'admin/13users', 'Tous les utilisateurs') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'admin/13userpossesion', 'Possession') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'admin/mails/promo_code', 'Envoyer des codes promos') ?>
+					        </li>
+					    </ul>
+					</li>
+					
+					<li class="dropdown">
+					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Histoires <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+					        <li>
+					            <?php echo Html::anchor($remote_path.'book/13author', 'Auteurs') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'book/13book', 'Livres') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'book/13season', 'Saisons') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'book/13episode', 'Episodes') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'book/13hierarchie', 'Relations') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'book/13game', 'Jeux') ?>
+					        </li>
+					    </ul>
+					</li>
+					
+					<li class="dropdown">
+					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Achats <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+					        <li>
+					            <?php echo Html::anchor($remote_path.'achat/13product', 'Produits') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'achat/productprice', 'Prix des produits') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'achat/13extorder', 'Achats externes') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'achat/country', 'Pays') ?>
+					        </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'achat/currency', 'Devis') ?>
+					        </li>
+					    </ul>
+					</li>
+					
+					<li>
+					    <?php echo Html::anchor($remote_path.'admin/13posts', 'Actualités') ?>
+					</li>
+					
+					<li>
+					    <?php echo Html::anchor($remote_path.'admin/13comments', 'Commentaires') ?>
+					</li>
+					
+					<li class="dropdown">
+					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Webservice <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+						    <li>
+						        <?php echo Html::anchor($remote_path.'webservice/plateformapp', 'Les applis') ?>
+						    </li>
+					        <li>
+					            <?php echo Html::anchor($remote_path.'webservice/appermission', 'Permission d\'appli') ?>
+					        </li>
+					    </ul>
+					</li>
+					
+					<li class="dropdown">
+					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Autres <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+						    <li>
+						        <?php echo Html::anchor($remote_path.'admin/13contactmsgs', 'Messages') ?>
+						    </li>
+						    
+						    <li>
+						        <?php echo Html::anchor($remote_path.'admin/mails', 'Envoie des mails') ?>
+						    </li>
+					    </ul>
 					</li>
 	          </ul>
 

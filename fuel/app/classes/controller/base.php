@@ -61,75 +61,6 @@ class Controller_Base extends Controller_Rest
         
         return array('valid' => true);
     }
-    
-    private static function addToPrestashop($user, $pass) {
-        require_once( APPPATH.'classes/custom/PSWebServiceLibrary.php' );
-        
-        $storeurl = Fuel::$env == Fuel::DEVELOPMENT ? 'http://localhost:8888/prestashop/' : 'http://shop.season13.com/';
-        $key = 'LSCWIFSSE16MA015TP5YTSZTMTR5C76M';
-        
-        try {
-            $webService = new PrestaShopWebservice( $storeurl, $key, false );
-        }
-        catch ( PrestaShopWebserviceException $ex ) {
-            $trace = $ex->getTrace(); // Retrieve all information on the error
-            $errorCode = $trace[ 0 ][ 'args' ][ 0 ]; // Retrieve the error code
-            return array('valid' => false, 'errorCode' => $errorCode, 'errorMessage' => $ex->getMessage());
-        }
-        
-        $xml = $webService->get( array( 'url' => $storeurl.'api/customers?schema=blank' ) );
-        $fields = $xml->children()->children();
-        
-        foreach ( $fields as $key => $field ) {
-            switch ($key) {
-            case "id_default_group":
-                $fields->$key = $user->group;
-                break;
-            case "passwd":
-                $fields->$key = $pass;
-                break;
-            case "lastname":
-                $fields->$key = " ";
-                break;
-            case "firstname":
-                $fields->$key = $user->pseudo;
-                break;
-            case "email":
-                $fields->$key = $user->email;
-                break;
-            case "id_gender":
-                $birth = date_timestamp_get(date_create_from_format('Y-m-d', $user->birthday));
-                $age = intval(Date::time_ago($birth, time(), 'year'));
-                $fields->$key = $user->sex == "m" ? 1 : ($age > 26 ? 2 : 3);
-                break;
-            case "birthday":
-                $fields->$key = $user->birthday;
-                break;
-            case "optin": case "is_guest": case "newsletter": case "deleted":
-                $fields->$key = 0;
-                break;
-            case "active":
-                $fields->$key = 1;
-                break;
-            default:
-                break;
-            }
-        }
-        
-        $opt = array( 'resource' => 'customers' ); // Resource definition
-        $opt[ 'postXml' ] = $xml->asXML();
-        
-        try {
-            $webService->add( $opt );
-        }
-        catch ( PrestaShopWebserviceException $ex ) {
-            $prestatrace = $ex->getTrace(); // Retrieve all information on the error
-            $errorCode = $prestatrace[ 0 ][ 'args' ][ 0 ]; // Retrieve the error code
-            return array('valid' => false, 'errorCode' => $errorCode, 'errorMessage' => $ex->getMessage());
-        }
-        
-        return array('valid' => true);
-    }
 	
 	public function post_signup_normal()
 	{
@@ -144,6 +75,8 @@ class Controller_Base extends Controller_Rest
         $val->add('email', 'Email')
             ->add_rule('valid_email');
         $val->add('password', 'Password')
+            ->add_rule('required');
+        $val->add('notif', 'Notification')
             ->add_rule('required');
         
         if ($val->run())
@@ -189,7 +122,7 @@ class Controller_Base extends Controller_Rest
     			                        Input::post('birthday'),
     			                        Input::post('pays'),
     			                        Input::post('codpos'),
-    			                        'mail', // not dispo in html form !
+    			                        Input::post('notif'), // not dispo in html form !
                                         $fbID) )
     			{
     			    // Log in the user
@@ -409,6 +342,10 @@ class Controller_Base extends Controller_Rest
             $birth = date_create_from_format($format, (string)Input::post('birthday'));
             $update['birthday'] = date_format($birth, 'Y-m-d');
         }
+        if(Input::post('portable') != "" && Input::post('portable') != $this->current_user->portable)
+            $update['portable'] = Input::post('portable');
+        if(Input::post('notif') != "" && Input::post('notif') != $this->current_user->notif)
+            $update['notif'] = Input::post('notif');
         if(Input::post('pays') != "" && Input::post('pays') != $this->current_user->pays)
             $update['pays'] = Input::post('pays');
         if(Input::post('codpos') != "" && Input::post('codpos') != $this->current_user->code_postal)

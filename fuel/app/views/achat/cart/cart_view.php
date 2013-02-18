@@ -26,12 +26,14 @@
 				$image = $imgs[0];
 			}
 		?>
-		<div class="cart_product">
+		<div class="cart_product" 
+		     data-productref="<?php echo $product->reference ;?>" 
+		     data-cartpid="<?php echo $cartProd->cart_product_id; ?>">
 			<div class="imgContainer">
 				<?php if(isset($image)) echo "<img src=\"$image\" />"; ?>
 			</div>
 			<div class="remove_product">
-				<button data-productref="<?php echo $product->reference ;?>">Supprimer</button>
+				<button>Supprimer</button>
 			</div>
 			<div class="product_info">
 				<h3><?php echo $cartProd->product_title ;?></h3>
@@ -46,7 +48,17 @@
 					$price .= $sign;
 				?>
 				<i><?php echo $price;?></i>
-			</div>			
+				<p class="offer_product">
+				    <?php echo Asset::img('season13/ui/cart_gift.png'); ?>
+				
+				<?php if($cartProd->offer): ?>
+				    Cadeau pour <strong><?php echo $cartProd->offer_target; ?></strong>
+				<?php else: ?>
+				    <a class="click_to_offer">Envie de faire un cadeau ?</a>
+				<?php endif; ?>
+				    
+				</p>
+			</div>
 		</div>
 	<?php endforeach; ?>
 	<div class="total">Total : <strong><?php echo $cart->addition() . $sign; ?></strong></div>

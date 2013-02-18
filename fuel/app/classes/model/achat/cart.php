@@ -198,6 +198,18 @@ class Model_Achat_Cart extends \Orm\Model
 	    return true;
 	}
 	
+	private function getCurrentIncartId() {
+	    $last = Model_Achat_Cartproduct::find('last', array(
+	        'where' => array(
+	            array('cart_id', $this->id),
+	        )
+	    ));
+	    
+	    if(is_null($last))
+	        return 0;
+	    else return ($last->cart_product_id + 1) % 1000;
+	}
+	
 	
 	public function refresh() {
 	    if($this->ordered) return false;
@@ -266,6 +278,7 @@ class Model_Achat_Cart extends \Orm\Model
 	    // Forge the cart product model
 	    $cartProduct = Model_Achat_Cartproduct::forge(array(
 	        "cart_id" => $this->id,
+	        "cart_product_id" => $this->getCurrentIncartId(),
 	        "product_id" => $product_id,
 	        "product_title" => $product->title,
 	        "taxed_price" => $taxed_price,
@@ -283,12 +296,13 @@ class Model_Achat_Cart extends \Orm\Model
 	    }
 	}
 	
-	public function removeProduct($product_id) {
+	public function removeProduct($product_id, $cart_product_id) {
 	    // Find product in cart
 	    $cartproduct = Model_Achat_Cartproduct::query()->where(
 	        array(
 	            'cart_id' => $this->id,
 	            'product_id' => $product_id,
+	            'cart_product_id' => $cart_product_id
 	        )
 	    )->get_one();
 	    
@@ -297,6 +311,31 @@ class Model_Achat_Cart extends \Orm\Model
 	    }
 	    else {
 	        $cartproduct->delete();
+	        return true;
+	    }
+	}
+	
+	public function offerProduct($cart_product_id, $offer_tar) {
+	    // Email check
+	    if(!filter_var($offer_tar, FILTER_VALIDATE_EMAIL)) {
+	        throw new CartException(Config::get('errormsgs.payment.4011'), 4011);
+	    }
+	    
+	    // Find product in cart
+	    $cartproduct = Model_Achat_Cartproduct::query()->where(
+	        array(
+	            'cart_id' => $this->id,
+	            'cart_product_id' => $cart_product_id,
+	        )
+	    )->get_one();
+	    
+	    if( is_null($cartproduct) ) {
+	        throw new CartException(Config::get('errormsgs.payment.4004'), 4004);
+	    }
+	    else {
+	        $cartproduct->offer = 1;
+	        $cartproduct->offer_target = $offer_tar;
+	        $cartproduct->save();
 	        return true;
 	    }
 	}

@@ -176,10 +176,10 @@ function init() {
         else if(pass.length < 6) {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
         if(conf == "" || conf != pass) {$('#signupConf').siblings('cite').addClass('alert');valid = false;}
         if(!regs.mail.test(mail)) {$('#signupMail').siblings('label').addClass('alert');valid = false;}
-        // if( (tel != "" && !regs.telephone.test(tel)) || (tel == "" && notif == "sms") ) {
-            // $('#signupPortable').siblings('cite').addClass('alert');
-            // valid = false;
-        // }
+        if( (tel != "" && !regs.telephone.test(tel))/* || (tel == "" && notif == "sms")*/ ) {
+            $('#signupPortable').siblings('cite').addClass('alert');
+            valid = false;
+        }
         if( codpos != "" && !regs.codpos.test(codpos) ) {
             $('#signupCP').siblings('label').addClass('alert');
             valid = false;
@@ -464,6 +464,8 @@ function init() {
         $('#updateBirthday').val(bDay);
         var pays = $('#updatePays').val();
         var codpos = $('#updateCP').val();
+        var tel = $('#updatePortable').val();
+        var notif = $('#updateNotif').val();
         var oldPass = $('#updateOldPass').val();
 
         var valid = true;
@@ -471,6 +473,10 @@ function init() {
         if(conf != "" && conf != pass) {$('#updateConf').siblings('cite').addClass('alert');valid = false;}
         if( codpos != "" && !regs.codpos.test(codpos) ) {
             $('#updateCP').siblings('label').addClass('alert');
+            valid = false;
+        }
+        if( (tel != "" && !regs.telephone.test(tel))/* || (tel == "" && notif == "sms")*/ ) {
+            $('#updatePortable').siblings('cite').addClass('alert');
             valid = false;
         }
         if(oldPass == "") {

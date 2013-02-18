@@ -10,7 +10,7 @@ class Controller_Season13 extends Controller_Template
     protected $base_url;
 
     public function before()
-    {        
+    {
     	parent::before();
     	
     	// Assign current_user to the instance so controllers can use it

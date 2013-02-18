@@ -5,6 +5,7 @@ class Model_Achat_Cartproduct extends \Orm\Model
 	protected static $_properties = array(
 		'id',
 		'cart_id',
+		'cart_product_id',
 		'product_id',
 		'product_title',
 		'taxed_price',

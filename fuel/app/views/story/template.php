@@ -42,6 +42,7 @@
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
     echo Asset::css('dialog_auth_msg.css');
+    echo Asset::css('cart.css');
     if (Agent::is_mobiledevice())
         echo Asset::css('storymobi.css');
     else 
@@ -53,6 +54,7 @@
     echo Asset::js('lib/Interaction.js');
     echo Asset::js('lib/fbapi.js');
     echo Asset::js('config.js');
+    echo Asset::js('cart.js');
     echo Asset::js('auth.js');
     echo Asset::js('story/msg_center.js');
     echo Asset::js('story/gui.js');
@@ -195,7 +197,7 @@
             
             fbapi.checkConnect(null, false);
             
-            if(config.episode.epid == 4) 
+            if(config.episode.epid == 3 || config.episode.epid == 4) 
                 story_access_resp(config.accessResp, config.episode.epid);
         }
         
@@ -232,6 +234,8 @@
                     <li class="text_sep_vertical"></li>
                     <li id="logout">LOGOUT</li>
             <?php endif; ?>
+                    <li class="text_sep_vertical"></li>
+                    <li id="cart"><?php echo Asset::img("season13/ui/cart.png"); ?><span></span></li>
                 </ul>
                 
             <?php if($current_user == null): ?>
@@ -259,6 +263,15 @@
                 </div>
             
             <?php endif; ?>
+            
+                <div id="cart_dialog" class="dialog">
+                    <div class="close"></div>
+                    <div class="sep_line"></div>
+                    <div class="cart_container">
+                        <?php echo View::forge('achat/cart/cart_view')->render(); ?>
+                    </div>
+                </div>
+            
         <?php endif; ?>
         </div>
     </header>

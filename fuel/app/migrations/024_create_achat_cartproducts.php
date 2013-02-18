@@ -9,6 +9,7 @@ class Create_achat_cartproducts
 		\DBUtil::create_table('achat_cartproducts', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
 			'cart_id' => array('constraint' => 11, 'type' => 'int'),
+			'cart_product_id' => array('constraint' => 3, 'type' => 'int'),
 			'product_id' => array('constraint' => 11, 'type' => 'int'),
 			'product_title' => array('constraint' => 255, 'type' => 'varchar'),
 			'taxed_price' => array('constraint' => '8,2', 'type' => 'decimal'),

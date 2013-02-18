@@ -61,6 +61,10 @@
 	text-align: left;
 }
 
+#order-detail td i {
+    font-size: 12px;
+}
+
 #order-detail tfoot {
 	border-top: solid 1px black;
 }

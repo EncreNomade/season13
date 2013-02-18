@@ -22,6 +22,10 @@
                         )); 
                 }
                 ?>
+                <?php if ($p->offer): ?>
+                    <br/>
+                    <i>Cadeau pour <?php echo $p->offer_target; ?></i>
+                <?php endif; ?>
             </td>
             <td><?php echo number_format($p->getRealPrice(), 2, ',', '') . $currency->sign ;?></td>
         </tr>

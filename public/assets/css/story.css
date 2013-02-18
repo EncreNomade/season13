@@ -16,6 +16,10 @@ ul {
     padding: 0;
 }
 
+ul#conn li:hover {
+    color: rgb(246, 168, 0);
+}
+
 .loading {
     position: absolute;
     left: 0px;
@@ -120,14 +124,6 @@ header div {
     margin: 0;
     padding: 0;
 }
-
-header div img {
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    position: absolute;
-}
 header div.left {
     position: absolute;
     left: 0px;
@@ -147,19 +143,26 @@ header div.right {
     cursor: pointer;
 }
 
-header #tache {
+#tache {
     float: left;
     top: -2px;
     width: 55px;
     height: 40px;
 }
-header #tache a {
+#tache a {
     position: absolute;
     left: 0px;
     top: 0px;
     width: 55px;
     height: 40px;
     background: transparent;
+}
+#tache img, #icon_menu img {
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;
 }
 
 header #sep_left {

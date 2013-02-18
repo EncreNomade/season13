@@ -21,8 +21,11 @@
                 <option value="m">Un garçon</option>
             </select>
         </p>
+        
         <p><label>Ton Pseudo</label><input name="pseudo" type="text" size="18" maxlength="64" id="signupId"><cite>Au moins 6 caractères, sans espaces</cite></p>
+        
         <p><label>Ton Mot de passe</label><input name="password" type="password" size="18" id="signupPass"><input name="password_repeat" type="password" size="18" id="signupConf"><cite>Au moins 6 caractères, tape 2 fois ton mot de passe pour être bien sûr !</cite></p>
+        
         <p>
             <label>Ta Date de naissance</label>
             <select id="signupbDay">
@@ -42,7 +45,22 @@
             </select>
             <?php echo \Form::hidden('birthday', '', array('id' => 'signupBirthday')); ?>
         </p>
+        
         <p><label>Ton Mail</label><input name="email" type="email" size="18" id="signupMail"></p>
+        
+        <p><label>Ton N° Portable</label><input name="portable" type="text" size="18"  maxlength="20" id="signupPortable"><!--<cite>Obligatoire si vous voulez la notification en sms</cite>--></p>
+        
+        <input type="hidden" name="notif" value="mail" />
+        <!--
+        <p>
+            <label>Choix Notification</label>
+            <select name="notif" id="signupNotif">
+                <option value="mail">Mail</option>
+                <option value="sms">SMS</option>
+            </select>
+            <cite>On te notifie quand il y a des nouveautés de ton choix</cite>
+        </p>-->
+        
         <p>
             <label>Ton Pays</label>
             <select name="pays" id="signupPays">
@@ -50,20 +68,9 @@
             </select>
             <cite>Facultatif</cite>
         </p>
+        
         <p><label>Code Postal</label><input name="codpos" type="text" size="10"  maxlength="10" id="signupCP"><cite>Facultatif</cite></p>
-        <?php
-        /*
-        <p><label>Ton Numéro Portable</label><input name="portable" type="text" size="18"  maxlength="20" id="signupPortable"><cite>Obligatoire si vous voulez la notification en sms</cite></p>
-        <p>
-            <label>Choix Notification</label>
-            <select name="notif" id="signupNotif">
-                <option value="mail">Mail</option>
-                <option value="sms">SMS</option>
-            </select>
-            <cite>On te notifie quand il y a des nouveautés</cite>
-        </p>
-        */
-        ?>
+        
         <?php //<p><label id="signupBtn"></label></p> ?>
         <input type="hidden" name="fbToken" id="signup_fbToken" value="empty" />
         <p><input type="submit" id="signupBtn" title="Inscription sur SEASON 13"/></p>
