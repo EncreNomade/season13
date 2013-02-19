@@ -71,7 +71,6 @@
             echo Asset::js('story/mdj.js');
         }
         else {
-            echo Asset::js('story/scriber.js');
             echo Asset::js('story/events.min.js');
             echo Asset::js('story/mse.min.js');
             echo Asset::js('story/effet_mini.js');

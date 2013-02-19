@@ -12,8 +12,14 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             array_key_exists('email', $result) && 
             array_key_exists('appid', $result) && 
             array_key_exists('target', $result) ) {
+            
+            // Time diff
+            $timediff = time() - $result['time'];
             // Pattern match success
-            if( $result['email'] == $mail && (is_null($target) || $result['target'] == $target) ) {
+            if( $timediff >= 0 && 
+                $timediff < 21600 &&
+                $result['email'] == $mail && 
+                (is_null($target) || $result['target'] == $target) ) {
                 // Token user associated
                 return true;
             }
@@ -48,9 +54,14 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         // Check app access
         // Get time stamp
         $microtime = Input::param('microtime');
+        $timeago = time() - $microtime;
         if(is_null($microtime)) {
             return array('success' => false, 'errorCode' => 3003, 'errorMessage' => $msgs[3003]);
         }
+        else if ($timeago < 0 || $timeago > 43200) {
+            return array('success' => false, 'errorCode' => 3005, 'errorMessage' => $msgs[3005]);
+        }
+        
         // Get App
         $appid = Input::param('appid');
         if(is_null($appid)) {
@@ -587,17 +598,17 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     }
     
     
-    public function get_test() {
-        //$request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
+    //public function get_test() {
+        //$request = Request::forge('http://season13.com/ws/order', 'curl');
         
-        /*
-        $request->set_method('POST')->set_params(array(
+        
+        /*$request->set_method('POST')->set_params(array(
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
             'owner' => 'test@test.com',
             'username' => 'wstester',
-            'reference' => 'ISBN9782717765894',
+            'reference' => '9791092330069',
             'order_source' => 'Season 13 Site Order',
             'price' => '4.49',
         ));*/
@@ -607,7 +618,15 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
-            'order_id' => '9'
+            'order_id' => '11'
+        ));
+        
+        /*
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => '1234567890',
+            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+            'reference' => '9791092330069'
         ));*/
         
         /*
@@ -615,16 +634,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
-            'reference' => 'ISBN9782717765332'
-        ));*/
-        
-        
-        /*
-        $request->set_method('GET')->set_params(array(
-            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
-            'microtime' => '1234567890',
-            'token' => '520a657e08f0f73c8ae6eb53427a2956',
-            'reference' => 'ISBN9782717765894',
+            'reference' => '9791092330069',
             'user' => 'test@test.com'
         ));
         */
@@ -634,7 +644,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
-            'reference' => 'ISBN9782717765332'
+            'reference' => '9791092330069'
         ));*/
         
         /*
@@ -649,6 +659,6 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         //$response = $request->execute()->response();
         
         //return $this->response($response, 200);
-    }
+    //}
 	
 }

@@ -85,7 +85,9 @@
             mse.configs.isTutoDone = <?php 
                 if($extrait) echo "true";
                 else {
-                    echo Cookie::get('tuto_has_done') == "true" ? "true" : "false";
+                    if($current_user)
+                        echo $current_user->hasTutoDone() ? "true" : "false";
+                    else echo Cookie::get('tuto_has_done') == "true" ? "true" : "false";
                 }
             ?>;
             mse.configs.srcPath = '<?php echo $remote_path.$episode->path; ?>';
@@ -170,9 +172,6 @@
             });
             
             fbapi.checkConnect(null, false);
-            
-            if(config.episode.epid == 4) 
-                story_access_resp(config.accessResp, config.episode.epid);
         }
     </script>
 
@@ -186,7 +185,7 @@
         </div>
         
         <div class="right">
-            <div id="icon_menu">
+            <div id="icon_menu" class="animate_short">
                 <?php echo Asset::img('season13/story/story_menu.png', array('alt' => 'Menu d\'episode SEASON 13')); ?>
             </div>
             <div id="sep_right"></div>
@@ -194,7 +193,7 @@
         </div>
     </header>
     
-    <ul id="menu">
+    <ul id="menu" class="animate_short">
         <li id="btn_aide">
             <?php echo Asset::img('season13/story/story_aide.png'); ?>
             <a class="white_anchor" href="javascript:tuto.reset();tuto.run();">Tutoriel</a>
@@ -224,7 +223,7 @@
     <div id="center">
     
     <!-- Lance tuto dialog-->
-        <div id="lance_tuto" class="dialog">
+        <div id="lance_tuto" class="dialog animate_short hidden">
             <div class="close right"></div>
             <h1>Tutoriel</h1>
             <div class="sep_line"></div>
@@ -242,10 +241,24 @@
             </div>
             
         </div>
+        
+    <!-- Tuto last pages dialog-->
+        <div id="tuto_pages" class="dialog animate_short hidden">
+            <h1>Tutoriel</h1>
+            <div class="sep_line"></div>
+            
+            <h5 style="text-align: center;">
+                Chaque épisode comporte des interactions: le défilement s'arrête, à toi de trouver comment interagir avec les objets à l'écran pour pouvoir continuer.<br/>
+            </h5>
+            
+            <div class="link">
+                <a>Fin de Tutoriel</a>
+            </div>
+        </div>
             
     
     <!-- Author bio dialog-->
-        <div id="author_bio" class="dialog">
+        <div id="author_bio" class="dialog animate_short hidden">
             <div class="close right"></div>
             <h1>BIO de Chris Debien</h1>
             <div class="sep_line"></div>
@@ -264,7 +277,7 @@
         </div>
         
     <!-- Credits dialog -->
-        <div id="credits" class="dialog">
+        <div id="credits" class="dialog animate_short hidden">
             <div class="close right"></div>
             <h1>Credits</h1>
             <div class="sep_line"></div>
@@ -294,7 +307,7 @@
         </div>
         
     <!-- Concept card -->
-        <div id="concept" class="dialog">
+        <div id="concept" class="dialog animate_short hidden">
             <div class="close right"></div>
             <h1>Tu vas vivre une nouvelle expérience</h1>
             <div class="sep_line"></div>
@@ -307,7 +320,7 @@
         </div>
         
     <!-- Preferece dialog -->
-        <div id="preference" class="dialog">
+        <div id="preference" class="dialog animate_short hidden">
             <div class="close right"></div>
             <h1>Paramètres</h1>
             <div class="sep_line"></div>
@@ -322,7 +335,7 @@
         
         
     <!-- Comment dialog -->
-        <div id="comment" class="dialog">
+        <div id="comment" class="dialog animate_short hidden">
             <div class="close right"></div>
             <h1>Commentaires</h1>
             <div class="sep_line"></div>
@@ -344,7 +357,7 @@
                 </li>
             </ul>
             
-            <div id="upload_container">
+            <div id="upload_container" class="animate_short hidden">
                 <div class="arrow"></div>
                 <form id="imageuploadform" method="POST" enctype="multipart/form-data" action='<?php echo Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/'; ?>upload'>
                     <input type="file" name="upload_pic" id="upload_pic" />
@@ -362,13 +375,13 @@
         
         
     <!-- Scriber dialog -->
-        <div id="scriber" class="dialog">
+        <div id="scriber" class="dialog animate_medium hidden">
             <div class="close right" id="sb_cancel"></div>
             <h1>Customise ton dessin</h1>
             <div class="sep_line"></div>
             
             <div id="toolbox">
-                <ul id="sb_tools">
+                <ul id="sb_tools" class="animate_medium">
                     <li id="sb_pencil">
                         <?php echo Asset::img('season13/ui/scriber_edit.png'); ?>
                         <h5>Dessiner</h5>
@@ -415,7 +428,7 @@
             </div>
             
             <ul id="scriber_menu">
-                <li id="sb_edit" title="Modifie l'image"><?php echo Asset::img('season13/ui/scriber_edit.png'); ?></li>
+                <li id="sb_edit" class="animate_medium" title="Modifie l'image"><?php echo Asset::img('season13/ui/scriber_edit.png'); ?></li>
                 <div class="sep_line"></div>
                 <li id="sb_recap" title="Recommence"><?php echo Asset::img('season13/ui/scriber_recap2.png'); ?></li>
                 <div class="sep_line"></div>
@@ -466,7 +479,7 @@
         </div>
     
         <canvas class="bookroot">Votre navigateur ne supporte pas HTML5</canvas>
-        <div class="video"></div>
+        <div class="video animate_medium"></div>
     </div>
     
     

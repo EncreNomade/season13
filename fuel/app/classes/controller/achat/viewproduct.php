@@ -56,13 +56,13 @@ class Controller_Achat_Viewproduct extends Controller_Season13
             Response::redirect('ws/'.$story.'/season'.$ep->season.'/episode'.$ep->episode.'?user='.$user.'&access_token='.$access_token);
         }
         
+        $result = Controller_Webservice_Wsbase::decryptAccessToken($access_token);
         // Package product, show package view
         $eps = array();
         foreach ($arr as $epid) {
             $ep = Model_Admin_13episode::find($epid);
             
             $story = str_replace(' ', '_', $ep->story);
-            $result = Controller_Webservice_Wsbase::decryptAccessToken($access_token);
             $token = Controller_Webservice_Wsbase::cryptAccessToken($result['email'], $result['appid'], $story.$ep->season.$ep->episode);
             
             $link = $this->remote_path."ws/".$story."/season".$ep->season."/episode".$ep->episode."?user=".$user."&access_token=".$token;

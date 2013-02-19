@@ -296,14 +296,17 @@ class Controller_Story extends Controller_Frontend
 	                Response::redirect('ws404');
 	            }
 	            else {
-		            View::set_global('episode', $this->episode);
-		            View::set_global('accessible', true);
-		            View::set_global('extrait', false);
-		            View::set_global('access', array('valid' => true));
+	                $data = array(
+	                    'title' => $this->episode->title,
+	                    'episode' => $this->episode,
+	                    'accessible' => true,
+	                    'extrait' => false,
+	                    'access' => array('valid' => true)
+	                );
 		            $this->comments = Model_Admin_13comment::find_by_epid($this->episode->id);
+		            
+		            return new Response(View::forge('story/ws_nolink', $data));
 	            }
-	            
-	            return new Response(View::forge('story/ws_nolink', $data));
 	        }
 	        else {
 	            Response::redirect('ws404');
@@ -365,10 +368,13 @@ class Controller_Story extends Controller_Frontend
 	                Response::redirect('ws404');
 	            }
 	            else {
-	                View::set_global('episode', $this->episode);
-	                View::set_global('accessible', true);
-	                View::set_global('extrait', true);
-	                View::set_global('access', array('valid' => true));
+	                $data = array(
+	                    'title' => $this->episode->title,
+	                    'episode' => $this->episode,
+	                    'accessible' => true,
+	                    'extrait' => true,
+	                    'access' => array('valid' => true)
+	                );
 	                
 	                return new Response(View::forge('story/ws_nolink', $data));
 	            }

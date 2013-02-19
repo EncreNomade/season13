@@ -44,6 +44,7 @@ return array(
 	    3002 => "Access token not found or not valid",
 	    3003 => "Access microtime not provided",
 	    3004 => "Application not permitted for the api requested",
+	    3005 => "Access microtime need to be updated",
 	    
 	    // Order
 	    3101 => "User can not be added to the database of user",
