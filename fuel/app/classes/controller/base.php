@@ -444,7 +444,7 @@ class Controller_Base extends Controller_Rest
             $this->current_user->hasDoneTuto();
         }
         else {
-            $this->response(array('valid' => false, 'errorCode' => '201', 'errorMessage' => $codes[201]), 200);
+            $this->response(array('valid' => false, 'errorCode' => '201', 'errorMessage' => Config::get('errormsgs.story_access.201')), 200);
         }
     }
     

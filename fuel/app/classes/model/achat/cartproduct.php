@@ -40,4 +40,8 @@ class Model_Achat_Cartproduct extends \Orm\Model
 	public function getRealPrice() {
 	    return round($this->discount * $this->taxed_price, 2);
 	}
+	
+	public function getOriginTaxedPrice() {
+	    return number_format($this->taxed_price, 2, ',', ' ');
+	}
 }

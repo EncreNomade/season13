@@ -99,6 +99,10 @@ var regs = {
     'codpos': /^[\d]+$/
 }
 
+function defaultHide() {
+    hideDialog($(this).parents('.dialog'));
+}
+
 function init() {
     $('#open_signup').click(showSignup);
     $('#toSignup').click(showSignup);
@@ -110,9 +114,7 @@ function init() {
     $('#signupbMonth').change(monthChanged);
     $('#updatebMonth').change(updateMonthChanged);
     
-    $('.dialog .close').unbind('click').click(function() {
-        hideDialog($(this).parents('.dialog'));
-    });
+    $('.dialog .close').unbind('click', defaultHide).click(defaultHide);
     
     // Extra code for popup dialog alert
     $('.flash-close').click(function() {

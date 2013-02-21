@@ -65,14 +65,13 @@
         <p><label>Ton N° Portable</label><input name="portable" type="text" size="18"  maxlength="20" id="updatePortable" value="<?php echo $current_user->portable; ?>"><!--<cite>Obligatoire si vous voulez la notification en sms</cite>--></p>
         
         <input type="hidden" name="notif" value="<?php echo $current_user->notif; ?>" />
+        
         <!--
         <p>
-            <label>Choix Notification</label>
-            <select name="notif" id="updateNotif">
-                <option value="mail">Mail</option>
-                <option value="sms">SMS</option>
-            </select>
-            <cite>On te notifie quand il y a des nouveautés de ton choix</cite>
+            <label>Notification</label>
+            <span>Tenez-moi au courant des news par</span><br/>
+            <input id="notif_mail" type="checkbox"/> <span>Email</span>
+            <input id="notif_sms" type="checkbox"/> <span>SMS</span>
         </p>-->
         
         <p>

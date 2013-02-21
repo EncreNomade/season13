@@ -347,7 +347,7 @@ function init() {
 	elems.episodes = $('#episodes');
 	elems.ep_expos = elems.episodes.children('#expos');
 	elems.ep_play = elems.episodes.find('.ep_play');
-	elems.ep_btns = elems.episodes.find('.ep_list ul li');
+	elems.ep_btns = elems.episodes.find('.ep_list ul li.ep_btn');
 	elems.ep_btns.each(function(id) {
 	    $(this).click(function() {
 	        activeEpisode(id);
@@ -362,7 +362,10 @@ function init() {
 	}
 	
 	// Youtube video
-	var params = { allowScriptAccess: "always" };
+	var params = { 
+	    allowScriptAccess: "sameDomain",
+	    wmode: "transparent",
+	};
     var atts = { id: "myytplayer" };
     swfobject.embedSWF("http://www.youtube.com/v/lwuMe5fzeyU?enablejsapi=1&playerapiid=ytplayer&version=3&rel=0", "ytapiplayer", "420", "236", "8", null, null, params, atts);
 }

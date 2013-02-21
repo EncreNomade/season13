@@ -39,6 +39,7 @@
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 <?php
+    // Css
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
     echo Asset::css('dialog_auth_msg.css');
@@ -47,44 +48,51 @@
         echo Asset::css('storymobi.css');
     else 
         echo Asset::css('story.css');
-    echo Asset::js('lib/jquery-latest.js');
-    echo Asset::js('lib/jquery.form.js');
-    echo Asset::js('lib/BrowserDetect.js');
-    echo Asset::js('lib/Tools.js');
-    echo Asset::js('lib/Interaction.js');
-    echo Asset::js('lib/fbapi.js');
-    echo Asset::js('config.js');
-    echo Asset::js('cart.js');
-    echo Asset::js('auth.js');
-    echo Asset::js('story/msg_center.js');
-    echo Asset::js('story/gui.js');
+    
+    // JQuery
+    echo Asset::js('lib/jquery-1.9.1.min.js');
 
-    if($accessible) {
-        echo Asset::js('story/scriber.js');
-        echo Asset::js('story/gameinfo.js');
-        echo Asset::js('story/tuto.js');
-        
-        if(Fuel::$env == Fuel::TEST) {
+    // Other JS lib public
+    echo Asset::js('lib/jquery.form.min.js');
+    echo Asset::js('lib/BrowserDetect.min.js');
+    
+    // Config files
+    echo Asset::js('config.js');
+    
+    // Lib
+    if(Fuel::$env == Fuel::DEVELOPMENT) {
+        echo Asset::js('lib/Tools.js');
+        echo Asset::js('lib/Interaction.js');
+        echo Asset::js('lib/fbapi.js');
+        echo Asset::js('config.js');
+        echo Asset::js('cart.js');
+        echo Asset::js('auth.js');
+        echo Asset::js('story/msg_center.js');
+        echo Asset::js('story/gui.js');
+    
+        if($accessible) {
+            echo Asset::js('story/gameinfo.js');
+            echo Asset::js('story/tuto.js');
+            echo Asset::js('story/scriber.js');
             echo Asset::js('story/events.js');
             echo Asset::js('story/mse.js');
             echo Asset::js('story/effet_mini.js');
             echo Asset::js('story/mdj.js');
         }
-        else {
-            echo Asset::js('story/events.min.js');
-            echo Asset::js('story/mse.min.js');
-            echo Asset::js('story/effet_mini.js');
-            echo Asset::js('story/mdj.min.js');
-        }
-        
-        if(!$extrait) {
-            // print games
-            $games = $episode->games;
-            foreach ($games as $g) {
-                $likeUrl = $base_url . 'games/' . $g->class_name;
-                $url = $base_url . $g->path.'/games/'.$g->file_name;
-                echo "<script src=\"$url\"> </script>";
-            }
+    }
+    else {
+        echo Asset::js('story/lib.min.js');
+        if($accessible) 
+            echo Asset::js('story/core.min.js');
+    }
+    
+    if(!$extrait && $accessible) {
+        // print games
+        $games = $episode->games;
+        foreach ($games as $g) {
+            $likeUrl = $base_url . 'games/' . $g->class_name;
+            $url = $base_url . $g->path.'/games/'.$g->file_name;
+            echo "<script src=\"$url\"> </script>";
         }
     }
 
@@ -568,6 +576,7 @@
     </div></div>
     
     <div id="game_container" class="dialog">
+        <div class="close right"></div>
         <h1></h1>
         <div class="sep_line"></div>
         

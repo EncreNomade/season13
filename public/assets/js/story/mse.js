@@ -2358,6 +2358,9 @@ mse.GameShower = function() {
 	this.container.find("#game_quit").bind('click', {'shower':this}, function(e) {
 	    e.data.shower.currGame.end();
 	});
+	this.container.children(".close").bind('click', {'shower':this}, function(e) {
+	    e.data.shower.currGame.end();
+	});
 	
 	this.dispatcher = new mse.EventDispatcher(this);
 	this.distributor = new mse.EventDistributor(this, this.jqObj, this.dispatcher);

@@ -167,7 +167,7 @@ class Controller_Upload extends Controller_Rest
 	    if(is_null($this->current_user)) {
 	        $this->response(array(
 	            'success' => false,
-	            'errorMessage' => 'Connecte-toi sur la page d\'Accueil'
+	            'errorMessage' => 'Tu dois te connecter'
 	        ));
 	    }
 	    else {

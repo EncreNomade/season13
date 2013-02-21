@@ -42,7 +42,9 @@ $(document).ready(function() {
                         if(dialog) {
                             dialog.addClass('show');
                             dialog.children('.floatlink').first().click(function() {
-                                $.post(config.publicRoot + 'base/has_done_tuto');
+                                if(!tutoDone) {
+                                    $.post(config.publicRoot + 'base/has_done_tuto');
+                                }
                                 dialog.removeClass('show');
                                 gui.playpause.click();
                             });

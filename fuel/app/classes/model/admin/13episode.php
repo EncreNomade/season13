@@ -26,6 +26,13 @@ class Model_Admin_13episode extends Model
 			'key_to' => 'epid',
 			'cascade_save' => true,
 			'cascade_delete' => false
+		),
+		'comments' => array(
+		    'key_from' => 'id',
+		    'model_to' => 'Model_Admin_13comment',
+		    'key_to' => 'epid',
+		    'cascade_save' => true,
+		    'cascade_delete' => false
 		)
 	);
 

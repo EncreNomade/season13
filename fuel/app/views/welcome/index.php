@@ -12,12 +12,13 @@
     <div id="booktitle" class="layer">
         <a href="<?php echo $remote_path; ?>Voodoo_Connection/season1/episode1?utm_source=discoverbtn&utm_medium=cpc" target="_blank">
             <?php echo Asset::img('season13/btn_discover.png', array('alt' => 'Découvrir 1er épisode de Voodoo Connection')); ?>
-            <h5>LANCE-TOI GRATUITEMENT DANS L'HISTOIRE</h5>
+            <h5>LANCE-TOI GRATUITEMENT DANS L'AVENTURE</h5>
         </a>
     </div>
     <div id="bookresume" class="layer">
         <div id="ytapiplayer">
             You need Flash player 8+ and JavaScript enabled to view this video.
+            <param name="wmode" value="transparent" />
         </div>
         <div id="resumebody">
             <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
@@ -102,11 +103,13 @@
                 <ul>
                 <?php foreach ($episodes as $episode): ?>
                     <?php if($current_ep == $episode): ?>
-                    <li class="active"><?php echo '#'.$episode->episode; ?></li>
+                    <li class="ep_btn active"><?php echo '#'.$episode->episode; ?></li>
                     <?php else: ?>
-                    <li><?php echo '#'.$episode->episode; ?></li>
+                    <li class="ep_btn"><?php echo '#'.$episode->episode; ?></li>
                     <?php endif; ?>
                 <?php endforeach; ?>
+                
+                    <li><a href="javascript:cart.add('9791092330069');">SAISON 1 2,99€</a></li>
                 </ul>
             </div>
         </div>

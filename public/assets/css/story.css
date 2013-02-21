@@ -235,7 +235,7 @@ ul#conn {
     vertical-align: middle;
     background: transparent;
     color: #fff;
-    margin: 0 7px;
+    margin: 0 7px 0 0;
 }
 ul#conn li.inactive {
     opacity: 0.6;

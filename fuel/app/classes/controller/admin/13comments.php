@@ -8,7 +8,6 @@ class Controller_Admin_13comments extends Controller_Backend
 		$data['admin_13comments'] = Model_Admin_13comment::find('all');
 		$this->template->title = "Admin_13comments";
 		$this->template->content = View::forge('admin/13comments/index', $data);
-
 	}
 
 	public function action_view($id = null)
@@ -183,5 +182,34 @@ class Controller_Admin_13comments extends Controller_Backend
 
 	}
 
+
+    public function action_moderator()
+    {
+    	$data['comments'] = Model_Admin_13comment::query()->where('verified', '0')->get();
+    	$this->template->title = "Moderator of comments";
+    	$this->template->content = View::forge('admin/13comments/moderator', $data);
+    }
+    
+    public function action_moderatorfail() {
+        if(Input::get('id')) {
+            $comment = Model_Admin_13comment::find(Input::get('id'));
+            if( $comment ) {
+                $comment->verified = -1;
+                $comment->save();
+            }
+        }
+        
+        Response::redirect('admin/13comments/moderator');
+    }
+    
+    public function action_moderatorapproveall() {
+        $comments = Model_Admin_13comment::query()->where('verified', '0')->get();
+        foreach ($comments as $comment) {
+            $comment->verified = 1;
+            $comment->save();
+        }
+        
+        Response::redirect('admin/13comments/moderator');
+    }
 
 }

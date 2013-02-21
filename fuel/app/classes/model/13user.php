@@ -60,8 +60,14 @@ class Model_13user extends \Orm\Model
 			'key_to' => 'user_mail',
 			'cascade_save' => true,
 			'cascade_delete' => false
-
-		)
+		),
+		'comments' => array (
+			'key_from' => 'id',
+			'model_to' => 'Model_Admin_13comment',
+			'key_to' => 'user',
+			'cascade_save' => true,
+			'cascade_delete' => true
+		),
 	);
 
 	protected static $_observers = array(
@@ -177,9 +183,11 @@ class Model_13user extends \Orm\Model
 	public function hasDoneTuto() {
 		$infos = @unserialize(htmlspecialchars_decode($this->profile_fields));
 		
-		$infos['tuto_done'] = true;
-		$this->profile_fields = serialize($infos);
-		
-		$this->save();
+		if(!$infos['tuto_done']) {
+    		$infos['tuto_done'] = true;
+    		$this->profile_fields = serialize($infos);
+    		
+    		$this->save();
+		}
 	}
 }

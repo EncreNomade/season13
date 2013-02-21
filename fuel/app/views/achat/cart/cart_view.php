@@ -40,10 +40,10 @@
 				<?php 
 					$price = '';
 					if(floatval($cartProd->discount) < 1){
-						$price .= '<del>' . $cartProd->taxed_price . '</del> &rarr; ' . $cartProd->getRealPrice();
+						$price .= '<del>' . $cartProd->getOriginTaxedPrice() . '</del> &rarr; ' . $cartProd->getRealPrice();
 					}
 					else {
-						$price .= $cartProd->taxed_price;
+						$price .= $cartProd->getOriginTaxedPrice();
 					}
 					$price .= $sign;
 				?>

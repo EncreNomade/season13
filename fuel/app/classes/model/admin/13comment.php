@@ -15,6 +15,23 @@ class Model_Admin_13comment extends Model
 		'created_at',
 		'updated_at',
 	);
+	
+	protected static $_belongs_to = array(
+	    'user_profile' => array(
+	        'key_from' => 'user',
+	        'model_to' => 'Model_13user',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false
+	    ),
+	    'episode' => array(
+	        'key_from' => 'epid',
+	        'model_to' => 'Model_Admin_13episode',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false
+	    )
+	);
 
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(

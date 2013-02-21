@@ -29,16 +29,27 @@
         echo Asset::css('dialog_auth_msg.css');
 	    echo Asset::css('cart.css');
 	    if(isset($css_supp)) echo Asset::css($css_supp);
-	    echo Asset::js('lib/jquery-latest.js');
+	    
+	    // Public libs
+	    echo Asset::js('lib/jquery-1.9.1.min.js');
 	    echo Asset::js('lib/jquery.scrollTo-1.4.2-min.js');
 	    echo Asset::js('lib/jquery.parallax-1.1.3.js');
-	    echo Asset::js('lib/jquery.form.js');
-	    echo Asset::js('lib/fbapi.js');
-	    echo Asset::js('config.js');
-	    echo Asset::js('template.js');
-        echo Asset::js('cart.js');
-        echo Asset::js('auth.js');
+	    echo Asset::js('lib/jquery.form.min.js');
+	    
+	    // Private js
+	    if(Fuel::$env == Fuel::DEVELOPMENT) {
+    	    echo Asset::js('lib/fbapi.js');
+    	    echo Asset::js('template.js');
+            echo Asset::js('cart.js');
+            echo Asset::js('auth.js');
+        }
+        else {
+            echo Asset::js('template_main.min.js');
+        }
 	    if(isset($js_supp)) echo Asset::js($js_supp);
+	    
+	    // Configuration
+	    echo Asset::js('config.js');
 	?>
 	
 <?php if( !Auth::check() || Auth::member(3) || Auth::member(5) ): ?>

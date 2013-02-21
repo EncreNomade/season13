@@ -4,7 +4,9 @@ class Controller_Achat_Order extends Controller_Frontend
 {
     public function action_view()
 	{
-        $this->template->js_supp = 'achat/order.js';
+        if(!Fuel::$env == Fuel::DEVELOPMENT) 
+            $this->template->js_supp = 'achat/order.js';
+        else $this->template->js_supp = 'achat/order.min.js';
         $this->template->css_supp = 'order.css';
 
 	    if(!empty($this->cart)) {

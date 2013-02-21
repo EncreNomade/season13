@@ -29,6 +29,7 @@ class Controller_13comments extends Controller_Rest
             $comments = Model_Admin_13comment::find('all', array(
                 'where' => array(
                     array('epid', $epid),
+                    array('verified', 1),
                 ),
                 'order_by' => array('updated_at' => 'desc'),
                 'limit' => $limit,

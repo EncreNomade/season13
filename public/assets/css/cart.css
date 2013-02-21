@@ -19,6 +19,7 @@
 	width: 50px;
 	float: left;
 	margin-right: 8px;
+	z-index: 1;
 }
 
 
@@ -26,6 +27,7 @@
 	float: right;
 	height: 50px;
 	margin: 5px 5px 5px 10px;
+	z-index: 2;
 }
 
 .cart_product img {

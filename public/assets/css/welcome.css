@@ -292,9 +292,10 @@
 }
 #episodes .ep_list ul li {
     position: relative;
-    width: 35px;
+    min-width: 27px;
     height: 35px;
     margin: 0 5px 0 0;
+    padding: 0 4px;
     line-height: 38px;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.3);
