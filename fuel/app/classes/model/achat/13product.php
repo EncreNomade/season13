@@ -148,6 +148,19 @@ class Model_Achat_13product extends Model
 
 		return $extraits;
 	}
+	
+	public function getRelatContentLink() {
+	    if($this->pack) {
+	        $content = Format::forge($this->content, 'json')->to_array();
+	        $ep = Model_Admin_13episode::find_by_id($content[0]);
+	        
+	        return $ep->getRelatLink();
+	    }
+	    else {
+	        $eps = $this->getContent();
+	        return $eps[0]->getRelatLink();
+	    }
+	}
 
 	public function getLocalPrice($countryCode = 'FR')
 	{

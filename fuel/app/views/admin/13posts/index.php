@@ -30,7 +30,7 @@
         </div>
         <div class="actu_content">
             <?php 
-                echo html_entity_decode($admin_13post['body']);
+                echo html_entity_decode(stripslashes($admin_13post['body']));
             ?>
         </div>
         <div class="actu_footer">

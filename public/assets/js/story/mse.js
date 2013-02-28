@@ -82,12 +82,17 @@ mse.src = function() {
 	    		if(file.search(this.audExtCheck) == -1) {
 	    		    switch(MseConfig.browser) {
 	    		    case 'Chrome': case 'Firefox': case 'Opera':
-	    			    this.list[name].src = cfs.getSrcPath(file)+'.ogg';break;
+	    			    this.list[name].setAttribute('src', cfs.getSrcPath(file)+'.ogg');
+	    			    this.list[name].setAttribute('type', 'audio/ogg');
+	    			    break;
 	    		    case 'Safari': case 'Explorer':
-	    			    this.list[name].src = cfs.getSrcPath(file)+'.mp3';break;
+	    			    this.list[name].setAttribute('src', cfs.getSrcPath(file)+'.mp3');
+	    			    this.list[name].setAttribute('type', 'audio/mpeg');
+	    			    break;
 	    		    }
 	    		}
 	    		else this.list[name].src = cfs.getSrcPath(file);
+	    		this.list[name].setAttribute('preload', 'auto');
 	    		//this.list[name].load();
 	    		break;
 	    	case 'script':

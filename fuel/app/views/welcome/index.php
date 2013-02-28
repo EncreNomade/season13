@@ -129,3 +129,16 @@
         <div class="sep_line"></div>
     </div>
 </div>
+
+<?php
+
+if(!$current_user) {
+    if(Input::get('inscription') == "true") {
+        echo "<script>showSignup();</script>";
+    }
+    else if(Input::get('login') == "true") {
+        echo "<script>showLogin();</script>";
+    }
+}
+
+?>

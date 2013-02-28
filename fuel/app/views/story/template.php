@@ -53,8 +53,8 @@
     echo Asset::js('lib/jquery-1.9.1.min.js');
 
     // Other JS lib public
-    echo Asset::js('lib/jquery.form.min.js');
     echo Asset::js('lib/BrowserDetect.min.js');
+    echo Asset::js('lib/jquery.form.min.js');
     
     // Config files
     echo Asset::js('config.js');
@@ -82,8 +82,10 @@
     }
     else {
         echo Asset::js('story/lib.min.js');
-        if($accessible) 
+        
+        if($accessible) {
             echo Asset::js('story/core.min.js');
+        }
     }
     
     if(!$extrait && $accessible) {
@@ -140,7 +142,7 @@
             if(array_key_exists('errorMessage', $access)) 
                 echo "'errorMessage': '".$access['errorMessage']."',\n";
             ?>
-        };    
+        };
     <?php endif; ?>
     
     </script>

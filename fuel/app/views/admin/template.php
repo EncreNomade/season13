@@ -21,12 +21,8 @@
 	<div class="navbar navbar-fixed-top">
 	    <div class="navbar-inner">
 	        <div class="container">
-	            <a href="<?php echo $remote_path; ?>" class="brand">My Site</a>
+	            <a href="<?php echo $remote_path; ?>" class="brand">Home</a>
 	            <ul class="nav">
-	                <li class="<?php echo Uri::segment(2) == '' ? 'active' : '' ?>">
-						<?php echo Html::anchor('admin', 'Dashboard') ?>
-					</li>
-					
 					<li class="dropdown">
 					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Users <b class="caret"></b></a>
 					    <ul class="dropdown-menu">

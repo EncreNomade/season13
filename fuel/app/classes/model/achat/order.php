@@ -309,6 +309,26 @@ class Model_Achat_Order extends \Orm\Model
     				}
     		    }
     		}
+    		
+    		// Send email notification to gift receiver
+    		if($gift) {
+    		    $data = array(
+    		        'offerer' => $user->pseudo,
+    		        'offererMail' => $user->email,
+    		        'receiver' => $owner,
+    		        'giftTitle' => $product->title,
+    		        'giftLink' => "http://season13.com/".$product->getRelatContentLink(),
+    		    );
+    		    // Send mail
+    		    Controller_Base::sendHtmlMail(
+    		        'no-reply@encrenomade.com', 
+    		        'Season13.com', 
+    		        $owner, 
+    		        'Invitation sur Season13.com', 
+    		        'mail/gift_invitation', 
+    		        $data
+    		    );
+    		}
 	    }
 	    
 	    $this->state = "FINALIZE";

@@ -1,3 +1,12 @@
+<!-- markItUp! skin -->
+<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>assets/markitup/skins/markitup/style.css">
+<!--  markItUp! toolbar skin -->
+<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>assets/markitup/sets/default/style.css">
+<!-- markItUp! -->
+<script type="text/javascript" src="<?php echo $base_url; ?>assets/markitup/jquery.markitup.js"></script>
+<!-- markItUp! toolbar settings -->
+<script type="text/javascript" src="<?php echo $base_url; ?>assets/markitup/sets/default/set.js"></script>
+
 <?php echo Form::open(); ?>
 
     <?php echo Form::hidden('user_id', isset($admin_13post) ? $admin_13post->user_id : $current_user->id); ?>
@@ -31,7 +40,7 @@
 			<?php echo Form::label('Body', 'body'); ?>
 
 			<div class="input">
-				<?php echo Form::textarea('body', Input::post('body', isset($admin_13post) ? $admin_13post->body : ''), array('class' => 'span8', 'rows' => 8)); ?>
+				<?php echo Form::textarea('body', Input::post('body', isset($admin_13post) ? stripslashes($admin_13post->body) : ''), array('class' => 'span8', 'rows' => 8, 'id' => 'markItUp', 'col' => '80', 'row' => '20')); ?>
 
 			</div>
 		</div>
@@ -49,3 +58,11 @@
 		</div>
 	</fieldset>
 <?php echo Form::close(); ?>
+
+<script type="text/javascript">
+$(function() {
+	// Add markItUp! to your textarea in one line
+	// $('textarea').markItUp( { Settings }, { OptionalExtraSettings } );
+	$('#markItUp').markItUp(mySettings);
+});
+</script>

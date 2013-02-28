@@ -33,6 +33,7 @@
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 <?php
+    // Css
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
     echo Asset::css('dialog_auth_msg.css');
@@ -40,24 +41,16 @@
         echo Asset::css('storymobi.css');
     else 
         echo Asset::css('story.css');
-    echo Asset::js('lib/jquery-latest.js');
-    echo Asset::js('lib/jquery.form.js');
-    echo Asset::js('lib/BrowserDetect.js');
-    echo Asset::js('lib/Tools.js');
-    echo Asset::js('lib/Interaction.js');
-    echo Asset::js('lib/fbapi.js');
-    echo Asset::js('config.js');
-    echo Asset::js('auth.js');
-    echo Asset::js('story/msg_center.js');
-    echo Asset::js('story/gui.js');
-    
-    echo Asset::js('story/scriber.js');
-    echo Asset::js('story/gameinfo.js');
-    echo Asset::js('story/tuto.js');
-    echo Asset::js('story/events.min.js');
-    echo Asset::js('story/mse.min.js');
-    echo Asset::js('story/effet_mini.js');
-    echo Asset::js('story/mdj.min.js');
+        
+    // JQuery
+    echo Asset::js('lib/jquery-1.9.1.min.js');
+
+    // Other JS lib public
+    echo Asset::js('lib/jquery.form.min.js');
+    echo Asset::js('lib/BrowserDetect.min.js');
+    // Season13 js files
+    echo Asset::js('story/lib.min.js');
+    echo Asset::js('story/core.min.js');
     
     if(!$extrait) {
         // print games

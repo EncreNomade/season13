@@ -270,6 +270,12 @@ var Esquive = function(){
         this.simon.init();
         for(var i in this.sprinters) this.sprinters[i].state = 'INACTIVE';
         
+        // Son
+        if(!this.sound) {
+            this.sound = mse.src.getSrc('game');
+            this.sound.loop = true;
+        }
+        
         this.getEvtProxy().addListener('click', this.clickcb, true, this); // Mouse        
         this.getEvtProxy().addListener('keydown', this.keyDowncb); // Keyboard        
         this.getEvtProxy().addListener('keyup', this.keyUpcb); // Keyboard
@@ -362,6 +368,7 @@ var Esquive = function(){
 				this.generateEnemies();
 				this.simon.init();
 				var text = "GO !";
+				if(this.sound) this.sound.play();
 			}
 			ctx.fillText(text,this.width/2-20,this.height/2-30);
         }
@@ -436,6 +443,7 @@ var Esquive = function(){
             this.getEvtProxy().removeListener('keydown', this.keyDowncb); // Keyboard        
             this.getEvtProxy().removeListener('keyup', this.keyUpcb);
             this.setScore( 100 * this.currTime / 40 );
+            if(this.sound) this.sound.pause();
             this.lose();
         }
         else if (this.currTime > 40) {
@@ -444,6 +452,7 @@ var Esquive = function(){
             this.getEvtProxy().removeListener('keydown', this.keyDowncb); // Keyboard        
             this.getEvtProxy().removeListener('keyup', this.keyUpcb);
             this.setScore( 100 + this.simon.life * this.simon.life * 5 );
+            if(this.sound) this.sound.pause();
             this.win();
         }
     };
@@ -478,6 +487,10 @@ var Esquive = function(){
     this.startGestCb = new mse.Callback(this.gestureMove, this);    
     this.updateGestCb = new mse.Callback(this.gestureMove, this);
     this.endGestCb = new mse.Callback(function(){this.simon.changeDir('WAIT');}, this);
+    
+    this.destroy = function() {
+        if(this.sound) this.sound.pause();
+    };
 };
 extend(Esquive, mse.Game);
 
