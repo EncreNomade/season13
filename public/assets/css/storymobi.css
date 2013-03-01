@@ -504,6 +504,12 @@ ul#menu div #menu_link {
     font: normal 14px/20px Arial, Helvetica;
 }
 
+#concept_container {
+    width: 254px;
+    height: 260px;
+    overflow: scroll;
+}
+
 
 
 

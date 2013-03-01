@@ -443,6 +443,12 @@ gui.scriber = (function($, gui) {
             this.jq.removeClass('show').detach();
         },
         init: function() {
+            // Public variable
+            this.jq = $('#scriber');
+            if(this.jq.length == 0)
+                return;
+            this.imgCanvas = $('#scriber #sb_imgcanvas').get(0);
+            this.drawCanvas = $('#scriber #sb_drawcanvas').get(0);
             
             // Private variable
             closeBn = $('#scriber #sb_cancel');
@@ -470,11 +476,6 @@ gui.scriber = (function($, gui) {
             sizesetctx.lineCap = 'round';
             sizesetctx.lineJoin = 'round';
             var scriber = this;
-            
-            // Public variable
-            this.jq = $('#scriber');
-            this.imgCanvas = $('#scriber #sb_imgcanvas').get(0);
-            this.drawCanvas = $('#scriber #sb_drawcanvas').get(0);
             
             ctx = this.drawCanvas.getContext('2d');
             imgctx = this.imgCanvas.getContext('2d');

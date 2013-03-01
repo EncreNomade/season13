@@ -35,9 +35,7 @@ return array(
 				26 => '025_create_achat_currencies',
 				27 => '026_create_achat_productprices',
 				28 => '027_create_achat_countries',
-				29 => '028_create_user_configs',
-				30 => '029_create_user_episodeinfos',
-				31 => '030_create_user_gameinfos',
+				29 => '031_create_admin_tasks',
 			),
 		),
 		'module' => 

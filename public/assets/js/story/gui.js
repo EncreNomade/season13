@@ -934,6 +934,7 @@ var userData = (function() {
     });
 
     exports.save = function(success, fail) {
+        if(!config.episode || !config.episode.epid) return;
         $.post(config.base_url + 'user/data/update', {
             // config data
             speed: gui.speedctrl.value,
@@ -949,6 +950,7 @@ var userData = (function() {
     };
 
     exports.retrieve = function() {
+        if(!config.episode || !config.episode.epid) return;
         $.ajax({
             url: config.base_url + 'user/data/retrieve',
             type: 'GET',
