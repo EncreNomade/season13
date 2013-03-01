@@ -1,5 +1,5 @@
 <?php
-class Controller_Admin_Task extends Controller_Template 
+class Controller_Admin_Task extends Controller_Backend
 {
     private static $whentodo_ptn = "/(?P<date>\d{2}[\/\.]\d{2}[\/\.]\d{4})(?P<time>\d{2}[\:hH]\d{2})/";
 
@@ -70,36 +70,45 @@ class Controller_Admin_Task extends Controller_Template
 		    $val->add_field('type', 'Type', 'required');
 		    $val->add_field('title', 'Title', 'required');
 		    $val->add_field('content', 'Content', 'required');
+		    $val->add_field('smscontent', 'SMS Content', 'required');
 		    $val->add_field('whentodo', 'When to do', 'required');
 		    
 		    if ($val->run())
 		    {
     		    $params = array(
     		        'title' => Input::post('title'),
-    		        'content' => Input::post('content')
+    		        'content' => Input::post('content'),
+    		        'smscontent' => Input::post('smscontent'),
     		    );
-    		    $whentodo = Input::post('whentodo');
-    		
-    			$admin_task = Model_Admin_Task::forge(array(
-    				'creator' => $this->current_user->id,
-    				'type' => Input::post('type'),
-    				'parameters' => $params,
-    				'whentodo' => $whentodo,
-    				'done' => 0,
-    				'whendone' => 0,
-    			));
-    
-    			if ($admin_task and $admin_task->save())
-    			{
-    				Session::set_flash('success', 'Added newsletter #'.$admin_task->id.'.');
-    
-    				Response::redirect('admin/task');
-    			}
-    
-    			else
-    			{
-    				Session::set_flash('error', 'Could not save newsletter.');
-    			}
+    		    
+    		    $whentodo = DateTime::createFromFormat('d/m/Y H:i', Input::post('whentodo'));
+    		    
+    		    if($whentodo) {
+    		        
+    		        $admin_task = Model_Admin_Task::forge(array(
+        				'creator' => $this->current_user->id,
+        				'type' => Input::post('type'),
+        				'parameters' => Format::forge($params)->to_json(),
+        				'whentodo' => $whentodo->getTimestamp(),
+        				'done' => 0,
+        				'whendone' => 0,
+        			));
+        
+        			if ($admin_task and $admin_task->save())
+        			{
+        				Session::set_flash('success', 'Added newsletter #'.$admin_task->id.'.');
+        
+        				Response::redirect('admin/task');
+        			}
+        
+        			else
+        			{
+        				Session::set_flash('error', 'Could not save newsletter.');
+        			}
+    		    }
+    		    else {
+    		        Session::set_flash('error', 'When to do date time format error');
+    		    }
 			}
 			else
 			{
@@ -183,5 +192,63 @@ class Controller_Admin_Task extends Controller_Template
 
 	}
 
+
+
+    public function action_taskexecuter() {
+        // Find all task undone and order by scheduled time asc
+        $tasks = Model_Admin_Task::query()->where('done', 0)
+                                          ->order_by('whentodo', 'asc')
+                                          ->get();
+        
+        $now = time();
+        foreach ($tasks as $task) {
+            
+            // This with all after tasks are futur tasks
+            if(intval($task->whentodo) > $now)
+                break;
+                
+            switch ($task->type) {
+            case "newsletter":
+            
+                // Title and content
+                $params = Format::forge($task->parameters, 'json')->to_array();
+                $title = $params['title'];
+                $content = $params['content'];
+                $smscontent = $params['smscontent'];
+                
+                // Collect all users
+                $users = Model_13user::find('all');
+                // Send mail to email users
+                foreach ($users as $user) {
+                    if($user->notif == "sms") {
+                        // Wait for sms implementation
+                    }
+                    else {
+                        $data = array(
+                            'title' => $title,
+                            'content' => $content,
+                            'pseudo' => $user->pseudo
+                        );
+                        // Send mail
+                        Controller_Base::sendHtmlMail(
+                            'no-reply@encrenomade.com', 
+                            'Season13.com', 
+                            $user->email, 
+                            'Newsletter Season13.com', 
+                            'mail/newsletter', 
+                            $data
+                        );
+                    }
+                }
+                
+                $task->hasdone();
+                
+                break;
+            }
+        }
+        $data['admin_tasks'] = $tasks;
+    	$this->template->title = "Tasks just done";
+    	$this->template->content = View::forge('admin/task/index', $data);
+    }
 
 }

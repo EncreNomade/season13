@@ -1,4 +1,4 @@
-<h2>Listing Admin_tasks</h2>
+<h2>Listing tasks</h2>
 <br>
 <?php if ($admin_tasks): ?>
 <table class="table table-striped">

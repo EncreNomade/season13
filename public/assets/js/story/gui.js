@@ -707,7 +707,7 @@ $(document).ready(function() {
     gui.fbShareEnabled = true;
     
     // Init scriber
-    if(gui.scriber) gui.scriber.init();
+    if(gui.scriber && $('#scriber').length > 0) gui.scriber.init();
     
     // General Interaction
     // Close the preference panel or the comment panel

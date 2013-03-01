@@ -122,6 +122,14 @@
 						    <li>
 						        <?php echo Html::anchor('admin/mails', 'Envoie des mails') ?>
 						    </li>
+						    
+						    <li>
+						        <?php echo Html::anchor('admin/task/taskexecuter', 'Execute les taches') ?>
+						    </li>
+						    
+						    <li>
+						        <?php echo Html::anchor('admin/task/plannewsletter', 'Planifier un newsletter') ?>
+						    </li>
 					    </ul>
 					</li>
 					

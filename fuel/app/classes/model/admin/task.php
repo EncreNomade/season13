@@ -38,5 +38,11 @@ class Model_Admin_Task extends Model
 
 		return $val;
 	}
+	
+	public function hasdone() {
+	    $this->done = 1;
+	    $this->whendone = Date::time();
+	    $this->save();
+	}
 
 }
