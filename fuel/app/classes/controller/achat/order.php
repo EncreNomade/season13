@@ -4,10 +4,29 @@ class Controller_Achat_Order extends Controller_Frontend
 {
     public function action_view()
 	{
-        if(!Fuel::$env == Fuel::DEVELOPMENT) 
+        if(Fuel::$env == Fuel::DEVELOPMENT) 
             $this->template->js_supp = 'achat/order.js';
-        else $this->template->js_supp = 'achat/order.min.js';
+        else $this->template->js_supp = 'achat/order.js';
         $this->template->css_supp = 'order.css';
+        
+        // Verification of checked order
+        $recent = Model_Achat_Order::getRecentCheckoutOrder();
+        
+        if(!empty($recent['token'])) {
+            if($recent['order']->state == "STARTPAY") { 
+                $recent['order']->cancelPayment($recent['token']);
+                
+                // Reset current cart
+                $current_cart = Model_Achat_Cart::getCurrentCart();
+                
+                if($current_cart) {
+                    // Set user in cart if user not existed in cart
+                    if( $this->current_user )
+                        $current_cart->setUser($this->current_user->id);
+                    $this->cart = $current_cart;
+                }
+            }
+        }
 
 	    if(!empty($this->cart)) {
 	        $products = $this->cart->getProducts();
@@ -21,7 +40,7 @@ class Controller_Achat_Order extends Controller_Frontend
     	        if($this->current_user) {
         	        // Order the cart
         	        $order = Model_Achat_Order::orderCart($this->cart);
-        	        	        
+        	        
         	        if(!$order) {
         	            $this->template->title = 'Commande - SEASON 13, Histoire Interactive | Feuilleton Multiplateforme | Livre Jeux | HTML5';
         	            $this->template->content = View::forge('achat/order/empty');

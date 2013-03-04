@@ -118,7 +118,11 @@
 		                updateOrder(timer);
 		        }
 		        catch (error) {
-		            updateOrder(timer);
+		            // Safari 
+		            if(error.name == "TypeError")
+		                updateOrder(timer);
+		            // Firefox
+		            else clearInterval(timer);
 		        }
 		    }, 1000);
 		});
@@ -127,7 +131,7 @@
 	
 	
 	function updateOrder(timer) {
-	    clearInterval(timer);
+	    if(timer) clearInterval(timer);
 	    $.ajax({
 	    	url: config.base_url + 'achat/orderrest/update',
 	    	type: "GET",

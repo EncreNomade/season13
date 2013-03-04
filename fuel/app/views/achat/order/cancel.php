@@ -35,7 +35,7 @@
 
 <body>
     <h1>Paiement échoué</h1>
-    <h5>Le paiement a été refusé, recommandez si tu veux</h5>
+    <h5>Le paiement a été refusé, rafraîchis la page de commande ou recommande si tu veux</h5>
     
     <?php if($flash): ?>
     	<div class="flash-alert">
