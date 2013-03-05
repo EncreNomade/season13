@@ -148,14 +148,14 @@ mse.src = function() {
 	    preloadPage	: function(ctx, fini, total) {
 	    	ctx.clearRect(0, 0, mse.root.width, mse.root.height);
 	    	ctx.save();
-	    	ctx.strokeStyle = '#333333';
+	    	ctx.strokeStyle = '#DDD';
 	    	ctx.lineWidth = 2;
 	    	ctx.strokeRoundRect((mse.root.width-280)/2, mse.root.height-100, 281, 11, 5);
-	    	ctx.fillStyle = '#555555';
+	    	ctx.fillStyle = '#BBB';
 	    	ctx.fillRoundRect((mse.root.width-280)/2, mse.root.height-100, (fini/total)*280, 10, 5);
 	    	var txt = this.loadInfo + fini + '/' + total;
 	    	ctx.font = '20px '+cfs.font;
-	    	ctx.fillStyle = '#000000';
+	    	ctx.fillStyle = '#FFF';
 	    	ctx.textAlign = 'center';
 	    	ctx.fillText(txt, mse.root.width/2, mse.root.height-60);
 	    	ctx.restore();
@@ -273,6 +273,7 @@ mse.init = function(configs, id, width, height, orientation) {
 	width = width || MseConfig.pageWidth;
 	height = height || MseConfig.pageHeight;
 	orientation = orientation || 'portrait';
+	
 	if(!mse.root)
 		window.root = new mse.Root(id, width, height, orientation);
     
@@ -3323,7 +3324,7 @@ mse.ImageShower = function(){
     
     
     
-    if(MseConfig.mobile){
+    if(MseConfig.mobile && this.container.length > 0){
         // remove close button
         this.closeButton.remove();
         this.imgContainer.css('overflow','hidden');

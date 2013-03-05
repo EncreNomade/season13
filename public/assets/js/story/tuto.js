@@ -30,47 +30,49 @@ $(document).ready(function() {
     if(mse && mse.configs) {
         tutoDone = mse.configs.isTutoDone;
     }
-    if(!tutoDone && window.layers) {
-        for (var i in layers) {
-            if(layers[i] instanceof mse.ArticleLayer) {
-                var obj = layers[i].getObject(1);
-                if(obj instanceof mse.UIObject) {
-                    obj.addListener('firstShow', new Callback(function() {
-                        gui.playpause.click();
+    $(document).ready(function() {
+        if(mse && !tutoDone && window.layers) {
+            for (var i in window.layers) {
+                if(window.layers[i] instanceof mse.ArticleLayer) {
+                    var obj = window.layers[i].getObject(1);
+                    if(obj instanceof mse.UIObject) {
+                        obj.addListener('firstShow', new Callback(function() {
+                            gui.playpause.click();
                         
-                        var dialog = $('#lance_tuto');
-                        if(dialog) {
-                            dialog.addClass('show');
-                            dialog.children('.floatlink').first().click(function() {
-                                if(!tutoDone) {
-                                    $.post(config.publicRoot + 'base/has_done_tuto');
-                                }
-                                dialog.removeClass('show');
-                                gui.playpause.click();
-                            });
-                            dialog.children('.floatlink').last().click(function() {
-                                tuto.reset();
-                                tuto.run();
-                                dialog.removeClass('show');
-                            });
-                        }
-                        else {
-                            var ok = confirm("Veux-tu démarrer le tutoriel ? Sinon, tu peux le démarrer plus tard dans le menu en haut à droite.");
-                            if(ok) {
-                                this.reset();
-                                this.run();
+                            var dialog = $('#lance_tuto');
+                            if(dialog) {
+                                dialog.addClass('show');
+                                dialog.children('.floatlink').first().click(function() {
+                                    if(!tutoDone) {
+                                        $.post(config.publicRoot + 'base/has_done_tuto');
+                                    }
+                                    dialog.removeClass('show');
+                                    gui.playpause.click();
+                                });
+                                dialog.children('.floatlink').last().click(function() {
+                                    tuto.reset();
+                                    tuto.run();
+                                    dialog.removeClass('show');
+                                });
                             }
                             else {
-                                $.post(config.publicRoot + 'base/has_done_tuto');
-                                gui.playpause.click();
+                                var ok = confirm("Veux-tu démarrer le tutoriel ? Sinon, tu peux le démarrer plus tard dans le menu en haut à droite.");
+                                if(ok) {
+                                    this.reset();
+                                    this.run();
+                                }
+                                else {
+                                    $.post(config.publicRoot + 'base/has_done_tuto');
+                                    gui.playpause.click();
+                                }
                             }
-                        }
-                    }, tuto));
+                        }, tuto));
+                    }
+                    break;
                 }
-                break;
             }
         }
-    }
+    });
     
     var actions = [
         new MseAction(

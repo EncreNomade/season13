@@ -387,4 +387,18 @@ class Controller_Story extends Controller_Frontend
 	        Response::redirect('http://'.$_SERVER['HTTP_HOST'].'wsupgradenav');
 	    }
 	}
+	
+	public function action_download() {
+	    if(!$this->current_user || !Input::get('epid'))
+	        Response::redirect($this->base_url.'?inscription=true');
+	        
+	    $episode = Model_Admin_13episode::find(Input::get('epid'));
+	    if(!$episode) 
+	        Response::redirect('404');
+	        
+	    $filename = 'S0'.$episode->season.'E0'.$episode->episode.'.pdf';
+	    if(file_exists(DOCROOT . '/voodoo/pdf/' . $filename))
+	        File::download(DOCROOT . '/voodoo/pdf/' . $filename, "Voodoo Connection" . $filename);
+	    else Response::redirect('404');
+	}
 }

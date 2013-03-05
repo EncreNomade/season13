@@ -111,19 +111,23 @@
 
     <script type="text/javascript">
         config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
-        if(window.parent.gameNotifier) {     
-            var gameNotifier = window.parent.gameNotifier;       
+        if(window.parent.gameNotifier) {
+            var gameNotifier = window.parent.gameNotifier;
+            
             $(function(){
                 $('#game_quit, #close_game_icon').click(gameNotifier.quit);
             });
-
+            
             window.initMseConfig();
             mse.init(null, null, $(window.parent.document).width(), $(window.parent.document).height());
             mse.currTimeline.start();
-            $('.bookroot').hide(0);
+            
             mse.configs.srcPath='<?php echo Uri::base(false) . "$path/" ?>';
             window.game = new <?php echo $className ?>();
             game.config.indep = true;
+            
+            var book = $('.bookroot');
+            if(book.length > 0) book.hide(0);
             // game.start();
 
         }

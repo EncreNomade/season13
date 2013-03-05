@@ -58,7 +58,7 @@ class Controller_Book_Gameview extends Controller_Frontend {
 	public function action_play($className = null) {
         $g = Model_Book_13game::find_by_class_name($className);
         $data = array();
-        if(!$g) {     
+        if(!$g) {
             return View::forge('book/13game/gameview_frame_error', array("message" => "Erreur : Jeux non trouvé."));
         }
         else {

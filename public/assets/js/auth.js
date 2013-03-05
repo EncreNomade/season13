@@ -196,22 +196,43 @@ function init() {
     });
     
     // Facebook signup
+    function presignupfb() {
+        FB.api('me', function(u){
+            $('#signupId').val(u.username);
+            $('#signupSex').val(u.gender == 'male' ? 'm' : 'f');
+            var bDay = u.birthday.split('/'); // month/day/year
+            $('#signupbDay').val(bDay[1]);
+            $('#signupbMonth').val(bDay[0]);
+            $('#signupbYear').val(bDay[2]);
+            $('#signupMail').attr('readonly', 'readonly').val(u.email);
+            
+            $('#signup_fbToken').val(fbToken); // signal to server, it's a FB user !
+            
+            alert('Complète ton formulaire d\'inscription pour t\'inscrire');
+        });
+    }
     $('#signupForm .fb_btn').click(function(){    
         FB.login(function(response) {
             if (response.status == 'connected') {                
                 var fbToken = response.authResponse.accessToken;
-                FB.api('me', function(u){
-                    $('#signupId').val(u.username);
-                    $('#signupSex').val(u.gender == 'male' ? 'm' : 'f');
-                    var bDay = u.birthday.split('/'); // month/day/year
-                    $('#signupbDay').val(bDay[1]);
-                    $('#signupbMonth').val(bDay[0]);
-                    $('#signupbYear').val(bDay[2]);
-                    $('#signupMail').attr('readonly', 'readonly').val(u.email);
-                    
-                    $('#signup_fbToken').val(fbToken); // signal to server, it's a FB user !
-                    
-                    alert('Complète ton formulaire d\'inscription pour t\'inscrire');
+                
+                $.ajax({
+                    url: config.publicRoot + 'base/login_fb',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'fb_token':fbToken},
+                    success: function(data, textStatus, XMLHttpRequest)
+                    {
+                        if (data.valid)
+                        {
+                            document.location.reload();
+                        }
+                        else
+                        {
+                            presignupfb();
+                        }
+                    },
+                    error: presignupfb
                 });
             } 
             else if (response.status === 'not_authorized'){
@@ -254,7 +275,7 @@ function init() {
                     case 11:
                         break;
                     case 12:
-                        showLinkFb();
+                        if(showLinkFb) showLinkFb();
                         data.errorMessage = "";
                         break;
                     }

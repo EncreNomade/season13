@@ -20,7 +20,7 @@ $(function(){
 		else {											// the iframe have ever been loaded
 			var game = iframe.get(0).contentWindow.game;
 			if(game) gameNotifier.start(game);			// just run the game
-		}		
+		}
 	});
 
 

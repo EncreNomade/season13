@@ -8,6 +8,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    background: #000;
 }
 
 ul {
@@ -1418,6 +1419,7 @@ ul#menu div #menu_link {
     position: absolute;
     top: -30px;
     right: 20px;
+    z-index: 2;
 }
 
 .video {

@@ -360,9 +360,9 @@ var VacheGame = function() {
     this.dropSteaks = function(x, y) {
         var rand = randomInt(20);
         var count = 0;
-        if(rand >= 6 && rand < 16) count = 1;
-        else if(rand >= 16 && rand < 19) count = 2;
-        else if(rand == 19) count = 3;
+        if(rand >= 0 && rand < 12) count = 1;
+        else if(rand >= 12 && rand < 17) count = 2;
+        else if(rand >= 17 && rand < 20) count = 3;
         for(var i = 0; i < count; ++i) {
             var h = randomInt(6) + 6;
             var w = Math.round(h*2.67);

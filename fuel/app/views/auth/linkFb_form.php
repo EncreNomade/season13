@@ -4,7 +4,7 @@
     <div class="section">
         <h5>
             Ton compte Facebook n'est pas encore associé à un compte Season 13.<br/>
-            Si tu n'as pas encore créé de compte Season 13, clique sur "CRÉER UN COMPTE".<br/>
+            Si tu n'as pas encore créé de compte Season 13, clique sur <a href="javascript:if(showSignup) showSignup();">"CRÉER UN COMPTE"</a>.<br/>
             Si tu as déjà un compte Season 13. Tu peux te connecter pour l'associer avec ton compte Facebook:<br/>
             <br/>
         </h5>

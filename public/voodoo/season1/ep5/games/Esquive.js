@@ -273,6 +273,10 @@ var Esquive = function(){
         // Son
         if(!this.sound) {
             this.sound = mse.src.getSrc('game');
+            if(!this.sound) {
+                mse.src.addSource('game','audios/game','aud',false);
+                this.sound = mse.src.getSrc('game');
+            }
             this.sound.loop = true;
         }
         

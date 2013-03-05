@@ -249,11 +249,11 @@ function story_access_resp(data, epid) {
         if(data.errorCode != null) {
             switch (data.errorCode) {
             case 201:
-                if(showLogin) showLogin();
+                if(showSignup) showSignup();
                 break;
                 
             case 302:
-                if(showLogin) showLogin();
+                if(showSignup) showSignup();
                 break;
             
             case 303:
@@ -449,18 +449,22 @@ gui.openCredits = function() {
 }
 
 gui.openNextEp = function() {
-    var dialog = $('#next_ep_dialog');
     if(!gui.center.hasClass('show')) gui.center.addClass('show');
-    if(!dialog.hasClass('show')) {
-        dialog.siblings().removeClass('show');
+    if(!gui.nextEp.hasClass('show')) {
+        gui.nextEp.siblings().removeClass('show');
         
-        dialog.addClass('show');
+        gui.nextEp.addClass('show');
         
         if(window.mse) {
             mse.root.pause();
             gui.updatePlayPauseIcon();
         }
     }
+}
+gui.episodeFinished = function () {
+    gui.nextEp.find('.logo').parent('a').before("<div class='link'><a href='"+ config.base_url +"story/download?epid=" + mse.configs.epid +"' target='_blank'>Télécharger en PDF</a></div>");
+    gui.openNextEp();
+    userData.save(null, null, true);
 }
 
 gui.hideConcept = function() {
@@ -683,11 +687,12 @@ $(document).ready(function() {
     
     // Save variables
     gui.menu = $('#menu');
-    gui.center = $('#center')
+    gui.center = $('#center');
     gui.pref = $('#preference');
     gui.prefSaveLoading = $('#preference .link .loading').hide();
     gui.author_bio = $('#author_bio');
     gui.credits = $('#credits');
+    gui.nextEp = $('#next_ep_dialog');
     gui.controler = $('#controler');
     gui.comment = $('#comment');
     gui.comment_menu = $('#comment_menu');
@@ -909,11 +914,14 @@ $(document).ready(function() {
         
         
         // Book Finish event
-        mse.root.evtDistributor.rootEvt.addListener('finished', new Callback(gui.openNextEp, gui));
+        mse.root.evtDistributor.rootEvt.addListener('finished', new Callback(gui.episodeFinished, gui));
     }
     
+    if(config.accessResp && !config.accessResp.valid) {
+        story_access_resp(config.accessResp, config.episode.epid);
+    }
     // Open concept in chargement
-    if(!window.mse || !window.mse.root.init) {
+    else if(!window.mse || !window.mse.root.init) {
         gui.concept.addClass('show');
         gui.center.addClass('show');
     }
@@ -933,7 +941,7 @@ var userData = (function() {
         $('#game_quit').click(userData.save);
     });
 
-    exports.save = function(success, fail) {
+    exports.save = function(success, fail, finish) {
         if(!config.episode || !config.episode.epid) return;
         $.post(config.base_url + 'user/data/update', {
             // config data
@@ -944,7 +952,7 @@ var userData = (function() {
             epId: config.episode.epid,
             position: window.mse && window.mse.root ? mse.root.getProgress() : {},
             started: true,
-            completed: false
+            completed: finish ? true : false
         }).success((typeof success == "function") ? success : function(){})
         .error((typeof fail == "function") ? fail : ajaxError);
     };

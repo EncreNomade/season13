@@ -262,7 +262,12 @@
                     <div class="close"></div>
                     <div class="sep_line"></div>
                     <?php echo View::forge('auth/chpass_form')->render(); ?>
-                </div> 
+                </div>
+                <div id="link_fb_dialog" class="dialog">
+                    <div class="close"></div>
+                    <div class="sep_line"></div>
+                    <?php echo View::forge('auth/linkFb_form')->render(); ?>
+                </div>
                 
             <?php else: ?>
                 <div id="update_dialog" class="dialog">
