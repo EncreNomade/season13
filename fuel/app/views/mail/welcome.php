@@ -25,8 +25,16 @@
     	        </h5>
     	        
     	        <h5 style="position: relative; text-align: left; color: #202020; font: normal 16px/25px Arial, Helvetica; margin: 5px 0 10px 0;">
-    	            <p>Nous sommes heureux de t’accueillir sur Season13.
-    	            Découvre <a style="color: #000;" href="http://season13.com/?s=episode&utm_source=welcome_mail&utm_medium=email">les aventures de Simon dans Voodoo Connection</a></p>
+    	            <p>Nous sommes heureux de t’accueillir sur Season13.</p>
+    	            
+    	        <?php if(!empty($pseudo) && !empty($password)): ?>
+    	            <p>
+    	                Voici ton pseudo: <b style="color: rgb(246, 168, 0);"><?php echo $pseudo; ?></b><br/>
+    	                et ton mot de passe: <b style="color: rgb(246, 168, 0);"><?php echo $password; ?></b>
+    	            </p>
+    	        <?php endif; ?>
+    	            
+    	            <p>Découvre <a style="color: #000;" href="http://season13.com/?s=episode&utm_source=welcome_mail&utm_medium=email">les aventures de Simon dans Voodoo Connection</a></p>
     	            
     	            <a style="position: relative; float: left; left: 0px; width: 220px; height: 50px; margin: 10px 110px 20px 110px; background: rgb(246, 168, 0); border-radius: 10px; border: 2px solid #aaa; text-decoration: none; color: #fff; font: bold 18px/50px sans-serif; text-align: center;" href="http://season13.com/?s=episode&utm_source=welcome_mail&utm_medium=email">
     	                L<span style="font-size: 14px;">ES</span> A<span style="font-size: 14px;">VENTURES</span>

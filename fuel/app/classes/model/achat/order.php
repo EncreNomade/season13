@@ -18,6 +18,16 @@ class Model_Achat_Order extends \Orm\Model
 		'created_at',
 		'updated_at',
 	);
+	
+	protected static $_belongs_to = array(
+	    'user' => array(
+	        'key_from' => 'user_id',
+	        'model_to' => 'Model_13user',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false
+	    )
+	);
 
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
@@ -50,9 +60,17 @@ class Model_Achat_Order extends \Orm\Model
 	    // Existed order
 	    $current_order_id = Session::get('current_order');
 	    $current_order = self::find($current_order_id);
-	    if(isset($current_order->secure_key) && $current_order->secure_key == $cart->secure_key) {
+	    
+	    if( $current_order
+	        && isset($current_order->state) 
+	        && isset($current_order->secure_key) 
+	        && ($current_order->state == "ORDER" || $current_order->state == "STARTPAY" || $current_order->state == "CANCEL") 
+	        && $current_order->secure_key == $cart->secure_key) {
 	        // Lock cart
 	        $cart->ordered = 1;
+	        // Reactive order
+	        $current_order->state = "ORDER";
+	        $current_order->save();
 	        
 	        return $current_order;
 	    }
@@ -111,6 +129,21 @@ class Model_Achat_Order extends \Orm\Model
 	    else return false;
 	}
 	
+	public static function canMakeOrderForCart($cart_id) {
+	    $orders = self::query()->where('cart_id', $cart_id)->get();
+	    
+	    // No order passed for this cart, it is avaiable
+	    if(count($orders) == 0) return true;
+	    
+	    // Check if there is any order finalized or canceled
+	    foreach ($orders as $order) {
+	        if($order->state != "ORDER" && $order->state != "STARTPAY" && $order->state != "CANCEL") {
+	            return false;
+	        }
+	    }
+	    return true; 
+	}
+	
 	public function getCart() {
 	    if(empty($this->cart)) {
 	        $this->cart = Model_Achat_Cart::find($this->cart_id);
@@ -139,7 +172,7 @@ class Model_Achat_Order extends \Orm\Model
 	    }
     
         // Forbiden double checkout
-        $orders = Session::get('checkout_order');
+        $orders = Session::get('checkout_order') ?: array();
         
         if(isset($orders[$token])) {
             throw new CartException(Config::get('errormsgs.payment.4109'), 4109);
@@ -147,17 +180,16 @@ class Model_Achat_Order extends \Orm\Model
 	    
 	    // Update order state
 	    $this->state = "STARTPAY";
-	    //$this->updated_at = time();
 	    $this->save();
+	    
+	    // Delete cart
+	    $this->getCart()->checkout();
+        // Delete from session
+        Session::delete('current_order');
 	    
 	    // Add check out order to session
 	    $orders[$token] = $this->id;
 	    Session::set('checkout_order', $orders);
-	
-	    // Delete from session
-	    Session::delete('current_order');
-	    // Delete cart
-	    $this->getCart()->checkout();
 	}
 	
 	public static function getCheckoutOrder($token) {
@@ -211,7 +243,7 @@ class Model_Achat_Order extends \Orm\Model
         Session::set('current_order', $this->id);
 	}
 	
-	public function checkoutWith($payment) {
+	public function checkoutWith($payment, $token = null) {
 	    // Verification payment
         if( !is_subclass_of($payment, 'Payment') ) {
             throw new CartException(Config::get('errormsgs.payment.4102'), 4102);
@@ -236,7 +268,7 @@ class Model_Achat_Order extends \Orm\Model
 	    $this->payment = $payment->name;
 	    
 	    // Process to payment gateway
-	    $result = $payment->checkoutOrder($this);
+	    $result = $payment->checkoutOrder($this, $token);
         
         if(empty($result)) 
             return array('success' => true);

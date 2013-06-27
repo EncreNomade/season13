@@ -6,7 +6,9 @@ class Controller_Achat_Order extends Controller_Frontend
 	{
         if(Fuel::$env == Fuel::DEVELOPMENT) 
             $this->template->js_supp = 'achat/order.js';
-        else $this->template->js_supp = 'achat/order.js';
+        else if(Fuel::$env == Fuel::TEST) 
+            $this->template->js_supp = 'achat/order.js';
+        else $this->template->js_supp = 'achat/order.min.js';
         $this->template->css_supp = 'order.css';
         
         // Verification of checked order
@@ -17,8 +19,7 @@ class Controller_Achat_Order extends Controller_Frontend
                 $recent['order']->cancelPayment($recent['token']);
                 
                 // Reset current cart
-                $current_cart = Model_Achat_Cart::getCurrentCart();
-                
+                $current_cart = $recent['order']->getCart();
                 if($current_cart) {
                     // Set user in cart if user not existed in cart
                     if( $this->current_user )
@@ -55,6 +56,7 @@ class Controller_Achat_Order extends Controller_Frontend
         	                'tax' => $tax,
         	                'products' => $products,
         	                'currency' => $currency,
+        	                'payzenCheckoutForm' => Payzen::getCheckoutForm($order)
         	            );
         	            
         	            $user_address = Model_User_Address::query()->where('user_id', $this->current_user->id)->get_one();
@@ -70,7 +72,7 @@ class Controller_Achat_Order extends Controller_Frontend
     	                'cart' => $this->cart,
     	                'total' => $total,
     	                'ht' => $ht,
-    	                'tva' => number_format($this->cart->tax_rate/100, 2, '.', ''),
+    	                'tva' => number_format($this->cart->tax_rate, 2, '.', ''),
     	                'tax' => $tax,
     	                'products' => $products,
     	                'currency' => $currency,
@@ -171,6 +173,130 @@ class Controller_Achat_Order extends Controller_Frontend
     	}
     	
     	return Response::forge(View::forge('achat/order/cancel'));
+	}
+	
+	
+	public function action_payzenCheck() {
+	    // Collect informations
+	    $transid = Input::param('vads_trans_id');
+	    if( empty($transid) )
+	        return new Response(Format::forge(array('success' => false))->to_json(), 200);
+	        
+	    // Reconstruction of order reference
+	    if(Input::param('vads_order_id')) {
+	        $order_ref = Input::param('vads_order_id');
+	    }
+	    else {
+    	    // Date
+    	    $date = Input::param('vads_trans_date') ? substr(Input::param('vads_trans_date'), 2, 6) : Date::time()->format("%y%m%d");
+    	    $order_ref = $date.substr($transid, 2);
+	    }
+	
+	    // Array for payzen check model
+	    $arr = array(
+	        "order_ref" => $order_ref,
+	        "vads_result" => Input::param('vads_result') ?: "",
+	        "vads_trans_status" => Input::param('vads_trans_status') ?: "",
+	        "vads_auth_result" => Input::param('vads_auth_result') ?: "",
+	        "vads_auth_mode" => Input::param('vads_auth_mode') ?: "",
+	        "vads_trans_id" => $transid,
+	        "signature" => Input::param('signature') ?: "",
+	        "params" => Format::forge(Input::all())->to_json()
+	    );
+	    
+	    $record = Model_Achat_Payzencheck::forge($arr);
+	    if($record) $record->save();
+	    
+	    $order = Model_Achat_Order::find_by_reference($order_ref);
+	    $result = array('success' => true, 'state' => "NOCMD");
+	    
+	    // Amount Paid
+	    $amt_paid = Input::param('vads_effective_amount') ? intval(Input::param('vads_effective_amount'))/100 : $order->getCart()->addition();
+	    
+	    // Success
+	    if( $arr['vads_result'] == "00" && $arr['vads_trans_status'] == "AUTHORISED" ) {
+	        if($order) {
+	            // Check out order
+	            $order->getCart()->checkout();
+	            // Directly confirm order
+	            $order->finalize('payzen', $arr, $amt_paid);
+	            
+	            $data = Payment::extractOrder($order);
+                $data['return_page'] = true;
+                $user_address = Model_User_Address::query()->where('user_id', $data['user_id'])->get_one();
+            
+                $datamail = array(
+                    'ref' => $order->reference,
+                    'total' => $data['total'],
+                    'ht' => $data['ht'],
+                    'tva' => $data['tva'],
+                    'tax' => $data['tax'],
+                    'products' => $data['products'],
+                    'currency' => $data['currency'],
+                    'addr' => $user_address,
+                    'cmdtime' => time()
+                );
+                // Send welcome mail
+                Controller_Base::sendHtmlMail(
+                    'no-reply@encrenomade.com', 
+                    'Season13.com', 
+                    $user_address->email, 
+                    'Facture Season13.com', 
+                    'mail/facture', 
+                    $datamail
+                );
+	            
+	            $result['state'] = "FINALIZE";
+	        }
+	    }
+	    else if( !empty($arr['vads_result']) && !empty($arr['vads_trans_status']) ) {
+	        if($order) {
+	            // Check out order
+	            $order->checkout($transid);
+	            // Failed
+	            $order->payfailed('payzen', $arr);
+	            
+	            $result['state'] = "FAIL";
+	        }
+	    }
+	    
+	    return new Response(Format::forge($result)->to_json(), 200);
+	}
+	
+	public function action_payzenReturn() {
+	    $transid = Input::get('vads_trans_id');
+	    if( empty($transid) ) {
+	        return Response::forge(View::forge('achat/order/cancel', array('return_page' => true)));
+	    }
+	    $order_ref = Date::time()->format("%y%m%d").substr($transid, 2);
+	    
+	    $arr = array(
+	        "vads_result" => Input::get('vads_result') ?: "",
+	        "vads_trans_status" => Input::get('vads_trans_status') ?: "",
+	        "vads_auth_result" => Input::get('vads_auth_result') ?: "",
+	        "vads_auth_mode" => Input::get('vads_auth_mode') ?: "",
+	        "vads_trans_id" => $transid,
+	        "signature" => Input::get('signature') ?: ""
+	    );
+	    
+	    $order = Model_Achat_Order::find_by_reference($order_ref);
+	    
+	    // Success
+	    if( $arr['vads_result'] == "00" && $arr['vads_trans_status'] == "AUTHORISED" ) {
+	        if($order) {
+	            $data = Payment::extractOrder($order);
+	            $data['return_page'] = true;
+                
+                return Response::forge(View::forge('achat/order/confirm', $data));
+	        }
+	        else {
+	            Session::set_flash('error', "Si votre carte bancaire a été débité, vous pouvez nous contacter au contact@encrenomade.com");
+	            return Response::forge(View::forge('achat/order/cancel', array('return_page' => true)));
+	        }
+	    }
+	    else {
+	        return Response::forge(View::forge('achat/order/cancel', array('return_page' => true)));
+	    }
 	}
 	
 	public function action_freeCheckout() {

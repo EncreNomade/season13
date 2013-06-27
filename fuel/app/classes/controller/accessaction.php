@@ -10,7 +10,7 @@ class Controller_Accessaction extends Controller_Rest
     	// Assign current_user to the instance so controllers can use it
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
     	
-    	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
+    	$this->remote_path = Config::get('custom.remote_path');
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);

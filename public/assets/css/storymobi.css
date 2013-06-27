@@ -17,6 +17,10 @@ ul {
     padding: 0;
 }
 
+ul#conn li:hover {
+    color: rgb(246, 168, 0);
+}
+
 .loading {
     position: absolute;
     left: 0px;
@@ -219,6 +223,39 @@ header #switch_menu.active {
     background: transparent url('../img/season13/story/story_hide_menu.png') no-repeat center center;
 }
 
+
+ul#conn {
+    position: relative;
+    float: right;
+    right: 0px;
+    top: 0px;
+    margin: 0;
+    z-index: 12;
+}
+#conn li {
+    position: relative;
+    background: transparent;
+    color: #fff;
+    margin: 0 7px 0 0;
+    width: 100%;
+}
+ul#conn li.inactive {
+    opacity: 0.6;
+}
+ul#conn li, ul#conn li a {
+    font: normal 20px/27px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+#conn .text_sep_vertical {
+    top: -2px;
+    width: 2px;
+    height: 22px;
+    background: #fff;
+    cursor: default;
+}
 .dialog.show {
     top: 3px;
     z-index: 11;
@@ -313,9 +350,11 @@ ul#menu div #menu_link {
     width: 0px;
     height: 0px;
     z-index: 1;
+    visibility: hidden;
 }
 #center.show {
     z-index: 20;
+    visibility: visible;
 }
 
 #top_center {
@@ -325,7 +364,7 @@ ul#menu div #menu_link {
     width: 0px;
     height: 0px;
     overflow: visible;
-    z-index: 12;
+    z-index: 21;
 }
 
 
@@ -499,6 +538,10 @@ ul#menu div #menu_link {
     margin: 10px 20px;
     width: 214px;
     height: auto;
+}
+
+#concept h1 {
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
 }
 
 #concept h5 {
@@ -1325,14 +1368,19 @@ ul#menu div #menu_link {
 #game_result h2 {
     position: relative;
     float: left;
-    font: normal 38px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    font: bold 15px/50px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: bottom;
+    width: 175px;
     text-align: center;
     height: 50px;
+    margin: 0;
+    padding: 0 0 0 5px;
     border-bottom: 1px solid #000;
-    z-index: 1;
+}
+#game_result h2 span {
+    font: bold 25px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    margin: 0;
+    color: rgb(246, 168, 0);
 }
 #game_result img {
     position: absolute;
@@ -1345,17 +1393,13 @@ ul#menu div #menu_link {
 #game_result h5 {
     position: relative;
     float: left;
-    font: normal 15px/50px 'DroidSansRegular', Arial, Helvetica;
-    vertical-align: bottom;
+    font: normal 15px/25px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: middle;
     width: 100%;
     text-align: center;
-    height: 40px;
+    height: 50px;
     margin: 0 0 15px 0;
-    padding: 0;
-}
-#game_result h5 span {
-    font: normal 30px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    margin: 0;
+    padding: 0 5px;
 }
 #game_result ul {
     position: absolute;
@@ -1373,6 +1417,7 @@ ul#menu div #menu_link {
     width: 90px;
     height: 100%;
     border-top: 1px solid #000;
+    color: rgb(246, 168, 0);
 }
 #game_result ul li:hover {
     background: rgb(246, 168, 0);

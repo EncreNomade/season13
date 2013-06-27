@@ -234,7 +234,7 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 
         $format = 'd/m/Y';
         if (empty($birthday))
-            $birthday = "22/10/2012";
+            $birthday = "1/1/1930";
         $birth = date_create_from_format($format, (string)$birthday);
 
 		$user = array(

@@ -58,8 +58,8 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         if(is_null($microtime)) {
             return array('success' => false, 'errorCode' => 3003, 'errorMessage' => $msgs[3003]);
         }
-        else if ($timeago < 0 || $timeago > 43200) {
-            return array('success' => false, 'errorCode' => 3005, 'errorMessage' => $msgs[3005]);
+        else if ($timeago < -60 || $timeago > 43200) {
+            return array('success' => false, 'errorCode' => 3005, 'errorMessage' => $msgs[3005]."($timeago)");
         }
         
         // Get App
@@ -117,8 +117,8 @@ class Controller_Webservice_Wsbase extends Controller_Rest
     {
     	parent::before();
     	
-    	$this->base_url = Fuel::$env == Fuel::DEVELOPMENT ? 'localhost:8888/season13/public/' : "http://".$_SERVER['HTTP_HOST']."/";
-    	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
+    	$this->base_url = Config::get('custom.base_url');
+    	$this->remote_path = Config::get('custom.remote_path');
     	
     	Config::load('errormsgs', true);
     	$this->msgs = (array) Config::get('errormsgs.webservice', array ());
@@ -161,7 +161,7 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         $val = Model_Achat_13extorder::validate('create');
 		
 		if ($val->run())
-		{	
+		{
 		    $ownermail = Input::post('owner');
 		    $user = Model_13user::find_by_email($ownermail);
 		    if(is_null($user)) {
@@ -597,21 +597,83 @@ class Controller_Webservice_Wsbase extends Controller_Rest
         ), 200);
     }
     
+    public static function makeHttpRequest($url, $method, $login, $password, $data = null)
+    {
+      //echo "<br/>makeHttpRequest($url, $method, $login, $password, $data )<br/>";
+
+      $response = array();
+
+      $curlHandle = curl_init();
+
+      $options = array(
+        CURLOPT_URL            => $url,
+        CURLOPT_CUSTOMREQUEST  => $method,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_CONNECTTIMEOUT => 60,          // timeout on connect
+        CURLOPT_TIMEOUT        => 60,          // timeout on response
+        CURLOPT_MAXREDIRS      => 10,           // stop after 10 redirects
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADER         => true,
+        //TODO : enlever CURLOPT_SSL_VERIFYPEER = false
+        CURLOPT_SSL_VERIFYPEER => false
+      );
+
+      if ($login != null)
+      {
+        $options[CURLOPT_USERPWD] = "$login:$password";
+      }
+
+      if (!empty($data))
+      {
+        $options[CURLOPT_POSTFIELDS] = $data;
+      }
+
+      curl_setopt_array($curlHandle, $options);
+      
+      Debug::dump($options);
+
+      $rawResponse = curl_exec($curlHandle);
+
+      $errno = curl_errno($curlHandle);
+      $error = curl_error($curlHandle);
+
+      $header_size = curl_getinfo($curlHandle,CURLINFO_HEADER_SIZE);
+      $response['header'] = substr($rawResponse, 0, $header_size);
+      $response['body'] = substr( $rawResponse, $header_size );
+      $response['http_code'] = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+      $response['last_url'] = curl_getinfo($curlHandle, CURLINFO_EFFECTIVE_URL);
+      $response['errno'] = $errno;
+      $response['error'] = $error;
+
+      curl_close($curlHandle);
+      //echo "resultat==>";var_dump($response); echo "<br/>";
+      return $response;
+    }
     
-    //public function get_test() {
-        //$request = Request::forge('http://season13.com/ws/order', 'curl');
+    
+    public function get_test() {
+        $request = Request::forge('http://localhost:8888/season13/public/ws/access_product', 'curl');
+        $time = time();
         
+        $request->set_method('GET')->set_params(array(
+            'appid' => 'af869b310c1a2a2d76260a35224b832b',
+            'microtime' => $time,
+            'token' => md5( 'af869b310c1a2a2d76260a35224b832b'.'3YLlXNTsUno2obBy'.$time ),
+            'reference' => '9791092330069',
+            'user' => 'test@test.com'
+        ));
         
-        /*$request->set_method('POST')->set_params(array(
-            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
-            'microtime' => '1234567890',
-            'token' => '520a657e08f0f73c8ae6eb53427a2956',
+        /*
+        $request->set_method('POST')->set_params(array(
+            'appid' => 'af869b310c1a2a2d76260a35224b832b',
+            'microtime' => $time,
+            'token' => md5( 'af869b310c1a2a2d76260a35224b832b'.'3YLlXNTsUno2obBy'.$time ),
             'owner' => 'test@test.com',
             'username' => 'wstester',
             'reference' => '9791092330069',
             'order_source' => 'Season 13 Site Order',
             'price' => '4.49',
-        ));*/
+        ));
         
         /*
         $request->set_method('GET')->set_params(array(
@@ -634,16 +696,6 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'appid' => 'a3db720844c6c391f2297b4fbece7d02',
             'microtime' => '1234567890',
             'token' => '520a657e08f0f73c8ae6eb53427a2956',
-            'reference' => '9791092330069',
-            'user' => 'test@test.com'
-        ));
-        */
-        
-        /*
-        $request->set_method('GET')->set_params(array(
-            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
-            'microtime' => '1234567890',
-            'token' => '520a657e08f0f73c8ae6eb53427a2956',
             'reference' => '9791092330069'
         ));*/
         
@@ -656,9 +708,27 @@ class Controller_Webservice_Wsbase extends Controller_Rest
             'user' => 'test@test.com'
         ));*/
         
-        //$response = $request->execute()->response();
+        $response = $request->execute()->response();
         
-        //return $this->response($response, 200);
-    //}
+        return $this->response($response, 200);
+        /*
+        $time = time();
+        $postdata = array(
+            'appid' => 'a3db720844c6c391f2297b4fbece7d02',
+            'microtime' => $time,
+            'token' => md5( 'a3db720844c6c391f2297b4fbece7d02'.'iLq0uaD7KEFVaYYd'.$time ),
+            'owner' => 'test@test.com',
+            'username' => 'wstester',
+            'reference' => '9791092330069',
+            'order_source' => 'Test Order',
+            'price' => '4.49',
+        );
+        
+        $response = self::makeHttpRequest("http://test13.encrenomade.com/ws/order", 'POST', null, null, $postdata);
+        
+        $xmlrep=simplexml_load_string($response["body"]);
+        
+        Debug::dump($xmlrep->success."; ".$xmlrep->order_id);*/
+    }
 	
 }

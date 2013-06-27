@@ -66,6 +66,9 @@
 					    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Achats <b class="caret"></b></a>
 					    <ul class="dropdown-menu">
 					        <li>
+					            <?php echo Html::anchor('achat/orderadmin/paid', 'Commandes') ?>
+					        </li>
+					        <li>
 					            <?php echo Html::anchor('achat/13product', 'Produits') ?>
 					        </li>
 					        <li>

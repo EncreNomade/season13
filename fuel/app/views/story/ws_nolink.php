@@ -5,6 +5,8 @@
     $likeUrl = isset($episode) 
                 ? $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode
                 : $base_url;
+                
+    $isiPad = Config::get('custom.isiPad');
  ?>
 
 <!DOCTYPE html> 
@@ -37,14 +39,21 @@
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
     echo Asset::css('dialog_auth_msg.css');
-    if (Agent::is_mobiledevice())
+    if (Agent::is_mobiledevice() && !$isiPad) {
+        echo Asset::css('dialog_auth_msg.mobi.css');
         echo Asset::css('storymobi.css');
-    else 
+    }
+    else {
+        echo Asset::css('dialog_auth_msg.css');
         echo Asset::css('story.css');
-        
+    }
+    
     // JQuery
     echo Asset::js('lib/jquery-1.9.1.min.js');
-
+    
+    // Config files
+    echo Asset::js('config.js');
+    
     // Other JS lib public
     echo Asset::js('lib/jquery.form.min.js');
     echo Asset::js('lib/BrowserDetect.min.js');
@@ -106,7 +115,7 @@
             if(array_key_exists('errorMessage', $access)) 
                 echo "'errorMessage': '".$access['errorMessage']."',\n";
             ?>
-        };    
+        };
     <?php endif; ?>
     
     </script>
@@ -164,8 +173,9 @@
                 xfbml      : true  // parse XFBML
             });
             
-            fbapi.checkConnect(null, false);
+            gui.fbInitedCallback();
         }
+        
     </script>
 
     <header>
@@ -226,7 +236,7 @@
             </h5>
             
             <div class="floatlink">
-                <a>Ne me demande plus</a>
+                <a>Non merci</a>
             </div>
             
             <div class="floatlink">
@@ -312,6 +322,25 @@
             </h5>
         </div>
         
+    <!--Continue read dialog-->
+        <div id="next_ep_dialog" class="dialog animate_short hidden">
+            <div class="close right"></div>
+            <h1>L'épisode Suivant</h1>
+            <div class="sep_line"></div>
+            
+            <?php if($episode->episode < 6): ?>
+                <h5 style="text-align: center;">
+                    L'épisode suivant ou la saison complète sont disponibles sur le site ePagine<br/>
+                </h5>
+            <?php else: ?>
+                <h5 style="text-align: center;">
+                    Retrouve prochainement la suite des aventures de Simon et Angéli dans Voodoo Connection Saison 2 sur le site ePagine<br/>
+                </h5>
+            <?php endif; ?>
+            
+            <a href="#"><?php echo Asset::img('season13/logo_black.png', array("class" => "logo", 'alt' => 'LOGO SEASON 13')); ?></a>
+        </div>
+        
     <!-- Preferece dialog -->
         <div id="preference" class="dialog animate_short hidden">
             <div class="close right"></div>
@@ -319,11 +348,31 @@
             <div class="sep_line"></div>
             <p>Audio: </p>
             <p>Vitesse: </p>
-            <p><label>Partager les commentaires sur facebook: <input id="share_comment_fb" type="checkbox" checked="true" /></label></p>
+            <input type="hidden" id="share_comment_fb" value="true" checked="true" />
             <div class="link">
                 <a href="javascript:gui.savePersonalData();">Sauvegarder</a>
                 <div class="loading"></div>
             </div>
+        </div>
+        
+        
+    <!-- Wiki dialog -->
+        <div id="wiki" class="dialog animate_short hidden">
+            <header>
+                <div class="close right"></div>
+                <h1>WIKI EXEMPLE</h1>
+                <div class="sep_line"></div>
+            </header>
+            
+            <nav>
+                <ul>
+                </ul>
+            </nav>
+            
+            <article>
+                <button id="gallery_next"></button>
+                <button id="gallery_prev"></button>
+            </article>
         </div>
         
         
@@ -444,8 +493,8 @@
         <div id="game_center">
             <div id="game_result">
                 <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
-                <h2>GAGNÉ !</h2>
-                <h5>Ton score : <span>240</span> pts</h5>
+                <h2>Bravo! <span>240</span> pts     </h2>
+                <h5>Améliore ton score en rejouant</h5>
                 <ul>
                     <li id="game_restart">REJOUER</li>
                     <li id="game_quit">QUITTER</li>

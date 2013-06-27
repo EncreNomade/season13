@@ -4,7 +4,7 @@
         <div class="sep_line">
             <h1>AVEC TON COMPTE FACEBOOK</h1>
         </div>
-        <div class="fb_btn" title="Connexion via Facebook sur SEASON 13"></div>
+        <div class="fb_btn form_fb_btn" title="Connexion via Facebook sur SEASON 13"></div>
     </div>
     <div class="section">
         <div class="sep_line">

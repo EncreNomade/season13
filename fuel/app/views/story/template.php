@@ -5,6 +5,8 @@
     $likeUrl = isset($episode) 
                 ? $base_url.str_replace(' ', '_', $episode->story)."/season".$episode->season."/episode".$episode->episode
                 : $base_url;
+                
+    $isiPad = Config::get('custom.isiPad');
  ?>
 
 <!DOCTYPE html> 
@@ -42,12 +44,16 @@
     // Css
     echo Asset::css('BebasNeue.css');
     echo Asset::css('DroidSans.css');
-    echo Asset::css('dialog_auth_msg.css');
-    echo Asset::css('cart.css');
-    if (Agent::is_mobiledevice())
+    if (Agent::is_mobiledevice() && !$isiPad) {
+        echo Asset::css('cart.mobi.css');
+        echo Asset::css('dialog_auth_msg.mobi.css');
         echo Asset::css('storymobi.css');
-    else 
+    }
+    else {
+        echo Asset::css('cart.css');
+        echo Asset::css('dialog_auth_msg.css');
         echo Asset::css('story.css');
+    }
     
     // JQuery
     echo Asset::js('lib/jquery-1.9.1.min.js');
@@ -60,15 +66,15 @@
     echo Asset::js('config.js');
     
     // Lib
-    if(Fuel::$env == Fuel::DEVELOPMENT) {
+    if(Fuel::$env == Fuel::DEVELOPMENT || Fuel::$env == Fuel::TEST) {
         echo Asset::js('lib/Tools.js');
         echo Asset::js('lib/Interaction.js');
         echo Asset::js('lib/fbapi.js');
-        echo Asset::js('config.js');
         echo Asset::js('cart.js');
         echo Asset::js('auth.js');
         echo Asset::js('story/msg_center.js');
         echo Asset::js('story/gui.js');
+        echo Asset::js('story/gallery.js');
     
         if($accessible) {
             echo Asset::js('story/gameinfo.js');
@@ -185,30 +191,26 @@
     <div id="fb-root"></div>
     <script>
         // Load the SDK asynchronously
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        
-        
-        // Init the SDK upon load
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '141570392646490', // App ID
-                channelUrl : 'http://season13.com/channelfile', // Path to your Channel File
-                status     : true, // check login status
-                cookie     : true, // enable cookies to allow the server to access the session
-                xfbml      : true  // parse XFBML
-            });
-            
-            fbapi.checkConnect(null, false);
-            
-            if(config.episode.epid == 3 || config.episode.epid == 4) 
-                story_access_resp(config.accessResp, config.episode.epid);
-        }
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+         
+         // Init the SDK upon load
+         window.fbAsyncInit = function() {
+             FB.init({
+                 appId      : config.fbAppId, // App ID
+                 channelUrl : 'http://season13.com/channelfile', // Path to your Channel File
+                 status     : true, // check login status
+                 cookie     : true, // enable cookies to allow the server to access the session
+                 xfbml      : true  // parse XFBML
+             });
+             
+             gui.fbInitedCallback();
+         }
         
     </script>
 
@@ -216,7 +218,7 @@
         <div class="left">
             <div id="tache">
                 <?php echo Asset::img('season13/story/story_tache.png', array('alt' => 'SEASON 13')); ?>
-                <a href="http://www.season13.com/" target="_blank"></a>
+                <a href="http://season13.com/" target="_blank"></a>
             </div>
             <div id="sep_left"></div>
             <h1>Voodoo Connection</h1>
@@ -229,64 +231,62 @@
             <div id="sep_right"></div>
             <div id="switch_menu"></div>
             
-        <?php if (!$extrait && !Agent::is_mobiledevice()): ?>
             <ul id="conn">
+        <?php if ( !$extrait && (!Agent::is_mobiledevice() || $isiPad) ): ?>
             <?php if($current_user == null): ?>
-                    <li id="open_signup">Créer un compte</li>
-                    <li class="text_sep_vertical"></li>
-                    <li id="open_login">Déjà client</li>
+                <li id="open_signup">Créer un compte</li>
+                <li class="text_sep_vertical"></li>
+                <li id="open_login">Déjà client</li>
             <?php else: ?>
-                <?php if(Auth::member(100)): ?>
-                    <!--<li><a href="admin/">ADMIN</a></li>-->
-                <?php endif; ?>
-                    <li id="user_id">BIENVENUE: <?php echo $current_user->pseudo ?></li>
-                    <li class="text_sep_vertical"></li>
-                    <li id="logout">LOGOUT</li>
+                <li id="user_id">BIENVENUE: <?php echo $current_user->pseudo ?></li>
+                <li class="text_sep_vertical"></li>
+                <li id="logout">LOGOUT</li>
             <?php endif; ?>
-                    <li class="text_sep_vertical"></li>
-                    <li id="cart"><?php echo Asset::img("season13/ui/cart.png"); ?><span></span></li>
-                </ul>
-                
-            <?php if($current_user == null): ?>
-                <div id="signup_dialog" class="dialog">
-                    <div class="close"></div>
-                    <div class="sep_line"></div>
-                    <?php echo View::forge('auth/signup_form')->render(); ?>
-                </div>
-                <div id="login_dialog" class="dialog">
-                    <div class="close"></div>
-                    <div class="sep_line"></div>
-                    <?php echo View::forge('auth/login_form')->render(); ?>
-                </div>
-                <div id="change_pass_dialog" class="dialog">
-                    <div class="close"></div>
-                    <div class="sep_line"></div>
-                    <?php echo View::forge('auth/chpass_form')->render(); ?>
-                </div>
-                <div id="link_fb_dialog" class="dialog">
-                    <div class="close"></div>
-                    <div class="sep_line"></div>
-                    <?php echo View::forge('auth/linkFb_form')->render(); ?>
-                </div>
-                
-            <?php else: ?>
-                <div id="update_dialog" class="dialog">
-                    <div class="close"></div>
-                    <div class="sep_line"></div>
-                    <?php echo View::forge('auth/update_form')->render(); ?>
-                </div>
-            
-            <?php endif; ?>
-            
-                <div id="cart_dialog" class="dialog">
-                    <div class="close"></div>
-                    <div class="sep_line"></div>
-                    <div class="cart_container">
-                        <?php echo View::forge('achat/cart/cart_view')->render(); ?>
-                    </div>
-                </div>
-            
+                <li class="text_sep_vertical"></li>
         <?php endif; ?>
+                <li id="cart"><?php echo Asset::img("season13/ui/cart.png"); ?><span></span></li>
+            </ul>
+        
+        <?php if ( !$extrait && (!Agent::is_mobiledevice() || $isiPad) ): ?>
+            <?php if($current_user == null): ?>
+            <div id="signup_dialog" class="dialog">
+                <div class="close"></div>
+                <div class="sep_line"></div>
+                <?php echo View::forge('auth/signup_form')->render(); ?>
+            </div>
+            <div id="login_dialog" class="dialog">
+                <div class="close"></div>
+                <div class="sep_line"></div>
+                <?php echo View::forge('auth/login_form')->render(); ?>
+            </div>
+            <div id="change_pass_dialog" class="dialog">
+                <div class="close"></div>
+                <div class="sep_line"></div>
+                <?php echo View::forge('auth/chpass_form')->render(); ?>
+            </div>
+            <div id="link_fb_dialog" class="dialog">
+                <div class="close"></div>
+                <div class="sep_line"></div>
+                <?php echo View::forge('auth/linkFb_form')->render(); ?>
+            </div>
+            
+            <?php else: ?>
+            <div id="update_dialog" class="dialog">
+                <div class="close"></div>
+                <div class="sep_line"></div>
+                <?php echo View::forge('auth/update_form')->render(); ?>
+            </div>
+        
+            <?php endif; ?>
+        <?php endif; ?>
+    
+            <div id="cart_dialog" class="dialog">
+                <div class="close"></div>
+                <div class="sep_line"></div>
+                <div class="cart_container">
+                    <?php echo View::forge('achat/cart/cart_view')->render(); ?>
+                </div>
+            </div>
         </div>
     </header>
     
@@ -327,11 +327,16 @@
     <div id="top_center">
     <!--Access dialog-->
         <div id="access_dialog" class="dialog hidden">
-            <div class="close right"></div>
+            <!--<div class="close right"></div>-->
             <h1></h1>
             <div class="sep_line"></div>
             
-            <?php if(array_key_exists('form', $access)) echo html_entity_decode($access['form'], ENT_COMPAT, 'UTF-8'); ?>
+            <div class="container">
+                <?php 
+                if(is_null($current_user))
+                    echo View::forge('story/access/auth')->render();
+                 ?>
+            </div>
         </div>
     </div>
 
@@ -348,7 +353,7 @@
             </h5>
             
             <div class="floatlink">
-                <a>Ne me demande plus</a>
+                <a>Non merci</a>
             </div>
             
             <div class="floatlink">
@@ -449,9 +454,8 @@
                 </div>
             <?php else: ?>
                 <h5 style="text-align: center;">
-                    Pour découvrir la descente infernale de Simon et Angéli en poubelle dans Montmartre,<br/>
-                    RDV en Février<br/>
-                    sur Voodoo Connection Saison 2<br/>
+                    Retrouve prochainement la suite des aventures de Simon et Angéli dans Voodoo Connection Saison 2<br/>
+                    sur <a href="http://season13.com">season13.com</a><br/>
                 </h5>
             <?php endif; ?>
             
@@ -472,6 +476,26 @@
                 <a href="javascript:gui.savePersonalData();">Sauvegarder</a>
                 <div class="loading"></div>
             </div>
+        </div>
+        
+        
+    <!-- Wiki dialog -->
+        <div id="wiki" class="dialog animate_short hidden">
+            <header>
+                <div class="close right"></div>
+                <h1>WIKI EXEMPLE</h1>
+                <div class="sep_line"></div>
+            </header>
+            
+            <nav>
+                <ul>
+                </ul>
+            </nav>
+            
+            <article>
+                <button id="gallery_next"></button>
+                <button id="gallery_prev"></button>
+            </article>
         </div>
         
         
@@ -594,8 +618,8 @@
         <div id="game_center">
             <div id="game_result">
                 <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
-                <h2>GAGNÉ !</h2>
-                <h5>Ton score : <span>240</span> pts</h5>
+                <h2>Bravo! <span>240</span> pts    </h2>
+                <h5>Améliore ton score en rejouant <a href="" target="_blank">ici</a></h5>
                 <ul>
                     <li id="game_restart">REJOUER</li>
                     <li id="game_quit">QUITTER</li>

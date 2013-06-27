@@ -37,7 +37,7 @@
 	    echo Asset::js('lib/jquery.form.min.js');
 	    
 	    // Private js
-	    if(Fuel::$env == Fuel::DEVELOPMENT) {
+	    if(Fuel::$env == Fuel::DEVELOPMENT || Fuel::$env == Fuel::TEST) {
     	    echo Asset::js('lib/fbapi.js');
     	    echo Asset::js('template.js');
             echo Asset::js('cart.js');
@@ -45,6 +45,7 @@
         }
         else {
             echo Asset::js('template_main.min.js');
+            //echo Asset::js('auth.js');
         }
 	    if(isset($js_supp)) echo Asset::js($js_supp);
 	    
@@ -87,14 +88,14 @@
         js = d.createElement(s);
         js.id = id;
         js.async = true;
-        js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=141570392646490";
+        js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId="+config.fbAppId;
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
     // Init the SDK upon load
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '141570392646490', // App ID
+            appId      : config.fbAppId, // App ID
             channelUrl : 'http://season13.com/channelfile', // Path to your Channel File
             status     : true, // check login status
             cookie     : true, // enable cookies to allow the server to access the session

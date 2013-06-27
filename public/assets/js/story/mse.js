@@ -222,7 +222,7 @@ mse.init = function(configs, id, width, height, orientation) {
     
     // Images
     var path = "./UI/";
-    if(config.publishMode == "release") path = "http://" + window.location.host + config.publicRoot + "assets/img/season13/story/";
+    if(config.publishMode == "release") path = config.mseBasicImgSrcPath;
 	mse.src.addSource('imgNotif', path+'turn_comp.png', 'img');
 	mse.src.addSource('fbBar', path+'barre/fb.png', 'img');
 	mse.src.addSource('wikiBar', path+'barre/wiki.png', 'img');
@@ -233,7 +233,7 @@ mse.init = function(configs, id, width, height, orientation) {
 	
 	// Sound
 	path = "./audio/";
-	if(config.publishMode == "release") path = "http://" + window.location.host + config.publicRoot+"assets/aud/";
+	if(config.publishMode == "release") path = config.mseBasicAudSrcPath;
 	mse.src.addSource('aud_gameover', path+'gameover', 'aud');
 	mse.src.addSource('aud_inter_open', path+'interaction_open', 'aud');
 	mse.src.addSource('aud_inter_close', path+'interaction_close', 'aud');
@@ -1552,7 +1552,7 @@ $.extend(mse.Text.prototype, {
     		if(x >= link.offx-15 && x <= link.offx+link.width+15 && y >= link.offy && y <= link.offy+this.lineHeight+24) {
     		    switch(link.type) {
     		    case 'audio': link.link.play();break;
-    		    case 'wiki': link.link.init(this.getContainer());break;
+    		    case 'wiki': link.link.init(link.src, this.getContainer());break;
     		    case 'fb': window.open(linkObj.link);break;
     		    }
     		    break;
@@ -2459,10 +2459,14 @@ mse.GameShower.prototype = {
 	    else {
 	        this.state = "WIN";
 	    }
+	    // Add gameurl
+	    if(this.currGame.className) 
+	        this.result.children('h5').children('a').prop('href', config.base_url + "games/" + this.currGame.className);
 	    // Show result window
 	    this.result.addClass('active');
-	    this.result.children('h2').text(win ? "GAGNÉ !" : "PERDU !");
-	    this.result.children('h5').children('span').text(this.currGame.result.score);
+	    if( this.currGame.result.score <= 0 )
+	        this.result.children('h2').html('<span>'+this.currGame.result.score+'</span> pts    ');
+	    else this.result.children('h2').html('Bravo! <span>'+this.currGame.result.score+'</span> pts    ');
 	},
 	end : function() {
 	    this.result.removeClass('active');
@@ -2612,7 +2616,6 @@ $.extend( mse.GameExpose.prototype , {
             ctx.strokeRect(0, 0, this.resultw, this.resulth);
             // Window title
             ctx.fillStyle = "#000";
-            ctx.fillText(this.game.result.win ? "GAGNÉ !" : "PERDU !", this.resultw/2, 40);
             ctx.drawImage(mse.src.getSrc('fbBn'), 145, 5, 30, 30);
             ctx.beginPath();
             ctx.moveTo(0, 40);
@@ -2623,28 +2626,34 @@ $.extend( mse.GameExpose.prototype , {
             if(this.score != score) {
                 this.score = score;
                 ctx.font = "15px DroidSansRegular";
-                this.scorew1 = ctx.measureText("Ton score : ").width;
-                var w3 = ctx.measureText(" pts").width;
-                ctx.font = "30px BebasNeueRegular";
+                this.scorew1 = this.score <= 0 ? 0 : ctx.measureText("Bravo! ").width;
+                var w3 = ctx.measureText(" pts    ").width;
+                ctx.font = "25px BebasNeueRegular";
                 this.scorew2 = ctx.measureText(this.score).width;
                 this.scoreleft = (this.resultw - this.scorew1 - this.scorew2 - w3)/2;
             }
             ctx.textAlign = "left";
             ctx.font = "15px DroidSansRegular";
-            ctx.fillText("Ton score : ", this.scoreleft, 80);
-            ctx.fillText(" pts", this.scoreleft+this.scorew1+this.scorew2, 80);
-            ctx.font = "30px BebasNeueRegular";
-            ctx.fillText(this.score, this.scoreleft+this.scorew1, 84);
-            // Button restart
+            if(this.score > 0)
+                ctx.fillText("Bravo! ", this.scoreleft, 35);
+            ctx.fillText(" pts    ", this.scoreleft+this.scorew1+this.scorew2, 35);
+            ctx.font = "25px BebasNeueRegular";
+            ctx.fillStyle = "rgb(246, 168, 0)";
+            ctx.fillText(this.score, this.scoreleft+this.scorew1, 40);
+            // Message 
             ctx.textAlign = "center";
+            ctx.font = "15px DroidSansRegular";
+            ctx.fillStyle = "#000";
+            ctx.fillText("Améliore ton score !", this.resultw/2, 80);
+            // Button restart
             ctx.fillStyle = "#666";
             ctx.fillRect(0, 90, 180, 30);
             ctx.beginPath();
             ctx.moveTo(0, 90);
             ctx.lineTo(180, 90);
             ctx.stroke();
-            ctx.fillStyle = "#FFF";
             ctx.font = "20px BebasNeueRegular";
+            ctx.fillStyle = "rgb(246, 168, 0)";
             ctx.fillText("REJOUER", this.resultw/2, 118);
         }
         else {
@@ -3048,20 +3057,23 @@ $.extend(mse.TextCard.prototype, {
 });
 
 mse.WikiLayer = function() {
-    mse.Layer.call(this, null, cfs.zids.wiki, {});
+    //mse.Layer.call(this, null, cfs.zids.wiki, {});
     
-    this.currCard = null;
-    this.cbDragStart = new mse.Callback(this.dragStart, this);
-    this.cbDragMove = new mse.Callback(this.dragMove, this);
-    this.cbDragEnd = new mse.Callback(this.dragEnd, this);
+    this.pages = [];
+    this.playAfterClose = true;
+    
+    //this.currCard = null;
+    //this.cbDragStart = new mse.Callback(this.dragStart, this);
+    //this.cbDragMove = new mse.Callback(this.dragMove, this);
+    //this.cbDragEnd = new mse.Callback(this.dragEnd, this);
 };
-extend(mse.WikiLayer, mse.Layer);
+//extend(mse.WikiLayer, mse.Layer);
 $.extend(mse.WikiLayer.prototype, {
     cardw: 250,
     cardh: 320,
     hide: function() {
         mse.src.getSrc('aud_wiki_close').play();
-        var container = this.parent;
+        /*var container = this.parent;
         if(container) {
             this.removeListener('gestureStart', this.cbDragStart);
             this.removeListener('gestureUpdate', this.cbDragMove);
@@ -3070,12 +3082,29 @@ $.extend(mse.WikiLayer.prototype, {
         
         this.parent.reactiveOthers();
         this.globalAlpha = 0;
-        this.parent.delLayer('wiki');
+        this.parent.delLayer('wiki');*/
+        
+        if(this.gallery) {
+            this.gallery.hide();
+            
+            if(this.playAfterClose) {
+                mse.root.play();
+                gui.updatePlayPauseIcon();
+            }
+            
+            var hasShownChild = false;
+            gui.center.children().each(function() {
+                if($(this).hasClass('show'))
+                    hasShownChild = true;
+            });
+            if(!hasShownChild)
+                gui.center.removeClass('show');
+        }
     },
-    init: function(container) {
-        if(!container instanceof mse.UIObject) return;
+    init: function(title, container) {
+        //if(!container instanceof mse.UIObject) return;
         mse.src.getSrc('aud_wiki_open').play();
-        this.parent = container;
+        /*this.parent = container;
         this.setSize(container.getWidth(), container.getHeight());
         this.setPos(0,0);
         this.cardx = (this.width - this.cardw)/2;
@@ -3089,24 +3118,60 @@ $.extend(mse.WikiLayer.prototype, {
         
         container.addLayer('wiki', this);
         this.globalAlpha = 1;
-        container.desactiveOthers('wiki');
+        container.desactiveOthers('wiki');*/
+        
+        this.gallery = new gui.Gallery($('#wiki'), title, null, this.pages);
+        if(!gui.center.hasClass('show')) gui.center.addClass('show');
+        this.gallery.show();
+        this.gallery.jqObj.siblings().removeClass('show');
+        // Close event
+        var close = this.gallery.jqObj.find('.close');
+        close.unbind('click').bind('click', {'wiki': this}, function(e) {
+            e.data.wiki.hide();
+        });
+        
+        if(mse.root.inPause) {
+            this.playAfterClose = false;
+        }
+        else {
+            this.playAfterClose = true;
+            mse.root.pause();
+            gui.updatePlayPauseIcon();
+        }
     },
     addImage: function(img, legend) {
-        var param = {size: [this.cardw, this.cardh]};
-        this.addObject(new mse.ImageCard(this, param, null, img, legend));
+        var page = $('<div class="imagecard"></div>');
+        this.pages.splice(0, 0, page);
+        mse.src.waitSrc(img, new Callback(function() {
+            page.append('<img src="'+mse.src.getSrc(img).src+'"><h5>'+legend+'</h5>');
+        }, this));
+        
+        //var param = {size: [this.cardw, this.cardh]};
+        //this.addObject(new mse.ImageCard(this, param, null, img, legend));
     },
     addTextCard: function() {
-        var param = {size: [this.cardw, this.cardh]};
-        this.textCard = new mse.TextCard(this, param, null);
-        this.addObject(this.textCard);
+        var page = $('<div class="textcard"></div>');
+        this.pages.splice(0, 0, page);
+        this.textCard = page;
+        page.addSection = function(title, text) {
+            page.append('<h1>'+title+'</h1><h5>'+text+'</h5>');
+        };
+        page.addLink = function(title, link) {
+            page.append('<h4><a href="'+link+'" target="_blank">'+title+'</a></h4>');
+        };
+        //var param = {size: [this.cardw, this.cardh]};
+        //this.textCard = new mse.TextCard(this, param, null);
+        //this.addObject(this.textCard);
     },
     addExplication: function(title, text) {
-        this.addTextCard();
-        this.textCard.addSection(title, text);
+        this.textCard.append('<h1>'+title+'</h1><h5>'+text+'</h5>');
+        //this.addTextCard();
+        //this.textCard.addSection(title, text);
     },
     addLink: function(title, link) {
-        if(!this.textCard) this.addTextCard();
-        this.textCard.addLink(title, link);
+        this.textCard.append('<h1>'+title+'</h1><a href="'+link+'" target="_blank">'+link+'</a>');
+        //if(!this.textCard) this.addTextCard();
+        //this.textCard.addLink(title, link);
     },
     dragStart: function(e){
         for(var i = this.objList.length-1; i >= 0; i--) {

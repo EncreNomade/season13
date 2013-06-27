@@ -15,6 +15,7 @@ class Controller_Admin_Build extends Controller_Backend
             'story/gui.js',
             'story/gameinfo.js',
             'story/tuto.js',
+            'story/gallery.js',
         );
         
         $compressed = "";

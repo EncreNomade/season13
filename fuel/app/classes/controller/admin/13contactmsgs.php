@@ -40,6 +40,10 @@ class Controller_Admin_13contactmsgs extends Controller_Season13
 			
 			if ($val->run())
 			{
+			    if( preg_match('#SPAM#i', Input::post('message')) || preg_match('#SPAM#i', Input::post('title')) ) {
+			        Response::redirect('contact');
+			    }
+			
 				$admin_13contactmsg = Model_Admin_13contactmsg::forge(array(
 					'nom' => Input::post('nom'),
 					'user' => $this->current_user ? $this->current_user->id : 0,

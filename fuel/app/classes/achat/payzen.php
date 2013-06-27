@@ -1,6 +1,7 @@
 <?php
 
 class Payzen extends Payment {
+
     public $name = "Payzen";
     
     
@@ -41,49 +42,74 @@ class Payzen extends Payment {
         return ($result);
     }
     
+    private static function update_session($transid, $order) {
+        // Get payzen orders
+        $orders = Session::get('payzen_order', false);
+        if(!$orders) {
+            $orders = array();
+            Session::set('payzen_order', $orders);
+        }
+        
+        // Update
+        $orders[$transid] = $order->reference;
+        Session::set('payzen_order', $orders);
+    }
+    
+    private static function gene_trans_id($orderid) {
+        $id = sprintf("%04s", $orderid);
+        
+        // Get canceled payzen orders
+        $orders = Session::get('payzen_order');
+        if(!$orders) {
+            $orders = array();
+            Session::set('payzen_order', $orders);
+        }
+        // Check existance
+        for ($i = 0; $i < 100; $i++) {
+            $transid = sprintf("%02s", $i).$id;
+            if(!array_key_exists($transid, $orders)) {
+                return $transid;
+            }
+        }
+        
+        return $transid;
+    }
     
     
-    public function checkoutOrder($order) {
+    
+    public static function getCheckoutForm($order) {
         $o = self::extractOrder($order);
-    
+        
         // Parameters general
         $params = Config::get('custom.payzen');
         
         // Parameters of this order
         $params['vads_currency'] = $o['currency']->iso_code_num;
-        $params['vads_amount'] = $o['total_amt'];
+        $params['vads_amount'] = number_format($o['total'], 2, '', '');
         $params['vads_order_id'] = $order->reference;
         $params['vads_cust_name'] = Model_13user::find($o['user_id'])->pseudo;
         $params['vads_cust_country'] = $order->country_code;
         
         // Parameters addition
-        $params['vads_trans_id'] = $order->id;
+        $params['vads_trans_id'] = self::gene_trans_id($order->id);
         $params['vads_trans_date'] = gmdate("YmdHis", time());
         $params['signature'] = self::get_Signature($params, $params['key']);
         
-        // CURL don't work
-        $curl = Request::forge('https://secure.payzen.eu/vads-payment/', 'curl');
-        //$curl->set_method('post')->set_params($params);
+        self::update_session($params['vads_trans_id'], $order);
         
-        // Execute the request to uglifyjs
-        //$curl->execute();
+        return View::forge('achat/order/payzen_payment', $params)->render();
+    }
+    
+    
+    
+    public function checkoutOrder($order, $token = null) {
+        $order->checkout($token);
+        self::save($this, $token);
+        return array('success' => true);
     }
     
     
     public function confirmPayment($order, $token, $supp) {
-        // Collect items again for appling the micropayment discount
-        $o = self::extractOrder($order);
-        
-        $data = array(
-            'total' => $o['total_amt'],
-            'ht' => $o['total_ht'],
-            'tax' => $o['total_tax'],
-            'tva' => $o['tva'],
-            'products' => $o['products'],
-            'currency' => $o['currency'],
-            'user_id' => $o['user_id'],
-        );
-        
         
     }
     

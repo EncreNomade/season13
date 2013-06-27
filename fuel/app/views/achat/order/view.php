@@ -8,7 +8,7 @@
             <?php echo View::forge('achat/order/recaptulatif', array(
                                     'total' => $total,
                                     'ht' => $ht,
-                                    'tva' => $tva,
+                                    'tva' => $tva."%",
                                     'tax' => $tax,
                                     'products' => $products,
                                     'currency' => $currency,
@@ -37,11 +37,14 @@
             <h2>Je règle mes achats:</h2>
         
         <?php if($total): ?>
-            <!-- INFO: The post URL "checkout.php" is invoked when clicked on "Pay with PayPal" button.-->
+            
+            <?php echo html_entity_decode($payzenCheckoutForm, ENT_COMPAT, 'UTF-8'); ?>
+            
+            <br/>
             
             <form id='paypalBuyForm' action='<?php echo $base_url; ?>achat/order/paypalCheckout' METHOD='POST'>
             	<input type='image' name='paypal_submit' id='paypal_submit' src='https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' border='0' align='top' alt='Pay with PayPal'/>
-            	<cite>En cliquant sur ce bouton, tu peux régler tes achats sans avoir de compte Paypal. Une carte bancaire suffit.</cite>
+            	<!--<cite>En cliquant sur ce bouton, tu peux régler tes achats sans avoir de compte Paypal. Une carte bancaire suffit.</cite>-->
             </form>
             
             <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->

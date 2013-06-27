@@ -17,8 +17,7 @@
     </div>
     <div id="bookresume" class="layer">
         <div id="ytapiplayer">
-            You need Flash player 8+ and JavaScript enabled to view this video.
-            <param name="wmode" value="transparent" />
+            <iframe width="420" height="236" src="http://www.youtube-nocookie.com/embed/lwuMe5fzeyU?rel=0&vq=hd720&wmode=transparent" frameborder="0" allowfullscreen></iframe>
         </div>
         <div id="resumebody">
             <?php echo Asset::img('season13/illus/titre_2.png', array('alt' => 'Voodoo Connection SEASON 13')); ?>
@@ -109,7 +108,7 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
                 
-                    <li><a href="javascript:cart.add('9791092330069');">SAISON 1 2,99€</a></li>
+                    <li><a href="javascript:cart.add('9791092330069');">SAISON 1: 2,99€</a></li>
                 </ul>
             </div>
         </div>
@@ -138,6 +137,9 @@ if(!$current_user) {
     }
     else if(Input::get('login') == "true") {
         echo "<script>showLogin();</script>";
+    }
+    else if(Input::get('chpass') == "true") {
+        echo "<script>showChPass();</script>";
     }
 }
 

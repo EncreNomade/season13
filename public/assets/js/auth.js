@@ -88,215 +88,17 @@ function updateMonthChanged() {
     if(d <= nb) $('#updatebDay').val(d);
 }
 
+window.auth = {
 
-(function () {
-
-var regs = {
-    'date': /^\d{2}\/\d{2}\/\d{4}$/,
-    'mail': /^[\w\.\_\-]+@[\w\.\_\-]+$/,
-    'telephone' : /^[\d]+$/,
-    'errcode': /\d{4}/g,
-    'codpos': /^[\d]+$/
-}
-
-function defaultHide() {
-    hideDialog($(this).parents('.dialog'));
-}
-
-function init() {
-    $('#open_signup').click(showSignup);
-    $('#toSignup').click(showSignup);
-    $('#open_login').click(showLogin);
-    $('#toLogin').click(showLogin);
-    $('#dialog_mask').click(hideDialog);
-    $('#user_id').click(showUpdate);
+    regs : {
+        'date': /^\d{2}\/\d{2}\/\d{4}$/,
+        'mail': /^[\w\.\_\-]+@[\w\.\_\-]+$/,
+        'telephone' : /^[\d]+$/,
+        'errcode': /\d{4}/g,
+        'codpos': /^[\d]+$/
+    },
     
-    $('#signupbMonth').change(monthChanged);
-    $('#updatebMonth').change(updateMonthChanged);
-    
-    $('.dialog .close').unbind('click', defaultHide).click(defaultHide);
-    
-    // Extra code for popup dialog alert
-    $('.flash-close').click(function() {
-        var alert = $(this).parent('.flash-alert');
-        alert.fadeOut(500);
-        setTimeout(function() {
-            alert.remove();
-        }, 500);
-    });
-
-    var options = {
-        type :      'POST',
-        dataType :  'json',
-        success :   function(data, textStatus, XMLHttpRequest) {
-            // now, we get two important pieces of data back from our rest controller
-            // data.valid = true/false
-            // data.redirect = the page we redirect to on successful login
-            if (data.valid)
-            {
-                //document.location.href = data.redirect;
-                document.location.reload();
-            }
-            else
-            {
-                if(data.errorType) {
-                    if(data.errorType == 'mail') 
-                        $('#signupMail').siblings('label').addClass('alert');
-                    else if(data.errorType == 'pseudo') 
-                        $('#signupId').siblings('label').addClass('alert');
-                }
-                if(data.errorMessage) alert('Erreur d\'inscription: '+ data.errorMessage);
-                $('input[type=submit]').removeAttr('disabled');
-            }
-        },
-        error :     function(XMLHttpRequest, textStatus, errorThrown) {
-            alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-            $('input[type=submit]').removeAttr('disabled');
-        }
-    };
-    // Prepare ajax form
-    $('#signupForm').ajaxForm(options);
-    $('#signupBtn').click(function(e) {
-        $('#signupForm').find('cite, label').removeClass('alert');
-
-        // Check fields
-        var name = $('#signupId').val();
-        var pass = $('#signupPass').val();
-        var conf = $('#signupConf').val();
-        var sex = $('#signupSex').val();
-        var bDay = $('#signupbDay').val()+"/"+$('#signupbMonth').val()+"/"+$('#signupbYear').val();
-        $('#signupBirthday').val(bDay);
-        var mail = $('#signupMail').val();
-        var pays = $('#signupPays').val();
-        var codpos = $('#signupCP').val();
-        var tel = $('#signupPortable').val();
-        var notif = $('#signupNotif').val();
-
-        var valid = true;
-        if(name == "") {$('#signupId').siblings('cite').addClass('alert');valid = false;}
-        if(pass == "") {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
-        else if(pass.length < 6) {$('#signupPass').siblings('cite').addClass('alert');valid = false;}
-        if(conf == "" || conf != pass) {$('#signupConf').siblings('cite').addClass('alert');valid = false;}
-        if(!regs.mail.test(mail)) {$('#signupMail').siblings('label').addClass('alert');valid = false;}
-        if( (tel != "" && !regs.telephone.test(tel))/* || (tel == "" && notif == "sms")*/ ) {
-            $('#signupPortable').siblings('cite').addClass('alert');
-            valid = false;
-        }
-        if( codpos != "" && !regs.codpos.test(codpos) ) {
-            $('#signupCP').siblings('label').addClass('alert');
-            valid = false;
-        }
-        
-        if(!valid) e.preventDefault();
-        
-        $('input[type=submit]', this).attr('disabled', 'disabled');
-        $('#signupForm').each(function() {
-            fuel_set_csrf_token(this);
-        });
-    });
-    
-    // Facebook signup
-    function presignupfb() {
-        FB.api('me', function(u){
-            $('#signupId').val(u.username);
-            $('#signupSex').val(u.gender == 'male' ? 'm' : 'f');
-            var bDay = u.birthday.split('/'); // month/day/year
-            $('#signupbDay').val(bDay[1]);
-            $('#signupbMonth').val(bDay[0]);
-            $('#signupbYear').val(bDay[2]);
-            $('#signupMail').attr('readonly', 'readonly').val(u.email);
-            
-            $('#signup_fbToken').val(fbToken); // signal to server, it's a FB user !
-            
-            alert('Complète ton formulaire d\'inscription pour t\'inscrire');
-        });
-    }
-    $('#signupForm .fb_btn').click(function(){    
-        FB.login(function(response) {
-            if (response.status == 'connected') {                
-                var fbToken = response.authResponse.accessToken;
-                
-                $.ajax({
-                    url: config.publicRoot + 'base/login_fb',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {'fb_token':fbToken},
-                    success: function(data, textStatus, XMLHttpRequest)
-                    {
-                        if (data.valid)
-                        {
-                            document.location.reload();
-                        }
-                        else
-                        {
-                            presignupfb();
-                        }
-                    },
-                    error: presignupfb
-                });
-            } 
-            else if (response.status === 'not_authorized'){
-                alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
-            }
-            else { // fail
-                alert('Désolé, une erreur inconnue s\'est produite, veuilles recharger la page et réessayer');
-            }
-        }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});       
-    });
-    
-    // Facebook login
-    function fb_logged(response) {
-        if(response.status === 'not_authorized') {
-            alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
-            return;
-        }
-    
-        var token = fbapi.token;
-        
-        $.ajax({
-            url: config.publicRoot + 'base/login_fb',
-            type: 'POST',
-            dataType: 'json',
-            data: {'fb_token':token},
-            success: function(data, textStatus, XMLHttpRequest)
-            {
-                // now, we get two important pieces of data back from our rest controller
-                // data.valid = true/false
-                // data.redirect = the page we redirect to on successful login
-                if (data.valid)
-                {
-                    //document.location.href = data.redirect;
-                    document.location.reload();
-                }
-                else
-                {
-                    switch (data.errorCode) {
-                    case 10:
-                    case 11:
-                        break;
-                    case 12:
-                        if(showLinkFb) showLinkFb();
-                        data.errorMessage = "";
-                        break;
-                    }
-                    if(data.errorMessage && data.errorMessage != "") 
-                        alert('Erreur de connexion: '+ data.errorMessage);
-                    $('input[type=submit]').removeAttr('disabled');
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown)
-            {
-                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-                $('input[type=submit]').removeAttr('disabled');
-            }
-        });
-    }
-    $('#loginForm .fb_btn').click(function(){
-        fbapi.connect(fb_logged);
-    });
-    
-    
-    var options = {
+    linkfb_options : {
         type :      'POST',
         dataType :  'json',
         success :   function(data, textStatus, XMLHttpRequest) {
@@ -337,10 +139,8 @@ function init() {
             alert("Désolé, une erreur inconnue s'est produite, tu peux nous contacter: contact@encrenomade.com");
             $('input[type=submit]').removeAttr('disabled');
         }
-    };
-    // Prepare ajax form
-    $('#linkFbForm').ajaxForm(options);
-    $('#linkfbBtn').click(function(e) {
+    },
+    linkfb_action : function(e) {
         $('#linkFbForm').find('cite, label').removeClass('alert');
 
         // Check fields
@@ -360,64 +160,10 @@ function init() {
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
         fuel_set_csrf_token($('#linkFbForm').get(0));
-    });
+    },
     
     
-    
-    $('#loginForm').submit(function(e) {
-        // Stop full page load
-        e.preventDefault();
-
-        // Check fields
-        var name = $('#loginId').val();
-        var pass = $('#loginPass').val();
-
-        var valid = true;
-        if(name == "") {$('#loginId').siblings('label').addClass('alert');valid = false;}
-        if(pass == "") {$('#loginPass').siblings('label').addClass('alert');valid = false;}
-        if(!valid) return;
-        
-        $('input[type=submit]', this).attr('disabled', 'disabled');
-
-        // Request
-        var data = {
-            'identifiant': name,
-            'password': pass,
-        };
-
-        // Send
-        $.ajax({
-            url: config.publicRoot + 'base/login_normal',
-            dataType: 'json',
-            type: 'POST',
-            data: data,
-            success: function(data, textStatus, XMLHttpRequest)
-            {
-                // now, we get two important pieces of data back from our rest controller
-                // data.valid = true/false
-                // data.redirect = the page we redirect to on successful login
-                if (data.valid)
-                {
-                    //document.location.href = data.redirect;
-                    document.location.reload();
-                }
-                else
-                {
-                    if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
-                    $('input[type=submit]').removeAttr('disabled');
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown)
-            {
-                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
-                $('input[type=submit]').removeAttr('disabled');
-            }
-        });
-    });
-    
-    
-    
-    var options = {
+    chPass_options : {
         type :      'POST',
         dataType :  'json',
         success :   function(data, textStatus, XMLHttpRequest) {
@@ -438,15 +184,333 @@ function init() {
             $('#chpass_mail').siblings('cite').text("Désolé, une erreur inconnue s'est produite, tu peux nous contacter: contact@encrenomade.com").addClass('alert');
             $('input[type=submit]').removeAttr('disabled');
         }
-    };
-    // Prepare ajax form
-    $('#chPassForm').ajaxForm(options);
-    $('#chPassBtn').click(function(e) {
+    },
+    chPass_action : function(e) {
         $('#chPassForm').find('cite, label').removeClass('alert');
         
         $('input[type=submit]', this).attr('disabled', 'disabled');
         fuel_set_csrf_token($('#chPassForm').get(0));
+    },
+    
+    
+    
+    
+    initFbSingupBtn : function(btn, form) {
+        if(!form || form.length <= 0 || !btn || btn.length <= 0) return;
+        var presignupfb = function() {
+            FB.api('me', function(u){
+                form.find('#signupId').val(u.username);
+                form.find('#signupSex').val(u.gender == 'male' ? 'm' : 'f');
+                var bDay = u.birthday.split('/'); // month/day/year
+                form.find('#signupbDay').val(bDay[1]);
+                form.find('#signupbMonth').val(bDay[0]);
+                form.find('#signupbYear').val(bDay[2]);
+                form.find('#signupMail').attr('readonly', 'readonly').val(u.email);
+            
+                form.find('#signup_fbToken').val(fbToken); // signal to server, it's a FB user !
+            
+                alert('Complète ton formulaire d\'inscription pour t\'inscrire');
+            });
+        };
+        btn.click(function(){
+            FB.login(function(response) {
+                if (response.status == 'connected') {                
+                    var fbToken = response.authResponse.accessToken;
+                    
+                    $.ajax({
+                        url: config.publicRoot + 'base/signup_fb',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {'fbToken':fbToken},
+                        success: function(data, textStatus, XMLHttpRequest)
+                        {
+                            if (data.valid)
+                            {
+                                document.location.reload();
+                            }
+                            else
+                            {
+                                if(!data.errorCode){
+                                    alert('Désolé, une erreur inconnue s\'est produite, veuilles recharger la page et réessayer');
+                                    return;
+                                }
+                                
+                                switch (data.errorCode) {
+                                case 4:
+                                    alert('Désolé, l\'adresse mail lié à votre compte Facebook existe déjà, veuilles t\'inscrire avec le formulaire.');
+                                    break;
+                                case 5:
+                                    alert('Désolé, le pseudo existe déjà, veuilles t\'inscrire avec le formulaire.');
+                                    break;
+                                case 6:
+                                    alert('Désolé, une erreur s\'est produite lorsque la création du compte, veuilles recharger la page et réessayer.');
+                                    break;
+                                case 14:
+                                case 15:
+                                    alert('Désolé, une erreur de connexion Facebook s\'est produite, veuilles recharger la page et réessayer.');
+                                    break;
+                                default:
+                                    alert('Désolé, une erreur inconnue s\'est produite, veuilles recharger la page et réessayer');
+                                }
+                            }
+                        },
+                        error: function() {
+                            alert('Désolé, une erreur inconnue s\'est produite, veuilles recharger la page et réessayer');
+                        }
+                    });
+                } 
+                else if (response.status === 'not_authorized'){
+                    alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
+                }
+                else { // fail
+                    alert('Désolé, une erreur inconnue s\'est produite, veuilles recharger la page et réessayer');
+                }
+            }, {scope:'publish_stream,read_stream,email,user_birthday,user_photos,photo_upload'});       
+        });
+    },
+    
+    initSignupForm : function(form) {
+        if(!form || form.length <= 0) return;
+        form.ajaxForm({
+            type :      'POST',
+            dataType :  'json',
+            success :   function(data, textStatus, XMLHttpRequest) {
+                // now, we get two important pieces of data back from our rest controller
+                // data.valid = true/false
+                // data.redirect = the page we redirect to on successful login
+                if (data.valid)
+                {
+                    //document.location.href = data.redirect;
+                    document.location.reload();
+                }
+                else
+                {
+                    if(data.errorType) {
+                        if(data.errorType == 'mail') 
+                            form.find('#signupMail').siblings('label').addClass('alert');
+                        else if(data.errorType == 'pseudo') 
+                            form.find('#signupId').siblings('label').addClass('alert');
+                    }
+                    if(data.errorMessage) alert('Erreur d\'inscription: '+ data.errorMessage);
+                    $('input[type=submit]').removeAttr('disabled');
+                }
+            },
+            error :     function(XMLHttpRequest, textStatus, errorThrown) {
+                alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                $('input[type=submit]').removeAttr('disabled');
+            }
+        });
+        
+        form.find('#signupBtn').click(function(e) {
+            form.find('cite, label').removeClass('alert');
+    
+            // Check fields
+            var name = form.find('#signupId').val();
+            var pass = form.find('#signupPass').val();
+            var conf = form.find('#signupConf').val();
+            var sex = form.find('#signupSex').val();
+            var bDay = form.find('#signupbDay').val()+"/"+form.find('#signupbMonth').val()+"/"+form.find('#signupbYear').val();
+            form.find('#signupBirthday').val(bDay);
+            var mail = form.find('#signupMail').val();
+            var pays = form.find('#signupPays').val();
+            var codpos = form.find('#signupCP').val();
+            var tel = form.find('#signupPortable').val();
+            var notif = form.find('#signupNotif').val();
+    
+            var valid = true;
+            if(name == "") {
+                form.find('#signupId').siblings('cite').addClass('alert');
+                valid = false;
+            }
+            if(pass == "") {
+                form.find('#signupPass').siblings('cite').addClass('alert');
+                valid = false;
+            }
+            else if(pass.length < 6) {
+                form.find('#signupPass').siblings('cite').addClass('alert');
+                valid = false;
+            }
+            if(conf == "" || conf != pass) {
+                form.find('#signupConf').siblings('cite').addClass('alert');
+                valid = false;
+            }
+            if(!auth.regs.mail.test(mail)) {
+                form.find('#signupMail').siblings('label').addClass('alert');
+                valid = false;
+            }
+            if( (tel != "" && !auth.regs.telephone.test(tel))/* || (tel == "" && notif == "sms")*/ ) {
+                form.find('#signupPortable').siblings('cite').addClass('alert');
+                valid = false;
+            }
+            if( codpos != "" && !auth.regs.codpos.test(codpos) ) {
+                form.find('#signupCP').siblings('label').addClass('alert');
+                valid = false;
+            }
+            
+            if(!valid) e.preventDefault();
+            
+            $('input[type=submit]', this).attr('disabled', 'disabled');
+            fuel_set_csrf_token(form.get(0));
+        });
+    },
+    
+    
+    initFbLoginBtn : function(btn) {
+        if(!btn || btn.length <= 0) return;
+        btn.click(function(){
+            fbapi.connect(function(response) {
+                if(response.status === 'not_authorized') {
+                    alert('Ton compte Facebook ne te permet pas de rejoindre notre site');
+                    return;
+                }
+            
+                var token = fbapi.token;
+                
+                $.ajax({
+                    url: config.publicRoot + 'base/login_fb',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'fb_token':token},
+                    success: function(data, textStatus, XMLHttpRequest)
+                    {
+                        // now, we get two important pieces of data back from our rest controller
+                        // data.valid = true/false
+                        // data.redirect = the page we redirect to on successful login
+                        if (data.valid)
+                        {
+                            //document.location.href = data.redirect;
+                            document.location.reload();
+                        }
+                        else
+                        {
+                            switch (data.errorCode) {
+                            case 10:
+                            case 11:
+                                break;
+                            case 12:
+                                if(showLinkFb) showLinkFb();
+                                data.errorMessage = "";
+                                break;
+                            }
+                            if(data.errorMessage && data.errorMessage != "") 
+                                alert('Erreur de connexion: '+ data.errorMessage);
+                            $('input[type=submit]').removeAttr('disabled');
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown)
+                    {
+                        alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                        $('input[type=submit]').removeAttr('disabled');
+                    }
+                });
+            });
+        });
+    },
+    
+    initLoginForm : function(form) {
+        if(!form || form.length <= 0) return;
+        form.submit(function(e) {
+            // Stop full page load
+            e.preventDefault();
+            
+            // Check fields
+            var name = form.find('#loginId').val();
+            var pass = form.find('#loginPass').val();
+    
+            var valid = true;
+            if(name == "") {
+                form.find('#loginId').siblings('label').addClass('alert');
+                valid = false;
+            }
+            if(pass == "") {
+                form.find('#loginPass').siblings('label').addClass('alert');
+                valid = false;
+            }
+            if(!valid) return;
+            
+            $('input[type=submit]', this).attr('disabled', 'disabled');
+    
+            // Request
+            var data = {
+                'identifiant': name,
+                'password': pass,
+            };
+    
+            // Send
+            $.ajax({
+                url: config.publicRoot + 'base/login_normal',
+                dataType: 'json',
+                type: 'POST',
+                data: data,
+                success: function(data, textStatus, XMLHttpRequest)
+                {
+                    // now, we get two important pieces of data back from our rest controller
+                    // data.valid = true/false
+                    // data.redirect = the page we redirect to on successful login
+                    if (data.valid)
+                    {
+                        //document.location.href = data.redirect;
+                        document.location.reload();
+                    }
+                    else
+                    {
+                        if(data.errorMessage) alert('Erreur de connexion: '+ data.errorMessage);
+                        $('input[type=submit]').removeAttr('disabled');
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert('Désolé, une erreur inconnue s\'est produite, tu peux nous contacter: contact@encrenomade.com');
+                    $('input[type=submit]').removeAttr('disabled');
+                }
+            });
+        });
+    }
+
+};
+
+
+(function (auth) {
+
+function defaultHide() {
+    hideDialog($(this).parents('.dialog'));
+}
+
+function init() {
+    $('#open_signup').click(showSignup);
+    $('#toSignup').click(showSignup);
+    $('#open_login').click(showLogin);
+    $('#toLogin').click(showLogin);
+    $('#dialog_mask').click(hideDialog);
+    $('#user_id').click(showUpdate);
+    
+    $('#signupbMonth').change(monthChanged);
+    $('#updatebMonth').change(updateMonthChanged);
+    
+    $('.dialog .close').unbind('click', defaultHide).click(defaultHide);
+    
+    // Extra code for popup dialog alert
+    $('.flash-close').click(function() {
+        var alert = $(this).parent('.flash-alert');
+        alert.fadeOut(500);
+        setTimeout(function() {
+            alert.remove();
+        }, 500);
     });
+
+    auth.initSignupForm($('#signupForm'));
+    auth.initFbSingupBtn($('#signupForm .fb_btn'), $('#signupForm'));
+    
+    auth.initLoginForm($('#loginForm'));
+    auth.initFbLoginBtn($('#loginForm .fb_btn'));
+    
+    
+    $('#linkFbForm').ajaxForm(auth.linkfb_options);
+    $('#linkfbBtn').click(auth.linkfb_action);
+    
+    
+    $('#chPassForm').ajaxForm(auth.chPass_options);
+    $('#chPassBtn').click(auth.chPass_action);
     
     
     
@@ -494,11 +558,11 @@ function init() {
         var valid = true;
         if(pass != "" && pass.length < 6) {$('#updatePass').siblings('cite').addClass('alert');valid = false;}
         if(conf != "" && conf != pass) {$('#updateConf').siblings('cite').addClass('alert');valid = false;}
-        if( codpos != "" && !regs.codpos.test(codpos) ) {
+        if( codpos != "" && !auth.regs.codpos.test(codpos) ) {
             $('#updateCP').siblings('label').addClass('alert');
             valid = false;
         }
-        if( (tel != "" && !regs.telephone.test(tel))/* || (tel == "" && notif == "sms")*/ ) {
+        if( (tel != "" && !auth.regs.telephone.test(tel))/* || (tel == "" && notif == "sms")*/ ) {
             $('#updatePortable').siblings('cite').addClass('alert');
             valid = false;
         }
@@ -543,6 +607,6 @@ function init() {
 
 $(document).ready(init);
 
-})();
+})(window.auth);
 
 

@@ -38,6 +38,12 @@ class Controller_Welcome extends Controller_Frontend
 	 */
 	public function action_index()
 	{
+	    if( Cookie::get('already_visited', 'false') != "true" ) {
+	        $expire = 2147295600 - time(); // 17/01/2038 00:00
+	        Cookie::set('already_visited', 'true', $expire);
+	        Response::redirect('http://season13.com/bienvenue');
+	    }
+	    
 	    // Episodes
 	    $data['episodes'] = Model_Admin_13episode::find('all');
 	    
@@ -266,6 +272,10 @@ class Controller_Welcome extends Controller_Frontend
 	    
 	    $this->template->description = "Conditions générales de ventes - Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web: Voodoo Connection";
 	    $this->template->content = View::forge('achat/order/cgv');
+	}
+	
+	public function action_welcome() {
+	    return Response::forge(View::forge('welcome/welcome'), 200);
 	}
 	
 	

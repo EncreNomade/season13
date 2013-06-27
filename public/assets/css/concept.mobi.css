@@ -1,0 +1,157 @@
+#concept {
+    position: relative;
+    float: left;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+
+#cpt_intro {
+    position: relative;
+    float: left;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    margin: 20px 0 40px 0;
+    background: #fff url('../img/season13/deco/tex45x48.png') repeat left top;
+}
+#cpt_intro img {
+    position: relative;
+    float: left;
+    margin: 15px 10px 5px 20px;
+    width: 60px;
+    height: 73px;
+}
+#cpt_intro h1 {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 295px;
+    height: 36px;
+    margin: 0px 0 20px 0px;
+    padding: 0;
+    font: normal 26px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+#cpt_intro h5 {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin: 0px 20px 20px 20px;
+    padding: 0px;
+    background: transparent;
+    color: #000;
+    font: normal 16px/20px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 20px;
+    text-align: justify;
+    display: block;
+}
+#cpt_intro h5.right {
+    text-align: right;
+}
+
+#cpt_content {
+    position: relative;
+    float: left;
+    left: 0px;
+    width: 100%;
+    height: auto;
+}
+#cpt_content .cpt_section {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    margin: 0 0 40px 0;
+}
+#cpt_content .cpt_section img {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: auto;
+    margin: 5px 10px 2px 20px;
+    border: 2px solid #000;
+    display: block;
+}
+#cpt_content .cpt_section .list_deco {
+    position: absolute;
+    float: left;
+    left: 0px;
+    top: -32px;
+    width: 80px;
+    height: 74px;
+    background: transparent url('../img/season13/deco/tache.png') no-repeat left top;
+}
+#cpt_content .cpt_section h1 {
+    position: relative;
+    float: left;
+    left: 20px;
+    top: 0px;
+    width: 213px;
+    height: 36px;
+    padding: 0 0 0 62px;
+    margin: 0 100% 10px 0;
+    font: normal 22px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+}
+#cpt_content .cpt_section h5 {
+    position: relative;
+    margin: 46px 20px 0 20px;
+    padding: 0;
+    font: normal 16px/20px Arial, Helvetica, Geneva, sans-serif;
+    display: block;
+}
+#cpt_content .cpt_section h5 p {
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+#cpt_multi {
+    position: relative;
+    float: left;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    background: #fff url('../img/season13/deco/tex45x48.png') repeat left top;
+    overflow: visible;
+    margin: 0 0 20px 0;
+}
+#concept #cpt_multi h1 {
+    position: absolute;
+    top: -18px;
+    left: 0px;
+    width: 295px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    font: normal 26px/36px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+#cpt_multi img {
+    position: relative;
+    left: -120px;
+    width: 240px;
+    height: 124px;
+    margin: 26px auto 10px auto;
+}
+#cpt_multi h5 {
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0 20px;
+    font: normal 16px/20px Arial, Helvetica, Geneva, sans-serif;
+}

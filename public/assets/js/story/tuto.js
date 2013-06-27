@@ -26,12 +26,13 @@ $(document).ready(function() {
     
     
     // Event of start for article layer
-    var tutoDone = false;
-    if(mse && mse.configs) {
-        tutoDone = mse.configs.isTutoDone;
+    tuto.tutoDone = false;
+    if(window.mse && window.mse.configs) {
+        tuto.tutoDone = mse.configs.isTutoDone;
     }
-    $(document).ready(function() {
-        if(mse && !tutoDone && window.layers) {
+    
+    tuto.setTutoLancer = function() {
+        if(window.mse && !tuto.tutoDone && window.layers) {
             for (var i in window.layers) {
                 if(window.layers[i] instanceof mse.ArticleLayer) {
                     var obj = window.layers[i].getObject(1);
@@ -42,17 +43,20 @@ $(document).ready(function() {
                             var dialog = $('#lance_tuto');
                             if(dialog) {
                                 dialog.addClass('show');
+                                $('#center').addClass('show');
                                 dialog.children('.floatlink').first().click(function() {
-                                    if(!tutoDone) {
+                                    if(!mse.configs.isTutoDone) {
                                         $.post(config.publicRoot + 'base/has_done_tuto');
                                     }
                                     dialog.removeClass('show');
+                                    $('#center').removeClass('show');
                                     gui.playpause.click();
                                 });
                                 dialog.children('.floatlink').last().click(function() {
                                     tuto.reset();
                                     tuto.run();
                                     dialog.removeClass('show');
+                                    $('#center').removeClass('show');
                                 });
                             }
                             else {
@@ -72,8 +76,17 @@ $(document).ready(function() {
                 }
             }
         }
-    });
+        tuto.tutoDone = true;
+    }
     
+    if(window.mse && window.mse.root && !tuto.tutoDone) {
+        mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(tuto.setTutoLancer, tuto));
+    }
+    
+    // No tuto if mse not initialized
+    if(!window.mse)
+        return;
+        
     var actions = [
         new MseAction(
             'BtnMenu',
@@ -396,7 +409,7 @@ $(document).ready(function() {
             'ChooseZone',
             
             {
-                'root': mse.root.jqObj,
+                'root': (window.mse && mse.root) ? mse.root.jqObj : $(document),
                 'endDelay': 600,
             },
             

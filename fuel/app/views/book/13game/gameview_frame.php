@@ -15,7 +15,9 @@
     <meta property="og:image" content="http://season13.com/voodoo/cover.jpg" />
     <meta property="og:site_name" content="SEASON13.com" />
     <meta property="og:description" content="<?php if( isset($description) ) echo $description; else echo "Suspense, mystère, aventures, découvrez une nouvelle expérience interactive sur le web.";  ?>" />
-    <meta property="fb:app_id" content="141570392646490" />        
+    <meta property="fb:app_id" content="141570392646490" />   
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <link href='http://fonts.googleapis.com/css?family=Gudea:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -37,11 +39,10 @@
         echo Asset::js('config.js');
         
         // Lib
-        if(Fuel::$env == Fuel::DEVELOPMENT) {
+        if(Fuel::$env == Fuel::DEVELOPMENT || Fuel::$env == Fuel::TEST) {
             echo Asset::js('lib/Tools.js');
             echo Asset::js('lib/Interaction.js');
             echo Asset::js('lib/fbapi.js');
-            echo Asset::js('config.js');
             echo Asset::js('cart.js');
             echo Asset::js('auth.js');
             echo Asset::js('story/msg_center.js');
@@ -80,13 +81,27 @@
 </head>
 <body>
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+    <script>
+    (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+    
+    // Init the SDK upon load
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : config.fbAppId, // App ID
+            channelUrl : 'http://season13.com/channelfile', // Path to your Channel File
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
+    }
+    
+    </script>
 
 
     <div id="game_container" class="dialog">
@@ -99,8 +114,8 @@
         <div id="game_center">
             <div id="game_result">
                 <?php echo Asset::img('season13/fb_btn.jpg', array('alt' => 'Partager ton score sur Facebook')); ?>
-                <h2>GAGNÉ !</h2>
-                <h5>Ton score : <span>240</span> pts</h5>
+                <h2>Bravo! <span>240</span> pts    </h2>
+                <h5>Améliore ton <br/>classement ! </h5>
                 <ul>
                     <li id="game_restart">REJOUER</li>
                     <li id="game_quit">QUITTER</li>
@@ -111,6 +126,11 @@
 
     <script type="text/javascript">
         config.base_url = "http://"+window.location.hostname + (config.readerMode=="debug"?":8888":"") + config.publicRoot;
+        
+        config.episode = {};
+        config.episode.gameExpos = {};
+        config.episode.gameExpos["<?php echo $game->class_name; ?>"] = "<?php echo Asset::get_file($game->expo, 'img'); ?>";
+        
         if(window.parent.gameNotifier) {
             var gameNotifier = window.parent.gameNotifier;
             

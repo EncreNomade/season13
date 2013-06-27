@@ -67,21 +67,28 @@ var mmvc = (function(){
 var accessGateway = {
     'success' : false,
     
-    'buyClicked' : function(ep, updateAction) {
-        var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le "+ep+"ème épisode de Voodoo Connection.");
-        if(ok) {
-            if(updateAction) {
-                $.ajax({
-                    url: window.config.base_url+updateAction,
-                    type: 'POST',
-                    async: false,
-                    dataType : 'json',
-                    data: {'epid': ep},
-                });
-            }
+    'buy': function(data) {
+        $('#access_dialog h1').text('');
+        var buy = $('#access_dialog');
+        buy.attr('class', 'dialog buy_dialog').css('width', '320px').addClass('show');
         
-            window.open(window.config.publicRoot+'story?ep='+ep, '_newtab');
-        }
+        $('#access_dialog .link').unbind('click').click(function(e) {
+            buy.removeClass('show');
+        });
+    },
+    
+    'auth': function(data, epid) {
+        var dialog = $('#access_dialog');
+        dialog.attr('class', 'dialog auth_dialog');
+        dialog.children('h1').text('');
+        dialog.children('.close').remove();
+    
+        auth.initSignupForm($('#epSignupForm'));
+        auth.initFbSingupBtn(dialog.find('.fb_btn'), $('#epSignupForm'));
+        
+        auth.initLoginForm($('#epLoginForm'));
+        
+        dialog.addClass('show');
     },
     
     'ep3': function(data) {
@@ -210,7 +217,7 @@ var accessGateway = {
         };
         // Prepare ajax form
         $('#like_form').ajaxForm(options);
-        $('#access_submit_btn4').live('click', function(e) {
+        $('#access_submit_btn4').on('click', function(e) {
             e.preventDefault();
             fuel_set_csrf_token($('#like_form').get(0));
             $('#like_form').submit();
@@ -248,12 +255,10 @@ function story_access_resp(data, epid) {
     {
         if(data.errorCode != null) {
             switch (data.errorCode) {
-            case 201:
-                if(showSignup) showSignup();
-                break;
-                
             case 302:
-                if(showSignup) showSignup();
+                $('#access_dialog .container').prepend('<h5 style="font-size: 15px;">Inscris-toi pour découvrir gratuitement le 2ème épisode</h5><br/>');
+            case 201:
+                accessGateway.auth(data, epid);
                 break;
             
             case 303:
@@ -267,6 +272,9 @@ function story_access_resp(data, epid) {
                 break;
             
             case 202:
+                gui.hideConcept();
+                accessGateway.buy(data);
+                break;
             case 102:
             case 101:
             default:
@@ -280,7 +288,7 @@ function story_access_resp(data, epid) {
 
 
 
-gui = {};
+if(!window.gui) gui = {};
 
 
 // Slider class
@@ -661,23 +669,23 @@ gui.postComment = function(imgUrl, msg){
     
     if(fbapi.user && gui.fbShareEnabled)
         return fbapi.post(imgUrl, msg, position, postSuccess, errorPost);
-        
+    
     if(imgUrl){
         if(msg == null) msg = "";
         $.post(config.base_url + '13comments/comment', {'imgUrl': imgUrl, 
-                                        'message': msg, 
-                                        'position': position, 
-                                        'fbID':'', 
-                                        'ep': mse.configs.epid
-                                        }, postSuccess, 'json');
+                                    'message': msg, 
+                                    'position': position, 
+                                    'fbID':'', 
+                                    'ep': mse.configs.epid
+                                    }, postSuccess, 'json');
     }
     else if(msg){
         $.post(config.base_url + '13comments/comment', {'imgUrl': '', 
-                                        'message': msg, 
-                                        'position': position, 
-                                        'fbID':'', 
-                                        'ep': mse.configs.epid
-                                        }, postSuccess, 'json');
+                                    'message': msg, 
+                                    'position': position, 
+                                    'fbID':'', 
+                                    'ep': mse.configs.epid
+                                    }, postSuccess, 'json');
     }
 };
 
@@ -791,13 +799,14 @@ $(document).ready(function() {
                 flash_info.animate({opacity: 0}, 300);
             }, 1600);
         });
-        $('#ctrl_like').click(function() {
+        gui.fblike.click(function() {
             fbapi.like();
         });
     
     
         // Open Comment
         gui.commentbtn.click(gui.openComment);
+        gui.userComments.children('#renew_comments').bind('click', gui.updateUsersComments);
         
         // Comment like action
         gui.userComments.on('click', '.comment_fblike', fbapi.commentLike);
@@ -858,6 +867,14 @@ $(document).ready(function() {
         // Share process
         // Post
         gui.comment_share_btn.click(function(){
+            
+            // User not login and in app solution
+            if(config.iOSApp && !mse.configs.user) {
+                // Popup the inscription & login formule
+                $('#access_dialog').addClass('show');
+                return;
+            }
+        
             // Check image source existance and its type
             var img = gui.comment_menu.children('#commentImg').children('img');
             var imgSrc = img.prop('src');
@@ -903,29 +920,36 @@ $(document).ready(function() {
             else gui.postComment(imgSrc, msg);
         });
         
-        if(!window.mse.root.init)
-            gui.downloadTimer = setTimeout(gui.downloadTimeout, 20000);
+        if(window.mse && window.mse.root) {
+            if(!window.mse.root.init)
+                gui.downloadTimer = setTimeout(gui.downloadTimeout, 20000);
         
-        // Load over event
-        // 1. Remove downloadTimer
-        mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(gui.removeDownloadTimer, gui, gui.downloadTimer));
-        // 2. hide the concept dialog
-        mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(gui.hideConcept, gui));
+            // Load over event
+            // 1. Remove downloadTimer
+            mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(gui.removeDownloadTimer, gui, gui.downloadTimer));
+            // 2. hide the concept dialog
+            mse.root.evtDistributor.rootEvt.addListener('loadover', new Callback(gui.hideConcept, gui));
         
         
-        // Book Finish event
-        mse.root.evtDistributor.rootEvt.addListener('finished', new Callback(gui.episodeFinished, gui));
+            // Book Finish event
+            mse.root.evtDistributor.rootEvt.addListener('finished', new Callback(gui.episodeFinished, gui));
+        }
     }
+});
+
+
+
+gui.fbInitedCallback = function() {
+    fbapi.checkConnect(null, false);
     
-    if(config.accessResp && !config.accessResp.valid) {
+    if(config.accessResp && !config.accessResp.valid)
         story_access_resp(config.accessResp, config.episode.epid);
-    }
     // Open concept in chargement
-    else if(!window.mse || !window.mse.root.init) {
+    else if(!window.mse || !window.mse.root || !window.mse.root.init) {
         gui.concept.addClass('show');
         gui.center.addClass('show');
     }
-});
+};
 
 
 

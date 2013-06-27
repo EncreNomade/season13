@@ -23,6 +23,13 @@ class Model_Achat_Cartproduct extends \Orm\Model
 	        'key_to' => 'id',
 	        'cascade_save' => true,
 	        'cascade_delete' => false,
+	    ),
+	    'cart' => array(
+	        'key_from' => 'cart_id',
+	        'model_to' => 'Model_Achat_Cart',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false
 	    )
 	);
 

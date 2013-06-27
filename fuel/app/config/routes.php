@@ -14,6 +14,12 @@ return array(
 	'cgv'     => 'welcome/cgv',
 	'cadeau'  => 'welcome/cadeau',
 	'games'    => 'book/gameview',
+	'bienvenue' => 'welcome/welcome',
+	
+	'mobile' => 'welcomemobile/index',
+	'mobile/concept' => 'welcomemobile/concept',
+	'mobile/games' => 'welcomemobile/games',
+	'mobile/games/(:segment)' => 'welcomemobile/gameinfo/$1',
 	
 	'games/(:segment)' => 'book/gameview/info/$1',
 	
@@ -23,6 +29,6 @@ return array(
 	'ws/extrait/(:segment)/season(:num)/episode(:num)' => 'story/wsextrait/$1/$2/$3',
 	'ws/product/404' => 'achat/viewproduct/404',
 	'ws/product/(:segment)' => 'achat/viewproduct/webservice/$1',
-	'story' => 'story/index/Voodoo_Connection/1',
+	//'story' => 'story/index/Voodoo_Connection/1',
 	'ws/(:segment)' => 'webservice/wsbase/$1',
 );

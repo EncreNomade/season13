@@ -3,7 +3,7 @@
 class Paypal extends Payment {
     public $name = "Paypal";
     
-    public function checkoutOrder($order) {
+    public function checkoutOrder($order, $token = null) {
         $o = self::extractOrder($order);
     
         require_once (APPPATH."classes/custom/paypalfunctions.php");
@@ -17,7 +17,7 @@ class Paypal extends Payment {
         //' the purchase
         //'------------------------------------
 
-        $paymentAmount = number_format($o['total_amt'], 2, '.', '');
+        $paymentAmount = number_format($o['total'], 2, '.', '');
         
         
         //'------------------------------------
@@ -88,9 +88,9 @@ class Paypal extends Payment {
         $o = self::extractOrder($order);
         
         $data = array(
-            'total' => $o['total_amt'],
-            'ht' => $o['total_ht'],
-            'tax' => $o['total_tax'],
+            'total' => $o['total'],
+            'ht' => $o['ht'],
+            'tax' => $o['tax'],
             'tva' => $o['tva'],
             'products' => $o['products'],
             'currency' => $o['currency'],

@@ -227,9 +227,9 @@ var FindSimon = function() {
     this.spark = 0;
     
     // Vitural pad
-    if(MseConfig.iOS) {
+    if(MseConfig.iOS || MseConfig.android) {
         var path = "./UI/";
-        if(config.publishMode == "release") path = "./assets/img/season13/story/";
+        if(config.publishMode == "release") path = "http://season13.com/assets/img/season13/story/";
         mse.src.addSource('vPadBase', path+'button/padbase.png', 'img', true);
         mse.src.addSource('vPadHandler', path+'button/padhandler.png', 'img', true);
         this.padBase = new mse.Image(null, {pos:[46, this.height-103],size:[48,48],globalAlpha:0.6}, 'vPadBase');
@@ -266,7 +266,7 @@ var FindSimon = function() {
     	// Key event listener
     	this.getEvtProxy().addListener('keydown', this.movecb, true, this);
     	this.getEvtProxy().addListener('keyup', this.moveovercb, true, this);
-    	if(MseConfig.iOS){
+    	if(MseConfig.iOS || MseConfig.android){
     	    this.getEvtProxy().addListener('gestureStart', this.touchStartcb, true, this);
     	    this.getEvtProxy().addListener('gestureUpdate', this.touchMovecb, true, this);
     	    this.getEvtProxy().addListener('gestureEnd', this.moveovercb, true, this);
@@ -326,7 +326,7 @@ var FindSimon = function() {
 		}
 		else this.spark++;
 		ctx.restore();
-		if(MseConfig.iOS) {
+		if(MseConfig.iOS || MseConfig.android) {
 		    this.padBase.draw(ctx);
 		    this.padHandler.draw(ctx);
 		    ctx.globalAlpha = 1;
@@ -377,7 +377,7 @@ var FindSimon = function() {
 		if(Math.abs(this.sp.x - 1690) <= 60 && Math.abs(this.sp.y - 290) <= 10) {
 		    this.getEvtProxy().removeListener('keydown', this.movecb);
 		    this.getEvtProxy().removeListener('keyup', this.moveoverc);
-		    if(MseConfig.iOS){
+		    if(MseConfig.iOS || MseConfig.android){
 		        this.getEvtProxy().removeListener('gestureStart', this.touchStartcb);
 		        this.getEvtProxy().removeListener('gestureUpdate', this.touchMovecb);
 		        this.getEvtProxy().removeListener('gestureEnd', this.moveovercb);
@@ -404,7 +404,7 @@ var FindSimon = function() {
 		        // Remove Key event listener
 		        this.getEvtProxy().removeListener('keydown', this.movecb);
 		        this.getEvtProxy().removeListener('keyup', this.moveovercb);
-		        if(MseConfig.iOS){
+		        if(MseConfig.iOS || MseConfig.android){
 		            this.getEvtProxy().removeListener('gestureStart', this.touchStartcb);
 		            this.getEvtProxy().removeListener('gestureUpdate', this.touchMovecb);
 		            this.getEvtProxy().removeListener('gestureEnd', this.moveovercb);

@@ -253,7 +253,7 @@ Ce web service vous fournit un jeton d'accès pour que l'utilisateur de votre ap
 
 ##Erreurs et Exceptions
 
-| Code d'erreur | Message d'erreur |
+| Code d'erreur (errorCode) | Message d'erreur (errorMessage) |
 | ------------- | ---------------- |
 | 3001 | Application not exist |
 | 3002 | Access token not found or not valid |

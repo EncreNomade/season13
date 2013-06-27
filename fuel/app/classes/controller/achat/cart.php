@@ -38,15 +38,18 @@ class Controller_Achat_Cart extends Controller_Ajax {
         $data['remote_path'] = $this->remote_path;
         $data['cart'] = $this->cart;
         
-        if(is_null(Input::post('cart_product_id')) || is_null(Input::post('product_ref'))) {
+        $cartpid = Input::post('cart_product_id');
+        $ref = Input::post('product_ref');
+        
+        if(empty($cartpid) || empty($ref)) {
             Session::set_flash('cart_error', "Erreur de panier, veuilles rafraichir la page");
         }
         else {
-            $product = Model_Achat_13product::find_by_reference( Input::post('product_ref') );
+            $product = Model_Achat_13product::find_by_reference( $ref );
             $pid = isset($product) ? $product->id : null;
     
             try {
-                $this->cart->removeProduct($pid, Input::post('cart_product_id'));            
+                $this->cart->removeProduct($pid, $cartpid);            
             } catch (CartException $e) {
                 Session::set_flash('cart_error', $e->getMessage().".");
             }

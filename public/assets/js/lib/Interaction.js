@@ -831,14 +831,53 @@ __KEY_SPACE = 32;
 		//this.version = BrowserDetect.version;
 		
 		this.update = function() {
-			if(this.iPhone || this.android) {
-				this.orientation = window.innerWidth > 320 ? 'landscape' : 'portrait';
-				this.pageWidth = window.innerWidth > 320 ? 480 : 320;
-				this.pageHeight = window.innerWidth > 320 ? 268 : 416;
+			if(this.iPhone) {
+			    switch(top.orientation)
+                {
+                    case 0:
+                        this.orientation = "portrait";
+                    break;
+ 
+                    case -90:
+                        this.orientation = "landscape";
+                    break;
+ 
+                    case 90:
+                        this.orientation = "landscape";
+                    break;
+ 
+                    case 180:
+                        this.orientation = "portrait";
+                    break;
+                }
+				this.pageWidth = top.innerWidth > 320 ? 480 : 320;
+				this.pageHeight = top.innerWidth > 320 ? 268 : 416;
+			}
+			else if(this.android) {
+			    switch(top.orientation)
+                {
+                   case 0:
+                       this.orientation = "portrait";
+                   break;
+
+                   case -90:
+                       this.orientation = "landscape";
+                   break;
+
+                   case 90:
+                       this.orientation = "landscape";
+                   break;
+
+                   case 180:
+                       this.orientation = "portrait";
+                   break;
+                }
+                this.pageWidth = top.innerWidth;
+                this.pageHeight = top.innerHeight;
 			}
 			else if(this.mobile) {
-				this.pageWidth = window.innerWidth;
-				this.pageHeight = window.innerHeight;
+				this.pageWidth = top.innerWidth;
+				this.pageHeight = top.innerHeight;
 			}
 			else {
 				this.pageWidth = $(window).width();
@@ -848,13 +887,13 @@ __KEY_SPACE = 32;
 
 		this.update();
 		
-		if(this.mobile) {
+		if(this.iPhone) {
 		    this.headerH = 28;
 		
-		    $(window).bind('orientationchange', 
+		    $(top).bind('orientationchange', 
 						function(e){
 							setTimeout(function(){
-								window.scrollTo(0, 1);
+								top.scrollTo(0, 1);
 								MseConfig.update();
 								if(mse.root) {
 								    mse.root.setCenteredViewport();
@@ -863,6 +902,24 @@ __KEY_SPACE = 32;
 								}
 							}, 50);
 						});
+	    }
+	    else if(this.android) {
+	        this.headerH = 28;
+	        
+	        var supportsOrientationChange = "onorientationchange" in window,
+	        orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+	        
+	        window.addEventListener(orientationEvent, function() {
+	            setTimeout(function(){
+	            	top.scrollTo(0, 1);
+	            	MseConfig.update();
+	            	if(mse.root) {
+	            	    mse.root.setCenteredViewport();
+	            	    if(MseConfig.mobile)
+	            	        mse.root.gamewindow.relocate();
+	            	}
+	            }, 50);
+	        }, false);
 	    }
 	    else {
 	        this.headerH = 43;
@@ -877,6 +934,12 @@ __KEY_SPACE = 32;
 	};
 	
 	$(window).resize(function() {
+	    window.scrollTo(0, 1);
 		MseConfig.update();
+		if(mse.root) {
+		    mse.root.setCenteredViewport();
+		    if(MseConfig.mobile)
+		        mse.root.gamewindow.relocate();
+		}
 	});
 })();

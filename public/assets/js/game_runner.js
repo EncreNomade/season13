@@ -9,6 +9,7 @@ $(function(){
 		var newUrl = config.base_url+'book/gameview/play/'+gameClass;
 
 		if(!iframeLoaded) { 							// check if the game have ever been loaded
+		    $('.loading').addClass('show');
 			iframe.prop('src', newUrl);					// if not : load the game
 			iframe.load(function(){
 				iframeLoaded = true;
@@ -33,9 +34,14 @@ $(function(){
 			if(game) {
 				game.end();									// stop it
 			}
+			
+			if(iFrameWindow.MseConfig.mobile) {
+			    $('.card').removeClass('gamemode');
+			}
 			gameShower.hide();
 		},
 		failGameLoad: function(message) {
+		    $('.loading').removeClass('show');
 			gameNotifier.quit();							// on error just quit && show the message
 			if(message) alert(message);
 		},
@@ -44,6 +50,11 @@ $(function(){
 				iFrameWindow = iframe.get(0).contentWindow;
 				if(iFrameWindow.MseConfig)
 					iFrameWindow.MseConfig.update();
+					
+				if(iFrameWindow.MseConfig.mobile) {
+				    $('.card').addClass('gamemode');
+				    $('.loading').removeClass('show');
+				}
 				game.start();
 			});
 		}

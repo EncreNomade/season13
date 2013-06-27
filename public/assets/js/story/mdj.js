@@ -45,7 +45,7 @@ mdj.Scene = function(game, w, h) {
     
     if(MseConfig.iOS) {
         var path = "./UI/";
-        if(config.publishMode == "release") path = "./assets/img/season13/story/";
+        if(config.publishMode == "release") path = "http://season13.com/assets/img/season13/story/";
         mse.src.addSource('vPadBase', path+'button/padbase.png', 'img', true);
         mse.src.addSource('vPadHandler', path+'button/padhandler.png', 'img', true);
     }

@@ -16,7 +16,7 @@ class Controller_Base extends Controller_Rest
     	// Assign current_user to the instance so controllers can use it
     	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
     	
-    	$this->remote_path = Fuel::$env == Fuel::DEVELOPMENT ? '/season13/public/' : '/';
+    	$this->remote_path = Config::get('custom.remote_path');
     	
     	// Set a global variable so views can use it
     	View::set_global('current_user', $this->current_user);
@@ -47,6 +47,17 @@ class Controller_Base extends Controller_Rest
         try
         {
             $email->send();
+            
+            $record = Model_Admin_13contactmsg::forge(array(
+                'nom' => $fromname,
+                'user' => 0,
+                'email' => $frommail,
+                'destination' => $tomail,
+                'title' => $subject,
+                'message' => $view,//Format::forge(array('view'=>$view, 'viewdata'=>$viewdata))->to_json(),
+                'response' => "",
+            ));
+            $record->save();
         }
         catch(\EmailValidationFailedException $e)
         {
@@ -153,6 +164,103 @@ class Controller_Base extends Controller_Rest
 		else 
 		{
 		    return $this->response(array('valid' => false, 'error' => $val->error()), 200);
+		}
+	}
+	
+	
+	
+	public function post_signup_fb() {
+	    $fbtoken = Input::post('fbToken');
+	    if (!empty($fbtoken))
+		{
+		    // check if user has signup with FB
+		    $fbUser = json_decode(@file_get_contents('https://graph.facebook.com/me?access_token=' . $fbtoken));
+		    
+	        if( is_object($fbUser) && isset($fbUser->id) ){
+	            $auth = Auth::instance('fbauth');
+	            
+                // Check if user has already a account
+                if ($auth->login($fbUser->email, $fbUser->id))
+                {
+                    // credentials ok, go right in
+                    $this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
+                    return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+                }
+	            
+	            $fbID = $fbUser->id;
+	            $pseudo = $fbUser->username;
+	            $password = Str::random('alnum', 8);
+	            $sex = $fbUser->gender == 'male' ? 'm' : 'f';
+	            $birthday = Date::create_from_string($fbUser->birthday, "us");
+	            $avatar = 'https://graph.facebook.com/' . $fbUser->id . '/picture';
+	            $email = $fbUser->email;
+	            $city = empty($fbUser->location) ? '' : $fbUser->location->name;
+	            $country = empty($fbUser->locale) ? '' : $fbUser->locale;
+	            
+	            $valide = true;
+	            // pseudo / email already existe probleme
+	            $existuser = Model_13user::find_by_email($email);
+	            if($existuser !== null) {
+	                $valide = false;
+	                return $this->response(array('valid' => false, 'errorCode' => 4, 'errorMessage' => Config::get('errormsgs.auth.4')), 200);
+	            }
+	            else {
+	                $existuser = Model_13user::find_by_pseudo($pseudo);
+	                if($existuser !== null) {
+	                    $valide = false;
+	                    return $this->response(array('valid' => false, 'errorCode' => 5, 'errorMessage' => Config::get('errormsgs.auth.5')), 200);
+	                }
+	            }
+	            
+	            if($valide) {
+	            	$auth = Auth::instance();
+	                
+	            	// check the credentials. This assumes that you have the previous table created
+	            	if ( $auth->create_user($pseudo, 
+	            	                        $password,
+	            	                        $email,
+	            	                        '',
+	            	                        3,
+	            	                        $avatar,
+	            	                        $sex,
+	            	                        $birthday->format("%d/%m/%Y"),
+	            	                        $country,
+	            	                        $city,
+	            	                        'mail',
+	                                        $fbID) )
+	            	{
+	            	    // Log in the user
+	            	    $res = $auth->login($pseudo, $password);
+	            		// credentials ok, go right in
+	            		$this->current_user = Model_13user::find_by_pseudo(Auth::get_screen_name());
+	            		// Set a global variable so views can use it
+	            		View::set_global('current_user', $this->current_user);
+	            		
+	            		// Send welcome mail
+	            		Controller_Base::sendHtmlMail(
+	            		    'no-reply@encrenomade.com', 
+	            		    'Season13.com', 
+	            		    $email, 
+	            		    'Bienvenue sur Season13.com', 
+	            		    'mail/welcome', 
+	            		    array('pseudo' => $pseudo, 'password' => $password)
+	            		);
+	            		
+	            		return $this->response(array('valid' => true, 'redirect' => $this->remote_path), 200);
+	            	}
+	            	else
+	            	{
+	            		return $this->response(array('valid' => false, 'errorCode' => '6', 'errorMessage' => Config::get('errormsgs.auth.6')), 200);
+	            	}
+	            }
+	        }
+	        else {
+	            return $this->response(array('valid' => false, 'errorCode' => '15', 'errorMessage' => Config::get('errormsgs.auth.15')), 200);
+	        }
+		}
+		else 
+		{
+		    return $this->response(array('valid' => false, 'errorCode' => '14', 'errorMessage' => Config::get('errormsgs.auth.14')), 200);
 		}
 	}
 	

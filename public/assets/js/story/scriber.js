@@ -1,5 +1,7 @@
 // Scriber singleton
-gui.scriber = (function($, gui) {
+gui.scriber = (function($, window) {
+
+    if(!window.gui) window.gui = {};
 
     var scriber = null;
     
@@ -341,10 +343,16 @@ gui.scriber = (function($, gui) {
         activeToolbox: function() {
             toolbox.addClass('active');
             editBn.addClass('active');
+            
+            this.jq.click(function() {
+                scriber.desactiveToolbox();
+            });
         },
         desactiveToolbox: function() {
             toolbox.removeClass('active');
             editBn.removeClass('active');
+            
+            this.jq.unbind('click');
         },
         desactiveTools: function() {
             $(this.drawCanvas).unbind('mouseout').mseInteraction('removeListener', 'gestureSingle');
@@ -535,13 +543,17 @@ gui.scriber = (function($, gui) {
             };
             
             // Edit
-            editBn.click(function() {
+            editBn.click(function(e) {
+                e.stopPropagation();
                 if($(this).hasClass('active'))
                     scriber.desactiveToolbox();
                 else scriber.activeToolbox();
             });
             $('#sb_tools').mouseleave(function() {
                 scriber.desactiveToolbox();
+            });
+            $('#sb_tools').click(function(e) {
+                e.stopPropagation();
             });
             // Recapture
             recapBn.click(function(){
@@ -591,4 +603,4 @@ gui.scriber = (function($, gui) {
             gui.scriber = scriber;
         }
     };
-}(jQuery, gui));
+}(jQuery, window));

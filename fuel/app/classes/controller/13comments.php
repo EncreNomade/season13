@@ -2,17 +2,13 @@
 
 class Controller_13comments extends Controller_Rest
 {
-
-    public function before()
-    {
-    	parent::before();
-    	
-    	// Assign current_user to the instance so controllers can use it
-    	$this->current_user = Auth::check() ? Model_13user::find_by_pseudo(Auth::get_screen_name()) : null;
-    }
-
     public function get_comment_by_ep() {
-        if(!Input::is_ajax()) {
+        $urlwhitelist = Config::get('custom.ajaxreq_url_white_list');
+        $host = Input::server('HTTP_HOST');
+        $appwhitelist = Config::get('custom.ajaxreq_app_white_list');
+        $app = Input::get('appbundleprefix');
+        if( !in_array($host, $urlwhitelist)
+            && (!$app || !in_array($app, $appwhitelist)) ) {
             $this->response(array(
                 'success' => false,
                 'errorMessage' => ''
@@ -31,7 +27,7 @@ class Controller_13comments extends Controller_Rest
                     array('epid', $epid),
                     array('verified', 1),
                 ),
-                'order_by' => array('updated_at' => 'desc'),
+                'order_by' => array('created_at' => 'desc'),
                 'limit' => $limit,
                 'offset' => $offset,
             ));
@@ -124,6 +120,6 @@ class Controller_13comments extends Controller_Rest
     		}
 		
 		}
-    }
-	
+	}
+
 }

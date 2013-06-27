@@ -141,7 +141,6 @@ header div.right {
     z-index: 2;
     background: #000;
     padding: 8px 0;
-    cursor: pointer;
 }
 
 #tache {
@@ -149,6 +148,7 @@ header div.right {
     top: -2px;
     width: 55px;
     height: 40px;
+    cursor: pointer;
 }
 #tache a {
     position: absolute;
@@ -195,6 +195,7 @@ header #icon_menu {
     height: 24px;
     margin: 0 8px;
     float: right;
+    cursor: pointer;
 }
 header #icon_menu.active {
     margin: 0px 120px 0px 8px;
@@ -349,9 +350,11 @@ ul#menu div #menu_link {
     width: 0px;
     height: 0px;
     z-index: 1;
+    visibility: hidden;
 }
 #center.show {
     z-index: 19;
+    visibility: visible;
 }
 
 #top_center {
@@ -1357,14 +1360,19 @@ ul#menu div #menu_link {
 #game_result h2 {
     position: relative;
     float: left;
-    font: normal 38px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    font: bold 15px/50px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: bottom;
+    width: 175px;
     text-align: center;
     height: 50px;
+    margin: 0;
+    padding: 0 0 0 5px;
     border-bottom: 1px solid #000;
-    z-index: 1;
+}
+#game_result h2 span {
+    font: bold 25px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    margin: 0;
+    color: rgb(246, 168, 0);
 }
 #game_result img {
     position: absolute;
@@ -1377,17 +1385,13 @@ ul#menu div #menu_link {
 #game_result h5 {
     position: relative;
     float: left;
-    font: normal 15px/50px 'DroidSansRegular', Arial, Helvetica;
-    vertical-align: bottom;
-    width: 100%;
+    font: normal 15px/25px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: middle;
+    width: 175px;
     text-align: center;
-    height: 40px;
+    height: 50px;
     margin: 0 0 15px 0;
-    padding: 0;
-}
-#game_result h5 span {
-    font: normal 30px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
-    margin: 0;
+    padding: 0 0 0 5px;
 }
 #game_result ul {
     position: absolute;
@@ -1405,6 +1409,7 @@ ul#menu div #menu_link {
     width: 90px;
     height: 100%;
     border-top: 1px solid #000;
+    color: rgb(246, 168, 0);
 }
 #game_result ul li:hover {
     background: rgb(246, 168, 0);

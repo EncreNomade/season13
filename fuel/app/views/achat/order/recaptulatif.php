@@ -18,6 +18,7 @@
                     echo Asset::img('season13/ui/btn_delete_red.png', array(
                             'class' => "remove_product",
                             'data-productref' => $p->product->reference,
+                            'data-cartpid' => $p->cart_product_id." ",
                             'alt' => 'supprimer'
                         )); 
                 }
@@ -37,7 +38,7 @@
             <td><?php echo number_format($ht, 2, ',', '') . $currency->sign; ?></td>
         </tr>
         <tr>
-            <td colspan="2"><strong>TVA <?php echo $tva . "%"; ?>:</strong></td>
+            <td colspan="2"><strong>TVA <?php echo $tva; ?>:</strong></td>
             <td><?php echo number_format($tax, 2, ',', '') . $currency->sign; ?></td>
         </tr>
         <tr>

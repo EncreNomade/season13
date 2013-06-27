@@ -1,0 +1,281 @@
+.mask {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.main_container {
+	background: white url('../img/season13/deco/tex45x48.png') repeat left top;
+}
+
+.main_container > header {
+    position: relative;
+    padding: 16px 4px 4px 4px;
+    margin: 0px auto;
+}
+.main_container > header p {
+    padding: 0px;
+    margin: 0px 0px 0px 12px;
+    font: normal 25px/40px "BebasNeueRegular", "Helvetica LT Std", Arial;
+}
+
+section {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    padding: 0px 0px 20px 0px;
+    margin: 0px auto;
+    text-align: center;
+    white-space: nowrap;
+}
+
+article.game {
+	position: relative;
+	vertical-align: top;
+	width: 260px;
+	height: 241px;
+	background: white;
+	margin: 12px 18px;
+	float: left;
+	padding: 0px;
+	color: black;
+	cursor: initial;
+	box-shadow: 1px 1px 10px rgb(100, 100, 100);
+	display: inline-block;
+}
+
+article.game h1 {
+    position: relative;
+	text-align: left;
+	width: 95%;
+	padding: 8px 0px 5px 5%;
+	margin: 0px;
+	background: #000;
+	color: #fff;
+	font: normal 20px/28px "BebasNeueRegular", "Helvetica LT Std", Arial;
+	letter-spacing: 1px;
+}
+
+article.game .expo {
+    position: relative;
+	display: block;
+	left: 0px;
+	width: 240px;
+	height: 180px;
+	margin: 10px;
+}
+
+.expo .expoimage {
+    position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.expo .mask {
+    opacity: 0;
+    
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.expo:hover .mask {
+    opacity: 1;
+}
+
+.expo .play {
+    position: relative;
+    float: left;
+    top: 0px;
+    margin: 50px 80px 50px 80px;
+    width: 80px;
+    height: 80px;
+}
+.expo .lock {
+    position: relative;
+    float: left;
+    top: 0px;
+    margin: 30px 80px 5px 80px;
+    width: 80px;
+    height: 80px;
+}
+.expo .key {
+    position: relative;
+    float: left;
+    margin: 0px 0px 0px 50px;
+    width: 24px;
+    height: 24px;
+}
+.expo p {
+    position: relative;
+    float: left;
+    width: 110px;
+    margin: 0px 10px;
+    padding: 0px;
+    text-align: center;
+    font: normal 15px/28px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    color: #000;
+}
+.expo p a {
+    color: #000;
+    text-decoration: none;
+}
+
+#single_game_info {
+    position: relative;
+    top: 0px;
+	width: 254px;
+	height: auto;
+	margin: 15px auto;
+	background: white;
+	left: -150px;
+    box-shadow: 1px 1px 10px rgb(100, 100, 100);
+    font-family: "BebasNeueRegular", "Helvetica LT Std", Arial;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    min-height: 240px;
+}
+
+#single_game_info > p {
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    margin: 15px auto;
+}
+
+#single_game_info > h1 a {
+    color: #fff;
+}
+
+#single_game_info .right {
+    position: relative;
+    float: left;
+	width: 100%;
+	height: auto;
+}
+
+#single_game_info .expo {
+	float: left;
+	width: 254px;
+	margin: 0px 0px 10px 0px;
+}
+
+#single_game_info .center_text {
+    margin-top: 0px;
+}
+
+#discoverbtn {
+    margin-bottom: 10px;
+}
+#discoverbtn img {
+    position: relative;
+    width: 254px;
+    margin: 0px;
+}
+#discoverbtn h5 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 0px;
+    padding: 5px 26px;
+    width: 200px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font: normal 25px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+}
+
+#connect {
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+}
+#connect a {
+    margin: 0 0 0 30px;
+    font: normal 25px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    color: #000;
+}
+
+#section_line {
+    background: #000;
+    height: 3px;
+    width: 100%;
+}
+
+#single_game_info .instruction {
+	color: rgb(48, 48, 48);
+    border: 1px solid rgb(207, 205, 205);
+    padding: 10px;
+    background: rgb(238, 238, 238);
+}
+
+#single_game_info .play {
+    margin-bottom: 15px;
+}
+#single_game_info .play b{
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+
+
+ .clear {
+ 	clear:both;
+ }
+
+.playBtn {
+	-moz-box-shadow:inset 0px 0px 2px 2px rgb(246, 168, 0);
+	-webkit-box-shadow:inset 0px 0px 2px 2px rgb(246, 168, 0);
+	box-shadow:inset 0px 0px 2px 2px rgb(246, 168, 0);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #666666), color-stop(1, #000000) );
+	background:-moz-linear-gradient( center top, #666666 5%, #000000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
+	background-color:#666666;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #f6a800;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	cursor: pointer;
+}.playBtn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #666666) );
+	background:-moz-linear-gradient( center top, #000000 5%, #666666 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#666666');
+	background-color:#000000;
+}.playBtn:active {
+	position:relative;
+	top:1px;
+}
+
+.classement {
+	margin: 15px 0px;
+}
+
+.classement table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.classement thead .title {
+	border-bottom: none;
+	background: gray;
+	font-size: 20px;
+}
+
+.classement thead td {
+	font-weight: bold;
+	border-color: black;
+}
+
+.classement td {
+	min-width: 100px;
+	text-align: center;
+	border-bottom: 1px solid rgb(156, 156, 156);
+}
+

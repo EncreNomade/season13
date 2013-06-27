@@ -36,6 +36,7 @@ return array(
 				27 => '026_create_achat_productprices',
 				28 => '027_create_achat_countries',
 				29 => '031_create_admin_tasks',
+				30 => '032_create_achat_payzenchecks',
 			),
 		),
 		'module' => 

@@ -45,6 +45,14 @@ ul {
     -moz-user-select: text;
     user-select: text;
 }
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+.show {
+    visibility: visible;
+    opacity: 1;
+}
 
 
 

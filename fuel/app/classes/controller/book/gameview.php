@@ -27,6 +27,7 @@ class Controller_Book_Gameview extends Controller_Frontend {
         
         $this->template->content = View::forge('book/13game/gameview_all', $data);
     }
+    
 
     public function action_info($className = null)
     {        
@@ -52,6 +53,22 @@ class Controller_Book_Gameview extends Controller_Frontend {
     
                 $this->template->content = View::forge('book/13game/gameview_single', $data);
             }
+        }
+    }
+    
+    public function action_highscores() {
+        $className = Input::get('className');
+        if(!$className) 
+            return Response::redirect('404');
+        $game = Model_Book_13game::find_by_class_name($className);
+        $data = array();
+        if(!$game) {
+            return Response::redirect('404');
+        }
+        else {
+            $data['gameInfos'] = Model_User_Gameinfo::highscores_by_game_id($game->id, 50);
+            
+            return View::forge('book/13game/classement', $data);
         }
     }
 

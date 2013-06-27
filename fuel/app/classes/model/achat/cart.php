@@ -18,6 +18,16 @@ class Model_Achat_Cart extends \Orm\Model
 		'created_at',
 		'updated_at',
 	);
+	
+	protected static $_has_many = array(
+		'cartproducts' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Achat_Cartproduct',
+			'key_to' => 'cart_id',
+			'cascade_save' => true,
+			'cascade_delete' => true
+		)
+	);
 
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
@@ -110,13 +120,20 @@ class Model_Achat_Cart extends \Orm\Model
         	        // Init cart
         	        $cart = self::find($tokenarr['cart']);
         	        if($cart) {
-        	            // Set user
-        	            if( $user )
-        	                $cart->setUser($user->id);
-            	        // Update cookie
-            	        Cookie::set('cart_token', $token, self::$token_expire_time);
-            	        Session::set('current_cart', $cart->id);
-            	        return $cart;
+        	            // Check if cart has been passed to order
+        	            $available = Model_Achat_Order::canMakeOrderForCart($cart->id);
+        	            if(!$available) {
+        	                $cart->checkout();
+        	            }
+        	            else {
+            	            // Set user
+            	            if( $user )
+            	                $cart->setUser($user->id);
+                	        // Update cookie
+                	        Cookie::set('cart_token', $token, self::$token_expire_time);
+                	        Session::set('current_cart', $cart->id);
+                	        return $cart;
+            	        }
         	        }
         	    }
     	    }
@@ -161,8 +178,17 @@ class Model_Achat_Cart extends \Orm\Model
 	    $current_cart_id = Session::get('current_cart');
 	    if($current_cart_id) {
 	        $current_cart = self::find($current_cart_id);
-	        if($current_cart)
-	            return $current_cart;
+	        
+	        if($current_cart) {
+	            // Check ordered cart
+	            $available = Model_Achat_Order::canMakeOrderForCart($current_cart_id);
+	            if(!$available) {
+	                return false;
+	            }
+	            else {
+	                return $current_cart;
+	            }
+	        }
 	        else return false;
 	    }
 	    else return false;
@@ -342,8 +368,8 @@ class Model_Achat_Cart extends \Orm\Model
 	
 	public function getProducts() {
 	    // Find all products in cart
-	    $cartproducts = Model_Achat_Cartproduct::query()->where('cart_id', $this->id)->get();
-	    return $cartproducts;
+	    //$cartproducts = Model_Achat_Cartproduct::query()->where('cart_id', $this->id)->get();
+	    return $this->cartproducts;
 	}
 	
     public function clear() {

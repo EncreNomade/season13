@@ -1,8 +1,18 @@
 var config = {
     publishMode : "release",
+    
     readerMode : "debug",
+    
     restUploadPath : "/season13/public/upload/",
+    
     publicRoot : "/season13/public/",
+        
+    mseBasicImgSrcPath : "http://" + window.location.host + "/season13/public/assets/img/season13/story/",
+        
+    mseBasicAudSrcPath : "http://" + window.location.host + "/season13/public/assets/aud/",
+
+    fbAppId : "141570392646490",
+
     countries : {
         "AU" : "Australia",
         "AF" : "Afghanistan",

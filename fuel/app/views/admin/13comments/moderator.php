@@ -15,7 +15,11 @@
 	<tbody>
 <?php foreach ($comments as $comment): ?>		<tr>
 
-			<td><?php echo $comment->user_profile->pseudo; ?></td>
+			<td><?php
+			    $user_profile = Model_13user::find($comment->user);
+			    if($user_profile) 
+			        echo $user_profile->pseudo; 
+			?></td>
 			<td><?php echo $comment->content; ?></td>
 			<td><img src="<?php echo $comment->image; ?>"/></td>
 			<td><?php echo $comment->verified; ?></td>

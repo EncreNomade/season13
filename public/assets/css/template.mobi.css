@@ -1,0 +1,258 @@
+/******************** Balise ********************/
+
+div {
+    margin: 0px;
+    padding: 0px;
+}
+li, li a {
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+
+
+
+
+/******************** Classes ********************/
+
+.topcenter {
+    position: fixed;
+    left: 50%;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+    z-index: 20;
+}
+.container_center {
+    position: relative;
+    left: 50%;
+    width: 0px;
+    overflow: visible;
+}
+.center_text {
+    width: 100%;
+    text-align: center;
+}
+.text_selectable {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.loading {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.6) url('../img/season13/ui/loading.gif') no-repeat center center;
+    z-index: 100;
+}
+
+
+
+/******************** Structure ********************/
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    background: #fff;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    background: #fff;
+}
+
+.card > header {
+    position: fixed;
+    width: 100%;
+    height: 48px;
+    left: 0px;
+    top: 0px;
+    background: #000;
+    color: #ffffff;
+    z-index: 3;
+    
+    -moz-box-shadow: 0 0 12px rgb(246, 168, 0);
+    -webkit-box-shadow: 0 0 12px rgb(246, 168, 0);
+    box-shadow: 0 0 12px rgb(246, 168, 0);
+    
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+.card.gamemode > header {
+    top: -48px;
+}
+
+.card > header #logo {
+    background: transparent;
+    position: relative;
+    float: left;
+    left: 0px;
+    top: 0px;
+    width: auto;
+    height: 48px;
+}
+.card > header #logo img {
+    height: 46px;
+    width: auto;
+}
+
+.card > header h1 {
+    position: relative;
+    float: left;
+    margin: 0px 5px;
+    padding: 0px;
+    font: normal 24px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+}
+
+
+header menu {
+    position: relative;
+    float: right;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100%;
+}
+
+header menu ul {
+    margin: 0;
+    height: 100%;
+}
+
+header menu ul li {
+    position: relative;
+    float: left;
+    height: 100%;
+    margin: 0px 3px;
+    font: normal 16px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+}
+
+
+
+
+article.main_container {
+    position: absolute;
+    left: 0px;
+    top: 48px;
+    bottom: 48px;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.card.gamemode article.main_container {
+    overflow: visible;
+}
+
+
+
+
+.card > footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 48px;
+    font: normal 20px/48px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    z-index: 2;
+    overflow: visible;
+    
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+.card.gamemode > footer {
+    bottom: -48px;
+}
+
+footer menu {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin: 0px;
+    padding: 0px;
+    overflow: visible;
+}
+footer menu ul {
+    margin: 0px;
+    padding: 0px;
+}
+footer menu ul li {
+    width: 25%;
+    height: 100%;
+    position: relative;
+    float: left;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    
+    border-top: 3px solid rgb(246, 168, 0);
+    
+    -moz-box-shadow: 0 0 0 1px rgb(246, 168, 0) inset;
+    -webkit-box-shadow: 0 0 0 1px rgb(246, 168, 0) inset;
+    box-shadow: 0 0 0 1px rgb(246, 168, 0) inset;
+    
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+footer menu ul li.holding {
+    background: #555;
+    color: rgb(246, 168, 0);
+}
+footer menu ul li.active {
+    background: rgb(246, 168, 0);
+}
+
+
+
+
+
+/******************** Decoration ********************/
+
+.text_sep_vertical {
+    width: 2px;
+    height: 80%;
+    margin: 10% 3px;
+    cursor: default;
+    background: #fff;
+}

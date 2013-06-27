@@ -1,3 +1,17 @@
+ul#conn #cart {
+}
+
+ul#conn #cart img {
+    position: relative;
+    float: left;
+}
+ul#conn #cart span {
+    position: relative;
+    float: left;
+}
+
+
+
 .cart_container {
     font-family: 'DroidSansRegular', Arial;
 }

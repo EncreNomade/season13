@@ -13,10 +13,12 @@ class Controller_Story extends Controller_Frontend
             return $access;
             
         if(!$current_user) {
+            $form = View::forge('story/access/auth')->render();
+            
             if($epid == 2)
-                return array('valid' => false, 'errorCode' => 302, 'errorMessage' => $codes[302]);
+                return array('valid' => false, 'errorCode' => 302, 'errorMessage' => $codes[302], 'form' => $form);
             else 
-                return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201]);
+                return array('valid' => false, 'errorCode' => 201, 'errorMessage' => $codes[201], 'form' => $form);
         }
         
         if( $current_user->group >= 10 )
@@ -70,13 +72,21 @@ class Controller_Story extends Controller_Frontend
                     'form' => View::forge('story/access/like', $data)->render()
                 );
                 break;
-            case 5:
-                return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
+            default:
+                $pdt = $episode->getRelatProduct();
+                if($pdt) {
+                    $data = array();
+                    $data['reference'] = $pdt->reference;
+                    $data['price'] = $pdt->getLocalDiscountedPrice();
+                    return array(
+                        'valid' => false, 
+                        'errorCode' => 202, 
+                        'errorMessage' => $codes[202],
+                        'form' => View::forge('story/access/buy', $data)->render()
+                    );
+                }
+                else return $access;
                 break;
-            case 6:
-                return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
-                break;
-            default: return $access;
             }
         }
         else return array('valid' => false, 'errorCode' => 202, 'errorMessage' => $codes[202]);
@@ -222,6 +232,65 @@ class Controller_Story extends Controller_Frontend
         else {
             Response::redirect('http://'.$_SERVER['HTTP_HOST'].'upgradenav');
         }
+	}
+	
+	
+	public function action_direct() {
+	    $capable = false;
+        // Check user browser capacity
+        // Process based on the browser name
+        switch (Agent::browser())
+        {
+            case 'Firefox':
+                if(Agent::version() < 3.7)
+                    $capable = false;
+                else 
+                    $capable = true;
+                break;
+            case 'IE':
+                if(Agent::version() < 9)
+                    $capable = false;
+                else 
+                    $capable = true;
+                break;
+            case 'Chrome':
+                $capable = true;
+                break;
+            case 'Safari':
+                $capable = true;
+                break;
+            case 'Unknown':
+                $capable = false;
+                break;
+            default:
+                $capable = true;
+                break;
+        }
+    
+        if($capable) {
+            $this->episode = null;
+            
+            // Find the episode
+            $this->episode = Model_Admin_13episode::find(1);
+            
+            if(is_null($this->episode)) {
+                Response::redirect('404');
+            }
+            else {
+                $data = array(
+                    'episode' => $this->episode,
+                    'accessible' => true,
+                    'extrait' => false,
+                    'access' => array('valid' => true),
+                    'title' => stripslashes( $this->episode->title )
+                );
+	            
+	            return Response::forge(View::forge('story/pub', $data));
+            }
+    	}
+    	else {
+    	    Response::redirect('http://'.$_SERVER['HTTP_HOST'].'upgradenav');
+    	}
 	}
 	
 	
@@ -389,16 +458,23 @@ class Controller_Story extends Controller_Frontend
 	}
 	
 	public function action_download() {
-	    if(!$this->current_user || !Input::get('epid'))
+	    if( !Input::get('epid') )
 	        Response::redirect($this->base_url.'?inscription=true');
 	        
 	    $episode = Model_Admin_13episode::find(Input::get('epid'));
-	    if(!$episode) 
-	        Response::redirect('404');
+	    if(!$episode)
+	        return Response::redirect('404');
 	        
 	    $filename = 'S0'.$episode->season.'E0'.$episode->episode.'.pdf';
-	    if(file_exists(DOCROOT . '/voodoo/pdf/' . $filename))
-	        File::download(DOCROOT . '/voodoo/pdf/' . $filename, "Voodoo Connection" . $filename);
-	    else Response::redirect('404');
+	    if(file_exists(DOCROOT . 'voodoo/pdf/' . $filename)) {
+	        http_response_code(200);
+	        
+	        File::download(DOCROOT . '/voodoo/pdf/' . $filename, "Voodoo Connection " . $filename, 'application/pdf');
+	    }
+	    else return Response::redirect('404');
+	}
+	
+	public function action_download404test() {
+	    File::download(DOCROOT . '/voodoo/pdf/S01E01.pdf', "Voodoo Connection S01E01.pdf", 'application/pdf');
 	}
 }

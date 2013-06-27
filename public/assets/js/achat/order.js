@@ -9,6 +9,9 @@
 		paypal_submit,
 		paypal_dg,
 		
+		payzenForm,
+		payzen_submit,
+		
 		checkoutBtn,
 		removeProdBtn;
 
@@ -17,6 +20,26 @@
 			var newWindow = window.open('_blank');
 			newWindow.document.write(jqXHR.responseText);
 		}
+	}
+	
+	function checksubmit() {
+	    // Verify CGV checkbox
+	    if(!cgvCheckbox.prop('checked')) {
+	        cgvCheckbox.parent().addClass('alert');
+	        return false;
+	    }
+	    
+	    // Verify address
+	    var addrForm = addrContainer.find('form');
+	    if(addrForm.length > 0) {
+	        var alert = addrContainer.children('.flash-alert');
+	        if(alert.length == 0)
+	            alert = $('<div class="flash-alert">').insertBefore(addrForm);
+	        alert.append('<p>Tu dois valider ton adresse d\'abord</p>');
+	        return false;
+	    }
+	    
+	    return true;
 	}
 
 	function init() {
@@ -28,6 +51,8 @@
 		sendModifAddrBtn = $('#sendModifyAddress');
 		createAddrBtn = $('#sendCreateAddress');
 		paypal_submit = $('#paypal_submit');
+		payzenForm = $('#payzenBuyForm');
+		payzen_submit = $('#payzen_submit');
 		checkoutBtn = $('#checkout');
 
 		removeProdBtn = $('#order-detail .remove_product');
@@ -89,24 +114,11 @@
 		    }
 		});
 		
+		// Paypal submit
 		paypal_submit.click(function(e) {
 		    e.preventDefault();
 		    
-		    // Verify CGV checkbox
-		    if(!cgvCheckbox.prop('checked')) {
-		        cgvCheckbox.parent().addClass('alert');
-		        return;
-		    }
-		    
-		    // Verify address
-		    var addrForm = addrContainer.find('form');
-		    if(addrForm.length > 0) {
-		        var alert = addrContainer.children('.flash-alert');
-		        if(alert.length == 0)
-		            alert = $('<div class="flash-alert">').insertBefore(addrForm);
-		        alert.append('<p>Tu dois valider ton adresse d\'abord</p>');
-		        return;
-		    }
+		    if( !checksubmit() ) return;
 		    
 		    dg.startFlow(config.base_url+"achat/order/paypalCheckout");
 		    
@@ -126,6 +138,14 @@
 		        }
 		    }, 1000);
 		});
+		
+		
+		// Payzen submit
+		payzen_submit.click(function(e) {
+		    e.preventDefault();
+		    if( !checksubmit() ) return;
+		    payzenForm.submit();
+		});
 	}
 	$(document).ready(init);
 	
@@ -140,6 +160,7 @@
 	    	    switch(data.action) {
 	    	    case "NO_PAYMENT":
 	    	    case "CANCEL_PAYMENT":
+	    	    case "RESET_COMMAND":
 	    	        document.location.reload();
 	    	        break;
 	    	    case "CONFIRM_PAYMENT":
@@ -194,10 +215,11 @@
 
 	function removeProduct(e) {
 		var ref = $(this).data('productref');
+		var cartpid = $(this).data('cartpid');
 		$.ajax({
 			url: config.base_url + 'achat/cart/remove',
 			type: 'POST',
-			data: { product_ref: ref },
+			data: { 'product_ref': ref, 'cart_product_id': cartpid },
 			success: function(data) {
 				window.location.reload();
 			},

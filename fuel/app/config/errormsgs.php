@@ -5,22 +5,27 @@ return array(
         1 => 'Mot de passe ou identifiant erroné',
         2 => 'Identifiant manquant',
         3 => 'Mot de passe manquant',
+        4 => 'Adresse mail existe déjà',
+        5 => 'Pseudo existe déjà',
+        6 => 'Echec à créer utilisateur',
         10 => 'Problème de connexion à Facebook',
         11 => 'Problème de connexion à Facebook, tu peux réessayer la prochaine fois',
         12 => 'Facebook id n\'est lié à aucun compte',
         13 => 'Ton facebook information n\'a pas pu être sauvegardé, tu peux réessayer la prochaine fois',
+        14 => 'Facebook token manquant',
+        15 => 'Facebook token invalide ou problème de connexion',
     ),
 
     // Error codes while request the access to a story
 	'story_access' => array(
-	    101 => "L'épisode est indisponible pour le moment.",
-	    102 => "Aucun épisode n'était demandé",
-	    103 => "L'épisode n'existe pas ou il est indisponible.",
-	    201 => "Tu dois te connecter ou t'inscrire sur SEASON13.com.",
+	    101 => "Cet épisode est indisponible pour le moment.",
+	    102 => "Aucun épisode n'était demandé.",
+	    103 => "Cet épisode est indisponible.",
+	    201 => "Tu dois créer un compte ou te connecter.",
 	    202 => "Tu n'as pas l'accès à cet épisode.",
-	    302 => "Il faut que tu t'inscrives pour découvrir le 2ème épisode",
-	    303 => "Nous t'offrons cet épisode si tu envoies cette invitation à 5 amis",
-	    304 => "Nous t'offrons cet épisode si tu aimes Season13.com sur Facebook",
+	    302 => "Nous t'offrons cet épisode si tu crées un compte.",
+	    303 => "Nous t'offrons cet épisode si tu envoies cette invitation à 5 amis.",
+	    304 => "Nous t'offrons cet épisode si tu aimes Season13.com sur Facebook.",
 	    'default' => "L'épisode n'existe pas ou il est indisponible.",
 	),
 	
@@ -107,8 +112,10 @@ return array(
 	    4110 => "Commande introuvable",
 	    
 	    // Payment
-	    4201 => "La commande n'est pas valide.", // No commande or commande class error
+	    4201 => "La commande n'est pas valide, veuilles rafraichir la page et réessayer", // No commande or commande class error
 	    4202 => "La commande est vide ou elle exige un autre moyen de payment",
+	    4203 => "Le flux de paiement est intérrompu, veuilles rafraichir la page et réessayer ultérieurement", // checkout function error
+	    4204 => "Le flux de paiement est intérrompu, veuilles rafraichir la page et réessayer ultérieurement", // Payzen signature manquante
 
 	    // product
 	    4501 => "The product is referencing unknown episode",

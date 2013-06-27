@@ -4,7 +4,7 @@ abstract class Payment {
 
     public $name = "Payment";
 
-    protected static function extractOrder($order) {
+    public static function extractOrder($order) {
         if(get_class($order) != "Model_Achat_Order") {
             throw new CartException(Config::get('errormsgs.payment.4201'), 4201);
         }
@@ -50,10 +50,10 @@ abstract class Payment {
                      'currency_code' => $currencyCode,
                      'user_id' => $user_id, 
                      'items' => $items,
-                     'total_amt' => $total_amount,
+                     'total' => $total_amount,
                      'tva' => number_format($cart->tax_rate, 2, '.', '')."%",
-                     'total_ht' => $ht,
-                     'total_tax' => $tax);
+                     'ht' => $ht,
+                     'tax' => $tax);
     }
     
     protected static function save($payment, $token) {
@@ -75,6 +75,6 @@ abstract class Payment {
         else return null;
     }
     
-    abstract public function checkoutOrder($order);
+    abstract public function checkoutOrder($order, $token = null);
     abstract public function confirmPayment($order, $token, $supp);
 }

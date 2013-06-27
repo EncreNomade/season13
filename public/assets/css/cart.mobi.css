@@ -1,0 +1,97 @@
+ul#conn #cart {
+    width: auto;
+    height: 19px;
+}
+
+ul#conn #cart img {
+    position: relative;
+    float: left;
+    width: 19px;
+    height: 19px;
+}
+ul#conn #cart span {
+    position: relative;
+    float: left;
+}
+
+.cart_container {
+    font-family: 'DroidSansRegular', Arial;
+}
+
+.cart_product {
+	padding: 5px;
+	border-bottom: solid 1px #BEBEBE;
+	margin-bottom: 10px;
+	min-height: 50px;
+}
+
+.cart_product h3 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.cart_product .imgContainer {
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin-right: 8px;
+	z-index: 1;
+}
+
+
+.cart_product .remove_product {
+	float: right;
+	height: 50px;
+	margin: 5px 5px 5px 10px;
+	z-index: 2;
+}
+
+.cart_product img {
+	max-height: 50px;
+	max-width: 44px;
+	margin: 0px 3px;
+}
+
+/*	old price after discount  */
+.cart_product del {
+	color: gray;
+}
+
+.offer_product {
+    margin: 0px;
+    padding: 0px;
+    height: 24px;
+    font: normal 12px/28px "DroidSansRegular", Arial;
+}
+
+.offer_product img {
+    position: relative;
+    float: left;
+    width: 24px;
+    height: 24px;
+}
+
+.offer_product .click_to_offer {
+    cursor: pointer;
+}
+.offer_product .click_to_offer:hover {
+    color: rgb(246, 168, 0);
+}
+
+.pay_button {
+	text-align: center;
+	margin: 15px auto;
+	width: 67px;
+	height: 43px;
+}
+
+.cart_container .total {
+	text-align: center;
+	clear: both;
+}
+
+/*	Cart notifier  */
+#cart span {	
+	position: absolute;
+	bottom: 0;
+}

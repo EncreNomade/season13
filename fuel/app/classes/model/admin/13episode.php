@@ -74,6 +74,20 @@ class Model_Admin_13episode extends Model
         return str_replace(' ', '_', $this->story) . "/season" . $this->season . "/episode" . $this->episode;
     }
     
+    public function getRelatPdtRef() {
+        $info = Format::forge($this->info_supp, 'json')->to_array();
+        $reference = array_key_exists("reference", $info) ? $info["reference"] : false;
+        return $reference;
+    }
+    
+    public function getRelatProduct() {
+        $reference = $this->getRelatPdtRef();
+        if($reference) {
+            return Model_Achat_13product::find_by_reference($reference);
+        }
+        else return false;
+    }
+    
     public function hasAccess($user) {
         // Episode 1 free for public
         if($this->id == 1)

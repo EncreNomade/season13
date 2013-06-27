@@ -1,9 +1,3 @@
-function onYouTubePlayerReady(playerId) {
-    ytplayer = document.getElementById("myytplayer");
-    ytplayer.setPlaybackQuality('hd720');
-}
-
-
 (function (window) {
 
 var elems = {};
@@ -76,23 +70,6 @@ function activeEpisode(id) {
 
 var accessGateway = {
     'success' : false,
-    
-    'buyClicked' : function(ep, updateAction) {
-        var ok = confirm("MERCI\nTu es l’un de nos premiers clients. Pour te remercier, nous t’offrons gratuitement le "+ep+"ème épisode de Voodoo Connection.");
-        if(ok) {
-            if(updateAction) {
-                $.ajax({
-                    url: window.config.base_url+updateAction,
-                    type: 'POST',
-                    async: false,
-                    dataType : 'json',
-                    data: {'epid': ep},
-                });
-            }
-        
-            window.open(window.config.publicRoot+'story?ep='+ep, '_newtab');
-        }
-    },
     
     'ep3': function(data) {
         $('#access_dialog').attr('class', 'dialog invitation_dialog');
@@ -199,6 +176,16 @@ var accessGateway = {
             //$('.center #like_dialog').removeClass('show');
             $('#access_dialog #like_section fb').nextAll().remove();
             $('#access_dialog #like_section').append("<p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>");
+            
+            $('#access_submit_btn4').click(function(e) {
+                e.preventDefault();
+                fuel_set_csrf_token($('#like_form').get(0));
+                $('#like_form').submit();
+                if(accessGateway.success) {
+                    accessGateway.success = false;
+                    window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode4', '_newtab');
+                }
+            });
         });
         
         // Prepare Options Object for form
@@ -224,7 +211,7 @@ var accessGateway = {
         };
         // Prepare ajax form
         $('#like_form').ajaxForm(options);
-        $('#access_submit_btn4').live('click', function(e) {
+        $('#access_submit_btn4').click(function(e) {
             e.preventDefault();
             fuel_set_csrf_token($('#like_form').get(0));
             $('#like_form').submit();
@@ -243,6 +230,16 @@ var accessGateway = {
                     return;
                 } else if (result.data.length > 0) {
                     $('#access_dialog #like_section').html("<h5>Bravo! Tu as déjà aimé SEASON13 sur Facebook, nous t'offrons le 4ème épisode de Voodoo Connection.<br/></h5><p><input id='access_submit_btn4' type='submit' value=\"Accède à l'épisode 4\"></p>").nextAll().remove();
+                    
+                    $('#access_submit_btn4').click(function(e) {
+                        e.preventDefault();
+                        fuel_set_csrf_token($('#like_form').get(0));
+                        $('#like_form').submit();
+                        if(accessGateway.success) {
+                            accessGateway.success = false;
+                            window.open(window.config.publicRoot+'Voodoo_Connection/season1/episode4', '_newtab');
+                        }
+                    });
                 } else if (result.error) {
                     console.log('Error: '+result.error.message+'');
                 }
@@ -269,7 +266,7 @@ function story_access_resp(data, epid) {
                 
             case 302:
                 alert(data.errorMessage);
-                if(showLogin) showLogin();
+                if(showSignup) showSignup();
                 break;
             
             case 303:
@@ -300,7 +297,7 @@ function playEpisode(e) {
     var epid = expo.data('id');
     
     $.ajax({
-        url: './base/story_access',
+        url: window.config.publicRoot + 'base/story_access',
         type: 'GET',
         async: false,
         dataType: 'json',
@@ -360,14 +357,6 @@ function init() {
 	if(current_section) {
 	    gotoSection(current_section);
 	}
-	
-	// Youtube video
-	var params = { 
-	    allowScriptAccess: "sameDomain",
-	    wmode: "transparent",
-	};
-    var atts = { id: "myytplayer" };
-    swfobject.embedSWF("http://www.youtube.com/v/lwuMe5fzeyU?enablejsapi=1&playerapiid=ytplayer&version=3&rel=0", "ytapiplayer", "420", "236", "8", null, null, params, atts);
 }
 
 $(window).ready(init);

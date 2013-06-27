@@ -14,6 +14,7 @@
 			<th>Pays</th>
 			<th>Code Postal</th>
 			<th>Facebook</th>
+			<th>Inscription</th>
 			<th>Extra</th>
 		</tr>
 	</thead>
@@ -30,6 +31,7 @@
 			<td><?php echo $user->pays; ?></td>
 			<td><?php echo $user->code_postal; ?></td>
 			<td><a href="http://www.facebook.com/<?php echo $user->fbid; ?>"><?php echo $user->fbid; ?></a></td>
+			<td><?php echo Date::forge($user->created_at)->format("%d/%m/%Y"); ?></td>
 			<td><?php echo $user->profile_fields; ?></td>
 			<td>
 				<?php echo Html::anchor('admin/13users/view/'.$user->id, 'View'); ?> |

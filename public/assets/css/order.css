@@ -147,3 +147,15 @@
     font-size: 12px;
     font-size-adjust: 35px;
 }
+
+#payzen_submit {
+    width: 150px;
+    height: 100px;
+    border: none;
+    background: transparent url('../img/season13/ui/btn_paiement_cb.png') no-repeat left top;
+    cursor: pointer;
+}
+#payzen_submit:hover {
+    background-size: 146px 96px;
+    background-position: 2px 2px;
+}

@@ -68,6 +68,13 @@ class Model_13user extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true
 		),
+		'orders' => array (
+			'key_from' => 'id',
+			'model_to' => 'Model_Achat_Order',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => false
+		),
 	);
 
 	protected static $_observers = array(
@@ -181,9 +188,9 @@ class Model_13user extends \Orm\Model
 	 * @return bool
 	 */
 	public function hasDoneTuto() {
-		$infos = @unserialize(htmlspecialchars_decode($this->profile_fields));
+		$infos = @unserialize(htmlspecialchars_decode($this->get('profile_fields')));
 		
-		if(!$infos['tuto_done']) {
+		if( !array_key_exists('tuto_done', $infos) ) {
     		$infos['tuto_done'] = true;
     		$this->profile_fields = serialize($infos);
     		

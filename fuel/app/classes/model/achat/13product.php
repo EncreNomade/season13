@@ -162,9 +162,9 @@ class Model_Achat_13product extends Model
 	    }
 	}
 
-	public function getLocalPrice($countryCode = 'FR')
+	public function getLocalPrice($countryCode = 'FR', $pdtprice = null)
 	{
-		$price = Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
+		$price = $pdtprice ? $pdtprice : Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
 
 		if ($price) { 						// a price is found for this product & this country
 			return floatval($price->taxed_price);
@@ -187,13 +187,24 @@ class Model_Achat_13product extends Model
 		}
 	}
 
-	public function getLocalDiscount($countryCode = null)
+	public function getLocalDiscount($countryCode = 'FR', $pdtprice = null)
 	{
-		$price = Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
+		$price = $pdtprice ? $pdtprice : Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
 		if($price) 
 			return floatval($price->discount);
 		else
-			return 0;		
+			return 1;
+	}
+	
+	public function getLocalDiscountedPrice($countryCode = 'FR') {
+	    $pdtprice = Model_Achat_Productprice::find_by_id_and_country($this->id, $countryCode);
+	    try {
+	        $localprice = $this->getLocalPrice($countryCode, $pdtprice);
+	    }
+	    catch (Exception $e) {
+	        $localprice = $this->price;
+	    }
+	    return $localprice * $this->getLocalDiscount($countryCode, $pdtprice);
 	}
 }
 
